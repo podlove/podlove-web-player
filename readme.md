@@ -1,6 +1,6 @@
 # Podlove Web Player – HTML5 Goodness for Podcasting
 
-Podlove Web Player is a Podcast-optimized, HTML5-based video and audio player with Flash fallback.It supports almost every browser and also does captions, chapters and much more. Thanks to MediaElement.js for providing the foundation.
+Podlove Web Player is a Podcast-optimized, HTML5-based video and audio player with Flash fallback. It supports almost every browser and also does captions, chapters and much more. Thanks to MediaElement.js for providing the foundation.
 
 [Official Site](http://podlove.org/podlove-web-player/)
 
