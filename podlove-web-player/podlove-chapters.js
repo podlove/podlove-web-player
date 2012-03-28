@@ -1,4 +1,4 @@
-function mejs_chapters (playerid){
+function podlove_chapters (playerid){
 	new MediaElement(playerid, {
 		success: function (player) { 
 

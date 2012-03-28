@@ -6,7 +6,7 @@
  
 /*
 Plugin Name: Podlove Web Player
-Plugin URI: http://podlove.org
+Plugin URI: http://podlove.org/podlove-web-player/
 Description: 
 Author: Gerrit van Aaken
 Version: 0.9
@@ -19,7 +19,7 @@ Forked from: http://mediaelementjs.com/ plugin
 which was adapted from: http://videojs.com/ plugin
 */
 
-$mediaElementPlayerIndex = 1;
+$podlovePlayerIndex = 1;
 define('MEDIAELEMENTJS_DIR', plugin_dir_url(__FILE__).'mediaelement/');
 
 /* Runs when plugin is activated */
@@ -59,7 +59,7 @@ add_action('admin_menu', 'mejs_create_menu');
 function mejs_create_menu() {
 
 	//create new top-level menu
-	add_options_page('MediaElement.js', 'MediaElement.js', 'administrator', __FILE__, 'mejs_settings_page');
+	add_options_page('Podlove Web Player Options', 'Podlove Player', 'administrator', __FILE__, 'mejs_settings_page');
 
 	//call register settings function
 	add_action( 'admin_init', 'mejs_register_settings' );
@@ -84,7 +84,7 @@ function mejs_register_settings() {
 function mejs_settings_page() {
 ?>
 <div class="wrap">
-<h2>MediaElement.js HTML5 Player Options</h2>
+<h2>Podlove Web Player Options</h2>
 
 <p>See <a href="http://mediaelementjs.com/">MediaElementjs.com</a> for more details on how the HTML5 player and Flash fallbacks work.</p>
 
@@ -96,7 +96,7 @@ function mejs_settings_page() {
 	<table  class="form-table">
 		<tr valign="top">
 			<th scope="row">
-				<label for="mep_script_on_demand">Load Script on Demand (requires WP 3.3)</label>
+				<label for="mep_script_on_demand">Load Script on Demand</label>
 			</th>
 			<td >
 				<input name="mep_script_on_demand" type="checkbox" id="mep_script_on_demand" <?php echo (get_option('mep_script_on_demand') == true ? "checked" : "")  ?> />
@@ -228,7 +228,7 @@ function podlove_media_shortcode($tagName, $atts){
 		wp_enqueue_script("mediaelementjs-scripts", MEDIAELEMENTJS_DIR ."mediaelement-and-player.min.js", array('jquery'), "2.7.0", false);
 	}  
 
-	global $mediaElementPlayerIndex; 
+	global $podlovePlayerIndex; 
 	$dir = MEDIAELEMENTJS_DIR;
 	$attributes = array();
 	$sources = array();
@@ -430,7 +430,7 @@ function podlove_media_shortcode($tagName, $atts){
 	$options_string = !empty($options) ? '{' . implode(',', $options) . '}' : '';
 
 	$mediahtml = <<<_end_
-	<{$tagName} id="wp_mep_{$mediaElementPlayerIndex}" controls="controls" {$attributes_string} class="mejs-player {$skin_class}" data-mejsoptions='{$options_string}'>
+	<{$tagName} id="wp_mep_{$podlovePlayerIndex}" controls="controls" {$attributes_string} class="mejs-player {$skin_class}" data-mejsoptions='{$options_string}'>
 		{$sources_string}
 		<object width="{$width}" height="{$height}" type="application/x-shockwave-flash" data="{$dir}flashmediaelement.swf">
 			<param name="movie" value="{$dir}flashmediaelement.swf" />
@@ -443,17 +443,17 @@ _end_;
 	// Chapters Table and Behaviour
 	if ($chapters) {
 		$mediahtml .= "\n\n".podlove_render_chapters($chapters);
-		$mediahtml .= "\n\n<script>mejs_chapters('wp_mep_{$mediaElementPlayerIndex}');</script>\n";
+		$mediahtml .= "\n\n<script>podlove_chapters('wp_mep_{$podlovePlayerIndex}');</script>\n";
 	}
 
-	$mediaElementPlayerIndex++;
+	$podlovePlayerIndex++;
 	return $mediahtml;
 }
 
 
 function podlove_render_chapters($custom_field){
 	global $post;
-	global $mediaElementPlayerIndex;
+	global $podlovePlayerIndex;
 	
 	if ($custom_field != "" && $chapters = get_post_custom_values($custom_field, $post->ID)) {
 		$chapters = podlove_chapters_from_string ($chapters[0]);
@@ -462,7 +462,7 @@ function podlove_render_chapters($custom_field){
 		//var_dump ($chapters);
 		//echo "</pre>";
 	
-		$output .= '<table rel="wp_mep_'.$mediaElementPlayerIndex.'" class="mejs_chapters" style="display:none"><tbody>';
+		$output .= '<table rel="wp_mep_'.$podlovePlayerIndex.'" class="mejs_chapters" style="display:none"><tbody>';
 		foreach($chapters as $i => $chapter) {
 			if ($i == (count($chapters)-1)) {
 				$end = "9999999";
@@ -532,11 +532,11 @@ add_shortcode('podloveaudio', 'podlove_audio_shortcode');
 add_shortcode('video', 'podlove_video_shortcode');
 add_shortcode('podlovevideo', 'podlove_video_shortcode');   
 
-function mejs_init() {
+function podlove_init() {
 	wp_enqueue_script( 'jquery' );
 }    
  
-add_action('init', 'mejs_init');
+add_action('init', 'podlove_init');
 
 	
 ?>
