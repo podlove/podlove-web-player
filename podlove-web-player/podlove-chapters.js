@@ -1,17 +1,22 @@
 var PODLOVE = PODLOVE || {};
 
 PODLOVE.chapters = function (playerId) {
-    MediaElement(playerId, {success: PODLOVE.chapters.addBehaviour});
+    MediaElement(playerId, {
+        success: function (player) {
+            PODLOVE.chapters.addBehaviour(playerId, player);
+        }
+    });
 };
 
-PODLOVE.chapters.addBehaviour = function (player) {
-    var list = jQuery('table[rel=' + playerId + ']').show();
-
-    jQuery(document).on('click', list.find('a'), function () {
-        var time = jQuery(this).find('span').data('start');
-        player.setCurrentTime(time);
-        return false;
-    });
+PODLOVE.chapters.addBehaviour = function (playerId, player) {
+    var list = jQuery('table[rel=' + playerId + ']')
+        .show()
+        .on('click', 'a', function () {
+            var time = jQuery(this).find('span').data('start');
+            player.setCurrentTime(time);
+            player.play();
+            return false;
+        });
 
     player.addEventListener('timeupdate', function (e) {
         list.find('span').each(function (i) {
