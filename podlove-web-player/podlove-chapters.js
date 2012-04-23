@@ -1,31 +1,43 @@
-function podlove_chapters (playerid){
-	new MediaElement(playerid, {
-		success: function (player) { 
+var PODLOVE = PODLOVE || {};
 
-			var list = 'table[rel='+playerid+']';
-			jQuery(list).show();
+PODLOVE.chapters = function (playerId) {
+    MediaElement(playerId, {
+        success: function (player) {
+            PODLOVE.chapters.addBehaviour(playerId, player);
+        }
+    });
+};
 
-			jQuery(document).on('click', list+' a', function(){
-			 player.setCurrentTime (jQuery(this).find('span').data('start'));
-			 return false;
-			});
+PODLOVE.chapters.addBehaviour = function (playerId, player) {
+    var list = jQuery('table[rel=' + playerId + ']')
+        .show()
+        .on('click', 'a', function () {
+            var time = jQuery(this).find('span').data('start');
+            player.setCurrentTime(time);
+            player.play();
+            return false;
+        });
 
-			player.addEventListener('timeupdate', function(e) {
-				jQuery(list+' span').each(function(i){
-					var mytr = jQuery(this).closest('tr');
-					var curr = jQuery(this).data('start')
-					var next = jQuery(this).data('end');
-					if (player.currentTime > (curr - 0.3 ) && player.currentTime <= (next) ) {
-						if (!jQuery(mytr).hasClass('active')) {
-							jQuery(this).closest('table').find('tr.active').removeClass('active');
-							jQuery(mytr).addClass('active');
-						}
-					}
-					if (jQuery(this).data('buffered') == '0' && player.buffered.end(0) > curr) {
-						jQuery(this).data('buffered', '1').wrap('<a href="#"></a>');
-					}        
-				});
-			}, false);
-	 	}
-	});
-}
+    player.addEventListener('timeupdate', function (e) {
+        list.find('span').each(function (i) {
+            var span = jQuery(this),
+                row = span.closest('tr'),
+                startTime = span.data('start'),
+                endTime = span.data('end'),
+                isEnabled = span.data('enabled') === '1',
+                isBuffered = player.buffered.end(0) > startTime,
+                isActive = player.currentTime > startTime - 0.3 &&
+                        player.currentTime <= endTime;
+
+            if (isActive && !row.hasClass('active')) {
+                span.closest('table')
+                    .find('tr.active')
+                    .removeClass('active');
+                row.addClass('active');
+            }
+            if (!isEnabled && isBuffered) {
+                span.data('enabled', '1').wrap('<a href="#"></a>');
+            }
+        });
+    }, false);
+};
