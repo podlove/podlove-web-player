@@ -1,8 +1,18 @@
 var PODLOVE = PODLOVE || {};
+PODLOVE.playercount = 0;
 
 PODLOVE.chapters = function (playerId) {
+    if (!PODLOVE.playercount) {
+        //console.log('startpos:' + PODLOVE.chapters.startpos);
+        if (PODLOVE.chapters.startpos = PODLOVE.chapters.parseTimecode((window.location.href.match(/#(\d\d:\d\d:\d\d\.\d\d\d)/) || [])[1])) {
+            $('#' + playerId).attr('preload', 'auto');
+            //console.log ('preload of player ' + $('#' + playerId).attr('preload'));
+        }
+    }
+
     MediaElement(playerId, {
         success: function (player) {
+            PODLOVE.playercount++;
             PODLOVE.chapters.addBehaviour(playerId, player);
         }
     });
@@ -18,34 +28,22 @@ PODLOVE.chapters.addBehaviour = function (playerId, player) {
             history.pushState(null, null, '#' + PODLOVE.chapters.generateTimecode(time) + '-' + PODLOVE.chapters.generateTimecode(jQuery(this).find('span').data('end')));
             return false;
         })
-      , startpos;
+     , skip_to_linked_time = function (e) {
 
-    player.addEventListener('canplay', function (e) {
-        console.log('canplay ' + window.location.href + ' - ' + startpos + ' --- ' + player.buffered.end(0));
-        var prm;
-        if (prm = window.location.href.match(/#(\d\d:\d\d:\d\d\.\d\d\d)/)) {
-            startpos = PODLOVE.chapters.parseTimecode(prm[1]);
-            if (startpos > player.buffered.end(0)) {
-                player.pause();
-                // check every half second if the requestet time mark is in the cache
-                window.setTimeout( function () { 
-                    console.log('timeout-fnc ' + startpos + ' --- ' + player.buffered.end(0));
-                    if (startpos <= player.buffered.end(0)) {
-                        startpos = null;
-                        player.play();
-                        clearTimeout(this);
-                    }
-                }, 500);
-                console.log('pause');
-            } else {
-                console.log('play canplay');
-                player.setCurrentTime(startpos);
-                startpos = null;
+            if (PODLOVE.chapters.startpos && PODLOVE.playercount < 2) {
+	        player.setCurrentTime(PODLOVE.chapters.startpos);
+                PODLOVE.chapters.startpos = null;
             }
-        }
-    }, false);
+        };
+
+    if (PODLOVE.chapters.startpos && PODLOVE.playercount < 2) {
+        player.addEventListener('play', skip_to_linked_time , false);
+        player.addEventListener('timeupdate', skip_to_linked_time , false);
+    }
 
     player.addEventListener('timeupdate', function (e) {
+        //console.log('timeupdate ' + window.location.href + ' - ' + PODLOVE.chapters.startpos + ' --- ' + player.buffered.end(0));
+        // update the chapter list when the data is loaded
         list.find('span').each(function (i) {
             var span = jQuery(this),
                 row = span.closest('tr'),
@@ -63,7 +61,7 @@ PODLOVE.chapters.addBehaviour = function (playerId, player) {
                     .removeClass('active');
                 row.addClass('active');
                 // we don't update the address if a selectedchapter is selected and we have not yet played through it
-                if (!startpos) {
+                if (PODLOVE.playercount < 2 && !PODLOVE.chapters.startpos) {
                     if (!(tmpTimecode = window.location.href.match(/#(\d\d:\d\d:\d\d\.\d\d\d)-(\d\d:\d\d:\d\d\.\d\d\d)/)) || (tmpTimecode[2] && PODLOVE.chapters.parseTimecode(tmpTimecode[2]) <= startTime)) {
                         history.pushState(null, null, '#' + PODLOVE.chapters.generateTimecode(startTime));
                     }
@@ -85,8 +83,11 @@ PODLOVE.chapters.generateTimecode = function (sec) {
     var prim = function (v, mil) {
                    v = (v || 0) + '';
                    return (mil && v.length <3 ? '0' : '') + (v.length < 2 ? '0' : '') + v;
-               };
-    return prim(Math.floor(sec/60/60)) + ':' + prim(Math.floor(sec/60)) + ':' + prim(Math.floor(sec%60)) + '.' + prim(((sec-Math.floor(sec)) + '').substring(2,5) || '000', true);
+               }
+      , tcode;
+    tcode = prim(Math.floor(sec/60/60)) + ':' + prim(Math.floor(sec/60)%60) + ':' + prim(Math.floor(sec%60)%60) + '.' + prim(((sec-Math.floor(sec)) + '').substring(2,5) || '000', true);
+    //console.log('generateTimecode (' + sec + ') ==> ' + tcode);
+    return tcode;
 }
 
 /**
@@ -97,10 +98,12 @@ PODLOVE.chapters.generateTimecode = function (sec) {
 PODLOVE.chapters.parseTimecode = function (tcode) {
     var parts;
     if ((parts = (tcode || '').match(/(\d\d):(\d\d):(\d\d).(\d\d\d)/)) && parts.length === 5) {
-        return parseInt (parts[1]) * 60 * 60 + 
-               parseInt (parts[2]) * 60 + 
-               parseInt (parts[3]) +
-               parseFloat('0.' + parts[4]);
+        parts = parseInt (parts[1]) * 60 * 60 + 
+                parseInt (parts[2]) * 60 + 
+                parseInt (parts[3]) +
+                parseFloat('0.' + parts[4]);
+       //console.log ('parseTimecode (' + tcode + ') ==> ' + parts);
+       return parts;
     }
 }
 
