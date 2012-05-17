@@ -15,8 +15,45 @@ PODLOVE.chapters.addBehaviour = function (playerId, player) {
             var time = jQuery(this).find('span').data('start');
             player.setCurrentTime(time);
             player.play();
+            history.pushState(null, null, '#' + PODLOVE.chapters.generateTimecode(time) + '-' + PODLOVE.chapters.generateTimecode(jQuery(this).find('span').data('end')));
             return false;
-        });
+        })
+      , startpos;
+
+    player.addEventListener('canplay', function (e) {
+        console.log('canplay ' + window.location.href + ' - ' + startpos + ' --- ' + player.buffered.end(0));
+        var x;
+ console.log
+        if (x = window.location.href.match(/#(\d\d:\d\d:\d\d\.\d\d\d)/)) {
+            startpos = PODLOVE.chapters.parseTimecode(x[1]);
+        console.log('canplay ' + window.location.href + ' - ' + startpos + ' --- ' + player.buffered.end(0));
+            if (startpos > player.buffered.end(0)) {
+                player.pause();
+ console.log('pause');
+            } else {
+ console.log('play canplay');
+              player.setCurrentTime(startpos);
+              startpos = null;
+            }
+        }
+    }, false);
+
+/*
+    player.addEventListener('loadeddata', function (e) {
+        console.log('loadeddata ' + window.location.href + ' - ' + startpos + ' --- ' + player.buffered.end(0));
+        if (startpos && startpos <= player.buffered.end(0)) {
+            startpos = 0;
+            player.play();
+        }
+    }, false);*/
+
+/*    player.addEventListener('progress', function (e) {
+        console.log('progress ' + window.location.href + ' - ' + startpos + ' --- ' + player.buffered.end(0));
+        if (startpos && startpos <= player.buffered.end(0)) {
+            startpos = 0;
+            player.play();
+        }
+    }, false);*/
 
     player.addEventListener('timeupdate', function (e) {
         list.find('span').each(function (i) {
@@ -27,13 +64,26 @@ PODLOVE.chapters.addBehaviour = function (playerId, player) {
                 isEnabled = span.data('enabled') === '1',
                 isBuffered = player.buffered.end(0) > startTime,
                 isActive = player.currentTime > startTime - 0.3 &&
-                        player.currentTime <= endTime;
+                        player.currentTime <= endTime,
+                tmpTimecode;
+
+                /*if (startpos <= player.buffered.end(0)) {
+                    player.play();
+                    startpos = null;
+ console.log('play timeupdate');
+                }*/
 
             if (isActive && !row.hasClass('active')) {
                 span.closest('table')
                     .find('tr.active')
                     .removeClass('active');
                 row.addClass('active');
+                // we don't update the address if a selectedchapter is selected and we have not yet played through it
+//                if (!startpos) {
+                    if (!(tmpTimecode = window.location.href.match(/#(\d\d:\d\d:\d\d\.\d\d\d)-(\d\d:\d\d:\d\d\.\d\d\d)/)) || (tmpTimecode[2] && PODLOVE.chapters.parseTimecode(tmpTimecode[2]) <= startTime)) {
+                        history.pushState(null, null, '#' + PODLOVE.chapters.generateTimecode(startTime));
+                    }
+//                }
             }
             if (!isEnabled && isBuffered) {
                 span.data('enabled', '1').wrap('<a href="#"></a>');
@@ -41,3 +91,32 @@ PODLOVE.chapters.addBehaviour = function (playerId, player) {
         });
     }, false);
 };
+
+/**
+ * returns seconds in deep-linking time format
+ * @param sec number 
+ * @return string
+ **/
+PODLOVE.chapters.generateTimecode = function (sec) {
+    var prim = function (v, mil) {
+                   v = (v || 0) + '';
+                   return (mil && v.length <3 ? '0' : '') + (v.length < 2 ? '0' : '') + v;
+               };
+    return prim(Math.floor(sec/60/60)) + ':' + prim(Math.floor(sec/60)) + ':' + prim(Math.floor(sec%60)) + '.' + prim(((sec-Math.floor(sec)) + '').substring(2,5) || '000', true);
+}
+
+/**
+ * parses time code into seconds
+ * @param string timecode
+ * @return number 
+ **/
+PODLOVE.chapters.parseTimecode = function (tcode) {
+    var parts;
+    if ((parts = (tcode || '').match(/(\d\d):(\d\d):(\d\d).(\d\d\d)/)) && parts.length === 5) {
+        return parseInt (parts[1]) * 60 * 60 + 
+               parseInt (parts[2]) * 60 + 
+               parseInt (parts[3]) +
+               parseFloat('0.' + parts[4]);
+    }
+}
+
