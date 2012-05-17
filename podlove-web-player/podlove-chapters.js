@@ -22,38 +22,28 @@ PODLOVE.chapters.addBehaviour = function (playerId, player) {
 
     player.addEventListener('canplay', function (e) {
         console.log('canplay ' + window.location.href + ' - ' + startpos + ' --- ' + player.buffered.end(0));
-        var x;
- console.log
-        if (x = window.location.href.match(/#(\d\d:\d\d:\d\d\.\d\d\d)/)) {
-            startpos = PODLOVE.chapters.parseTimecode(x[1]);
-        console.log('canplay ' + window.location.href + ' - ' + startpos + ' --- ' + player.buffered.end(0));
+        var prm;
+        if (prm = window.location.href.match(/#(\d\d:\d\d:\d\d\.\d\d\d)/)) {
+            startpos = PODLOVE.chapters.parseTimecode(prm[1]);
             if (startpos > player.buffered.end(0)) {
                 player.pause();
- console.log('pause');
+                // check every half second if the requestet time mark is in the cache
+                window.setTimeout( function () { 
+                    console.log('timeout-fnc ' + startpos + ' --- ' + player.buffered.end(0));
+                    if (startpos <= player.buffered.end(0)) {
+                        startpos = null;
+                        player.play();
+                        clearTimeout(this);
+                    }
+                }, 500);
+                console.log('pause');
             } else {
- console.log('play canplay');
-              player.setCurrentTime(startpos);
-              startpos = null;
+                console.log('play canplay');
+                player.setCurrentTime(startpos);
+                startpos = null;
             }
         }
     }, false);
-
-/*
-    player.addEventListener('loadeddata', function (e) {
-        console.log('loadeddata ' + window.location.href + ' - ' + startpos + ' --- ' + player.buffered.end(0));
-        if (startpos && startpos <= player.buffered.end(0)) {
-            startpos = 0;
-            player.play();
-        }
-    }, false);*/
-
-/*    player.addEventListener('progress', function (e) {
-        console.log('progress ' + window.location.href + ' - ' + startpos + ' --- ' + player.buffered.end(0));
-        if (startpos && startpos <= player.buffered.end(0)) {
-            startpos = 0;
-            player.play();
-        }
-    }, false);*/
 
     player.addEventListener('timeupdate', function (e) {
         list.find('span').each(function (i) {
@@ -63,15 +53,9 @@ PODLOVE.chapters.addBehaviour = function (playerId, player) {
                 endTime = span.data('end'),
                 isEnabled = span.data('enabled') === '1',
                 isBuffered = player.buffered.end(0) > startTime,
-                isActive = player.currentTime > startTime - 0.3 &&
-                        player.currentTime <= endTime,
+                isActive =  player.currentTime > startTime - 0.3 &&
+                            player.currentTime <= endTime,
                 tmpTimecode;
-
-                /*if (startpos <= player.buffered.end(0)) {
-                    player.play();
-                    startpos = null;
- console.log('play timeupdate');
-                }*/
 
             if (isActive && !row.hasClass('active')) {
                 span.closest('table')
@@ -79,11 +63,11 @@ PODLOVE.chapters.addBehaviour = function (playerId, player) {
                     .removeClass('active');
                 row.addClass('active');
                 // we don't update the address if a selectedchapter is selected and we have not yet played through it
-//                if (!startpos) {
+                if (!startpos) {
                     if (!(tmpTimecode = window.location.href.match(/#(\d\d:\d\d:\d\d\.\d\d\d)-(\d\d:\d\d:\d\d\.\d\d\d)/)) || (tmpTimecode[2] && PODLOVE.chapters.parseTimecode(tmpTimecode[2]) <= startTime)) {
                         history.pushState(null, null, '#' + PODLOVE.chapters.generateTimecode(startTime));
                     }
-//                }
+                }
             }
             if (!isEnabled && isBuffered) {
                 span.data('enabled', '1').wrap('<a href="#"></a>');
