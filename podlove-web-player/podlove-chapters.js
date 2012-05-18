@@ -89,7 +89,9 @@ PODLOVE.chapters.addBehaviour_deep_linking = function (playerId, player) {
         player.addEventListener('seeked', address_current_time, false);
 
         jQuery('table[rel=' + playerId + ']').on('click', 'a', function () {
-            history.pushState(null, null, '#' + PODLOVE.chapters.generateTimecode(jQuery(this).find('span').data('start')));
+            if (PODLOVE.playercount === 1) {
+                history.pushState(null, null, '#' + PODLOVE.chapters.generateTimecode(jQuery(this).find('span').data('start')));
+            }
         });
     }
 };
