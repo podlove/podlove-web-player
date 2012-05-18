@@ -31,7 +31,7 @@ PODLOVE.chapters.addBehaviour_deep_linking = function (playerId, player) {
             if (PODLOVE.playercount === 1) {
                 if (PODLOVE.ref_deep_links.length  === 1) {
                     player.setCurrentTime(PODLOVE.ref_deep_links[0]);
-                    PODLOVE.ref_deep_links = null;
+                    PODLOVE.ref_deep_links = [];
                 } else {
                     if (PODLOVE.ref_deep_links[0]) {
                         player.setCurrentTime(PODLOVE.ref_deep_links[0]);
@@ -59,7 +59,7 @@ PODLOVE.chapters.addBehaviour_deep_linking = function (playerId, player) {
             player.addEventListener('seeked', address_current_time, false);
         }
         jQuery('table[rel=' + playerId + ']').on('click', 'a', function () {
-            history.pushState(null, null, '#' + PODLOVE.chapters.generateTimecode(time) + '-' + PODLOVE.chapters.generateTimecode(jQuery(this).find('span').data('end')));
+            history.pushState(null, null, '#' + PODLOVE.chapters.generateTimecode(jQuery(this).find('span').data('start')) + '-' + PODLOVE.chapters.generateTimecode(jQuery(this).find('span').data('end')));
         });
     }
 
