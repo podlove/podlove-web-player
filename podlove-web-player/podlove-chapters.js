@@ -20,7 +20,10 @@ PODLOVE.chapters = function (playerId) {
             PODLOVE.chapters.addBehaviour_chapter(playerId, player);
             PODLOVE.chapters.addBehaviour_deep_linking(playerId, player);
             if (PODLOVE.ref_deep_links.length && PODLOVE.playercount === 1) {
-                $('html, body').scrollTop($('.mediaelementjs_player_container:first').offset().top);
+                window.setTimeout(
+                    function () {
+                        $('html, body').animate({scrollTop: $('.mediaelementjs_player_container:first').offset().top - 25});
+                    }, 150);
             }
         }
     });
@@ -39,8 +42,7 @@ PODLOVE.chapters.addBehaviour_chapter = function (playerId, player) {
     PODLOVE.playerel = player;
 
 
-    //player.addEventListener('timeupdate', function (e) {
-    player.addEventListener('progress', function (e) {
+    player.addEventListener('timeupdate', function (e) {
         try {
             // update the chapter list when the data is loaded
             list.find('span').each(function (i) {
