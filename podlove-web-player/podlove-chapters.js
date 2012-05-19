@@ -1,25 +1,27 @@
 var PODLOVE = PODLOVE || {};
-PODLOVE.playercount = 0;
 
 PODLOVE.chapters = function (playerId) {
     // parse deeplinks
-    if (!PODLOVE.playercount) {
-        PODLOVE.ref_deep_links = window.location.href.match(/((\d\d:)?\d\d:\d\d(\.\d\d\d)?)/) || [];
-        PODLOVE.ref_deep_links.splice(1,1);
-        $(PODLOVE.ref_deep_links).each(function (i, e) {
-            PODLOVE.ref_deep_links[i] = PODLOVE.chapters.parseTimecode(e);
-        });
+    PODLOVE.playercount    = $('.mediaelementjs_player_container').length
+    PODLOVE.ref_deep_links = [];
+    PODLOVE.ref_deep_links = window.location.href.match(/((\d\d:)?\d\d:\d\d(\.\d\d\d)?)/) || [];
+    PODLOVE.ref_deep_links.splice(1,1);
+    $(PODLOVE.ref_deep_links).each(function (i, e) {
+        PODLOVE.ref_deep_links[i] = PODLOVE.chapters.parseTimecode(e);
+    });
 
-        if (PODLOVE.ref_deep_links.length) {
-            $('#' + playerId).attr('preload', 'auto');
-        }
+    if (PODLOVE.ref_deep_links.length && PODLOVE.playercount === 1) {
+        $('#' + playerId).attr('preload', 'auto');
+        $('#' + playerId).attr('autoplay', 'autoplay');
     }
 
     MediaElement(playerId, {
         success: function (player) {
-            PODLOVE.playercount++;
             PODLOVE.chapters.addBehaviour_chapter(playerId, player);
             PODLOVE.chapters.addBehaviour_deep_linking(playerId, player);
+            if (PODLOVE.ref_deep_links.length && PODLOVE.playercount === 1) {
+                $('html, body').scrollTop($('.mediaelementjs_player_container:first').offset().top);
+            }
         }
     });
 };
@@ -32,32 +34,38 @@ PODLOVE.chapters.addBehaviour_chapter = function (playerId, player) {
             player.setCurrentTime(time);
             player.play();
             return false;
-        })
-
-
-    player.addEventListener('timeupdate', function (e) {
-        // update the chapter list when the data is loaded
-        list.find('span').each(function (i) {
-            var span = jQuery(this),
-                row = span.closest('tr'),
-                startTime = span.data('start'),
-                endTime = span.data('end'),
-                isEnabled = span.data('enabled') === '1',
-                isBuffered = player.buffered.end(0) > startTime,
-                isActive =  player.currentTime > startTime - 0.3 &&
-                            player.currentTime <= endTime,
-                tmpTimecode;
-
-            if (isActive && !row.hasClass('active')) {
-                span.closest('table')
-                    .find('tr.active')
-                    .removeClass('active');
-                row.addClass('active');
-            }
-            if (!isEnabled && isBuffered) {
-                span.data('enabled', '1').wrap('<a href="#"></a>');
-            }
         });
+
+    PODLOVE.playerel = player;
+
+
+    //player.addEventListener('timeupdate', function (e) {
+    player.addEventListener('progress', function (e) {
+        try {
+            // update the chapter list when the data is loaded
+            list.find('span').each(function (i) {
+                var span       = jQuery(this),
+                    row        = span.closest('tr'),
+                    startTime  = span.data('start'),
+                    endTime    = span.data('end'),
+                    isEnabled  = span.data('enabled') === '1',
+                    isBuffered = player.buffered.end(0) > startTime,
+                    isActive   = player.currentTime > startTime - 0.3 &&
+                                 player.currentTime <= endTime;
+
+                if (isActive && !row.hasClass('active')) {
+                    span.closest('table')
+                        .find('tr.active')
+                        .removeClass('active');
+                    row.addClass('active');
+                }
+                if (!isEnabled && isBuffered) {
+                    span.data('enabled', '1').wrap('<a href="#"></a>');
+                }
+            });
+        } catch (e) {
+            console.log('[podlove-web-player] timeupdate::: ' + e);
+        }
     }, false);
 };
 
@@ -70,15 +78,20 @@ PODLOVE.chapters.addBehaviour_chapter = function (playerId, player) {
 PODLOVE.chapters.addBehaviour_deep_linking = function (playerId, player) {
     var skip_to_linked_time = function (e) {
             if (PODLOVE.playercount === 1 && PODLOVE.ref_deep_links.length) {
-                player.setCurrentTime(PODLOVE.ref_deep_links[0]);
-                PODLOVE.ref_deep_links = [];
+                try {
+                    player.setCurrentTime(PODLOVE.ref_deep_links[0]);
+                    PODLOVE.ref_deep_links = [];
+                } catch (e) {
+                    console.log('[podlove-web-player] skip_to_linked_time::: ' + e);
+                }
+                
             }
         }
       , address_current_time = function (e) {
             if (PODLOVE.playercount === 1 && !PODLOVE.ref_deep_links.length) {
                 history.pushState(null, null, '#' + PODLOVE.chapters.generateTimecode(player.currentTime));
             }
-      }
+      };
 
     if (PODLOVE.playercount === 1) {
         if (PODLOVE.ref_deep_links.length) {
@@ -102,6 +115,7 @@ PODLOVE.chapters.addBehaviour_deep_linking = function (playerId, player) {
  * @return string
  **/
 PODLOVE.chapters.generateTimecode = function (sec) {
+    sec = Math.max(sec, 0); // prevent negative values from player
     var prim = function (v, mil) {
                    v = (v || 0) + '';
                    return (mil && v.length <3 ? '0' : '') + (v.length < 2 ? '0' : '') + v;
@@ -123,7 +137,8 @@ PODLOVE.chapters.parseTimecode = function (tcode) {
                 parseInt (parts[3]) * 60 + 
                 parseInt (parts[4]) +
                 (parts[5] ? parseFloat('0' + parts[5]) : 0);
-       return parts;
+        parts = Math.max(parts, 0);
+        return parts;
     }
 };
 

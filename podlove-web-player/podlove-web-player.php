@@ -463,7 +463,7 @@ _end_;
     // Chapters Table and Behaviour
     if ($chapters) {
         $mediahtml .= "\n\n" . podlove_render_chapters($chapters);
-        $mediahtml .= "\n\n<script>PODLOVE.chapters('wp_mep_{$podlovePlayerIndex}');</script>\n";
+        $mediahtml .= "\n\n<script>$(function () {PODLOVE.chapters('wp_mep_{$podlovePlayerIndex}');});</script>\n";
     }
 
     $podlovePlayerIndex++;
