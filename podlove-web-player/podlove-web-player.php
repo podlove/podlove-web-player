@@ -21,6 +21,7 @@ which was adapted from: http://videojs.com/ plugin
 
 $podlovePlayerIndex = 1;
 define('MEDIAELEMENTJS_DIR', plugin_dir_url(__FILE__) . 'mediaelement/');
+define('AUDIOJS_DIR', plugin_dir_url(__FILE__).'audiojs/audiojs/');
 
 /* Runs when plugin is activated */
 register_activation_hook(__FILE__, 'mejs_install');
@@ -202,6 +203,7 @@ function mejs_add_scripts() {
     if (!is_admin()) {
         // the scripts
         wp_enqueue_script('podlove-scripts', MEDIAELEMENTJS_DIR . 'mediaelement-and-player.min.js', array('jquery'), '2.7.1', false);
+        wp_enqueue_script("audiojs-scripts", AUDIOJS_DIR ."audio.min.js");
         wp_enqueue_script('podlove-chapters', plugin_dir_url(__FILE__) . 'podlove-chapters.js', array('jquery'), '2.7.1', false);
     }
 }
@@ -429,6 +431,7 @@ function podlove_media_shortcode($tagName, $atts) {
     $options_string = !empty($options) ? '{' . implode(',', $options) . '}' : '';
 
     $mediahtml = <<<_end_
+    <div class="mediaelementjs_player_container">
     <{$tagName} id="wp_mep_{$podlovePlayerIndex}" controls="controls" {$attributes_string} class="mejs-player {$skin_class}" data-mejsoptions='{$options_string}'>
         {$sources_string}
         <object width="{$width}" height="{$height}" type="application/x-shockwave-flash" data="{$dir}flashmediaelement.swf">
@@ -436,12 +439,31 @@ function podlove_media_shortcode($tagName, $atts) {
             <param name="flashvars" value="controls=true&amp;file={$flash_src}" />
         </object>
     </{$tagName}>
+    </div>
+    <div class="audiojs_player_container" style="display: none">
+        <audio src="{$flash_src}" preload="none"/>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // firefox, msie and opera get the fallback player
+            var user_agent = navigator.userAgent.toLowerCase()
+            if ((/mozilla/.test(user_agent) && (!/(compatible|webkit)/.test(user_agent))) ||
+                (/msie/.test(user_agent) && !/opera/.test(user_agent)) || 
+                (/opera/.test(user_agent))) {
+                    $('.mediaelementjs_player_container').hide();
+                    $('.audiojs_player_container').show();
+                    audiojs.events.ready(function() {
+                        var as = audiojs.createAll();
+                    });
+            }
+        });
+     </script>
 _end_;
 
     // Chapters Table and Behaviour
     if ($chapters) {
         $mediahtml .= "\n\n" . podlove_render_chapters($chapters);
-        $mediahtml .= "\n\n<script>PODLOVE.chapters('wp_mep_{$podlovePlayerIndex}');</script>\n";
+        $mediahtml .= "\n\n<script>$(function () {PODLOVE.chapters('wp_mep_{$podlovePlayerIndex}');});</script>\n";
     }
 
     $podlovePlayerIndex++;
