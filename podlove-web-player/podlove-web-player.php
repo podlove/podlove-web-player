@@ -444,7 +444,7 @@ function podlove_media_shortcode($tagName, $atts) {
         <audio src="{$flash_src}" preload="none"/>
     </div>
     <script type="text/javascript">
-        $(document).ready(function () {
+        jQuery(document).ready(function ($) {
             // firefox, msie and opera get the fallback player
             var user_agent = navigator.userAgent.toLowerCase()
             if ((/mozilla/.test(user_agent) && (!/(compatible|webkit)/.test(user_agent))) ||
@@ -463,7 +463,7 @@ _end_;
     // Chapters Table and Behaviour
     if ($chapters) {
         $mediahtml .= "\n\n" . podlove_render_chapters($chapters);
-        $mediahtml .= "\n\n<script>$(function () {PODLOVE.chapters('wp_mep_{$podlovePlayerIndex}');});</script>\n";
+        $mediahtml .= "\n\n<script>jQuery(function () {PODLOVE.chapters('wp_mep_{$podlovePlayerIndex}');});</script>\n";
     }
 
     $podlovePlayerIndex++;
@@ -478,11 +478,7 @@ function podlove_render_chapters($custom_field) {
     if ($custom_field != '' && $chapters = get_post_custom_values($custom_field, $post->ID)) {
         $chapters = podlove_chapters_from_string($chapters[0]);
 
-        //echo "<pre>";
-        //var_dump ($chapters);
-        //echo "</pre>";
-
-        $output .= '<table rel="wp_mep_' . $podlovePlayerIndex . '" class="mejs_chapters" style="display:none"><tbody>';
+        $output = '<table rel="wp_mep_' . $podlovePlayerIndex . '" class="mejs_chapters" style="display:none"><tbody>';
         foreach ($chapters as $i => $chapter) {
             $end = ($i == (count($chapters) - 1)) ? '9999999' : $chapters[$i + 1]['timecode'];
             $output .= '<tr>';
@@ -491,7 +487,6 @@ function podlove_render_chapters($custom_field) {
             $output .= '</tr>';
         }
         $output .= '</tbody></table>';
-
 
         return $output;
     } else {
