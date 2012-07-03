@@ -16,7 +16,8 @@ jQuery(document).ready(function($) {
             $('#' + playerId).attr('autoplay', 'autoplay');
         }
 
-        MediaElement(playerId, {
+        MediaElementPlayer("#"+playerId, {
+
             success: function (player) {
                 PODLOVE.chapters.addBehaviour_chapter(playerId, player);
                 PODLOVE.chapters.addBehaviour_deep_linking(playerId, player);

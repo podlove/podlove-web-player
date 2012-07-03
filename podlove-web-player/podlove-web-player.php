@@ -1,7 +1,7 @@
 <?php
 /**
  * @package PodloveWebPlayer
- * @version 1.0.2
+ * @version 1.0.3
  */
 
 /*
@@ -9,7 +9,7 @@ Plugin Name: Podlove Web Player
 Plugin URI: http://podlove.org/podlove-web-player/
 Description: Video and audio plugin for WordPress built on the MediaElement.js HTML5 media player library.
 Author: Gerrit van Aaken and others
-Version: 1.0.2
+Version: 1.0.3
 Author URI: http://praegnanz.de
 License: GPLv3, MIT
 */
@@ -285,63 +285,6 @@ function podlove_media_shortcode($tagName, $atts) {
         if (substr($src, strlen($src)-4, 1) == '.') {
             $attributes[] = 'src="' . htmlspecialchars($src) . '"';
             $flash_src = htmlspecialchars($src);
-        } else {
-
-            // for missing extension, we try to find all possible files in the system
-
-            if (substr($src, 0, 4) != 'http') {
-                $filename = WP_CONTENT_DIR . substr($src, strlen(WP_CONTENT_DIR) - strrpos(WP_CONTENT_DIR, '/'));
-            } else {
-                $filename = WP_CONTENT_DIR . substr($src, strlen(WP_CONTENT_URL));
-            }
-
-            if ($tagName == 'video') {
-                // MP4
-                if (file_exists($filename . '.mp4')) {
-                    $mp4 = $src . '.mp4';
-                } elseif (file_exists($filename . '.m4v')) {
-                    $mp4 = $src . '.m4v';
-                }
-
-                // WEBM
-                if (file_exists($filename . '.webm')) {
-                    $webm = $src . '.webm';
-                }
-
-                // OGG
-                if (file_exists($filename . '.ogg')) {
-                    $ogg = $src . '.ogg';
-                } elseif (file_exists($filename . '.ogv')) {
-                    $ogg = $src . '.ogv';
-                }
-
-                // FLV
-                if (file_exists($filename . '.flv')) {
-                    $flv = $src . '.flv';
-                }
-
-                // WMV
-                if (file_exists($filename . '.wmv')) {
-                    $wmv = $src . '.wmv';
-                }
-
-                // POSTER
-                if (file_exists($filename . '.jpg')) {
-                    $poster = $src . '.jpg';
-                }
-            } elseif ($tagName == 'audio') {
-                // MP3
-                if (file_exists($filename . '.mp3')) {
-                    $mp3 = $src . '.mp3';
-                }
-
-                // OGG
-                if (file_exists($filename . '.ogg')) {
-                    $ogg = $src . '.ogg';
-                } elseif (file_exists($filename . '.oga')) {
-                    $ogg = $src . '.oga';
-                }
-            }
         }
     }
 
@@ -369,7 +312,6 @@ function podlove_media_shortcode($tagName, $atts) {
     if ($captions) {
         $sources[] = '<track src="' . $captions . '" kind="subtitles" srclang="' . $captionslang . '" />';
     }
-
 
     // <audio|video> attributes
     if ($width && $tagName == 'video') {
@@ -431,7 +373,7 @@ function podlove_media_shortcode($tagName, $atts) {
 
     $mediahtml = <<<_end_
     <div class="mediaelementjs_player_container">
-    <{$tagName} id="wp_mep_{$podlovePlayerIndex}" controls="controls" {$attributes_string} class="mejs-player {$skin_class}" data-mejsoptions='{$options_string}'>
+    <{$tagName} id="wp_mep_{$podlovePlayerIndex}" controls="controls" {$attributes_string} class="{$skin_class}" data-mejsoptions='{$options_string}'>
         {$sources_string}
     </{$tagName}>
     </div>
