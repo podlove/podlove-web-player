@@ -37,7 +37,9 @@ jQuery(document).ready(function($) {
             .on('click', 'a', function () {
                 var time = jQuery(this).find('span').data('start');
                 player.setCurrentTime(time);
-                player.play();
+                if (player.pluginType != "flash") {
+                    player.play();
+                }
                 return false;
             });
 
