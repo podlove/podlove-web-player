@@ -1,15 +1,15 @@
 <?php
 /**
  * @package PodloveWebPlayer
- * @version 1.0
+ * @version 1.0.1
  */
 
 /*
 Plugin Name: Podlove Web Player
 Plugin URI: http://podlove.org/podlove-web-player/
-Description:
+Description: Video and audio plugin for WordPress built on the MediaElement.js HTML5 media player library.
 Author: Gerrit van Aaken and others
-Version: 1.0
+Version: 1.0.1
 Author URI: http://praegnanz.de
 License: GPLv3, MIT
 */
@@ -21,7 +21,6 @@ which was adapted from: http://videojs.com/ plugin
 
 $podlovePlayerIndex = 1;
 define('MEDIAELEMENTJS_DIR', plugin_dir_url(__FILE__) . 'mediaelement/');
-define('AUDIOJS_DIR', plugin_dir_url(__FILE__).'audiojs/audiojs/');
 
 /* Runs when plugin is activated */
 register_activation_hook(__FILE__, 'mejs_install');
@@ -203,7 +202,6 @@ function mejs_add_scripts() {
     if (!is_admin()) {
         // the scripts
         wp_enqueue_script('podlove-scripts', MEDIAELEMENTJS_DIR . 'mediaelement-and-player.min.js', array('jquery'), '2.7.1', false);
-        //wp_enqueue_script("audiojs-scripts", AUDIOJS_DIR ."audio.min.js");
         wp_enqueue_script('podlove-chapters', plugin_dir_url(__FILE__) . 'podlove-chapters.js', array('jquery'), '2.7.1', false);
     }
 }
@@ -349,7 +347,7 @@ function podlove_media_shortcode($tagName, $atts) {
 
     // <source> tags
     if ($mp4) {
-        $sources[] = '<source src="' . htmlspecialchars($mp4) . '" type="' . $tagName . '/mp4" />';
+        $sources[] = '<source src="' . htmlspecialchars($mp4) . '" type="' . $tagName . '/mp4a.40.5" />';
         $flash_src = htmlspecialchars($mp4);
     }
     if ($mp3) {
@@ -359,7 +357,10 @@ function podlove_media_shortcode($tagName, $atts) {
     if ($webm) {
         $sources[] = '<source src="' . htmlspecialchars($webm) . '" type="' . $tagName . '/webm" />';
     }
-    if ($ogg) {
+    if ($ogg && $tagName == "audio") {
+        $sources[] = '<source src="' . htmlspecialchars($ogg) . '" type="' . $tagName . '/vorbis" />';
+    }
+    if ($ogg && $tagName == "video") {
         $sources[] = '<source src="' . htmlspecialchars($ogg) . '" type="' . $tagName . '/ogg" />';
     }
     if ($flv) {
@@ -436,28 +437,6 @@ function podlove_media_shortcode($tagName, $atts) {
         {$sources_string}
     </{$tagName}>
     </div>
-    <!--
-    <div class="audiojs_player_container" style="display: none">
-        <audio src="{$flash_src}" preload="none"/>
-    </div>
-    <script type="text/javascript">
-    /*
-        jQuery(document).ready(function ($) {
-            // firefox, msie and opera get the fallback player
-            var user_agent = navigator.userAgent.toLowerCase()
-            if ((/mozilla/.test(user_agent) && (!/(compatible|webkit)/.test(user_agent))) ||
-                (/msie/.test(user_agent) && !/opera/.test(user_agent)) || 
-                (/opera/.test(user_agent))) {
-                    $('.mediaelementjs_player_container').hide();
-                    $('.audiojs_player_container').show();
-                    audiojs.events.ready(function() {
-                        var as = audiojs.createAll();
-                    });
-            }
-        });
-*/
-     </script>
-     -->
 _end_;
 
     // Chapters Table and Behaviour
