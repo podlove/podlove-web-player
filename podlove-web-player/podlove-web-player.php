@@ -1,15 +1,15 @@
 <?php
 /**
  * @package PodloveWebPlayer
- * @version 0.9
+ * @version 1.0
  */
 
 /*
 Plugin Name: Podlove Web Player
 Plugin URI: http://podlove.org/podlove-web-player/
 Description:
-Author: Gerrit van Aaken
-Version: 0.9
+Author: Gerrit van Aaken and others
+Version: 1.0
 Author URI: http://praegnanz.de
 License: GPLv3, MIT
 */
@@ -434,10 +434,6 @@ function podlove_media_shortcode($tagName, $atts) {
     <div class="mediaelementjs_player_container">
     <{$tagName} id="wp_mep_{$podlovePlayerIndex}" controls="controls" {$attributes_string} class="mejs-player {$skin_class}" data-mejsoptions='{$options_string}'>
         {$sources_string}
-        <object width="{$width}" height="{$height}" type="application/x-shockwave-flash" data="{$dir}flashmediaelement.swf">
-            <param name="movie" value="{$dir}flashmediaelement.swf" />
-            <param name="flashvars" value="controls=true&amp;file={$flash_src}" />
-        </object>
     </{$tagName}>
     </div>
     <div class="audiojs_player_container" style="display: none">
