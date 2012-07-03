@@ -203,7 +203,7 @@ function mejs_add_scripts() {
     if (!is_admin()) {
         // the scripts
         wp_enqueue_script('podlove-scripts', MEDIAELEMENTJS_DIR . 'mediaelement-and-player.min.js', array('jquery'), '2.7.1', false);
-        wp_enqueue_script("audiojs-scripts", AUDIOJS_DIR ."audio.min.js");
+        //wp_enqueue_script("audiojs-scripts", AUDIOJS_DIR ."audio.min.js");
         wp_enqueue_script('podlove-chapters', plugin_dir_url(__FILE__) . 'podlove-chapters.js', array('jquery'), '2.7.1', false);
     }
 }
