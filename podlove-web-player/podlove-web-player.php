@@ -1,7 +1,7 @@
 <?php
 /**
  * @package PodloveWebPlayer
- * @version 1.0.3
+ * @version 1.0.4
  */
 
 /*
@@ -9,7 +9,7 @@ Plugin Name: Podlove Web Player
 Plugin URI: http://podlove.org/podlove-web-player/
 Description: Video and audio plugin for WordPress built on the MediaElement.js HTML5 media player library.
 Author: Gerrit van Aaken and others
-Version: 1.0.3
+Version: 1.0.4
 Author URI: http://praegnanz.de
 License: GPLv3, MIT
 */
@@ -394,9 +394,16 @@ function podlove_render_chapters($custom_field) {
     global $post;
     global $podlovePlayerIndex;
 
-    if ($custom_field != '' && $chapters = get_post_custom_values($custom_field, $post->ID)) {
+    if ($custom_field != '') {
+        if (substr($custom_field,0,7) == "http://" 
+            || substr($custom_field,0,8) == "https://") {
+            $chapters[0] = file_get_contents($custom_field);
+            echo $custom_field;
+        } elseif ($chapters = get_post_custom_values($custom_field, $post->ID)) {
+        } else {
+            $chapters[0] = "00:00:00.000 No chapters found";
+        }
         $chapters = podlove_chapters_from_string($chapters[0]);
-
         $output = '<table rel="wp_mep_' . $podlovePlayerIndex . '" class="mejs_chapters" style="display:none"><tbody>';
         foreach ($chapters as $i => $chapter) {
             $end = ($i == (count($chapters) - 1)) ? '9999999' : $chapters[$i + 1]['timecode'];

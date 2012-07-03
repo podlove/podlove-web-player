@@ -122,7 +122,7 @@ URL to a WebSRT captions file
     [video src="http://mysite.com/mymedia.mp4" captions="http://mysite.com/mymedia.srt"]  
 
 #### chapters
-Takes chapter string from the defined custom field and builds an interactive chapter table.
+Takes chapter string from the defined custom field and builds an interactive chapter table. Can be referenced to an external text file, too.
 Chapters must be written in the following format:
 
 00:00:00.000 Introduction  
@@ -131,6 +131,7 @@ Chapters must be written in the following format:
 00:12:44.625 Final chapter  
     
     [audio src="http://mysite.com/mymedia.mp3" chapters="my_chapter_field"]                
+    [audio src="http://mysite.com/mymedia.mp3" chapters="http://mychapters.com/chapters.txt"]              
 
 #### Simple Video
 Basic playback options
