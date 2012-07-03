@@ -1,7 +1,7 @@
 <?php
 /**
  * @package PodloveWebPlayer
- * @version 1.0.1
+ * @version 1.0.2
  */
 
 /*
@@ -9,7 +9,7 @@ Plugin Name: Podlove Web Player
 Plugin URI: http://podlove.org/podlove-web-player/
 Description: Video and audio plugin for WordPress built on the MediaElement.js HTML5 media player library.
 Author: Gerrit van Aaken and others
-Version: 1.0.1
+Version: 1.0.2
 Author URI: http://praegnanz.de
 License: GPLv3, MIT
 */
@@ -347,7 +347,7 @@ function podlove_media_shortcode($tagName, $atts) {
 
     // <source> tags
     if ($mp4) {
-        $sources[] = '<source src="' . htmlspecialchars($mp4) . '" type="' . $tagName . '/mp4a.40.5" />';
+        $sources[] = '<source src="' . htmlspecialchars($mp4) . '" type="' . $tagName . '/mp4" />';
         $flash_src = htmlspecialchars($mp4);
     }
     if ($mp3) {
@@ -357,10 +357,7 @@ function podlove_media_shortcode($tagName, $atts) {
     if ($webm) {
         $sources[] = '<source src="' . htmlspecialchars($webm) . '" type="' . $tagName . '/webm" />';
     }
-    if ($ogg && $tagName == "audio") {
-        $sources[] = '<source src="' . htmlspecialchars($ogg) . '" type="' . $tagName . '/vorbis" />';
-    }
-    if ($ogg && $tagName == "video") {
+    if ($ogg) {
         $sources[] = '<source src="' . htmlspecialchars($ogg) . '" type="' . $tagName . '/ogg" />';
     }
     if ($flv) {
@@ -372,6 +369,7 @@ function podlove_media_shortcode($tagName, $atts) {
     if ($captions) {
         $sources[] = '<track src="' . $captions . '" kind="subtitles" srclang="' . $captionslang . '" />';
     }
+
 
     // <audio|video> attributes
     if ($width && $tagName == 'video') {
