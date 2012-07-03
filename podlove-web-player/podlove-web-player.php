@@ -435,8 +435,8 @@ function podlove_media_shortcode($tagName, $atts) {
     <{$tagName} id="wp_mep_{$podlovePlayerIndex}" controls="controls" {$attributes_string} class="mejs-player {$skin_class}" data-mejsoptions='{$options_string}'>
         {$sources_string}
     </{$tagName}>
-    <!--
     </div>
+    <!--
     <div class="audiojs_player_container" style="display: none">
         <audio src="{$flash_src}" preload="none"/>
     </div>
