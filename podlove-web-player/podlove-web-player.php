@@ -398,7 +398,6 @@ function podlove_render_chapters($custom_field) {
         if (substr($custom_field,0,7) == "http://" 
             || substr($custom_field,0,8) == "https://") {
             $chapters[0] = file_get_contents($custom_field);
-            echo $custom_field;
         } elseif ($chapters = get_post_custom_values($custom_field, $post->ID)) {
         } else {
             $chapters[0] = "00:00:00.000 No chapters found";
