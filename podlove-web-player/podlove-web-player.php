@@ -20,68 +20,68 @@ which was adapted from: http://videojs.com/ plugin
 */
 
 $podlovePlayerIndex = 1;
-define('MEDIAELEMENTJS_DIR', plugin_dir_url(__FILE__) . 'mediaelement/');
+define('PODLOVEWEBPLAYER_DIR', plugin_dir_url(__FILE__) . 'mediaelement/');
 
 /* Runs when plugin is activated */
-register_activation_hook(__FILE__, 'mejs_install');
+register_activation_hook(__FILE__, 'podlove_pwp_install');
 
-function mejs_install() {
-    add_option('mep_video_skin', '');
-    add_option('mep_script_on_demand', false);
+function podlove_pwp_install() {
+    add_option('pwp_video_skin', '');
+    add_option('pwp_script_on_demand', false);
 
-    add_option('mep_default_video_height', 270);
-    add_option('mep_default_video_width', 480);
-    add_option('mep_default_video_type', '');
+    add_option('pwp_default_video_height', 270);
+    add_option('pwp_default_video_width', 480);
+    add_option('pwp_default_video_type', '');
 
-    add_option('mep_default_audio_height', 30);
-    add_option('mep_default_audio_width', 400);
-    add_option('mep_default_audio_type', '');
+    add_option('pwp_default_audio_height', 30);
+    add_option('pwp_default_audio_width', 400);
+    add_option('pwp_default_audio_type', '');
 }
 
 /* Runs on plugin deactivation*/
-register_deactivation_hook(__FILE__, 'mejs_remove');
+register_deactivation_hook(__FILE__, 'podlove_pwp_remove');
 
-function mejs_remove() {
-    delete_option('mep_video_skin');
-    delete_option('mep_script_on_demand');
+function podlove_pwp_remove() {
+    delete_option('pwp_video_skin');
+    delete_option('pwp_script_on_demand');
 
-    delete_option('mep_default_video_height');
-    delete_option('mep_default_video_width');
-    delete_option('mep_default_video_type');
+    delete_option('pwp_default_video_height');
+    delete_option('pwp_default_video_width');
+    delete_option('pwp_default_video_type');
 
-    delete_option('mep_default_audio_height');
-    delete_option('mep_default_audio_width');
-    delete_option('mep_default_audio_type');
+    delete_option('pwp_default_audio_height');
+    delete_option('pwp_default_audio_width');
+    delete_option('pwp_default_audio_type');
 }
 
 // create custom plugin settings menu
-add_action('admin_menu', 'mejs_create_menu');
+add_action('admin_menu', 'podlove_pwp_create_menu');
 
-function mejs_create_menu() {
+function podlove_pwp_create_menu() {
     //create new top-level menu
-    add_options_page('Podlove Web Player Options', 'Podlove Player', 'administrator', __FILE__, 'mejs_settings_page');
+    add_options_page('Podlove Web Player Options', 'Podlove Web Player', 'administrator', __FILE__, 'podlove_pwp_settings_page');
 
     //call register settings function
-    add_action( 'admin_init', 'mejs_register_settings' );
+    add_action( 'admin_init', 'podlove_pwp_register_settings' );
 }
 
 
-function mejs_register_settings() {
+function podlove_pwp_register_settings() {
     //register our settings
-    register_setting('mep_settings', 'mep_video_skin');
-    register_setting('mep_settings', 'mep_script_on_demand');
+    register_setting('pwp_settings', 'pwp_video_skin');
+    register_setting('pwp_settings', 'pwp_script_on_demand');
 
-    register_setting('mep_settings', 'mep_default_video_height');
-    register_setting('mep_settings', 'mep_default_video_width');
-    register_setting('mep_settings', 'mep_default_video_type');
+    register_setting('pwp_settings', 'pwp_default_video_height');
+    register_setting('pwp_settings', 'pwp_default_video_width');
+    register_setting('pwp_settings', 'pwp_default_video_type');
 
-    register_setting('mep_settings', 'mep_default_audio_height');
-    register_setting('mep_settings', 'mep_default_audio_width');
-    register_setting('mep_settings', 'mep_default_audio_type');
+    register_setting('pwp_settings', 'pwp_default_audio_height');
+    register_setting('pwp_settings', 'pwp_default_audio_width');
+    register_setting('pwp_settings', 'pwp_default_audio_type');
 }
 
 
-function mejs_settings_page() {
+function podlove_pwp_settings_page() {
 ?>
 <div class="wrap">
 <h2>Podlove Web Player Options</h2>
@@ -97,10 +97,10 @@ function mejs_settings_page() {
     <table class="form-table">
         <tr valign="top">
             <th scope="row">
-                <label for="mep_script_on_demand">Load Script on Demand</label>
+                <label for="pwp_script_on_demand">Load Script on Demand</label>
             </th>
             <td >
-                <input name="mep_script_on_demand" type="checkbox" id="mep_script_on_demand" <?php echo (get_option('mep_script_on_demand') == true ? "checked" : "")  ?> />
+                <input name="pwp_script_on_demand" type="checkbox" id="pwp_script_on_demand" <?php echo (get_option('pwp_script_on_demand') == true ? "checked" : "")  ?> />
             </td>
         </tr>
     </table>
@@ -111,37 +111,37 @@ function mejs_settings_page() {
     <table class="form-table">
         <tr valign="top">
             <th scope="row">
-                <label for="mep_default_video_width">Default Width</label>
+                <label for="pwp_default_video_width">Default Width</label>
             </th>
             <td >
-                <input name="mep_default_video_width" type="text" id="mep_default_video_width" value="<?php echo get_option('mep_default_video_width'); ?>" />
+                <input name="pwp_default_video_width" type="text" id="pwp_default_video_width" value="<?php echo get_option('pwp_default_video_width'); ?>" />
             </td>
         </tr>
         <tr valign="top">
             <th scope="row">
-                <label for="mep_default_video_height">Default Height</label>
+                <label for="pwp_default_video_height">Default Height</label>
             </th>
             <td >
-                <input name="mep_default_video_height" type="text" id="mep_default_video_height" value="<?php echo get_option('mep_default_video_height'); ?>" />
+                <input name="pwp_default_video_height" type="text" id="pwp_default_video_height" value="<?php echo get_option('pwp_default_video_height'); ?>" />
             </td>
         </tr> 
         <tr valign="top">
             <th scope="row">
-                <label for="mep_default_video_type">Default Type</label>
+                <label for="pwp_default_video_type">Default Type</label>
             </th>
             <td >
-                <input name="mep_default_video_type" type="text" id="mep_default_video_type" value="<?php echo get_option('mep_default_video_type'); ?>" /> <span class="description">such as "video/mp4"</span>
+                <input name="pwp_default_video_type" type="text" id="pwp_default_video_type" value="<?php echo get_option('pwp_default_video_type'); ?>" /> <span class="description">such as "video/mp4"</span>
             </td>
         </tr> 
         <tr valign="top">
             <th scope="row">
-                <label for="mep_video_skin">Video Skin</label>
+                <label for="pwp_video_skin">Video Skin</label>
             </th>
             <td >
-                <select name="mep_video_skin" id="mep_video_skin">
-                    <option value="" <?php echo (get_option('mep_video_skin') == '') ? ' selected' : ''; ?>>Default</option>
-                    <option value="wmp" <?php echo (get_option('mep_video_skin') == 'wmp') ? ' selected' : ''; ?>>WMP</option>
-                    <option value="ted" <?php echo (get_option('mep_video_skin') == 'ted') ? ' selected' : ''; ?>>TED</option>
+                <select name="pwp_video_skin" id="pwp_video_skin">
+                    <option value="" <?php echo (get_option('pwp_video_skin') == '') ? ' selected' : ''; ?>>Default</option>
+                    <option value="wmp" <?php echo (get_option('pwp_video_skin') == 'wmp') ? ' selected' : ''; ?>>WMP</option>
+                    <option value="ted" <?php echo (get_option('pwp_video_skin') == 'ted') ? ' selected' : ''; ?>>TED</option>
                 </select>
             </td>
         </tr>
@@ -154,31 +154,31 @@ function mejs_settings_page() {
         <tr valign="top">
         <tr valign="top">
             <th scope="row">
-                <label for="mep_default_audio_width">Default Width</label>
+                <label for="pwp_default_audio_width">Default Width</label>
             </th>
             <td >
-                <input name="mep_default_audio_width" type="text" id="mep_default_audio_width" value="<?php echo get_option('mep_default_audio_width'); ?>" />
+                <input name="pwp_default_audio_width" type="text" id="pwp_default_audio_width" value="<?php echo get_option('pwp_default_audio_width'); ?>" />
             </td>
         </tr>
         <tr valign="top">
             <th scope="row">
-                <label for="mep_default_audio_height">Default Height</label>
+                <label for="pwp_default_audio_height">Default Height</label>
             </th>
             <td >
-                <input name="mep_default_audio_height" type="text" id="mep_default_audio_height" value="<?php echo get_option('mep_default_audio_height'); ?>" />
+                <input name="pwp_default_audio_height" type="text" id="pwp_default_audio_height" value="<?php echo get_option('pwp_default_audio_height'); ?>" />
             </td>
         </tr>
             <th scope="row">
-                <label for="mep_default_audio_type">Default Type</label>
+                <label for="pwp_default_audio_type">Default Type</label>
             </th>
             <td >
-                <input name="mep_default_audio_type" type="text" id="mep_default_audio_type" value="<?php echo get_option('mep_default_audio_type'); ?>" /> <span class="description">such as "audio/mp3"</span>
+                <input name="pwp_default_audio_type" type="text" id="pwp_default_audio_type" value="<?php echo get_option('pwp_default_audio_type'); ?>" /> <span class="description">such as "audio/mp3"</span>
             </td>
         </tr>
     </table>
 
     <input type="hidden" name="action" value="update" />
-    <input type="hidden" name="page_options" value="mep_default_video_width,mep_default_video_height,mep_default_video_type,mep_default_audio_type,mep_default_audio_width,mep_default_audio_height,mep_video_skin,mep_script_on_demand" />
+    <input type="hidden" name="page_options" value="pwp_default_video_width,pwp_default_video_height,pwp_default_video_type,pwp_default_audio_type,pwp_default_audio_width,pwp_default_audio_height,pwp_video_skin,pwp_script_on_demand" />
 
     <p>
         <input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>" />
@@ -196,41 +196,41 @@ function mejs_settings_page() {
 
 // Javascript
 
-// This is now handled by calling wp_enqueue_script inside the mejs_media_shortcode function by default. This means that MediaElement.js's JavaScript will only be called as needed
-if (!get_option('mep_script_on_demand')) {
-function mejs_add_scripts() {
+// This is now handled by calling wp_enqueue_script inside the pwp_media_shortcode function by default. This means that MediaElement.js's JavaScript will only be called as needed
+if (!get_option('pwp_script_on_demand')) {
+function podlove_pwp_add_scripts() {
     if (!is_admin()) {
         // the scripts
-        wp_enqueue_script('podlove-scripts', MEDIAELEMENTJS_DIR . 'mediaelement-and-player.min.js', array('jquery'), '2.7.1', false);
+        wp_enqueue_script('podlove-scripts', PODLOVEWEBPLAYER_DIR . 'mediaelement-and-player.min.js', array('jquery'), '2.7.1', false);
         wp_enqueue_script('podlove-chapters', plugin_dir_url(__FILE__) . 'podlove-chapters.js', array('jquery'), '2.7.1', false);
     }
 }
-add_action('wp_print_scripts', 'mejs_add_scripts');
+add_action('wp_print_scripts', 'podlove_pwp_add_scripts');
 }
 
 // CSS
 // still always enqueued so it happens in the <head> tag
-function mejs_add_styles() {
+function podlove_pwp_add_styles() {
     if (!is_admin()) {
         // the style
-        wp_enqueue_style('mediaelementjs-styles', MEDIAELEMENTJS_DIR . 'mediaelementplayer.css');
+        wp_enqueue_style('mediaelementjs-styles', PODLOVEWEBPLAYER_DIR . 'mediaelementplayer.css');
 
-        if (get_option('mep_video_skin') != '') {
-            wp_enqueue_style('mediaelementjs-skins', MEDIAELEMENTJS_DIR . 'mejs-skins.css');
+        if (get_option('pwp_video_skin') != '') {
+            wp_enqueue_style('mediaelementjs-skins', PODLOVEWEBPLAYER_DIR . 'mejs-skins.css');
         }
     }
 }
-add_action('wp_print_styles', 'mejs_add_styles');
+add_action('wp_print_styles', 'podlove_pwp_add_styles');
 
 
-function podlove_media_shortcode($tagName, $atts) {
+function podlove_pwp_media_shortcode($tagName, $atts) {
     // only enqueue when needed
-    if (get_option('mep_script_on_demand')) {
-        wp_enqueue_script('mediaelementjs-scripts', MEDIAELEMENTJS_DIR . 'mediaelement-and-player.min.js', array('jquery'), '2.7.0', false);
+    if (get_option('pwp_script_on_demand')) {
+        wp_enqueue_script('mediaelementjs-scripts', PODLOVEWEBPLAYER_DIR . 'mediaelement-and-player.min.js', array('jquery'), '2.7.0', false);
     }
 
     global $podlovePlayerIndex;
-    $dir = MEDIAELEMENTJS_DIR;
+    $dir = PODLOVEWEBPLAYER_DIR;
     $attributes = array();
     $sources = array();
     $options = array();
@@ -245,11 +245,11 @@ function podlove_media_shortcode($tagName, $atts) {
         'flv' => '',
         'ogg' => '',
         'poster' => '',
-        'width' => get_option('mep_default_' . $tagName . '_width'),
-        'height' => get_option('mep_default_' . $tagName . '_height'),
-        'type' => get_option('mep_default_' . $tagName . '_type'),
+        'width' => get_option('pwp_default_' . $tagName . '_width'),
+        'height' => get_option('pwp_default_' . $tagName . '_height'),
+        'type' => get_option('pwp_default_' . $tagName . '_type'),
         'preload' => 'none',
-        'skin' => get_option('mep_video_skin'),
+        'skin' => get_option('pwp_video_skin'),
         'autoplay' => '',
         'loop' => '',
 
@@ -373,7 +373,7 @@ function podlove_media_shortcode($tagName, $atts) {
 
     $mediahtml = <<<_end_
     <div class="mediaelementjs_player_container">
-    <{$tagName} id="wp_mep_{$podlovePlayerIndex}" controls="controls" {$attributes_string} class="{$skin_class}" data-mejsoptions='{$options_string}'>
+    <{$tagName} width="{$width}" height="{$height}" id="wp_pwp_{$podlovePlayerIndex}" controls="controls" {$attributes_string} class="{$skin_class}" data-mejsoptions='{$options_string}'>
         {$sources_string}
     </{$tagName}>
     </div>
@@ -381,46 +381,49 @@ _end_;
 
     // Chapters Table and Behaviour
     if ($chapters) {
-        $mediahtml .= "\n\n" . podlove_render_chapters($chapters);
-        $mediahtml .= "\n\n<script>jQuery(function () {PODLOVE.chapters('wp_mep_{$podlovePlayerIndex}');});</script>\n";
+        if ($chaptertable = podlove_pwp_render_chapters($chapters)) {
+            $mediahtml .= "\n\n" . $chaptertable;
+        }
     }
+    $mediahtml .= "\n\n<script>jQuery(function() { PODLOVE.web_player('wp_pwp_{$podlovePlayerIndex}');});</script>\n";
 
     $podlovePlayerIndex++;
     return $mediahtml;
 }
 
 
-function podlove_render_chapters($custom_field) {
+function podlove_pwp_render_chapters($custom_field) {
     global $post;
     global $podlovePlayerIndex;
+    $custom_field = trim($custom_field);
 
     if ($custom_field != '') {
         if (substr($custom_field,0,7) == "http://" 
             || substr($custom_field,0,8) == "https://") {
-            $chapters[0] = file_get_contents($custom_field);
+            $chapters[0] = trim(file_get_contents($custom_field));
         } elseif ($chapters = get_post_custom_values($custom_field, $post->ID)) {
         } else {
-            $chapters[0] = "00:00:00.000 No chapters found";
+            return false;
         }
-        $chapters = podlove_chapters_from_string($chapters[0]);
-        $output = '<table rel="wp_mep_' . $podlovePlayerIndex . '" class="mejs_chapters" style="display:none"><tbody>';
-        foreach ($chapters as $i => $chapter) {
-            $end = ($i == (count($chapters) - 1)) ? '9999999' : $chapters[$i + 1]['timecode'];
-            $output .= '<tr>';
-            $output .= '<td class="timecode"><code>' . $chapter['human_timecode'] . '</code></td>';
-            $output .= '<td class="title"><span data-buffered="0" data-start="' . $chapter['timecode'] . '" data-end="' . $end . '">' . $chapter['title'] . '</span></td>';
-            $output .= '</tr>';
+        if ($chapters = podlove_pwp_chapters_from_string($chapters[0])) {
+            $output = '<table rel="wp_pwp_' . $podlovePlayerIndex . '" class="pwp_chapters" style="display:none"><tbody>';
+            foreach ($chapters as $i => $chapter) {
+                $end = ($i == (count($chapters) - 1)) ? '9999999' : $chapters[$i + 1]['timecode'];
+                $output .= '<tr>';
+                $output .= '<td class="timecode"><code>' . $chapter['human_timecode'] . '</code></td>';
+                $output .= '<td class="title"><span data-buffered="0" data-start="' . $chapter['timecode'] . '" data-end="' . $end . '">' . $chapter['title'] . '</span></td>';
+                $output .= '</tr>';
+            }
+            $output .= '</tbody></table>';
+            return $output;
         }
-        $output .= '</tbody></table>';
-
-        return $output;
-    } else {
-        return false;
     }
+    return false;
 }
 
-function podlove_chapters_from_string($chapstring) {
+function podlove_pwp_chapters_from_string($chapstring) {
     $lines = explode("\n", $chapstring);
+    $chapters = array();
     foreach ($lines as $i => $line) {
         if (trim($line) != '') {
             $line = trim(str_replace("\n", '', $line));
@@ -446,27 +449,31 @@ function podlove_chapters_from_string($chapstring) {
             $chapters[$i]['human_timecode'] = substr($chapter['human_timecode'], 3);
         }
     }
-    return $chapters;
+    if (count($chapters) > 0) {
+        return $chapters;
+    } else {
+        return false;
+    }
 }
 
 
 
-function podlove_audio_shortcode($atts) {
-    return is_feed() ? '' : podlove_media_shortcode('audio', $atts);
+function podlove_pwp_audio_shortcode($atts) {
+    return is_feed() ? '' : podlove_pwp_media_shortcode('audio', $atts);
 }
-function podlove_video_shortcode($atts) {
-    return is_feed() ? '' : podlove_media_shortcode('video', $atts);
+function podlove_pwp_video_shortcode($atts) {
+    return is_feed() ? '' : podlove_pwp_media_shortcode('video', $atts);
 }
 
-add_shortcode('audio', 'podlove_audio_shortcode');
-add_shortcode('podloveaudio', 'podlove_audio_shortcode');
-add_shortcode('video', 'podlove_video_shortcode');
-add_shortcode('podlovevideo', 'podlove_video_shortcode');
+add_shortcode('audio', 'podlove_pwp_audio_shortcode');
+add_shortcode('podloveaudio', 'podlove_pwp_audio_shortcode');
+add_shortcode('video', 'podlove_pwp_video_shortcode');
+add_shortcode('podlovevideo', 'podlove_pwp_video_shortcode');
 
-function podlove_init() {
+function podlove_pwp_init() {
     wp_enqueue_script('jquery');
 }
 
-add_action('init', 'podlove_init');
+add_action('init', 'podlove_pwp_init');
 
 ?>
