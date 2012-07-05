@@ -1,7 +1,7 @@
 <?php
 /**
  * @package PodloveWebPlayer
- * @version 1.0.4
+ * @version 1.0.5
  */
 
 /*
@@ -9,7 +9,7 @@ Plugin Name: Podlove Web Player
 Plugin URI: http://podlove.org/podlove-web-player/
 Description: Video and audio plugin for WordPress built on the MediaElement.js HTML5 media player library.
 Author: Gerrit van Aaken and others
-Version: 1.0.4
+Version: 1.0.5
 Author URI: http://praegnanz.de
 License: GPLv3, MIT
 */
@@ -214,7 +214,8 @@ function podlove_pwp_add_styles() {
     if (!is_admin()) {
         // the style
         wp_enqueue_style('mediaelementjs-styles', PODLOVEWEBPLAYER_DIR . 'mediaelementplayer.css');
-
+        wp_enqueue_style('podlovewebplayer-styles', plugin_dir_url(__FILE__) . 'podlove-web-player.css');
+        
         if (get_option('pwp_video_skin') != '') {
             wp_enqueue_style('mediaelementjs-skins', PODLOVEWEBPLAYER_DIR . 'mejs-skins.css');
         }
@@ -376,7 +377,6 @@ function podlove_pwp_media_shortcode($tagName, $atts) {
     <{$tagName} width="{$width}" height="{$height}" id="wp_pwp_{$podlovePlayerIndex}" controls="controls" {$attributes_string} class="{$skin_class}" data-mejsoptions='{$options_string}'>
         {$sources_string}
     </{$tagName}>
-    </div>
 _end_;
 
     // Chapters Table and Behaviour
@@ -385,7 +385,7 @@ _end_;
             $mediahtml .= "\n\n" . $chaptertable;
         }
     }
-    $mediahtml .= "\n\n<script>jQuery(function() { PODLOVE.web_player('wp_pwp_{$podlovePlayerIndex}');});</script>\n";
+    $mediahtml .= "\n\n</div>\n\n<script>jQuery(function() { PODLOVE.web_player('wp_pwp_{$podlovePlayerIndex}');});</script>\n";
 
     $podlovePlayerIndex++;
     return $mediahtml;
