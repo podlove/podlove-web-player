@@ -34,7 +34,7 @@ jQuery(document).ready(function($) {
     PODLOVE.web_player.addBehaviour_chapter = function (playerId, player) {
         var list = jQuery('table[rel=' + playerId + ']')
             .show()
-            .on('click', 'a', function () {
+            .bind('click', 'a', function () {
                 var time = jQuery(this).find('span').data('start');
                 player.setCurrentTime(time);
                 if (player.pluginType != "flash") {
@@ -107,7 +107,7 @@ jQuery(document).ready(function($) {
             player.addEventListener('pause',  address_current_time, false);
             player.addEventListener('seeked', address_current_time, false);
 
-            jQuery('table[rel=' + playerId + ']').on('click', 'a', function () {
+            jQuery('table[rel=' + playerId + ']').bind('click', 'a', function () {
                 if (PODLOVE.playercount === 1) {
                     history.pushState(null, null, '#' + PODLOVE.web_player.generateTimecode(jQuery(this).find('span').data('start')));
                 }
