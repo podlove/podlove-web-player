@@ -3,13 +3,11 @@ var PODLOVE = PODLOVE || {};
 (function ($) {
     'use strict';
 
-    var deepLink;
-
-    // Count Players on site
-    var playerCount;
-
-    // Timecode as described in http://podlove.org/deep-link/
-    var timecodeRegExp = /(\d\d:)?\d\d:\d\d(\.\d\d\d)?/;
+    var deepLink = false,
+        // Count Players on site
+        playerCount = 0,
+        // Timecode as described in http://podlove.org/deep-link/
+        timecodeRegExp = /(\d\d:)?(\d\d):(\d\d)(\.\d\d\d)?/;
 
     /**
      * return number as string lefthand filled with zeros
@@ -28,23 +26,23 @@ var PODLOVE = PODLOVE || {};
      * @return string
      **/
     function generateTimecode(seconds) {
-        var timecode;
+        var timecode, hours, milliseconds;
 
         // prevent negative values from player
         if (seconds <= 0) {
             return '00:00';
         }
 
-        // hours
-        timecode += zeroFill(Math.floor(seconds / 60 / 60), 2);
-        // minutes
-        timecode += ':' + zeroFill(Math.floor(seconds / 60) % 60, 2);
-        // seconds
-        timecode += ':' + zeroFill(Math.floor(seconds % 60) % 60, 2);
-        // milliseconds
-        timecode += '.' + zeroFill(Math.floor(seconds % 1 * 1000), 3);
+        // required (minutes : seconds)
+        timecode = zeroFill(Math.floor(seconds / 60) % 60, 2) + ':' +
+                zeroFill(Math.floor(seconds % 60) % 60, 2);
 
-        return timecode;
+        hours = zeroFill(Math.floor(seconds / 60 / 60), 2);
+        hours = hours === '00' ? '' : hours + ':';
+        milliseconds = zeroFill(Math.floor(seconds % 1 * 1000), 3);
+        milliseconds = milliseconds === '000' ? '' : '.' + milliseconds;
+
+        return hours + timecode + milliseconds;
     }
 
     /**
@@ -57,19 +55,20 @@ var PODLOVE = PODLOVE || {};
 
         if (timecode) {
             parts = timecode.match(timecodeRegExp);
-            if (parts.length === 5) {
+            if (parts && parts.length === 5) {
                 // hours
                 seconds += parts[1] ? parseInt(parts[1], 10) * 60 * 60 : 0;
                 // minutes
-                seconds += parts[2] * 60;
+                seconds += parseInt(parts[2], 10) * 60;
                 // seconds
-                seconds += parts[3];
+                seconds += parseInt(parts[3], 10);
                 // milliseconds
                 seconds += parts[4] ? parseFloat(parts[4]) : 0;
 
                 return Math.max(seconds, 0);
             }
         }
+        return false;
     }
 
     PODLOVE.web_player = function (playerId) {
@@ -77,15 +76,15 @@ var PODLOVE = PODLOVE || {};
         // parse deeplink
         deepLink = parseTimecode(window.location.href);
 
-        if (deepLink && playerCount === 1) {
-            $('#' + playerId).attr({preload: 'auto', autoplay: 'autoplay'});
+        if (deepLink !== false && playerCount === 1) {
+            $('#' + playerId)
+                .attr({preload: 'auto', autoplay: 'autoplay'});
         }
 
         window.MediaElementPlayer('#' + playerId, {
             success: function (player) {
-                PODLOVE.web_player.addChapters(playerId, player);
-                PODLOVE.web_player.addDeepLinking(playerId, player);
-                if (deepLink && playerCount === 1) {
+                PODLOVE.web_player.addBehavior(player);
+                if (deepLink !== false && playerCount === 1) {
                     $('html, body')
                         .delay(150)
                         .animate({
@@ -97,29 +96,60 @@ var PODLOVE = PODLOVE || {};
     };
 
     /**
-     * add chapter behavior
+     * add chapter behavior and deeplinking: skip to referenced
+     * time position & write current time into address
      * @param player object
      */
-    PODLOVE.web_player.addChapters = function (player) {
-        var list, playerId = player.attr('id');
+    PODLOVE.web_player.addBehavior = function (player) {
+        var jqPlayer = $(player),
+            playerId = jqPlayer.attr('id'),
+            list = $('table[rel=' + playerId + ']'),
+            marks = list.find('span');
 
-        $('table[rel=' + playerId + ']')
+        list
             .show()
-            .delegate('a', 'click', function () {
+            .delegate('a', 'click', function (e) {
+                e.preventDefault();
+
                 var time = $(this).find('span').data('start');
                 player.setCurrentTime(time);
                 if (player.pluginType !== 'flash') {
                     player.play();
                 }
-                return false;
+                if (playerCount === 1) {
+                    deepLink = time;
+                }
             });
 
-        player.bind('timeupdate', function () {
-            try {
+        function skipToLinkedTime() {
+            if (deepLink !== false && playerCount === 1) {
+                player.setCurrentTime(deepLink);
+                deepLink = false;
+            }
+        }
+        function addressCurrentTime() {
+            var timecode;
+            if (deepLink === false && playerCount === 1) {
+                timecode = generateTimecode(player.currentTime);
+                window.location.hash = '#' + timecode;
+            }
+        }
+
+        // wait for the player or you'll get DOM EXCEPTIONS
+        jqPlayer.bind('canplay', function () {
+            if (playerCount === 1) {
+                jqPlayer.bind({
+                    play: skipToLinkedTime,
+                    timeupdate: skipToLinkedTime,
+                    pause: addressCurrentTime,
+                    seeked: addressCurrentTime
+                });
+            }
+            jqPlayer.bind('timeupdate', function () {
                 // update the chapter list when the data is loaded
-                list.find('span').each(function (i) {
-                    var span       = $(this),
-                        row        = span.closest('tr'),
+                marks.each(function () {
+                    var deepLink,
+                        span       = $(this),
                         startTime  = span.data('start'),
                         endTime    = span.data('end'),
                         isEnabled  = span.data('enabled') === '1',
@@ -127,65 +157,21 @@ var PODLOVE = PODLOVE || {};
                         isActive   = player.currentTime > startTime - 0.3 &&
                                      player.currentTime <= endTime;
 
-                    if (isActive && !row.hasClass('active')) {
-                        span.closest('table')
-                            .find('tr.active')
-                            .removeClass('active');
-                        row.addClass('active');
+                    if (isActive) {
+                        span.closest('tr')
+                            .addClass('active')
+                            .siblings().removeClass('active');
                     }
                     if (!isEnabled && isBuffered) {
-                        span.data('enabled', '1').wrap('<a href="#"></a>');
+                        deepLink = '#' + generateTimecode(startTime) +
+                                (endTime && endTime < 9999999 ? '-' +
+                                generateTimecode(endTime) : '');
+                        span
+                            .data('enabled', '1')
+                            .wrap('<a href="' + deepLink + '"></a>');
                     }
                 });
-            } catch (e) {
-                window.console.log('[podlove-web-player] timeupdate::: ' + e);
-            }
-        }, false);
-    };
-
-
-    /**
-     * deeplinking: skip to referenced time position & write current time into address
-     * @param player object
-     */
-    PODLOVE.web_player.addDeepLinking = function (player) {
-        var playerId = player.attr('id');
-
-        function skipToLinkedTime() {
-            if (playerCount === 1 && deepLink) {
-                try {
-                    player.setCurrentTime(deepLink);
-                    deepLink = false;
-                } catch (e) {
-                    window.console.log('[podlove-web-player] skipToLinkedTime::: ' + e);
-                }
-
-            }
-        }
-        function addressCurrentTime() {
-            var timecode;
-            if (playerCount === 1 && !deepLink) {
-                timecode = generateTimecode(player.currentTime);
-                window.location.hash = '#' + timecode;
-            }
-        }
-
-        if (playerCount === 1) {
-            player.bind({
-                play: skipToLinkedTime,
-                timeupdate: skipToLinkedTime,
-                pause: addressCurrentTime,
-                seeked: addressCurrentTime
             });
-
-            $('table[rel=' + playerId + ']').delegate('a', 'click', function () {
-                var start;
-                if (playerCount === 1) {
-                    start = $(this).find('span').data('start');
-                    deepLink = start;
-                    window.location.hash = '#' + generateTimecode(start);
-                }
-            });
-        }
+        });
     };
 }(jQuery));
