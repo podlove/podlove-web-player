@@ -115,25 +115,27 @@ var PODLOVE = PODLOVE || {};
 	// update the chapter list when the data is loaded
 	function updateChapterMarks(player, marks) {
 		marks.each(function () {
-			var deepLink,
-				span       = $(this),
-				startTime  = span.data('start'),
-				endTime    = span.data('end'),
-				isEnabled  = span.data('enabled') === '1',
+			var title, deepLink,
+				mark       = $(this),
+				startTime  = mark.data('start'),
+				endTime    = mark.data('end'),
+				isEnabled  = mark.data('enabled'),
 				isBuffered = player.buffered.end(0) > startTime,
 				isActive   = player.currentTime > startTime - 0.3 &&
 						player.currentTime <= endTime;
 
 			if (isActive) {
-				span.closest('tr')
+				mark
 					.addClass('active')
 					.siblings().removeClass('active');
 			}
 			if (!isEnabled && isBuffered) {
 				deepLink = '#t=' + generateTimecode([startTime, endTime]);
-				span
-					.data('enabled', '1')
-					.wrap('<a href="' + deepLink + '"></a>');
+
+				mark.data('enabled', true);
+
+				title = mark.find('td.title');
+				title.html('<a href="' + deepLink + '">' + title.html() + '</a>');
 			}
 		});
 	}
@@ -186,15 +188,16 @@ var PODLOVE = PODLOVE || {};
 		var jqPlayer = $(player),
 			playerId = jqPlayer.attr('id'),
 			list = $('table[rel=' + playerId + ']'),
-			marks = list.find('span');
+			marks = list.find('tr');
 
 		list
 			.show()
 			.delegate('a', 'click', function (e) {
 				e.preventDefault();
 
-				var startTime = $(this).find('span').data('start'),
-					endTime = $(this).find('span').data('end');
+				var mark = $(this).closest('tr'),
+					startTime = mark.data('start'),
+					endTime = mark.data('end');
 
 				// Basic Chapter Mark function (without deeplinking)
 				player.setCurrentTime(startTime);
