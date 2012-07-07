@@ -376,7 +376,7 @@ function podlove_pwp_media_shortcode($tagName, $atts) {
 
 	$mediahtml = <<<_end_
 	<div class="mediaelementjs_player_container">
-	<{$tagName} width="{$width}" height="{$height}" id="wp_pwp_{$podlovePlayerIndex}" controls="controls" {$attributes_string} class="{$skin_class}" data-mejsoptions="{$options_string}"">
+	<{$tagName} width="{$width}" height="{$height}" id="wp_pwp_{$podlovePlayerIndex}" controls="controls" {$attributes_string} class="{$skin_class}" data-mejsoptions="{$options_string}">
 		{$sources_string}
 	</{$tagName}>
 _end_;
