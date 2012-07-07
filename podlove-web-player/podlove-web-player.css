@@ -1,23 +1,24 @@
 .mejs-container {
-    min-height: 30px;
+	min-height: 30px;
 }
 
 .mediaelementjs_player_container {
-    clear: both;
-    position: relative;
-    padding-bottom: 1.5em;
+	clear: both;
+	position: relative;
+	padding-bottom: 1.5em;
 }
 
 .mediaelementjs_player_container:after {
-    content: ".";
-    color: #fff;
-    font-size: 1px;
-    height: 1px;
-    display: block;
-    overflow: hidden;
-    clear: both;
+	content: ".";
+	color: #fff;
+	font-size: 1px;
+	height: 1px;
+	display: block;
+	overflow: hidden;
+	clear: both;
 }
 
 .mediaelementjs_player_container .pwp_chapters {
-    margin-bottom: 0!important;
+	display: none; /* only show if js works */
+	margin-bottom: 0!important;
 }

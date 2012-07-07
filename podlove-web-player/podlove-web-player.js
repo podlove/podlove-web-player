@@ -30,8 +30,6 @@ var PODLOVE = PODLOVE || {};
 	 * @return string
 	 **/
 	function generateTimecode(times) {
-		var startTime, endTime;
-
 		function generatePart(seconds) {
 			var part, hours, milliseconds;
 			// prevent negative values from player
@@ -141,7 +139,6 @@ var PODLOVE = PODLOVE || {};
 	}
 
 	function skipToLinkedTime(e) {
-		console.log('skipToLinkedTime');
 		if (deepLink !== false && playerCount === 1) {
 			e.data.player.setCurrentTime(deepLink[0]);
 			deepLink = false;
@@ -226,8 +223,8 @@ var PODLOVE = PODLOVE || {};
 
 				// handle browser history navigation
 				$(window).bind('hashchange onpopstate', function () {
-						// parse deeplink
-						deepLink = parseTimecode(window.location.href);
+					// parse deeplink
+					deepLink = parseTimecode(window.location.href);
 				});
 			}
 
