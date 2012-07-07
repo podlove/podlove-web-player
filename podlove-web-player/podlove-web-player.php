@@ -124,7 +124,7 @@ function podlove_pwp_settings_page() {
             <td >
                 <input name="pwp_default_video_height" type="text" id="pwp_default_video_height" value="<?php echo get_option('pwp_default_video_height'); ?>" />
             </td>
-        </tr> 
+        </tr>
         <tr valign="top">
             <th scope="row">
                 <label for="pwp_default_video_type">Default Type</label>
@@ -132,7 +132,7 @@ function podlove_pwp_settings_page() {
             <td >
                 <input name="pwp_default_video_type" type="text" id="pwp_default_video_type" value="<?php echo get_option('pwp_default_video_type'); ?>" /> <span class="description">such as "video/mp4"</span>
             </td>
-        </tr> 
+        </tr>
         <tr valign="top">
             <th scope="row">
                 <label for="pwp_video_skin">Video Skin</label>
@@ -198,15 +198,15 @@ function podlove_pwp_settings_page() {
 
 // This is now handled by calling wp_enqueue_script inside the pwp_media_shortcode function by default. This means that MediaElement.js's JavaScript will only be called as needed
 if (!get_option('pwp_script_on_demand')) {
-function podlove_pwp_add_scripts() {
-    if (!is_admin()) {
-        // the scripts
-        wp_enqueue_script('mediaelementjs-scripts', PODLOVEWEBPLAYER_DIR . 'mediaelement-and-player.min.js', array('jquery'), '2.9.1', false);
-        wp_enqueue_script('ba-hashchange', plugin_dir_url(__FILE__) . 'libs/jquery.ba-hashchange.min.js', array('jquery'), '1.3.0', false);
-        wp_enqueue_script('podlove-web-player', plugin_dir_url(__FILE__) . 'podlove-web-player.js', array('jquery', 'mediaelementjs-scripts'), '1.0.7', false);
+    function podlove_pwp_add_scripts() {
+        if (!is_admin()) {
+            // the scripts
+            wp_enqueue_script('mediaelementjs-scripts', PODLOVEWEBPLAYER_DIR . 'mediaelement-and-player.min.js', array('jquery'), '2.9.1', false);
+            wp_enqueue_script('ba-hashchange', plugin_dir_url(__FILE__) . 'libs/jquery.ba-hashchange.min.js', array('jquery'), '1.3.0', false);
+            wp_enqueue_script('podlove-web-player', plugin_dir_url(__FILE__) . 'podlove-web-player.js', array('jquery', 'mediaelementjs-scripts'), '1.0.7', false);
+        }
     }
-}
-add_action('wp_print_scripts', 'podlove_pwp_add_scripts');
+    add_action('wp_print_scripts', 'podlove_pwp_add_scripts');
 }
 
 // CSS
@@ -372,10 +372,11 @@ function podlove_pwp_media_shortcode($tagName, $atts) {
     $attributes_string = !empty($attributes) ? implode(' ', $attributes) : '';
     $sources_string = !empty($sources) ? implode("\n\t\t", $sources) : '';
     $options_string = !empty($options) ? '{' . implode(',', $options) . '}' : '';
+    $options_string = str_replace('"', '\'', $options_string);
 
     $mediahtml = <<<_end_
     <div class="mediaelementjs_player_container">
-    <{$tagName} width="{$width}" height="{$height}" id="wp_pwp_{$podlovePlayerIndex}" controls="controls" {$attributes_string} class="{$skin_class}" data-mejsoptions='{$options_string}'>
+    <{$tagName} width="{$width}" height="{$height}" id="wp_pwp_{$podlovePlayerIndex}" controls="controls" {$attributes_string} class="{$skin_class}" data-mejsoptions="{$options_string}"">
         {$sources_string}
     </{$tagName}>
 _end_;
@@ -386,7 +387,7 @@ _end_;
             $mediahtml .= "\n\n" . $chaptertable;
         }
     }
-    $mediahtml .= "\n\n</div>\n\n<script>jQuery(function() { PODLOVE.web_player('wp_pwp_{$podlovePlayerIndex}');});</script>\n";
+    $mediahtml .= "\n\n</div>\n\n<script>jQuery(function() { PODLOVE.web_player('wp_pwp_{$podlovePlayerIndex}'); });</script>\n";
 
     $podlovePlayerIndex++;
     return $mediahtml;
@@ -399,15 +400,15 @@ function podlove_pwp_render_chapters($custom_field) {
     $custom_field = trim($custom_field);
 
     if ($custom_field != '') {
-        if (substr($custom_field,0,7) == "http://" 
-            || substr($custom_field,0,8) == "https://") {
+        if (substr($custom_field, 0, 7) == 'http://'
+            || substr($custom_field, 0, 8) == 'https://') {
             $chapters[0] = trim(file_get_contents($custom_field));
         } elseif ($chapters = get_post_custom_values($custom_field, $post->ID)) {
         } else {
             return false;
         }
         if ($chapters = podlove_pwp_chapters_from_string($chapters[0])) {
-            $output = '<table rel="wp_pwp_' . $podlovePlayerIndex . '" class="pwp_chapters" style="display:none"><tbody>';
+            $output = '<table rel="wp_pwp_' . $podlovePlayerIndex . '" class="pwp_chapters"><tbody>';
             foreach ($chapters as $i => $chapter) {
                 $end = ($i == (count($chapters) - 1)) ? '9999999' : $chapters[$i + 1]['timecode'];
                 $output .= '<tr>';
