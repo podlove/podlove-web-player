@@ -376,7 +376,7 @@ function podlove_pwp_media_shortcode($tagName, $atts) {
 
 	$mediahtml = <<<_end_
 	<div class="mediaelementjs_player_container">
-	<{$tagName} width="{$width}" height="{$height}" id="wp_pwp_{$podlovePlayerIndex}" controls="controls" {$attributes_string} class="{$skin_class}" data-mejsoptions="{$options_string}">
+	<{$tagName} style="width:{$width}px;height:{$height}px" id="wp_pwp_{$podlovePlayerIndex}" controls="controls" {$attributes_string} class="{$skin_class}" data-mejsoptions="{$options_string}">
 		{$sources_string}
 	</{$tagName}>
 _end_;
@@ -408,12 +408,15 @@ function podlove_pwp_render_chapters($custom_field) {
 			return false;
 		}
 		if ($chapters = podlove_pwp_chapters_from_string($chapters[0])) {
-			$output = '<table rel="wp_pwp_' . $podlovePlayerIndex . '" class="pwp_chapters"><tbody>';
+			$output = '<table rel="wp_pwp_' . $podlovePlayerIndex . '" class="pwp_chapters">';
+			$output .= '<caption>Podcast Chapters</caption>';
+			$output .= '<thead><tr><th>Timecode</th><th>Title</th></tr></thead>';
+			$output .= '<tbody>';
 			foreach ($chapters as $i => $chapter) {
 				$end = ($i == (count($chapters) - 1)) ? '9999999' : $chapters[$i + 1]['timecode'];
-				$output .= '<tr>';
+				$output .= '<tr data-start="' . $chapter['timecode'] . '" data-end="' . $end . '">';
 				$output .= '<td class="timecode"><code>' . $chapter['human_timecode'] . '</code></td>';
-				$output .= '<td class="title"><span data-buffered="0" data-start="' . $chapter['timecode'] . '" data-end="' . $end . '">' . $chapter['title'] . '</span></td>';
+				$output .= '<td class="title">' . $chapter['title'] . '</td>';
 				$output .= '</tr>';
 			}
 			$output .= '</tbody></table>';

@@ -22,3 +22,28 @@
 	display: none; /* only show if js works */
 	margin-bottom: 0!important;
 }
+
+/*
+ * Hide only visually, but have it available for screenreaders: h5bp.com/v
+ */
+.mediaelementjs_player_container .pwp_chapters thead,
+.mediaelementjs_player_container .pwp_chapters caption {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+
+
+.mediaelementjs_player_container .pwp_chapters tr.active {
+	background: whiteSmoke;
+}
+
+.mediaelementjs_player_container .pwp_chapters tr td {
+	padding: 6px;
+}
