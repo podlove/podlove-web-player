@@ -10,7 +10,7 @@ var PODLOVE = PODLOVE || {};
 		// and http://www.w3.org/TR/media-frags/#fragment-dimensions
 		timecodeRegExp = /(\d\d:)?(\d\d):(\d\d)(\.\d\d\d)?(,(\d\d:)?(\d\d):(\d\d)(\.\d\d\d)?)?/,
 		// check if to use html5 pushState
-		usePushState = !!(window.history && history.pushState);
+		usePushState = false;
 
 	/**
 	 * return number as string lefthand filled with zeros
@@ -213,6 +213,7 @@ var PODLOVE = PODLOVE || {};
 
 		// wait for the player or you'll get DOM EXCEPTIONS
 		jqPlayer.bind('canplay', function () {
+
 			// add Deeplink Behavior if there is only one player on the site
 			if (playerCount === 1) {
 				jqPlayer.bind({
@@ -222,18 +223,19 @@ var PODLOVE = PODLOVE || {};
 					// disabled 'cause it overrides chapter clicks
 					// seeked: addressCurrentTime
 				}, {player: player});
+
 				// handle browser history navigation
-				if (usePushState) {
-					window.onpopstate = function () {
+				$(window).bind('hashchange onpopstate', function () {
 						// parse deeplink
 						deepLink = parseTimecode(window.location.href);
-					};
-				}
+				});
 			}
+
 			// always update Chaptermarks though
 			jqPlayer.bind('timeupdate', function () {
 				updateChapterMarks(player, marks);
 			});
+
 		});
 	};
 }(jQuery));
