@@ -1,57 +1,155 @@
 var PODLOVE = PODLOVE || {};
 
-jQuery(document).ready(function($) {
-    PODLOVE.web_player = function (playerId) {
-        // parse deeplinks
-        PODLOVE.playercount    = $('.mediaelementjs_player_container').length
-        PODLOVE.ref_deep_links = [];
-        PODLOVE.ref_deep_links = window.location.href.match(/((\d\d:)?\d\d:\d\d(\.\d\d\d)?)/) || [];
-        PODLOVE.ref_deep_links.splice(1,1);
-        $(PODLOVE.ref_deep_links).each(function (i, e) {
-            PODLOVE.ref_deep_links[i] = PODLOVE.web_player.parseTimecode(e);
-        });
+(function ($) {
+    'use strict';
 
-        if (PODLOVE.ref_deep_links.length && PODLOVE.playercount === 1) {
-            $('#' + playerId).attr('preload', 'auto');
-            $('#' + playerId).attr('autoplay', 'autoplay');
+    var deepLink = false,
+        // Count Players on site
+        playerCount = 0,
+        // Timecode as described in http://podlove.org/deep-link/
+        timecodeRegExp = /(\d\d:)?(\d\d):(\d\d)(\.\d\d\d)?/;
+
+    /**
+     * return number as string lefthand filled with zeros
+     * @param number number
+     * @param width number
+     * @return string
+     **/
+    function zeroFill(number, width) {
+        width -= number.toString().length;
+        return width > 0 ? new Array(width + 1).join('0') + number : number + '';
+    }
+
+    /**
+     * returns seconds in deep-linking time format
+     * @param seconds number
+     * @return string
+     **/
+    function generateTimecode(seconds) {
+        var timecode, hours, milliseconds;
+
+        // prevent negative values from player
+        if (seconds <= 0) {
+            return '00:00';
         }
 
-        MediaElementPlayer("#"+playerId, {
+        // required (minutes : seconds)
+        timecode = zeroFill(Math.floor(seconds / 60) % 60, 2) + ':' +
+                zeroFill(Math.floor(seconds % 60) % 60, 2);
 
+        hours = zeroFill(Math.floor(seconds / 60 / 60), 2);
+        hours = hours === '00' ? '' : hours + ':';
+        milliseconds = zeroFill(Math.floor(seconds % 1 * 1000), 3);
+        milliseconds = milliseconds === '000' ? '' : '.' + milliseconds;
+
+        return hours + timecode + milliseconds;
+    }
+
+    /**
+     * parses time code into seconds
+     * @param string timecode
+     * @return number
+     **/
+    function parseTimecode(timecode) {
+        var parts, seconds = 0;
+
+        if (timecode) {
+            parts = timecode.match(timecodeRegExp);
+            if (parts && parts.length === 5) {
+                // hours
+                seconds += parts[1] ? parseInt(parts[1], 10) * 60 * 60 : 0;
+                // minutes
+                seconds += parseInt(parts[2], 10) * 60;
+                // seconds
+                seconds += parseInt(parts[3], 10);
+                // milliseconds
+                seconds += parts[4] ? parseFloat(parts[4]) : 0;
+
+                return Math.max(seconds, 0);
+            }
+        }
+        return false;
+    }
+
+    PODLOVE.web_player = function (playerId) {
+        playerCount = $('.mediaelementjs_player_container').length;
+        // parse deeplink
+        deepLink = parseTimecode(window.location.href);
+
+        if (deepLink !== false && playerCount === 1) {
+            $('#' + playerId)
+                .attr({preload: 'auto', autoplay: 'autoplay'});
+        }
+
+        window.MediaElementPlayer('#' + playerId, {
             success: function (player) {
-                PODLOVE.web_player.addBehaviour_chapter(playerId, player);
-                PODLOVE.web_player.addBehaviour_deep_linking(playerId, player);
-                if (PODLOVE.ref_deep_links.length && PODLOVE.playercount === 1) {
-                    window.setTimeout(
-                        function () {
-                            $('html, body').animate({scrollTop: $('.mediaelementjs_player_container:first').offset().top - 25});
-                        }, 150);
+                PODLOVE.web_player.addBehavior(player);
+                if (deepLink !== false && playerCount === 1) {
+                    $('html, body')
+                        .delay(150)
+                        .animate({
+                            scrollTop: $('.mediaelementjs_player_container:first').offset().top - 25
+                        });
                 }
             }
         });
     };
 
-    PODLOVE.web_player.addBehaviour_chapter = function (playerId, player) {
-        var list = jQuery('table[rel=' + playerId + ']')
+    /**
+     * add chapter behavior and deeplinking: skip to referenced
+     * time position & write current time into address
+     * @param player object
+     */
+    PODLOVE.web_player.addBehavior = function (player) {
+        var jqPlayer = $(player),
+            playerId = jqPlayer.attr('id'),
+            list = $('table[rel=' + playerId + ']'),
+            marks = list.find('span');
+
+        list
             .show()
-            .bind('click', 'a', function () {
-                var time = jQuery(this).find('span').data('start');
+            .delegate('a', 'click', function (e) {
+                e.preventDefault();
+
+                var time = $(this).find('span').data('start');
                 player.setCurrentTime(time);
-                if (player.pluginType != "flash") {
+                if (player.pluginType !== 'flash') {
                     player.play();
                 }
-                return false;
+                if (playerCount === 1) {
+                    deepLink = time;
+                }
             });
 
-        PODLOVE.playerel = player;
+        function skipToLinkedTime() {
+            if (deepLink !== false && playerCount === 1) {
+                player.setCurrentTime(deepLink);
+                deepLink = false;
+            }
+        }
+        function addressCurrentTime() {
+            var timecode;
+            if (deepLink === false && playerCount === 1) {
+                timecode = generateTimecode(player.currentTime);
+                window.location.hash = '#' + timecode;
+            }
+        }
 
-
-        player.addEventListener('timeupdate', function (e) {
-            try {
+        // wait for the player or you'll get DOM EXCEPTIONS
+        jqPlayer.bind('canplay', function () {
+            if (playerCount === 1) {
+                jqPlayer.bind({
+                    play: skipToLinkedTime,
+                    timeupdate: skipToLinkedTime,
+                    pause: addressCurrentTime,
+                    seeked: addressCurrentTime
+                });
+            }
+            jqPlayer.bind('timeupdate', function () {
                 // update the chapter list when the data is loaded
-                list.find('span').each(function (i) {
-                    var span       = jQuery(this),
-                        row        = span.closest('tr'),
+                marks.each(function () {
+                    var deepLink,
+                        span       = $(this),
                         startTime  = span.data('start'),
                         endTime    = span.data('end'),
                         isEnabled  = span.data('enabled') === '1',
@@ -59,92 +157,21 @@ jQuery(document).ready(function($) {
                         isActive   = player.currentTime > startTime - 0.3 &&
                                      player.currentTime <= endTime;
 
-                    if (isActive && !row.hasClass('active')) {
-                        span.closest('table')
-                            .find('tr.active')
-                            .removeClass('active');
-                        row.addClass('active');
+                    if (isActive) {
+                        span.closest('tr')
+                            .addClass('active')
+                            .siblings().removeClass('active');
                     }
                     if (!isEnabled && isBuffered) {
-                        span.data('enabled', '1').wrap('<a href="#"></a>');
+                        deepLink = '#' + generateTimecode(startTime) +
+                                (endTime && endTime < 9999999 ? '-' +
+                                generateTimecode(endTime) : '');
+                        span
+                            .data('enabled', '1')
+                            .wrap('<a href="' + deepLink + '"></a>');
                     }
                 });
-            } catch (e) {
-                console.log('[podlove-web-player] timeupdate::: ' + e);
-            }
-        }, false);
-    };
-
-
-    /** 
-     * deeplinking: skipt to referenced time position & write current times into adress
-     * @param playerId string
-     * @param player object
-     */
-    PODLOVE.web_player.addBehaviour_deep_linking = function (playerId, player) {
-        var skip_to_linked_time = function (e) {
-                if (PODLOVE.playercount === 1 && PODLOVE.ref_deep_links.length) {
-                    try {
-                        player.setCurrentTime(PODLOVE.ref_deep_links[0]);
-                        PODLOVE.ref_deep_links = [];
-                    } catch (e) {
-                        console.log('[podlove-web-player] skip_to_linked_time::: ' + e);
-                    }
-                    
-                }
-            }
-          , address_current_time = function (e) {
-                if (PODLOVE.playercount === 1 && !PODLOVE.ref_deep_links.length) {
-                    history.pushState(null, null, '#' + PODLOVE.web_player.generateTimecode(player.currentTime));
-                }
-          };
-
-        if (PODLOVE.playercount === 1) {
-            if (PODLOVE.ref_deep_links.length) {
-                player.addEventListener('play',       skip_to_linked_time , false);
-                player.addEventListener('timeupdate', skip_to_linked_time , false);
-            }
-            player.addEventListener('pause',  address_current_time, false);
-            player.addEventListener('seeked', address_current_time, false);
-
-            jQuery('table[rel=' + playerId + ']').bind('click', 'a', function () {
-                if (PODLOVE.playercount === 1) {
-                    history.pushState(null, null, '#' + PODLOVE.web_player.generateTimecode(jQuery(this).find('span').data('start')));
-                }
             });
-        }
+        });
     };
-
-    /**
-     * returns seconds in deep-linking time format
-     * @param sec number 
-     * @return string
-     **/
-    PODLOVE.web_player.generateTimecode = function (sec) {
-        sec = Math.max(sec, 0); // prevent negative values from player
-        var prim = function (v, mil) {
-                       v = (v || 0) + '';
-                       return (mil && v.length <3 ? '0' : '') + (v.length < 2 ? '0' : '') + v;
-                   }
-          , tcode;
-        tcode = prim(Math.floor(sec/60/60)) + ':' + prim(Math.floor(sec/60)%60) + ':' + prim(Math.floor(sec%60)%60) + '.' + prim(((sec-Math.floor(sec)) + '').substring(2,5) || '000', true);
-        return tcode;
-    };
-
-    /**
-     * parses time code into seconds
-     * @param string timecode
-     * @return number 
-     **/
-    PODLOVE.web_player.parseTimecode = function (tcode) {
-        var parts;
-        if ((parts = (tcode || '').match(/((\d\d:)?(\d\d):(\d\d)(\.\d\d\d)?)/)) && parts.length === 6) {
-            parts = (parts[2] ? parseInt (parts[2].substring(0,2)) * 60 * 60 : 0) + 
-                    parseInt (parts[3]) * 60 + 
-                    parseInt (parts[4]) +
-                    (parts[5] ? parseFloat('0' + parts[5]) : 0);
-            parts = Math.max(parts, 0);
-            return parts;
-        }
-    };
-});
+}(jQuery));
