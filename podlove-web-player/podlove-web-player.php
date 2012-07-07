@@ -1,7 +1,7 @@
 <?php
 /**
  * @package PodloveWebPlayer
- * @version 1.0.6
+ * @version 1.0.7
  */
 
 /*
@@ -9,7 +9,7 @@ Plugin Name: Podlove Web Player
 Plugin URI: http://podlove.org/podlove-web-player/
 Description: Video and audio plugin for WordPress built on the MediaElement.js HTML5 media player library.
 Author: Gerrit van Aaken and others
-Version: 1.0.6
+Version: 1.0.7
 Author URI: http://praegnanz.de
 License: GPLv3, MIT
 */
@@ -202,7 +202,7 @@ function podlove_pwp_add_scripts() {
     if (!is_admin()) {
         // the scripts
         wp_enqueue_script('mediaelementjs-scripts', PODLOVEWEBPLAYER_DIR . 'mediaelement-and-player.min.js', array('jquery'), '2.9.1', false);
-        wp_enqueue_script('podlove-chapters', plugin_dir_url(__FILE__) . 'podlove-chapters.js', array('jquery','mediaelementjs-scripts'), '1.0.6', false);
+        wp_enqueue_script('podlove-web-player', plugin_dir_url(__FILE__) . 'podlove-web-player.js', array('jquery','mediaelementjs-scripts'), '1.0.7', false);
     }
 }
 add_action('wp_print_scripts', 'podlove_pwp_add_scripts');
