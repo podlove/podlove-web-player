@@ -203,7 +203,7 @@ if (!get_option('pwp_script_on_demand')) {
 			// the scripts
 			wp_enqueue_script('mediaelementjs-scripts', PODLOVEWEBPLAYER_DIR . 'mediaelement-and-player.min.js', array('jquery'), '2.9.1', false);
 			wp_enqueue_script('ba-hashchange', plugin_dir_url(__FILE__) . 'libs/jquery.ba-hashchange.min.js', array('jquery'), '1.3.0', false);
-			wp_enqueue_script('podlove-web-player', plugin_dir_url(__FILE__) . 'podlove-web-player.js', array('jquery', 'mediaelementjs-scripts'), '1.0.7', false);
+			wp_enqueue_script('podlove-web-player', plugin_dir_url(__FILE__) . 'podlove-web-player.js', array('jquery', 'mediaelementjs-scripts'), '1.0.8', false);
 		}
 	}
 	add_action('wp_print_scripts', 'podlove_pwp_add_scripts');
