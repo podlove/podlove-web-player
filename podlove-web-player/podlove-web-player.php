@@ -368,15 +368,27 @@ function podlove_pwp_media_shortcode($tagName, $atts) {
 		$skin_class  = 'mejs-' . $skin;
 	}
 
-	// BUILD HTML
+	//prepare player embed string
 	$attributes_string = !empty($attributes) ? implode(' ', $attributes) : '';
 	$sources_string = !empty($sources) ? implode("\n\t\t", $sources) : '';
 	$options_string = !empty($options) ? '{' . implode(',', $options) . '}' : '';
 	$options_string = str_replace('"', '\'', $options_string);
 
+	//prepare player dimensions
+	if ($tagName == "audio") {
+		$widthunit = "px";
+		if (empty($width)) { $width = "auto"; $widthunit = ""; }
+		$heightunit = "px";
+		if (empty($height)) { $height = "30"; }
+		$dimensions = 'style="width: '.$width.$widthunit.'; height:'.$height.$heightunit.'"';
+	} else {
+		$dimensions = 'width="'.$width.'" height="'.$height.'"';
+	}
+
+	//build actual html player code
 	$mediahtml = <<<_end_
 	<div class="mediaelementjs_player_container">
-	<{$tagName} style="width:{$width}px;height:{$height}px" id="wp_pwp_{$podlovePlayerIndex}" controls="controls" {$attributes_string} class="{$skin_class}" data-mejsoptions="{$options_string}">
+	<{$tagName} id="wp_pwp_{$podlovePlayerIndex}" {$dimensions} controls {$attributes_string} class="{$skin_class}" data-mejsoptions="{$options_string}">
 		{$sources_string}
 	</{$tagName}>
 _end_;
