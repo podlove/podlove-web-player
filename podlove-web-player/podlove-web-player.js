@@ -3,14 +3,13 @@ var PODLOVE = PODLOVE || {};
 (function ($) {
 	'use strict';
 
-	var deepLink = false,
-		// Count Players on site
-		playerCount = 0,
+	var startAtTime = false,
+		stopAtTime = false,
+		// Keep all Players on site
+		players = [],
 		// Timecode as described in http://podlove.org/deep-link/
 		// and http://www.w3.org/TR/media-frags/#fragment-dimensions
-		timecodeRegExp = /(\d\d:)?(\d\d):(\d\d)(\.\d\d\d)?(,(\d\d:)?(\d\d):(\d\d)(\.\d\d\d)?)?/,
-		// check if to use html5 pushState
-		usePushState = false;
+		timecodeRegExp = /(\d\d:)?(\d\d):(\d\d)(\.\d\d\d)?(,(\d\d:)?(\d\d):(\d\d)(\.\d\d\d)?)?/;
 
 	/**
 	 * return number as string lefthand filled with zeros
@@ -101,15 +100,22 @@ var PODLOVE = PODLOVE || {};
 		return false;
 	}
 
+	function checkCurrentURL() {
+		var deepLink;
+
+		// parse deeplink
+		deepLink = parseTimecode(window.location.href);
+
+		if (deepLink !== false) {
+			startAtTime = deepLink[0];
+			stopAtTime = deepLink[1];
+		}
+	}
+
 	function setFragmentURL(fragment) {
 		var url;
 
-		if (usePushState) {
-			url = window.location.href.split('#')[0] + '#' + fragment;
-			window.history.pushState(null, null, url);
-		} else {
-			window.location.hash = fragment;
-		}
+		window.location.hash = fragment;
 	}
 
 	// update the chapter list when the data is loaded
@@ -140,35 +146,54 @@ var PODLOVE = PODLOVE || {};
 		});
 	}
 
-	function skipToLinkedTime(e) {
-		if (deepLink !== false && playerCount === 1) {
-			e.data.player.setCurrentTime(deepLink[0]);
-			deepLink = false;
+	function checkTime(e) {
+		if (players.length > 1) {
+			return;
+		}
+
+		var player = e.data.player;
+
+		if (startAtTime !== false) {
+			player.setCurrentTime(startAtTime);
+			startAtTime = false;
+		}
+		if (stopAtTime !== false && player.currentTime >= stopAtTime) {
+			player.pause();
+			stopAtTime = false;
 		}
 	}
 
 	function addressCurrentTime(e) {
 		var fragment;
-		if (deepLink === false && playerCount === 1) {
+		if (players.length === 1 &&
+				stopAtTime === false &&
+				startAtTime === false) {
 			fragment = 't=' + generateTimecode([e.data.player.currentTime]);
 			setFragmentURL(fragment);
 		}
 	}
 
 	PODLOVE.web_player = function (playerId) {
-		playerCount = $('.mediaelementjs_player_container').length;
+		var deepLink,
+			player = $('#' + playerId);
+
+		players.push(player);
+
 		// parse deeplink
 		deepLink = parseTimecode(window.location.href);
 
-		if (deepLink !== false && playerCount === 1) {
-			$('#' + playerId)
+		if (deepLink !== false && players.length === 1) {
+			player
 				.attr({preload: 'auto', autoplay: 'autoplay'});
+
+			startAtTime = deepLink[0];
+			stopAtTime = deepLink[1];
 		}
 
 		window.MediaElementPlayer('#' + playerId, {
 			success: function (player) {
 				PODLOVE.web_player.addBehavior(player);
-				if (deepLink !== false && playerCount === 1) {
+				if (deepLink !== false && players.length === 1) {
 					$('html, body')
 						.delay(150)
 						.animate({
@@ -190,6 +215,12 @@ var PODLOVE = PODLOVE || {};
 			list = $('table[rel=' + playerId + ']'),
 			marks = list.find('tr');
 
+		if (players.length === 1) {
+			// check if deeplink is set
+			checkCurrentURL();
+		}
+
+		// chapters list
 		list
 			.show()
 			.delegate('a', 'click', function (e) {
@@ -199,15 +230,15 @@ var PODLOVE = PODLOVE || {};
 					startTime = mark.data('start'),
 					endTime = mark.data('end');
 
+				// If there is only one player also set deepLink
+				if (players.length === 1) {
+					return setFragmentURL('t=' + generateTimecode([startTime, endTime]));
+				}
+
 				// Basic Chapter Mark function (without deeplinking)
 				player.setCurrentTime(startTime);
 				if (player.pluginType !== 'flash') {
 					player.play();
-				}
-
-				// If there is only one player also set deepLink
-				if (playerCount === 1) {
-					setFragmentURL('t=' + generateTimecode([startTime, endTime]));
 				}
 			});
 
@@ -215,19 +246,24 @@ var PODLOVE = PODLOVE || {};
 		jqPlayer.bind('canplay', function () {
 
 			// add Deeplink Behavior if there is only one player on the site
-			if (playerCount === 1) {
+			if (players.length === 1) {
 				jqPlayer.bind({
-					play: skipToLinkedTime,
-					timeupdate: skipToLinkedTime,
+					play: checkTime,
+					timeupdate: checkTime,
 					pause: addressCurrentTime
 					// disabled 'cause it overrides chapter clicks
-					// seeked: addressCurrentTime
+					//seeked: addressCurrentTime
 				}, {player: player});
 
 				// handle browser history navigation
-				$(window).bind('hashchange onpopstate', function () {
-					// parse deeplink
-					deepLink = parseTimecode(window.location.href);
+				$(window).bind('hashchange onpopstate', checkCurrentURL);
+
+				// handle links on the page
+				// links added later are not handled!
+				$('a').bind('click', function () {
+					// if we stay on the page after clicking a link
+					// check if theres a new deeplink
+					window.setTimeout(checkCurrentURL, 100);
 				});
 			}
 
