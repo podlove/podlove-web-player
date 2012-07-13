@@ -20,10 +20,12 @@ which was adapted from: http://videojs.com/ plugin
 */
 
 $podlovePlayerIndex = 1;
-define('PODLOVEWEBPLAYER_DIR', plugin_dir_url(__FILE__) . 'mediaelement/');
+
+define('PODLOVEWEBPLAYER_DIR', plugin_dir_url(__FILE__));
+define('PODLOVEWEBPLAYER_PATH', plugin_dir_path(__FILE__));
+define('PODLOVEWEBPLAYER_MEJS_DIR', PODLOVEWEBPLAYER_DIR . 'mediaelement/');
 
 /* Runs when plugin is activated */
-register_activation_hook(__FILE__, 'podlove_pwp_install');
 
 function podlove_pwp_install() {
 	add_option('pwp_video_skin', '');
@@ -38,8 +40,9 @@ function podlove_pwp_install() {
 	add_option('pwp_default_audio_type', '');
 }
 
-/* Runs on plugin deactivation*/
-register_deactivation_hook(__FILE__, 'podlove_pwp_remove');
+register_activation_hook(__FILE__, 'podlove_pwp_install');
+
+/* Runs on plugin deactivation */
 
 function podlove_pwp_remove() {
 	delete_option('pwp_video_skin');
@@ -54,16 +57,21 @@ function podlove_pwp_remove() {
 	delete_option('pwp_default_audio_type');
 }
 
-// create custom plugin settings menu
-add_action('admin_menu', 'podlove_pwp_create_menu');
+register_deactivation_hook(__FILE__, 'podlove_pwp_remove');
+
+/* create custom plugin settings menu */
+
+include_once(PODLOVEWEBPLAYER_PATH . 'settings.php');
 
 function podlove_pwp_create_menu() {
-	//create new top-level menu
+	// create new top-level menu
 	add_options_page('Podlove Web Player Options', 'Podlove Web Player', 'administrator', __FILE__, 'podlove_pwp_settings_page');
 
-	//call register settings function
-	add_action( 'admin_init', 'podlove_pwp_register_settings' );
+	// call register settings function
+	add_action('admin_init', 'podlove_pwp_register_settings');
 }
+
+add_action('admin_menu', 'podlove_pwp_create_menu');
 
 
 function podlove_pwp_register_settings() {
@@ -81,119 +89,6 @@ function podlove_pwp_register_settings() {
 }
 
 
-function podlove_pwp_settings_page() {
-?>
-<div class="wrap">
-<h2>Podlove Web Player Options</h2>
-
-<p>See <a href="http://mediaelementjs.com/">MediaElementjs.com</a> for more details on how the HTML5 player and Flash fallbacks work.</p>
-
-<form method="post" action="options.php">
-<?php wp_nonce_field('update-options'); ?>
-
-
-	<h3 class="title"><span>General Settings</span></h3>
-
-	<table class="form-table">
-		<tr valign="top">
-			<th scope="row">
-				<label for="pwp_script_on_demand">Load Script on Demand</label>
-			</th>
-			<td >
-				<input name="pwp_script_on_demand" type="checkbox" id="pwp_script_on_demand" <?php echo (get_option('pwp_script_on_demand') == true ? "checked" : "")  ?> />
-			</td>
-		</tr>
-	</table>
-
-
-	<h3 class="title"><span>Video Settings</span></h3>
-
-	<table class="form-table">
-		<tr valign="top">
-			<th scope="row">
-				<label for="pwp_default_video_width">Default Width</label>
-			</th>
-			<td >
-				<input name="pwp_default_video_width" type="text" id="pwp_default_video_width" value="<?php echo get_option('pwp_default_video_width'); ?>" />
-			</td>
-		</tr>
-		<tr valign="top">
-			<th scope="row">
-				<label for="pwp_default_video_height">Default Height</label>
-			</th>
-			<td >
-				<input name="pwp_default_video_height" type="text" id="pwp_default_video_height" value="<?php echo get_option('pwp_default_video_height'); ?>" />
-			</td>
-		</tr>
-		<tr valign="top">
-			<th scope="row">
-				<label for="pwp_default_video_type">Default Type</label>
-			</th>
-			<td >
-				<input name="pwp_default_video_type" type="text" id="pwp_default_video_type" value="<?php echo get_option('pwp_default_video_type'); ?>" /> <span class="description">such as "video/mp4"</span>
-			</td>
-		</tr>
-		<tr valign="top">
-			<th scope="row">
-				<label for="pwp_video_skin">Video Skin</label>
-			</th>
-			<td >
-				<select name="pwp_video_skin" id="pwp_video_skin">
-					<option value="" <?php echo (get_option('pwp_video_skin') == '') ? ' selected' : ''; ?>>Default</option>
-					<option value="wmp" <?php echo (get_option('pwp_video_skin') == 'wmp') ? ' selected' : ''; ?>>WMP</option>
-					<option value="ted" <?php echo (get_option('pwp_video_skin') == 'ted') ? ' selected' : ''; ?>>TED</option>
-				</select>
-			</td>
-		</tr>
-	</table>
-
-
-	<h3 class="title"><span>Audio Settings</span></h3>
-
-	<table class="form-table">
-		<tr valign="top">
-		<tr valign="top">
-			<th scope="row">
-				<label for="pwp_default_audio_width">Default Width</label>
-			</th>
-			<td >
-				<input name="pwp_default_audio_width" type="text" id="pwp_default_audio_width" value="<?php echo get_option('pwp_default_audio_width'); ?>" />
-			</td>
-		</tr>
-		<tr valign="top">
-			<th scope="row">
-				<label for="pwp_default_audio_height">Default Height</label>
-			</th>
-			<td >
-				<input name="pwp_default_audio_height" type="text" id="pwp_default_audio_height" value="<?php echo get_option('pwp_default_audio_height'); ?>" />
-			</td>
-		</tr>
-			<th scope="row">
-				<label for="pwp_default_audio_type">Default Type</label>
-			</th>
-			<td >
-				<input name="pwp_default_audio_type" type="text" id="pwp_default_audio_type" value="<?php echo get_option('pwp_default_audio_type'); ?>" /> <span class="description">such as "audio/mp3"</span>
-			</td>
-		</tr>
-	</table>
-
-	<input type="hidden" name="action" value="update" />
-	<input type="hidden" name="page_options" value="pwp_default_video_width,pwp_default_video_height,pwp_default_video_type,pwp_default_audio_type,pwp_default_audio_width,pwp_default_audio_height,pwp_video_skin,pwp_script_on_demand" />
-
-	<p>
-		<input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>" />
-	</p>
-
-</div>
-
-
-
-</form>
-</div>
-<?php
-}
-
-
 // Javascript
 
 // This is now handled by calling wp_enqueue_script inside the pwp_media_shortcode function by default. This means that MediaElement.js's JavaScript will only be called as needed
@@ -201,9 +96,9 @@ if (!get_option('pwp_script_on_demand')) {
 	function podlove_pwp_add_scripts() {
 		if (!is_admin()) {
 			// the scripts
-			wp_enqueue_script('mediaelementjs-scripts', PODLOVEWEBPLAYER_DIR . 'mediaelement-and-player.min.js', array('jquery'), '2.9.1', false);
-			wp_enqueue_script('ba-hashchange', plugin_dir_url(__FILE__) . 'libs/jquery.ba-hashchange.min.js', array('jquery'), '1.3.0', false);
-			wp_enqueue_script('podlove-web-player', plugin_dir_url(__FILE__) . 'podlove-web-player.js', array('jquery', 'mediaelementjs-scripts'), '1.0.8', false);
+			wp_enqueue_script('mediaelementjs-scripts', PODLOVEWEBPLAYER_MEJS_DIR . 'mediaelement-and-player.min.js', array('jquery'), '2.9.1', false);
+			wp_enqueue_script('ba-hashchange', PODLOVEWEBPLAYER_DIR . 'libs/jquery.ba-hashchange.min.js', array('jquery'), '1.3.0', false);
+			wp_enqueue_script('podlove-web-player', PODLOVEWEBPLAYER_DIR . 'podlove-web-player.js', array('jquery', 'mediaelementjs-scripts'), '1.0.8', false);
 		}
 	}
 	add_action('wp_print_scripts', 'podlove_pwp_add_scripts');
@@ -214,11 +109,11 @@ if (!get_option('pwp_script_on_demand')) {
 function podlove_pwp_add_styles() {
 	if (!is_admin()) {
 		// the style
-		wp_enqueue_style('mediaelementjs-styles', PODLOVEWEBPLAYER_DIR . 'mediaelementplayer.css');
-		wp_enqueue_style('podlovewebplayer-styles', plugin_dir_url(__FILE__) . 'podlove-web-player.css');
+		wp_enqueue_style('mediaelementjs-styles', PODLOVEWEBPLAYER_MEJS_DIR . 'mediaelementplayer.css');
+		wp_enqueue_style('podlovewebplayer-styles', PODLOVEWEBPLAYER_DIR . 'podlove-web-player.css');
 
 		if (get_option('pwp_video_skin') != '') {
-			wp_enqueue_style('mediaelementjs-skins', PODLOVEWEBPLAYER_DIR . 'mejs-skins.css');
+			wp_enqueue_style('mediaelementjs-skins', PODLOVEWEBPLAYER_MEJS_DIR . 'mejs-skins.css');
 		}
 	}
 }
@@ -228,11 +123,11 @@ add_action('wp_print_styles', 'podlove_pwp_add_styles');
 function podlove_pwp_media_shortcode($tagName, $atts) {
 	// only enqueue when needed
 	if (get_option('pwp_script_on_demand')) {
-		wp_enqueue_script('mediaelementjs-scripts', PODLOVEWEBPLAYER_DIR . 'mediaelement-and-player.min.js', array('jquery'), '2.9.1', false);
+		wp_enqueue_script('mediaelementjs-scripts', PODLOVEWEBPLAYER_MEJS_DIR . 'mediaelement-and-player.min.js', array('jquery'), '2.9.1', false);
 	}
 
 	global $podlovePlayerIndex;
-	$dir = PODLOVEWEBPLAYER_DIR;
+
 	$attributes = array();
 	$sources = array();
 	$options = array();
@@ -284,7 +179,7 @@ function podlove_pwp_media_shortcode($tagName, $atts) {
 	if ($src) {
 
 		// does it have an extension?
-		if (substr($src, strlen($src)-4, 1) == '.') {
+		if (substr($src, strlen($src) - 4, 1) == '.') {
 			$attributes[] = 'src="' . htmlspecialchars($src) . '"';
 			$flash_src = htmlspecialchars($src);
 		}
@@ -375,19 +270,26 @@ function podlove_pwp_media_shortcode($tagName, $atts) {
 	$options_string = str_replace('"', '\'', $options_string);
 
 	//prepare player dimensions
-	if ($tagName == "audio") {
-		$widthunit = "px";
-		if (empty($width)) { $width = "auto"; $widthunit = ""; }
-		$heightunit = "px";
-		if (empty($height)) { $height = "30"; }
-		$dimensions = 'style="width: '.$width.$widthunit.'; height:'.$height.$heightunit.'"';
+	if ($tagName == 'audio') {
+		$widthunit = 'px';
+		if (empty($width)) {
+			$width = 'auto';
+			$widthunit = '';
+		}
+		$heightunit = 'px';
+		if (empty($height)) {
+			$height = '30';
+		}
+		$dimensions = 'style="width: ' . $width . $widthunit . '; height: ' . $height . $heightunit . '"';
 	} else {
-		$dimensions = 'width="'.$width.'" height="'.$height.'"';
+		$dimensions = 'width="' . $width . '" height="' . $height . '"';
 	}
 
 	//build actual html player code
 	$mediahtml = <<<_end_
+
 	<div class="mediaelementjs_player_container">
+
 	<{$tagName} id="wp_pwp_{$podlovePlayerIndex}" {$dimensions} controls {$attributes_string} class="{$skin_class}" data-mejsoptions="{$options_string}">
 		{$sources_string}
 	</{$tagName}>
@@ -414,15 +316,15 @@ function podlove_pwp_render_chapters($custom_field) {
 	if ($custom_field != '') {
 		if (substr($custom_field, 0, 7) == 'http://'
 			|| substr($custom_field, 0, 8) == 'https://') {
-			$chapters[0] = trim(file_get_contents($custom_field));
-		} elseif ($chapters = get_post_custom_values($custom_field, $post->ID)) {
+			$chapters = trim(file_get_contents($custom_field));
 		} else {
-			return false;
+			$chapters = get_post_custom_values($custom_field, $post->ID);
 		}
-		if ($chapters = podlove_pwp_chapters_from_string($chapters[0])) {
+
+		if ($chapters && $chapters = podlove_pwp_chapters_from_string($chapters[0])) {
 			$output = '<table rel="wp_pwp_' . $podlovePlayerIndex . '" class="pwp_chapters">';
 			$output .= '<caption>Podcast Chapters</caption>';
-			$output .= '<thead><tr><th>Timecode</th><th>Title</th></tr></thead>';
+			$output .= '<thead><tr><th scope="col">Timecode</th><th scope="col">Title</th></tr></thead>';
 			$output .= '<tbody>';
 			foreach ($chapters as $i => $chapter) {
 				$end = ($i == (count($chapters) - 1)) ? '9999999' : $chapters[$i + 1]['timecode'];
@@ -441,6 +343,7 @@ function podlove_pwp_render_chapters($custom_field) {
 function podlove_pwp_chapters_from_string($chapstring) {
 	$lines = explode("\n", $chapstring);
 	$chapters = array();
+
 	foreach ($lines as $i => $line) {
 		if (trim($line) != '') {
 			$line = trim(str_replace("\n", '', $line));
@@ -448,44 +351,51 @@ function podlove_pwp_chapters_from_string($chapstring) {
 
 			$time = trim(substr($line, 0, $div));
 			$hours = substr($time, 0, 2);
-			$mins = substr($time, 3, 2);
-			$secs = substr($time, 6, 2);
-			$msecs = count(substr($time, 9, 1)) ? substr($time, 9, 3) : 0;
+			$minutes = substr($time, 3, 2);
+			$seconds = substr($time, 6, 2);
+			$milliseconds = count(substr($time, 9, 1)) ? substr($time, 9, 3) : 0;
+			$timecode = ($seconds + $minutes * 60 + $hours * 3600) .
+					'.' . floor($milliseconds);
 
-			$chapters[$i]['title'] = trim(substr($line, $div + 1));
-			$chapters[$i]['human_timecode'] = substr($time, 0, 8);
-			$chapters[$i]['timecode'] = ($hours * 3600 + $mins * 60 + $secs * 1) . '.' . floor($msecs);
-			$chapters[$i]['hours'] = $hours;
-			$chapters[$i]['minutes'] = $mins;
-			$chapters[$i]['seconds'] = $secs;
-			$chapters[$i]['milliseconds'] = $msecs;
+			$chapters[$i] = array(
+				'title' => trim(substr($line, $div + 1)),
+				'human_timecode' => substr($time, 0, 8),
+				'timecode' => $timecode,
+				'hours' => $hours,
+				'minutes' => $minutes,
+				'seconds' => $seconds,
+				'milliseconds' => $milliseconds
+			);
 		}
 	}
+
+	// human readable timecodes - only leave hours if necessary
 	if ($chapters[$i]['hours'] == '00') {
 		foreach ($chapters as $i => $chapter) {
 			$chapters[$i]['human_timecode'] = substr($chapter['human_timecode'], 3);
 		}
 	}
-	if (count($chapters) > 0) {
-		return $chapters;
-	} else {
-		return false;
-	}
+
+	return count($chapters) > 0 ? $chapters : false;
 }
 
+/* Shortcodes */
 
-
-function podlove_pwp_audio_shortcode($atts) {
-	return is_feed() ? '' : podlove_pwp_media_shortcode('audio', $atts);
-}
-function podlove_pwp_video_shortcode($atts) {
-	return is_feed() ? '' : podlove_pwp_media_shortcode('video', $atts);
+function podlove_pwp_audio_shortcode($attributes) {
+	return is_feed() ? '' : podlove_pwp_media_shortcode('audio', $attributes);
 }
 
 add_shortcode('audio', 'podlove_pwp_audio_shortcode');
 add_shortcode('podloveaudio', 'podlove_pwp_audio_shortcode');
+
+function podlove_pwp_video_shortcode($attributes) {
+	return is_feed() ? '' : podlove_pwp_media_shortcode('video', $attributes);
+}
+
 add_shortcode('video', 'podlove_pwp_video_shortcode');
 add_shortcode('podlovevideo', 'podlove_pwp_video_shortcode');
+
+/* Initialisation */
 
 function podlove_pwp_init() {
 	wp_enqueue_script('jquery');
