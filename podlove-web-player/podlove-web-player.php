@@ -385,6 +385,7 @@ function podlove_pwp_audio_shortcode($attributes) {
 	return is_feed() ? '' : podlove_pwp_media_shortcode('audio', $attributes);
 }
 
+// [audio] is deprecated
 add_shortcode('audio', 'podlove_pwp_audio_shortcode');
 add_shortcode('podloveaudio', 'podlove_pwp_audio_shortcode');
 
@@ -392,8 +393,19 @@ function podlove_pwp_video_shortcode($attributes) {
 	return is_feed() ? '' : podlove_pwp_media_shortcode('video', $attributes);
 }
 
+// [video] is deprecated
 add_shortcode('video', 'podlove_pwp_video_shortcode');
 add_shortcode('podlovevideo', 'podlove_pwp_video_shortcode');
+
+/* Announce deprecation of [audio] and [video] shortcode */
+
+function podlove_pwp_deprecated_widget_function() {
+	echo '<p style="border-top:2px solid red;padding-top:6px;color:#c00">Using the shortcode <code>[audio]</code> and <code>[video]</code> for the Podlove Web Player is <strong>deprecated</strong> and will be dropped.<br /> Use <code>[podloveaudio]</code> and <code>[podlovevideo]</code> insted!</p>';
+}
+function podlove_pwp_add_dashboard_widgets() {
+	wp_add_dashboard_widget('podlove_pwp_deprecated_widget', 'Podlove Web Player', 'podlove_pwp_deprecated_widget_function');
+}
+add_action('wp_dashboard_setup', 'podlove_pwp_add_dashboard_widgets' ); // Hint: For Multisite Network Admin Dashboard use wp_network_dashboard_setup instead of wp_dashboard_setup.
 
 /* Initialisation */
 
