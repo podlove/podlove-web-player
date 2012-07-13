@@ -19,14 +19,6 @@
         <input name="pwp_script_on_demand" type="checkbox" id="pwp_script_on_demand" <?php echo (get_option('pwp_script_on_demand') == true ? "checked" : "")  ?>>
       </td>
     </tr>
-    <tr valign="top">
-      <th scope="row">
-        <label for="pwp_allow_embedding">Allow embedding</label>
-      </th>
-      <td>
-        <input name="pwp_allow_embedding" type="checkbox" id="pwp_allow_embedding" <?php echo (get_option('pwp_allow_embedding') == true ? "checked" : "")  ?>>
-      </td>
-    </tr>
   </table>
 
 
