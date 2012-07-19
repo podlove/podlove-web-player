@@ -316,7 +316,7 @@ function podlove_pwp_render_chapters($custom_field) {
 	if ($custom_field != '') {
 		if (substr($custom_field, 0, 7) == 'http://'
 			|| substr($custom_field, 0, 8) == 'https://') {
-			$chapters = trim(file_get_contents($custom_field));
+			$chapters[0] = trim(file_get_contents($custom_field));
 		} else {
 			$chapters = get_post_custom_values($custom_field, $post->ID);
 		}
