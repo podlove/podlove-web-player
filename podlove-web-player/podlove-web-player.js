@@ -9,7 +9,7 @@ var PODLOVE = PODLOVE || {};
 		players = [],
 		// Timecode as described in http://podlove.org/deep-link/
 		// and http://www.w3.org/TR/media-frags/#fragment-dimensions
-		timecodeRegExp = /(\d\d:)?(\d\d):(\d\d)(\.\d\d\d)?(,(\d\d:)?(\d\d):(\d\d)(\.\d\d\d)?)?/;
+		timecodeRegExp = /(\d\d:)?(\d\d):(\d\d)(\.\d\d\d)?([,-](\d\d:)?(\d\d):(\d\d)(\.\d\d\d)?)?/;
 
 	/**
 	 * return number as string lefthand filled with zeros
