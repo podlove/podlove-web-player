@@ -120,6 +120,8 @@ var PODLOVE = PODLOVE || {};
 
 	// update the chapter list when the data is loaded
 	function updateChapterMarks(player, marks) {
+		var doLinkMarks = marks.closest('table').hasClass('linked');
+
 		marks.each(function () {
 			var deepLink,
 				mark       = $(this),
@@ -139,6 +141,11 @@ var PODLOVE = PODLOVE || {};
 				deepLink = '#t=' + generateTimecode([startTime, endTime]);
 
 				mark.data('enabled', true);
+
+				if (doLinkMarks && mark.find('a').length === 0) {
+					mark.find('td.title')
+						.wrapInner('<a href="' + deepLink + '" />');
+				}
 			}
 		});
 	}
