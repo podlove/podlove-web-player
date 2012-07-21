@@ -8,11 +8,11 @@ Stable tag: 1.0.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-HTML5 based audio/video player, focused on podcasts and similar media blogs. It supports chapters, deeplinks, captions and even more features.
+HTML5 based audio/video player, focused on podcasts and similar media blogs. It supports chapters, deeplinks, captions and even more.
 
 == Description ==
 
-<strong>Please note: As of version 1.1, the usage of [audio] and [video] is deprecated. Please use [podloveaudio] or [podlovevideo] instead.</strong>
+**Please note: As of version 1.1, the usage of [audio] and [video] is deprecated. Please use [podloveaudio] or [podlovevideo] instead.**
 
 Use a simple shortcode in your posts and pages, and the Podlove Web Player will appear, playing any media file you want to assign. It tries to use native HTML5 browser playback, but will smoothly fall back to Flash if necessary.
 
@@ -49,9 +49,9 @@ The plugin architecture was originally forked from the <a href="http://wordpress
 
 == Installation ==
 
-1. Upload the 'podlove-web-player' folder to the '/wp-content/plugins/' directory
-2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Use the '[video]' or '[audio]' shortcode in your post or page with the options on the front page.
+1. Upload the `podlove-web-player` folder to the `/wp-content/plugins/` directory
+2. Activate the plugin through the `Plugins` menu in WordPress
+3. Use the `[podlovevideo]` or `[podloveaudio]` shortcode in your post or page with the options on the front page.
 4. Visit the options page
 
 == Frequently Asked Questions ==
@@ -203,7 +203,10 @@ Earlier versions of this plugin could handle alternative shortcodes, too: [audio
 == Changelog ==
 
 = 1.1 =
-* First proper release. [audio] and [video] are deprecated: Use [podloveaudio] and [podlovevideo] instead!
+* First proper release.
+* [audio] and [video] are deprecated: Use [podloveaudio] and [podlovevideo] instead!
+* Implements W3C Media Fragements with start and end time
 
 = 1.0 =
-* First version on wordpress.org. Full of bugs.
+* First version on wordpress.org. 
+* Full of bugs.
