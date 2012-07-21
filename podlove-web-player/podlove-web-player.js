@@ -121,7 +121,7 @@ var PODLOVE = PODLOVE || {};
 	// update the chapter list when the data is loaded
 	function updateChapterMarks(player, marks) {
 		marks.each(function () {
-			var title, deepLink,
+			var deepLink,
 				mark       = $(this),
 				startTime  = mark.data('start'),
 				endTime    = mark.data('end'),
@@ -139,9 +139,6 @@ var PODLOVE = PODLOVE || {};
 				deepLink = '#t=' + generateTimecode([startTime, endTime]);
 
 				mark.data('enabled', true);
-
-				title = mark.find('td.title');
-				title.html('<a href="' + deepLink + '">' + title.html() + '</a>');
 			}
 		});
 	}
@@ -213,7 +210,8 @@ var PODLOVE = PODLOVE || {};
 		var jqPlayer = $(player),
 			playerId = jqPlayer.attr('id'),
 			list = $('table[rel=' + playerId + ']'),
-			marks = list.find('tr');
+			marks = list.find('tr'),
+			canplay = false;
 
 		if (players.length === 1) {
 			// check if deeplink is set
@@ -232,11 +230,18 @@ var PODLOVE = PODLOVE || {};
 
 				// If there is only one player also set deepLink
 				if (players.length === 1) {
-					return setFragmentURL('t=' + generateTimecode([startTime, endTime]));
+					setFragmentURL('t=' + generateTimecode([startTime, endTime]));
+				} else {
+					if (canplay) {
+						// Basic Chapter Mark function (without deeplinking)
+						player.setCurrentTime(startTime);
+					} else {
+						jqPlayer.bind('canplay', function () {
+							player.setCurrentTime(startTime);
+						});
+					}
 				}
 
-				// Basic Chapter Mark function (without deeplinking)
-				player.setCurrentTime(startTime);
 				if (player.pluginType !== 'flash') {
 					player.play();
 				}
@@ -244,6 +249,7 @@ var PODLOVE = PODLOVE || {};
 
 		// wait for the player or you'll get DOM EXCEPTIONS
 		jqPlayer.bind('canplay', function () {
+			canplay = true;
 
 			// add Deeplink Behavior if there is only one player on the site
 			if (players.length === 1) {
@@ -254,6 +260,8 @@ var PODLOVE = PODLOVE || {};
 					// disabled 'cause it overrides chapter clicks
 					//seeked: addressCurrentTime
 				}, {player: player});
+
+				checkCurrentURL();
 
 				// handle browser history navigation
 				$(window).bind('hashchange onpopstate', checkCurrentURL);

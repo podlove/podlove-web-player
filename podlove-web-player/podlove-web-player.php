@@ -327,10 +327,15 @@ function podlove_pwp_render_chapters($custom_field) {
 			$output .= '<thead><tr><th scope="col">Timecode</th><th scope="col">Title</th></tr></thead>';
 			$output .= '<tbody>';
 			foreach ($chapters as $i => $chapter) {
-				$end = ($i == (count($chapters) - 1)) ? '9999999' : $chapters[$i + 1]['timecode'];
+				$is_final_chapter = $i == count($chapters) - 1;
+				$deeplink = get_permalink();
+				$deeplink .= '#t=' . $chapter['human_timecode'] .
+						(!$is_final_chapter ? ',' . $chapters[$i + 1]['human_timecode'] : '');
+
+				$end = $is_final_chapter ? '9999999' : $chapters[$i + 1]['timecode'];
 				$output .= '<tr data-start="' . $chapter['timecode'] . '" data-end="' . $end . '">';
 				$output .= '<td class="timecode"><code>' . $chapter['human_timecode'] . '</code></td>';
-				$output .= '<td class="title">' . $chapter['title'] . '</td>';
+				$output .= '<td class="title"><a href="' . $deeplink . '">' . $chapter['title'] . '</a></td>';
 				$output .= '</tr>';
 			}
 			$output .= '</tbody></table>';
