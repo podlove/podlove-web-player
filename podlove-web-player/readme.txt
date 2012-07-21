@@ -8,26 +8,29 @@ Stable tag: 1.0.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Video and audio plugin for WordPress built on the MediaElement.js HTML5 media player library. Check out mediaelementjs.com for more information.
+HTML5 based audio/video player, focused on podcasts and similar media blogs. It supports chapters, deeplinks, captions and even more features.
 
 == Description ==
 
-WARNING: THIS IS FULL OF BUGS YET!
+<strong>Please note: As of version 1.1, the usage of [audio] and [video] is deprecated. Please use [podloveaudio] or [podlovevideo] instead.</strong>
 
-Video and audio plugin for WordPress built on the MediaElement.js HTML5 media player library.
-Check out <a href="http://mediaelementjs.com/">mediaElementjs.com</a> for more information on that.
+Use a simple shortcode in your posts and pages, and the Podlove Web Player will appear, playing any media file you want to assign. It tries to use native HTML5 browser playback, but will smoothly fall back to Flash if necessary.
 
-This plugin is a fork of the original MediaElement.js plugin, especially enhanced for podcasting purposes.
-
-### Typical Usage for video
-
-	[video src="http://mysite.com/mymedia.mp4" width="640" height="360"]
+(This is part of the “Podlove” initiative for a better podcasting experience. See <a href="http://podlove.org">podlove.org</a> for more information.)
 	
 ### Typical Usage for audio
 
-	[audio src="http://mysite.com/mymedia.mp3"]	
+	[podloveaudio src="http://mysite.com/mymedia.mp3"]	
 
-### Typical Usage for chapters
+### With multiple source formats
+
+    [podloveaudio mp3="http://mysite.com/mymedia.mp3" ogg="http://mysite.com/mymedia.oga"] 
+
+### Typical Usage for video
+
+    [podlovevideo src="http://mysite.com/mymedia.mp4" width="640" height="360"]
+
+### Typical Usage width chapters
 
 Use a WordPress-native custom field with the name "my-chapter-field" and fill it with something like this:
 
@@ -36,153 +39,171 @@ Use a WordPress-native custom field with the name "my-chapter-field" and fill it
 00:10:03.104 Second chapter title  
 00:12:44.625 Final chapter
     
-    [audio src="http://mysite.com/mymedia.mp3" chapters="my-chapter-field"]
+    [podloveaudio src="http://mysite.com/mymedia.mp3" chapters="my-chapter-field"]
 
+### Credits
+
+The Podlove Web Player is built upon the MediaElement.js library. Check out <a href="http://mediaelementjs.com/">mediaElementjs.com</a> for more information on that.
+
+The plugin architecture was originally forked from the <a href="http://wordpress.org/extend/plugins/videojs-html5-video-player-for-wordpress/">Video.js plugin</a>, but heavily adopted since then.
 
 == Installation ==
 
-1. Upload the `podlove-web-player` folder to the `/wp-content/plugins/` directory
-2. Activate the plugin through the `Plugins` menu in WordPress
-3. Use the `[video]` or `[audio]` shortcode in your post or page with the options on the front page.
+1. Upload the 'podlove-web-player' folder to the '/wp-content/plugins/' directory
+2. Activate the plugin through the 'Plugins' menu in WordPress
+3. Use the '[video]' or '[audio]' shortcode in your post or page with the options on the front page.
+4. Visit the options page
 
 == Frequently Asked Questions ==
 
-Shortcode Options
+### How can I configure the player’s appearance?
 
-= src
-This location of any audio or video file
+Just use the shortcode options that are described on this FAQ page!
+
+= src =
+
+This location of any audio or video file, local ore remote:
     
-    [video src="http://mysite.com/mymedia.mp4"]
+    [podloveaudio src="http://mysite.com/mymedia.mp3"]
     
-You can also leave off the extention and MediaElement.js will look for all media files matching the filename (mymedia.mp4, mymedia.webm, etc.)  
+You can even leave off the extention and the player will look for all media files matching the filename (mymedia.mp4, mymedia.webm, etc.)  
 
-	[video src="http://mysite.com/mymedia"]
+	[podlovevideo src="http://mysite.com/mymedia"]
     
-= type
-The media type of the resource
+= type =
+
+The media type of the resource:
     
-    [video src="http://mysite.com/mymedia?xyz" type="video/mp4"]    
+    [podlovevideo src="http://mysite.com/mymedia?xyz" type="video/mp4"]    
 
-= mp4
-The location of the h.264/MP4 source for the video.
+= mp4 = 
+
+The location of an h.264/MP4 source for the video:
     
-    [video mp4="http://mysite.com/mymedia.mp4"]
+    [podlovevideo mp4="http://mysite.com/mymedia.mp4"]
     
-= mp3
-The location of an MP3 file for video
+= mp3 =
+
+The location of an MP3 file for video:
     
-    [audio mp3="http://mysite.com/mymedia.mp3"]    
+    [podloveaudio mp3="http://mysite.com/mymedia.mp3"]    
 
-= ogg
-The location of the Theora/Ogg source for the video.
+= ogg =
 
-    [video ogg="http://mysite.com/mymedia.ogg"]
+The location of a Ogg/Theora or a Ogg/Vorbis source:
 
-= webm
-The location of the VP8/WebM source for the video.
+    [podlovevideo ogg="http://mysite.com/mymedia.ogv"]
+    [podloveaudio ogg="http://mysite.com/mymedia.oga"]
 
-    [video webm="http://mysite.com/mymedia.webm"]
+= webm =
 
-= poster
-The location of the poster frame for the video.
+The location of a VP8/WebM source for the video:
 
-    [video poster="http://mysite.com/mymedia.png"]
+    [podlovevideo webm="http://mysite.com/mymedia.webm"]
 
-= width
-The width of the video
+= poster = 
 
-    [video width="640"]
+The location of the poster frame for the video:
 
-= height
-The height of the video
+    [podlovevideo poster="http://mysite.com/mymedia.png"]
 
-    [video height="264"]
+= width = 
+
+The width of the video (or the audio player):
+
+    [podlovevideo width="640"]
+
+= height =
+
+The height of the video:
+
+    [podlovevideo height="264"]
     
-= loop
-Loops the video or audio when it ends
-    
-    [video src="http://mysite.com/mymedia.mp4" loop="true"]    
+= loop =
 
-= preload
-Start loading the video as soon as possible, before the user clicks play.
+Loops the video or audio when it ends:
+    
+    [podlovevideo src="http://mysite.com/mymedia.mp4" loop="true"]    
 
-    [video preload="true"]
+= preload =
 
-= autoplay
-Start playing the video as soon as it's ready.
+Start loading the video as soon as possible, before the user clicks play. This might not work on all browsers.
 
-    [video autoplay="true"]
+    [podloveaudio preload="true"]
 
-= fullscreen
-Disables the fullscreen button
-    
-    [video src="http://mysite.com/mymedia.mp4" fullscreen="false"]
-    
-= duration
-Disables the duration output
-    
-    [video src="http://mysite.com/mymedia.mp4" duration="false"]   
-    
-= volume
-Disables the volume slider
-    
-    [video src="http://mysite.com/mymedia.mp4" volume="false"]    
-    
-= progress
-Disables the progress bar
-    
-    [video src="http://mysite.com/mymedia.mp4" progress="false"] 
-    
-= captions
-URL to a WebSRT captions file
-    
-    [video src="http://mysite.com/mymedia.mp4" captions="http://mysite.com/mymedia.srt"]  
+= autoplay = 
 
-= chapters
-Takes chapter string from the defined custom field and builds an interactive chapter table. Can be referenced to an external text file, too.
-Chapters must be written in the following format:
+Start playing the video as soon as it's ready. This might not work on all (mobile) devices.
+
+    [podlovevideo autoplay="true"]
+
+= fullscreen =
+
+Disables the fullscreen button for video:
+    
+    [podlovevideo fullscreen="false"]
+    
+= duration =
+
+Disables the duration output:
+    
+    [podlovevideo duration="false"]   
+    
+= volume = 
+
+Disables the volume slider:
+    
+    [podloveaudio volume="false"]    
+    
+= progress =
+
+Disables the progress bar:
+    
+    [podlovevideo progress="false"] 
+    
+= captions = 
+
+URL to a WebSRT captions file:
+    
+    [podlovevideo captions="http://mysite.com/mymedia.srt"]  
+
+= chapters = 
+
+Takes chapter string from the defined custom field (the standard WordPress ones) and builds an interactive chapter table. Can be referenced to an external text file, too. Chapters must be written in the following format:
 
 00:00:00.000 Introduction  
 00:00:57.099 First chapter title  
 00:10:03.104 Second chapter title  
 00:12:44.625 Final chapter  
     
-    [audio src="http://mysite.com/mymedia.mp3" chapters="my_chapter_field"]                
-    [audio src="http://mysite.com/mymedia.mp3" chapters="http://mychapters.com/chapters.txt"]                
+    [podloveaudio chapters="my_chapter_field"]                
+    [podloveaudio chapters="http://mychapters.com/chapters.txt"]                
 
-= Simple Video
-Basic playback options
 
-    [video src="http://mysite.com/mymedia.mp4" width="640" height="360"]
+= All attributes video example =
 
-= All Attributes Video
-All options enabled
+All options enabled:
 
-    [video mp4="http://mysite.com/mymedia.mp4" ogg="http://mysite.com/mymedia.ogg" webm="http://mysite.com/mymedia.webm" poster="http://mysite.com/mymedia.png" preload="true" autoplay="true" width="640" height="264"]
+    [podlovevideo mp4="http://mysite.com/mymedia.mp4" ogg="http://mysite.com/mymedia.ogg" webm="http://mysite.com/mymedia.webm" poster="http://mysite.com/mymedia.png" preload="true" autoplay="true" width="640" height="264"]
 
-= Simple Audio
-Basic playback options
+= All attributes audio exmaple =
 
-    [audio src="http://mysite.com/mymedia.mp3"]
+All options enabled:
 
-= All Attributes Audio
-All options enabled
+    [podloveaudio mp3="http://mysite.com/mymedia.mp3" ogg="http://mysite.com/mymedia.ogg" preload="true" autoplay="true"]
 
-    [audio mp3="http://mysite.com/mymedia.mp3" ogg="http://mysite.com/mymedia.ogg" preload="true" autoplay="true"]
+### Deprecated usage
 
-### Alternatives
-If you have a plugin that conflicts with Podlove Web Player, you can also use the short codes 
-    
-    [podlovevideo src="http://mysite.com/mymedia.mp4" width="640" height="360"]
-    [podloveaudio src="http://mysite.com/mymedia.mp3"] 
+Earlier versions of this plugin could handle alternative shortcodes, too: [audio] and [video]. As of version 1.1, these are deprecated as they conflict with other plugins.
 
 == Screenshots ==
 
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
-the directory of the stable readme.txt, so in this case, `/tags/4.3/screenshot-1.png` (or jpg, jpeg, gif)
-2. This is the second screen shot
+1. Podlove Web Player in full swing, using the chapters table to jump to different section of the audio source.
 
 == Changelog ==
+
+= 1.1 =
+* First proper release. [audio] and [video] are deprecated: Use [podloveaudio] and [podlovevideo] instead!
 
 = 1.0 =
 * First version on wordpress.org. Full of bugs.
