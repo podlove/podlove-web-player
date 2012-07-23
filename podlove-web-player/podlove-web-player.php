@@ -21,6 +21,7 @@ which was adapted from: http://videojs.com/ plugin
 
 $podlovePlayerIndex = 1;
 
+define('PODLOVEWEBPLAYER_FILE', __FILE__);
 define('PODLOVEWEBPLAYER_DIR', plugin_dir_url(__FILE__));
 define('PODLOVEWEBPLAYER_PATH', plugin_dir_path(__FILE__));
 define('PODLOVEWEBPLAYER_MEJS_DIR', PODLOVEWEBPLAYER_DIR . 'mediaelement/');
@@ -30,6 +31,7 @@ define('PODLOVEWEBPLAYER_MEJS_DIR', PODLOVEWEBPLAYER_DIR . 'mediaelement/');
 function podlove_pwp_install() {
 	add_option('pwp_video_skin', '');
 	add_option('pwp_script_on_demand', false);
+	add_option('pwp_allow_embedding', true);
 
 	add_option('pwp_default_video_height', 270);
 	add_option('pwp_default_video_width', 480);
@@ -47,6 +49,7 @@ register_activation_hook(__FILE__, 'podlove_pwp_install');
 function podlove_pwp_remove() {
 	delete_option('pwp_video_skin');
 	delete_option('pwp_script_on_demand');
+	delete_option('pwp_allow_embedding');
 
 	delete_option('pwp_default_video_height');
 	delete_option('pwp_default_video_width');
@@ -78,6 +81,7 @@ function podlove_pwp_register_settings() {
 	//register our settings
 	register_setting('pwp_settings', 'pwp_video_skin');
 	register_setting('pwp_settings', 'pwp_script_on_demand');
+	register_setting('pwp_settings', 'pwp_allow_embedding');
 
 	register_setting('pwp_settings', 'pwp_default_video_height');
 	register_setting('pwp_settings', 'pwp_default_video_width');
@@ -110,7 +114,7 @@ function podlove_pwp_add_styles() {
 	if (!is_admin()) {
 		// the style
 		wp_enqueue_style('mediaelementjs-styles', PODLOVEWEBPLAYER_MEJS_DIR . 'mediaelementplayer.css');
-		wp_enqueue_style('podlovewebplayer-styles', PODLOVEWEBPLAYER_DIR . 'podlove-web-player.css');
+		wp_enqueue_style('podlovewebplayer-styles', PODLOVEWEBPLAYER_DIR . 'style/main.css');
 
 		if (get_option('pwp_video_skin') != '') {
 			wp_enqueue_style('mediaelementjs-skins', PODLOVEWEBPLAYER_MEJS_DIR . 'mejs-skins.css');
@@ -121,6 +125,13 @@ add_action('wp_print_styles', 'podlove_pwp_add_styles');
 
 
 function podlove_pwp_media_shortcode($tagName, $atts) {
+	$isEmbeddable = get_option('pwp_allow_embedding') == true;
+	$showEmbedPlayer = $isEmbeddable && is_single() && isset($_GET['podloveembed']);
+
+	if (!$showEmbedPlayer) {
+		ob_end_flush();
+	}
+
 	// only enqueue when needed
 	if (get_option('pwp_script_on_demand')) {
 		wp_enqueue_script('mediaelementjs-scripts', PODLOVEWEBPLAYER_MEJS_DIR . 'mediaelement-and-player.min.js', array('jquery'), '2.9.1', false);
@@ -297,6 +308,7 @@ function podlove_pwp_media_shortcode($tagName, $atts) {
 	<{$tagName} id="wp_pwp_{$podlovePlayerIndex}" {$dimensions} controls {$attributes_string} class="{$skin_class}" data-mejsoptions="{$options_string}">
 		{$sources_string}
 	</{$tagName}>
+
 _end_;
 
 	// Chapters Table and Behaviour
@@ -305,7 +317,19 @@ _end_;
 			$mediahtml .= "\n\n" . $chaptertable;
 		}
 	}
-	$mediahtml .= "\n\n</div>\n\n<script>jQuery(function() { PODLOVE.web_player('wp_pwp_{$podlovePlayerIndex}'); });</script>\n";
+	$mediahtml .= <<<_end_
+
+	</div>
+	<script>jQuery(function() { PODLOVE.web_player('wp_pwp_{$podlovePlayerIndex}'); });</script>
+
+_end_;
+
+	// if embeded load seperate template
+	if ($showEmbedPlayer) {
+		ob_end_clean();
+		include(PODLOVEWEBPLAYER_PATH . 'embed/template.php');
+		die();
+	}
 
 	$podlovePlayerIndex++;
 	return $mediahtml;
@@ -425,6 +449,17 @@ function podlove_pwp_add_dashboard_widgets() {
 	wp_add_dashboard_widget('podlove_pwp_deprecated_widget', 'Podlove Web Player', 'podlove_pwp_deprecated_widget_function');
 }
 add_action('wp_dashboard_setup', 'podlove_pwp_add_dashboard_widgets' ); // Hint: For Multisite Network Admin Dashboard use wp_network_dashboard_setup instead of wp_dashboard_setup.
+
+/* Show embed player instead of blog template */
+
+function podlove_pwp_embed_template() {
+	if (get_option('pwp_allow_embedding') == true &&
+			is_single() && isset($_GET['podloveembed'])) {
+		ob_start();
+	}
+}
+
+add_action('template_redirect', 'podlove_pwp_embed_template');
 
 /* Initialisation */
 
