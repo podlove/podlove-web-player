@@ -260,13 +260,10 @@ var PODLOVE = PODLOVE || {};
 
 			// add Deeplink Behavior if there is only one player on the site
 			if (players.length === 1) {
-				jqPlayer.bind({
-					play: checkTime,
-					timeupdate: checkTime,
-					pause: addressCurrentTime
-					// disabled 'cause it overrides chapter clicks
-					//seeked: addressCurrentTime
-				}, {player: player});
+				jqPlayer.bind('play timeupdate', {player: player}, checkTime)
+					.bind('pause', {player: player}, addressCurrentTime);
+				// disabled 'cause it overrides chapter clicks
+				// bind seeked to addressCurrentTime
 
 				checkCurrentURL();
 
