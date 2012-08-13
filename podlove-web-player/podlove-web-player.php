@@ -149,7 +149,12 @@ function podlove_pwp_media_shortcode($tagName, $atts) {
 		'skin' => get_option('pwp_video_skin'),
 		'autoplay' => '',
 		'loop' => '',
-		'chapterlinks' => 'all',
+
+		// podlove meta info
+		'title' => '',
+		'subtitle' => '',
+		'summary' => '',
+		'permalink' => '',
 
 		// old ones
 		'duration' => 'true',
@@ -162,7 +167,8 @@ function podlove_pwp_media_shortcode($tagName, $atts) {
 		'captionslang' => 'en',
 
 		// chapters
-		'chapters' => ''
+		'chapters' => '',
+		'chapterlinks' => 'all'
 
 	), $atts));
 
@@ -218,9 +224,10 @@ function podlove_pwp_media_shortcode($tagName, $atts) {
 	if ($height && $tagName == 'video') {
 		$attributes[] = 'height="' . $height . '"';
 	}
-	if ($poster) {
+	if ($poster && $tagName == 'video') {
 		$attributes[] = 'poster="' . htmlspecialchars($poster) . '"';
 	}
+
 	if ($preload) {
 		$attributes[] = 'preload="' . $preload . '"';
 	}
@@ -234,7 +241,9 @@ function podlove_pwp_media_shortcode($tagName, $atts) {
 	}
 
 	// CONTROLS array
-	$controls_option[] = '"playpause"';
+	if ($tagName == 'video' || (!$poster && !$title && !$subtitle && !$summary)) {
+		$controls_option[] = '"playpause"';
+	}
 	if ($progress == 'true') {
 		$controls_option[] = '"current"';
 		$controls_option[] = '"progress"';
@@ -289,10 +298,33 @@ function podlove_pwp_media_shortcode($tagName, $atts) {
 		$dimensions = 'width="' . $width . '" height="' . $height . '"';
 	}
 
-	//build actual html player code
-	$mediahtml = <<<_end_
+	//prepare podlove meta info
+	$podloveMeta = "";
+	if ($tagName == 'audio' && ($poster || $title || $subtitle || $summary)) {
+		$podloveMeta .= '<div class="podlovemeta">';
 
-	<div class="mediaelementjs_player_container">
+		$podloveMeta .= '<a class="bigplay" href="">Play Episode</a>';
+		if ($poster) {
+			$podloveMeta .= '<div class="coverart"><img src="'.htmlspecialchars($poster).'" alt=""/></div>';
+		}
+		if ($title) {
+			$podloveMeta .= '<h3>'.$title.'</h3>';
+		}
+		if ($subtitle) {
+			$podloveMeta .= '<div class="subtitle"><strong>'.$subtitle.'</strong></div>';
+		}
+		if ($summary) {
+			$podloveMeta .= '<div class="summary">'.$summary.'</div>';
+		}
+		$podloveMeta .= '</div>';
+	}
+
+	//build actual html player code
+	
+		$mediahtml = <<<_end_
+
+		<div class="mediaelementjs_player_container">
+		{$podloveMeta}
 
 	<{$tagName} id="wp_pwp_{$podlovePlayerIndex}" {$dimensions} controls {$attributes_string} class="{$skin_class}" data-mejsoptions="{$options_string}">
 		{$sources_string}
