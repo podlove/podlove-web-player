@@ -218,7 +218,21 @@ var PODLOVE = PODLOVE || {};
 			playerId = jqPlayer.attr('id'),
 			list = $('table[rel=' + playerId + ']'),
 			marks = list.find('tr'),
+			metainfo = jqPlayer.closest('.mediaelementjs_player_container').find('.podlovemeta'),
 			canplay = false;
+
+		if (metainfo.length === 1) {
+			metainfo.find('.bigplay').on('click', function(){
+				if (player.paused) {
+					player.play();
+					$(this).addClass('playing');
+				} else {
+					player.pause();
+					$(this).removeClass('playing');
+				}
+				return false;
+			});
+		}
 
 		if (players.length === 1) {
 			// check if deeplink is set
