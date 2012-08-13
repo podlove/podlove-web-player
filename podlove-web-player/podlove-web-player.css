@@ -1,3 +1,7 @@
+.mediaelementjs_player_container * {
+	font: normal 11px/1.25 helvetica, arial, sans-serif;
+}
+
 .mejs-container {
 	min-height: 30px;
 }
@@ -46,4 +50,75 @@
 
 .mediaelementjs_player_container .pwp_chapters tr td {
 	padding: 6px;
+}
+
+.podlovemeta {
+	background: #000;
+	height: 100px;
+	margin-bottom: 1px;
+	-webkit-border-top-right-radius: 10px;
+	-moz-border-radius-topright: 10px;
+	border-top-right-radius: 10px;
+}
+
+.podlovemeta .bigplay {
+	float: left;
+	width: 100px;
+	height: 100px;
+	text-indent: -100em;
+	background: url(img/bigplay.png) 0 0 no-repeat;
+}
+
+.podlovemeta .bigplay:focus,
+.podlovemeta .bigplay:hover,
+.podlovemeta .bigplay:active {
+	background-position: 0 -100px;
+}
+
+.podlovemeta .bigplay.playing {
+	background-position: -100px 0;
+}
+
+.podlovemeta .bigplay.playing:focus,
+.podlovemeta .bigplay.playing:hover,
+.podlovemeta .bigplay.playing:active {
+	background-position: -100px -100px;
+}
+
+.podlovemeta .coverart {
+	display: inline;
+}
+
+.podlovemeta .coverart img {
+	float: left;
+	margin-right: 10px;
+	height: 100px;
+}
+
+.podlovemeta h3 {
+	clear: none;
+	color: #eee!important;
+	padding: 5px 0 0 0;
+	font-size: 15px;
+	font-weight: bold;
+	margin: 0!important;
+}
+
+.podlovemeta .subtitle {
+	margin-right: 7px;
+}
+
+.podlovemeta .subtitle strong{
+	color: #ccc;
+	font-size: 13px!important;
+}
+
+.podlovemeta .summary {
+	margin-right: 7px;
+	color: #ccc;
+	margin-top: 8px;
+}
+
+.pwp_chapters * {
+	font-size: 13px;
 }
