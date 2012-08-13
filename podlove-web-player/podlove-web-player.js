@@ -284,6 +284,18 @@ var PODLOVE = PODLOVE || {};
 				updateChapterMarks(player, marks);
 			});
 
+			// update big playbutton status
+			jqPlayer.bind('play, playing', function(){
+				if (metainfo.length === 1) {
+					metainfo.find('.bigplay').addClass('playing');
+				}
+			});
+			jqPlayer.bind('pause', function(){
+				if (metainfo.length === 1) {
+					metainfo.find('.bigplay').removeClass('playing');
+				}
+			});
+
 		});
 	};
 }(jQuery));
