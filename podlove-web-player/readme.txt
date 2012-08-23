@@ -4,7 +4,7 @@ Donate link: http://podlove.org/
 Tags: podcasting, podlove, html5audio, audio, video, podcast, player
 Requires at least: 3.4.0
 Tested up to: 3.4.1
-Stable tag: 1.1.1
+Stable tag: 1.1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -201,6 +201,12 @@ Earlier versions of this plugin could handle alternative shortcodes, too: [audio
 1. Podlove Web Player in full swing, using the chapters table to jump to different section of the audio source.
 
 == Changelog ==
+
+= 1.1.2 =
+* prevents activation conflicts with other instances of the plugin
+
+= 1.1.1 =
+* small bugfixes and improvements
 
 = 1.1 =
 * First proper release.

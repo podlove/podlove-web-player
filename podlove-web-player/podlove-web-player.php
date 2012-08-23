@@ -1,7 +1,7 @@
 <?php
 /**
  * @package PodloveWebPlayer
- * @version 1.1.1
+ * @version 1.1.2
  */
 
 /*
@@ -9,7 +9,7 @@ Plugin Name: Podlove Web Player
 Plugin URI: http://podlove.org/podlove-web-player/
 Description: Video and audio plugin for WordPress built on the MediaElement.js HTML5 media player library.
 Author: Gerrit van Aaken and others
-Version: 1.1.1
+Version: 1.1.2
 Author URI: http://praegnanz.de
 License: GPLv3, MIT
 */
@@ -19,6 +19,11 @@ Forked from: http://mediaelementjs.com/ plugin
 which was adapted from: http://videojs.com/ plugin
 */
 
+
+/* Prevent conflicts with already running versions of PWP */
+
+if (!function_exists(podlove_pwp_install)) {
+
 $podlovePlayerIndex = 1;
 
 define('PODLOVEWEBPLAYER_DIR', plugin_dir_url(__FILE__));
@@ -26,6 +31,7 @@ define('PODLOVEWEBPLAYER_PATH', plugin_dir_path(__FILE__));
 define('PODLOVEWEBPLAYER_MEJS_DIR', PODLOVEWEBPLAYER_DIR . 'mediaelement/');
 
 /* Runs when plugin is activated */
+
 
 function podlove_pwp_install() {
 	add_option('pwp_video_skin', '');
@@ -98,7 +104,7 @@ if (!get_option('pwp_script_on_demand')) {
 			// the scripts
 			wp_enqueue_script('mediaelementjs-scripts', PODLOVEWEBPLAYER_MEJS_DIR . 'mediaelement-and-player.min.js', array('jquery'), '2.9.1', false);
 			wp_enqueue_script('ba-hashchange', PODLOVEWEBPLAYER_DIR . 'libs/jquery.ba-hashchange.min.js', array('jquery'), '1.3.0', false);
-			wp_enqueue_script('podlove-web-player', PODLOVEWEBPLAYER_DIR . 'podlove-web-player.js', array('jquery', 'mediaelementjs-scripts'), '1.1.1', false);
+			wp_enqueue_script('podlove-web-player', PODLOVEWEBPLAYER_DIR . 'podlove-web-player.js', array('jquery', 'mediaelementjs-scripts'), '1.1.2', false);
 		}
 	}
 	add_action('wp_print_scripts', 'podlove_pwp_add_scripts');
@@ -465,5 +471,7 @@ function podlove_pwp_init() {
 }
 
 add_action('init', 'podlove_pwp_init');
+
+} // End of code
 
 ?>
