@@ -22,7 +22,7 @@ which was adapted from: http://videojs.com/ plugin
 
 /* Prevent conflicts with already running versions of PWP */
 
-if (!function_exists(podlove_pwp_install)) {
+if (!function_exists('podlove_pwp_install')) {
 
 $podlovePlayerIndex = 1;
 
