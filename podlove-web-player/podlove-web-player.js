@@ -267,7 +267,8 @@ var PODLOVE = PODLOVE || {};
 				} else {
 					// If there is only one player also set deepLink
 					if (players.length === 1) {
-						setFragmentURL('t=' + generateTimecode([startTime, endTime]));
+						// setFragmentURL('t=' + generateTimecode([startTime, endTime]));
+						setFragmentURL('t=' + generateTimecode([startTime]));
 					} else {
 						if (canplay) {
 							// Basic Chapter Mark function (without deeplinking)
@@ -309,6 +310,7 @@ var PODLOVE = PODLOVE || {};
 				// handle browser history navigation
 				$(window).bind('hashchange onpopstate', checkCurrentURL);
 
+				/* Why do we need this? It leads to error ticket #40 on github
 				// handle links on the page
 				// links added later are not handled!
 				$('a').bind('click', function () {
@@ -316,6 +318,7 @@ var PODLOVE = PODLOVE || {};
 					// check if theres a new deeplink
 					window.setTimeout(checkCurrentURL, 100);
 				});
+				*/
 			}
 
 			// always update Chaptermarks though

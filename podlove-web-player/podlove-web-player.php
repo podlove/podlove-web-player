@@ -375,7 +375,7 @@ function podlove_pwp_render_chapters($link_chapters, $custom_field) {
 			if ($link_chapters == 'all') {
 				$output .= '<th scope="col">Play</th>';
 			}
-			$output .= '<th scope="col">Timecode</th><th scope="col">Title</th></tr></thead>';
+			$output .= '<th scope="col">Title</th><th scope="col">Duration</th></tr></thead>';
 			$output .= '<tbody>';
 			foreach ($chapters as $i => $chapter) {
 
@@ -385,12 +385,15 @@ function podlove_pwp_render_chapters($link_chapters, $custom_field) {
 					$duration = "0";
 					$end = '99999999';
 				} else {
-					$duration = (int) $chapters[$i + 1]['timecode'] - $chapter['timecode'];
+					$duration = (int) $chapters[$i + 1]['timecode'] -  (int) $chapter['timecode'];
 					$end = $chapters[$i + 1]['timecode'];
 				}
 				$deeplink = get_permalink();
-				$deeplink .= '#t=' . $chapter['human_timecode'] .
+				
+				// deeplink, start and end
+				$deeplink_singlechapter .= '#t=' . $chapter['human_timecode'] .
 					(!$is_final_chapter ? ',' . $chapters[$i + 1]['human_timecode'] : '');
+				
 
 				// render html
 				$output .= '<tr data-start="' . $chapter['timecode'] . '" data-end="' . $end . '">';
@@ -416,7 +419,7 @@ function podlove_pwp_sec2timecode($secs) {
 	} elseif ($secs < 3600) {
 		$mins = floor($secs/60);
 		$rest = $secs - (60 * $mins);
-		return "00:" . podlove_pwp_twodigits($mins) . ":" . podlove_pwp_twodigits($rest);
+		return podlove_pwp_twodigits($mins) . ":" . podlove_pwp_twodigits($rest);
 	} else {
 		$hours = floor($secs/3600);
 		$rest = $secs - (3600 * $hours);
@@ -428,7 +431,7 @@ function podlove_pwp_sec2timecode($secs) {
 
 function podlove_pwp_twodigits($number) {
 	if ($number < 10) {
-		return "0"+$number;
+		return "0".$number;
 	} else {
 		return $number;
 	}
