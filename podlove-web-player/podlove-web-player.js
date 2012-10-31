@@ -140,13 +140,12 @@ var PODLOVE = PODLOVE || {};
 			if (!isEnabled && isBuffered) {
 				deepLink = '#t=' + generateTimecode([startTime, endTime]);
 
-				mark.data('enabled', true).addClass('loaded');
-				/*
+				mark.data('enabled', true);
+
 				if (doLinkMarks && mark.find('a').length === 0) {
 					mark.find('td.title')
 						.wrapInner('<a href="' + deepLink + '" />');
 				}
-				*/
 			}
 		});
 	}
@@ -195,8 +194,6 @@ var PODLOVE = PODLOVE || {};
 			stopAtTime = deepLink[1];
 		}
 
-
-
 		window.MediaElementPlayer('#' + playerId, {
 			success: function (player) {
 				PODLOVE.web_player.addBehavior(player);
@@ -225,13 +222,6 @@ var PODLOVE = PODLOVE || {};
 			canplay = false;
 
 		if (metainfo.length === 1) {
-			metainfo.find('a.infowindow').on('click', function(){
-				$(this).hide().next().toggleClass('active');
-				return false;
-			}).next().find('a.closewindow').on('click', function(){
-				$(this).closest('.summary').toggleClass('active').prev().show();
-				return false;
-			});
 			metainfo.find('.bigplay').on('click', function(){
 				if (player.paused) {
 					player.play();
@@ -249,53 +239,38 @@ var PODLOVE = PODLOVE || {};
 			checkCurrentURL();
 		}
 
-		
-
 		// chapters list
 		list
 			.show()
-			.delegate('button', 'click', function (e) {
+			.delegate('a', 'click', function (e) {
 				e.preventDefault();
 
 				var mark = $(this).closest('tr'),
 					startTime = mark.data('start'),
 					endTime = mark.data('end');
 
-				if (mark.hasClass('active') && player.paused === false) {
-					mark.addClass('paused');
-					player.pause();
+				// If there is only one player also set deepLink
+				if (players.length === 1) {
+					setFragmentURL('t=' + generateTimecode([startTime, endTime]));
 				} else {
-					// If there is only one player also set deepLink
-					if (players.length === 1) {
-						setFragmentURL('t=' + generateTimecode([startTime, endTime]));
+					if (canplay) {
+						// Basic Chapter Mark function (without deeplinking)
+						player.setCurrentTime(startTime);
 					} else {
-						if (canplay) {
-							// Basic Chapter Mark function (without deeplinking)
+						jqPlayer.bind('canplay', function () {
 							player.setCurrentTime(startTime);
-						} else {
-							jqPlayer.bind('canplay', function () {
-								player.setCurrentTime(startTime);
-							});
-						}
+						});
 					}
+				}
 
-					if (player.pluginType !== 'flash') {
-						player.play();
-					}
+				if (player.pluginType !== 'flash') {
+					player.play();
 				}
 			});
 
 		// wait for the player or you'll get DOM EXCEPTIONS
 		jqPlayer.bind('canplay', function () {
 			canplay = true;
-
-			// add duration of final chapter
-			marks.find('.timecode code').eq(-1).each(function(){
-				var start = Math.floor($(this).closest('tr').data('start'));
-				var end = Math.floor(player.duration);
-				var duration = end - start;
-				$(this).text(generateTimecode(new Array(duration,duration)));
-			});
 
 			// add Deeplink Behavior if there is only one player on the site
 			if (players.length === 1) {
@@ -323,9 +298,8 @@ var PODLOVE = PODLOVE || {};
 				updateChapterMarks(player, marks);
 			});
 
-			// update play/pause status
+			// update big playbutton status
 			jqPlayer.bind('play, playing', function(){
-				list.find('.paused').removeClass('paused');
 				if (metainfo.length === 1) {
 					metainfo.find('.bigplay').addClass('playing');
 				}
