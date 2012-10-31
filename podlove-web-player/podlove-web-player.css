@@ -45,7 +45,7 @@
 
 
 .mediaelementjs_player_container .pwp_chapters tr.active {
-	background: whiteSmoke;
+	background: #a9cbdf;
 }
 
 .mediaelementjs_player_container .pwp_chapters tr td {
@@ -53,6 +53,7 @@
 }
 
 .podlovemeta {
+	position: relative;
 	background: #000;
 	height: 100px;
 	margin-bottom: 1px;
@@ -61,10 +62,24 @@
 	border-top-right-radius: 10px;
 }
 
+.podlovemeta + .mejs-container .mejs-playpause-button {
+	width: 10px;
+}
+
+.podlovemeta + .mejs-container .mejs-playpause-button * {
+	display: none;
+}
+
+.mejs-duration-container {
+	margin-right: 20px;
+}
+
 .podlovemeta .bigplay {
 	float: left;
 	width: 100px;
 	height: 100px;
+	position: relative;
+	z-index: 78;
 	text-indent: -100em;
 	background: url(img/bigplay.png) 0 0 no-repeat;
 }
@@ -114,11 +129,110 @@
 }
 
 .podlovemeta .summary {
-	margin-right: 7px;
-	color: #ccc;
-	margin-top: 8px;
+	position: absolute;
+	top: 8px;
+	left: 8px;
+	right: 8px;
+	background: rgba(255,255,255,0.9);
+	padding: 6px;
+	color: #000;
+	opacity: 0;
+	-webkit-transition: opacity 0.5s;
+	-moz-transition: opacity 0.5s;
+	-o-transition: opacity 0.5s;
+	transition: opacity 0.5s;
 }
+
+.podlovemeta .summary.active {
+	opacity: 1;
+}
+
+.podlovemeta .summary a.closewindow,
+.podlovemeta a.infowindow {
+	cursor: pointer;
+	z-index: 111;
+	padding: 0;
+	margin: 0;
+	position: absolute;
+	right: 7px;
+	top: 7px;
+	text-transform: none!important;
+	display: block;
+	width: 16px;
+	height: 16px;
+	font-weight: bold;
+	background: #fff;
+	color: #000;
+	font-size: 16px;
+	text-align: center;
+	font-family: serif;
+	line-height: 16px;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	-o-border-radius: 8px;
+	border-radius: 8px;
+	text-decoration: none;
+}
+
+.podlovemeta .summary a.closewindow:focus,
+.podlovemeta .summary a.closewindow:hover,
+.podlovemeta .summary a.closewindow:active,
+.podlovemeta a.infowindow:focus,
+.podlovemeta a.infowindow:hover,
+.podlovemeta a.infowindow.active {
+	background: #3a859a;
+	color: #fff;
+	text-decoration: none;
+}
+
 
 .pwp_chapters * {
 	font-size: 13px;
+}
+
+.pwp_chapters .chapterplay {
+	width: 25px;
+	padding-right: 0;
+}
+
+.pwp_chapters .chapterplay button {
+	display: block;
+	border: none;
+	width: 25px;
+	height: 25px;
+	background: #ddd;
+	-webkit-border-radius: 13px;
+	-moz-border-radius: 13px;
+	-o-border-radius: 13px;
+	border-radius: 13px;
+	cursor: pointer;
+}
+
+.pwp_chapters .loaded .chapterplay button {
+	background: #000;
+}
+
+
+.pwp_chapters .chapterplay button:focus,
+.pwp_chapters .chapterplay button:hover,
+.pwp_chapters .chapterplay button:active,
+ .pwp_chapters .active .chapterplay button {
+	background: #3a859a;
+}
+
+.pwp_chapters .chapterplay button span {
+	display: block;
+	width: 16px;
+	height: 16px;
+	overflow: hidden;
+	text-indent: -1000px;
+	background: transparent url(mediaelement/controls.png) no-repeat 0 0;
+}
+
+.pwp_chapters .active .chapterplay button span {
+	background-position: -1px -16px;
+}
+
+.pwp_chapters .paused .chapterplay button span {
+	background-position: 0 0;
 }
