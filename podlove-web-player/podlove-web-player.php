@@ -22,7 +22,7 @@ which was adapted from: http://videojs.com/ plugin
 
 /* Prevent conflicts with already running versions of PWP */
 
-if (!function_exists('podlove_pwp_install')) {
+if (!function_exists(podlove_pwp_install)) {
 
 $podlovePlayerIndex = 1;
 
@@ -320,7 +320,7 @@ function podlove_pwp_media_shortcode($tagName, $atts) {
 			$podloveMeta .= '<div class="subtitle"><strong>'.$subtitle.'</strong></div>';
 		}
 		if ($summary) {
-			$podloveMeta .= '<div class="summary">'.$summary.'</div>';
+			$podloveMeta .= '<a href="#" class="infowindow" title="more information">i</a><div class="summary"><a href="#" class="closewindow" title="close">&times</a>'.$summary.'</div>';
 		}
 		$podloveMeta .= '</div>';
 	}
@@ -371,23 +371,34 @@ function podlove_pwp_render_chapters($link_chapters, $custom_field) {
 
 			$output = '<table rel="wp_pwp_' . $podlovePlayerIndex . '" class="' . $class_names . '">';
 			$output .= '<caption>Podcast Chapters</caption>';
-			$output .= '<thead><tr><th scope="col">Timecode</th><th scope="col">Title</th></tr></thead>';
+			$output .= '<thead><tr>';
+			if ($link_chapters == 'all') {
+				$output .= '<th scope="col">Play</th>';
+			}
+			$output .= '<th scope="col">Timecode</th><th scope="col">Title</th></tr></thead>';
 			$output .= '<tbody>';
 			foreach ($chapters as $i => $chapter) {
+
+				// prepare data
 				$is_final_chapter = $i == count($chapters) - 1;
-
-				$end = $is_final_chapter ? '9999999' : $chapters[$i + 1]['timecode'];
-				$output .= '<tr data-start="' . $chapter['timecode'] . '" data-end="' . $end . '">';
-
-				$output .= '<td class="timecode"><code>' . $chapter['human_timecode'] . '</code></td>';
-				if ($link_chapters == 'all') {
-					$deeplink = get_permalink();
-					$deeplink .= '#t=' . $chapter['human_timecode'] .
-							(!$is_final_chapter ? ',' . $chapters[$i + 1]['human_timecode'] : '');
-					$output .= '<td class="title"><a href="' . $deeplink . '">' . $chapter['title'] . '</a></td>';
+				if ($is_final_chapter) {
+					$duration = "0";
+					$end = '99999999';
 				} else {
-					$output .= '<td class="title">' . $chapter['title'] . '</td>';
+					$duration = (int) $chapters[$i + 1]['timecode'] - $chapter['timecode'];
+					$end = $chapters[$i + 1]['timecode'];
 				}
+				$deeplink = get_permalink();
+				$deeplink .= '#t=' . $chapter['human_timecode'] .
+					(!$is_final_chapter ? ',' . $chapters[$i + 1]['human_timecode'] : '');
+
+				// render html
+				$output .= '<tr data-start="' . $chapter['timecode'] . '" data-end="' . $end . '">';
+				if ($link_chapters == 'all') {
+					$output .= '<td class="chapterplay"><button data-start="' . $deeplink . '"><span>»</span></button></td>';
+				} 
+				$output .= '<td class="title">' . $chapter['title'] . '</td>';
+				$output .= '<td class="timecode"><code>'. podlove_pwp_sec2timecode($duration) .'</code></td>';
 				$output .= '</tr>';
 			}
 			$output .= '</tbody></table>';
@@ -395,6 +406,32 @@ function podlove_pwp_render_chapters($link_chapters, $custom_field) {
 		}
 	}
 	return false;
+}
+
+function podlove_pwp_sec2timecode($secs) {
+	if (!$secs) {
+		return "";
+	} elseif ($secs < 60) {
+		return "00:".podlove_pwp_twodigits($secs);
+	} elseif ($secs < 3600) {
+		$mins = floor($secs/60);
+		$rest = $secs - (60 * $mins);
+		return "00:" . podlove_pwp_twodigits($mins) . ":" . podlove_pwp_twodigits($rest);
+	} else {
+		$hours = floor($secs/3600);
+		$rest = $secs - (3600 * $hours);
+		$mins = floor($rest/60);
+		$rest = $rest - (60 * $mins);
+		return $hours .":". podlove_pwp_twodigits($mins) . ":" . podlove_pwp_twodigits($rest);
+	}
+}
+
+function podlove_pwp_twodigits($number) {
+	if ($number < 10) {
+		return "0"+$number;
+	} else {
+		return $number;
+	}
 }
 
 function podlove_pwp_chapters_from_string($chapstring) {
