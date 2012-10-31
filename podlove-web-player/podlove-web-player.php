@@ -14,10 +14,30 @@ Author URI: http://praegnanz.de
 License: GPLv3, MIT
 */
 
+/*  Copyright 2012  Gerrit van Aaken  (email : gerrit@praegnanz.de)
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License, version 2, as 
+    published by the Free Software Foundation.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+*/
+    
+
 /*
 Forked from: http://mediaelementjs.com/ plugin
 which was adapted from: http://videojs.com/ plugin
 */
+
+
+
 
 
 /* Prevent conflicts with already running versions of PWP */
@@ -366,13 +386,13 @@ function podlove_pwp_render_chapters($link_chapters, $custom_field) {
 		if ($chapters && $chapters = podlove_pwp_chapters_from_string($chapters[0])) {
 			$class_names = 'pwp_chapters';
 			if ($link_chapters == 'all' || $link_chapters == 'buffered') {
-				$class_names .= ' linked';
+				$class_names .= ' linked linked_'.$link_chapters;
 			}
 
 			$output = '<table rel="wp_pwp_' . $podlovePlayerIndex . '" class="' . $class_names . '">';
 			$output .= '<caption>Podcast Chapters</caption>';
 			$output .= '<thead><tr>';
-			if ($link_chapters == 'all') {
+			if ($link_chapters != 'false') {
 				$output .= '<th scope="col">Play</th>';
 			}
 			$output .= '<th scope="col">Title</th><th scope="col">Duration</th></tr></thead>';
@@ -393,13 +413,16 @@ function podlove_pwp_render_chapters($link_chapters, $custom_field) {
 				// deeplink, start and end
 				$deeplink_singlechapter .= '#t=' . $chapter['human_timecode'] .
 					(!$is_final_chapter ? ',' . $chapters[$i + 1]['human_timecode'] : '');
-				
 
 				// render html
 				$output .= '<tr data-start="' . $chapter['timecode'] . '" data-end="' . $end . '">';
-				if ($link_chapters == 'all') {
-					$output .= '<td class="chapterplay"><button data-start="' . $deeplink . '"><span>»</span></button></td>';
-				} 
+				if ($link_chapters != 'false') {
+					$linkclass = "";
+					if ($link_chapters != 'all') { $linkclass = " disabled"; }
+					$output .= '<td class="chapterplay">';
+					$output .= '<button data-start="' . $deeplink . '"' . $linkclass . '><span>»</span></button>';
+					$output .= '</td>';
+				}
 				$output .= '<td class="title">' . $chapter['title'] . '</td>';
 				$output .= '<td class="timecode"><code>'. podlove_pwp_sec2timecode($duration) .'</code></td>';
 				$output .= '</tr>';

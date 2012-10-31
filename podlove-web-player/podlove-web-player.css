@@ -212,12 +212,18 @@
 	background: #000;
 }
 
-
 .pwp_chapters .chapterplay button:focus,
 .pwp_chapters .chapterplay button:hover,
-.pwp_chapters .chapterplay button:active,
+.pwp_chapters .chapterplay button:active {
+	cursor: wait;
+}
+
+.pwp_chapters .loaded .chapterplay button:focus,
+.pwp_chapters .loaded .chapterplay button:hover,
+.pwp_chapters .loaded .chapterplay button:active,
  .pwp_chapters .active .chapterplay button {
 	background: #3a859a;
+	cursor: pointer;
 }
 
 .pwp_chapters .chapterplay button span {
