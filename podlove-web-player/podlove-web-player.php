@@ -194,7 +194,7 @@ function podlove_pwp_media_shortcode($tagName, $atts) {
 
 		// chapters
 		'chapters' => '',
-		'chapterlinks' => 'all'
+		'chapterlinks' => 'all' // could also be 'false' or 'buffered'
 
 	), $atts));
 
@@ -277,9 +277,6 @@ function podlove_pwp_media_shortcode($tagName, $atts) {
 	if ($duration == 'true') {
 		$controls_option[] = '"duration"';
 	}
-	if ($duration == 'true') {
-		$controls_option[] = '"duration"';
-	}
 	if ($volume == 'true') {
 		$controls_option[] = '"volume"';
 	}
@@ -329,7 +326,7 @@ function podlove_pwp_media_shortcode($tagName, $atts) {
 	if ($tagName == 'audio' && ($poster || $title || $subtitle || $summary)) {
 		$podloveMeta .= '<div class="podlovemeta">';
 
-		$podloveMeta .= '<a class="bigplay" href="">Play Episode</a>';
+		$podloveMeta .= '<a class="bigplay" href="#">Play Episode</a>';
 		if ($poster) {
 			$podloveMeta .= '<div class="coverart"><img src="'.htmlspecialchars($poster).'" alt=""/></div>';
 		}

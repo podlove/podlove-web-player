@@ -217,13 +217,14 @@ var PODLOVE = PODLOVE || {};
 	 * @param player object
 	 */
 	PODLOVE.web_player.addBehavior = function (player) {
+
 		var jqPlayer = $(player),
 			playerId = jqPlayer.attr('id'),
 			list = $('table[rel=' + playerId + ']'),
 			marks = list.find('tr'),
-			metainfo = jqPlayer.closest('.mediaelementjs_player_container').find('.podlovemeta'),
+			metainfo = list.closest('.mediaelementjs_player_container').find('.podlovemeta'),
 			canplay = false;
-
+			
 		if (metainfo.length === 1) {
 			metainfo.find('a.infowindow').on('click', function(){
 				$(this).hide().next().toggleClass('active');
@@ -233,6 +234,7 @@ var PODLOVE = PODLOVE || {};
 				return false;
 			});
 			metainfo.find('.bigplay').on('click', function(){
+
 				if (player.paused) {
 					player.play();
 					$(this).addClass('playing');
