@@ -496,6 +496,40 @@ function podlove_pwp_chapters_from_string($chapstring) {
 	return count($chapters) > 0 ? $chapters : false;
 }
 
+/* Auto-detect enclosures */
+
+function pwp_get_enclosed($post_id) {
+	$custom_fields = get_post_custom( $post_id );
+	$pung = array();
+	if ( !is_array( $custom_fields ) )
+		return $pung;
+
+	foreach ( $custom_fields as $key => $val ) {
+		if ( 'enclosure' != $key || !is_array( $val ) )
+			continue;
+		foreach( $val as $enc ) {
+			$pung[] = explode( "\n", $enc );
+		}
+	}
+	$pung = apply_filters('get_enclosed', $pung, $post_id);
+	return $pung;
+}
+
+;function podlove_pwp_enclosure($content) {
+	global $post;
+	if ($enclosures = pwp_get_enclosed($post->ID)) {
+		foreach($enclosures as $enclosure) {
+			$type = substr($enclosure[2], 0, strpos($enclosure[2], "/"));
+			$content = do_shortcode('[podlove'.$type.' type="'.$enclosure[2].'" src="'.$enclosure[0].'"]').$content;
+		}
+	}
+	return $content;
+}
+
+if( !is_feed() ) {
+	add_filter('the_content', 'podlove_pwp_enclosure');
+}
+
 /* Shortcodes */
 
 function podlove_pwp_audio_shortcode($attributes) {

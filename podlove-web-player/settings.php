@@ -19,6 +19,21 @@
         <input name="pwp_script_on_demand" type="checkbox" id="pwp_script_on_demand" <?php echo (get_option('pwp_script_on_demand') == true ? "checked" : "")  ?>>
       </td>
     </tr>
+    <tr valign="top">
+      <th scope="row">
+        <label for="pwp_enclosure_detect">Auto-detect enclosures in posts</label>
+        <br>
+        <label for="pwp_enclosure_force">Force enclosure players</label>
+        
+      </th>
+      <td>
+        <input name="pwp_enclosure_detect" type="checkbox" id="pwp_enclosure_detect" <?php echo (get_option('pwp_enclosure_detect') == true ? "checked" : "")  ?>>
+        <br>
+        <input name="pwp_enclosure_force" type="checkbox" id="pwp_enclosure_force" <?php echo (get_option('pwp_enclosure_force') == true ? "checked" : "")  ?>> <label for="pwp_enclosure_force">… additionally to shortcode instances</label>
+        
+      </td>
+    </tr>
+    
   </table>
 
 
@@ -47,18 +62,6 @@
       </th>
       <td>
         <input name="pwp_default_video_type" id="pwp_default_video_type" value="<?php echo get_option('pwp_default_video_type'); ?>"> <span class="description">such as "video/mp4"</span>
-      </td>
-    </tr>
-    <tr valign="top">
-      <th scope="row">
-        <label for="pwp_video_skin">Video Skin</label>
-      </th>
-      <td>
-        <select name="pwp_video_skin" id="pwp_video_skin">
-          <option value="" <?php echo (get_option('pwp_video_skin') == '') ? ' selected' : ''; ?>>Default</option>
-          <option value="wmp" <?php echo (get_option('pwp_video_skin') == 'wmp') ? ' selected' : ''; ?>>WMP</option>
-          <option value="ted" <?php echo (get_option('pwp_video_skin') == 'ted') ? ' selected' : ''; ?>>TED</option>
-        </select>
       </td>
     </tr>
   </table>
@@ -94,15 +97,14 @@
   </table>
 
   <input type="hidden" name="action" value="update">
-  <input type="hidden" name="page_options" value="pwp_default_video_width,pwp_default_video_height,pwp_default_video_type,pwp_default_audio_type,pwp_default_audio_width,pwp_default_audio_height,pwp_video_skin,pwp_script_on_demand,pwp_allow_embedding">
+  <input type="hidden" name="page_options" value="pwp_default_video_width,pwp_default_video_height,pwp_default_video_type,pwp_default_audio_type,pwp_default_audio_width,pwp_default_audio_height,pwp_video_skin,pwp_script_on_demand,pwp_enclosure_detect,pwp_enclosure_force,pwp_allow_embedding">
 
   <p>
     <input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>">
   </p>
 
-</div>
-
 </form>
+
 </div>
 
 <?php } ?>
