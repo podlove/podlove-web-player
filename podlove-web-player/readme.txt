@@ -4,7 +4,7 @@ Donate link: http://podlove.org/
 Tags: podcasting, podlove, html5audio, audio, video, podcast, player
 Requires at least: 3.4.0
 Tested up to: 3.4.1
-Stable tag: 1.1.2
+Stable tag: 1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -180,6 +180,14 @@ Takes chapter string from the defined custom field (the standard WordPress ones)
     [podloveaudio chapters="http://mychapters.com/chapters.txt"]                
 
 
+= chapterlinks = 
+
+Option for the jumplink behaviour in chapter table
+
+    [podloveaudio chapterlinks="all"] (default, all chapter links are clickable)
+    [podloveaudio chapterlinks="buffered"] (only buffered chapters are clickable)
+    [podloveaudio chapterlinks="false"] (chapters are not linked)
+
 = All attributes video example =
 
 All options enabled:
@@ -202,7 +210,7 @@ Earlier versions of this plugin could handle alternative shortcodes, too: [audio
 
 == Changelog ==
 
-= 1.1.2 =
+= 1.2 =
 * prevents activation conflicts with other instances of the plugin
 
 = 1.1.1 =

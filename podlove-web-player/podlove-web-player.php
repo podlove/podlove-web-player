@@ -1,7 +1,7 @@
 <?php
 /**
  * @package PodloveWebPlayer
- * @version 1.1.2
+ * @version 1.2
  */
 
 /*
@@ -9,7 +9,7 @@ Plugin Name: Podlove Web Player
 Plugin URI: http://podlove.org/podlove-web-player/
 Description: Video and audio plugin for WordPress built on the MediaElement.js HTML5 media player library.
 Author: Gerrit van Aaken and others
-Version: 1.1.2
+Version: 1.2
 Author URI: http://praegnanz.de
 License: GPLv3, MIT
 */
@@ -124,7 +124,7 @@ if (!get_option('pwp_script_on_demand')) {
 			// the scripts
 			wp_enqueue_script('mediaelementjs-scripts', PODLOVEWEBPLAYER_MEJS_DIR . 'mediaelement-and-player.min.js', array('jquery'), '2.9.1', false);
 			wp_enqueue_script('ba-hashchange', PODLOVEWEBPLAYER_DIR . 'libs/jquery.ba-hashchange.min.js', array('jquery'), '1.3.0', false);
-			wp_enqueue_script('podlove-web-player', PODLOVEWEBPLAYER_DIR . 'podlove-web-player.js', array('jquery', 'mediaelementjs-scripts'), '1.1.2', false);
+			wp_enqueue_script('podlove-web-player', PODLOVEWEBPLAYER_DIR . 'podlove-web-player.js', array('jquery', 'mediaelementjs-scripts'), '1.2', false);
 		}
 	}
 	add_action('wp_print_scripts', 'podlove_pwp_add_scripts');
@@ -496,39 +496,6 @@ function podlove_pwp_chapters_from_string($chapstring) {
 	return count($chapters) > 0 ? $chapters : false;
 }
 
-/* Auto-detect enclosures */
-
-function pwp_get_enclosed($post_id) {
-	$custom_fields = get_post_custom( $post_id );
-	$pung = array();
-	if ( !is_array( $custom_fields ) )
-		return $pung;
-
-	foreach ( $custom_fields as $key => $val ) {
-		if ( 'enclosure' != $key || !is_array( $val ) )
-			continue;
-		foreach( $val as $enc ) {
-			$pung[] = explode( "\n", $enc );
-		}
-	}
-	$pung = apply_filters('get_enclosed', $pung, $post_id);
-	return $pung;
-}
-
-;function podlove_pwp_enclosure($content) {
-	global $post;
-	if ($enclosures = pwp_get_enclosed($post->ID)) {
-		foreach($enclosures as $enclosure) {
-			$type = substr($enclosure[2], 0, strpos($enclosure[2], "/"));
-			$content = do_shortcode('[podlove'.$type.' type="'.$enclosure[2].'" src="'.$enclosure[0].'"]').$content;
-		}
-	}
-	return $content;
-}
-
-if( !is_feed() ) {
-	add_filter('the_content', 'podlove_pwp_enclosure');
-}
 
 /* Shortcodes */
 
@@ -557,6 +524,55 @@ function podlove_pwp_add_dashboard_widgets() {
 	wp_add_dashboard_widget('podlove_pwp_deprecated_widget', 'Podlove Web Player', 'podlove_pwp_deprecated_widget_function');
 }
 add_action('wp_dashboard_setup', 'podlove_pwp_add_dashboard_widgets' ); // Hint: For Multisite Network Admin Dashboard use wp_network_dashboard_setup instead of wp_dashboard_setup.
+
+
+/* Auto-detect enclosures */
+
+
+// modified version of get_enclosed. Returns arrays with meta info instead of plain strings.
+function podlove_pwp_get_enclosed($post_id) {
+	$custom_fields = get_post_custom( $post_id );
+	$pung = array();
+	if ( !is_array( $custom_fields ) )
+		return $pung;
+
+	foreach ( $custom_fields as $key => $val ) {
+		if ( 'enclosure' != $key || !is_array( $val ) )
+			continue;
+		foreach( $val as $enc ) {
+			$pung[] = explode( "\n", $enc );
+		}
+	}
+	$pung = apply_filters('get_enclosed', $pung, $post_id);
+	return $pung;
+}
+
+function podlove_pwp_enclosure($content) {
+	global $post;
+
+	if ($enclosures = podlove_pwp_get_enclosed($post->ID) // do we have enclosures in this post?
+		AND (
+			get_option('pwp_enclosure_force') == true) // forced to render enclosures by option
+			OR 
+		 	(!strpos($content, "[podloveaudio") AND 
+		 	 !strpos($content, "[podlovevideo") AND
+		 	 !strpos($content, "[audio") AND 
+		 	 !strpos($content, "[video")) // there is no manual shortcode
+		) 
+	{
+		foreach($enclosures as $enclosure) {
+			$type = substr($enclosure[2], 0, strpos($enclosure[2], "/"));
+			$content = do_shortcode('[podlove'.$type.' type="'.$enclosure[2].'" src="'.$enclosure[0].'"]').$content;
+		}
+	}
+	return $content;
+}
+
+if( !is_feed() && get_option('pwp_enclosure_detect') == true) {
+	// fire auto-detect script before regular shortcode, which has prio 11
+	add_filter('the_content', 'podlove_pwp_enclosure', 10);
+}
+
 
 /* Initialisation */
 

@@ -8,92 +8,132 @@
 <form method="post" action="options.php">
 <?php wp_nonce_field('update-options'); ?>
 
-  <h3 class="title"><span>General Settings</span></h3>
-
-  <table class="form-table">
-    <tr valign="top">
-      <th scope="row">
-        <label for="pwp_script_on_demand">Load Script on Demand</label>
+  <table class="widefat fixed">
+    <thead>
+      <tr class="title">
+        <th scope="col" class="manage-column">General Settings</th>
+        <th scope="col" class="manage-column"></th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr class="mainrow">
+      <th scope="titledesc">
+        <label for="pwp_script_on_demand">Load script on demand:</label>
       </th>
-      <td>
+      <td class="forminp">
         <input name="pwp_script_on_demand" type="checkbox" id="pwp_script_on_demand" <?php echo (get_option('pwp_script_on_demand') == true ? "checked" : "")  ?>>
       </td>
     </tr>
-    <tr valign="top">
+  </tbody>
+  </table>
+
+  <table class="widefat fixed" style="margin-top: 20px">
+    <thead>
+      <tr class="title">
+        <th scope="col" class="manage-column">Enclosures</th>
+        <th scope="col" class="manage-column"></th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr class="mainrow">
       <th scope="row">
-        <label for="pwp_enclosure_detect">Auto-detect enclosures in posts</label>
-        <br>
-        <label for="pwp_enclosure_force">Force enclosure players</label>
-        
+        <label for="pwp_enclosure_detect">Auto-detect enclosures in posts:</label><br>
+        <small>WordPress automatically creates an "enclosure" custom field whenever it detects an URL to a media file in the post text. 
+      Use this option to turn these enclosures into a Podlove Web Player instances.</small>
       </th>
       <td>
         <input name="pwp_enclosure_detect" type="checkbox" id="pwp_enclosure_detect" <?php echo (get_option('pwp_enclosure_detect') == true ? "checked" : "")  ?>>
-        <br>
-        <input name="pwp_enclosure_force" type="checkbox" id="pwp_enclosure_force" <?php echo (get_option('pwp_enclosure_force') == true ? "checked" : "")  ?>> <label for="pwp_enclosure_force">… additionally to shortcode instances</label>
-        
       </td>
     </tr>
-    
+    <tr valign="top">
+      <th scope="row">
+        <label for="pwp_enclosure_force">Force enclosure players:</label><br>
+        <small>… additionally to regular Podlove Web Players, if both are present</small>
+      </th>
+      <td>
+        <input name="pwp_enclosure_force" type="checkbox" id="pwp_enclosure_force" <?php echo (get_option('pwp_enclosure_force') == true ? "checked" : "")  ?>>
+      </td>
+    </tr>
+    </tbody>
   </table>
 
+  <script>
+    jQuery('#pwp_enclosure_detect').change(function(){
+      if (this.checked == false) {
+        jQuery('#pwp_enclosure_force')[0].checked = false;
+      }
+    });
+  </script>
 
-  <h3 class="title"><span>Video Settings</span></h3>
 
-  <table class="form-table">
+  <table class="widefat fixed" style="margin-top: 20px">
+    <thead>
+      <tr class="title">
+        <th scope="col" class="manage-column">Video settings</th>
+        <th scope="col" class="manage-column"></th>
+      </tr>
+    </thead>
+    <tbody>
     <tr valign="top">
       <th scope="row">
-        <label for="pwp_default_video_width">Default Width</label>
+        <label for="pwp_default_video_width">Default width:</label>
       </th>
       <td>
-        <input name="pwp_default_video_width" id="pwp_default_video_width" value="<?php echo get_option('pwp_default_video_width'); ?>">
+        <input name="pwp_default_video_width" id="pwp_default_video_width" value="<?php echo get_option('pwp_default_video_width'); ?>"> <span class="description">such as "640"</span>
       </td>
     </tr>
     <tr valign="top">
       <th scope="row">
-        <label for="pwp_default_video_height">Default Height</label>
+        <label for="pwp_default_video_height">Default height:</label>
       </th>
       <td>
-        <input name="pwp_default_video_height" id="pwp_default_video_height" value="<?php echo get_option('pwp_default_video_height'); ?>">
+        <input name="pwp_default_video_height" id="pwp_default_video_height" value="<?php echo get_option('pwp_default_video_height'); ?>"> <span class="description">such as "360"</span>
       </td>
     </tr>
     <tr valign="top">
       <th scope="row">
-        <label for="pwp_default_video_type">Default Type</label>
+        <label for="pwp_default_video_type">Default type:</label>
       </th>
       <td>
         <input name="pwp_default_video_type" id="pwp_default_video_type" value="<?php echo get_option('pwp_default_video_type'); ?>"> <span class="description">such as "video/mp4"</span>
       </td>
     </tr>
+  </tbody>
   </table>
 
 
-  <h3 class="title"><span>Audio Settings</span></h3>
-
-  <table class="form-table">
-    <tr valign="top">
+  <table class="widefat fixed" style="margin-top: 20px">
+    <thead>
+      <tr class="title">
+        <th scope="col" class="manage-column">Audio settings</th>
+        <th scope="col" class="manage-column"></th>
+      </tr>
+    </thead>
+    <tbody>
     <tr valign="top">
       <th scope="row">
-        <label for="pwp_default_audio_width">Default Width</label>
+        <label for="pwp_default_audio_width">Default width:</label>
       </th>
       <td>
-        <input name="pwp_default_audio_width" id="pwp_default_audio_width" value="<?php echo get_option('pwp_default_audio_width'); ?>" />
+        <input name="pwp_default_audio_width" id="pwp_default_audio_width" value="<?php echo get_option('pwp_default_audio_width'); ?>" /> <span class="description">such as "400" (keep blank for auto)</span>
       </td>
     </tr>
     <tr valign="top">
       <th scope="row">
-        <label for="pwp_default_audio_height">Default Height</label>
+        <label for="pwp_default_audio_height">Default height:</label>
       </th>
       <td>
-        <input name="pwp_default_audio_height" id="pwp_default_audio_height" value="<?php echo get_option('pwp_default_audio_height'); ?>" />
+        <input name="pwp_default_audio_height" id="pwp_default_audio_height" value="<?php echo get_option('pwp_default_audio_height'); ?>" /> <span class="description">stick to "30" if unsure</span>
       </td>
     </tr>
       <th scope="row">
-        <label for="pwp_default_audio_type">Default Type</label>
+        <label for="pwp_default_audio_type">Default type:</label>
       </th>
       <td>
         <input name="pwp_default_audio_type" id="pwp_default_audio_type" value="<?php echo get_option('pwp_default_audio_type'); ?>" /> <span class="description">such as "audio/mp3"</span>
       </td>
     </tr>
+  </tbody>
   </table>
 
   <input type="hidden" name="action" value="update">
