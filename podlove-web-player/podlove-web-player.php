@@ -202,17 +202,11 @@ function podlove_pwp_media_shortcode($tagName, $atts) {
 		$attributes[] = 'type="' . $type . '"';
 	}
 
-/*
 	if ($src) {
-		$attributes[] = 'src="'.htmlspecialchars($src).'"';
-		$flash_src = htmlspecialchars($src);
-	}
-*/
-
-	if ($src) {
-
+		$src = trim($src); 
 		// does it have an extension?
-		if (substr($src, strlen($src) - 4, 1) == '.') {
+		$suffixlength = strlen(substr($src, strrpos($src, ".")));
+		if ($suffixlength == 4 || $suffixlength == 5) {
 			$attributes[] = 'src="' . htmlspecialchars($src) . '"';
 			$flash_src = htmlspecialchars($src);
 		}
