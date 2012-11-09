@@ -393,17 +393,22 @@ function podlove_pwp_render_chapters($link_chapters, $custom_field) {
 				// prepare data
 				$is_final_chapter = $i == count($chapters) - 1;
 				if ($is_final_chapter) {
-					$duration = "0";
+					$chapterduration = "0";
 					$end = '99999999';
 				} else {
-					$duration = (int) $chapters[$i + 1]['timecode'] -  (int) $chapter['timecode'];
+					$chapterduration = (int) $chapters[$i + 1]['timecode'] -  (int) $chapter['timecode'];
 					$end = $chapters[$i + 1]['timecode'];
 				}
+				$chapterduration = podlove_pwp_sec2timecode($chapterduration);
 				$deeplink = get_permalink();
+
 				
 				// deeplink, start and end
-				$deeplink_singlechapter .= '#t=' . $chapter['human_timecode'] .
+				$deeplink_singlechapter = '#t=' . $chapter['human_timecode'] .
 					(!$is_final_chapter ? ',' . $chapters[$i + 1]['human_timecode'] : '');
+				if (!is_singular()) {
+					$deeplink_singlechapter = get_permalink().$deeplink_singlechapter;
+				}
 
 				// render html
 				$output .= '<tr data-start="' . $chapter['timecode'] . '" data-end="' . $end . '">';
@@ -411,11 +416,14 @@ function podlove_pwp_render_chapters($link_chapters, $custom_field) {
 					$linkclass = "";
 					if ($link_chapters != 'all') { $linkclass = " disabled"; }
 					$output .= '<td class="chapterplay">';
-					$output .= '<button data-start="' . $deeplink . '"' . $linkclass . '><span>»</span></button>';
+					$output .= '<button title="play chapter" data-start="' . $deeplink . '"' . $linkclass . '><span>»</span></button>';
 					$output .= '</td>';
 				}
-				$output .= '<td class="title">' . $chapter['title'] . '</td>';
-				$output .= '<td class="timecode"><code>'. podlove_pwp_sec2timecode($duration) .'</code></td>';
+				$output .= '<td class="title">' . $chapter['title'] . '</td>'."\n";
+				$output .= '<td class="timecode">'."\n";
+				$output .= '<code>' . $chapterduration.'</code>'."\n";
+				$output .= '<a class="deeplink" href="'.$deeplink_singlechapter.'" title="chapter deeplink">#</a> '."\n";
+				$output .= '</td>'."\n";
 				$output .= '</tr>';
 			}
 			$output .= '</tbody></table>';
