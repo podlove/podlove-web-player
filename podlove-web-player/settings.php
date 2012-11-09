@@ -37,9 +37,9 @@
     <tbody>
     <tr class="mainrow">
       <th scope="row">
-        <label for="pwp_enclosure_detect">Auto-detect enclosures in posts:</label><br>
+        <label for="pwp_enclosure_detect">Turn enclosures to players:</label><br>
         <small>WordPress automatically creates an "enclosure" custom field whenever it detects an URL to a media file in the post text. 
-      Use this option to turn these enclosures into a Podlove Web Player instances.</small>
+      Use this option to turn these enclosures into Podlove Web Player instances.</small>
       </th>
       <td>
         <input name="pwp_enclosure_detect" type="checkbox" id="pwp_enclosure_detect" <?php echo (get_option('pwp_enclosure_detect') == true ? "checked" : "")  ?>>
@@ -48,10 +48,19 @@
     <tr valign="top">
       <th scope="row">
         <label for="pwp_enclosure_force">Force enclosure players:</label><br>
-        <small>… additionally to regular Podlove Web Players, if both are present</small>
+        <small>(additionally to regular Podlove Web Players, if both are present)</small>
       </th>
       <td>
         <input name="pwp_enclosure_force" type="checkbox" id="pwp_enclosure_force" <?php echo (get_option('pwp_enclosure_force') == true ? "checked" : "")  ?>>
+      </td>
+    </tr>
+    <tr valign="top">
+      <th scope="row">
+        <label for="pwp_enclosure_bottom">Put player to bottom of post</label><br>
+        <small>(instead of the top)</small>
+      </th>
+      <td>
+        <input name="pwp_enclosure_bottom" type="checkbox" id="pwp_enclosure_bottom" <?php echo (get_option('pwp_enclosure_bottom') == true ? "checked" : "")  ?>>
       </td>
     </tr>
     </tbody>
@@ -137,7 +146,7 @@
   </table>
 
   <input type="hidden" name="action" value="update">
-  <input type="hidden" name="page_options" value="pwp_default_video_width,pwp_default_video_height,pwp_default_video_type,pwp_default_audio_type,pwp_default_audio_width,pwp_default_audio_height,pwp_video_skin,pwp_script_on_demand,pwp_enclosure_detect,pwp_enclosure_force,pwp_allow_embedding">
+  <input type="hidden" name="page_options" value="pwp_default_video_width,pwp_default_video_height,pwp_default_video_type,pwp_default_audio_type,pwp_default_audio_width,pwp_default_audio_height,pwp_video_skin,pwp_script_on_demand,pwp_enclosure_detect,pwp_enclosure_force,pwp_enclosure_bottom,pwp_allow_embedding">
 
   <p>
     <input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>">

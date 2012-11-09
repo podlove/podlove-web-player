@@ -556,7 +556,12 @@ function podlove_pwp_enclosure($content) {
 	{
 		foreach($enclosures as $enclosure) {
 			$type = substr($enclosure[2], 0, strpos($enclosure[2], "/"));
-			$content = do_shortcode('[podlove'.$type.' type="'.$enclosure[2].'" src="'.$enclosure[0].'"]').$content;
+			$pwpcode = do_shortcode('[podlove'.$type.' type="'.$enclosure[2].'" src="'.$enclosure[0].'"]');
+			if (get_option('pwp_enclosure_bottom') == true) {
+				$content = $content.$pwpcode;
+			} else {
+				$content = $pwpcode.$content;
+			}
 		}
 	}
 	return $content;
