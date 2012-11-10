@@ -2,7 +2,7 @@
 	font: normal 11px/1.25 helvetica, arial, sans-serif;
 }
 
-.mejs-container {
+.mejs-container.mejs-audio {
 	min-height: 30px;
 }
 
