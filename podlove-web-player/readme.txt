@@ -95,6 +95,12 @@ The location of a Ogg/Theora or a Ogg/Vorbis source:
     [podlovevideo ogg="http://mysite.com/mymedia.ogv"]
     [podloveaudio ogg="http://mysite.com/mymedia.oga"]
 
+= opus =
+
+The location of an Opus sound file:
+
+    [podloveaudio opus="http://mysite.com/mymedia.opus"]
+
 = webm =
 
 The location of a VP8/WebM source for the video:

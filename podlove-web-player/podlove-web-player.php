@@ -167,10 +167,11 @@ function podlove_pwp_media_shortcode($tagName, $atts) {
 		'webm' => '',
 		'flv' => '',
 		'ogg' => '',
+		'opus' => '',
 		'poster' => '',
 		'width' => get_option('pwp_default_' . $tagName . '_width'),
 		'height' => get_option('pwp_default_' . $tagName . '_height'),
-		'type' => get_option('pwp_default_' . $tagName . '_type'),
+		'type' => '',
 		'preload' => 'none',
 		'skin' => get_option('pwp_video_skin'),
 		'autoplay' => '',
@@ -200,6 +201,8 @@ function podlove_pwp_media_shortcode($tagName, $atts) {
 
 	if ($type) {
 		$attributes[] = 'type="' . $type . '"';
+	} elseif (get_option('pwp_default_' . $tagName . '_type')) {
+		$attributes[] = 'type="' . get_option('pwp_default_' . $tagName . '_type').'"';
 	}
 
 	if ($src) {
@@ -213,6 +216,9 @@ function podlove_pwp_media_shortcode($tagName, $atts) {
 	}
 
 	// <source> tags
+	if ($opus) {
+		$sources[] = '<source src="' . htmlspecialchars($opus) . '" type="' . $tagName . '/ogg" />';
+	}
 	if ($mp4) {
 		$sources[] = '<source src="' . htmlspecialchars($mp4) . '" type="' . $tagName . '/mp4" />';
 		$flash_src = htmlspecialchars($mp4);
@@ -227,6 +233,7 @@ function podlove_pwp_media_shortcode($tagName, $atts) {
 	if ($ogg) {
 		$sources[] = '<source src="' . htmlspecialchars($ogg) . '" type="' . $tagName . '/ogg" />';
 	}
+	
 	if ($flv) {
 		$sources[] = '<source src="' . htmlspecialchars($flv) . '" type="' . $tagName . '/flv" />';
 	}
@@ -315,7 +322,7 @@ function podlove_pwp_media_shortcode($tagName, $atts) {
 		$dimensions = 'width="' . $width . '" height="' . $height . '"';
 	}
 
-	//prepare podlove meta info
+	//prepare podlove meta info (enriched player)
 	$podloveMeta = "";
 	if ($tagName == 'audio' && ($poster || $title || $subtitle || $summary)) {
 		$podloveMeta .= '<div class="podlovemeta">';
