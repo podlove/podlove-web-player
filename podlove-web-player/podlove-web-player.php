@@ -217,22 +217,24 @@ function podlove_pwp_media_shortcode($tagName, $atts) {
 
 	// <source> tags
 
-	if ($opus) {
-		$sources[] = '<source src="' . htmlspecialchars($opus) . '" type="' . $tagName . '/ogg; codecs=opus" />';
-	}
 	if ($mp4) {
 		$sources[] = '<source src="' . htmlspecialchars($mp4) . '" type="' . $tagName . '/mp4" />';
 		$flash_src = htmlspecialchars($mp4);
 	}
-	if ($ogg) {
-		$sources[] = '<source src="' . htmlspecialchars($ogg) . '" type="' . $tagName . '/ogg; codecs=vorbis" />';
+	if ($webm) {
+		$sources[] = '<source src="' . htmlspecialchars($webm) . "\" type='video/webm; codecs=\"vp8, vorbis\"' />";
+	}
+	if ($ogg && $tagName == "audio") {
+		$sources[] = '<source src="' . htmlspecialchars($ogg) . "\" type='audio/ogg; codecs=vorbis' />";
+	} elseif ($ogg && $tagName == "video") {
+		$sources[] = '<source src="' . htmlspecialchars($ogg) . "\" type='video/ogg; codecs=\"theora, vorbis\"' />";
 	}
 	if ($mp3) {
 		$sources[] = '<source src="' . htmlspecialchars($mp3) . '" type="' . $tagName . '/mp3" />';
 		$flash_src = htmlspecialchars($mp3);
 	}
-	if ($webm) {
-		$sources[] = '<source src="' . htmlspecialchars($webm) . '" type="' . $tagName . '/webm" />';
+	if ($opus) {
+		$sources[] = '<source src="' . htmlspecialchars($opus) . "\" type='" . $tagName . "/ogg; codecs=opus' />";
 	}
 	if ($flv) {
 		$sources[] = '<source src="' . htmlspecialchars($flv) . '" type="' . $tagName . '/flv" />';
