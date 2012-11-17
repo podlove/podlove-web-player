@@ -50,6 +50,11 @@
 
 .mediaelementjs_player_container .pwp_chapters tr td {
 	padding: 6px;
+	vertical-align: middle;
+}
+
+.mediaelementjs_player_container .pwp_chapters tr td.title {
+	padding-top: 7px;
 }
 
 .mediaelementjs_player_container .pwp_chapters tr td.timecode {

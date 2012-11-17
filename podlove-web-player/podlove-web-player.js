@@ -258,36 +258,38 @@ var PODLOVE = PODLOVE || {};
 		list
 			.show()
 			.delegate('a[rel=player]', 'click', function (e) {
-				e.preventDefault();
+				if ($(this).closest('tr').hasClass('loaded')) {
+					e.preventDefault();
 
-				var mark = $(this).closest('tr'),
-					startTime = mark.data('start'),
-					endTime = mark.data('end');
+					var mark = $(this).closest('tr'),
+						startTime = mark.data('start'),
+						endTime = mark.data('end');
 
-				if (mark.hasClass('active') && player.paused == false) {
-					mark.addClass('paused');
-					player.pause();
-				} else {
-					// If there is only one player also set deepLink
-					if (players.length === 1) {
-						// setFragmentURL('t=' + generateTimecode([startTime, endTime]));
-						setFragmentURL('t=' + generateTimecode([startTime]));
-					} else {
-						if (canplay) {
-							// Basic Chapter Mark function (without deeplinking)
-							player.setCurrentTime(startTime);
-						} else {
-							jqPlayer.bind('canplay', function () {
-								player.setCurrentTime(startTime);
-							});
-						}
-					}
-
-					// flash fallback needs additional pause
-					if (player.pluginType == 'flash') {
+					if (mark.hasClass('active') && player.paused == false) {
+						mark.addClass('paused');
 						player.pause();
+					} else {
+						// If there is only one player also set deepLink
+						if (players.length === 1) {
+							// setFragmentURL('t=' + generateTimecode([startTime, endTime]));
+							setFragmentURL('t=' + generateTimecode([startTime]));
+						} else {
+							if (canplay) {
+								// Basic Chapter Mark function (without deeplinking)
+								player.setCurrentTime(startTime);
+							} else {
+								jqPlayer.bind('canplay', function () {
+									player.setCurrentTime(startTime);
+								});
+							}
+						}
+
+						// flash fallback needs additional pause
+						if (player.pluginType == 'flash') {
+							player.pause();
+						}
+						player.play();
 					}
-					player.play();
 				}
 				return false;
 			});

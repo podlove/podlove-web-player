@@ -426,7 +426,7 @@ function podlove_pwp_render_chapters($link_chapters, $custom_field) {
 				$output .= '<tr data-start="' . $chapter['timecode'] . '" data-end="' . $end . '">';
 				if ($link_chapters != 'false') {
 					$linkclass = "";
-					if ($link_chapters != 'all') { $linkclass = " disabled"; }
+					if ($link_chapters != 'all') { $linkclass = ' class="disabled"'; }
 					$output .= '<td class="chapterplay">';
 					$output .= '<a rel="player" title="play chapter" data-start="' . $deeplink . '"' . $linkclass . '><span>»</span></a>';
 					$output .= '</td>';
