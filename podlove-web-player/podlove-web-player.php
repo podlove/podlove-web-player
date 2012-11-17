@@ -337,12 +337,15 @@ function podlove_pwp_media_shortcode($tagName, $atts) {
 			$podloveMeta .= '<h3>'.$title.'</h3>';
 		}
 		if ($subtitle) {
-			$podloveMeta .= '<div class="subtitle"><strong>'.$subtitle.'</strong></div>';
+			$podloveMeta .= '<div class="subtitle">'.$subtitle.'</div>';
 		}
 		if ($summary) {
-			$podloveMeta .= '<a href="#" class="infowindow" title="more information">i</a><div class="summary"><a href="#" class="closewindow" title="close">&times</a>'.$summary.'</div>';
+			$podloveMeta .= '<a href="#" class="infowindow" title="more information on the episode">info</a>';
 		}
 		$podloveMeta .= '</div>';
+		if ($summary) {
+			$podloveMeta .= '<div class="summary">'.$summary.'</div>';
+		}
 	}
 
 	//build actual html player code
@@ -425,7 +428,7 @@ function podlove_pwp_render_chapters($link_chapters, $custom_field) {
 					$linkclass = "";
 					if ($link_chapters != 'all') { $linkclass = " disabled"; }
 					$output .= '<td class="chapterplay">';
-					$output .= '<button title="play chapter" data-start="' . $deeplink . '"' . $linkclass . '><span>»</span></button>';
+					$output .= '<a rel="player" title="play chapter" data-start="' . $deeplink . '"' . $linkclass . '><span>»</span></a>';
 					$output .= '</td>';
 				}
 				$output .= '<td class="title">' . $chapter['title'] . '</td>'."\n";

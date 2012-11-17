@@ -196,7 +196,6 @@ var PODLOVE = PODLOVE || {};
 		}
 
 
-
 		window.MediaElementPlayer('#' + playerId, {
 			success: function (player) {
 				PODLOVE.web_player.addBehavior(player);
@@ -211,6 +210,7 @@ var PODLOVE = PODLOVE || {};
 		});
 	};
 
+
 	/**
 	 * add chapter behavior and deeplinking: skip to referenced
 	 * time position & write current time into address
@@ -219,22 +219,29 @@ var PODLOVE = PODLOVE || {};
 	PODLOVE.web_player.addBehavior = function (player) {
 
 		var jqPlayer = $(player),
+			layoutedPlayer = jqPlayer,
 			playerId = jqPlayer.attr('id'),
 			list = $('table[rel=' + playerId + ']'),
 			marks = list.find('tr'),
-			metainfo = list.closest('.mediaelementjs_player_container').find('.podlovemeta'),
 			canplay = false;
 			
+		if (players.length === 1) {
+			// check if deeplink is set
+			checkCurrentURL();
+		}
+
+		// get things straight for flash fallback
+		if (player.pluginType == 'flash') {
+			var layoutedPlayer = $("#mep_" + player.id.substring(9));
+		}
+		// get DOM object of meta info
+		var metainfo = layoutedPlayer.closest('.mediaelementjs_player_container').find('.podlovemeta');
 		if (metainfo.length === 1) {
 			metainfo.find('a.infowindow').on('click', function(){
-				$(this).hide().next().toggleClass('active');
-				return false;
-			}).next().find('a.closewindow').on('click', function(){
-				$(this).closest('.summary').toggleClass('active').prev().show();
+				$(this).closest('.mediaelementjs_player_container').find('.summary').toggleClass('active');
 				return false;
 			});
 			metainfo.find('.bigplay').on('click', function(){
-
 				if (player.paused) {
 					player.play();
 					$(this).addClass('playing');
@@ -245,25 +252,19 @@ var PODLOVE = PODLOVE || {};
 				return false;
 			});
 		}
-
-		if (players.length === 1) {
-			// check if deeplink is set
-			checkCurrentURL();
-		}
-
 		
 
 		// chapters list
 		list
 			.show()
-			.delegate('button', 'click', function (e) {
+			.delegate('a[rel=player]', 'click', function (e) {
 				e.preventDefault();
 
 				var mark = $(this).closest('tr'),
 					startTime = mark.data('start'),
 					endTime = mark.data('end');
 
-				if (mark.hasClass('active') && player.paused === false) {
+				if (mark.hasClass('active') && player.paused == false) {
 					mark.addClass('paused');
 					player.pause();
 				} else {
@@ -282,10 +283,13 @@ var PODLOVE = PODLOVE || {};
 						}
 					}
 
-					if (player.pluginType !== 'flash') {
-						player.play();
+					// flash fallback needs additional pause
+					if (player.pluginType == 'flash') {
+						player.pause();
 					}
+					player.play();
 				}
+				return false;
 			});
 
 		// wait for the player or you'll get DOM EXCEPTIONS
