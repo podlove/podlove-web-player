@@ -3,7 +3,7 @@ Contributors: gerritvanaaken
 Donate link: http://podlove.org/
 Tags: podcasting, podlove, html5audio, audio, video, podcast, player
 Requires at least: 3.4.0
-Tested up to: 3.4.1
+Tested up to: 3.4.2
 Stable tag: 1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -12,7 +12,7 @@ HTML5 based audio/video player, focused on podcasts and similar media blogs. It 
 
 == Description ==
 
-**Please note: As of version 1.1, the usage of [audio] and [video] is deprecated. Please use [podloveaudio] or [podlovevideo] instead.**
+**Please note: Since version 1.1, the usage of [audio] and [video] is deprecated. Please use [podloveaudio] or [podlovevideo] instead.**
 
 Use a simple shortcode in your posts and pages, and the Podlove Web Player will appear, playing any media file you want to assign. It tries to use native HTML5 browser playback, but will smoothly fall back to Flash if necessary.
 
@@ -198,7 +198,7 @@ Option for the jumplink behaviour in chapter table
 
 = Rich Podlove Web Player player with meta information =
 
-If you have an audio file and support one of the following attributes, the player will sport a richer visual experience: title, subtitle, summary, poster, permalink. Full example:
+If you have an audio file and use one of the following attributes, the player will sport a richer visual experience: "title", "subtitle", "summary", "poster", "permalink". Full example:
 
     [podloveaudio mp3="http://mysite.com/mymedia.mp3" ogg="http://mysite.com/mymedia.ogg" title="PWP – First show" subtitle="We talk about this and that" summary="Here goes a summary of the episode which should be about 256 characters long" poster="http://mysite.com/mymedia.jpg" permalink="http://mysite.com/my-first-episode/"]
 
@@ -226,17 +226,15 @@ Earlier versions of this plugin could handle alternative shortcodes, too: [audio
 == Changelog ==
 
 = 1.2 =
-* added: rich player with meta information (title, subtitle, summary, cover image)
+* added: Rich player with meta information (title, subtitle, summary, cover image)
 * added: Opus audio codec support
-* added: chapter duration display
-* added: chapter deeplinking
+* added: Chapter duration display
+* added: Chapter deeplinking
 * added: optional listening to WordPress enclosures
 * new settings area
 * fixed some issues with flash fallback
 * freshest version of mediaelement.js
-* small bugfixes and improvements
-
-* lots of bugfixes
+* lots of bugfixes and improvements
 
 = 1.1.2 =
 * prevents activation conflicts with other instances of the plugin
@@ -250,5 +248,5 @@ Earlier versions of this plugin could handle alternative shortcodes, too: [audio
 * Implements W3C Media Fragements with start and end time
 
 = 1.0 =
-* First version on wordpress.org. 
-* Full of bugs.
+* First version on wordpress.org
+* Full of bugs
