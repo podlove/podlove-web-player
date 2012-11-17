@@ -78,15 +78,28 @@
 	background: #000;
 	height: 100px;
 	margin-bottom: 1px;
-	-webkit-border-top-right-radius: 10px;
-	-moz-border-radius-topright: 10px;
-	border-top-right-radius: 10px;
+	-webkit-border-top-left-radius: 15px;
+-webkit-border-top-right-radius: 15px;
+-moz-border-radius-topleft: 15px;
+-moz-border-radius-topright: 15px;
+border-top-left-radius: 15px;
+border-top-right-radius: 15px;
+	background: url(mediaelement/background.png);
+background: rgba(0, 0, 0, 0.9);
+background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(50, 50, 50, 0.9)), to(rgba(0, 0, 0, 0.9)));
+background: -webkit-linear-gradient(top, rgba(50, 50, 50, 0.9), rgba(0, 0, 0, 0.9));
+background: -moz-linear-gradient(top, rgba(50, 50, 50, 0.9), rgba(0, 0, 0, 0.9));
+background: -o-linear-gradient(top, rgba(50, 50, 50, 0.9), rgba(0, 0, 0, 0.9));
+background: -ms-linear-gradient(top, rgba(50, 50, 50, 0.9), rgba(0, 0, 0, 0.9));
+background: linear-gradient(rgba(50, 50, 50, 0.9), rgba(0, 0, 0, 0.9));
 }
 
+.podlovemeta + .summary + .mejs-container .mejs-playpause-button,
 .podlovemeta + .mejs-container .mejs-playpause-button {
 	width: 10px;
 }
 
+.podlovemeta + .summary + .mejs-container .mejs-playpause-button *,
 .podlovemeta + .mejs-container .mejs-playpause-button * {
 	display: none;
 }
@@ -134,14 +147,18 @@
 .podlovemeta h3 {
 	clear: none;
 	color: #eee!important;
-	padding: 5px 0 0 0;
-	font-size: 15px;
+	padding: 0 0 0 0;
+	font-size: 16px;
 	font-weight: bold;
 	margin: 0!important;
+	text-transform: none;
+	letter-spacing: 0;
 }
 
 .podlovemeta .subtitle {
 	margin-right: 7px;
+	font-size: 12px;
+	color: #eee!important;
 }
 
 .podlovemeta .subtitle strong{
@@ -149,44 +166,51 @@
 	font-size: 13px!important;
 }
 
-.podlovemeta .summary {
-	position: absolute;
-	top: 8px;
-	left: 8px;
-	right: 8px;
-	background: rgba(255,255,255,0.9);
-	padding: 6px;
+.podlovemeta + .summary {
+	overflow: hidden;
+	padding: 0px 10px;
+	margin-top: -1px;
+	height: 1px;
+	font-size: 12px;
+	line-height: 1.5;
 	color: #000;
-	opacity: 0;
-	-webkit-transition: opacity 0.5s;
-	-moz-transition: opacity 0.5s;
-	-o-transition: opacity 0.5s;
-	transition: opacity 0.5s;
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	-o-transition: all 0.5s;
+	transition: all 0.5s;
+	background: url(mediaelement/background.png);
+background: rgba(0, 0, 0, 0.9);
+background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(150, 150, 150, 0.9)), to(rgba(0, 0, 0, 0.9)));
+background: -webkit-linear-gradient(top, rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
+background: -moz-linear-gradient(top, rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
+background: -o-linear-gradient(top, rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
+background: -ms-linear-gradient(top, rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
+background: linear-gradient(rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
 }
 
-.podlovemeta .summary.active {
-	opacity: 1;
+.podlovemeta + .summary.active {
+	min-height: 38px;
+	height: auto;
+	padding: 20px 10px;
 }
 
 .podlovemeta .summary a.closewindow,
 .podlovemeta a.infowindow {
 	cursor: pointer;
 	z-index: 111;
-	padding: 0;
+	padding: 0 10px;
 	margin: 0;
 	position: absolute;
-	right: 7px;
-	top: 7px;
-	text-transform: none!important;
+	right: 9px;
+	bottom: 7px;
 	display: block;
-	width: 16px;
 	height: 16px;
-	font-weight: bold;
 	background: #fff;
 	color: #000;
-	font-size: 16px;
+	font-size: 12px;
+	text-transform: uppercase!important;
+	letter-spacing: 1px;
 	text-align: center;
-	font-family: serif;
 	line-height: 16px;
 	-webkit-border-radius: 8px;
 	-moz-border-radius: 8px;
@@ -216,9 +240,13 @@
 	padding-right: 0;
 }
 
-.pwp_chapters .chapterplay button {
+.pwp_chapters .chapterplay a[rel=player] {
 	display: block;
+
 	border: none;
+	padding: 0;
+	margin: 0;
+	text-align: center;
 	width: 25px;
 	height: 25px;
 	background: #ddd;
@@ -229,37 +257,41 @@
 	cursor: pointer;
 }
 
-.pwp_chapters .loaded .chapterplay button {
+.pwp_chapters .loaded .chapterplay a[rel=player] {
 	background: #000;
+
 }
 
-.pwp_chapters .chapterplay button:focus,
-.pwp_chapters .chapterplay button:hover,
-.pwp_chapters .chapterplay button:active {
+.pwp_chapters .chapterplay a[rel=player]:focus,
+.pwp_chapters .chapterplay a[rel=player]:hover,
+.pwp_chapters .chapterplay a[rel=player]:active {
 	cursor: wait;
 }
 
-.pwp_chapters .loaded .chapterplay button:focus,
-.pwp_chapters .loaded .chapterplay button:hover,
-.pwp_chapters .loaded .chapterplay button:active,
- .pwp_chapters .active .chapterplay button {
+.pwp_chapters .loaded .chapterplay a[rel=player]:focus,
+.pwp_chapters .loaded .chapterplay a[rel=player]:hover,
+.pwp_chapters .loaded .chapterplay a[rel=player]:active,
+ .pwp_chapters .active .chapterplay a[rel=player] {
 	background: #3a859a;
 	cursor: pointer;
 }
 
-.pwp_chapters .chapterplay button span {
+.pwp_chapters .chapterplay a[rel=player] span {
 	display: block;
 	width: 16px;
 	height: 16px;
 	overflow: hidden;
+	position: relative;
+	top: 4px;
 	text-indent: -1000px;
+	margin: 0 0 0 6px;
 	background: transparent url(mediaelement/controls.png) no-repeat 0 0;
 }
 
-.pwp_chapters .active .chapterplay button span {
+.pwp_chapters .active .chapterplay a[rel=player] span {
 	background-position: -1px -16px;
 }
 
-.pwp_chapters .paused .chapterplay button span {
+.pwp_chapters .paused .chapterplay a[rel=player] span {
 	background-position: 0 0;
 }
