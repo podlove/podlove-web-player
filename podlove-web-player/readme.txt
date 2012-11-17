@@ -109,9 +109,10 @@ The location of a VP8/WebM source for the video:
 
 = poster = 
 
-The location of the poster frame for the video:
+The location of the poster frame for the video (or cover image for the rich audio player):
 
     [podlovevideo poster="http://mysite.com/mymedia.png"]
+    [podloveaudio poster="http://mysite.com/mymedia.png"]
 
 = width = 
 
@@ -194,6 +195,14 @@ Option for the jumplink behaviour in chapter table
     [podloveaudio chapterlinks="buffered"] (only buffered chapters are clickable)
     [podloveaudio chapterlinks="false"] (chapters are not linked)
 
+
+= Rich Podlove Web Player player with meta information =
+
+If you have an audio file and support one of the following attributes, the player will sport a richer visual experience: title, subtitle, summary, poster, permalink. Full example:
+
+    [podloveaudio mp3="http://mysite.com/mymedia.mp3" ogg="http://mysite.com/mymedia.ogg" title="PWP – First show" subtitle="We talk about this and that" summary="Here goes a summary of the episode which should be about 256 characters long" poster="http://mysite.com/mymedia.jpg" permalink="http://mysite.com/my-first-episode/"]
+
+
 = All attributes video example =
 
 All options enabled:
@@ -204,7 +213,7 @@ All options enabled:
 
 All options enabled:
 
-    [podloveaudio mp3="http://mysite.com/mymedia.mp3" ogg="http://mysite.com/mymedia.ogg" preload="true" autoplay="true"]
+    [podloveaudio mp4="http://mysite.com/mymedia.m4a" mp3="http://mysite.com/mymedia.mp3" ogg="http://mysite.com/mymedia.ogg" opus="http://mysite.com/mymedia.opus" width="640" preload="true" autoplay="true" title="PWP – First show" subtitle="We talk about this and that" summary="Here goes a summary of the episode which should be about 256 characters long" poster="http://mysite.com/mymedia.jpg" permalink="http://mysite.com/my-first-episode/"]
 
 ### Deprecated usage
 
@@ -217,6 +226,19 @@ Earlier versions of this plugin could handle alternative shortcodes, too: [audio
 == Changelog ==
 
 = 1.2 =
+* added: rich player with meta information (title, subtitle, summary, cover image)
+* added: Opus audio codec support
+* added: chapter duration display
+* added: chapter deeplinking
+* added: optional listening to WordPress enclosures
+* new settings area
+* fixed some issues with flash fallback
+* freshest version of mediaelement.js
+* small bugfixes and improvements
+
+* lots of bugfixes
+
+= 1.1.2 =
 * prevents activation conflicts with other instances of the plugin
 
 = 1.1.1 =
