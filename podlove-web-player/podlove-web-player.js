@@ -197,8 +197,8 @@ var PODLOVE = PODLOVE || {};
 
 
 		window.MediaElementPlayer('#' + playerId, {
-			success: function (player) {
-				PODLOVE.web_player.addBehavior(player);
+			success: function (player, domPlayer) {
+				PODLOVE.web_player.addBehavior(player, domPlayer);
 				if (deepLink !== false && players.length === 1) {
 					$('html, body')
 						.delay(150)
@@ -216,10 +216,10 @@ var PODLOVE = PODLOVE || {};
 	 * time position & write current time into address
 	 * @param player object
 	 */
-	PODLOVE.web_player.addBehavior = function (player) {
+	PODLOVE.web_player.addBehavior = function (player, domPlayer) {
 
 		var jqPlayer = $(player),
-			layoutedPlayer = jqPlayer,
+			jqDomPlayer = $(domPlayer),
 			playerId = jqPlayer.attr('id'),
 			list = $('table[rel=' + playerId + ']'),
 			marks = list.find('tr'),
@@ -230,12 +230,9 @@ var PODLOVE = PODLOVE || {};
 			checkCurrentURL();
 		}
 
-		// get things straight for flash fallback
-		if (player.pluginType == 'flash') {
-			var layoutedPlayer = $("#mep_" + player.id.substring(9));
-		}
 		// get DOM object of meta info
-		var metainfo = layoutedPlayer.closest('.mediaelementjs_player_container').find('.podlovemeta');
+		var metainfo = jqDomPlayer.closest('.mediaelementjs_player_container').find('.podlovemeta');
+		
 		if (metainfo.length === 1) {
 			metainfo.find('a.infowindow').on('click', function(){
 				$(this).closest('.mediaelementjs_player_container').find('.summary').toggleClass('active');
