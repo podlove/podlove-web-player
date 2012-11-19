@@ -80,22 +80,23 @@
 
 .podlovemeta {
 	position: relative;
+	overflow: hidden;
 	background: #000;
 	height: 100px;
 	margin-bottom: 1px;
 	-webkit-border-top-left-radius: 15px;
--webkit-border-top-right-radius: 15px;
--moz-border-radius-topleft: 15px;
--moz-border-radius-topright: 15px;
-border-top-left-radius: 15px;
-border-top-right-radius: 15px;
+	-webkit-border-top-right-radius: 15px;
+	-moz-border-radius-topleft: 15px;
+	-moz-border-radius-topright: 15px;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
 	background: #111;
-background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(50, 50, 50, 0.9)), to(rgba(0, 0, 0, 0.9)));
-background: -webkit-linear-gradient(top, rgba(50, 50, 50, 0.9), rgba(0, 0, 0, 0.9));
-background: -moz-linear-gradient(top, rgba(50, 50, 50, 0.9), rgba(0, 0, 0, 0.9));
-background: -o-linear-gradient(top, rgba(50, 50, 50, 0.9), rgba(0, 0, 0, 0.9));
-background: -ms-linear-gradient(top, rgba(50, 50, 50, 0.9), rgba(0, 0, 0, 0.9));
-background: linear-gradient(rgba(50, 50, 50, 0.9), rgba(0, 0, 0, 0.9));
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(50, 50, 50, 0.9)), to(rgba(0, 0, 0, 0.9)));
+	background: -webkit-linear-gradient(top, rgba(50, 50, 50, 0.9), rgba(0, 0, 0, 0.9));
+	background: -moz-linear-gradient(top, rgba(50, 50, 50, 0.9), rgba(0, 0, 0, 0.9));
+	background: -o-linear-gradient(top, rgba(50, 50, 50, 0.9), rgba(0, 0, 0, 0.9));
+	background: -ms-linear-gradient(top, rgba(50, 50, 50, 0.9), rgba(0, 0, 0, 0.9));
+	background: linear-gradient(rgba(50, 50, 50, 0.9), rgba(0, 0, 0, 0.9));
 }
 
 .podlovemeta + .summary + .mejs-container .mejs-playpause-button,
@@ -155,7 +156,8 @@ outline: 1px solid transparent!important;
 .podlovemeta h3 {
 	clear: none;
 	color: #eee!important;
-	padding: 0 0 0 0;
+	padding: 8px 0;
+	line-height: 1.25;
 	font-size: 16px;
 	font-weight: bold;
 	margin: 0!important;
@@ -186,13 +188,13 @@ outline: 1px solid transparent!important;
 	-moz-transition: all 0.5s;
 	-o-transition: all 0.5s;
 	transition: all 0.5s;
-background: #ccc;
-background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(150, 150, 150, 0.9)), to(rgba(0, 0, 0, 0.9)));
-background: -webkit-linear-gradient(top, rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
-background: -moz-linear-gradient(top, rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
-background: -o-linear-gradient(top, rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
-background: -ms-linear-gradient(top, rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
-background: linear-gradient(rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
+	background: #ccc;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(150, 150, 150, 0.9)), to(rgba(0, 0, 0, 0.9)));
+	background: -webkit-linear-gradient(top, rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
+	background: -moz-linear-gradient(top, rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
+	background: -o-linear-gradient(top, rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
+	background: -ms-linear-gradient(top, rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
+	background: linear-gradient(rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
 }
 
 .podlovemeta + .summary.active {
