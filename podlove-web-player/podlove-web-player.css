@@ -89,8 +89,7 @@
 -moz-border-radius-topright: 15px;
 border-top-left-radius: 15px;
 border-top-right-radius: 15px;
-	background: url(mediaelement/background.png);
-background: rgba(0, 0, 0, 0.9);
+	background: #111;
 background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(50, 50, 50, 0.9)), to(rgba(0, 0, 0, 0.9)));
 background: -webkit-linear-gradient(top, rgba(50, 50, 50, 0.9), rgba(0, 0, 0, 0.9));
 background: -moz-linear-gradient(top, rgba(50, 50, 50, 0.9), rgba(0, 0, 0, 0.9));
@@ -107,6 +106,10 @@ background: linear-gradient(rgba(50, 50, 50, 0.9), rgba(0, 0, 0, 0.9));
 .podlovemeta + .summary + .mejs-container .mejs-playpause-button *,
 .podlovemeta + .mejs-container .mejs-playpause-button * {
 	display: none;
+}
+
+.mejs-controls .mejs-button button:focus { 
+outline: 1px solid transparent!important;
 }
 
 .mejs-duration-container {
@@ -183,8 +186,7 @@ background: linear-gradient(rgba(50, 50, 50, 0.9), rgba(0, 0, 0, 0.9));
 	-moz-transition: all 0.5s;
 	-o-transition: all 0.5s;
 	transition: all 0.5s;
-	background: url(mediaelement/background.png);
-background: rgba(0, 0, 0, 0.9);
+background: #ccc;
 background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(150, 150, 150, 0.9)), to(rgba(0, 0, 0, 0.9)));
 background: -webkit-linear-gradient(top, rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
 background: -moz-linear-gradient(top, rgba(220, 220, 220, 0.5), rgba(150, 150, 150, 0.9));
