@@ -587,11 +587,13 @@ function podlove_pwp_enclosure($content) {
 	return $content;
 }
 
-if( !is_feed() && get_option('pwp_enclosure_detect') == true) {
-	// fire auto-detect script before regular shortcode, which has prio 11
-	add_filter('the_content', 'podlove_pwp_enclosure', 10);
+function podlove_pwp_auto_detect_enclosures() {
+	if( !is_feed() && get_option('pwp_enclosure_detect') == true) {
+		// fire auto-detect script before regular shortcode, which has prio 11
+		add_filter('the_content', 'podlove_pwp_enclosure', 10);
+	}	
 }
-
+add_action( 'wp', 'podlove_pwp_auto_detect_enclosures' );
 
 /* Initialisation */
 
