@@ -244,11 +244,11 @@ var PODLOVE = PODLOVE || {};
 		var metainfo = jqDomPlayer.closest('.mediaelementjs_player_container').find('.podlovemeta');
 		
 		if (metainfo.length === 1) {
-			metainfo.find('a.infowindow').click(function(){
+			metainfo.find('a.infowindow').on('click', function(){
 				$(this).closest('.mediaelementjs_player_container').find('.summary').toggleClass('active');
 				return false;
 			});
-			metainfo.find('.bigplay').click(function(){
+			metainfo.find('.bigplay').on('click', function(){
 				if (player.paused) {
 					player.play();
 					$(this).addClass('playing');
