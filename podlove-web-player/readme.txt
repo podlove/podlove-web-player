@@ -4,7 +4,7 @@ Donate link: http://podlove.org/
 Tags: podcasting, podlove, html5audio, audio, video, podcast, player
 Requires at least: 3.4.0
 Tested up to: 3.4.2
-Stable tag: 1.2
+Stable tag: 1.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -224,6 +224,11 @@ Earlier versions of this plugin could handle alternative shortcodes, too: [audio
 1. Podlove Web Player in full swing, using the chapters table to jump to different section of the audio source.
 
 == Changelog ==
+
+= 1.2.1 =
+* fixed Firefox stutter probblem when jumping around in OGG files
+* jQuery compatibility down to 1.6
+* small CSS/PHP related fixes
 
 = 1.2 =
 * added: Rich player with meta information (title, subtitle, summary, cover image)
