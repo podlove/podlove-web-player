@@ -1,6 +1,2 @@
-.DS_Store
-Thumbs.db
-mediaelement/.DS_Store
-mediaelement/Thumbs.db
-podlove-web-player/mediaelement/.DS_Store
-podlove-web-player/mediaelement/Thumbs.db
+*.DS_Store
+*Thumbs.db
