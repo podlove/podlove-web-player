@@ -331,7 +331,7 @@
 		}
 
 		var timecontrolsActive = "";
-		if (params.summaryVisible == true) {
+		if (params.timecontrolsVisible == true) {
 			timecontrolsActive = " active";
 		}
 		wrapper.append('<div class="controlbox'+timecontrolsActive+'"></div>');
