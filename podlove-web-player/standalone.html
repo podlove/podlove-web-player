@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Podlove Web Player Standalone Big</title>
+
+	<link href="libs/mediaelement/build/mediaelementplayer.min.css" rel="stylesheet" media="screen" type="text/css" />
+	<link href="libs/fontawesome/css/font-awesome.min.css" rel="stylesheet" media="screen" type="text/css" />
+	<link href="podlove-web-player.css" rel="stylesheet" media="screen" type="text/css" />
+
+	<script src="libs/html5shiv.js"></script>
+	<script src="libs/jquery-1.9.1.min.js"></script>
+	<script src="libs/mediaelement/build/mediaelement-and-player.min.js"></script>
+	<script src="podlove-web-player.js"></script>
+	<script src="http://cdn.simon.waldherr.eu/projects/LoremSonitus/fsk.js"></script>
+</head>
+<body>
+
+	<audio id="testplayer">
+		<source id="fsk" src="" type="audio/wav" />
+		<h3 data-pwp="title"><a href="http://simonwaldherr.github.com/podlovejs/demo/standalone-big.html">PWP002 – Lorem ipsum dolor sit amet</a></h3>
+		<h4 data-pwp="subtitle">Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</h4>
+		<p data-pwp="summary">Summary and even links <a href="https://github.com/gerritvanaaken/podlovejs">PodloveJS</a><br/>
+Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Maecenas sed diam eget risus varius blandit sit amet non magna. Maecenas sed diam eget risus varius blandit sit amet non magna.<br/>
+Nullam id dolor id nibh ultricies vehicula ut id elit. Nulla vitae elit libero, a pharetra augue. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Cras mattis consectetur purus sit amet fermentum. Nullam id dolor id nibh ultricies vehicula ut id elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p>
+		<div data-pwp="chapters">
+			00:00:00.000 <b>Chapter 0</b> Description and even links <a href="https://github.com/gerritvanaaken/podlovejs">PodloveJS</a>
+			00:00:02.400 <b>Chapter 1</b> Description and even links <a href="https://github.com/gerritvanaaken/podlove-web-player">PodloveWebPlayer</a>
+			00:00:04.800 <b>Chapter 2</b> Description and even links <a href="https://github.com/eteubert/podlove">PodlovePodcastPublisher</a>
+			00:00:07.200 <b>Chapter 3</b> Description and even links <a href="https://github.com/WordPress/WordPress">WordPress</a>
+			00:00:09.600 <b>Chapter 4</b> Description and even links <a href="http://podlove.org/">Podlove.org</a>
+			00:00:12.000 <b>Chapter 5</b> Description and even links <a href="http://bitlove.org/">Bitlove.org</a>
+			00:00:14.400 <b>Chapter 6</b> Description and even links <a href="https://github.com/fortawesome/Font-Awesome/">Font-Awesome</a>
+			00:00:16.800 <b>Chapter 7</b> Description and even links <a href="https://github.com/johndyer/mediaelement">mediaelement</a>
+		</div>
+	</audio>
+	<script>
+		var SoundGenInput = document.getElementById('testplayer').innerHTML;
+		document.getElementById('fsk').src = FSKencode(SoundGenInput);
+		
+		$('#testplayer').podlovewebplayer({
+			duration: '00:17.213',
+			poster: 'samples/coverimage.png',
+			alwaysShowHours: true,
+			startVolume: 0.5,
+			chapterlinks: 'all',
+			summaryVisible: false
+		});
+	</script>
+	
+</body>
+</html>

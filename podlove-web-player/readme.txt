@@ -1,10 +1,10 @@
 === Plugin Name ===
-Contributors: gerritvanaaken
+Contributors: gerritvanaaken, simonwaldherr
 Donate link: http://podlove.org/
 Tags: podcasting, podlove, html5audio, audio, video, podcast, player
 Requires at least: 3.4.0
 Tested up to: 3.4.2
-Stable tag: 1.2.1
+Stable tag: 2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -66,46 +66,21 @@ This location of any audio or video file, local ore remote:
     
     [podloveaudio src="http://mysite.com/mymedia.mp3"]
     
-You can even leave off the extention and the player will look for all media files matching the filename (mymedia.mp4, mymedia.webm, etc.)  
-
-	[podlovevideo src="http://mysite.com/mymedia"]
-    
 = type =
 
 The media type of the resource:
     
-    [podlovevideo src="http://mysite.com/mymedia?xyz" type="video/mp4"]    
+    [podlovevideo src="http://mysite.com/mymedia.m4v" type="video/mp4"]    
 
-= mp4 = 
+= mp4 / webm / ogg  = 
 
-The location of an h.264/MP4 source for the video:
+The location of a file with a specific video type:
     
-    [podlovevideo mp4="http://mysite.com/mymedia.mp4"]
-    
-= mp3 =
+    [podlovevideo mp4="mymedia.mp4" webm="mymedia.webm" ogg="mymedia.ogv"]
 
-The location of an MP3 file for video:
-    
-    [podloveaudio mp3="http://mysite.com/mymedia.mp3"]    
+= mp4 / mp3 / ogg / opus =
 
-= ogg =
-
-The location of a Ogg/Theora or a Ogg/Vorbis source:
-
-    [podlovevideo ogg="http://mysite.com/mymedia.ogv"]
-    [podloveaudio ogg="http://mysite.com/mymedia.oga"]
-
-= opus =
-
-The location of an Opus sound file:
-
-    [podloveaudio opus="http://mysite.com/mymedia.opus"]
-
-= webm =
-
-The location of a VP8/WebM source for the video:
-
-    [podlovevideo webm="http://mysite.com/mymedia.webm"]
+    [podloveaudio mp4="mymedia.m4a" mp3="mymedia.mp3" ogg="mymedia.oga" opus="mymedia.opus"]
 
 = poster = 
 
@@ -152,9 +127,22 @@ Disables the fullscreen button for video:
     
 = duration =
 
-Disables the duration output:
+Enables display of duration without having to load the media file. Use seconds or timecode as a unit:
     
-    [podlovevideo duration="false"]   
+    [podlovevideo duration="3522"]
+    [podloveaudio duration="00:58:42"]
+
+= alwaysShowHours =
+
+Displays the time in 00:00:00 instead of 00:00. Default is "true".
+
+    [podloveaudio alwaysShowHours="false"]  
+
+= alwaysShowControls =
+
+Defines whether the player control bar is permanently visible. For videos, it might be suitable to fade the controls out when not hovering the video.
+
+    [podlovevideo alwaysShowControls="false"]   
     
 = volume = 
 
@@ -170,9 +158,9 @@ Disables the progress bar:
     
 = captions = 
 
-URL to a WebSRT captions file:
+URL to a WebVTT captions file:
     
-    [podlovevideo captions="http://mysite.com/mymedia.srt"]  
+    [podlovevideo captions="http://mysite.com/mymedia.vtt"]  
 
 = chapters = 
 
@@ -203,18 +191,6 @@ If you have an audio file and use one of the following attributes, the player wi
     [podloveaudio mp3="http://mysite.com/mymedia.mp3" ogg="http://mysite.com/mymedia.ogg" title="PWP – First show" subtitle="We talk about this and that" summary="Here goes a summary of the episode which should be about 256 characters long" poster="http://mysite.com/mymedia.jpg" permalink="http://mysite.com/my-first-episode/"]
 
 
-= All attributes video example =
-
-All options enabled:
-
-    [podlovevideo mp4="http://mysite.com/mymedia.mp4" ogg="http://mysite.com/mymedia.ogg" webm="http://mysite.com/mymedia.webm" poster="http://mysite.com/mymedia.png" preload="true" autoplay="true" width="640" height="264"]
-
-= All attributes audio exmaple =
-
-All options enabled:
-
-    [podloveaudio mp4="http://mysite.com/mymedia.m4a" mp3="http://mysite.com/mymedia.mp3" ogg="http://mysite.com/mymedia.ogg" opus="http://mysite.com/mymedia.opus" width="640" preload="true" autoplay="true" title="PWP – First show" subtitle="We talk about this and that" summary="Here goes a summary of the episode which should be about 256 characters long" poster="http://mysite.com/mymedia.jpg" permalink="http://mysite.com/my-first-episode/"]
-
 ### Deprecated usage
 
 Earlier versions of this plugin could handle alternative shortcodes, too: [audio] and [video]. As of version 1.1, these are deprecated as they conflict with other plugins.
@@ -222,13 +198,23 @@ Earlier versions of this plugin could handle alternative shortcodes, too: [audio
 == Screenshots ==
 
 1. Podlove Web Player in full swing, using the chapters table to jump to different section of the audio source.
+2. Podlove Web Player in chapters hidden and timecontrol-bar visible view.
 
 == Changelog ==
 
-= 1.2.1 =
-* fixed Firefox stutter probblem when jumping around in OGG files
-* jQuery compatibility down to 1.6
-* small CSS/PHP related fixes
+= 2.0 =
+* refactored large parts of the code
+* added standalone player, works without PHP (example HTML/JS included)
+* moved lots of functionality from PHP to JS
+* cleaned variables and removed old stuff
+* new settings area (yes, again. But now WordPress API compliant)
+* added "duration" parameter for displaying duration of last chapter
+* added "alwaysShowHours" parameter
+* added "alwaysShowControls" parameter
+* added "permalink" parameter
+* added sample audio files for testing purposes
+* some minor CSS improvements
+* fresh versions of mediaelementjs and jQuery
 
 = 1.2 =
 * added: Rich player with meta information (title, subtitle, summary, cover image)
