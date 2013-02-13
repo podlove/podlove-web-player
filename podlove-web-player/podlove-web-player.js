@@ -203,6 +203,9 @@
 
 		//fine tuning params
 		params.width = params.width.replace('px','');
+		if (params.width.toUpperCase() == "AUTO") {
+			params.width = "100%";
+		}
 		if (player.tagName == "AUDIO" && typeof params.audioWidth !== 'undefined') {
 			params.width = params.audioWidth;
 		}
