@@ -3,7 +3,7 @@ Contributors: gerritvanaaken, simonwaldherr
 Donate link: http://podlove.org/
 Tags: podcasting, podlove, html5audio, audio, video, podcast, player
 Requires at least: 3.4.0
-Tested up to: 3.4.2
+Tested up to: 3.5.1
 Stable tag: 2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -12,40 +12,34 @@ HTML5 based audio/video player, focused on podcasts and similar media blogs. It 
 
 == Description ==
 
-**Please note: Since version 1.1, the usage of [audio] and [video] is deprecated. Please use [podloveaudio] or [podlovevideo] instead.**
+This is part of the “Podlove” initiative for a better podcasting experience. See <a href="http://podlove.org">podlove.org</a> for more information.
 
-Use a simple shortcode in your posts and pages, and the Podlove Web Player will appear, playing any media file you want to assign. It tries to use native HTML5 browser playback, but will smoothly fall back to Flash if necessary.
+There are basically four ways to use the Podlove Web Player:
 
-(This is part of the “Podlove” initiative for a better podcasting experience. See <a href="http://podlove.org">podlove.org</a> for more information.)
-	
-### Typical Usage for audio
+=== 1) as a Standalone Player ===
 
-	[podloveaudio src="http://mysite.com/mymedia.mp3"]	
+You won’t need any of the PHP or WordPress files in this package. Just stick to "standalone.html" and see how it’s done there. Maybe you want to build your very own CMS plugin. If so – let us know!
 
-### With multiple source formats
+=== 2) manual WordPress shortcodes ===
 
-    [podloveaudio mp3="http://mysite.com/mymedia.mp3" ogg="http://mysite.com/mymedia.oga"] 
+Use a simple shortcode in your posts and pages, and the Podlove Web Player will appear, playing any media file you want to assign. Basic usage:
 
-### Typical Usage for video
+[podloveaudio src="http://mysite.com/mymedia.mp3" duration="03:33" title="My track"]   
 
-    [podlovevideo src="http://mysite.com/mymedia.mp4" width="640" height="360"]
+=== 3) WordPress enclosures ===
 
-### Typical Usage width chapters
+The WordPress plugin searches for media enclosures in your existing posts and renders a web player automatically. Works like a charme, even for Blubrry PowerPress users.
 
-Use a WordPress-native custom field with the name "my-chapter-field" and fill it with something like this:
+=== 4) as part of the Podlove Podcast Publisher ===
 
-00:00:00.000 Introduction  
-00:00:57.099 First chapter title  
-00:10:03.104 Second chapter title  
-00:12:44.625 Final chapter
-    
-    [podloveaudio src="http://mysite.com/mymedia.mp3" chapters="my-chapter-field"]
+This player is bundled with the <a href="http://podlove.org/podlove-podcast-publisher">“PPP” project</a> and should be automatically rendered, so you don’t have to worry about anything.
 
-### Credits
+
+== Credits ==
 
 The Podlove Web Player is built upon the MediaElement.js library. Check out <a href="http://mediaelementjs.com/">mediaElementjs.com</a> for more information on that.
 
-The plugin architecture was originally forked from the <a href="http://wordpress.org/extend/plugins/videojs-html5-video-player-for-wordpress/">Video.js plugin</a>, but heavily adopted since then.
+We also make use of the fantastic <a href="http://fortawesome.github.com/Font-Awesome/">Font Awesome</a> project.
 
 == Installation ==
 
@@ -89,17 +83,11 @@ The location of the poster frame for the video (or cover image for the rich audi
     [podlovevideo poster="http://mysite.com/mymedia.png"]
     [podloveaudio poster="http://mysite.com/mymedia.png"]
 
-= width = 
+= width / height = 
 
-The width of the video (or the audio player):
+The width and/or height of the video (or the audio player):
 
-    [podlovevideo width="640"]
-
-= height =
-
-The height of the video:
-
-    [podlovevideo height="264"]
+    [podlovevideo width="640" height="264"]
     
 = loop =
 
