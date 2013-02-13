@@ -7,3 +7,6 @@
 [submodule "fontawesome"]
 	path = fontawesome
 	url = https://gerritvanaaken@github.com/FortAwesome/Font-Awesome.git
+[submodule "podlove-web-player/libs/fontawesome"]
+	path = podlove-web-player/libs/fontawesome
+	url = https://gerritvanaaken@github.com/FortAwesome/Font-Awesome.git
