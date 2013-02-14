@@ -124,14 +124,13 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 		'preload' => 'none',
 		'autoplay' => '',
 		'loop' => '',
-		'permalink' => '',
 		'progress' => 'true',
 		'volume' => 'true',
 		'fullscreen' => 'true',
 		'captions' => '',
 		'captionslang' => 'en',
-		'alwaysShowHours' => 'true',
-		'alwaysShowControls' => 'true',
+		'alwaysshowhours' => 'true',
+		'alwaysshowcontrols' => 'true',
 
 		// Podlove specific additions
 		'title' => '',
@@ -140,7 +139,10 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 		'permalink' => '',
 		'chapters' => '',
 		'chapterlinks' => 'all', // could also be 'false' or 'buffered'
-		'duration' => false
+		'duration' => 'false',
+		'chaptersvisible' => 'false',
+		'timecontrolsvisible' => 'false',
+		'summaryvisible' => 'false'
 	), $atts));
 
 	if ( $type ) {
@@ -282,17 +284,26 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 		$init_options .= "\n  duration: '" . $duration . "',";
 	}
 	if ( $loop ) {
-		$init_options .= "\n  loop: '" . $loop . "',";
+		$init_options .= "\n  loop: " . $loop . ",";
 	}
 	if ( $tag_name == 'audio' ) {
 		$init_options .= "\n  audioWidth: '". $width . "',";
 		$init_options .= "\n  audioHeight: '" . $height . "',";
 	}
-	if ( $alwaysShowHours ) {
-		$init_options .= "\n  alwaysShowHours: '" . $alwaysShowHours . "',";	
+	if ( $alwaysshowhours ) {
+		$init_options .= "\n  alwaysShowHours: " . $alwaysshowhours . ",";	
 	}
-	if ( $alwaysShowControls ) {
-		$init_options .= "\n  alwaysShowControls: '" . $alwaysShowControls . "',";	
+	if ( $alwaysshowcontrols ) {
+		$init_options .= "\n  alwaysShowControls: " . $alwaysshowcontrols . ",";	
+	}
+	if ( $chaptersvisible ) {
+		$init_options .= "\n  chaptersVisible: " . $chaptersvisible . ",";	
+	}
+	if ( $timecontrolsvisible ) {
+		$init_options .= "\n  timecontrolsVisible: " . $timecontrolsvisible . ",";	
+	}
+	if ( $summaryvisible ) {
+		$init_options .= "\n  summaryVisible: " . $summaryvisible . ",";	
 	}
 	if ( !empty( $features_string ) ) {
 		$init_options .= "\n  " . $features_string . ",";
