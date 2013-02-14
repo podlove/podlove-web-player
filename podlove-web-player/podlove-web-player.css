@@ -127,7 +127,8 @@
 	opacity: 0.5;
 }
 
-.podlovewebplayer_meta {
+.podlovewebplayer_meta,
+.podlovewebplayer_top {
 	position: relative;
 	background: #000;
 	height: 100px;
@@ -146,6 +147,10 @@
 	background: -o-linear-gradient(top, rgba(50, 50, 50, 0.9), rgba(12, 12, 12, 0.9));
 	background: -ms-linear-gradient(top, rgba(50, 50, 50, 0.9), rgba(12, 12, 12, 0.9));
 	background: linear-gradient(rgba(50, 50, 50, 0.9), rgba(12, 12, 12, 0.9));
+}
+
+.podlovewebplayer_top {
+	height: 30px;
 }
 
 /*
@@ -257,7 +262,8 @@
 }
 
 .podlovewebplayer_video .podlovewebplayer_meta .episodetitle {
-	text-align: center;
+	text-align: left;
+	padding-left: 20px;
 }
 
 .podlovewebplayer_video .podlovewebplayer_meta .subtitle {
@@ -269,16 +275,19 @@
 .podlovewebplayer_video .podlovewebplayer_meta {
 	min-height: 40px;
 	height: auto;
+	padding-top: 30px;
+	-webkit-border-top-left-radius: 0px;
+	-webkit-border-top-right-radius: 0px;
+	-moz-border-radius-topleft: 0px;
+	-moz-border-radius-topright: 0px;
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
 }
 
-.podlovewebplayer_video .mejs-controls {
-	background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.33) 61%, rgba(0,0,0,1) 99%, rgba(0,0,0,1) 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(61%,rgba(0,0,0,0.33)), color-stop(99%,rgba(0,0,0,1)), color-stop(100%,rgba(0,0,0,1)));
-	background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.33) 61%,rgba(0,0,0,1) 99%,rgba(0,0,0,1) 100%);
-	background: -o-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.33) 61%,rgba(0,0,0,1) 99%,rgba(0,0,0,1) 100%);
-	background: -ms-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.33) 61%,rgba(0,0,0,1) 99%,rgba(0,0,0,1) 100%);
-	background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.33) 61%,rgba(0,0,0,1) 99%,rgba(0,0,0,1) 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#000000',GradientType=0 );
+.podlovewebplayer_video .mejs-container .mejs-inner .mejs-controls {
+	bottom: -30px;
+	z-index: 78;
+	background: initial;
 }
 
 .podlovewebplayer_wrapper .mejs-container .mejs-inner .mejs-controls .mejs-time-rail .mejs-time-total .mejs-time-loaded {
@@ -546,6 +555,23 @@ filter: dropshadow(color=#000000, offx=0, offy=0);
 	-moz-border-radius-bottomright: 10px;
 	border-bottom-left-radius: 10px;
 	border-bottom-right-radius: 10px;
+}
+
+.podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_tableend,
+.podlovewebplayer_wrapper.podlovewebplayer_video .controlbox,
+.podlovewebplayer_wrapper.podlovewebplayer_video .summary {
+	background: #252525; 
+}
+
+.podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_wrapper .podlovewebplayer_chapterbox,
+.podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_wrapper .podlovewebplayer_chapters,
+.podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_meta + .summary,
+.podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_wrapper .controlbox {
+	border-color: #252525;
+}
+
+.podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_wrapper .controlbox {
+	margin-top: 0px;
 }
 
 @media only screen 

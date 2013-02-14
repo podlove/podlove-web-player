@@ -282,8 +282,6 @@
 				typeof params.poster !== 'undefined' ||
 				typeof $(player).attr('poster') !== 'undefined'
 			 ) {
-
-			wrapper.prepend('<div class="podlovewebplayer_meta"></div>')
 			
 			if(player.tagName == "AUDIO") {
 				wrapper.addClass('podlovewebplayer_audio');
@@ -302,6 +300,8 @@
 					}
 				});
 				
+				wrapper.prepend('<div class="podlovewebplayer_meta"></div>');
+				
 				wrapper.find('.podlovewebplayer_meta').prepend('<a class="bigplay" href="#">Play Episode</a>');
 				if (typeof params.poster !== 'undefined') {
 					wrapper.find('.podlovewebplayer_meta').append(
@@ -313,6 +313,11 @@
 				}
 			}
 
+			if (player.tagName == "VIDEO") {
+				wrapper.prepend('<div class="podlovewebplayer_top"></div>');
+				wrapper.append('<div class="podlovewebplayer_meta"></div>');
+			}
+			
 			if (typeof params.title !== 'undefined') {
 				wrapper.find('.podlovewebplayer_meta').append(
 					'<h3 class="episodetitle">'+params.title+'</h3>');
