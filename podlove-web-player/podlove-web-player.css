@@ -256,6 +256,56 @@
 	font-size: 13px!important;
 }
 
+.podlovewebplayer_video .podlovewebplayer_meta .episodetitle {
+	text-align: center;
+}
+
+.podlovewebplayer_video .podlovewebplayer_meta .subtitle {
+	margin-left: 20px;
+	font-size: 9px;
+	display: none;
+}
+
+.podlovewebplayer_video .podlovewebplayer_meta {
+	min-height: 40px;
+	height: auto;
+}
+
+.podlovewebplayer_video .mejs-controls {
+	background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.33) 61%, rgba(0,0,0,1) 99%, rgba(0,0,0,1) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(61%,rgba(0,0,0,0.33)), color-stop(99%,rgba(0,0,0,1)), color-stop(100%,rgba(0,0,0,1)));
+	background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.33) 61%,rgba(0,0,0,1) 99%,rgba(0,0,0,1) 100%);
+	background: -o-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.33) 61%,rgba(0,0,0,1) 99%,rgba(0,0,0,1) 100%);
+	background: -ms-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.33) 61%,rgba(0,0,0,1) 99%,rgba(0,0,0,1) 100%);
+	background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.33) 61%,rgba(0,0,0,1) 99%,rgba(0,0,0,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#000000',GradientType=0 );
+}
+
+.podlovewebplayer_wrapper .mejs-container .mejs-inner .mejs-controls .mejs-time-rail .mejs-time-total .mejs-time-loaded {
+	background: -moz-linear-gradient(top, rgba(67,131,219,0.8) 0%, rgba(88,156,239,0.8) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(67,131,219,0.8)), color-stop(100%,rgba(88,156,239,0.8)));
+	background: -webkit-linear-gradient(top, rgba(67,131,219,0.8) 0%,rgba(88,156,239,0.8) 100%);
+	background: -o-linear-gradient(top, rgba(67,131,219,0.8) 0%,rgba(88,156,239,0.8) 100%);
+	background: -ms-linear-gradient(top, rgba(67,131,219,0.8) 0%,rgba(88,156,239,0.8) 100%);
+	background: linear-gradient(to bottom, rgba(67,131,219,0.8) 0%,rgba(88,156,239,0.8) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc4383db', endColorstr='#cc589cef',GradientType=0 );
+}
+
+.podlovewebplayer_wrapper .mejs-container .mejs-inner .mejs-controls .mejs-volume-button .mejs-volume-slider .mejs-volume-handle {
+cursor: move;
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;
+}
+
+.podlovewebplayer_wrapper .mejs-container .mejs-inner .mejs-container .mejs-controls .mejs-time span {
+-webkit-text-shadow: 0px 0px 2px #000000;
+-moz-text-shadow: 0px 0px 2px #000000;
+-o-text-shadow: 0px 0px 2px #000000;
+text-shadow: 0px 0px 2px #000000;
+filter: dropshadow(color=#000000, offx=0, offy=0);
+}
+
 .podlovewebplayer_meta + .summary,
 .podlovewebplayer_wrapper .controlbox {
 	overflow: hidden;
@@ -304,10 +354,6 @@
 	background: #000;
 }
 
-.podlovewebplayer_wrapper .controlbox a.infobuttons {
-	margin: 30px;
-}
-
 .podlovewebplayer_wrapper .controlbox.active {
 	height: 25px;
 	padding: 3px 10px 4px 10px;
@@ -330,7 +376,10 @@
 
 .podlovewebplayer_wrapper .controlbox .infobuttons,
 .podlovewebplayer_wrapper .controlbox .infobuttons a {
-	margin: 30px;
+	position: relative;
+	margin: 15px;
+	padding: 10px;
+	z-index: 78;
 	font-size: 2.4em;
 }
 
@@ -486,7 +535,7 @@
 }
 
 .podlovewebplayer_wrapper .podlovewebplayer_tableend {
-	position: relative;
+	position: initial;
 	display: block;
 	height: 11px;
 	left: 0px;
@@ -514,6 +563,9 @@ and (max-width : 500px) {
 		border-top-left-radius: 0px;
 		border-top-right-radius: 0px;
 	}
+	.podlovewebplayer_video.podlovewebplayer_meta {
+		height: auto;
+	}
 	.podlovewebplayer_meta h3 a, .podlovewebplayer_meta h3 {
 		position: initial;
 		top: 5px;
@@ -534,6 +586,7 @@ and (max-width : 500px) {
 		position: absolute;
 		bottom: 5px;
 	}
+	
 	.podlovewebplayer_meta .subtitle {
 		position: initial;
 		left: 10px;

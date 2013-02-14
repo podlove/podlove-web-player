@@ -275,34 +275,44 @@
 		});
 
 		//build rich player with meta data
-		if (player.tagName == "AUDIO" && (
+		if (
 				typeof params.title !== 'undefined' ||
 				typeof params.subtitle !== 'undefined' ||
 				typeof params.summary !== 'undefined' ||
 				typeof params.poster !== 'undefined' ||
 				typeof $(player).attr('poster') !== 'undefined'
-				)) {
+			 ) {
 
-			//set status variable
-			var richplayer = true;
-
-			//kill play/pause button from miniplayer
-			$.each(mejsoptions.features, function(i){
-				if (this == 'playpause') {
-					mejsoptions.features.splice(i,1);		
-				}
-			});
+			wrapper.prepend('<div class="podlovewebplayer_meta"></div>')
 			
+			if(player.tagName == "AUDIO") {
+				wrapper.addClass('podlovewebplayer_audio');
+			} else if (player.tagName == "VIDEO") {
+				wrapper.addClass('podlovewebplayer_video');
+			}
 
-			wrapper.prepend('<div class="podlovewebplayer_meta"><a class="bigplay" href="#">Play Episode</a></div>');
-			if (typeof params.poster !== 'undefined') {
-				wrapper.find('.podlovewebplayer_meta').append(
-					'<div class="coverart"><img src="'+params.poster+'" alt=""></div>');
+			if(player.tagName == "AUDIO") {
+				//set status variable
+				var richplayer = true;
+				
+				//kill play/pause button from miniplayer
+				$.each(mejsoptions.features, function(i){
+					if (this == 'playpause') {
+						mejsoptions.features.splice(i,1);		
+					}
+				});
+				
+				wrapper.find('.podlovewebplayer_meta').prepend('<a class="bigplay" href="#">Play Episode</a>');
+				if (typeof params.poster !== 'undefined') {
+					wrapper.find('.podlovewebplayer_meta').append(
+						'<div class="coverart"><img src="'+params.poster+'" alt=""></div>');
+				}
+				if (typeof $(player).attr('poster') !== 'undefined') {
+					wrapper.find('.podlovewebplayer_meta').append(
+						'<div class="coverart"><img src="'+$(player).attr('poster')+'" alt=""></div>');
+				}
 			}
-			if (typeof $(player).attr('poster') !== 'undefined') {
-				wrapper.find('.podlovewebplayer_meta').append(
-					'<div class="coverart"><img src="'+$(player).attr('poster')+'" alt=""></div>');
-			}
+
 			if (typeof params.title !== 'undefined') {
 				wrapper.find('.podlovewebplayer_meta').append(
 					'<h3 class="episodetitle">'+params.title+'</h3>');
