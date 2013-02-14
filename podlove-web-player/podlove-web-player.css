@@ -267,9 +267,12 @@
 }
 
 .podlovewebplayer_video .podlovewebplayer_meta .subtitle {
+	font-size: 13px;
+	float: none;
+	margin-right: 20px;
 	margin-left: 20px;
-	font-size: 9px;
-	display: none;
+	padding-top: 10px;
+	padding-bottom: 10px;
 }
 
 .podlovewebplayer_video .podlovewebplayer_meta {
@@ -282,6 +285,11 @@
 	-moz-border-radius-topright: 0px;
 	border-top-left-radius: 0px;
 	border-top-right-radius: 0px;
+}
+
+.podlovewebplayer_video .podlovewebplayer_meta .togglers {
+	top: 40px;
+	bottom: auto;
 }
 
 .podlovewebplayer_video .mejs-container .mejs-inner .mejs-controls {
@@ -556,6 +564,13 @@ filter: dropshadow(color=#000000, offx=0, offy=0);
 	border-bottom-left-radius: 10px;
 	border-bottom-right-radius: 10px;
 }
+
+/*
+.podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_tableend {
+	position: relative;
+	height: 30px;
+	top: -10px;
+}*/
 
 .podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_tableend,
 .podlovewebplayer_wrapper.podlovewebplayer_video .controlbox,
