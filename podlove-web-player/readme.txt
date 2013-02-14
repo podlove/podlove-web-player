@@ -171,6 +171,11 @@ Option for the jumplink behaviour in chapter table
     [podloveaudio chapterlinks="buffered"] (only buffered chapters are clickable)
     [podloveaudio chapterlinks="false"] (chapters are not linked)
 
+= chaptersVisible / timecontrolsVisible / summaryVisible =
+
+Defines the default visibility status of toggable player modules. Standard value is "false".
+
+    [podloveaudio chaptersVisible="true" timecontrolsVisible="false" summaryVisible="false"]
 
 = Rich Podlove Web Player player with meta information =
 
@@ -195,13 +200,17 @@ Earlier versions of this plugin could handle alternative shortcodes, too: [audio
 * added standalone player, works without PHP (example HTML/JS included)
 * moved lots of functionality from PHP to JS
 * cleaned variables and removed old stuff
+* CSS improvements
 * new settings area (yes, again. But now WordPress API compliant)
+* added FontAwesome for fancy control buttons
 * added "duration" parameter for displaying duration of last chapter
+* added "permalink" parameter
 * added "alwaysShowHours" parameter
 * added "alwaysShowControls" parameter
-* added "permalink" parameter
+* added "chaptersVisible" parameter
+* added "timecontrolsVisible" parameter
+* added "summaryVisible" parameter
 * added sample audio files for testing purposes
-* some minor CSS improvements
 * fresh versions of mediaelementjs and jQuery
 
 = 1.2 =
