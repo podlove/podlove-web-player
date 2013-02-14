@@ -150,7 +150,7 @@
 }
 
 .podlovewebplayer_top {
-	height: 30px;
+	height: 11px;
 }
 
 /*
@@ -578,14 +578,14 @@ filter: dropshadow(color=#000000, offx=0, offy=0);
 	background: #252525; 
 }
 
-.podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_wrapper .podlovewebplayer_chapterbox,
-.podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_wrapper .podlovewebplayer_chapters,
+.podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_chapterbox,
+.podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_chapters,
 .podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_meta + .summary,
-.podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_wrapper .controlbox {
+.podlovewebplayer_wrapper.podlovewebplayer_video .controlbox {
 	border-color: #252525;
 }
 
-.podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_wrapper .controlbox {
+.podlovewebplayer_wrapper.podlovewebplayer_video .controlbox {
 	margin-top: 0px;
 }
 
@@ -638,7 +638,15 @@ and (max-width : 500px) {
 	.podlovewebplayer_wrapper .controlbox a.infobuttons {
 		margin: 15px;
 	}
-	.podlovewebplayer_wrapper .podlovewebplayer_tableend {
+	.podlovewebplayer_wrapper .podlovewebplayer_tableend,
+	.podlovewebplayer_wrapper .podlovewebplayer_top {
+		-webkit-border-top-left-radius: 0px;
+		-webkit-border-top-right-radius: 0px;
+		-moz-border-radius-topleft: 0px;
+		-moz-border-radius-topright: 0px;
+		border-top-left-radius: 0px;
+		border-top-right-radius: 0px;
+	
 		-webkit-border-bottom-left-radius: 0px;
 		-webkit-border-bottom-right-radius: 0px;
 		-moz-border-radius-bottomleft: 0px;
