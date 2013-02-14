@@ -282,7 +282,7 @@
 				typeof params.summary !== 'undefined' ||
 				typeof params.poster !== 'undefined' ||
 				typeof $(player).attr('poster') !== 'undefined'
-			 ) {
+			 )) {
 			
 			if(player.tagName == "AUDIO") {
 				wrapper.addClass('podlovewebplayer_audio');
