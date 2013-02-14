@@ -127,7 +127,8 @@
 	opacity: 0.5;
 }
 
-.podlovewebplayer_meta {
+.podlovewebplayer_meta,
+.podlovewebplayer_top {
 	position: relative;
 	background: #000;
 	height: 100px;
@@ -146,6 +147,10 @@
 	background: -o-linear-gradient(top, rgba(50, 50, 50, 0.9), rgba(12, 12, 12, 0.9));
 	background: -ms-linear-gradient(top, rgba(50, 50, 50, 0.9), rgba(12, 12, 12, 0.9));
 	background: linear-gradient(rgba(50, 50, 50, 0.9), rgba(12, 12, 12, 0.9));
+}
+
+.podlovewebplayer_top {
+	height: 11px;
 }
 
 /*
@@ -176,6 +181,10 @@
 	z-index: 78;
 	text-indent: -100em;
 	background: url(img/bigplay.png) 0 0 no-repeat;
+	-webkit-transition: none;
+	-moz-transition: none;
+	-o-transition: none;
+	transition: none;
 }
 
 .podlovewebplayer_meta .bigplay:focus,
@@ -252,6 +261,68 @@
 	font-size: 13px!important;
 }
 
+.podlovewebplayer_video .podlovewebplayer_meta .episodetitle {
+	text-align: left;
+	padding-left: 20px;
+}
+
+.podlovewebplayer_video .podlovewebplayer_meta .subtitle {
+	font-size: 13px;
+	float: none;
+	margin-right: 20px;
+	margin-left: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.podlovewebplayer_video .podlovewebplayer_meta {
+	min-height: 40px;
+	height: auto;
+	padding-top: 30px;
+	-webkit-border-top-left-radius: 0px;
+	-webkit-border-top-right-radius: 0px;
+	-moz-border-radius-topleft: 0px;
+	-moz-border-radius-topright: 0px;
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+}
+
+.podlovewebplayer_video .podlovewebplayer_meta .togglers {
+	top: 40px;
+	bottom: auto;
+}
+
+.podlovewebplayer_video .mejs-container .mejs-inner .mejs-controls {
+	bottom: -30px;
+	z-index: 78;
+	background: initial;
+}
+
+.podlovewebplayer_wrapper .mejs-container .mejs-inner .mejs-controls .mejs-time-rail .mejs-time-total .mejs-time-loaded {
+	background: -moz-linear-gradient(top, rgba(67,131,219,0.8) 0%, rgba(88,156,239,0.8) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(67,131,219,0.8)), color-stop(100%,rgba(88,156,239,0.8)));
+	background: -webkit-linear-gradient(top, rgba(67,131,219,0.8) 0%,rgba(88,156,239,0.8) 100%);
+	background: -o-linear-gradient(top, rgba(67,131,219,0.8) 0%,rgba(88,156,239,0.8) 100%);
+	background: -ms-linear-gradient(top, rgba(67,131,219,0.8) 0%,rgba(88,156,239,0.8) 100%);
+	background: linear-gradient(to bottom, rgba(67,131,219,0.8) 0%,rgba(88,156,239,0.8) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc4383db', endColorstr='#cc589cef',GradientType=0 );
+}
+
+.podlovewebplayer_wrapper .mejs-container .mejs-inner .mejs-controls .mejs-volume-button .mejs-volume-slider .mejs-volume-handle {
+cursor: move;
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;
+}
+
+.podlovewebplayer_wrapper .mejs-container .mejs-inner .mejs-container .mejs-controls .mejs-time span {
+-webkit-text-shadow: 0px 0px 2px #000000;
+-moz-text-shadow: 0px 0px 2px #000000;
+-o-text-shadow: 0px 0px 2px #000000;
+text-shadow: 0px 0px 2px #000000;
+filter: dropshadow(color=#000000, offx=0, offy=0);
+}
+
 .podlovewebplayer_meta + .summary,
 .podlovewebplayer_wrapper .controlbox {
 	overflow: hidden;
@@ -300,10 +371,6 @@
 	background: #000;
 }
 
-.podlovewebplayer_wrapper .controlbox a.infobuttons {
-	margin: 30px;
-}
-
 .podlovewebplayer_wrapper .controlbox.active {
 	height: 25px;
 	padding: 3px 10px 4px 10px;
@@ -326,7 +393,10 @@
 
 .podlovewebplayer_wrapper .controlbox .infobuttons,
 .podlovewebplayer_wrapper .controlbox .infobuttons a {
-	margin: 30px;
+	position: relative;
+	margin: 15px;
+	padding: 10px;
+	z-index: 78;
 	font-size: 2.4em;
 }
 
@@ -482,7 +552,7 @@
 }
 
 .podlovewebplayer_wrapper .podlovewebplayer_tableend {
-	position: relative;
+	position: initial;
 	display: block;
 	height: 11px;
 	left: 0px;
@@ -495,10 +565,35 @@
 	border-bottom-right-radius: 10px;
 }
 
+/*
+.podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_tableend {
+	position: relative;
+	height: 30px;
+	top: -10px;
+}*/
+
+.podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_tableend,
+.podlovewebplayer_wrapper.podlovewebplayer_video .controlbox,
+.podlovewebplayer_wrapper.podlovewebplayer_video .summary {
+	background: #252525; 
+}
+
+.podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_chapterbox,
+.podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_chapters,
+.podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_meta + .summary,
+.podlovewebplayer_wrapper.podlovewebplayer_video .controlbox {
+	border-color: #252525;
+}
+
+.podlovewebplayer_wrapper.podlovewebplayer_video .controlbox {
+	margin-top: 0px;
+}
+
 @media only screen 
 and (max-width : 500px) {
 	.podlovewebplayer_wrapper {
-		margin: 0 -28px 0 -24px;
+		margin-left: 0px;
+		margin-right: 0px;
 	}
 	.podlovewebplayer_meta {
 		height: 210px;
@@ -509,12 +604,14 @@ and (max-width : 500px) {
 		border-top-left-radius: 0px;
 		border-top-right-radius: 0px;
 	}
+	.podlovewebplayer_video.podlovewebplayer_meta {
+		height: auto;
+	}
 	.podlovewebplayer_meta h3 a, .podlovewebplayer_meta h3 {
-		position: absolute;
-		float: left;
+		position: initial;
 		top: 5px;
-		left: 20px;
-		right: 20px;
+		left: 10px;
+		right: 10px;
 		text-align: center;
 	}
 	.podlovewebplayer_meta .coverart {
@@ -530,18 +627,26 @@ and (max-width : 500px) {
 		position: absolute;
 		bottom: 5px;
 	}
+	
 	.podlovewebplayer_meta .subtitle {
-		position: absolute;
-		top: 40px;
-		left: 20px;
-		right: 20px;
+		position: initial;
+		left: 10px;
+		right: 10px;
 		margin: auto;
 		text-align: center;
 	}
 	.podlovewebplayer_wrapper .controlbox a.infobuttons {
 		margin: 15px;
 	}
-	.podlovewebplayer_wrapper .podlovewebplayer_tableend {
+	.podlovewebplayer_wrapper .podlovewebplayer_tableend,
+	.podlovewebplayer_wrapper .podlovewebplayer_top {
+		-webkit-border-top-left-radius: 0px;
+		-webkit-border-top-right-radius: 0px;
+		-moz-border-radius-topleft: 0px;
+		-moz-border-radius-topright: 0px;
+		border-top-left-radius: 0px;
+		border-top-right-radius: 0px;
+	
 		-webkit-border-bottom-left-radius: 0px;
 		-webkit-border-bottom-right-radius: 0px;
 		-moz-border-radius-bottomleft: 0px;
