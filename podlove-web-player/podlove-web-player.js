@@ -276,6 +276,7 @@
 
 		//build rich player with meta data
 		if (player.tagName == "AUDIO" && (
+				typeof params.chapters !== 'undefined' ||
 				typeof params.title !== 'undefined' ||
 				typeof params.subtitle !== 'undefined' ||
 				typeof params.summary !== 'undefined' ||
