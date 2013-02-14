@@ -176,6 +176,10 @@
 	z-index: 78;
 	text-indent: -100em;
 	background: url(img/bigplay.png) 0 0 no-repeat;
+	-webkit-transition: none;
+	-moz-transition: none;
+	-o-transition: none;
+	transition: none;
 }
 
 .podlovewebplayer_meta .bigplay:focus,
@@ -498,7 +502,8 @@
 @media only screen 
 and (max-width : 500px) {
 	.podlovewebplayer_wrapper {
-		margin: 0 -28px 0 -24px;
+		margin-left: 0px;
+		margin-right: 0px;
 	}
 	.podlovewebplayer_meta {
 		height: 210px;
@@ -510,11 +515,10 @@ and (max-width : 500px) {
 		border-top-right-radius: 0px;
 	}
 	.podlovewebplayer_meta h3 a, .podlovewebplayer_meta h3 {
-		position: absolute;
-		float: left;
+		position: initial;
 		top: 5px;
-		left: 20px;
-		right: 20px;
+		left: 10px;
+		right: 10px;
 		text-align: center;
 	}
 	.podlovewebplayer_meta .coverart {
@@ -531,10 +535,9 @@ and (max-width : 500px) {
 		bottom: 5px;
 	}
 	.podlovewebplayer_meta .subtitle {
-		position: absolute;
-		top: 40px;
-		left: 20px;
-		right: 20px;
+		position: initial;
+		left: 10px;
+		right: 10px;
 		margin: auto;
 		text-align: center;
 	}
