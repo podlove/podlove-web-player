@@ -4,7 +4,7 @@ Donate link: http://podlove.org/
 Tags: podcasting, podlove, html5audio, audio, video, podcast, player
 Requires at least: 3.4.0
 Tested up to: 3.5.1
-Stable tag: 2.0.0
+Stable tag: 2.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,21 +16,21 @@ This is part of the “Podlove” initiative for a better podcasting experience.
 
 There are basically four ways to use the Podlove Web Player:
 
-=== 1) as a Standalone Player ===
+### 1) as a Standalone Player
 
 You won’t need any of the PHP or WordPress files in this package. Just stick to "standalone.html" and see how it’s done there. Maybe you want to build your very own CMS plugin. If so – let us know!
 
-=== 2) manual WordPress shortcodes ===
+### 2) manual WordPress shortcodes
 
 Use a simple shortcode in your posts and pages, and the Podlove Web Player will appear, playing any media file you want to assign. Basic usage:
 
-[podloveaudio src="http://mysite.com/mymedia.mp3" duration="03:33" title="My track"]   
+   [podloveaudio src="http://mysite.com/mymedia.mp3" duration="03:33" title="My track"]   
 
-=== 3) WordPress enclosures ===
+### 3) WordPress enclosures
 
 The WordPress plugin searches for media enclosures in your existing posts and renders a web player automatically. Works like a charme, even for Blubrry PowerPress users.
 
-=== 4) as part of the Podlove Podcast Publisher ===
+### 4) as part of the Podlove Podcast Publisher
 
 This player is bundled with the <a href="http://podlove.org/podlove-podcast-publisher">“PPP” project</a> and should be automatically rendered, so you don’t have to worry about anything.
 
@@ -195,7 +195,12 @@ Earlier versions of this plugin could handle alternative shortcodes, too: [audio
 
 == Changelog ==
 
-= 2.0 =
+= 2.0.1 =
+* does not crash in PHP 5.2 anymore
+* some CSS improvements for responsive layouts
+* fixes visual glitches in readme.txt
+
+= 2.0.0 =
 * refactored large parts of the code
 * added standalone player, works without PHP (example HTML/JS included)
 * moved lots of functionality from PHP to JS
