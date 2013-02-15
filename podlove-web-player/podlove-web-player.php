@@ -393,7 +393,7 @@ function podlovewebplayer_get_enclosed( $post_id ) {
 	return $pung;
 }
 
-function podlovewebplayer_enclosure( $content ) {
+function podlovewebplayer_enclosures( $content ) {
 	global $post;
 	$wp_options = get_option('podlovewebplayer_options');
 	if ( $enclosures = podlovewebplayer_get_enclosed( $post->ID ) // do we have enclosures in this post?
@@ -435,7 +435,7 @@ function podlovewebplayer_enclosure( $content ) {
 $wp_options = get_option('podlovewebplayer_options');
 if( !@is_feed() && isset( $wp_options['enclosure_detect'] ) ) {
 	// fire auto-detect script before regular shortcode, which has prio 11
-	add_filter( 'the_content', 'podlovewebplayer_enclosure', 10 );
+	add_filter( 'the_content', 'podlovewebplayer_enclosures', 10 );
 }
 
 
