@@ -191,33 +191,6 @@
 		var richplayer = false;
 		var haschapters = false;
 
-		//handle default values for params
-		var params = $.extend({}, {
-			'chapterlinks': 'all',
-			'width': '100%',
-			'duration': false,
-			'chaptersVisible': false,
-			'timecontrolsVisible': false,
-			'summaryVisible': false
-		}, options);
-
-		//fine tuning params
-		params.width = params.width.replace('px','');
-		if (params.width.toUpperCase() == "AUTO") {
-			params.width = "100%";
-		}
-		if (player.tagName == "AUDIO" && typeof params.audioWidth !== 'undefined') {
-			params.width = params.audioWidth;
-		}
-		if (player.tagName == "VIDEO" && typeof $(player).attr('width') !== 'undefined') {
-			params.width = $(player).attr('width');
-		}
-		//duration can be given in seconds or in timecode format
-		if (params.duration && params.duration != parseInt(params.duration)) {
-			var secArray = parseTimecode(params.duration);
-			params.duration = secArray[0];
-		}
-
 		// MEJS options defaults (taken from mediaelementjs.com, slightly adopted for podcasting needs)
 		var mejsoptions = {
 			defaultVideoWidth: 480,
@@ -242,15 +215,52 @@
 			duration: 0
 		}
 
-		//transfer width/height to the correct mejs counterparts	
+		//handle default values for params
+		var params = $.extend({}, {
+			'chapterlinks': 'all',
+			'width': '100%',
+			'duration': false,
+			'chaptersVisible': false,
+			'timecontrolsVisible': false,
+			'summaryVisible': false
+		}, options);
 
+		//fine tuning params
+		params.width = params.width.replace('px','');
+		if (params.width.toUpperCase() == "AUTO") {
+			params.width = "100%";
+		}
+
+		//fine tuning audio params
 		if (player.tagName == "AUDIO") {
 			mejsoptions.audioWidth = params.width;
-		} else {
+			if (typeof params.audioWidth !== 'undefined') {
+				params.width = params.audioWidth;
+			}
+			
+			//kill fullscreen button
+			$.each(mejsoptions.features, function(i){
+				if (this == 'fullscreen') {
+					mejsoptions.features.splice(i,1);		
+				}
+			});
+
+		//fine tuning video params
+		} else if (player.tagName == "VIDEO")
+
 			if (typeof params.height !== 'undefined') {
 				mejsoptions.videoWidth = params.width;
 				mejsoptions.videoHeight = params.height;
 			}
+
+		 	if (typeof $(player).attr('width') !== 'undefined') {
+			params.width = $(player).attr('width');
+		}
+
+		//duration can be given in seconds or in timecode format
+		if (params.duration && params.duration != parseInt(params.duration)) {
+			var secArray = parseTimecode(params.duration);
+			params.duration = secArray[0];
 		}
 		
 		//turn ALL suitable pwp params to mejs options
@@ -275,24 +285,20 @@
 		});
 
 		//build rich player with meta data
-		if (
-				typeof params.chapters !== 'undefined' ||
+		if (  typeof params.chapters !== 'undefined' ||
 				typeof params.title !== 'undefined' ||
 				typeof params.subtitle !== 'undefined' ||
 				typeof params.summary !== 'undefined' ||
 				typeof params.poster !== 'undefined' ||
 				typeof $(player).attr('poster') !== 'undefined'
-			 ) {
+				) {
+
+			//set status variable
+			var richplayer = true;
 			
-			if (player.tagName == "AUDIO") {
-				wrapper.addClass('podlovewebplayer_audio');
-			} else if (player.tagName == "VIDEO") {
-				wrapper.addClass('podlovewebplayer_video');
-			}
+			wrapper.addClass('podlovewebplayer_' + player.tagName.toLowerCase());
 
 			if(player.tagName == "AUDIO") {
-				//set status variable
-				var richplayer = true;
 				
 				//kill play/pause button from miniplayer
 				$.each(mejsoptions.features, function(i){
