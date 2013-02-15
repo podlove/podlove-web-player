@@ -275,16 +275,16 @@
 		});
 
 		//build rich player with meta data
-		if (player.tagName == "AUDIO" && (
+		if (
 				typeof params.chapters !== 'undefined' ||
 				typeof params.title !== 'undefined' ||
 				typeof params.subtitle !== 'undefined' ||
 				typeof params.summary !== 'undefined' ||
 				typeof params.poster !== 'undefined' ||
 				typeof $(player).attr('poster') !== 'undefined'
-			 )) {
+			 ) {
 			
-			if(player.tagName == "AUDIO") {
+			if (player.tagName == "AUDIO") {
 				wrapper.addClass('podlovewebplayer_audio');
 			} else if (player.tagName == "VIDEO") {
 				wrapper.addClass('podlovewebplayer_video');
@@ -331,7 +331,6 @@
 			//always render toggler buttons wrapper
 			wrapper.find('.podlovewebplayer_meta').append('<div class="togglers"></div>');
 			
-			//
 			if (typeof params.summary !== 'undefined') {
 				var summaryActive = "";
 				if (params.summaryVisible == true) {
