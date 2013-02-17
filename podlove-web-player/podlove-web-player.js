@@ -345,16 +345,19 @@
 
 		// get things straight for flash fallback
 		if (player.pluginType == 'flash') {
-			var layoutedPlayer = $("#mep_" + player.id.substring(9));
+			var layoutedPlayer = $('#mep_' + player.id.substring(9));
 		}
-		// get DOM object of meta info
-		var wrapper = layoutedPlayer.closest('.podlovewebplayer_wrapper');
-		var metainfo = wrapper.find('.podlovewebplayer_meta');
-		var summary = wrapper.find('.summary');
-		var chapterdiv = wrapper.find('.podlovewebplayer_chapterbox');
+
+		// cache some jQ objects
+		var wrapper = layoutedPlayer.closest('.podlovewebplayer_wrapper'),
+			metainfo = wrapper.find('.podlovewebplayer_meta'),
+			summary = wrapper.find('.summary'),
+			constrolbox = wrapper.find('.controlbox'),
+			chapterdiv = wrapper.find('.podlovewebplayer_chapterbox');
 		
+		// fix height of summary for better toggability
 		summary.each(function() {
-			$(this).data("height", $(this).height());
+			$(this).data('height', $(this).height());
 			if (!$(this).hasClass('active')) {
 				$(this).height('0px');
 			}
@@ -363,18 +366,20 @@
 		if (metainfo.length === 1) {
 
 			metainfo.find('a.infowindow').on('click', function(){
-				$(this).closest('.podlovewebplayer_wrapper').find('.summary').toggleClass('active');
-				if($(this).closest('.podlovewebplayer_wrapper').find('.summary').hasClass('active')) {
-					$(this).closest('.podlovewebplayer_wrapper').find('.summary').height($(this).closest('.podlovewebplayer_wrapper').find('.summary').data("height")+'px');
+				summary.toggleClass('active');
+				if(summary.hasClass('active')) {
+					summary.height(summary.data('height') + 'px');
 				} else {
-					$(this).closest('.podlovewebplayer_wrapper').find('.summary').height('0px');
+					summary.height('0px');
 				}
 				return false;
 			});
+
 			metainfo.find('a.showcontrols').on('click', function(){
-				$(this).closest('.podlovewebplayer_wrapper').find('.controlbox').toggleClass('active');
+				controlbox.toggleClass('active');
 				return false;
 			});
+
 			metainfo.find('.bigplay').on('click', function(){
 				if (player.paused) {
 					player.play();
@@ -386,60 +391,52 @@
 				return false;
 			});
 
-
-
 			wrapper.find('.prevbutton').click(function(){
-				if((typeof player.currentTime === 'number')&&(player.currentTime > 0)) {
+				if ((typeof player.currentTime === 'number')&&(player.currentTime > 0)) {
 					if(player.currentTime > chapterdiv.find('.active').data('start')+10) {
 						player.setCurrentTime(chapterdiv.find('.active').data('start'));
-					}
-					else {
+					} else {
 						player.setCurrentTime(chapterdiv.find('.active').prev().data('start'));
-					}
-					
-				}
-				else {
+					}					
+				} else {
 					player.play();
 				}
-				
 				return false;
 			});
 			
 			wrapper.find('.nextbutton').click(function(){
-				if((typeof player.currentTime === 'number')&&(player.currentTime > 0)) {
+				if ((typeof player.currentTime === 'number') && (player.currentTime > 0)) {
 					player.setCurrentTime(chapterdiv.find('.active').next().data('start'));
-				}
-				else {
+				} else {
 					player.play();
 				}
-				
 				return false;
 			});
-			layoutedPlayer.closest('.podlovewebplayer_wrapper').find('.rewindbutton').click(function(){
+
+			wrapper.find('.rewindbutton').click(function(){
 				if((typeof player.currentTime === 'number')&&(player.currentTime > 0)) {
-					player.setCurrentTime(player.currentTime-30);
-				}
-				else {
+					player.setCurrentTime(player.currentTime - 30);
+				} else {
 					player.play();
 				}
-				
 				return false;
 			});
-			layoutedPlayer.closest('.podlovewebplayer_wrapper').find('.forwardbutton').click(function(){
+
+			wrapper.find('.forwardbutton').click(function(){
 				if((typeof player.currentTime === 'number')&&(player.currentTime > 0)) {
 					player.setCurrentTime(player.currentTime+30);
-				}
-				else {
+				} else {
 					player.play();
 				}
-				
 				return false;
 			});
-			layoutedPlayer.closest('.podlovewebplayer_wrapper').find('.currentbutton').click(function(){
+
+			wrapper.find('.currentbutton').click(function(){
 				window.prompt('This URL directly points to the current playback position', $(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href')+'#t='+generateTimecode([player.currentTime]));
 				return false;
 			});
-			layoutedPlayer.closest('.podlovewebplayer_wrapper').find('.tweetbutton').click(function(){
+
+			wrapper.find('.tweetbutton').click(function(){
 				window.open('https://twitter.com/share?text='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text())+'&url='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href'))+'%23t%3D'+generateTimecode([player.currentTime]), 'tweet it', 'width=550,height=420,resizable=yes');
 				return false;
 			});
@@ -481,8 +478,8 @@
 			});
 
 		chapterdiv.each(function() {
-			$(this).data("height", $(this).height());
-			$(this).height($(this).data("height"));
+			$(this).data('height', $(this).height());
+			$(this).height($(this).data('height'));
 			if(!$(this).hasClass('active')) {
 				$(this).height('0px');
 			}
@@ -512,7 +509,6 @@
 					$(this).text(generateTimecode([end-start]));
 				});
 			}
-			
 
 			// add Deeplink Behavior if there is only one player on the site
 			if (players.length === 1) {
