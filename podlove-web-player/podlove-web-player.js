@@ -12,9 +12,9 @@
 
 
 	$.fn.podlovewebplayer = function(options) {
-		var player = this[0];
-		var richplayer = false;
-		var haschapters = false;
+		var player = this[0],
+			richplayer = false,
+			haschapters = false;
 
 		// MEJS options defaults (taken from mediaelementjs.com, slightly adopted for podcasting needs)
 		var mejsoptions = {
@@ -42,12 +42,12 @@
 
 		//handle default values for params
 		var params = $.extend({}, {
-			'chapterlinks': 'all',
-			'width': '100%',
-			'duration': false,
-			'chaptersVisible': false,
-			'timecontrolsVisible': false,
-			'summaryVisible': false
+			chapterlinks: 'all',
+			width: '100%',
+			duration: false,
+			chaptersVisible: false,
+			timecontrolsVisible: false,
+			summaryVisible: false
 		}, options);
 
 		//fine tuning params
