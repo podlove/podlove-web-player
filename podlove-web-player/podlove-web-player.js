@@ -16,7 +16,7 @@
 			richplayer = false,
 			haschapters = false;
 
-		// MEJS options defaults (taken from mediaelementjs.com, slightly adopted for podcasting needs)
+		// MEJS options default values
 		var mejsoptions = {
 			defaultVideoWidth: 480,
 			defaultVideoHeight: 270,
@@ -37,10 +37,10 @@
 			framesPerSecond: 25,
 			enableKeyboard: true,
 			pauseOtherPlayers: true,
-			duration: 0
+			duration: false
 		}
 
-		//handle default values for params
+		// Additional parameters default values
 		var params = $.extend({}, {
 			chapterlinks: 'all',
 			width: '100%',
@@ -51,27 +51,28 @@
 		}, options);
 
 		//fine tuning params
-		params.width = params.width.replace('px','');
-		if (params.width.toUpperCase() == "AUTO") {
-			params.width = "100%";
+		if (params.width.toLowerCase() == 'auto') {
+			params.width = '100%';
+		} else {
+			params.width = params.width.replace('px', '');
 		}
 
-		//fine tuning audio params
-		if (player.tagName == "AUDIO") {
-			mejsoptions.audioWidth = params.width;
+		//audio params
+		if (player.tagName == 'AUDIO') {
 			if (typeof params.audioWidth !== 'undefined') {
 				params.width = params.audioWidth;
 			}
+			mejsoptions.audioWidth = params.width;
 			
 			//kill fullscreen button
 			$.each(mejsoptions.features, function(i){
 				if (this == 'fullscreen') {
-					mejsoptions.features.splice(i,1);		
+					mejsoptions.features.splice(i, 1);		
 				}
 			});
 
-		//fine tuning video params
-		} else if (player.tagName == "VIDEO")
+		//video params
+		} else if (player.tagName == 'VIDEO') {
 
 			if (typeof params.height !== 'undefined') {
 				mejsoptions.videoWidth = params.width;
@@ -79,7 +80,8 @@
 			}
 
 		 	if (typeof $(player).attr('width') !== 'undefined') {
-			params.width = $(player).attr('width');
+				params.width = $(player).attr('width');
+			}
 		}
 
 		//duration can be given in seconds or in timecode format
@@ -88,7 +90,7 @@
 			params.duration = secArray[0];
 		}
 		
-		//turn ALL suitable pwp params to mejs options
+		//Overwrite MEJS default values with actual data
 		$.each(mejsoptions, function(key, value){
 			if (typeof params[key] !== 'undefined') {
 				mejsoptions[key] = params[key];
@@ -97,7 +99,7 @@
 
 		//wrapper and init stuff
 		if (params.width == parseInt(params.width)) { 
-			params.width += "px"; 
+			params.width += 'px'; 
 		}
 		$(player).wrap('<div class="podlovewebplayer_wrapper" style="width: '+params.width+'"></div>');
 		var deepLink, wrapper = $(player).parent();
