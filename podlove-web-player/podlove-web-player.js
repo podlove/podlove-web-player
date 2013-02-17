@@ -101,8 +101,9 @@
 		if (params.width == parseInt(params.width)) { 
 			params.width += 'px'; 
 		}
-		$(player).wrap('<div class="podlovewebplayer_wrapper" style="width: '+params.width+'"></div>');
-		var deepLink, wrapper = $(player).parent();
+		$(player).wrap('<div class="podlovewebplayer_wrapper" style="width: ' + params.width + '"></div>');
+		var deepLink,
+			wrapper = $(player).parent();
 		players.push(player);
 
 		//add params from html fallback area
@@ -347,9 +348,10 @@
 			var layoutedPlayer = $("#mep_" + player.id.substring(9));
 		}
 		// get DOM object of meta info
-		var metainfo = layoutedPlayer.closest('.podlovewebplayer_wrapper').find('.podlovewebplayer_meta');
-		var summary = layoutedPlayer.closest('.podlovewebplayer_wrapper').find('.summary');
-		var chapterdiv = layoutedPlayer.closest('.podlovewebplayer_wrapper').find('.podlovewebplayer_chapterbox');
+		var wrapper = layoutedPlayer.closest('.podlovewebplayer_wrapper');
+		var metainfo = wrapper.find('.podlovewebplayer_meta');
+		var summary = wrapper.find('.summary');
+		var chapterdiv = wrapper.find('.podlovewebplayer_chapterbox');
 		
 		summary.each(function() {
 			$(this).data("height", $(this).height());
@@ -359,6 +361,7 @@
 		})
 		
 		if (metainfo.length === 1) {
+
 			metainfo.find('a.infowindow').on('click', function(){
 				$(this).closest('.podlovewebplayer_wrapper').find('.summary').toggleClass('active');
 				if($(this).closest('.podlovewebplayer_wrapper').find('.summary').hasClass('active')) {
@@ -382,13 +385,16 @@
 				}
 				return false;
 			});
-			layoutedPlayer.closest('.podlovewebplayer_wrapper').find('.prevbutton').click(function(){
+
+
+
+			wrapper.find('.prevbutton').click(function(){
 				if((typeof player.currentTime === 'number')&&(player.currentTime > 0)) {
-					if(player.currentTime > $(this).closest('.podlovewebplayer_wrapper').find('.podlovewebplayer_chapterbox').find('.active').data('start')+10) {
-						player.setCurrentTime($(this).closest('.podlovewebplayer_wrapper').find('.podlovewebplayer_chapterbox').find('.active').data('start'));
+					if(player.currentTime > chapterdiv.find('.active').data('start')+10) {
+						player.setCurrentTime(chapterdiv.find('.active').data('start'));
 					}
 					else {
-						player.setCurrentTime($(this).closest('.podlovewebplayer_wrapper').find('.podlovewebplayer_chapterbox').find('.active').prev().data('start'));
+						player.setCurrentTime(chapterdiv.find('.active').prev().data('start'));
 					}
 					
 				}
@@ -398,9 +404,10 @@
 				
 				return false;
 			});
-			layoutedPlayer.closest('.podlovewebplayer_wrapper').find('.nextbutton').click(function(){
+			
+			wrapper.find('.nextbutton').click(function(){
 				if((typeof player.currentTime === 'number')&&(player.currentTime > 0)) {
-					player.setCurrentTime($(this).closest('.podlovewebplayer_wrapper').find('.podlovewebplayer_chapterbox').find('.active').next().data('start'));
+					player.setCurrentTime(chapterdiv.find('.active').next().data('start'));
 				}
 				else {
 					player.play();
@@ -482,13 +489,12 @@
 		})
 		
 		if (chapterdiv.length === 1) {
-			metainfo.find('a.chaptertoggle').on('click', function(){
-				$(this).closest('.podlovewebplayer_wrapper').find('.podlovewebplayer_chapterbox').toggleClass('active');
-				if($(this).closest('.podlovewebplayer_wrapper').find('.podlovewebplayer_chapterbox').hasClass('active')) {
-					$(this).closest('.podlovewebplayer_wrapper').find('.podlovewebplayer_chapterbox').height($(this).closest('.podlovewebplayer_wrapper').find('.podlovewebplayer_chapterbox').data("height")+'px');
-				}
-				else {
-					$(this).closest('.podlovewebplayer_wrapper').find('.podlovewebplayer_chapterbox').height('0px');
+			metainfo.find('a.chaptertoggle').on('click', function() {
+				chapterdiv.toggleClass('active');
+				if (chapterdiv.hasClass('active')) {
+					chapterdiv.height(chapterdiv.data('height') + 'px');
+				} else {
+					chapterdiv.height('0px');
 				}
 				return false;
 			});
@@ -554,7 +560,7 @@
 	 * @param width number
 	 * @return string
 	 **/
-	function zeroFill(number, width) {
+	var zeroFill = function(number, width) {
 		width -= number.toString().length;
 		return width > 0 ? new Array(width + 1).join('0') + number : number + '';
 	}
@@ -566,7 +572,7 @@
 	 * @param times array
 	 * @return string
 	 **/
-	function generateTimecode(times) {
+	var generateTimecode = function(times) {
 		function generatePart(seconds) {
 			var part, hours, milliseconds;
 			// prevent negative values from player
@@ -598,7 +604,7 @@
 	 * @param string timecode
 	 * @return number
 	 **/
-	function parseTimecode(timecode) {
+	var parseTimecode = function(timecode) {
 		var parts, startTime = 0, endTime = 0;
 
 		if (timecode) {
@@ -638,7 +644,7 @@
 		return false;
 	}
 
-	function checkCurrentURL() {
+	var checkCurrentURL = function() {
 		var deepLink;
 		deepLink = parseTimecode(window.location.href);
 		if (deepLink !== false) {
@@ -647,13 +653,13 @@
 		}
 	}
 
-	function setFragmentURL(fragment) {
+	var setFragmentURL = function(fragment) {
 		var url;
 		window.location.hash = fragment;
 	}
 
 	// update the chapter list when the data is loaded
-	function updateChapterMarks(player, marks) {
+	var updateChapterMarks = function(player, marks) {
 		var doLinkMarks = marks.closest('table').hasClass('linked');
 
 		marks.each(function () {
@@ -672,25 +678,21 @@
 			}
 
 			if (isActive) {
-				mark
-					.addClass('active')
-					.siblings().removeClass('active');
+				mark.addClass('active').siblings().removeClass('active');
 			}
 			if (!isEnabled && isBuffered) {
 				deepLink = '#t=' + generateTimecode([startTime, endTime]);
-
 				$(mark).data('enabled', true).addClass('loaded').find('a[rel=player]').removeClass('disabled');
 			}
 		});
 	}
 
-	function checkTime(e) {
+	var checkTime = function (e) {
 		if (players.length > 1) { return; }
 		var player = e.data.player;
 		if (startAtTime !== false && 
-			//Kinda hackish: Make sure that the timejump is at least 1 second (fix for OGG/Firefox)
-			(typeof player.lastCheck === "undefined" || 
-			Math.abs(startAtTime - player.lastCheck) > 1)) {
+				//Kinda hackish: Make sure that the timejump is at least 1 second (fix for OGG/Firefox)
+				(typeof player.lastCheck === 'undefined' || Math.abs(startAtTime - player.lastCheck) > 1)) {
 			player.setCurrentTime(startAtTime);
 			player.lastCheck = startAtTime;
 			startAtTime = false;
@@ -701,7 +703,7 @@
 		}
 	}
 
-	function addressCurrentTime(e) {
+	var addressCurrentTime = function(e) {
 		var fragment;
 		if (players.length === 1) {
 			fragment = 't=' + generateTimecode([e.data.player.currentTime]);
