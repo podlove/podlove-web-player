@@ -37,12 +37,12 @@ if ( // Prevent conflicts with already running versions of PWP
 
 
 /* global-ish init variables */
+$pluginpath = explode( "/", __FILE__ );
+$plugindir = '/' . $pluginpath[ count( $pluginpath ) - 2 ] . '/';
 
 $podlovewebplayer_index = 1;
-define( 'PODLOVEWEBPLAYER_DIR', plugin_dir_url(__FILE__) );
-define( 'PODLOVEWEBPLAYER_PATH', plugin_dir_path(__FILE__) );
+define( 'PODLOVEWEBPLAYER_DIR', WP_PLUGIN_URL . $plugindir );
 define( 'PODLOVEWEBPLAYER_MEJS_DIR', PODLOVEWEBPLAYER_DIR . 'libs/mediaelement/build/' );
-
 
 /* Activation and De-Activation */
 
@@ -58,7 +58,7 @@ register_deactivation_hook( __FILE__, 'podlovewebplayer_remove' );
 
 /* create custom plugin settings menu */
 
-include_once( PODLOVEWEBPLAYER_PATH . 'settings.php' );
+include_once( WP_PLUGIN_DIR . $plugindir . 'settings.php' );
 
 
 /* embed javascript files */
