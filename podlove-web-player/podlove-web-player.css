@@ -211,7 +211,7 @@
 	position: relative;
 	float: left;
 	margin-right: 10px;
-	height: 75px;
+	height: 75px !important;
 	top: 12px;
 	box-shadow: none!important;
 	-webkit-border-radius: 0px;

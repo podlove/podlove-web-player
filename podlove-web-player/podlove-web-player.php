@@ -252,33 +252,28 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 
 	// ------------------- prepare podlove meta info (enriched player)
 
-	$richplayer = "";
-	$titlepre = "";
-	$titlepost = "";
-
-	if ( $permalink ) {
-		$titlepre = '<a href="'.$permalink.'">';
-		$titlepost = '</a>';
-	}
-	if ( $title ) {
-		$richplayer .= '<h3 data-pwp="title">'.$titlepre.$title.$titlepost.'</h3>';
-	}
-	if ($subtitle ) {
-		$richplayer .= '<h4 data-pwp="subtitle">'.$subtitle.'</h4>';
-	}
-	if ( $summary ) {
-		$richplayer .= '<div data-pwp="summary">'.$summary.'</div>';
-	}
-	if ( $chapters = podlovewebplayer_render_chapters( $chapters ) ) {
-		$richplayer .= '<div data-pwp="chapters">'.$chapters.'</div>';
-	}
-
+	$fallback = "";
 
 	// ------------------- prepare podlove call inits
 
 	$init_options = "";
 	if ( $poster ) {
 		$init_options .= "\n  poster: '" . htmlspecialchars($poster) . "',";
+	}
+	if ( $title ) {
+		$init_options .= "\n  title: '" . htmlspecialchars($title) . "',";
+	}
+	if ( $permalink ) {
+		$init_options .= "\n  permalink: '" . $permalink . "',";
+	}
+	if ( $subtitle ) {
+		$init_options .= "\n  subtitle: '" . htmlspecialchars($subtitle) . "',";
+	}
+	if ( $chapters ) {
+		$init_options .= "\n  chapters: '" . podlovewebplayer_render_chapters( $chapters ) . "',";
+	}
+	if ( $summary ) {
+		$init_options .= "\n  summary: '" . ereg_replace("\r?\n", "'\n".'+"\n"+\'', htmlspecialchars($summary)) . "',";
 	}
 	if ( $duration ) {
 		$init_options .= "\n  duration: '" . $duration . "',";
@@ -316,7 +311,7 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 	$return = <<<_end_
 	<{$tag_name} id="podlovewebplayer_{$podlovewebplayer_index}" {$dimensions} controls {$attributes_string}>
 		{$sources_string}
-		{$richplayer}
+		{$fallback}
 	</{$tag_name}>
 _end_;
 	$return .= "\n\n<script>jQuery('#podlovewebplayer_{$podlovewebplayer_index}').podlovewebplayer({{$init_options}});</script>\n";
@@ -341,6 +336,7 @@ function podlovewebplayer_render_chapters( $input ) {
 			$chapters = $chapters[0];
 		}
 	}
+	$chapters = ereg_replace("\r?\n", "'\n".'+"\n"+\'', $chapters);
 	return $chapters;
 }
 
