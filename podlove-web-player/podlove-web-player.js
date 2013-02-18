@@ -240,6 +240,11 @@
 
 			//first round: kill empty rows and build structured object
 			$.each(params.chapters.split("\n"), function(){
+				//exit early if this line contains nothing but whitespace
+				if( !/\S/.test(this)){
+					return;
+				}
+
 				var line = $.trim(this);
 				var tc = parseTimecode(line.substring(0,line.indexOf(' ')));
 				var chaptitle = $.trim(line.substring(line.indexOf(' ')));
@@ -327,8 +332,9 @@
 				});
 			}
 		}
-		$(player).mediaelementplayer(mejsoptions);
+
 		$(orig).replaceWith(wrapper);
+		$(player).mediaelementplayer(mejsoptions);
 	};
 
 
