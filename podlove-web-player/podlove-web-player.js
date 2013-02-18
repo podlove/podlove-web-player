@@ -98,12 +98,16 @@
 		});
 
 		//wrapper and init stuff
-		if (params.width == ~~(params.width)) { 
+		if (params.width == ~~params.width) { 
 			params.width += 'px'; 
 		}
-		$(player).wrap('<div class="podlovewebplayer_wrapper" style="width: ' + params.width + '"></div>');
+
+		var orig = player;
+
+		player = $(player).clone().wrap('<div class="podlovewebplayer_wrapper" style="width: ' + params.width + '"></div>')[0];
 		var deepLink,
 			wrapper = $(player).parent();
+
 		players.push(player);
 
 		//add params from html fallback area
@@ -321,6 +325,7 @@
 			}
 		}
 		$(player).mediaelementplayer(mejsoptions);
+		$(orig).replaceWith(wrapper);
 	};
 
 
