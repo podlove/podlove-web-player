@@ -85,7 +85,7 @@
 		}
 
 		//duration can be given in seconds or in timecode format
-		if (params.duration && params.duration != parseInt(params.duration)) {
+		if (params.duration && params.duration != ~~params.duration) {
 			var secArray = parseTimecode(params.duration);
 			params.duration = secArray[0];
 		}
@@ -98,12 +98,16 @@
 		});
 
 		//wrapper and init stuff
-		if (params.width == parseInt(params.width)) { 
+		if (params.width == ~~params.width) { 
 			params.width += 'px'; 
 		}
-		$(player).wrap('<div class="podlovewebplayer_wrapper" style="width: ' + params.width + '"></div>');
+
+		var orig = player;
+
+		player = $(player).clone().wrap('<div class="podlovewebplayer_wrapper" style="width: ' + params.width + '"></div>')[0];
 		var deepLink,
 			wrapper = $(player).parent();
+
 		players.push(player);
 
 		//add params from html fallback area
@@ -236,6 +240,11 @@
 
 			//first round: kill empty rows and build structured object
 			$.each(params.chapters.split("\n"), function(){
+				//exit early if this line contains nothing but whitespace
+				if( !/\S/.test(this)){
+					return;
+				}
+
 				var line = $.trim(this);
 				var tc = parseTimecode(line.substring(0,line.indexOf(' ')));
 				var chaptitle = $.trim(line.substring(line.indexOf(' ')));
@@ -245,11 +254,11 @@
 
 			//second round: collect more information
 			$.each(tempchapters, function(i){
-				if (typeof tempchapters[parseInt(i)+1] !== 'undefined') {
-					this.end = 	tempchapters[parseInt(i)+1].start;
+				if (typeof tempchapters[-~i] !== 'undefined') {
+					this.end = 	tempchapters[-~i].start;
 					if(Math.round(this.end-this.start) > maxchapterlength) {
 						maxchapterlength = Math.round(this.end-this.start);
-						maxchapterstart = Math.round(tempchapters[parseInt(i)+1].start);
+						maxchapterstart = Math.round(tempchapters[-~i].start);
 					}
 				}
 			})
@@ -258,9 +267,9 @@
 			$.each(tempchapters, function(i){
 				var deeplink = document.location;
 
-				var finalchapter = (typeof tempchapters[parseInt(i)+1] === 'undefined') ? true : false;
+				var finalchapter = (typeof tempchapters[-~i] === 'undefined') ? true : false;
 				if (!finalchapter) {
-					this.end = 	tempchapters[parseInt(i)+1].start;
+					this.end = 	tempchapters[-~i].start;
 					if((maxchapterlength >= 3600)&&(Math.round(this.end-this.start) < 3600)) {
 						this.duration = '00:'+generateTimecode([Math.round(this.end-this.start)]);
 					} else {
@@ -283,7 +292,7 @@
 				// deeplink, start and end
 				var deeplink_chap = '#t=' + generateTimecode( [this.start, this.end] );
 				var oddchapter = 'oddchapter';
-				if(parseInt(i)%2) { oddchapter = ''; }
+				if((~~i)%2) { oddchapter = ''; }
 				var rowstring = '<tr class="chaptertr '+oddchapter+'" data-start="'+this.start+'" data-end="'+this.end+'">';
 
 				if((maxchapterstart >= 3600)&&(Math.round(this.start) < 3600)) {
@@ -323,6 +332,8 @@
 				});
 			}
 		}
+
+		$(orig).replaceWith(wrapper);
 		$(player).mediaelementplayer(mejsoptions);
 	};
 
@@ -611,11 +622,11 @@
 
 			if (parts && parts.length === 10) {
 				// hours
-				startTime += parts[1] ? parseInt(parts[1], 10) * 60 * 60 : 0;
+				startTime += parts[1] ? ~~parts[1] * 60 * 60 : 0;
 				// minutes
-				startTime += parseInt(parts[2], 10) * 60;
+				startTime += ~~parts[2] * 60;
 				// seconds
-				startTime += parseInt(parts[3], 10);
+				startTime += ~~parts[3];
 				// milliseconds
 				startTime += parts[4] ? parseFloat(parts[4]) : 0;
 				// no negative time
@@ -627,11 +638,11 @@
 				}
 
 				// hours
-				endTime += parts[6] ? parseInt(parts[6], 10) * 60 * 60 : 0;
+				endTime += parts[6] ? ~~parts[6] * 60 * 60 : 0;
 				// minutes
-				endTime += parseInt(parts[7], 10) * 60;
+				endTime += ~~parts[7] * 60;
 				// seconds
-				endTime += parseInt(parts[8], 10);
+				endTime += ~~parts[8];
 				// milliseconds
 				endTime += parts[9] ? parseFloat(parts[9]) : 0;
 				// no negative time
