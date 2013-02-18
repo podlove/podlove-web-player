@@ -158,8 +158,13 @@
 			}
 			
 			if (typeof params.title !== 'undefined') {
-				wrapper.find('.podlovewebplayer_meta').append(
-					'<h3 class="episodetitle">'+params.title+'</h3>');
+				if (typeof params.permalink !== 'undefined') {
+					wrapper.find('.podlovewebplayer_meta').append(
+						'<h3 class="episodetitle"><a href="'+params.permalink+'">'+params.title+'</a></h3>');
+				} else {
+					wrapper.find('.podlovewebplayer_meta').append(
+						'<h3 class="episodetitle">'+params.title+'</h3>');
+				}
 			}
 			if (typeof params.subtitle !== 'undefined') {
 				wrapper.find('.podlovewebplayer_meta').append(
@@ -238,10 +243,8 @@
 				var line = $.trim(this);
 				var tc = parseTimecode(line.substring(0,line.indexOf(' ')));
 				var chaptitle = $.trim(line.substring(line.indexOf(' ')));
-				if (line.length > 5) {
-					tempchapters[i] = {start: tc[0], title: chaptitle };
-					i++;
-				}
+				tempchapters[i] = {start: tc[0], title: chaptitle };
+				i++;
 			});
 
 			//second round: collect more information
@@ -357,7 +360,7 @@
 		var wrapper = layoutedPlayer.closest('.podlovewebplayer_wrapper'),
 			metainfo = wrapper.find('.podlovewebplayer_meta'),
 			summary = wrapper.find('.summary'),
-			constrolbox = wrapper.find('.controlbox'),
+			controlbox = wrapper.find('.controlbox'),
 			chapterdiv = wrapper.find('.podlovewebplayer_chapterbox');
 		
 		// fix height of summary for better toggability
