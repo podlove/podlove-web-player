@@ -352,7 +352,7 @@
 		var wrapper = layoutedPlayer.closest('.podlovewebplayer_wrapper'),
 			metainfo = wrapper.find('.podlovewebplayer_meta'),
 			summary = wrapper.find('.summary'),
-			constrolbox = wrapper.find('.controlbox'),
+			controlbox = wrapper.find('.controlbox'),
 			chapterdiv = wrapper.find('.podlovewebplayer_chapterbox');
 		
 		// fix height of summary for better toggability
