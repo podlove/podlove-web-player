@@ -151,6 +151,7 @@
 
 .podlovewebplayer_top {
 	height: 11px;
+	margin-bottom: 0px !important;
 }
 
 .mejs-container {
@@ -277,11 +278,6 @@
 	-moz-border-radius-topright: 0px;
 	border-top-left-radius: 0px;
 	border-top-right-radius: 0px;
-}
-
-.podlovewebplayer_video .podlovewebplayer_meta .togglers {
-	top: 40px;
-	bottom: auto;
 }
 
 .podlovewebplayer_video .mejs-container .mejs-inner .mejs-controls {
