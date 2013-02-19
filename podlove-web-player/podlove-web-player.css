@@ -329,6 +329,11 @@ filter: dropshadow(color=#000000, offx=0, offy=0);
 	background: rgb(36,36,36);
 }
 
+.podlovewebplayer_video .podlovewebplayer_meta + .summary,
+.podlovewebplayer_video.podlovewebplayer_wrapper .controlbox {
+	margin-top: 0px;
+}
+
 .podlovewebplayer_meta + .summary.active {
 	min-height: 35px;
 	height: auto;
