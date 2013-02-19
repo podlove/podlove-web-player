@@ -102,7 +102,7 @@
 
 .podlovewebplayer_wrapper .podlovewebplayer_chapters tr td.timecode {
 	white-space: nowrap;
-	padding-right: 10px!important;
+	padding-right: 10px !important;
 	text-align: right;
 }
 
@@ -153,22 +153,6 @@
 	height: 11px;
 }
 
-/*
-.podlovewebplayer_meta + .summary + .mejs-container .mejs-playpause-button,
-.podlovewebplayer_meta + .mejs-container .mejs-playpause-button {
-	width: 10px;
-}
-
-.podlovewebplayer_meta + .summary + .mejs-container .mejs-playpause-button *,
-.podlovewebplayer_meta + .mejs-container .mejs-playpause-button * {
-	display: none;
-}
-
-.mejs-duration-container {
-	margin-right: 20px;
-}
-*/
-
 .mejs-container {
 	margin-top: -1px;
 }
@@ -208,12 +192,19 @@
 }
 
 .podlovewebplayer_meta .coverart img {
-	position: relative;
-	float: left;
-	margin-right: 10px;
-	margin-bottom: 10px;
+	position: relative !important;
+	float: left !important;
+	margin-top: 0px !important;
+	margin-right: 10px !important;
+	margin-left: 0px !important;
+	margin-bottom: 10px !important;
 	height: 75px !important;
+	width: auto !important;
+	max-width: 275px !important;
 	top: 12px !important;
+	left: 0px !important;
+	right: auto !important;
+	bottom: auto !important;
 	box-shadow: none!important;
 	-webkit-border-radius: 0px;
 	-moz-border-radius: 0px;
@@ -238,7 +229,7 @@
 }
 
 .podlovewebplayer_meta h3 a {
-	line-height: 20px;
+	line-height: 20px !important;
 }
 
 .podlovewebplayer_meta h3 a {
@@ -248,18 +239,18 @@
 .podlovewebplayer_meta h3 a:focus,
 .podlovewebplayer_meta h3 a:hover,
 .podlovewebplayer_meta h3 a:active {
-	color: #bbb!important;
+	color: #bbb !important;
 }
 
 .podlovewebplayer_meta .subtitle {
 	margin-right: 75px;
 	font-size: 12px;
-	color: #eee!important;
+	color: #eee !important;
 }
 
 .podlovewebplayer_meta .subtitle strong{
 	color: #ccc;
-	font-size: 13px!important;
+	font-size: 13px !important;
 }
 
 .podlovewebplayer_video .podlovewebplayer_meta .episodetitle {
@@ -479,7 +470,7 @@ filter: dropshadow(color=#000000, offx=0, offy=0);
 }
 
 .podlovewebplayer_chapters .chapterplay a[rel=player] span {
-	display: block;
+	display: block !important;
 	width: 14px;
 	height: 16px;
 	overflow: hidden;
@@ -497,7 +488,7 @@ filter: dropshadow(color=#000000, offx=0, offy=0);
 }
 
 .podlovewebplayer_chapters .paused .chapterplay a[rel=player] span {
-	background-position: 0 0;
+	background-position: 0 0 !important;
 }
 
 .podlovewebplayer_chapters tr.chaptertr:active {
@@ -609,11 +600,11 @@ and (max-width : 500px) {
 		height: auto;
 	}
 	.podlovewebplayer_meta h3 a, .podlovewebplayer_meta h3 {
-		position: initial;
-		top: 5px;
-		left: 10px;
-		right: 10px;
-		text-align: center;
+		position: initial !important;
+		top: 5px !important;
+		left: 10px !important;
+		right: 10px !important;
+		text-align: center !important;
 	}
 	.podlovewebplayer_meta .coverart {
 		position: absolute;
@@ -621,8 +612,8 @@ and (max-width : 500px) {
 		left: 120px;
 	}
 	.podlovewebplayer_meta .coverart img {
-		height: 75px;
-		width: 75px;
+		height: 75px !important;
+		width: 75px !important;
 	}
 	.podlovewebplayer_meta .bigplay {
 		position: absolute;
