@@ -38,7 +38,7 @@
 			enableKeyboard: true,
 			pauseOtherPlayers: true,
 			duration: false
-		}
+		};
 
 		// Additional parameters default values
 		var params = $.extend({}, {
@@ -188,7 +188,7 @@
 				wrapper.find('.togglers').append(
 					'<a href="#" class="chaptertoggle infobuttons icon-list-ul" title="show/hide chapters"></a>');
 			}
-			wrapper.find('.togglers').append('<a href="#" class="showcontrols infobuttons icon-time" title="show/hide controls box"></a>')
+			wrapper.find('.togglers').append('<a href="#" class="showcontrols infobuttons icon-time" title="show/hide controls box"></a>');
 		}
 
 		var timecontrolsActive = "";
@@ -199,7 +199,7 @@
 		
 		if (typeof params.chapters !== 'undefined') {
 			wrapper.find('.controlbox').append('<a href="#" class="prevbutton infobuttons icon-step-backward" title="previous chapter"></a>'
-						+'<a href="#" class="nextbutton infobuttons icon-step-forward" title="next chapter"></a>')
+						+'<a href="#" class="nextbutton infobuttons icon-step-forward" title="next chapter"></a>');
 		}
 		wrapper.find('.controlbox').append(
 			'<a href="#" class="rewindbutton infobuttons icon-backward" title="Rewind 30 seconds"></a>');
@@ -261,7 +261,7 @@
 					maxchapterlength = Math.round(this.end-this.start);
 					maxchapterstart = Math.round(next.start);
 				}
-			})
+			});
 			
 			//third round: build actual dom table
 			$.each(tempchapters, function(i){
@@ -328,7 +328,7 @@
 					scrollTop: $('.podlovewebplayer_wrapper:first').offset().top - 25
 				});
 			}
-		}
+		};
 
 		$(orig).replaceWith(wrapper);
 		$(player).mediaelementplayer(mejsoptions);
@@ -372,7 +372,7 @@
 			if (!$(this).hasClass('active')) {
 				$(this).height('0px');
 			}
-		})
+		});
 		
 		if (metainfo.length === 1) {
 
@@ -494,7 +494,7 @@
 			if(!$(this).hasClass('active')) {
 				$(this).height('0px');
 			}
-		})
+		});
 		
 		if (chapterdiv.length === 1) {
 			metainfo.find('a.chaptertoggle').on('click', function() {
@@ -570,7 +570,7 @@
 	var zeroFill = function(number, width) {
 		width -= number.toString().length;
 		return width > 0 ? new Array(width + 1).join('0') + number : number + '';
-	}
+	};
 
 
 	/**
@@ -604,7 +604,7 @@
 		}
 
 		return generatePart(times[0]);
-	}
+	};
 
 	/**
 	 * parses time code into seconds
@@ -649,7 +649,7 @@
 			}
 		}
 		return false;
-	}
+	};
 
 	var checkCurrentURL = function() {
 		var deepLink;
@@ -658,12 +658,12 @@
 			startAtTime = deepLink[0];
 			stopAtTime = deepLink[1];
 		}
-	}
+	};
 
 	var setFragmentURL = function(fragment) {
 		var url;
 		window.location.hash = fragment;
-	}
+	};
 
 	// update the chapter list when the data is loaded
 	var updateChapterMarks = function(player, marks) {
@@ -692,7 +692,7 @@
 				$(mark).data('enabled', true).addClass('loaded').find('a[rel=player]').removeClass('disabled');
 			}
 		});
-	}
+	};
 
 	var checkTime = function (e) {
 		if (players.length > 1) { return; }
@@ -708,7 +708,7 @@
 			player.pause();
 			stopAtTime = false;
 		}
-	}
+	};
 
 	var addressCurrentTime = function(e) {
 		var fragment;
@@ -716,6 +716,6 @@
 			fragment = 't=' + generateTimecode([e.data.player.currentTime]);
 			setFragmentURL(fragment);
 		}
-	}
+	};
 	
 }(jQuery));
