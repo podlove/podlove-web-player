@@ -233,33 +233,34 @@
 			var table = wrapper.find('table[rel='+player.id+']');
 
 			//prepare row data
-			var tempchapters = {};
+			var tempchapters = [];
 			var i = 0;
 			var maxchapterlength = 0;
 			var maxchapterstart  = 0;
 
 			//first round: kill empty rows and build structured object
-			$.each(params.chapters.split("\n"), function(){
+			$.each(params.chapters.split("\n"), function(i, chapter){
 				//exit early if this line contains nothing but whitespace
-				if( !/\S/.test(this)){
+				if( !/\S/.test(chapter)){
 					return;
 				}
 
-				var line = $.trim(this);
+				var line = $.trim(chapter);
 				var tc = parseTimecode(line.substring(0,line.indexOf(' ')));
 				var chaptitle = $.trim(line.substring(line.indexOf(' ')));
-				tempchapters[i] = {start: tc[0], title: chaptitle };
-				i++;
+				tempchapters.push({start: tc[0], title: chaptitle });
 			});
 
 			//second round: collect more information
 			$.each(tempchapters, function(i){
-				if (typeof tempchapters[-~i] !== 'undefined') {
-					this.end = 	tempchapters[-~i].start;
-					if(Math.round(this.end-this.start) > maxchapterlength) {
-						maxchapterlength = Math.round(this.end-this.start);
-						maxchapterstart = Math.round(tempchapters[-~i].start);
-					}
+				var next = tempchapters[i+1];
+				// exit early if the is the final chapter
+				if( !next) return;
+				
+				this.end = next.start;
+				if(Math.round(this.end-this.start) > maxchapterlength) {
+					maxchapterlength = Math.round(this.end-this.start);
+					maxchapterstart = Math.round(next.start);
 				}
 			})
 			
@@ -267,9 +268,9 @@
 			$.each(tempchapters, function(i){
 				var deeplink = document.location;
 
-				var finalchapter = (typeof tempchapters[-~i] === 'undefined') ? true : false;
+				var finalchapter = !tempchapters[i+1];
 				if (!finalchapter) {
-					this.end = 	tempchapters[-~i].start;
+					this.end = 	tempchapters[i+1].start;
 					if((maxchapterlength >= 3600)&&(Math.round(this.end-this.start) < 3600)) {
 						this.duration = '00:'+generateTimecode([Math.round(this.end-this.start)]);
 					} else {
@@ -292,7 +293,7 @@
 				// deeplink, start and end
 				var deeplink_chap = '#t=' + generateTimecode( [this.start, this.end] );
 				var oddchapter = 'oddchapter';
-				if((~~i)%2) { oddchapter = ''; }
+				if(i % 2) { oddchapter = ''; }
 				var rowstring = '<tr class="chaptertr '+oddchapter+'" data-start="'+this.start+'" data-end="'+this.end+'">';
 
 				if((maxchapterstart >= 3600)&&(Math.round(this.start) < 3600)) {
