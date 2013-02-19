@@ -258,22 +258,22 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 
 	$init_options = "";
 	if ( $poster ) {
-		$init_options .= "\n  poster: '" . htmlspecialchars($poster) . "',";
+		$init_options .= "\n  poster: '" . htmlspecialchars($poster, ENT_QUOTES) . "',";
 	}
 	if ( $title ) {
-		$init_options .= "\n  title: '" . htmlspecialchars($title) . "',";
+		$init_options .= "\n  title: '" . htmlspecialchars($title, ENT_QUOTES) . "',";
 	}
 	if ( $permalink ) {
 		$init_options .= "\n  permalink: '" . $permalink . "',";
 	}
 	if ( $subtitle ) {
-		$init_options .= "\n  subtitle: '" . htmlspecialchars($subtitle) . "',";
+		$init_options .= "\n  subtitle: '" . htmlspecialchars($subtitle, ENT_QUOTES) . "',";
 	}
 	if ( $chapters ) {
-		$init_options .= "\n  chapters: '" . podlovewebplayer_render_chapters( $chapters ) . "',";
+		$init_options .= "\n  chapters: '" . podlovewebplayer_render_chapters($chapters) . "',";
 	}
 	if ( $summary ) {
-		$init_options .= "\n  summary: '" . ereg_replace("\r?\n", "'\n".'+"\n"+\'', htmlspecialchars($summary)) . "',";
+		$init_options .= "\n  summary: '" . ereg_replace("\r?\n", "'\n".'+"\n"+\'', htmlspecialchars($summary, ENT_QUOTES)) . "',";
 	}
 	if ( $duration ) {
 		$init_options .= "\n  duration: '" . $duration . "',";
@@ -336,7 +336,7 @@ function podlovewebplayer_render_chapters( $input ) {
 			$chapters = $chapters[0];
 		}
 	}
-	$chapters = ereg_replace("\r?\n", "'\n".'+"\n"+\'', $chapters);
+	$chapters = ereg_replace("\r?\n", "'\n".'+"\n"+\'', htmlspecialchars($chapters, ENT_QUOTES));
 	return $chapters;
 }
 
