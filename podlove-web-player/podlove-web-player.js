@@ -234,7 +234,6 @@
 
 			//prepare row data
 			var tempchapters = [];
-			var i = 0;
 			var maxchapterlength = 0;
 			var maxchapterstart  = 0;
 
@@ -266,8 +265,6 @@
 			
 			//third round: build actual dom table
 			$.each(tempchapters, function(i){
-				var deeplink = document.location;
-
 				var finalchapter = !tempchapters[i+1];
 				if (!finalchapter) {
 					this.end = 	tempchapters[i+1].start;
@@ -291,7 +288,6 @@
 				}
 
 				// deeplink, start and end
-				var deeplink_chap = '#t=' + generateTimecode( [this.start, this.end] );
 				var oddchapter = 'oddchapter';
 				if(i % 2) { oddchapter = ''; }
 				var rowstring = '<tr class="chaptertr '+oddchapter+'" data-start="'+this.start+'" data-end="'+this.end+'">';
