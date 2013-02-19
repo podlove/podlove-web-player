@@ -213,98 +213,7 @@
 		if (typeof params.chapters !== 'undefined') {
 			haschapters = true;
 
-			var class_names = 'podlovewebplayer_chapters';
-			if (params.chapterlinks != 'false') {
-				class_names += ' linked linked_'+params.chapterlinks;
-			}
-			var chaptersActive = "";
-			if (params.chaptersVisible == true) {
-				chaptersActive = " active";
-			}
-			var tablestring = '<div class="podlovewebplayer_chapterbox showonplay'+chaptersActive+'"><table rel="'+player.id+'" class="'+class_names+'">';
-			tablestring += '<caption>Podcast Chapters</caption><thead><tr>';
-			tablestring += '<th scope="col">Chapter Number</th>';
-			tablestring += '<th scope="col">Start time</th>';
-			tablestring += '<th scope="col">Title</th>';
-			tablestring += '<th scope="col">Duration</th>';
-			tablestring += '</tr></thead>';
-			tablestring += '<tbody></tbody></table></div>';
-			wrapper.append(tablestring);
-			var table = wrapper.find('table[rel='+player.id+']');
-
-			//prepare row data
-			var tempchapters = [];
-			var maxchapterlength = 0;
-			var maxchapterstart  = 0;
-
-			//first round: kill empty rows and build structured object
-			$.each(params.chapters.split("\n"), function(i, chapter){
-				//exit early if this line contains nothing but whitespace
-				if( !/\S/.test(chapter)){
-					return;
-				}
-
-				var line = $.trim(chapter);
-				var tc = parseTimecode(line.substring(0,line.indexOf(' ')));
-				var chaptitle = $.trim(line.substring(line.indexOf(' ')));
-				tempchapters.push({start: tc[0], title: chaptitle });
-			});
-
-			//second round: collect more information
-			$.each(tempchapters, function(i){
-				var next = tempchapters[i+1];
-				// exit early if the is the final chapter
-				if( !next) return;
-				
-				this.end = next.start;
-				if(Math.round(this.end-this.start) > maxchapterlength) {
-					maxchapterlength = Math.round(this.end-this.start);
-					maxchapterstart = Math.round(next.start);
-				}
-			});
-			
-			//third round: build actual dom table
-			$.each(tempchapters, function(i){
-				var finalchapter = !tempchapters[i+1];
-				if (!finalchapter) {
-					this.end = 	tempchapters[i+1].start;
-					if((maxchapterlength >= 3600)&&(Math.round(this.end-this.start) < 3600)) {
-						this.duration = '00:'+generateTimecode([Math.round(this.end-this.start)]);
-					} else {
-						this.duration = generateTimecode([Math.round(this.end-this.start)]);
-					}
-				} else {
-					if (params.duration == 0) {
-						this.end = 9999999999;
-						this.duration = '…';
-					} else {
-						this.end = params.duration;
-						if((maxchapterlength >= 3600)&&(Math.round(this.end-this.start) < 3600)) {
-							this.duration = '00:'+generateTimecode([Math.round(this.end-this.start)]);
-						} else {
-							this.duration = generateTimecode([Math.round(this.end-this.start)]);
-						}
-					}
-				}
-
-				// deeplink, start and end
-				var oddchapter = 'oddchapter';
-				if(i % 2) { oddchapter = ''; }
-				var rowstring = '<tr class="chaptertr '+oddchapter+'" data-start="'+this.start+'" data-end="'+this.end+'">';
-
-				if((maxchapterstart >= 3600)&&(Math.round(this.start) < 3600)) {
-					rowstring += '<td class="starttime"><span>00:'+generateTimecode( [Math.round(this.start)] )+'</span></td>';
-				} else {
-					rowstring += '<td class="starttime"><span>'+generateTimecode( [Math.round(this.start)] )+'</span></td>';
-				}
-
-				rowstring += '<td>'+this.title+'</td>';
-				rowstring += '<td class="timecode">'+"\n";
-				rowstring += '<span>' + this.duration + '</span>' + "\n";
-				rowstring += '</td>'+"\n";
-				rowstring += '</tr>';
-				table.append(rowstring);	
-			});
+			generateChapterTable(params, player.id).appendTo(wrapper);
 		}
 
 		if (richplayer || haschapters) {
@@ -332,6 +241,102 @@
 
 		$(orig).replaceWith(wrapper);
 		$(player).mediaelementplayer(mejsoptions);
+	};
+
+	var generateChapterTable = function( params, playerId){
+		var class_names = 'podlovewebplayer_chapters';
+		if (params.chapterlinks != 'false') {
+			class_names += ' linked linked_'+params.chapterlinks;
+		}
+		var chaptersActive = "";
+		if (params.chaptersVisible == true) {
+			chaptersActive = " active";
+		}
+		var tablestring = '<div class="podlovewebplayer_chapterbox showonplay'+chaptersActive+'"><table rel="'+playerId+'" class="'+class_names+'">';
+		tablestring += '<caption>Podcast Chapters</caption><thead><tr>';
+		tablestring += '<th scope="col">Chapter Number</th>';
+		tablestring += '<th scope="col">Start time</th>';
+		tablestring += '<th scope="col">Title</th>';
+		tablestring += '<th scope="col">Duration</th>';
+		tablestring += '</tr></thead>';
+		tablestring += '<tbody></tbody></table></div>';
+		var wrapper = $(tablestring);
+		var table = wrapper.find('table');
+
+		//prepare row data
+		var tempchapters = [];
+		var maxchapterlength = 0;
+		var maxchapterstart  = 0;
+
+		//first round: kill empty rows and build structured object
+		$.each(params.chapters.split("\n"), function(i, chapter){
+			//exit early if this line contains nothing but whitespace
+			if( !/\S/.test(chapter)){
+				return;
+			}
+
+			var line = $.trim(chapter);
+			var tc = parseTimecode(line.substring(0,line.indexOf(' ')));
+			var chaptitle = $.trim(line.substring(line.indexOf(' ')));
+			tempchapters.push({start: tc[0], title: chaptitle });
+		});
+
+		//second round: collect more information
+		$.each(tempchapters, function(i){
+			var next = tempchapters[i+1];
+			// exit early if the is the final chapter
+			if( !next) return;
+			
+			this.end = next.start;
+			if(Math.round(this.end-this.start) > maxchapterlength) {
+				maxchapterlength = Math.round(this.end-this.start);
+				maxchapterstart = Math.round(next.start);
+			}
+		});
+		
+		//third round: build actual dom table
+		$.each(tempchapters, function(i){
+			var finalchapter = !tempchapters[i+1];
+			if (!finalchapter) {
+				this.end = 	tempchapters[i+1].start;
+				if((maxchapterlength >= 3600)&&(Math.round(this.end-this.start) < 3600)) {
+					this.duration = '00:'+generateTimecode([Math.round(this.end-this.start)]);
+				} else {
+					this.duration = generateTimecode([Math.round(this.end-this.start)]);
+				}
+			} else {
+				if (params.duration == 0) {
+					this.end = 9999999999;
+					this.duration = '…';
+				} else {
+					this.end = params.duration;
+					if((maxchapterlength >= 3600)&&(Math.round(this.end-this.start) < 3600)) {
+						this.duration = '00:'+generateTimecode([Math.round(this.end-this.start)]);
+					} else {
+						this.duration = generateTimecode([Math.round(this.end-this.start)]);
+					}
+				}
+			}
+
+			// deeplink, start and end
+			var oddchapter = 'oddchapter';
+			if(i % 2) { oddchapter = ''; }
+			var rowstring = '<tr class="chaptertr '+oddchapter+'" data-start="'+this.start+'" data-end="'+this.end+'">';
+
+			if((maxchapterstart >= 3600)&&(Math.round(this.start) < 3600)) {
+				rowstring += '<td class="starttime"><span>00:'+generateTimecode( [Math.round(this.start)] )+'</span></td>';
+			} else {
+				rowstring += '<td class="starttime"><span>'+generateTimecode( [Math.round(this.start)] )+'</span></td>';
+			}
+
+			rowstring += '<td>'+this.title+'</td>';
+			rowstring += '<td class="timecode">'+"\n";
+			rowstring += '<span>' + this.duration + '</span>' + "\n";
+			rowstring += '</td>'+"\n";
+			rowstring += '</tr>';
+			table.append(rowstring);	
+		});
+		return wrapper;
 	};
 
 
