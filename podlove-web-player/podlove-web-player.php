@@ -263,7 +263,7 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 	if ( $title ) {
 		$init_options .= "\n  title: '" . htmlspecialchars($title, ENT_QUOTES) . "',";
 	}
-	if ( $permalink ) {
+	if (( $permalink )&&(filter_var($permalink, FILTER_VALIDATE_URL) !== FALSE)) {
 		$init_options .= "\n  permalink: '" . $permalink . "',";
 	}
 	if ( $subtitle ) {
