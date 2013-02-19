@@ -293,7 +293,7 @@
 				maxchapterstart = Math.round(next.start);
 			}
 		});
-		
+
 		//third round: build actual dom table
 		$.each(tempchapters, function(i){
 			var finalchapter = !tempchapters[i+1];
@@ -334,8 +334,10 @@
 			rowstring += '<span>' + this.duration + '</span>' + "\n";
 			rowstring += '</td>'+"\n";
 			rowstring += '</tr>';
-			table.append(rowstring);	
+			table.append(rowstring);
 		});
+
+
 		return wrapper;
 	};
 
