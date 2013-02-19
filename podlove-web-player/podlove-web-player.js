@@ -622,11 +622,11 @@
 
 			if (parts && parts.length === 10) {
 				// hours
-				startTime += parts[1] ? ~~parts[1] * 60 * 60 : 0;
+				startTime += parts[1] ? parseInt(parts[1], 10) * 60 * 60 : 0;
 				// minutes
-				startTime += ~~parts[2] * 60;
+				startTime += parseInt(parts[2], 10) * 60;
 				// seconds
-				startTime += ~~parts[3];
+				startTime += parseInt(parts[3], 10);
 				// milliseconds
 				startTime += parts[4] ? parseFloat(parts[4]) : 0;
 				// no negative time
@@ -638,11 +638,11 @@
 				}
 
 				// hours
-				endTime += parts[6] ? ~~parts[6] * 60 * 60 : 0;
+				endTime += parts[6] ? parseInt(parts[6], 10) * 60 * 60 : 0;
 				// minutes
-				endTime += ~~parts[7] * 60;
+				endTime += parseInt(parts[7], 10) * 60;
 				// seconds
-				endTime += ~~parts[8];
+				endTime += parseInt(parts[8], 10);
 				// milliseconds
 				endTime += parts[9] ? parseFloat(parts[9]) : 0;
 				// no negative time

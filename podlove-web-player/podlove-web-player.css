@@ -272,6 +272,7 @@
 	min-height: 40px;
 	height: auto;
 	padding-top: 30px;
+	margin-bottom: 0px !important;
 	-webkit-border-top-left-radius: 0px;
 	-webkit-border-top-right-radius: 0px;
 	-moz-border-radius-topleft: 0px;
