@@ -310,11 +310,10 @@
 		$.each(tempchapters, function(i){
 			var finalchapter = !tempchapters[i+1],
 				duration = Math.round(this.end-this.start),
-				forceHours = (maxchapterlength >= 3600)&&(duration < 3600),
+				forceHours = (maxchapterlength >= 3600),
 				row = rowDummy.clone();
 
 			if (!finalchapter) {
-				this.end = 	tempchapters[i+1].start;
 				this.duration = generateTimecode([duration], forceHours);
 			} else {
 				if (params.duration == 0) {
@@ -322,7 +321,7 @@
 					this.duration = '…';
 				} else {
 					this.end = params.duration;
-					this.duration = generateTimecode([duration], forceHours);
+					this.duration = generateTimecode([Math.round(this.end-this.start)], forceHours);
 				}
 			}
 
@@ -337,7 +336,7 @@
 				'data-end' : this.end
 			});
 
-			forceHours = (maxchapterstart >= 3600)&&(Math.round(this.start) < 3600);
+			forceHours = (maxchapterstart >= 3600);
 
 			row.find('.starttime > span').text( generateTimecode([Math.round(this.start)], forceHours));
 			row.children('td').eq(1).html(this.title);
