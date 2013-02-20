@@ -245,16 +245,16 @@
 
 	var generateChapterTable = function( params, playerId){
 		
-		var tablestring = '<div class="podlovewebplayer_chapterbox showonplay"><table>';
-		tablestring += '<caption>Podcast Chapters</caption><thead><tr>';
-		tablestring += '<th scope="col">Chapter Number</th>';
-		tablestring += '<th scope="col">Start time</th>';
-		tablestring += '<th scope="col">Title</th>';
-		tablestring += '<th scope="col">Duration</th>';
-		tablestring += '</tr></thead>';
-		tablestring += '<tbody></tbody></table></div>';
-		var div = $(tablestring);
-		var table = div.find('table');
+		var div = $(
+			'<div class="podlovewebplayer_chapterbox showonplay"><table>'
+			+ '<caption>Podcast Chapters</caption><thead><tr>'
+			+ '<th scope="col">Chapter Number</th>'
+			+ '<th scope="col">Start time</th>'
+			+ '<th scope="col">Title</th>'
+			+ '<th scope="col">Duration</th>'
+			+ '</tr></thead>'
+			+ '<tbody></tbody></table></div>'),
+			table = div.find('table');
 
 		if (params.chaptersVisible === true) {
 			div.addClass('active');
@@ -287,7 +287,7 @@
 		//second round: collect more information
 		$.each(tempchapters, function(i){
 			var next = tempchapters[i+1];
-			// exit early if the is the final chapter
+			// exit early if this is the final chapter
 			if( !next) return;
 			
 			this.end = next.start;
