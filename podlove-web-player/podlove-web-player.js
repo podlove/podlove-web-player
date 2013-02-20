@@ -244,15 +244,8 @@
 	};
 
 	var generateChapterTable = function( params, playerId){
-		var class_names = 'podlovewebplayer_chapters';
-		if (params.chapterlinks != 'false') {
-			class_names += ' linked linked_'+params.chapterlinks;
-		}
-		var chaptersActive = "";
-		if (params.chaptersVisible == true) {
-			chaptersActive = " active";
-		}
-		var tablestring = '<div class="podlovewebplayer_chapterbox showonplay'+chaptersActive+'"><table rel="'+playerId+'" class="'+class_names+'">';
+		
+		var tablestring = '<div class="podlovewebplayer_chapterbox showonplay"><table>';
 		tablestring += '<caption>Podcast Chapters</caption><thead><tr>';
 		tablestring += '<th scope="col">Chapter Number</th>';
 		tablestring += '<th scope="col">Start time</th>';
@@ -260,8 +253,18 @@
 		tablestring += '<th scope="col">Duration</th>';
 		tablestring += '</tr></thead>';
 		tablestring += '<tbody></tbody></table></div>';
-		var wrapper = $(tablestring);
-		var table = wrapper.find('table');
+		var div = $(tablestring);
+		var table = div.find('table');
+
+		if (params.chaptersVisible === true) {
+			div.addClass('active');
+		}
+
+		table.addClass('podlovewebplayer_chapters').attr('rel', playerId);
+		if (params.chapterlinks != 'false') {
+			table.addClass('linked linked_'+params.chapterlinks);
+		}
+
 
 		//prepare row data
 		var tempchapters = [];
@@ -338,7 +341,7 @@
 		});
 
 
-		return wrapper;
+		return div;
 	};
 
 
