@@ -243,6 +243,9 @@
 		$(player).mediaelementplayer(mejsoptions);
 	};
 
+	/**
+	 * Given a list of chapters, this function creates the chapter table for the player.
+	 */
 	var generateChapterTable = function( params, playerId){
 		
 		var div = $(
@@ -254,7 +257,8 @@
 			+ '<th scope="col">Duration</th>'
 			+ '</tr></thead>'
 			+ '<tbody></tbody></table></div>'),
-			table = div.find('table');
+			table = div.children('table'),
+			tbody = table.children('tbody');
 
 		if (params.chaptersVisible === true) {
 			div.addClass('active');
@@ -273,11 +277,11 @@
 
 		//first round: kill empty rows and build structured object
 		$.each(params.chapters.split("\n"), function(i, chapter){
-			//exit early if this line contains nothing but whitespace
-			if( !/\S/.test(chapter)){
-				return;
-			}
 
+			//exit early if this line contains nothing but whitespace
+			if( !/\S/.test(chapter)) return;
+
+			//extract the timestamp
 			var line = $.trim(chapter);
 			var tc = parseTimecode(line.substring(0,line.indexOf(' ')));
 			var chaptitle = $.trim(line.substring(line.indexOf(' ')));
@@ -287,9 +291,11 @@
 		//second round: collect more information
 		$.each(tempchapters, function(i){
 			var next = tempchapters[i+1];
+
 			// exit early if this is the final chapter
 			if( !next) return;
 			
+			// we need this data for proper formatting
 			this.end = next.start;
 			if(Math.round(this.end-this.start) > maxchapterlength) {
 				maxchapterlength = Math.round(this.end-this.start);
@@ -297,6 +303,7 @@
 			}
 		});
 
+		//this is a "template" for each chapter row
 		var rowDummy = $(
 			'<tr class="chaptertr" data-start="" data-end="">'
 			+ '<td class="starttime"><span></span></td>'
@@ -313,6 +320,7 @@
 				forceHours = (maxchapterlength >= 3600),
 				row = rowDummy.clone();
 
+			//make sure the duration for all chapters are equally formatted
 			if (!finalchapter) {
 				this.duration = generateTimecode([duration], forceHours);
 			} else {
@@ -330,19 +338,21 @@
 				row.addClass('oddchapter');
 			}
 
-			// deeplink, start and end
+			//deeplink, start and end
 			row.attr({
 				'data-start': this.start,
 				'data-end' : this.end
 			});
 
+			//if there is a chapter that starts after an hour, force '00:' on all previous chapters
 			forceHours = (maxchapterstart >= 3600);
 
+			//insert the chapter data
 			row.find('.starttime > span').text( generateTimecode([Math.round(this.start)], forceHours));
 			row.children('td').eq(1).html(this.title);
 			row.find('.timecode > span').text( this.duration);
 
-			row.appendTo( table);
+			row.appendTo( tbody);
 		});
 
 
