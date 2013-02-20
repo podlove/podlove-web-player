@@ -580,9 +580,10 @@
 	 * accepts array with start and end time in seconds
 	 * returns timecode in deep-linking format
 	 * @param times array
+	 * @param forceHours bool (optional)
 	 * @return string
 	 **/
-	var generateTimecode = function(times) {
+	var generateTimecode = function(times, forceHours) {
 		function generatePart(seconds) {
 			var part, hours, milliseconds;
 			// prevent negative values from player
@@ -595,7 +596,7 @@
 					zeroFill(Math.floor(seconds % 60) % 60, 2);
 
 			hours = zeroFill(Math.floor(seconds / 60 / 60), 2);
-			hours = hours === '00' ? '' : hours + ':';
+			hours = hours === '00' && !forceHours ? '' : hours + ':';
 			milliseconds = zeroFill(Math.floor(seconds % 1 * 1000), 3);
 			milliseconds = milliseconds === '000' ? '' : '.' + milliseconds;
 
