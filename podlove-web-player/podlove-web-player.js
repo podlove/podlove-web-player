@@ -297,39 +297,53 @@
 			}
 		});
 
+		var rowDummy = $(
+			'<tr class="chaptertr" data-start="" data-end="">'
+			+ '<td class="starttime"><span></span></td>'
+			+ '<td></td>'
+			+ '<td class="timecode">\n'
+			+ '<span></span>\n'
+			+ '</td>\n'
+			+ '</tr>');
+
 		//third round: build actual dom table
 		$.each(tempchapters, function(i){
-			var finalchapter = !tempchapters[i+1];
+			var finalchapter = !tempchapters[i+1],
+				duration = Math.round(this.end-this.start),
+				forceHours = (maxchapterlength >= 3600)&&(duration < 3600),
+				row = rowDummy.clone();
+
 			if (!finalchapter) {
 				this.end = 	tempchapters[i+1].start;
-				this.duration = generateTimecode([Math.round(this.end-this.start)], (maxchapterlength >= 3600)&&(Math.round(this.end-this.start) < 3600));
+				this.duration = generateTimecode([duration], forceHours);
 			} else {
 				if (params.duration == 0) {
 					this.end = 9999999999;
 					this.duration = '…';
 				} else {
 					this.end = params.duration;
-					this.duration = generateTimecode([Math.round(this.end-this.start)], (maxchapterlength >= 3600)&&(Math.round(this.end-this.start) < 3600));
+					this.duration = generateTimecode([duration], forceHours);
 				}
 			}
 
-			// deeplink, start and end
-			var oddchapter = 'oddchapter';
-			if(i % 2) { oddchapter = ''; }
-			var rowstring = '<tr class="chaptertr '+oddchapter+'" data-start="'+this.start+'" data-end="'+this.end+'">';
 
-			if((maxchapterstart >= 3600)&&(Math.round(this.start) < 3600)) {
-				rowstring += '<td class="starttime"><span>00:'+generateTimecode( [Math.round(this.start)] )+'</span></td>';
-			} else {
-				rowstring += '<td class="starttime"><span>'+generateTimecode( [Math.round(this.start)] )+'</span></td>';
+			if(i % 2) {
+				row.addClass('oddchapter');
 			}
 
-			rowstring += '<td>'+this.title+'</td>';
-			rowstring += '<td class="timecode">'+"\n";
-			rowstring += '<span>' + this.duration + '</span>' + "\n";
-			rowstring += '</td>'+"\n";
-			rowstring += '</tr>';
-			table.append(rowstring);
+			// deeplink, start and end
+			row.attr({
+				'data-start': this.start,
+				'data-end' : this.end
+			});
+
+			forceHours = (maxchapterstart >= 3600)&&(Math.round(this.start) < 3600);
+
+			row.find('.starttime > span').text( generateTimecode([Math.round(this.start)], forceHours));
+			row.children('td').eq(1).html(this.title);
+			row.find('.timecode > span').text( this.duration);
+
+			row.appendTo( table);
 		});
 
 
