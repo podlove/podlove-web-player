@@ -302,22 +302,14 @@
 			var finalchapter = !tempchapters[i+1];
 			if (!finalchapter) {
 				this.end = 	tempchapters[i+1].start;
-				if((maxchapterlength >= 3600)&&(Math.round(this.end-this.start) < 3600)) {
-					this.duration = '00:'+generateTimecode([Math.round(this.end-this.start)]);
-				} else {
-					this.duration = generateTimecode([Math.round(this.end-this.start)]);
-				}
+				this.duration = generateTimecode([Math.round(this.end-this.start)], (maxchapterlength >= 3600)&&(Math.round(this.end-this.start) < 3600));
 			} else {
 				if (params.duration == 0) {
 					this.end = 9999999999;
 					this.duration = '…';
 				} else {
 					this.end = params.duration;
-					if((maxchapterlength >= 3600)&&(Math.round(this.end-this.start) < 3600)) {
-						this.duration = '00:'+generateTimecode([Math.round(this.end-this.start)]);
-					} else {
-						this.duration = generateTimecode([Math.round(this.end-this.start)]);
-					}
+					this.duration = generateTimecode([Math.round(this.end-this.start)], (maxchapterlength >= 3600)&&(Math.round(this.end-this.start) < 3600));
 				}
 			}
 
