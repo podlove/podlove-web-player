@@ -596,12 +596,12 @@
 	 * @param forceHours bool (optional)
 	 * @return string
 	 **/
-	var generateTimecode = function(times, forceHours) {
+	var generateTimecode = $.generateTimecode = function(times, forceHours) {
 		function generatePart(seconds) {
 			var part, hours, milliseconds;
 			// prevent negative values from player
 			if (!seconds || seconds <= 0) {
-				return '00:00';
+				return forceHours ? '00:00:00' : '00:00';
 			}
 
 			// required (minutes : seconds)
