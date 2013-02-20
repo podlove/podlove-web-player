@@ -7,7 +7,7 @@
 		players = [],
 		// Timecode as described in http://podlove.org/deep-link/
 		// and http://www.w3.org/TR/media-frags/#fragment-dimensions
-		timecodeRegExp = /(\d+:)?(\d+):(\d+)(\.\d+)?([,-](\d+:)?(\d+):(\d+)(\.\d+)?)?/;
+		timecodeRegExp = /(?:(\d+):)?(\d+):(\d+)(\.\d+)?([,-](?:(\d+):)?(\d+):(\d+)(\.\d+)?)?/;
 
 
 
@@ -623,13 +623,13 @@
 
 			if (parts && parts.length === 10) {
 				// hours
-				startTime += parts[1] ? parseInt(parts[1], 10) * 60 * 60 : 0;
+				startTime += parts[1] ? ~~parts[1] * 60 * 60 : 0;
 				// minutes
-				startTime += parseInt(parts[2], 10) * 60;
+				startTime += ~~parts[2] * 60;
 				// seconds
-				startTime += parseInt(parts[3], 10);
+				startTime += ~~parts[3];
 				// milliseconds
-				startTime += parts[4] ? parseFloat(parts[4]) : 0;
+				startTime += parts[4] ? +parts[4] : 0;
 				// no negative time
 				startTime = Math.max(startTime, 0);
 
@@ -639,13 +639,13 @@
 				}
 
 				// hours
-				endTime += parts[6] ? parseInt(parts[6], 10) * 60 * 60 : 0;
+				endTime += parts[6] ? ~~parts[6] * 60 * 60 : 0;
 				// minutes
-				endTime += parseInt(parts[7], 10) * 60;
+				endTime += ~~parts[7] * 60;
 				// seconds
-				endTime += parseInt(parts[8], 10);
+				endTime += ~~parts[8];
 				// milliseconds
-				endTime += parts[9] ? parseFloat(parts[9]) : 0;
+				endTime += parts[9] ? +parts[9] : 0;
 				// no negative time
 				endTime = Math.max(endTime, 0);
 
