@@ -115,7 +115,7 @@
 			players.push(player);
 
 			//add params from html fallback area
-			$(this).find('[data-pwp]').each(function(){
+			$(player).find('[data-pwp]').each(function(){
 				params[$(this).data('pwp')] = $(this).html();
 				$(this).remove();
 			});
@@ -217,7 +217,7 @@
 			if (typeof params.chapters !== 'undefined') {
 				haschapters = true;
 
-				generateChapterTable(params, player.id).appendTo(wrapper);
+				generateChapterTable(params).appendTo(wrapper);
 			}
 
 			if (richplayer || haschapters) {
@@ -251,7 +251,7 @@
 	/**
 	 * Given a list of chapters, this function creates the chapter table for the player.
 	 */
-	var generateChapterTable = function( params, playerId){
+	var generateChapterTable = function( params){
 		
 		var div = $(
 			'<div class="podlovewebplayer_chapterbox showonplay"><table>'
@@ -269,7 +269,7 @@
 			div.addClass('active');
 		}
 
-		table.addClass('podlovewebplayer_chapters').attr('rel', playerId);
+		table.addClass('podlovewebplayer_chapters');
 		if (params.chapterlinks != 'false') {
 			table.addClass('linked linked_'+params.chapterlinks);
 		}
@@ -374,8 +374,7 @@
 
 		var jqPlayer = $(player),
 			layoutedPlayer = jqPlayer,
-			playerId = jqPlayer.attr('id'),
-			list = $('table[rel=' + playerId + ']'),
+			list = jqPlayer.closest('.podlovewebplayer_wrapper').find('table'),
 			marks = list.find('tr'),
 			canplay = false;
 			
@@ -386,7 +385,7 @@
 
 		// get things straight for flash fallback
 		if (player.pluginType == 'flash') {
-			var layoutedPlayer = $('#mep_' + player.id.substring(9));
+			layoutedPlayer = $('#mep_' + player.id.substring(9));
 		}
 
 		// cache some jQ objects
