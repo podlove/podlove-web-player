@@ -7,7 +7,7 @@
 		players = [],
 		// Timecode as described in http://podlove.org/deep-link/
 		// and http://www.w3.org/TR/media-frags/#fragment-dimensions
-		timecodeRegExp = /(\d+:)?(\d+):(\d+)(\.\d+)?([,-](\d+:)?(\d+):(\d+)(\.\d+)?)?/;
+		timecodeRegExp = /(?:(\d+):)?(\d+):(\d+)(\.\d+)?([,-](?:(\d+):)?(\d+):(\d+)(\.\d+)?)?/;
 
 
 
@@ -85,7 +85,7 @@
 		}
 
 		//duration can be given in seconds or in timecode format
-		if (params.duration && params.duration != ~~params.duration) {
+		if (params.duration && params.duration != parseInt( params.duration, 10)) {
 			var secArray = parseTimecode(params.duration);
 			params.duration = secArray[0];
 		}
@@ -98,7 +98,7 @@
 		});
 
 		//wrapper and init stuff
-		if (params.width == ~~params.width) { 
+		if (params.width == parseInt( params.width, 10)) { 
 			params.width += 'px'; 
 		}
 
@@ -586,14 +586,15 @@
 	 * accepts array with start and end time in seconds
 	 * returns timecode in deep-linking format
 	 * @param times array
+	 * @param forceHours bool (optional)
 	 * @return string
 	 **/
-	var generateTimecode = function(times) {
+	var generateTimecode = $.generateTimecode = function(times, forceHours) {
 		function generatePart(seconds) {
 			var part, hours, milliseconds;
 			// prevent negative values from player
 			if (!seconds || seconds <= 0) {
-				return '00:00';
+				return forceHours ? '00:00:00' : '00:00';
 			}
 
 			// required (minutes : seconds)
@@ -601,7 +602,7 @@
 					zeroFill(Math.floor(seconds % 60) % 60, 2);
 
 			hours = zeroFill(Math.floor(seconds / 60 / 60), 2);
-			hours = hours === '00' ? '' : hours + ':';
+			hours = hours === '00' && !forceHours ? '' : hours + ':';
 			milliseconds = zeroFill(Math.floor(seconds % 1 * 1000), 3);
 			milliseconds = milliseconds === '000' ? '' : '.' + milliseconds;
 
@@ -628,13 +629,13 @@
 
 			if (parts && parts.length === 10) {
 				// hours
-				startTime += parts[1] ? parseInt(parts[1], 10) * 60 * 60 : 0;
+				startTime += parts[1] ? parseInt( parts[1], 10) * 60 * 60 : 0;
 				// minutes
-				startTime += parseInt(parts[2], 10) * 60;
+				startTime += parseInt( parts[2], 10) * 60;
 				// seconds
-				startTime += parseInt(parts[3], 10);
+				startTime += parseInt( parts[3], 10);
 				// milliseconds
-				startTime += parts[4] ? parseFloat(parts[4]) : 0;
+				startTime += parts[4] ? parseFloat( parts[4]) : 0;
 				// no negative time
 				startTime = Math.max(startTime, 0);
 
@@ -644,13 +645,13 @@
 				}
 
 				// hours
-				endTime += parts[6] ? parseInt(parts[6], 10) * 60 * 60 : 0;
+				endTime += parts[6] ? parseInt( parts[6], 10) * 60 * 60 : 0;
 				// minutes
-				endTime += parseInt(parts[7], 10) * 60;
+				endTime += parseInt( parts[7], 10) * 60;
 				// seconds
-				endTime += parseInt(parts[8], 10);
+				endTime += parseInt( parts[8], 10);
 				// milliseconds
-				endTime += parts[9] ? parseFloat(parts[9]) : 0;
+				endTime += parts[9] ? parseFloat( parts[9]) : 0;
 				// no negative time
 				endTime = Math.max(endTime, 0);
 
