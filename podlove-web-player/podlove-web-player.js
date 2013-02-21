@@ -85,7 +85,7 @@
 		}
 
 		//duration can be given in seconds or in timecode format
-		if (params.duration && params.duration != ~~params.duration) {
+		if (params.duration && params.duration != parseInt( params.duration, 10)) {
 			var secArray = parseTimecode(params.duration);
 			params.duration = secArray[0];
 		}
@@ -98,7 +98,7 @@
 		});
 
 		//wrapper and init stuff
-		if (params.width == ~~params.width) { 
+		if (params.width == parseInt( params.width, 10)) { 
 			params.width += 'px'; 
 		}
 
@@ -623,13 +623,13 @@
 
 			if (parts && parts.length === 10) {
 				// hours
-				startTime += parts[1] ? ~~parts[1] * 60 * 60 : 0;
+				startTime += parts[1] ? parseInt( parts[1], 10) * 60 * 60 : 0;
 				// minutes
-				startTime += ~~parts[2] * 60;
+				startTime += parseInt( parts[2], 10) * 60;
 				// seconds
-				startTime += ~~parts[3];
+				startTime += parseInt( parts[3], 10);
 				// milliseconds
-				startTime += parts[4] ? +parts[4] : 0;
+				startTime += parts[4] ? parseFloat( parts[4]) : 0;
 				// no negative time
 				startTime = Math.max(startTime, 0);
 
@@ -639,13 +639,13 @@
 				}
 
 				// hours
-				endTime += parts[6] ? ~~parts[6] * 60 * 60 : 0;
+				endTime += parts[6] ? parseInt( parts[6], 10) * 60 * 60 : 0;
 				// minutes
-				endTime += ~~parts[7] * 60;
+				endTime += parseInt( parts[7], 10) * 60;
 				// seconds
-				endTime += ~~parts[8];
+				endTime += parseInt( parts[8], 10);
 				// milliseconds
-				endTime += parts[9] ? +parts[9] : 0;
+				endTime += parts[9] ? parseFloat( parts[9]) : 0;
 				// no negative time
 				endTime = Math.max(endTime, 0);
 
