@@ -380,7 +380,6 @@
 		if (metainfo.length === 1) {
 
 			metainfo.find('a.infowindow').click(function(){
-				alert(summary.height());
 				if(typeof summary != '') {
 					summary.toggleClass('active');
 					if(summary.hasClass('active')) {
@@ -393,7 +392,7 @@
 			});
 
 			metainfo.find('a.showcontrols').on('click', function(){
-				if(typeof player.parentNode == 'undefined') {
+				if(typeof player.parentNode != 'undefined') {
 					controlbox.toggleClass('active');
 				}
 				return false;
@@ -508,7 +507,7 @@
 		
 		if (chapterdiv.length === 1) {
 			metainfo.find('a.chaptertoggle').on('click', function() {
-				if(typeof player.parentNode == 'undefined') {
+				if(typeof player.parentNode != 'undefined') {
 					chapterdiv.toggleClass('active');
 					if (chapterdiv.hasClass('active')) {
 						chapterdiv.height(chapterdiv.data('height') + 'px');
