@@ -379,28 +379,35 @@
 		
 		if (metainfo.length === 1) {
 
-			metainfo.find('a.infowindow').on('click', function(){
-				summary.toggleClass('active');
-				if(summary.hasClass('active')) {
-					summary.height(summary.data('height') + 'px');
-				} else {
-					summary.height('0px');
+			metainfo.find('a.infowindow').click(function(){
+				alert(summary.height());
+				if(typeof summary != '') {
+					summary.toggleClass('active');
+					if(summary.hasClass('active')) {
+						summary.height(summary.data('height') + 'px');
+					} else {
+						summary.height('0px');
+					}
 				}
 				return false;
 			});
 
 			metainfo.find('a.showcontrols').on('click', function(){
-				controlbox.toggleClass('active');
+				if(typeof player.parentNode == 'undefined') {
+					controlbox.toggleClass('active');
+				}
 				return false;
 			});
 
 			metainfo.find('.bigplay').on('click', function(){
-				if (player.paused) {
-					player.play();
-					$(this).addClass('playing');
-				} else {
-					player.pause();
-					$(this).removeClass('playing');
+				if(player.parentNode.className == 'mejs-mediaelement') {
+					if (player.paused) {
+						player.play();
+						$(this).addClass('playing');
+					} else {
+						player.pause();
+						$(this).removeClass('playing');
+					}
 				}
 				return false;
 			});
@@ -501,11 +508,13 @@
 		
 		if (chapterdiv.length === 1) {
 			metainfo.find('a.chaptertoggle').on('click', function() {
-				chapterdiv.toggleClass('active');
-				if (chapterdiv.hasClass('active')) {
-					chapterdiv.height(chapterdiv.data('height') + 'px');
-				} else {
-					chapterdiv.height('0px');
+				if(typeof player.parentNode == 'undefined') {
+					chapterdiv.toggleClass('active');
+					if (chapterdiv.hasClass('active')) {
+						chapterdiv.height(chapterdiv.data('height') + 'px');
+					} else {
+						chapterdiv.height('0px');
+					}
 				}
 				return false;
 			});

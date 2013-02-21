@@ -22,6 +22,12 @@
 	padding-bottom: 1.5em;
 }
 
+.podlovewebplayer_wrapper a, .podlovewebplayer_wrapper a:active, .podlovewebplayer_wrapper a:focus {
+	border: 0px none !important;
+	text-decoration: none !important;
+	outline: none !important;
+}
+
 .podlovewebplayer_wrapper:after {
 	content: ".";
 	color: #fff;
