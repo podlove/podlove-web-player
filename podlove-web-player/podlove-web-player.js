@@ -195,18 +195,18 @@
 		if (params.timecontrolsVisible == true) {
 			timecontrolsActive = " active";
 		}
-		wrapper.append('<div class="controlbox'+timecontrolsActive+'"></div>');
+		wrapper.append('<div class="podlovewebplayer_controlbox'+timecontrolsActive+'"></div>');
 		
 		if (typeof params.chapters !== 'undefined') {
-			wrapper.find('.controlbox').append('<a href="#" class="prevbutton infobuttons icon-step-backward" title="previous chapter"></a>'
+			wrapper.find('.podlovewebplayer_controlbox').append('<a href="#" class="prevbutton infobuttons icon-step-backward" title="previous chapter"></a>'
 						+'<a href="#" class="nextbutton infobuttons icon-step-forward" title="next chapter"></a>')
 		}
-		wrapper.find('.controlbox').append(
+		wrapper.find('.podlovewebplayer_controlbox').append(
 			'<a href="#" class="rewindbutton infobuttons icon-backward" title="Rewind 30 seconds"></a>');
-		wrapper.find('.controlbox').append('<a href="#" class="forwardbutton infobuttons icon-forward" title="Skip 30 seconds"></a>');
+		wrapper.find('.podlovewebplayer_controlbox').append('<a href="#" class="forwardbutton infobuttons icon-forward" title="Skip 30 seconds"></a>');
 		if (typeof wrapper.closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href') !== 'undefined') {
-			wrapper.find('.controlbox').append('<a href="#" class="currentbutton infobuttons icon-link" title="get current position link"></a>');
-			wrapper.find('.controlbox').append('<a href="#" target="_blank" class="tweetbutton infobuttons icon-twitter" title="tweet current position"></a>');
+			wrapper.find('.podlovewebplayer_controlbox').append('<a href="#" class="currentbutton infobuttons icon-link" title="get current position link"></a>');
+			wrapper.find('.podlovewebplayer_controlbox').append('<a href="#" target="_blank" class="tweetbutton infobuttons icon-twitter" title="tweet current position"></a>');
 		}
 
 		//build chapter table
@@ -366,7 +366,7 @@
 		var wrapper = layoutedPlayer.closest('.podlovewebplayer_wrapper'),
 			metainfo = wrapper.find('.podlovewebplayer_meta'),
 			summary = wrapper.find('.summary'),
-			controlbox = wrapper.find('.controlbox'),
+			podlovewebplayer_controlbox = wrapper.find('.podlovewebplayer_controlbox'),
 			chapterdiv = wrapper.find('.podlovewebplayer_chapterbox');
 		
 		// fix height of summary for better toggability
@@ -380,7 +380,7 @@
 		if (metainfo.length === 1) {
 
 			metainfo.find('a.infowindow').click(function(){
-				if(typeof summary != '') {
+				if(typeof player.parentNode != 'undefined') {
 					summary.toggleClass('active');
 					if(summary.hasClass('active')) {
 						summary.height(summary.data('height') + 'px');
@@ -393,19 +393,21 @@
 
 			metainfo.find('a.showcontrols').on('click', function(){
 				if(typeof player.parentNode != 'undefined') {
-					controlbox.toggleClass('active');
+					podlovewebplayer_controlbox.toggleClass('active');
 				}
 				return false;
 			});
 
 			metainfo.find('.bigplay').on('click', function(){
-				if(player.parentNode.className == 'mejs-mediaelement') {
-					if (player.paused) {
-						player.play();
-						$(this).addClass('playing');
-					} else {
-						player.pause();
-						$(this).removeClass('playing');
+				if(typeof player.parentNode != 'undefined') {
+					if(player.parentNode.className == 'mejs-mediaelement') {
+						if (player.paused) {
+							player.play();
+							$(this).addClass('playing');
+						} else {
+							player.pause();
+							$(this).removeClass('playing');
+						}
 					}
 				}
 				return false;
@@ -462,7 +464,8 @@
 			});
 		}
 		
-
+		
+		
 		// chapters list
 		list
 			.show()
@@ -503,21 +506,16 @@
 			if(!$(this).hasClass('active')) {
 				$(this).height('0px');
 			}
-		})
-		
-		if (chapterdiv.length === 1) {
-			metainfo.find('a.chaptertoggle').on('click', function() {
-				if(typeof player.parentNode != 'undefined') {
-					chapterdiv.toggleClass('active');
-					if (chapterdiv.hasClass('active')) {
-						chapterdiv.height(chapterdiv.data('height') + 'px');
-					} else {
-						chapterdiv.height('0px');
-					}
+			$(this).closest('.podlovewebplayer_wrapper').find('.chaptertoggle').click(function() {
+				$(this).closest('.podlovewebplayer_wrapper').find('.podlovewebplayer_chapterbox').toggleClass('active');
+				if ($(this).closest('.podlovewebplayer_wrapper').find('.podlovewebplayer_chapterbox').hasClass('active')) {
+					$(this).closest('.podlovewebplayer_wrapper').find('.podlovewebplayer_chapterbox').height($(this).closest('.podlovewebplayer_wrapper').find('.podlovewebplayer_chapterbox').data('height') + 'px');
+				} else {
+					$(this).closest('.podlovewebplayer_wrapper').find('.podlovewebplayer_chapterbox').height('0px');
 				}
 				return false;
 			});
-		}
+		})
 
 		// wait for the player or you'll get DOM EXCEPTIONS
 		jqPlayer.bind('canplay', function () {
