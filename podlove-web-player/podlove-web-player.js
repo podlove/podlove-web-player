@@ -404,10 +404,17 @@
 			podlovewebplayer_timecontrol = wrapper.find('.podlovewebplayer_timecontrol'),
 			podlovewebplayer_sharebuttons = wrapper.find('.podlovewebplayer_sharebuttons'),
 			chapterdiv = wrapper.find('.podlovewebplayer_chapterbox');
-		
+
 		// fix height of summary for better toggability
 		summary.each(function() {
 			$(this).data('height', $(this).height());
+			if (!$(this).hasClass('active')) {
+				$(this).height('0px');
+			}
+		});
+
+		chapterdiv.each(function() {
+			$(this).data('height', $(this).find('.podlovewebplayer_chapters').height());
 			if (!$(this).hasClass('active')) {
 				$(this).height('0px');
 			}
@@ -464,6 +471,16 @@
 				return false;
 			});
 
+			wrapper.find('.chaptertoggle').unbind('click').click(function(){
+				wrapper.find('.podlovewebplayer_chapterbox').toggleClass('active');
+				if (wrapper.find('.podlovewebplayer_chapterbox').hasClass('active')) {
+					wrapper.find('.podlovewebplayer_chapterbox').height(wrapper.find('.podlovewebplayer_chapterbox').data('height') + 'px');
+				} else {
+					wrapper.find('.podlovewebplayer_chapterbox').height('0px');
+				}
+				return false;
+			});
+
 			wrapper.find('.prevbutton').click(function(){
 				if ((typeof player.currentTime === 'number')&&(player.currentTime > 0)) {
 					if(player.currentTime > chapterdiv.find('.active').data('start')+10) {
@@ -476,7 +493,7 @@
 				}
 				return false;
 			});
-			
+
 			wrapper.find('.nextbutton').click(function(){
 				if ((typeof player.currentTime === 'number') && (player.currentTime > 0)) {
 					player.setCurrentTime(chapterdiv.find('.active').next().data('start'));
@@ -513,17 +530,17 @@
 				window.open('https://twitter.com/share?text='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text())+'&url='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href'))+'%23t%3D'+generateTimecode([player.currentTime]), 'tweet it', 'width=550,height=420,resizable=yes');
 				return false;
 			});
-			
+
 			wrapper.find('.fbsharebutton').click(function(){
 				window.open('http://www.facebook.com/share.php?t='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text())+'&u='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href'))+'%23t%3D'+generateTimecode([player.currentTime]), 'share it', 'width=550,height=340,resizable=yes');
 				return false;
 			});
-			
+
 			wrapper.find('.gplusbutton').click(function(){
 				window.open('https://plus.google.com/share?title='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text())+'&url='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href'))+'%23t%3D'+generateTimecode([player.currentTime]), 'plus it', 'width=550,height=420,resizable=yes');
 				return false;
 			});
-			
+
 			wrapper.find('.mailbutton').click(function(){
 				window.location = 'mailto:?subject=&body='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text())+'%20'+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href'))+'%23t%3D'+generateTimecode([player.currentTime]);
 				return false;
@@ -565,23 +582,6 @@
 				}
 				return false;
 			});
-
-		chapterdiv.each(function() {
-			$(this).data('height', $(this).height());
-			$(this).height($(this).data('height'));
-			if(!$(this).hasClass('active')) {
-				$(this).height('0px');
-			}
-			$(this).closest('.podlovewebplayer_wrapper').find('.chaptertoggle').click(function() {
-				$(this).closest('.podlovewebplayer_wrapper').find('.podlovewebplayer_chapterbox').toggleClass('active');
-				if ($(this).closest('.podlovewebplayer_wrapper').find('.podlovewebplayer_chapterbox').hasClass('active')) {
-					$(this).closest('.podlovewebplayer_wrapper').find('.podlovewebplayer_chapterbox').height($(this).closest('.podlovewebplayer_wrapper').find('.podlovewebplayer_chapterbox').data('height') + 'px');
-				} else {
-					$(this).closest('.podlovewebplayer_wrapper').find('.podlovewebplayer_chapterbox').height('0px');
-				}
-				return false;
-			});
-		});
 
 		// wait for the player or you'll get DOM EXCEPTIONS
 		jqPlayer.bind('canplay', function () {
@@ -630,10 +630,6 @@
 
 		});
 	};
-
-
-
-
 
 
 	/**
