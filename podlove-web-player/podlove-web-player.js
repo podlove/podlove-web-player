@@ -38,7 +38,7 @@
 			enableKeyboard: true,
 			pauseOtherPlayers: true,
 			duration: false
-		}
+		};
 
 		// Additional parameters default values
 		var params = $.extend({}, {
@@ -203,8 +203,8 @@
 		wrapper.append('<div class="podlovewebplayer_timecontrol podlovewebplayer_controlbox'+timecontrolsActive+'"></div>');
 		
 		if (typeof params.chapters !== 'undefined') {
-			wrapper.find('.podlovewebplayer_timecontrol').append('<a href="#" class="prevbutton infobuttons icon-step-backward" title="previous chapter"></a>'
-						+'<a href="#" class="nextbutton infobuttons icon-step-forward" title="next chapter"></a>')
+			wrapper.find('.podlovewebplayer_timecontrol').append('<a href="#" class="prevbutton infobuttons icon-step-backward" title="previous chapter"></a><a href="#" class="nextbutton infobuttons icon-step-forward" title="next chapter"></a>')
+			wrapper.find('.controlbox').append('<a href="#" class="prevbutton infobuttons icon-step-backward" title="previous chapter"></a><a href="#" class="nextbutton infobuttons icon-step-forward" title="next chapter"></a>');
 		}
 		wrapper.find('.podlovewebplayer_timecontrol').append(
 			'<a href="#" class="rewindbutton infobuttons icon-backward" title="Rewind 30 seconds"></a>');
@@ -223,101 +223,7 @@
 		if (typeof params.chapters !== 'undefined') {
 			haschapters = true;
 
-			var class_names = 'podlovewebplayer_chapters';
-			if (params.chapterlinks != 'false') {
-				class_names += ' linked linked_'+params.chapterlinks;
-			}
-			var chaptersActive = "";
-			if (params.chaptersVisible == true) {
-				chaptersActive = " active";
-			}
-			var tablestring = '<div class="podlovewebplayer_chapterbox showonplay'+chaptersActive+'"><table rel="'+player.id+'" class="'+class_names+'">';
-			tablestring += '<caption>Podcast Chapters</caption><thead><tr>';
-			tablestring += '<th scope="col">Chapter Number</th>';
-			tablestring += '<th scope="col">Start time</th>';
-			tablestring += '<th scope="col">Title</th>';
-			tablestring += '<th scope="col">Duration</th>';
-			tablestring += '</tr></thead>';
-			tablestring += '<tbody></tbody></table></div>';
-			wrapper.append(tablestring);
-			var table = wrapper.find('table[rel='+player.id+']');
-
-			//prepare row data
-			var tempchapters = {};
-			var i = 0;
-			var maxchapterlength = 0;
-			var maxchapterstart  = 0;
-
-			//first round: kill empty rows and build structured object
-			$.each(params.chapters.split("\n"), function(){
-				//exit early if this line contains nothing but whitespace
-				if( !/\S/.test(this)){
-					return;
-				}
-
-				var line = $.trim(this);
-				var tc = parseTimecode(line.substring(0,line.indexOf(' ')));
-				var chaptitle = $.trim(line.substring(line.indexOf(' ')));
-				tempchapters[i] = {start: tc[0], title: chaptitle };
-				i++;
-			});
-
-			//second round: collect more information
-			$.each(tempchapters, function(i){
-				if (typeof tempchapters[-~i] !== 'undefined') {
-					this.end = 	tempchapters[-~i].start;
-					if(Math.round(this.end-this.start) > maxchapterlength) {
-						maxchapterlength = Math.round(this.end-this.start);
-						maxchapterstart = Math.round(tempchapters[-~i].start);
-					}
-				}
-			})
-			
-			//third round: build actual dom table
-			$.each(tempchapters, function(i){
-				var deeplink = document.location;
-
-				var finalchapter = (typeof tempchapters[-~i] === 'undefined') ? true : false;
-				if (!finalchapter) {
-					this.end = 	tempchapters[-~i].start;
-					if((maxchapterlength >= 3600)&&(Math.round(this.end-this.start) < 3600)) {
-						this.duration = '00:'+generateTimecode([Math.round(this.end-this.start)]);
-					} else {
-						this.duration = generateTimecode([Math.round(this.end-this.start)]);
-					}
-				} else {
-					if (params.duration == 0) {
-						this.end = 9999999999;
-						this.duration = '…';
-					} else {
-						this.end = params.duration;
-						if((maxchapterlength >= 3600)&&(Math.round(this.end-this.start) < 3600)) {
-							this.duration = '00:'+generateTimecode([Math.round(this.end-this.start)]);
-						} else {
-							this.duration = generateTimecode([Math.round(this.end-this.start)]);
-						}
-					}
-				}
-
-				// deeplink, start and end
-				var deeplink_chap = '#t=' + generateTimecode( [this.start, this.end] );
-				var oddchapter = 'oddchapter';
-				if((~~i)%2) { oddchapter = ''; }
-				var rowstring = '<tr class="chaptertr '+oddchapter+'" data-start="'+this.start+'" data-end="'+this.end+'">';
-
-				if((maxchapterstart >= 3600)&&(Math.round(this.start) < 3600)) {
-					rowstring += '<td class="starttime"><span>00:'+generateTimecode( [Math.round(this.start)] )+'</span></td>';
-				} else {
-					rowstring += '<td class="starttime"><span>'+generateTimecode( [Math.round(this.start)] )+'</span></td>';
-				}
-
-				rowstring += '<td>'+this.title+'</td>';
-				rowstring += '<td class="timecode">'+"\n";
-				rowstring += '<span>' + this.duration + '</span>' + "\n";
-				rowstring += '</td>'+"\n";
-				rowstring += '</tr>';
-				table.append(rowstring);	
-			});
+			generateChapterTable(params, player.id).appendTo(wrapper);
 		}
 
 		if (richplayer || haschapters) {
@@ -341,10 +247,126 @@
 					scrollTop: $('.podlovewebplayer_wrapper:first').offset().top - 25
 				});
 			}
-		}
+		};
 
 		$(orig).replaceWith(wrapper);
 		$(player).mediaelementplayer(mejsoptions);
+	};
+
+	/**
+	 * Given a list of chapters, this function creates the chapter table for the player.
+	 */
+	var generateChapterTable = function( params, playerId){
+		
+		var div = $(
+			'<div class="podlovewebplayer_chapterbox showonplay"><table>'
+			+ '<caption>Podcast Chapters</caption><thead><tr>'
+			+ '<th scope="col">Chapter Number</th>'
+			+ '<th scope="col">Start time</th>'
+			+ '<th scope="col">Title</th>'
+			+ '<th scope="col">Duration</th>'
+			+ '</tr></thead>'
+			+ '<tbody></tbody></table></div>'),
+			table = div.children('table'),
+			tbody = table.children('tbody');
+
+		if (params.chaptersVisible === true) {
+			div.addClass('active');
+		}
+
+		table.addClass('podlovewebplayer_chapters').attr('rel', playerId);
+		if (params.chapterlinks != 'false') {
+			table.addClass('linked linked_'+params.chapterlinks);
+		}
+
+
+		//prepare row data
+		var tempchapters = [];
+		var maxchapterlength = 0;
+		var maxchapterstart  = 0;
+
+		//first round: kill empty rows and build structured object
+		$.each(params.chapters.split("\n"), function(i, chapter){
+
+			//exit early if this line contains nothing but whitespace
+			if( !/\S/.test(chapter)) return;
+
+			//extract the timestamp
+			var line = $.trim(chapter);
+			var tc = parseTimecode(line.substring(0,line.indexOf(' ')));
+			var chaptitle = $.trim(line.substring(line.indexOf(' ')));
+			tempchapters.push({start: tc[0], title: chaptitle });
+		});
+
+		//second round: collect more information
+		$.each(tempchapters, function(i){
+			var next = tempchapters[i+1];
+
+			// exit early if this is the final chapter
+			if( !next) return;
+			
+			// we need this data for proper formatting
+			this.end = next.start;
+			if(Math.round(this.end-this.start) > maxchapterlength) {
+				maxchapterlength = Math.round(this.end-this.start);
+				maxchapterstart = Math.round(next.start);
+			}
+		});
+
+		//this is a "template" for each chapter row
+		var rowDummy = $(
+			'<tr class="chaptertr" data-start="" data-end="">'
+			+ '<td class="starttime"><span></span></td>'
+			+ '<td></td>'
+			+ '<td class="timecode">\n'
+			+ '<span></span>\n'
+			+ '</td>\n'
+			+ '</tr>');
+
+		//third round: build actual dom table
+		$.each(tempchapters, function(i){
+			var finalchapter = !tempchapters[i+1],
+				duration = Math.round(this.end-this.start),
+				forceHours = (maxchapterlength >= 3600),
+				row = rowDummy.clone();
+
+			//make sure the duration for all chapters are equally formatted
+			if (!finalchapter) {
+				this.duration = generateTimecode([duration], forceHours);
+			} else {
+				if (params.duration == 0) {
+					this.end = 9999999999;
+					this.duration = '…';
+				} else {
+					this.end = params.duration;
+					this.duration = generateTimecode([Math.round(this.end-this.start)], forceHours);
+				}
+			}
+
+
+			if(i % 2) {
+				row.addClass('oddchapter');
+			}
+
+			//deeplink, start and end
+			row.attr({
+				'data-start': this.start,
+				'data-end' : this.end
+			});
+
+			//if there is a chapter that starts after an hour, force '00:' on all previous chapters
+			forceHours = (maxchapterstart >= 3600);
+
+			//insert the chapter data
+			row.find('.starttime > span').text( generateTimecode([Math.round(this.start)], forceHours));
+			row.children('td').eq(1).html(this.title);
+			row.find('.timecode > span').text( this.duration);
+
+			row.appendTo( tbody);
+		});
+
+
+		return div;
 	};
 
 
@@ -386,7 +408,7 @@
 			if (!$(this).hasClass('active')) {
 				$(this).height('0px');
 			}
-		})
+		});
 		
 		if (metainfo.length === 1) {
 
@@ -556,7 +578,7 @@
 				}
 				return false;
 			});
-		})
+		});
 
 		// wait for the player or you'll get DOM EXCEPTIONS
 		jqPlayer.bind('canplay', function () {
@@ -620,7 +642,7 @@
 	var zeroFill = function(number, width) {
 		width -= number.toString().length;
 		return width > 0 ? new Array(width + 1).join('0') + number : number + '';
-	}
+	};
 
 
 	/**
@@ -655,7 +677,7 @@
 		}
 
 		return generatePart(times[0]);
-	}
+	};
 
 	/**
 	 * parses time code into seconds
@@ -700,7 +722,7 @@
 			}
 		}
 		return false;
-	}
+	};
 
 	var checkCurrentURL = function() {
 		var deepLink;
@@ -709,12 +731,12 @@
 			startAtTime = deepLink[0];
 			stopAtTime = deepLink[1];
 		}
-	}
+	};
 
 	var setFragmentURL = function(fragment) {
 		var url;
 		window.location.hash = fragment;
-	}
+	};
 
 	// update the chapter list when the data is loaded
 	var updateChapterMarks = function(player, marks) {
@@ -743,7 +765,7 @@
 				$(mark).data('enabled', true).addClass('loaded').find('a[rel=player]').removeClass('disabled');
 			}
 		});
-	}
+	};
 
 	var checkTime = function (e) {
 		if (players.length > 1) { return; }
@@ -759,7 +781,7 @@
 			player.pause();
 			stopAtTime = false;
 		}
-	}
+	};
 
 	var addressCurrentTime = function(e) {
 		var fragment;
@@ -767,6 +789,6 @@
 			fragment = 't=' + generateTimecode([e.data.player.currentTime]);
 			setFragmentURL(fragment);
 		}
-	}
+	};
 	
 }(jQuery));
