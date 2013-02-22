@@ -1,12 +1,6 @@
-[submodule "podlove-web-player/audiojs"]
-	path = podlove-web-player/audiojs
-	url = https://github.com/kolber/audiojs.git
 [submodule "podlove-web-player/libs/mediaelement"]
 	path = podlove-web-player/libs/mediaelement
-url=git@github.com:podlove/mediaelement.git
-[submodule "fontawesome"]
-	path = fontawesome
-	url = https://gerritvanaaken@github.com/FortAwesome/Font-Awesome.git
+	url=git@github.com:podlove/mediaelement.git
 [submodule "podlove-web-player/libs/fontawesome"]
 	path = podlove-web-player/libs/fontawesome
-url=git@github.com:podlove/Font-Awesome.git
+	url=git@github.com:podlove/Font-Awesome.git
