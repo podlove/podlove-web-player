@@ -9,4 +9,4 @@ url=git@github.com:podlove/mediaelement.git
 	url = https://gerritvanaaken@github.com/FortAwesome/Font-Awesome.git
 [submodule "podlove-web-player/libs/fontawesome"]
 	path = podlove-web-player/libs/fontawesome
-url=git@github.com:FortAwesome/Font-Awesome.git
+url=git@github.com:podlove/Font-Awesome.git
