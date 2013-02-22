@@ -1,6 +1,0 @@
-[submodule "podlove-web-player/libs/mediaelement"]
-	path = podlove-web-player/libs/mediaelement
-	url=git@github.com:podlove/mediaelement.git
-[submodule "podlove-web-player/libs/fontawesome"]
-	path = podlove-web-player/libs/fontawesome
-	url=git@github.com:podlove/Font-Awesome.git
