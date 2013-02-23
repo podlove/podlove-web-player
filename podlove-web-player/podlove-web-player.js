@@ -219,6 +219,7 @@
 				wrapper.find('.podlovewebplayer_sharebuttons').append('<a href="#" target="_blank" class="tweetbutton infobuttons icon-twitter" title="tweet current position"></a>');
 				wrapper.find('.podlovewebplayer_sharebuttons').append('<a href="#" target="_blank" class="fbsharebutton infobuttons icon-facebook" title="share current position on facebook"></a>');
 				wrapper.find('.podlovewebplayer_sharebuttons').append('<a href="#" target="_blank" class="gplusbutton infobuttons icon-google-plus" title="share current position on Google+"></a>');
+				wrapper.find('.podlovewebplayer_sharebuttons').append('<a href="#" target="_blank" class="adnbutton infobuttons icon-appdotnet" title="share current position alpha.App.net">&alpha;</a>');
 				wrapper.find('.podlovewebplayer_sharebuttons').append('<a href="#" target="_blank" class="mailbutton infobuttons icon-envelope" title="share current position via mail"></a>');
 			}
 
@@ -457,15 +458,17 @@
 			});
 
 			metainfo.find('.bigplay').on('click', function(){
-				if(typeof player.parentNode != 'undefined') {
-					if(player.parentNode.className == 'mejs-mediaelement') {
+				if($(this).hasClass('bigplay')) {
+					if((typeof player.currentTime === 'number')&&(player.currentTime > 0)) {
 						if (player.paused) {
 							player.play();
-							$(this).addClass('playing');
+							$(this).parent().find('.bigplay').addClass('playing');
 						} else {
 							player.pause();
-							$(this).removeClass('playing');
+							$(this).parent().find('.bigplay').removeClass('playing');
 						}
+					} else {
+						player.play();
 					}
 				}
 				return false;
@@ -522,27 +525,32 @@
 			});
 
 			wrapper.find('.currentbutton').click(function(){
-				window.prompt('This URL directly points to the current playback position', $(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href')+'#t='+generateTimecode([player.currentTime]));
+				window.prompt('This URL directly points to the current playback position', $(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href'));
 				return false;
 			});
 
 			wrapper.find('.tweetbutton').click(function(){
-				window.open('https://twitter.com/share?text='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text())+'&url='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href'))+'%23t%3D'+generateTimecode([player.currentTime]), 'tweet it', 'width=550,height=420,resizable=yes');
+				window.open('https://twitter.com/share?text='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text())+'&url='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href')), 'tweet it', 'width=550,height=420,resizable=yes');
 				return false;
 			});
 
 			wrapper.find('.fbsharebutton').click(function(){
-				window.open('http://www.facebook.com/share.php?t='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text())+'&u='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href'))+'%23t%3D'+generateTimecode([player.currentTime]), 'share it', 'width=550,height=340,resizable=yes');
+				window.open('http://www.facebook.com/share.php?t='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text())+'&u='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href')), 'share it', 'width=550,height=340,resizable=yes');
 				return false;
 			});
 
 			wrapper.find('.gplusbutton').click(function(){
-				window.open('https://plus.google.com/share?title='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text())+'&url='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href'))+'%23t%3D'+generateTimecode([player.currentTime]), 'plus it', 'width=550,height=420,resizable=yes');
+				window.open('https://plus.google.com/share?title='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text())+'&url='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href')), 'plus it', 'width=550,height=420,resizable=yes');
+				return false;
+			});
+
+			wrapper.find('.adnbutton').click(function(){
+				window.open('https://alpha.app.net/intent/post?text='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text())+'%20'+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href')), 'plus it', 'width=550,height=420,resizable=yes');
 				return false;
 			});
 
 			wrapper.find('.mailbutton').click(function(){
-				window.location = 'mailto:?subject=&body='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text())+'%20'+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href'))+'%23t%3D'+generateTimecode([player.currentTime]);
+				window.location = 'mailto:?subject='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text())+'&body='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text())+'%20'+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href'));
 				return false;
 			});
 		}
