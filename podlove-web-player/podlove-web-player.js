@@ -548,7 +548,7 @@
 							// Basic Chapter Mark function (without deeplinking)
 							player.setCurrentTime(startTime);
 						} else {
-							jqPlayer.bind('canplay', function () {
+							jqPlayer.one('canplay', function () {
 								player.setCurrentTime(startTime);
 							});
 						}
