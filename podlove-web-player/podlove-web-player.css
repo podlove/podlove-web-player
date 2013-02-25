@@ -137,7 +137,8 @@
 .podlovewebplayer_top {
 	position: relative;
 	background: #000;
-	height: 100px;
+	min-height: 100px;
+	height: auto;
 	margin-bottom: 1px;
 	-webkit-border-top-left-radius: 10px;
 	-webkit-border-top-right-radius: 10px;
@@ -394,10 +395,11 @@ filter: dropshadow(color=#000000, offx=0, offy=0);
 .podlovewebplayer_wrapper .podlovewebplayer_controlbox .infobuttons,
 .podlovewebplayer_wrapper .podlovewebplayer_controlbox .infobuttons a {
 	position: relative;
-	margin: 15px;
-	padding: 10px;
+	margin: 5%;
+	padding: 0px;
 	z-index: 78;
 	font-size: 2.4em;
+	font-weight: bold;
 }
 
 .podlovewebplayer_meta .togglers .infobuttons:hover,
@@ -408,6 +410,21 @@ filter: dropshadow(color=#000000, offx=0, offy=0);
 	text-decoration: none;
 	filter: dropshadow(color=#FFFFFF, offx=0, offy=0);
 	cursor: pointer;
+}
+
+.podlovewebplayer_wrapper .podlovewebplayer_controlbox .icon-appdotnet {
+	font-family: "webdings", "Lucida Grande", "Lucida Sans Unicode", Geneva, sans-serif !important;
+	font-size: 2.6em;
+}
+
+.podlovewebplayer_wrapper .podlovewebplayer_controlbox .icon-twitter {
+	font-size: 2.1em;
+}
+
+.podlovewebplayer_wrapper .podlovewebplayer_controlbox .icon-link,
+.podlovewebplayer_wrapper .podlovewebplayer_controlbox .icon-twitter,
+.podlovewebplayer_wrapper .podlovewebplayer_controlbox .icon-facebook {
+	font-weight: normal;
 }
 
 .podlovewebplayer_chapters * {
@@ -616,7 +633,7 @@ and (max-width : 500px) {
 	}
 	.podlovewebplayer_meta .coverart {
 		position: absolute;
-		bottom: 30px;
+		bottom: 20px;
 		left: 120px;
 	}
 	.podlovewebplayer_meta .coverart img {
@@ -635,8 +652,14 @@ and (max-width : 500px) {
 		margin: auto;
 		text-align: center;
 	}
+	.podlovewebplayer_wrapper.podlovewebplayer_audio .podlovewebplayer_meta .togglers {
+		width: 20px;
+		right: 20px;
+		bottom: 15px;
+	}
+	
 	.podlovewebplayer_wrapper .podlovewebplayer_controlbox a.infobuttons {
-		margin: 15px;
+		margin: 4%;
 	}
 	.podlovewebplayer_wrapper .podlovewebplayer_tableend,
 	.podlovewebplayer_wrapper .podlovewebplayer_top {
