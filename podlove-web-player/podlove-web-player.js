@@ -245,7 +245,7 @@
 
 			// init MEJS to player
 			mejsoptions.success = function (player) {
-				addBehavior(player, params);
+				addBehavior(player, params, wrapper);
 				if (deepLink !== false && players.length === 1) {
 					$('html, body').delay(150).animate({
 						scrollTop: $('.podlovewebplayer_wrapper:first').offset().top - 25
@@ -380,8 +380,7 @@
 	 * time position & write current time into address
 	 * @param player object
 	 */
-	var addBehavior = function(player, params) {
-
+	var addBehavior = function(player, params, wrapper) {
 		var jqPlayer = $(player),
 			layoutedPlayer = jqPlayer,
 			canplay = false;
@@ -403,8 +402,7 @@
 		}
 
 		// cache some jQ objects
-		var wrapper = layoutedPlayer.closest('.podlovewebplayer_wrapper'),
-			metainfo = wrapper.find('.podlovewebplayer_meta'),
+		var metainfo = wrapper.find('.podlovewebplayer_meta'),
 			summary = wrapper.find('.summary'),
 			podlovewebplayer_timecontrol = wrapper.find('.podlovewebplayer_timecontrol'),
 			podlovewebplayer_sharebuttons = wrapper.find('.podlovewebplayer_sharebuttons'),
