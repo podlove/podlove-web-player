@@ -384,9 +384,13 @@
 
 		var jqPlayer = $(player),
 			layoutedPlayer = jqPlayer,
-			list = jqPlayer.closest('.podlovewebplayer_wrapper').find('table'),
-			marks = list.find('tr'),
 			canplay = false;
+
+		/**
+		 * The `player` is an interface. It provides the play and pause functionality. The
+		 * `layoutedPlayer` on the other hand is a DOM element. In native mode, these two
+		 * are one and the same object. In Flash though the interface is a plain JS object.
+		 */
 			
 		if (players.length === 1) {
 			// check if deeplink is set
@@ -404,7 +408,9 @@
 			summary = wrapper.find('.summary'),
 			podlovewebplayer_timecontrol = wrapper.find('.podlovewebplayer_timecontrol'),
 			podlovewebplayer_sharebuttons = wrapper.find('.podlovewebplayer_sharebuttons'),
-			chapterdiv = wrapper.find('.podlovewebplayer_chapterbox');
+			chapterdiv = wrapper.find('.podlovewebplayer_chapterbox'),
+			list = wrapper.find('table'),
+			marks = list.find('tr');
 
 		// fix height of summary for better toggability
 		summary.each(function() {
@@ -420,39 +426,33 @@
 				$(this).height('0px');
 			}
 		});
-		
+
 		if (metainfo.length === 1) {
 
 			metainfo.find('a.infowindow').click(function(){
-				if(typeof player.parentNode != 'undefined') {
-					summary.toggleClass('active');
-					if(summary.hasClass('active')) {
-						summary.height(summary.data('height') + 'px');
-					} else {
-						summary.height('0px');
-					}
+				summary.toggleClass('active');
+				if(summary.hasClass('active')) {
+					summary.height(summary.data('height') + 'px');
+				} else {
+					summary.height('0px');
 				}
 				return false;
 			});
 
 			metainfo.find('a.showcontrols').on('click', function(){
-				if(typeof player.parentNode != 'undefined') {
-					podlovewebplayer_timecontrol.toggleClass('active');
-					if(typeof podlovewebplayer_sharebuttons != 'undefined') {
-						if(podlovewebplayer_sharebuttons.hasClass('active')) {
-							podlovewebplayer_sharebuttons.removeClass('active');
-						}
+				podlovewebplayer_timecontrol.toggleClass('active');
+				if(typeof podlovewebplayer_sharebuttons != 'undefined') {
+					if(podlovewebplayer_sharebuttons.hasClass('active')) {
+						podlovewebplayer_sharebuttons.removeClass('active');
 					}
 				}
 				return false;
 			});
 
 			metainfo.find('a.showsharebuttons').on('click', function(){
-				if(typeof player.parentNode != 'undefined') {
-					podlovewebplayer_sharebuttons.toggleClass('active');
-					if(podlovewebplayer_timecontrol.hasClass('active')) {
-						podlovewebplayer_timecontrol.removeClass('active');
-					}
+				podlovewebplayer_sharebuttons.toggleClass('active');
+				if(podlovewebplayer_timecontrol.hasClass('active')) {
+					podlovewebplayer_timecontrol.removeClass('active');
 				}
 				return false;
 			});
@@ -554,7 +554,6 @@
 				return false;
 			});
 		}
-		
 		
 		
 		// chapters list
