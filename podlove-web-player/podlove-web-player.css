@@ -408,6 +408,11 @@ filter: dropshadow(color=#000000, offx=0, offy=0);
 	font-weight: bold;
 }
 
+.podlovewebplayer_wrapper .podlovewebplayer_downloadbuttons .infobuttons,
+.podlovewebplayer_wrapper .podlovewebplayer_downloadbuttons .infobuttons a {
+	margin: 2%;
+}
+
 .podlovewebplayer_meta .togglers .infobuttons:hover,
 .podlovewebplayer_meta .togglers .infobuttons a:hover,
 .podlovewebplayer_wrapper .podlovewebplayer_controlbox .infobuttons:hover,
@@ -667,7 +672,17 @@ and (max-width : 500px) {
 	
 	.podlovewebplayer_wrapper .podlovewebplayer_controlbox a.infobuttons {
 		margin: 4%;
+		white-space: nowrap;
 	}
+	
+	.podlovewebplayer_wrapper .podlovewebplayer_controlbox.active {
+		height: auto !important;
+	}
+	
+	.podlovewebplayer_wrapper .podlovewebplayer_controlbox .infobuttons span {
+		font-size: 13pt;
+	}
+	
 	.podlovewebplayer_wrapper .podlovewebplayer_tableend,
 	.podlovewebplayer_wrapper .podlovewebplayer_top {
 		-webkit-border-top-left-radius: 0px;

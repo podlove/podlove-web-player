@@ -238,7 +238,7 @@
 				wrapper.find('.togglers').append('<a href="#" class="showdownloadbuttons infobuttons icon-download" title="Show/hide download bar"></a>');
 				for (key in params.downloads) {
 					size = (parseInt(params.downloads[key]['size'],10) < 1048704) ? Math.round(parseInt(params.downloads[key]['size'],10)/100)/10+'kB' : Math.round(parseInt(params.downloads[key]['size'],10)/1000/100)/10+'MB';
-					wrapper.find('.podlovewebplayer_downloadbuttons').append('<a href="#" class="downloadbutton infobuttons icon-download-alt" data-url="'+params.downloads[key]['url']+'" title="Download '+params.downloads[key]['name']+'"> '+params.downloads[key]['name']+' (<small>'+size+'</small>)</a> ');
+					wrapper.find('.podlovewebplayer_downloadbuttons').append('<a href="#" class="downloadbutton infobuttons icon-download-alt" data-url="'+params.downloads[key]['url']+'" title="Download '+params.downloads[key]['name']+'"><span> '+params.downloads[key]['name']+' (<small>'+size+'</small>)</span></a> ');
 				}
 			}
 
