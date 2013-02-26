@@ -34,7 +34,11 @@
 			framesPerSecond: 25,
 			enableKeyboard: true,
 			pauseOtherPlayers: true,
-			duration: false
+			duration: false,
+			plugins: ['flash', 'silverlight'],
+			pluginPath: './libs/mediaelement/build/',
+			flashName: 'flashmediaelement.swf',
+			silverlightName: 'silverlightmediaelement.xap'
 		};
 
 		// Additional parameters default values
