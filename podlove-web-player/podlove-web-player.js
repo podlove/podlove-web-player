@@ -184,15 +184,15 @@
 						summaryActive = " active";
 					}
 					wrapper.find('.togglers').append(
-						'<a href="#" class="infowindow infobuttons icon-info-sign" title="more information on the episode"></a>');
+						'<a href="#" class="infowindow infobuttons icon-info-sign" title="More information about this"></a>');
 					wrapper.find('.podlovewebplayer_meta').after(
 						'<div class="summary'+summaryActive+'">'+params.summary+'</div>');
 				}
 				if (typeof params.chapters !== 'undefined') {
 					wrapper.find('.togglers').append(
-						'<a href="#" class="chaptertoggle infobuttons icon-list-ul" title="show/hide chapters"></a>');
+						'<a href="#" class="chaptertoggle infobuttons icon-list-ul" title="Show/hide chapters"></a>');
 				}
-				wrapper.find('.togglers').append('<a href="#" class="showcontrols infobuttons icon-time" title="show/hide controls box"></a>');
+				wrapper.find('.togglers').append('<a href="#" class="showcontrols infobuttons icon-time" title="Show/hide time navigation controls"></a>');
 			}
 
 			var timecontrolsActive = "";
@@ -206,21 +206,21 @@
 			wrapper.append('<div class="podlovewebplayer_timecontrol podlovewebplayer_controlbox'+timecontrolsActive+'"></div>');
 			
 			if (typeof params.chapters !== 'undefined') {
-				wrapper.find('.podlovewebplayer_timecontrol').append('<a href="#" class="prevbutton infobuttons icon-step-backward" title="previous chapter"></a><a href="#" class="nextbutton infobuttons icon-step-forward" title="next chapter"></a>')
-				wrapper.find('.controlbox').append('<a href="#" class="prevbutton infobuttons icon-step-backward" title="previous chapter"></a><a href="#" class="nextbutton infobuttons icon-step-forward" title="next chapter"></a>');
+				wrapper.find('.podlovewebplayer_timecontrol').append('<a href="#" class="prevbutton infobuttons icon-step-backward" title="Jump backward to previous chapter"></a><a href="#" class="nextbutton infobuttons icon-step-forward" title="next chapter"></a>')
+				wrapper.find('.controlbox').append('<a href="#" class="prevbutton infobuttons icon-step-backward" title="previous chapter"></a><a href="#" class="nextbutton infobuttons icon-step-forward" title="Jump to next chapter"></a>');
 			}
 			wrapper.find('.podlovewebplayer_timecontrol').append(
 				'<a href="#" class="rewindbutton infobuttons icon-backward" title="Rewind 30 seconds"></a>');
-			wrapper.find('.podlovewebplayer_timecontrol').append('<a href="#" class="forwardbutton infobuttons icon-forward" title="Skip 30 seconds"></a>');
+			wrapper.find('.podlovewebplayer_timecontrol').append('<a href="#" class="forwardbutton infobuttons icon-forward" title="Fast forward 30 seconds"></a>');
 			if (typeof wrapper.closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href') !== 'undefined') {
 				wrapper.append('<div class="podlovewebplayer_sharebuttons podlovewebplayer_controlbox'+sharebuttonsActive+'"></div>');
-				wrapper.find('.togglers').append('<a href="#" class="showsharebuttons infobuttons icon-share" title="show/hide share buttons"></a>')
-				wrapper.find('.podlovewebplayer_sharebuttons').append('<a href="#" class="currentbutton infobuttons icon-link" title="get current position link"></a>');
-				wrapper.find('.podlovewebplayer_sharebuttons').append('<a href="#" target="_blank" class="tweetbutton infobuttons icon-twitter" title="tweet current position"></a>');
-				wrapper.find('.podlovewebplayer_sharebuttons').append('<a href="#" target="_blank" class="fbsharebutton infobuttons icon-facebook" title="share current position on facebook"></a>');
-				wrapper.find('.podlovewebplayer_sharebuttons').append('<a href="#" target="_blank" class="gplusbutton infobuttons icon-google-plus" title="share current position on Google+"></a>');
-				wrapper.find('.podlovewebplayer_sharebuttons').append('<a href="#" target="_blank" class="adnbutton infobuttons icon-appdotnet" title="share current position alpha.App.net">&alpha;</a>');
-				wrapper.find('.podlovewebplayer_sharebuttons').append('<a href="#" target="_blank" class="mailbutton infobuttons icon-envelope" title="share current position via mail"></a>');
+				wrapper.find('.togglers').append('<a href="#" class="showsharebuttons infobuttons icon-share" title="Show/hide sharing controls"></a>')
+				wrapper.find('.podlovewebplayer_sharebuttons').append('<a href="#" class="currentbutton infobuttons icon-link" title="Get URL for this"></a>');
+				wrapper.find('.podlovewebplayer_sharebuttons').append('<a href="#" target="_blank" class="tweetbutton infobuttons icon-twitter" title="Share this on Twitter"></a>');
+				wrapper.find('.podlovewebplayer_sharebuttons').append('<a href="#" target="_blank" class="fbsharebutton infobuttons icon-facebook" title="Share this on Facebook"></a>');
+				wrapper.find('.podlovewebplayer_sharebuttons').append('<a href="#" target="_blank" class="gplusbutton infobuttons icon-google-plus" title="Share this on Google+"></a>');
+				wrapper.find('.podlovewebplayer_sharebuttons').append('<a href="#" target="_blank" class="adnbutton infobuttons icon-appdotnet" title="Share this on App.net">&alpha;</a>');
+				wrapper.find('.podlovewebplayer_sharebuttons').append('<a href="#" target="_blank" class="mailbutton infobuttons icon-envelope" title="Share this via e-mail"></a>');
 			}
 
 			//build chapter table
