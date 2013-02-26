@@ -49,6 +49,7 @@
 			chaptersVisible: false,
 			timecontrolsVisible: false,
 			sharebuttonsVisible: false,
+			downloadbuttonsVisible: false,
 			summaryVisible: false
 		}, options);
 
@@ -207,6 +208,11 @@
 			if (params.sharebuttonsVisible == true) {
 				sharebuttonsActive = " active";
 			}
+			var downloadbuttonsActive = "";
+			if (params.downloadbuttonsVisible == true) {
+				downloadbuttonsActive = " active";
+			}
+
 			wrapper.append('<div class="podlovewebplayer_timecontrol podlovewebplayer_controlbox'+timecontrolsActive+'"></div>');
 			
 			if (typeof params.chapters !== 'undefined') {
@@ -218,13 +224,22 @@
 			wrapper.find('.podlovewebplayer_timecontrol').append('<a href="#" class="forwardbutton infobuttons icon-forward" title="Fast forward 30 seconds"></a>');
 			if (typeof wrapper.closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href') !== 'undefined') {
 				wrapper.append('<div class="podlovewebplayer_sharebuttons podlovewebplayer_controlbox'+sharebuttonsActive+'"></div>');
-				wrapper.find('.togglers').append('<a href="#" class="showsharebuttons infobuttons icon-share" title="Show/hide sharing controls"></a>')
+				wrapper.find('.togglers').append('<a href="#" class="showsharebuttons infobuttons icon-share" title="Show/hide sharing controls"></a>');
 				wrapper.find('.podlovewebplayer_sharebuttons').append('<a href="#" class="currentbutton infobuttons icon-link" title="Get URL for this"></a>');
 				wrapper.find('.podlovewebplayer_sharebuttons').append('<a href="#" target="_blank" class="tweetbutton infobuttons icon-twitter" title="Share this on Twitter"></a>');
 				wrapper.find('.podlovewebplayer_sharebuttons').append('<a href="#" target="_blank" class="fbsharebutton infobuttons icon-facebook" title="Share this on Facebook"></a>');
 				wrapper.find('.podlovewebplayer_sharebuttons').append('<a href="#" target="_blank" class="gplusbutton infobuttons icon-google-plus" title="Share this on Google+"></a>');
 				wrapper.find('.podlovewebplayer_sharebuttons').append('<a href="#" target="_blank" class="adnbutton infobuttons icon-appdotnet" title="Share this on App.net">&alpha;</a>');
 				wrapper.find('.podlovewebplayer_sharebuttons').append('<a href="#" target="_blank" class="mailbutton infobuttons icon-envelope" title="Share this via e-mail"></a>');
+			}
+			if (typeof params.downloads !== 'undefined') {
+				var key, size;
+				wrapper.append('<div class="podlovewebplayer_downloadbuttons podlovewebplayer_controlbox'+downloadbuttonsActive+'"></div>');
+				wrapper.find('.togglers').append('<a href="#" class="showdownloadbuttons infobuttons icon-download" title="Show/hide download bar"></a>');
+				for (key in params.downloads) {
+					size = (parseInt(params.downloads[key]['size'],10) < 1048704) ? Math.round(parseInt(params.downloads[key]['size'],10)/100)/10+'kB' : Math.round(parseInt(params.downloads[key]['size'],10)/1000/100)/10+'MB';
+					wrapper.find('.podlovewebplayer_downloadbuttons').append('<a href="#" class="downloadbutton infobuttons icon-download-alt" data-url="'+params.downloads[key]['url']+'" title="Download '+params.downloads[key]['name']+'"> '+params.downloads[key]['name']+' (<small>'+size+'</small>)</a> ');
+				}
 			}
 
 			//build chapter table
@@ -410,6 +425,7 @@
 			summary = wrapper.find('.summary'),
 			podlovewebplayer_timecontrol = wrapper.find('.podlovewebplayer_timecontrol'),
 			podlovewebplayer_sharebuttons = wrapper.find('.podlovewebplayer_sharebuttons'),
+			podlovewebplayer_downloadbuttons = wrapper.find('.podlovewebplayer_downloadbuttons'),
 			chapterdiv = wrapper.find('.podlovewebplayer_chapterbox'),
 			list = wrapper.find('table'),
 			marks = list.find('tr');
@@ -446,6 +462,8 @@
 				if(typeof podlovewebplayer_sharebuttons != 'undefined') {
 					if(podlovewebplayer_sharebuttons.hasClass('active')) {
 						podlovewebplayer_sharebuttons.removeClass('active');
+					} else if(podlovewebplayer_downloadbuttons.hasClass('active')) {
+						podlovewebplayer_downloadbuttons.removeClass('active');
 					}
 				}
 				return false;
@@ -455,6 +473,18 @@
 				podlovewebplayer_sharebuttons.toggleClass('active');
 				if(podlovewebplayer_timecontrol.hasClass('active')) {
 					podlovewebplayer_timecontrol.removeClass('active');
+				} else if(podlovewebplayer_downloadbuttons.hasClass('active')) {
+					podlovewebplayer_downloadbuttons.removeClass('active');
+				}
+				return false;
+			});
+
+			metainfo.find('a.showdownloadbuttons').on('click', function(){
+				podlovewebplayer_downloadbuttons.toggleClass('active');
+				if(podlovewebplayer_timecontrol.hasClass('active')) {
+					podlovewebplayer_timecontrol.removeClass('active');
+				} else if(podlovewebplayer_sharebuttons.hasClass('active')) {
+					podlovewebplayer_sharebuttons.removeClass('active');
 				}
 				return false;
 			});
@@ -555,8 +585,12 @@
 				window.location = 'mailto:?subject='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text())+'&body='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text())+'%20<'+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href'))+'>';
 				return false;
 			});
+
+			wrapper.find('.downloadbutton').click(function(){
+				window.location = $(this).data('url');
+				return false;
+			});
 		}
-		
 		
 		// chapters list
 		list
