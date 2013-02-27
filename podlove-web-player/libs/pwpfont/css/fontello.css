@@ -1,0 +1,73 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: 'fontello';
+  src: url("../font/fontello.eot?77417884");
+  src: url("../font/fontello.eot?77417884#iefix") format('embedded-opentype'), url("../font/fontello.woff?77417884") format('woff'), url("../font/fontello.ttf?77417884") format('truetype'), url("../font/fontello.svg?77417884#fontello") format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
+/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
+/*
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: 'fontello';
+    src: url('../font/fontello.svg?77417884#fontello') format('svg');
+  }
+}
+*/
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  font-family: 'fontello';
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: 0.2em;
+  text-align: center;
+/* opacity .8 */
+/* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+/* Animation center compensation - magrins should be symmetric */
+/* remove if not needed */
+  margin-left: 0.2em;
+/* you can be more comfortable with increased icons size */
+/* font-size: 120%; */
+/* Uncomment for 3D effect */
+/* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+
+.icon-gplus:before { content: '\2b'; } /* '+' */
+.icon-appstore:before { content: '\41'; } /* 'A' */
+.icon-twitter:before { content: '\54'; } /* 'T' */
+.icon-podcast:before { content: '\60'; } /* '`' */
+.icon-cloudapp:before { content: '\63'; } /* 'c' */
+.icon-facebook:before { content: '\66'; } /* 'f' */
+.icon-itunes:before { content: '\69'; } /* 'i' */
+.icon-soundcloud:before { content: '\73'; } /* 's' */
+.icon-appnet:before { content: '\e1'; } /* 'á' */
+.icon-pause:before { content: '\2389'; } /* '⎉' */
+.icon-fast-fw:before { content: '\23e9'; } /* '⏩' */
+.icon-fast-bw:before { content: '\23ea'; } /* '⏪' */
+.icon-to-end:before { content: '\23ed'; } /* '⏭' */
+.icon-to-start:before { content: '\23ee'; } /* '⏮' */
+.icon-play:before { content: '\25b6'; } /* '▶' */
+.icon-mail:before { content: '\2709'; } /* '✉' */
+.icon-info-circle:before { content: '\e705'; } /* '' */
+.icon-export:before { content: '\e715'; } /* '' */
+.icon-down-circle2:before { content: '\e758'; } /* '' */
+.icon-link-ext:before { content: '\f08e'; } /* '' */
+.icon-down-circled:before { content: '\f0ab'; } /* '' */
+.icon-list-bullet:before { content: '\f0ca'; } /* '' */
+.icon-paste:before { content: '\f0ea'; } /* '' */
+.icon-download-cloud:before { content: '\f0ed'; } /* '' */
+.icon-user:before { content: '👤'; } /* '\1f464' */
+.icon-download:before { content: '📥'; } /* '\1f4e5' */
+.icon-volume-off:before { content: '🔇'; } /* '\1f507' */
+.icon-volume-down:before { content: '🔉'; } /* '\1f509' */
+.icon-volume-up:before { content: '🔊'; } /* '\1f50a' */
+.icon-link:before { content: '🔗'; } /* '\1f517' */
+.icon-clock:before { content: '🕔'; } /* '\1f554' */
