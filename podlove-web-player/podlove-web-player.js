@@ -245,7 +245,7 @@
 
 			// init MEJS to player
 			mejsoptions.success = function (player) {
-				addBehavior(player, params);
+				addBehavior(player, params, wrapper);
 				if (deepLink !== false && players.length === 1) {
 					$('html, body').delay(150).animate({
 						scrollTop: $('.podlovewebplayer_wrapper:first').offset().top - 25
@@ -380,13 +380,16 @@
 	 * time position & write current time into address
 	 * @param player object
 	 */
-	var addBehavior = function(player, params) {
-
+	var addBehavior = function(player, params, wrapper) {
 		var jqPlayer = $(player),
 			layoutedPlayer = jqPlayer,
-			list = jqPlayer.closest('.podlovewebplayer_wrapper').find('table'),
-			marks = list.find('tr'),
 			canplay = false;
+
+		/**
+		 * The `player` is an interface. It provides the play and pause functionality. The
+		 * `layoutedPlayer` on the other hand is a DOM element. In native mode, these two
+		 * are one and the same object. In Flash though the interface is a plain JS object.
+		 */
 			
 		if (players.length === 1) {
 			// check if deeplink is set
@@ -399,12 +402,13 @@
 		}
 
 		// cache some jQ objects
-		var wrapper = layoutedPlayer.closest('.podlovewebplayer_wrapper'),
-			metainfo = wrapper.find('.podlovewebplayer_meta'),
+		var metainfo = wrapper.find('.podlovewebplayer_meta'),
 			summary = wrapper.find('.summary'),
 			podlovewebplayer_timecontrol = wrapper.find('.podlovewebplayer_timecontrol'),
 			podlovewebplayer_sharebuttons = wrapper.find('.podlovewebplayer_sharebuttons'),
-			chapterdiv = wrapper.find('.podlovewebplayer_chapterbox');
+			chapterdiv = wrapper.find('.podlovewebplayer_chapterbox'),
+			list = wrapper.find('table'),
+			marks = list.find('tr');
 
 		// fix height of summary for better toggability
 		summary.each(function() {
@@ -420,39 +424,33 @@
 				$(this).height('0px');
 			}
 		});
-		
+
 		if (metainfo.length === 1) {
 
 			metainfo.find('a.infowindow').click(function(){
-				if(typeof player.parentNode != 'undefined') {
-					summary.toggleClass('active');
-					if(summary.hasClass('active')) {
-						summary.height(summary.data('height') + 'px');
-					} else {
-						summary.height('0px');
-					}
+				summary.toggleClass('active');
+				if(summary.hasClass('active')) {
+					summary.height(summary.data('height') + 'px');
+				} else {
+					summary.height('0px');
 				}
 				return false;
 			});
 
 			metainfo.find('a.showcontrols').on('click', function(){
-				if(typeof player.parentNode != 'undefined') {
-					podlovewebplayer_timecontrol.toggleClass('active');
-					if(typeof podlovewebplayer_sharebuttons != 'undefined') {
-						if(podlovewebplayer_sharebuttons.hasClass('active')) {
-							podlovewebplayer_sharebuttons.removeClass('active');
-						}
+				podlovewebplayer_timecontrol.toggleClass('active');
+				if(typeof podlovewebplayer_sharebuttons != 'undefined') {
+					if(podlovewebplayer_sharebuttons.hasClass('active')) {
+						podlovewebplayer_sharebuttons.removeClass('active');
 					}
 				}
 				return false;
 			});
 
 			metainfo.find('a.showsharebuttons').on('click', function(){
-				if(typeof player.parentNode != 'undefined') {
-					podlovewebplayer_sharebuttons.toggleClass('active');
-					if(podlovewebplayer_timecontrol.hasClass('active')) {
-						podlovewebplayer_timecontrol.removeClass('active');
-					}
+				podlovewebplayer_sharebuttons.toggleClass('active');
+				if(podlovewebplayer_timecontrol.hasClass('active')) {
+					podlovewebplayer_timecontrol.removeClass('active');
 				}
 				return false;
 			});
@@ -556,7 +554,6 @@
 		}
 		
 		
-		
 		// chapters list
 		list
 			.show()
@@ -576,7 +573,7 @@
 							// Basic Chapter Mark function (without deeplinking)
 							player.setCurrentTime(startTime);
 						} else {
-							jqPlayer.bind('canplay', function () {
+							jqPlayer.one('canplay', function () {
 								player.setCurrentTime(startTime);
 							});
 						}
