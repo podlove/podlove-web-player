@@ -621,7 +621,7 @@
 			});
 
 			// update play/pause status
-			jqPlayer.bind('play, playing', function(){
+			jqPlayer.bind('play playing', function(){
 				list.find('.paused').removeClass('paused');
 				if (metainfo.length === 1) {
 					metainfo.find('.bigplay').addClass('playing');
