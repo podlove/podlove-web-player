@@ -233,13 +233,19 @@
 				wrapper.find('.podlovewebplayer_sharebuttons').append('<a href="#" target="_blank" class="mailbutton infobuttons icon-envelope" title="Share this via e-mail"></a>');
 			}
 			if (typeof params.downloads !== 'undefined') {
-				var key, size;
+				var key, size, selectform = '<select name="downloads" class="fileselect" size="1" onchange="this.value=this.options[this.selectedIndex].value;">';
 				wrapper.append('<div class="podlovewebplayer_downloadbuttons podlovewebplayer_controlbox'+downloadbuttonsActive+'"></div>');
 				wrapper.find('.togglers').append('<a href="#" class="showdownloadbuttons infobuttons icon-download" title="Show/hide download bar"></a>');
 				for (key in params.downloads) {
 					size = (parseInt(params.downloads[key]['size'],10) < 1048704) ? Math.round(parseInt(params.downloads[key]['size'],10)/100)/10+'kB' : Math.round(parseInt(params.downloads[key]['size'],10)/1000/100)/10+'MB';
-					wrapper.find('.podlovewebplayer_downloadbuttons').append('<a href="#" class="downloadbutton infobuttons icon-download-alt" data-url="'+params.downloads[key]['url']+'" title="Download '+params.downloads[key]['name']+'"><span> '+params.downloads[key]['name']+' (<small>'+size+'</small>)</span></a> ');
+					selectform += '<option value="'+params.downloads[key]['url']+'" data-url="'+params.downloads[key]['url']+'" data-dlurl="'+params.downloads[key]['dlurl']+'">'+params.downloads[key]['name']+' (<small>'+size+'</small>)</option>';
 				}
+				
+				selectform += '</select>';
+				wrapper.find('.podlovewebplayer_downloadbuttons').append(selectform);
+				wrapper.find('.podlovewebplayer_downloadbuttons').append('<a href="#" class="downloadbutton infobuttons icon-download-alt" title="Download"> <span> Download</span></a> ');
+				wrapper.find('.podlovewebplayer_downloadbuttons').append('<a href="#" class="openfilebutton infobuttons icon-external-link" title="Open"> <span> Open</span></a> ');
+				wrapper.find('.podlovewebplayer_downloadbuttons').append('<a href="#" class="fileinfobutton infobuttons icon-question-sign" title="Info"> <span> Info</span></a> ');
 			}
 
 			//build chapter table
@@ -587,7 +593,28 @@
 			});
 
 			wrapper.find('.downloadbutton').click(function(){
-				window.location = $(this).data('url');
+				$(this).parent().find(".fileselect option:selected").each(function() {
+					window.location = $(this).data('dlurl');
+				});
+				return false;
+			});
+
+			wrapper.find('.openfilebutton').click(function(){
+				$(this).parent().find(".fileselect option:selected").each(function() {
+					if(window.confirm($(this).val())) {
+						window.open($(this).data('url'), 'Podlove Popup', 'width=550,height=420,resizable=yes');
+					}
+				});
+				return false;
+			});
+
+			wrapper.find('.fileinfobutton').click(function(){
+				$(this).parent().find(".fileselect option:selected").each(function() {
+					if(window.confirm($(this).val())) {
+						var infowindow = window.open('', 'Podlove Popup', 'width=550,height=420,resizable=yes');
+						infowindow.document.write('<html><head></head><body>'+$(this).data('url')+'</body>');
+					}
+				});
 				return false;
 			});
 		}
@@ -670,7 +697,6 @@
 					metainfo.find('.bigplay').removeClass('playing');
 				}
 			});
-
 		});
 	};
 
