@@ -301,12 +301,13 @@
 }
 
 .podlovewebplayer_wrapper .mejs-container .mejs-inner .mejs-controls .mejs-time-rail .mejs-time-total .mejs-time-loaded {
-	background: -moz-linear-gradient(top, rgba(67,131,219,0.8) 0%, rgba(88,156,239,0.8) 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(67,131,219,0.8)), color-stop(100%,rgba(88,156,239,0.8)));
-	background: -webkit-linear-gradient(top, rgba(67,131,219,0.8) 0%,rgba(88,156,239,0.8) 100%);
-	background: -o-linear-gradient(top, rgba(67,131,219,0.8) 0%,rgba(88,156,239,0.8) 100%);
-	background: -ms-linear-gradient(top, rgba(67,131,219,0.8) 0%,rgba(88,156,239,0.8) 100%);
-	background: linear-gradient(to bottom, rgba(67,131,219,0.8) 0%,rgba(88,156,239,0.8) 100%);
+	background: rgb(67,131,219);
+	background: -moz-linear-gradient(top, rgb(67,131,219) 0%, rgb(88,156,239) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(67,131,219)), color-stop(100%,rgb(88,156,239)));
+	background: -webkit-linear-gradient(top, rgb(67,131,219) 0%,rgb(88,156,239) 100%);
+	background: -o-linear-gradient(top, rgb(67,131,219) 0%,rgb(88,156,239) 100%);
+	background: -ms-linear-gradient(top, rgb(67,131,219) 0%,rgb(88,156,239) 100%);
+	background: linear-gradient(to bottom, rgb(67,131,219) 0%,rgb(88,156,239) 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc4383db', endColorstr='#cc589cef',GradientType=0 );
 }
 

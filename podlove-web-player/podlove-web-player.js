@@ -463,13 +463,17 @@
 				if($(this).hasClass('bigplay')) {
 					if((typeof player.currentTime === 'number')&&(player.currentTime > 0)) {
 						if (player.paused) {
-							player.play();
 							$(this).parent().find('.bigplay').addClass('playing');
+							player.play();
 						} else {
-							player.pause();
 							$(this).parent().find('.bigplay').removeClass('playing');
+							player.pause();
 						}
 					} else {
+						if(!$(this).parent().find('.bigplay').hasClass('playing')) {
+							$(this).parent().find('.bigplay').addClass('playing');
+							$(this).parent().parent().find('.mejs-time-buffering').show();
+						}
 						player.play();
 					}
 				}
