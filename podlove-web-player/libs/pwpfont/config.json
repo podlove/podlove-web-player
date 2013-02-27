@@ -1,0 +1,398 @@
+{
+  "name": "",
+  "glyphs": [
+    {
+      "search": [
+        "google",
+        "plus"
+      ],
+      "code": 43,
+      "uid": "e566d3f1d24f22981f6552d5188e7265",
+      "css": "gplus",
+      "orig_css": "gplus",
+      "orig_code": 43,
+      "src": "zocial",
+      "from": 43
+    },
+    {
+      "search": [
+        "appstore"
+      ],
+      "code": 65,
+      "uid": "1dbc2b4a7f00ef209a85e4b5d9fedec4",
+      "css": "appstore",
+      "orig_css": "appstore",
+      "orig_code": 65,
+      "src": "zocial",
+      "from": 65
+    },
+    {
+      "search": [
+        "twitter"
+      ],
+      "code": 84,
+      "uid": "b1ec8e90c2c85cf0035849980a3789b3",
+      "css": "twitter",
+      "orig_css": "twitter",
+      "orig_code": 84,
+      "src": "zocial",
+      "from": 84
+    },
+    {
+      "search": [
+        "podcast"
+      ],
+      "code": 96,
+      "uid": "5287c0dd80c29636f3d45b8b52cd3021",
+      "css": "podcast",
+      "orig_css": "podcast",
+      "orig_code": 96,
+      "src": "zocial",
+      "from": 96
+    },
+    {
+      "search": [
+        "cloudapp"
+      ],
+      "code": 99,
+      "uid": "6c304f746d790c6749f345ac384cbd7c",
+      "css": "cloudapp",
+      "orig_css": "cloudapp",
+      "orig_code": 99,
+      "src": "zocial",
+      "from": 99
+    },
+    {
+      "search": [
+        "facebook"
+      ],
+      "code": 102,
+      "uid": "6f7586c6f99798c3c1de6123d1f6cfa9",
+      "css": "facebook",
+      "orig_css": "facebook",
+      "orig_code": 102,
+      "src": "zocial",
+      "from": 102
+    },
+    {
+      "search": [
+        "itunes"
+      ],
+      "code": 105,
+      "uid": "d6096cb47cc4448ac68b6a2e2c52a81d",
+      "css": "itunes",
+      "orig_css": "itunes",
+      "orig_code": 105,
+      "src": "zocial",
+      "from": 105
+    },
+    {
+      "search": [
+        "soundcloud"
+      ],
+      "code": 115,
+      "uid": "1e123339045e48ddd01031936b9fc2d9",
+      "css": "soundcloud",
+      "orig_css": "soundcloud",
+      "orig_code": 115,
+      "src": "zocial",
+      "from": 115
+    },
+    {
+      "search": [
+        "appnet"
+      ],
+      "code": 225,
+      "uid": "40ff77423c882ef32d11b5aec4ab17cf",
+      "css": "appnet",
+      "orig_css": "appnet",
+      "orig_code": 225,
+      "src": "zocial",
+      "from": 225
+    },
+    {
+      "search": [
+        "pause",
+        "player"
+      ],
+      "code": 9097,
+      "from": 9097,
+      "uid": "0b28050bac9d3facf2f0226db643ece0",
+      "css": "pause",
+      "orig_css": "pause",
+      "orig_code": 9097,
+      "src": "fontawesome"
+    },
+    {
+      "search": [
+        "right",
+        "player"
+      ],
+      "code": 9193,
+      "from": 9193,
+      "uid": "4e511190b60f329d08301eb6869c5130",
+      "css": "fast-fw",
+      "orig_css": "fast-fw",
+      "orig_code": 9193,
+      "src": "fontawesome"
+    },
+    {
+      "search": [
+        "left",
+        "player"
+      ],
+      "code": 9194,
+      "from": 9194,
+      "uid": "b3d902fcead809e3a64c7ddcda497a6c",
+      "css": "fast-bw",
+      "orig_css": "fast-bw",
+      "orig_code": 9194,
+      "src": "fontawesome"
+    },
+    {
+      "search": [
+        "right",
+        "player"
+      ],
+      "code": 9197,
+      "from": 9197,
+      "uid": "c47efa0e3e74f6ba4c2562c1258fff1f",
+      "css": "to-end",
+      "orig_css": "to-end",
+      "orig_code": 9197,
+      "src": "fontawesome"
+    },
+    {
+      "search": [
+        "left",
+        "player"
+      ],
+      "code": 9198,
+      "from": 9198,
+      "uid": "12052b30d23a1a70d6b32962d5464cae",
+      "css": "to-start",
+      "orig_css": "to-start",
+      "orig_code": 9198,
+      "src": "fontawesome"
+    },
+    {
+      "search": [
+        "play",
+        "player"
+      ],
+      "code": 9654,
+      "from": 9654,
+      "uid": "ce06b5805120d0c2f8d60cd3f1a4fdb5",
+      "css": "play",
+      "orig_css": "play",
+      "orig_code": 9654,
+      "src": "fontawesome"
+    },
+    {
+      "search": [
+        "mail",
+        "email"
+      ],
+      "code": 9993,
+      "from": 9993,
+      "uid": "bf882b30900da12fca090d9796bc3030",
+      "css": "mail",
+      "orig_css": "mail",
+      "orig_code": 9993,
+      "src": "fontawesome"
+    },
+    {
+      "search": [
+        "info"
+      ],
+      "code": 59141,
+      "from": 59141,
+      "uid": "e82cedfa1d5f15b00c5a81c9bd731ea2",
+      "css": "info-circle",
+      "orig_css": "info-circle",
+      "orig_code": 59141,
+      "src": "fontawesome"
+    },
+    {
+      "search": [
+        "export",
+        "share"
+      ],
+      "code": 59157,
+      "from": 59157,
+      "uid": "895405dfac8a3b7b2f23b183c6608ee6",
+      "css": "export",
+      "orig_css": "export",
+      "orig_code": 59157,
+      "src": "fontawesome"
+    },
+    {
+      "search": [
+        "arrow",
+        "down",
+        "download"
+      ],
+      "code": 59224,
+      "from": 59224,
+      "uid": "c53068fe21c8410b0a098b4c52c3d37e",
+      "css": "down-circle2",
+      "orig_css": "down-circle2",
+      "orig_code": 59224,
+      "src": "fontawesome"
+    },
+    {
+      "search": [
+        "link",
+        "url"
+      ],
+      "code": 61582,
+      "uid": "e15f0d620a7897e2035c18c80142f6d9",
+      "css": "link-ext",
+      "orig_css": "link-ext",
+      "orig_code": 61582,
+      "src": "fontawesome",
+      "from": 61582
+    },
+    {
+      "search": [
+        "down",
+        "arrow"
+      ],
+      "code": 61611,
+      "uid": "55ae6ea25cd707fe34af5b52b2001cdc",
+      "css": "down-circled",
+      "orig_css": "down-circled",
+      "orig_code": 61611,
+      "src": "fontawesome",
+      "from": 61611
+    },
+    {
+      "search": [
+        "list"
+      ],
+      "code": 61642,
+      "uid": "a2a74f5e7b7d9ba054897d8c795a326a",
+      "css": "list-bullet",
+      "orig_css": "list-bullet",
+      "orig_code": 61642,
+      "src": "fontawesome",
+      "from": 61642
+    },
+    {
+      "search": [
+        "paste"
+      ],
+      "code": 61674,
+      "uid": "b429436ec5a518c78479d44ef18dbd60",
+      "css": "paste",
+      "orig_css": "paste",
+      "orig_code": 61674,
+      "src": "fontawesome",
+      "from": 61674
+    },
+    {
+      "search": [
+        "download",
+        "cloud"
+      ],
+      "code": 61677,
+      "uid": "f5999a012fc3752386635ec02a858447",
+      "css": "download-cloud",
+      "orig_css": "download-cloud",
+      "orig_code": 61677,
+      "src": "fontawesome",
+      "from": 61677
+    },
+    {
+      "search": [
+        "profile",
+        "contact",
+        "user"
+      ],
+      "code": 128100,
+      "from": 128100,
+      "uid": "8b80d36d4ef43889db10bc1f0dc9a862",
+      "css": "user",
+      "orig_css": "user",
+      "orig_code": 128100,
+      "src": "fontawesome"
+    },
+    {
+      "search": [
+        "download"
+      ],
+      "code": 128229,
+      "from": 128229,
+      "uid": "9a76bc135eac17d2c8b8ad4a5774fc87",
+      "css": "download",
+      "orig_css": "download",
+      "orig_code": 128229,
+      "src": "fontawesome"
+    },
+    {
+      "search": [
+        "volume",
+        "sound",
+        "mute"
+      ],
+      "code": 128263,
+      "from": 128263,
+      "uid": "e44601720c64e6bb6a2d5cba6b0c588c",
+      "css": "volume-off",
+      "orig_css": "volume-off",
+      "orig_code": 128263,
+      "src": "fontawesome"
+    },
+    {
+      "search": [
+        "volume",
+        "sound"
+      ],
+      "code": 128265,
+      "from": 128265,
+      "uid": "fee6e00f36e8ca8ef3e4a62caa213bf6",
+      "css": "volume-down",
+      "orig_css": "volume-down",
+      "orig_code": 128265,
+      "src": "fontawesome"
+    },
+    {
+      "search": [
+        "volume",
+        "sound"
+      ],
+      "code": 128266,
+      "from": 128266,
+      "uid": "76857a03fbaa6857fe063b6c25aa98ed",
+      "css": "volume-up",
+      "orig_css": "volume-up",
+      "orig_code": 128266,
+      "src": "fontawesome"
+    },
+    {
+      "search": [
+        "link"
+      ],
+      "code": 128279,
+      "from": 128279,
+      "uid": "0ddd3e8201ccc7d41f7b7c9d27eca6c1",
+      "css": "link",
+      "orig_css": "link",
+      "orig_code": 128279,
+      "src": "fontawesome"
+    },
+    {
+      "search": [
+        "clock",
+        "time"
+      ],
+      "code": 128340,
+      "from": 128340,
+      "uid": "598a5f2bcf3521d1615de8e1881ccd17",
+      "css": "clock",
+      "orig_css": "clock",
+      "orig_code": 128340,
+      "src": "fontawesome"
+    }
+  ]
+}
