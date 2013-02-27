@@ -182,10 +182,10 @@
 	z-index: 78;
 	border: 5px solid white !important;
 	border-radius: 60px !important;
-	font-size: 45px;
-	padding: 5px 0px 10px 15px;
-	height: 50px;
-	width: 50px;
+	font-size: 42px;
+	padding: 5px 6px 20px 19px;
+	height: 40px;
+	width: 40px;
 	margin: 10px 10px 10px 10px;
 	-webkit-transition: none;
 	-moz-transition: none;
@@ -213,7 +213,7 @@
 }
 
 .podlovewebplayer_meta .bigplay.playing {
-	padding: 5px 3px 10px 12px;
+	padding: 5px 11px 20px 14px;
 }
 
 .podlovewebplayer_meta .bigplay.playing:focus,
