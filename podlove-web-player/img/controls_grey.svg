@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="144" height="32" viewBox="0, 0, 144, 32">
+  <g id="controls">
+    <g>
+      <path d="M98.5,7.5 L109.5,7.5" fill="url(#Gradient_1)"/>
+      <path d="M98.5,7.5 L109.5,7.5" fill-opacity="0" stroke="#FFFFFF" stroke-width="1"/>
+    </g>
+    <g>
+      <path d="M98.5,3.5 L109.5,3.5" fill="url(#Gradient_2)"/>
+      <path d="M98.5,3.5 L109.5,3.5" fill-opacity="0" stroke="#FFFFFF" stroke-width="1"/>
+    </g>
+    <g>
+      <path d="M98.5,11.5 L109.5,11.5" fill="url(#Gradient_3)"/>
+      <path d="M98.5,11.5 L109.5,11.5" fill-opacity="0" stroke="#FFFFFF" stroke-width="1"/>
+    </g>
+    <path d="M108,11.5 C108,10.672 108.448,10 109,10 C109.552,10 110,10.672 110,11.5 C110,12.328 109.552,13 109,13 C108.448,13 108,12.328 108,11.5 z" fill="url(#Gradient_4)"/>
+    <path d="M104,7.5 C104,6.672 104.448,6 105,6 C105.552,6 106,6.672 106,7.5 C106,8.328 105.552,9 105,9 C104.448,9 104,8.328 104,7.5 z" fill="url(#Gradient_5)"/>
+    <path d="M108,3.5 C108,2.672 108.448,2 109,2 C109.552,2 110,2.672 110,3.5 C110,4.328 109.552,5 109,5 C108.448,5 108,4.328 108,3.5 z" fill="url(#Gradient_6)"/>
+    <g>
+      <path d="M83,21 L93,21 L93,27 L83,27 z" fill="url(#Gradient_7)"/>
+      <path d="M83,21 L93,21 L93,27 L83,27 z" fill-opacity="0" stroke="#FFFFFF" stroke-width="1"/>
+    </g>
+    <g>
+      <path d="M81,8 C81,5.239 84.134,3 88,3 C91.866,3 95,5.239 95,8 C95,10.762 91.866,13 88,13 C84.134,13 81,10.762 81,8 z" fill="url(#Gradient_8)"/>
+      <g>
+        <path d="M83,5 L93,5 L93,11 L83,11 z" fill="url(#Gradient_9)"/>
+        <path d="M83,5 L93,5 L93,11 L83,11 z" fill-opacity="0" stroke="#FFFFFF" stroke-width="1"/>
+      </g>
+    </g>
+    <g>
+      <path d="M73.795,4.205 C75.215,4.878 76.2,6.323 76.2,8 C76.2,10.32 74.32,12.2 72,12.2 C69.68,12.2 67.8,10.32 67.8,8 C67.8,6.323 68.785,4.878 70.205,4.205 L68.875,2.875 C67.15,3.929 66,5.831 66,8 C66,11.314 68.686,14 72,14 C75.314,14 78,11.314 78,8 C78,5.831 76.85,3.929 75.125,2.875 L73.795,4.205 z" fill="url(#Gradient_10)"/>
+      <path d="M71,2 L66,2 L71,7 L71,2 z" fill="url(#Gradient_11)"/>
+    </g>
+    <g>
+      <path d="M73.795,20.205 C75.215,20.878 76.2,22.323 76.2,24 C76.2,26.32 74.32,28.2 72,28.2 C69.68,28.2 67.8,26.32 67.8,24 C67.8,22.323 68.785,20.878 70.205,20.205 L68.875,18.875 C67.15,19.929 66,21.831 66,24 C66,27.314 68.686,30 72,30 C75.314,30 78,27.314 78,24 C78,21.831 76.85,19.929 75.125,18.875 L73.795,20.205 z" fill="url(#Gradient_12)"/>
+      <path d="M71,18 L66,18 L71,23 L71,18 z" fill="url(#Gradient_13)"/>
+    </g>
+    <g>
+      <path d="M49,18 L63,18 L63,30 L49,30 z" fill="url(#Gradient_14)"/>
+      <path d="M49,18 L63,18 L63,30 L49,30 z" fill-opacity="0" stroke="#B0B0B0" stroke-width="1"/>
+    </g>
+    <g>
+      <path d="M55,7 C50.281,3.781 50.063,12.941 55,10" fill="url(#Gradient_15)"/>
+      <path d="M55,7 C50.281,3.781 50.063,12.941 55,10" fill-opacity="0" stroke="#FFFFFF" stroke-width="1"/>
+    </g>
+    <g>
+      <path d="M60,7 C55.281,3.781 55.063,12.941 60,10" fill="url(#Gradient_16)"/>
+      <path d="M60,7 C55.281,3.781 55.063,12.941 60,10" fill-opacity="0" stroke="#FFFFFF" stroke-width="1"/>
+    </g>
+    <path d="M50,3 L62,3 L62,13 L50,13 L50,3 z M49,2 L49,14 L63,14 L63,2 L49,2 z" fill="url(#Gradient_17)"/>
+    <path d="M49,18 L63,18 L63,30 L49,30 z" fill="url(#Gradient_18)"/>
+    <g>
+      <path d="M55,22.552 C50.281,19.334 50.063,28.493 55,25.552" fill="url(#Gradient_19)"/>
+      <path d="M55,22.552 C50.281,19.334 50.063,28.493 55,25.552" fill-opacity="0" stroke="#FFFFFF" stroke-width="1"/>
+    </g>
+    <g>
+      <path d="M60,22.552 C55.281,19.334 55.063,28.493 60,25.552" fill="url(#Gradient_20)"/>
+      <path d="M60,22.552 C55.281,19.334 55.063,28.493 60,25.552" fill-opacity="0" stroke="#FFFFFF" stroke-width="1"/>
+    </g>
+    <g>
+      <path d="M17,5 L22,5 L22,11 L17,11 z" fill="url(#Gradient_21)"/>
+      <path d="M21,5 L25,2 L25,14 L21,11.062 L21,5 z" fill="url(#Gradient_22)"/>
+    </g>
+    <g>
+      <path d="M17,21 L22,21 L22,27 L17,27 z" fill="url(#Gradient_23)"/>
+      <path d="M21,21 L25,18 L25,30 L21,27.062 L21,21 z" fill="url(#Gradient_24)"/>
+      <path d="M27,18 C27,18 30.062,17.375 30,24 C29.938,30.625 27,30 27,30" fill="url(#Gradient_25)"/>
+      <path d="M26,21.008 C26,21.008 28.041,20.696 27.999,24 C27.958,27.304 26,26.992 26,26.992" fill="url(#Gradient_26)"/>
+    </g>
+    <path d="M14,8.5 L3,14 L3,3 L14,8.5 z" fill="url(#Gradient_27)"/>
+    <g>
+      <path d="M3,18 L6,18 L6,30 L3,30 z" fill="url(#Gradient_28)"/>
+      <path d="M10,18 L13,18 L13,30 L10,30 z" fill="url(#Gradient_29)"/>
+    </g>
+    <g>
+      <path d="M34,2 L39,2 L34,7 L34,2 z" fill="url(#Gradient_30)"/>
+      <path d="M34,14 L39,14 L34,9 L34,14 z" fill="url(#Gradient_31)"/>
+      <path d="M46,2 L41,2 L46,7 L46,2 z" fill="url(#Gradient_32)"/>
+      <path d="M46,14 L41,14 L46,9 L46,14 z" fill="url(#Gradient_33)"/>
+    </g>
+    <g>
+      <path d="M42,22 L46,22 L42,18 L42,22 z" fill="url(#Gradient_34)"/>
+      <path d="M38,22 L38,18 L34,22 L38,22 z" fill="url(#Gradient_35)"/>
+      <path d="M38,26 L34,26 L38,30 L38,26 z" fill="url(#Gradient_36)"/>
+      <path d="M42,26 L42,30 L46,26 L42,26 z" fill="url(#Gradient_37)"/>
+    </g>
+    <path d="M115,3 L125,3 L125,13 L115,13 z" fill="url(#Gradient_38)"/>
+    <path d="M135.235,6.152 C136.255,5.729 137.425,6.214 137.848,7.235 C138.27,8.255 137.786,9.425 136.765,9.848 C135.745,10.271 134.575,9.786 134.152,8.765 C133.73,7.745 134.214,6.575 135.235,6.152 z M133.273,1.418 L136,4.005 L138.727,1.418 L138.825,5.175 L142.582,5.273 L139.995,8 L142.582,10.726 L138.825,10.825 L138.727,14.582 L136,11.995 L133.273,14.582 L133.175,10.825 L129.418,10.726 L132.005,8 L129.418,5.273 L133.175,5.175 L133.273,1.418 z" fill="url(#Gradient_39)"/>
+  </g>
+  <defs>
+    <linearGradient id="Gradient_1" gradientUnits="userSpaceOnUse" x1="104" y1="7.5" x2="104" y2="7.5">
+      <stop offset="0" stop-color="#7D7D7D"/>
+      <stop offset="1" stop-color="#373737"/>
+    </linearGradient>
+    <linearGradient id="Gradient_2" gradientUnits="userSpaceOnUse" x1="104" y1="3.5" x2="104" y2="3.5">
+      <stop offset="0" stop-color="#7D7D7D"/>
+      <stop offset="1" stop-color="#373737"/>
+    </linearGradient>
+    <linearGradient id="Gradient_3" gradientUnits="userSpaceOnUse" x1="104" y1="11.5" x2="104" y2="11.5">
+      <stop offset="0" stop-color="#7D7D7D"/>
+      <stop offset="1" stop-color="#373737"/>
+    </linearGradient>
+    <linearGradient id="Gradient_4" gradientUnits="userSpaceOnUse" x1="109" y1="13" x2="109" y2="10">
+      <stop offset="0" stop-color="#7D7D7D"/>
+      <stop offset="1" stop-color="#373737"/>
+    </linearGradient>
+    <linearGradient id="Gradient_5" gradientUnits="userSpaceOnUse" x1="105" y1="9" x2="105" y2="6">
+      <stop offset="0" stop-color="#7D7D7D"/>
+      <stop offset="1" stop-color="#373737"/>
+    </linearGradient>
+    <linearGradient id="Gradient_6" gradientUnits="userSpaceOnUse" x1="109" y1="5" x2="109" y2="2">
+      <stop offset="0" stop-color="#7D7D7D"/>
+      <stop offset="1" stop-color="#373737"/>
+    </linearGradient>
+    <linearGradient id="Gradient_7" gradientUnits="userSpaceOnUse" x1="88" y1="27" x2="88" y2="21">
+      <stop offset="0" stop-color="#7D7D7D"/>
+      <stop offset="1" stop-color="#373737"/>
+    </linearGradient>
+    <linearGradient id="Gradient_8" gradientUnits="userSpaceOnUse" x1="88" y1="13" x2="88" y2="3">
+      <stop offset="0" stop-color="#7D7D7D"/>
+      <stop offset="1" stop-color="#373737"/>
+    </linearGradient>
+    <linearGradient id="Gradient_9" gradientUnits="userSpaceOnUse" x1="88" y1="11" x2="88" y2="5">
+      <stop offset="0" stop-color="#7D7D7D"/>
+      <stop offset="1" stop-color="#373737"/>
+    </linearGradient>
+    <linearGradient id="Gradient_10" gradientUnits="userSpaceOnUse" x1="72" y1="14" x2="72" y2="2.875">
+      <stop offset="0" stop-color="#7D7D7D"/>
+      <stop offset="1" stop-color="#373737"/>
+    </linearGradient>
+    <linearGradient id="Gradient_11" gradientUnits="userSpaceOnUse" x1="68.5" y1="7" x2="68.5" y2="2">
+      <stop offset="0" stop-color="#7D7D7D"/>
+      <stop offset="1" stop-color="#373737"/>
+    </linearGradient>
+    <linearGradient id="Gradient_12" gradientUnits="userSpaceOnUse" x1="72" y1="30" x2="72" y2="18.875">
+      <stop offset="0" stop-color="#7D7D7D"/>
+      <stop offset="1" stop-color="#373737"/>
+    </linearGradient>
+    <linearGradient id="Gradient_13" gradientUnits="userSpaceOnUse" x1="68.5" y1="23" x2="68.5" y2="18">
+      <stop offset="0" stop-color="#7D7D7D"/>
+      <stop offset="1" stop-color="#373737"/>
+    </linearGradient>
+    <linearGradient id="Gradient_14" gradientUnits="userSpaceOnUse" x1="56" y1="30" x2="56" y2="18">
+      <stop offset="0" stop-color="#7D7D7D"/>
+      <stop offset="1" stop-color="#373737"/>
+    </linearGradient>
+    <linearGradient id="Gradient_15" gradientUnits="userSpaceOnUse" x1="53.189" y1="10.591" x2="53.189" y2="6.304">
+      <stop offset="0" stop-color="#7D7D7D"/>
+      <stop offset="1" stop-color="#373737"/>
+    </linearGradient>
+    <linearGradient id="Gradient_16" gradientUnits="userSpaceOnUse" x1="58.189" y1="10.591" x2="58.189" y2="6.304">
+      <stop offset="0" stop-color="#7D7D7D"/>
+      <stop offset="1" stop-color="#373737"/>
+    </linearGradient>
+    <linearGradient id="Gradient_17" gradientUnits="userSpaceOnUse" x1="56" y1="14" x2="56" y2="2">
+      <stop offset="0" stop-color="#7D7D7D"/>
+      <stop offset="1" stop-color="#373737"/>
+    </linearGradient>
+    <linearGradient id="Gradient_18" gradientUnits="userSpaceOnUse" x1="56" y1="30" x2="56" y2="18">
+      <stop offset="0" stop-color="#7D7D7D"/>
+      <stop offset="1" stop-color="#373737"/>
+    </linearGradient>
+    <linearGradient id="Gradient_19" gradientUnits="userSpaceOnUse" x1="53.189" y1="26.143" x2="53.189" y2="21.857">
+      <stop offset="0" stop-color="#7D7D7D"/>
+      <stop offset="1" stop-color="#373737"/>
+    </linearGradient>
+    <linearGradient id="Gradient_20" gradientUnits="userSpaceOnUse" x1="58.189" y1="26.143" x2="58.189" y2="21.857">
+      <stop offset="0" stop-color="#7D7D7D"/>
+      <stop offset="1" stop-color="#373737"/>
+    </linearGradient>
+    <linearGradient id="Gradient_21" gradientUnits="userSpaceOnUse" x1="19.5" y1="11" x2="19.5" y2="5">
+      <stop offset="0" stop-color="#7D7D7D"/>
+      <stop offset="1" stop-color="#373737"/>
+    </linearGradient>
+    <linearGradient id="Gradient_22" gradientUnits="userSpaceOnUse" x1="23" y1="14" x2="23" y2="2">
+      <stop offset="0" stop-color="#7D7D7D"/>
+      <stop offset="1" stop-color="#373737"/>
+    </linearGradient>
+    <linearGradient id="Gradient_23" gradientUnits="userSpaceOnUse" x1="19.5" y1="27" x2="19.5" y2="21">
+      <stop offset="0" stop-color="#7D7D7D"/>
+      <stop offset="1" stop-color="#373737"/>
+    </linearGradient>
+    <linearGradient id="Gradient_24" gradientUnits="userSpaceOnUse" x1="23" y1="30" x2="23" y2="18">
+      <stop offset="0" stop-color="#7D7D7D"/>
+      <stop offset="1" stop-color="#373737"/>
+    </linearGradient>
+    <linearGradient id="Gradient_25" gradientUnits="userSpaceOnUse" x1="28.5" y1="30.016" x2="28.5" y2="17.984">
+      <stop offset="0" stop-color="#7D7D7D"/>
+      <stop offset="1" stop-color="#373737"/>
+    </linearGradient>
+    <linearGradient id="Gradient_26" gradientUnits="userSpaceOnUse" x1="27" y1="27" x2="27" y2="21">
+      <stop offset="0" stop-color="#7D7D7D"/>
+      <stop offset="1" stop-color="#373737"/>
+    </linearGradient>
+    <linearGradient id="Gradient_27" gradientUnits="userSpaceOnUse" x1="8.5" y1="14" x2="8.5" y2="3">
+      <stop offset="0" stop-color="#7D7D7D"/>
+      <stop offset="1" stop-color="#373737"/>
+    </linearGradient>
+    <linearGradient id="Gradient_28" gradientUnits="userSpaceOnUse" x1="4.5" y1="30" x2="4.5" y2="18">
+      <stop offset="0" stop-color="#7D7D7D"/>
+      <stop offset="1" stop-color="#373737"/>
+    </linearGradient>
+    <linearGradient id="Gradient_29" gradientUnits="userSpaceOnUse" x1="11.5" y1="30" x2="11.5" y2="18">
+      <stop offset="0" stop-color="#7D7D7D"/>
+      <stop offset="1" stop-color="#373737"/>
+    </linearGradient>
+    <linearGradient id="Gradient_30" gradientUnits="userSpaceOnUse" x1="36.5" y1="7" x2="36.5" y2="2">
+      <stop offset="0" stop-color="#7D7D7D"/>
+      <stop offset="1" stop-color="#373737"/>
+    </linearGradient>
+    <linearGradient id="Gradient_31" gradientUnits="userSpaceOnUse" x1="36.5" y1="14" x2="36.5" y2="9">
+      <stop offset="0" stop-color="#7D7D7D"/>
+      <stop offset="1" stop-color="#373737"/>
+    </linearGradient>
+    <linearGradient id="Gradient_32" gradientUnits="userSpaceOnUse" x1="43.5" y1="7" x2="43.5" y2="2">
+      <stop offset="0" stop-color="#7D7D7D"/>
+      <stop offset="1" stop-color="#373737"/>
+    </linearGradient>
+    <linearGradient id="Gradient_33" gradientUnits="userSpaceOnUse" x1="43.5" y1="14" x2="43.5" y2="9">
+      <stop offset="0" stop-color="#7D7D7D"/>
+      <stop offset="1" stop-color="#373737"/>
+    </linearGradient>
+    <linearGradient id="Gradient_34" gradientUnits="userSpaceOnUse" x1="44" y1="22" x2="44" y2="18">
+      <stop offset="0" stop-color="#7D7D7D"/>
+      <stop offset="1" stop-color="#373737"/>
+    </linearGradient>
+    <linearGradient id="Gradient_35" gradientUnits="userSpaceOnUse" x1="36" y1="22" x2="36" y2="18">
+      <stop offset="0" stop-color="#7D7D7D"/>
+      <stop offset="1" stop-color="#373737"/>
+    </linearGradient>
+    <linearGradient id="Gradient_36" gradientUnits="userSpaceOnUse" x1="36" y1="30" x2="36" y2="26">
+      <stop offset="0" stop-color="#7D7D7D"/>
+      <stop offset="1" stop-color="#373737"/>
+    </linearGradient>
+    <linearGradient id="Gradient_37" gradientUnits="userSpaceOnUse" x1="44" y1="30" x2="44" y2="26">
+      <stop offset="0" stop-color="#7D7D7D"/>
+      <stop offset="1" stop-color="#373737"/>
+    </linearGradient>
+    <linearGradient id="Gradient_38" gradientUnits="userSpaceOnUse" x1="120" y1="13" x2="120" y2="3">
+      <stop offset="0" stop-color="#7D7D7D"/>
+      <stop offset="1" stop-color="#373737"/>
+    </linearGradient>
+    <linearGradient id="Gradient_39" gradientUnits="userSpaceOnUse" x1="136" y1="14.582" x2="136" y2="1.418">
+      <stop offset="0" stop-color="#7D7D7D"/>
+      <stop offset="1" stop-color="#373737"/>
+    </linearGradient>
+  </defs>
+</svg>
