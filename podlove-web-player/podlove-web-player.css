@@ -417,7 +417,6 @@ filter: dropshadow(color=#000000, offx=0, offy=0);
 .podlovewebplayer_wrapper .podlovewebplayer_controlbox .infobuttons a {
 	color: #fff;
 	font-size: 1.75em;
-	margin: 5px;
 	-webkit-text-shadow: 0px 0px 1px #000000;
 	-moz-text-shadow: 0px 0px 1px #000000;
 	-o-text-shadow: 0px 0px 1px #000000;
