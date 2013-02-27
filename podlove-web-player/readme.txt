@@ -195,6 +195,20 @@ Earlier versions of this plugin could handle alternative shortcodes, too: [audio
 
 == Changelog ==
 
+= 2.0.3 =
+* reduced DOM interaction at player creation
+* improved readability of JS code
+* improved JS performance
+* fixed video
+* fixed flash fallback
+* fixed player slowing down Firefox
+* fixed buttons not being displayed properly
+* added a new bar with social sharing buttons
+* updated submodules
+
+= 2.0.2 =
+* equivalent to 2.0.1
+
 = 2.0.1 =
 * does not crash in PHP 5.2 anymore
 * some CSS improvements for responsive layouts
