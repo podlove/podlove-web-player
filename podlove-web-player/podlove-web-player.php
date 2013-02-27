@@ -283,7 +283,7 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 		$init_options .= "\n  chapters: '" . podlovewebplayer_render_chapters($chapters) . "',";
 	}
 	if ( $summary ) {
-		$init_options .= "\n  summary: '" . ereg_replace("\r?\n", "'\n".'+"\n"+\'', htmlspecialchars($summary, ENT_QUOTES)) . "',";
+		$init_options .= "\n  summary: '" . preg_replace("(\r?\n)", "'\n".'+"\n"+\'', htmlspecialchars($summary, ENT_QUOTES)) . "',";
 	}
 	if ( $duration ) {
 		$init_options .= "\n  duration: '" . $duration . "',";
@@ -346,7 +346,7 @@ function podlovewebplayer_render_chapters( $input ) {
 			$chapters = $chapters[0];
 		}
 	}
-	$chapters = ereg_replace("\r?\n", "'\n".'+"\n"+\'', htmlspecialchars($chapters, ENT_QUOTES));
+	$chapters = preg_replace("(\r?\n)", "'\n".'+"\n"+\'', htmlspecialchars($chapters, ENT_QUOTES));
 	return $chapters;
 }
 
