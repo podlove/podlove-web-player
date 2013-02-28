@@ -275,6 +275,8 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 	}
 	if (( $permalink )&&(filter_var($permalink, FILTER_VALIDATE_URL) !== FALSE)) {
 		$init_options .= "\n  permalink: '" . $permalink . "',";
+	} else {
+		$init_options .= "\n  permalink: '" . get_permalink() . "',";
 	}
 	if ( $subtitle ) {
 		$init_options .= "\n  subtitle: '" . htmlspecialchars($subtitle, ENT_QUOTES) . "',";
