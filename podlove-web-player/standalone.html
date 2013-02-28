@@ -3,10 +3,11 @@
 
 <head>
 	<meta charset="utf-8" />
-	<title>Podlove Web Player Standalone</title>
+	<title>Podlove Web Player Standalone Demo</title>
 
 	<link href="libs/mediaelement/build/mediaelementplayer.min.css" rel="stylesheet" media="screen" type="text/css" />
-	<link href="libs/fontawesome/css/font-awesome.min.css" rel="stylesheet" media="screen" type="text/css" />
+	<link rel="stylesheet" href="libs/pwpfont/css/fontello.css" /><!--[if IE 7]>
+	<link rel="stylesheet" href="libs/pwpfont/css/fontello-ie7.css" /><![endif]-->
 	<link href="podlove-web-player.css" rel="stylesheet" media="screen" type="text/css" />
 
 	<script src="libs/html5shiv.js"></script>
@@ -20,14 +21,15 @@
 		<audio id="testplayer">
 			<source src="samples/podlove-test-track.mp4" type="audio/mp4"></source>
 			<source src="samples/podlove-test-track.mp3" type="audio/mp3"></source>
-			<source src="samples/podlove-test-track.ogg" type="audio/ogg"></source>
-			<source src="samples/podlove-test-track.opus" type="audio/opus"></source>
+			<source src="samples/podlove-test-track.ogg" type="audio/ogg; codecs=vorbis"></source>
+			<source src="samples/podlove-test-track.opus" type="audio/ogg; codecs=opus"></source>
 		</audio>
 
 		<script>
 			$('#testplayer').podlovewebplayer({
 				poster: 'samples/coverimage.png',
 				title: 'PWP001 – Lorem ipsum dolor sit amet',
+				permalink: 'http://podlove.github.com/podlove-web-player/standalone.html',
 				subtitle: 'Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.',
 				chapters: '00:00:00.000 Chapter One title'
 +"\n"+'00:00:01.000 Chapter Two with <a href="#">hyperlink</a>'
@@ -41,6 +43,7 @@
 				width: 'auto',
 				summaryVisible: false,
 				timecontrolsVisible: false,
+				sharebuttonsVisible: false,
 				chaptersVisible: true	
 			});
 		</script>

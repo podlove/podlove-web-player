@@ -20,6 +20,17 @@
 	clear: both;
 	position: relative;
 	padding-bottom: 1.5em;
+	background: white;
+	padding: 0px;
+	margin-bottom: 35px;
+	border-radius: 15px;
+	border: 0px solid black;
+}
+
+.podlovewebplayer_wrapper a, .podlovewebplayer_wrapper a:active, .podlovewebplayer_wrapper a:focus {
+	border: 0px none !important;
+	text-decoration: none !important;
+	outline: none !important;
 }
 
 .podlovewebplayer_wrapper:after {
@@ -131,7 +142,8 @@
 .podlovewebplayer_top {
 	position: relative;
 	background: #000;
-	height: 100px;
+	min-height: 100px;
+	height: auto;
 	margin-bottom: 1px;
 	-webkit-border-top-left-radius: 10px;
 	-webkit-border-top-right-radius: 10px;
@@ -150,6 +162,7 @@
 }
 
 .podlovewebplayer_top {
+	min-height: 11px;
 	height: 11px;
 	margin-bottom: 0px !important;
 }
@@ -159,33 +172,59 @@
 }
 
 .podlovewebplayer_meta .bigplay {
+	font-family: 'fontello';
+	font-style: normal;
+	font-weight: normal;
+	speak: none;
+	color: #ffffff;
 	float: left;
-	width: 100px;
-	height: 100px;
 	position: relative;
 	z-index: 78;
-	text-indent: -100em;
-	background: url(img/bigplay.png) 0 0 no-repeat;
+	border: 5px solid white !important;
+	border-radius: 60px !important;
+	font-size: 42px;
+	padding: 5px 6px 20px 19px;
+	height: 40px;
+	width: 40px;
+	margin: 10px 10px 10px 10px;
 	-webkit-transition: none;
 	-moz-transition: none;
 	-o-transition: none;
 	transition: none;
 }
 
+.podlovewebplayer_meta .bigplay:before {
+	content: '\25b6';
+}
+
 .podlovewebplayer_meta .bigplay:focus,
 .podlovewebplayer_meta .bigplay:hover,
 .podlovewebplayer_meta .bigplay:active {
-	background-position: 0 -100px;
+	border: 5px solid white !important;
+	border-radius: 60px !important;
+	-webkit-text-shadow: 0px 0px 10px #FFFFFF;
+	-moz-text-shadow: 0px 0px 10px #FFFFFF;
+	-o-text-shadow: 0px 0px 10px #FFFFFF;
+	text-shadow: 0px 0px 10px #FFFFFF;
+}
+
+.podlovewebplayer_meta .bigplay.playing:before {
+	content: '\2389';
 }
 
 .podlovewebplayer_meta .bigplay.playing {
-	background-position: -100px 0;
+	padding: 5px 11px 20px 14px;
 }
 
 .podlovewebplayer_meta .bigplay.playing:focus,
 .podlovewebplayer_meta .bigplay.playing:hover,
 .podlovewebplayer_meta .bigplay.playing:active {
-	background-position: -100px -100px;
+	border: 5px solid white !important;
+	border-radius: 60px !important;
+	-webkit-text-shadow: 0px 0px 10px #FFFFFF;
+	-moz-text-shadow: 0px 0px 10px #FFFFFF;
+	-o-text-shadow: 0px 0px 10px #FFFFFF;
+	text-shadow: 0px 0px 10px #FFFFFF;
 }
 
 .podlovewebplayer_meta .coverart {
@@ -288,12 +327,13 @@
 }
 
 .podlovewebplayer_wrapper .mejs-container .mejs-inner .mejs-controls .mejs-time-rail .mejs-time-total .mejs-time-loaded {
-	background: -moz-linear-gradient(top, rgba(67,131,219,0.8) 0%, rgba(88,156,239,0.8) 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(67,131,219,0.8)), color-stop(100%,rgba(88,156,239,0.8)));
-	background: -webkit-linear-gradient(top, rgba(67,131,219,0.8) 0%,rgba(88,156,239,0.8) 100%);
-	background: -o-linear-gradient(top, rgba(67,131,219,0.8) 0%,rgba(88,156,239,0.8) 100%);
-	background: -ms-linear-gradient(top, rgba(67,131,219,0.8) 0%,rgba(88,156,239,0.8) 100%);
-	background: linear-gradient(to bottom, rgba(67,131,219,0.8) 0%,rgba(88,156,239,0.8) 100%);
+	background: rgb(67,131,219);
+	background: -moz-linear-gradient(top, rgb(67,131,219) 0%, rgb(88,156,239) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(67,131,219)), color-stop(100%,rgb(88,156,239)));
+	background: -webkit-linear-gradient(top, rgb(67,131,219) 0%,rgb(88,156,239) 100%);
+	background: -o-linear-gradient(top, rgb(67,131,219) 0%,rgb(88,156,239) 100%);
+	background: -ms-linear-gradient(top, rgb(67,131,219) 0%,rgb(88,156,239) 100%);
+	background: linear-gradient(to bottom, rgb(67,131,219) 0%,rgb(88,156,239) 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc4383db', endColorstr='#cc589cef',GradientType=0 );
 }
 
@@ -313,7 +353,7 @@ filter: dropshadow(color=#000000, offx=0, offy=0);
 }
 
 .podlovewebplayer_meta + .summary,
-.podlovewebplayer_wrapper .controlbox {
+.podlovewebplayer_wrapper .podlovewebplayer_controlbox {
 	overflow: hidden;
 	padding: 0px 10px;
 	margin-top: -1px;
@@ -330,7 +370,7 @@ filter: dropshadow(color=#000000, offx=0, offy=0);
 }
 
 .podlovewebplayer_video .podlovewebplayer_meta + .summary,
-.podlovewebplayer_video.podlovewebplayer_wrapper .controlbox {
+.podlovewebplayer_video.podlovewebplayer_wrapper .podlovewebplayer_controlbox {
 	margin-top: 0px;
 }
 
@@ -358,14 +398,14 @@ filter: dropshadow(color=#000000, offx=0, offy=0);
 	bottom: 10px;
 }
 
-.podlovewebplayer_wrapper .controlbox {
+.podlovewebplayer_wrapper .podlovewebplayer_controlbox {
 	height: 0px;
 	font-size: 4px;
 	text-align: center;
 	background: #000;
 }
 
-.podlovewebplayer_wrapper .controlbox.active {
+.podlovewebplayer_wrapper .podlovewebplayer_controlbox.active {
 	height: 25px;
 	padding: 3px 10px 4px 10px;
 	font-size: 8px;
@@ -373,35 +413,50 @@ filter: dropshadow(color=#000000, offx=0, offy=0);
 
 .podlovewebplayer_meta .togglers .infobuttons,
 .podlovewebplayer_meta .togglers .infobuttons a,
-.podlovewebplayer_wrapper .controlbox .infobuttons,
-.podlovewebplayer_wrapper .controlbox .infobuttons a {
-	font-family: FontAwesome;
-	font-weight: normal;
-	font-style: normal;
+.podlovewebplayer_wrapper .podlovewebplayer_controlbox .infobuttons,
+.podlovewebplayer_wrapper .podlovewebplayer_controlbox .infobuttons a {
 	color: #fff;
 	font-size: 1.75em;
-	margin: 5px;
-	text-shadow: 0px 0px 4px #000000;
+	-webkit-text-shadow: 0px 0px 1px #000000;
+	-moz-text-shadow: 0px 0px 1px #000000;
+	-o-text-shadow: 0px 0px 1px #000000;
+	text-shadow: 0px 0px 1px #000000;
+	-webkit-font-smoothing: antialiased;
+	-moz-font-smoothing: antialiased;
+	-o-font-smoothing: antialiased;
+	font-smoothing: antialiased;
 	text-decoration: none;
+	speak: none;
 }
 
-.podlovewebplayer_wrapper .controlbox .infobuttons,
-.podlovewebplayer_wrapper .controlbox .infobuttons a {
+.podlovewebplayer_wrapper .podlovewebplayer_controlbox .infobuttons,
+.podlovewebplayer_wrapper .podlovewebplayer_controlbox .infobuttons a {
 	position: relative;
-	margin: 15px;
-	padding: 10px;
+	margin: 5%;
+	padding: 0px;
 	z-index: 78;
 	font-size: 2.4em;
+	font-weight: bold;
 }
 
 .podlovewebplayer_meta .togglers .infobuttons:hover,
 .podlovewebplayer_meta .togglers .infobuttons a:hover,
-.podlovewebplayer_wrapper .controlbox .infobuttons:hover,
-.podlovewebplayer_wrapper .controlbox .infobuttons a:hover  {
+.podlovewebplayer_wrapper .podlovewebplayer_controlbox .infobuttons:hover,
+.podlovewebplayer_wrapper .podlovewebplayer_controlbox .infobuttons a:hover  {
 	text-shadow: 0px 0px 4px #FFFFFF;
 	text-decoration: none;
 	filter: dropshadow(color=#FFFFFF, offx=0, offy=0);
 	cursor: pointer;
+}
+
+.podlovewebplayer_wrapper .podlovewebplayer_controlbox .icon-twitter {
+	font-size: 2.1em;
+}
+
+.podlovewebplayer_wrapper .podlovewebplayer_controlbox .icon-link,
+.podlovewebplayer_wrapper .podlovewebplayer_controlbox .icon-twitter,
+.podlovewebplayer_wrapper .podlovewebplayer_controlbox .icon-facebook {
+	font-weight: normal;
 }
 
 .podlovewebplayer_chapters * {
@@ -551,6 +606,7 @@ filter: dropshadow(color=#000000, offx=0, offy=0);
 	height: 11px;
 	left: 0px;
 	background: #000;
+	box-shadow: 0px 1px black;
 	-webkit-border-bottom-left-radius: 10px;
 	-webkit-border-bottom-right-radius: 10px;
 	-moz-border-radius-bottomleft: 10px;
@@ -567,7 +623,7 @@ filter: dropshadow(color=#000000, offx=0, offy=0);
 }*/
 
 .podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_tableend,
-.podlovewebplayer_wrapper.podlovewebplayer_video .controlbox,
+.podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_controlbox,
 .podlovewebplayer_wrapper.podlovewebplayer_video .summary {
 	background: #252525; 
 }
@@ -575,11 +631,11 @@ filter: dropshadow(color=#000000, offx=0, offy=0);
 .podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_chapterbox,
 .podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_chapters,
 .podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_meta + .summary,
-.podlovewebplayer_wrapper.podlovewebplayer_video .controlbox {
+.podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_controlbox {
 	border-color: #252525;
 }
 
-.podlovewebplayer_wrapper.podlovewebplayer_video .controlbox {
+.podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_controlbox {
 	margin-top: 0px;
 }
 
@@ -610,7 +666,7 @@ and (max-width : 500px) {
 	}
 	.podlovewebplayer_meta .coverart {
 		position: absolute;
-		bottom: 30px;
+		bottom: 20px;
 		left: 120px;
 	}
 	.podlovewebplayer_meta .coverart img {
@@ -629,8 +685,14 @@ and (max-width : 500px) {
 		margin: auto;
 		text-align: center;
 	}
-	.podlovewebplayer_wrapper .controlbox a.infobuttons {
-		margin: 15px;
+	.podlovewebplayer_wrapper.podlovewebplayer_audio .podlovewebplayer_meta .togglers {
+		width: 20px;
+		right: 20px;
+		bottom: 15px;
+	}
+	
+	.podlovewebplayer_wrapper .podlovewebplayer_controlbox a.infobuttons {
+		margin: 4%;
 	}
 	.podlovewebplayer_wrapper .podlovewebplayer_tableend,
 	.podlovewebplayer_wrapper .podlovewebplayer_top {

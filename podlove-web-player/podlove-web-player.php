@@ -67,17 +67,17 @@ function podlovewebplayer_add_scripts() {
 	if ( !is_admin() ) {
 		wp_enqueue_script( 
 			'mediaelementjs', 
-			PODLOVEWEBPLAYER_MEJS_DIR . 'mediaelement-and-player.min.js', 
+			plugins_url('libs/mediaelement/build/mediaelement-and-player.min.js', __FILE__), 
 			array('jquery'), '2.10.3', false 
 		);
 		wp_enqueue_script( 
 			'ba_hashchange', 
-			PODLOVEWEBPLAYER_DIR . 'libs/jquery.ba-hashchange.min.js', 
+			plugins_url('libs/jquery.ba-hashchange.min.js', __FILE__), 
 			array('jquery'), '1.3.0', false
 		);
 		wp_enqueue_script( 
 			'podlovewebplayer', 
-			PODLOVEWEBPLAYER_DIR . 'podlove-web-player.js', 
+			plugins_url('podlove-web-player.js', __FILE__), 
 			array('jquery', 'mediaelementjs'), '2.0.2', false
 		);
 	}
@@ -90,9 +90,9 @@ add_action('wp_print_scripts', 'podlovewebplayer_add_scripts');
 
 function podlovewebplayer_add_styles() {
 	if ( !is_admin() ) {
-		wp_enqueue_style( 'fontawesome', PODLOVEWEBPLAYER_DIR . 'libs/fontawesome/css/font-awesome.min.css' );
-		wp_enqueue_style( 'mediaelementjs', PODLOVEWEBPLAYER_MEJS_DIR . 'mediaelementplayer.css' );
-		wp_enqueue_style( 'podlovewebplayer', PODLOVEWEBPLAYER_DIR . 'podlove-web-player.css' );
+		wp_enqueue_style( 'pwpfont', plugins_url('libs/pwpfont/css/fontello.css', __FILE__) );
+		wp_enqueue_style( 'mediaelementjs', plugins_url('libs/mediaelement/build/mediaelementplayer.css', __FILE__) );
+		wp_enqueue_style( 'podlovewebplayer', plugins_url('podlove-web-player.css', __FILE__) );
 	}
 }
 add_action( 'wp_print_styles', 'podlovewebplayer_add_styles' );
@@ -105,7 +105,8 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 
 	global $podlovewebplayer_index;
 	$attributes = array();
-	$sources = array();
+	$sources    = array();
+	$files      = array();
 	$wp_options = get_option('podlovewebplayer_options');
 
 	extract(shortcode_atts(array(
@@ -184,30 +185,39 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 
 	if ( $mp4 ) {
 		$sources[] = '<source src="' . htmlspecialchars($mp4) . '" type="' . $tag_name . '/mp4" />';
+		$files[] = htmlspecialchars($mp4);
 	}
 	if ( $webm ) {
 		$sources[] = '<source src="' . htmlspecialchars($webm) . "\" type='video/webm; codecs=\"vp8, vorbis\"' />";
+		$files[] = htmlspecialchars($webm);
 	}
 	if ( $ogg && $tag_name == "audio" ) {
 		$sources[] = '<source src="' . htmlspecialchars($ogg) . "\" type='audio/ogg; codecs=vorbis' />";
+		$files[] = htmlspecialchars($ogg);
 	} elseif ( $ogg && $tag_name == "video" ) {
 		$sources[] = '<source src="' . htmlspecialchars($ogg) . "\" type='video/ogg; codecs=\"theora, vorbis\"' />";
+		$files[] = htmlspecialchars($ogg);
 	}
 	if ( $mp3 ) {
 		$sources[] = '<source src="' . htmlspecialchars($mp3) . '" type="' . $tag_name . '/mp3" />';
+		$files[] = htmlspecialchars($mp3);
 	}
 	if ( $opus ) {
 		$sources[] = '<source src="' . htmlspecialchars($opus) . "\" type='" . $tag_name . "/ogg; codecs=opus' />";
+		$files[] = htmlspecialchars($opus);
 	}
 	if ( $flv ) {
 		$sources[] = '<source src="' . htmlspecialchars($flv) . '" type="' . $tag_name . '/flv" />';
+		$files[] = htmlspecialchars($flv);
 	}
 	if ( $wmv ) {
 		$sources[] = '<source src="' . htmlspecialchars($wmv) . '" type="' . $tag_name . '/wmv" />';
+		$files[] = htmlspecialchars($wmv);
 	}
 	if ( $captions ) {
 		$sources[] = '<track src="' . $captions . '" kind="subtitles" srclang="' . $captionslang . '" />';
 	}
+	$sources[] = '<object type="application/x-shockwave-flash" data="flashmediaelement.swf"><param name="movie" value="flashmediaelement.swf" /><param name="flashvars" value="controls=true&file='.$files[0].'" /></object>';
 	$sources_string = !empty($sources) ? implode("\n\t\t", $sources) : '';
 	
 
@@ -273,7 +283,7 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 		$init_options .= "\n  chapters: '" . podlovewebplayer_render_chapters($chapters) . "',";
 	}
 	if ( $summary ) {
-		$init_options .= "\n  summary: '" . ereg_replace("\r?\n", "'\n".'+"\n"+\'', htmlspecialchars($summary, ENT_QUOTES)) . "',";
+		$init_options .= "\n  summary: '" . preg_replace("(\r?\n)", "'\n".'+"\n"+\'', htmlspecialchars($summary, ENT_QUOTES)) . "',";
 	}
 	if ( $duration ) {
 		$init_options .= "\n  duration: '" . $duration . "',";
@@ -336,7 +346,7 @@ function podlovewebplayer_render_chapters( $input ) {
 			$chapters = $chapters[0];
 		}
 	}
-	$chapters = ereg_replace("\r?\n", "'\n".'+"\n"+\'', htmlspecialchars($chapters, ENT_QUOTES));
+	$chapters = preg_replace("(\r?\n)", "'\n".'+"\n"+\'', htmlspecialchars($chapters, ENT_QUOTES));
 	return $chapters;
 }
 
