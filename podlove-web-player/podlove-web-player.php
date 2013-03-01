@@ -177,38 +177,24 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 
 
 	// ------------------- prepare <source> elements
+	$supported_sources = array(
+		'mp4'  => $tag_name . '/mp4',
+		'webm' => 'video/webm; codecs="vp8, vorbis"',
+		'ogg'  => sprintf( '%s/ogg; codecs="%s"', $tag_name, ( $tag_name == 'video' ) ? 'theora, vorbis' : 'vorbis' ),
+		'mp3'  => $tag_name . '/mp3',
+		'opus' => $tag_name . '/ogg; codecs=opus',
+		'flv'  => $tag_name . '/flv',
+		'wmv'  => $tag_name . '/wmv',
+	);
 
-	if ( $mp4 ) {
-		$sources[] = '<source src="' . htmlspecialchars($mp4) . '" type="' . $tag_name . '/mp4" />';
-		$files[] = htmlspecialchars($mp4);
+	foreach ( $supported_sources as $source_extension => $source_type ) {
+		if ( ${$source_extension} ) {
+			$src       = htmlspecialchars( ${$source_extension} );
+			$sources[] = '<source src="' . $src . '" type="' . $source_type . '" />';
+			$files[]   = $src;
+		}
 	}
-	if ( $webm ) {
-		$sources[] = '<source src="' . htmlspecialchars($webm) . "\" type='video/webm; codecs=\"vp8, vorbis\"' />";
-		$files[] = htmlspecialchars($webm);
-	}
-	if ( $ogg && $tag_name == "audio" ) {
-		$sources[] = '<source src="' . htmlspecialchars($ogg) . "\" type='audio/ogg; codecs=vorbis' />";
-		$files[] = htmlspecialchars($ogg);
-	} elseif ( $ogg && $tag_name == "video" ) {
-		$sources[] = '<source src="' . htmlspecialchars($ogg) . "\" type='video/ogg; codecs=\"theora, vorbis\"' />";
-		$files[] = htmlspecialchars($ogg);
-	}
-	if ( $mp3 ) {
-		$sources[] = '<source src="' . htmlspecialchars($mp3) . '" type="' . $tag_name . '/mp3" />';
-		$files[] = htmlspecialchars($mp3);
-	}
-	if ( $opus ) {
-		$sources[] = '<source src="' . htmlspecialchars($opus) . "\" type='" . $tag_name . "/ogg; codecs=opus' />";
-		$files[] = htmlspecialchars($opus);
-	}
-	if ( $flv ) {
-		$sources[] = '<source src="' . htmlspecialchars($flv) . '" type="' . $tag_name . '/flv" />';
-		$files[] = htmlspecialchars($flv);
-	}
-	if ( $wmv ) {
-		$sources[] = '<source src="' . htmlspecialchars($wmv) . '" type="' . $tag_name . '/wmv" />';
-		$files[] = htmlspecialchars($wmv);
-	}
+
 	if ( $captions ) {
 		$sources[] = '<track src="' . $captions . '" kind="subtitles" srclang="' . $captionslang . '" />';
 	}
