@@ -420,12 +420,14 @@ function podlovewebplayer_enclosures( $content ) {
 	return $content;
 }
 
-
-$wp_options = get_option('podlovewebplayer_options');
-if( !@is_feed() && isset( $wp_options['enclosure_detect'] ) ) {
-	// fire auto-detect script before regular shortcode, which has prio 11
-	add_filter( 'the_content', 'podlovewebplayer_enclosures', 10 );
+function podlovewebplayer_enclosures_init() {
+	$wp_options = get_option( 'podlovewebplayer_options' );
+	if( !is_feed() && isset( $wp_options['enclosure_detect'] ) ) {
+		// fire auto-detect script before regular shortcode, which has prio 11
+		add_filter( 'the_content', 'podlovewebplayer_enclosures', 10 );
+	}
 }
+add_action( 'wp', 'podlovewebplayer_enclosures_init' );
 
 
 /* Initialisation */
