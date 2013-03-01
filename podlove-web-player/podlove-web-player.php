@@ -142,6 +142,7 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 	), $atts));
 
 	if ( $type ) {
+		$type = strtolower( $type );
 		$attributes[] = 'type="' . $type . '"';
 	} elseif ( $wp_options[$tag_name . '_type'] ) {
 		$attributes[] = 'type="' . $wp_options[$tag_name . '_type'] . '"';
@@ -169,7 +170,7 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 		'mp4'  => $tag_name . '/mp4',
 		'webm' => 'video/webm; codecs="vp8, vorbis"',
 		'ogg'  => sprintf( '%s/ogg; codecs="%s"', $tag_name, ( $tag_name == 'video' ) ? 'theora, vorbis' : 'vorbis' ),
-		'mp3'  => $tag_name . '/mp3',
+		'mp3'  => $tag_name . '/mpeg',
 		'opus' => $tag_name . '/ogg; codecs=opus',
 		'flv'  => $tag_name . '/flv',
 		'wmv'  => $tag_name . '/wmv',
