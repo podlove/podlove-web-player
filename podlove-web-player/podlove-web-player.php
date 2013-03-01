@@ -147,15 +147,6 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 		$attributes[] = 'type="' . $wp_options[$tag_name . '_type'] . '"';
 	}
 
-	if ( $src ) {
-		$src = trim( $src ); 
-		// does it have an extension?
-		$suffixlength = strlen( substr( $src, strrpos( $src, "." ) ) );
-		if ($suffixlength == 4 || $suffixlength == 5) {
-			$attributes[] = 'src="' . htmlspecialchars($src) . '"';
-		}
-	}
-
 	// ------------------- prepare <audio|video> attributes
 
 	if ( $width && $tag_name == 'video' ) {
@@ -173,10 +164,7 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 	if ( $autoplay ) {
 		$attributes[] = 'autoplay="' . $autoplay . '"';
 	}
-	$attributes_string = !empty($attributes) ? implode(' ', $attributes) : '';
-
-
-	// ------------------- prepare <source> elements
+	
 	$supported_sources = array(
 		'mp4'  => $tag_name . '/mp4',
 		'webm' => 'video/webm; codecs="vp8, vorbis"',
@@ -187,6 +175,25 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 		'wmv'  => $tag_name . '/wmv',
 	);
 
+	$supported_mime_types = array_flip( $supported_sources );
+
+	// try to avoid src="" attribute by determining the actual type
+	if ( $src && $type && isset( $supported_mime_types[ $type ] ) ) {
+		${$supported_mime_types[ $type ]} = $src;
+		$src = false;
+	}
+
+	if ( $src ) {
+		$src = trim( $src ); 
+		// does it have an extension?
+		$suffixlength = strlen( substr( $src, strrpos( $src, "." ) ) );
+		if ($suffixlength == 4 || $suffixlength == 5) {
+			$attributes[] = 'src="' . htmlspecialchars($src) . '"';
+		}
+	}
+	$attributes_string = !empty($attributes) ? implode(' ', $attributes) : '';
+	
+	// ------------------- prepare <source> elements
 	foreach ( $supported_sources as $source_extension => $source_type ) {
 		if ( ${$source_extension} ) {
 			$src       = htmlspecialchars( ${$source_extension} );
@@ -198,7 +205,14 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 	if ( $captions ) {
 		$sources[] = '<track src="' . $captions . '" kind="subtitles" srclang="' . $captionslang . '" />';
 	}
-	$sources[] = '<object type="application/x-shockwave-flash" data="flashmediaelement.swf"><param name="movie" value="flashmediaelement.swf" /><param name="flashvars" value="controls=true&file='.$files[0].'" /></object>';
+
+	if ( count( $files ) ) {
+		$sources[] = '<object type="application/x-shockwave-flash" data="flashmediaelement.swf">
+						<param name="movie" value="flashmediaelement.swf" />
+						<param name="flashvars" value="controls=true&file=' . $files[0] . '" />
+					</object>';
+	}
+
 	$sources_string = !empty($sources) ? implode("\n\t\t", $sources) : '';
 	
 
@@ -384,39 +398,60 @@ function podlovewebplayer_get_enclosed( $post_id ) {
 
 function podlovewebplayer_enclosures( $content ) {
 	global $post;
+
 	$wp_options = get_option('podlovewebplayer_options');
-	if ( $enclosures = podlovewebplayer_get_enclosed( $post->ID ) // do we have enclosures in this post?
-		AND (
-			isset($wp_options['enclosure_force']) // forced to render enclosures by option
+
+	$there_are_enclosures = (
+		$enclosures = podlovewebplayer_get_enclosed( $post->ID )
+		AND
+		(
+			isset( $wp_options['enclosure_force'] ) // forced to render enclosures by option
 			OR 
-			( strpos( $content, "[podloveaudio" ) === false AND 
-			  strpos( $content, "[podlovevideo" ) === false AND
-			  strpos( $content, "[audio" ) === false AND 
-			  strpos( $content, "[video" ) === false ) // there is no manual shortcode
+			(
+				strpos( $content, "[podloveaudio" ) === false AND 
+				strpos( $content, "[podlovevideo" ) === false AND
+				strpos( $content, "[audio" ) === false AND 
+				strpos( $content, "[video" ) === false
+			) // there is no manual shortcode
 		)
-	) 
-	{
-		foreach( $enclosures as $enclosure ) {
-			$type = substr( $enclosure[2], 0, strpos( $enclosure[2], "/" ) );
-			$duration = "";
-			if ( isset( $enclosure[3] ) && $enc3_array = unserialize( $enclosure[3] ) ) {
-				if ( isset( $enc3_array['duration'] ) ) {
-					$duration = "duration='" . $enc3_array['duration'] . "'";
-				}
-			}
-			$title = "";
-			if ( isset( $wp_options['enclosure_richplayer'] ) ) {
-				$title = 'title="'.$post->post_title.'"';
-			}
-			$shortcode = '[podlove'.$type.' '.$title.' type="'.$enclosure[2].'" src="'.$enclosure[0].'" '.$duration.']';
-			$pwpcode = do_shortcode( $shortcode );
-			if ( isset( $wp_options['enclosure_bottom'] ) ) {
-				$content = $content . $pwpcode;
-			} else {
-				$content = $pwpcode . $content;
+	);
+
+	if ( ! $there_are_enclosures )
+		return $content;
+
+	foreach( $enclosures as $enclosure ) {
+
+		$mime_type = $enclosure[2];
+		$mime_type_data = explode( "/", $mime_type );
+
+		$type    = $mime_type_data[0];
+		$subtype = $mime_type_data[1];
+
+		// determine duration
+		$duration = "";
+		if ( isset( $enclosure[3] ) && $enc3_array = unserialize( $enclosure[3] ) ) {
+			if ( isset( $enc3_array['duration'] ) ) {
+				$duration = "duration='" . $enc3_array['duration'] . "'";
 			}
 		}
+
+		// determine title
+		$title = "";
+		if ( isset( $wp_options['enclosure_richplayer'] ) ) {
+			$title = 'title="'.$post->post_title.'"';
+		}
+
+		// generate shortcode
+		$shortcode = '[podlove'.$type.' '.$title.' type="'.$mime_type.'" src="'.$enclosure[0].'" '.$duration.']';
+		$pwpcode = do_shortcode( $shortcode );
+
+		if ( isset( $wp_options['enclosure_bottom'] ) ) {
+			$content = $content . $pwpcode;
+		} else {
+			$content = $pwpcode . $content;
+		}
 	}
+
 	return $content;
 }
 
