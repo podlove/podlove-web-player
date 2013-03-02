@@ -198,7 +198,7 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 	foreach ( $supported_sources as $source_extension => $source_type ) {
 		if ( ${$source_extension} ) {
 			$src       = htmlspecialchars( ${$source_extension} );
-			$sources[] = '<source src="' . $src . '" type="' . $source_type . '" />';
+			$sources[] = '<source src="' . $src . '" type=\'' . $source_type . '\' />';
 			$files[]   = $src;
 		}
 	}
