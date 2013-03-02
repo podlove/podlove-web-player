@@ -36,7 +36,6 @@
 			pauseOtherPlayers: true,
 			duration: false,
 			plugins: ['flash', 'silverlight'],
-			pluginPath: PWP_GLOBAL.pluginPath,
 			flashName: 'flashmediaelement.swf',
 			silverlightName: 'silverlightmediaelement.xap'
 		};

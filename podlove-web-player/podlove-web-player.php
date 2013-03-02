@@ -75,9 +75,6 @@ function podlovewebplayer_add_scripts() {
 			plugins_url('podlove-web-player.js', __FILE__), 
 			array('jquery', 'mediaelementjs'), '2.0.3', false
 		);
-		wp_localize_script( 'podlovewebplayer', 'PWP_GLOBAL', array(
-			'pluginPath'  => plugins_url( 'libs/mediaelement/build/', __FILE__)
-		) );
 	}
 }
 add_action('wp_print_scripts', 'podlovewebplayer_add_scripts');
@@ -266,6 +263,7 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 	// ------------------- prepare podlove call inits
 
 	$init_options = "";
+	$init_options.= "\n  pluginPath: '" . plugins_url( 'libs/mediaelement/build/', __FILE__) . "',";
 	if ( $poster ) {
 		$init_options .= "\n  poster: '" . htmlspecialchars($poster, ENT_QUOTES) . "',";
 	}
