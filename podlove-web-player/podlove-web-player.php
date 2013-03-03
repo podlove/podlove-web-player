@@ -260,19 +260,19 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 
 	$init_options = array(
 		'pluginPath'          => plugins_url( 'libs/mediaelement/build/', __FILE__),
-		'alwaysShowHours'     => in_array( $alwaysshowhours, $truthy ),
-		'alwaysShowControls'  => in_array( $alwaysshowcontrols, $truthy ),
-		'chaptersVisible'     => in_array( $chaptersvisible, $truthy ),
-		'timecontrolsVisible' => in_array( $timecontrolsvisible, $truthy ),
-		'summaryVisible'      => in_array( $summaryvisible, $truthy ),
-		'loop'                => in_array( $loop, $truthy ),
+		'alwaysShowHours'     => in_array( $alwaysshowhours, $truthy, true ),
+		'alwaysShowControls'  => in_array( $alwaysshowcontrols, $truthy, true ),
+		'chaptersVisible'     => in_array( $chaptersvisible, $truthy, true ),
+		'timecontrolsVisible' => in_array( $timecontrolsvisible, $truthy, true ),
+		'summaryVisible'      => in_array( $summaryvisible, $truthy, true ),
+		'loop'                => in_array( $loop, $truthy, true ),
 		'chapterlinks'        => $chapterlinks
 	);
 	if ( $poster ) {
 		$init_options['poster'] = htmlspecialchars( $poster, ENT_QUOTES );
 	}
 	if ( $title ) {
-		$init_options['title'] = htmlspecialchars( $title, ENT_QUOTES );
+		$init_options['title'] = $title;
 	}
 	if ( $permalink && ( filter_var( $permalink, FILTER_VALIDATE_URL ) !== FALSE ) ) {
 		$init_options['permalink'] = $permalink;
@@ -280,13 +280,13 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 		$init_options['permalink'] = get_permalink();
 	}
 	if ( $subtitle ) {
-		$init_options['subtitle'] = htmlspecialchars( $subtitle, ENT_QUOTES );
+		$init_options['subtitle'] = $subtitle;
 	}
 	if ( $chapters ) {
 		$init_options['chapters'] = podlovewebplayer_render_chapters( $chapters );
 	}
 	if ( $summary ) {
-		$init_options['summary'] = nl2br( htmlspecialchars( $summary, ENT_QUOTES ) );
+		$init_options['summary'] = nl2br( $summary );
 	}
 	if ( $duration ) {
 		$init_options['duration'] = $duration;
