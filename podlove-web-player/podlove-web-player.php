@@ -85,9 +85,11 @@ add_action('wp_print_scripts', 'podlovewebplayer_add_scripts');
 
 function podlovewebplayer_add_styles() {
 	if ( !is_admin() ) {
+		$wp_options = get_option('podlovewebplayer_options');
 		wp_enqueue_style( 'pwpfont', plugins_url('libs/pwpfont/css/fontello.css', __FILE__) );
 		wp_enqueue_style( 'mediaelementjs', plugins_url('libs/mediaelement/build/mediaelementplayer.css', __FILE__) );
 		wp_enqueue_style( 'podlovewebplayer', plugins_url('podlove-web-player.css', __FILE__) );
+		wp_enqueue_style( 'podlovewebplayer-style', plugins_url($wp_options['style_url'], __FILE__) );
 	}
 }
 add_action( 'wp_print_styles', 'podlovewebplayer_add_styles' );

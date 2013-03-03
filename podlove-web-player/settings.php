@@ -60,6 +60,10 @@ function podlovewebplayer_register_settings() {
 				'bottom' => 'Put player to bottom of post:'
 			)
 		),
+		'style' => array(
+			'title' => 'Style your Podlove Web Player',
+			'fields' => array(
+				'URL' => 'URL of the CSS file')),
 		'info' => array(
 			'title' => 'Information',
 			'function' => true
@@ -190,6 +194,14 @@ function podlovewebplayer_enclosure_bottom() {
 	print "<input id='pwpenclosure4' name='podlovewebplayer_options[enclosure_bottom]' 
 		$checked type='checkbox' value='1' />&nbsp;&nbsp;
 		(instead of the top)";
+}
+
+function podlovewebplayer_style_URL() { 
+	$options = get_option('podlovewebplayer_options');
+	if ( !isset( $options['style_url'] ) )
+		$options['style_url'] = "podlove-web-player.css";
+	print "<input id='pwpstyle' name='podlovewebplayer_options[style_url]' 
+		value='".$options['style_url']."' style='width:6em;' />&nbsp;&nbsp;";
 }
 
 function podlovewebplayer_info() {
