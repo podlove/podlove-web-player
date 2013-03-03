@@ -276,7 +276,7 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 		$init_options['chapters'] = podlovewebplayer_render_chapters($chapters);
 	}
 	if ( $summary ) {
-		$init_options['summary'] = preg_replace("(\r?\n)", "'\n".'+"\n"+\'', htmlspecialchars($summary, ENT_QUOTES));
+		$init_options['summary'] = nl2br( htmlspecialchars($summary, ENT_QUOTES) );
 	}
 	if ( $duration ) {
 		$init_options['duration'] = $duration;
