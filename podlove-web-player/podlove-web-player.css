@@ -3,6 +3,11 @@
 	-webkit-text-size-adjust: inherit;
 }
 
+.podlovewebplayer_wrapper a {
+	background: transparent !important;
+	text-decoration: none;
+}
+
 .mejs-container.mejs-audio {
 	min-height: 30px;
 }
@@ -172,11 +177,12 @@
 }
 
 .podlovewebplayer_meta .bigplay {
-	font-family: 'fontello';
+	font-family: 'fontello' !important;
 	font-style: normal;
 	font-weight: normal;
 	speak: none;
 	color: #ffffff;
+	background: transparent !important;
 	float: left;
 	position: relative;
 	z-index: 78;
@@ -252,11 +258,11 @@
 	border-radius: 0px;
 }
 
-
 .podlovewebplayer_meta h3 a,
 .podlovewebplayer_meta h3 {
 	clear: none;
 	color: #fff!important;
+	background: transparent !important;
 	padding: 7px 0 0 0;
 	font-size: 16px;
 	line-height: 29px;
@@ -286,6 +292,7 @@
 	margin-right: 75px;
 	font-size: 12px;
 	color: #eee !important;
+	background: transparent !important;
 }
 
 .podlovewebplayer_meta .subtitle strong{
@@ -416,6 +423,7 @@ filter: dropshadow(color=#000000, offx=0, offy=0);
 .podlovewebplayer_wrapper .podlovewebplayer_controlbox .infobuttons,
 .podlovewebplayer_wrapper .podlovewebplayer_controlbox .infobuttons a {
 	color: #fff;
+	background: transparent !important;
 	font-size: 1.75em;
 	-webkit-text-shadow: 0px 0px 1px #000000;
 	-moz-text-shadow: 0px 0px 1px #000000;

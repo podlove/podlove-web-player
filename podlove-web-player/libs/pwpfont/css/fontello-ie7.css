@@ -1,6 +1,6 @@
 [class^="icon-"],
 [class*=" icon-"] {
-  font-family: 'fontello';
+  font-family: 'fontello' !important;
   font-style: normal;
   font-weight: normal;
 /* fix buttons height */

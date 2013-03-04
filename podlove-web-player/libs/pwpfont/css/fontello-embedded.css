@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 @font-face {
-  font-family: 'fontello';
+  font-family: 'fontello' !important;
   src: url("../font/fontello.eot?5516308");
   src: url("../font/fontello.eot?5516308#iefix") format('embedded-opentype'), url("../font/fontello.svg?5516308#fontello") format('svg');
   font-weight: normal;
