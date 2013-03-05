@@ -628,20 +628,13 @@
 			wrapper.find('.openfilebutton').click(function(){
 				$(this).parent().find(".fileselect option:selected").each(function() {
 					window.open($(this).data('url'), 'Podlove Popup', 'width=550,height=420,resizable=yes');
-					/*
-					if(window.confirm(''+$(this).val())) {
-						window.open($(this).data('url'), 'Podlove Popup', 'width=550,height=420,resizable=yes');
-					}*/
 				});
 				return false;
 			});
 
 			wrapper.find('.fileinfobutton').click(function(){
 				$(this).parent().find(".fileselect option:selected").each(function() {
-					if(window.prompt('file URL:', $(this).val())) {
-						//var infowindow = window.open('', 'Podlove Popup', 'width=550,height=420,resizable=yes');
-						//infowindow.document.write('<html><head></head><body>'+$(this).data('url')+'</body>');
-					}
+					window.prompt('file URL:', $(this).val());
 				});
 				return false;
 			});
