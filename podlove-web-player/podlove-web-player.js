@@ -473,6 +473,10 @@
 							$(this).parent().find('.bigplay').addClass('playing');
 							$(this).parent().parent().find('.mejs-time-buffering').show();
 						}
+						// flash fallback needs additional pause
+						if (player.pluginType == 'flash') {
+							player.pause();
+						}
 						player.play();
 					}
 				}
