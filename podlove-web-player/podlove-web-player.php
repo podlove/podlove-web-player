@@ -83,9 +83,9 @@ add_action('wp_print_scripts', 'podlovewebplayer_add_scripts');
 
 function podlovewebplayer_add_styles() {
 	if ( !is_admin() ) {
-		wp_enqueue_style( 'pwpfont', plugins_url('libs/pwpfont/css/fontello.css', __FILE__) );
 		wp_enqueue_style( 'mediaelementjs', plugins_url('libs/mediaelement/build/mediaelementplayer.css', __FILE__) );
 		wp_enqueue_style( 'podlovewebplayer', plugins_url('podlove-web-player.css', __FILE__) );
+		wp_enqueue_style( 'pwpfont', plugins_url('libs/pwpfont/css/fontello.css', __FILE__) );
 	}
 }
 add_action( 'wp_print_styles', 'podlovewebplayer_add_styles' );
@@ -213,7 +213,6 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 	}
 
 	$sources_string = !empty($sources) ? implode("\n\t\t", $sources) : '';
-	
 
 	// ------------------- prepare controls/features
 
@@ -298,7 +297,7 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 	}
 
 	// ------------------- build actual html player code
-	
+
 	$return = <<<_end_
 	<{$tag_name} id="podlovewebplayer_{$podlovewebplayer_index}" {$dimensions} controls {$attributes_string}>
 		{$sources_string}
@@ -366,12 +365,15 @@ add_action('wp_dashboard_setup', 'podlovewebplayer_add_dashboard_widgets' ); // 
 function podlovewebplayer_get_enclosed( $post_id ) {
 	$custom_fields = get_post_custom( $post_id );
 	$pung = array();
-	if ( !is_array( $custom_fields ) )
+
+	if ( !is_array( $custom_fields ) ) {
 		return $pung;
+	}
 
 	foreach ( $custom_fields as $key => $val ) {
-		if ( 'enclosure' != $key || !is_array( $val ) )
+		if ( 'enclosure' != $key || !is_array( $val ) ) {
 			continue;
+		}
 		foreach( $val as $enc ) {
 			$pung[] = explode( "\n", $enc );
 		}
@@ -400,8 +402,9 @@ function podlovewebplayer_enclosures( $content ) {
 		)
 	);
 
-	if ( ! $there_are_enclosures )
+	if ( ! $there_are_enclosures ) {
 		return $content;
+	}
 
 	foreach( $enclosures as $enclosure ) {
 
@@ -415,7 +418,7 @@ function podlovewebplayer_enclosures( $content ) {
 		$duration = "";
 		if ( isset( $enclosure[3] ) && $enc3_array = unserialize( $enclosure[3] ) ) {
 			if ( isset( $enc3_array['duration'] ) ) {
-				$duration = "duration='" . $enc3_array['duration'] . "'";
+				$duration = 'duration="' . trim($enc3_array['duration']) . '"';
 			}
 		}
 
@@ -426,7 +429,7 @@ function podlovewebplayer_enclosures( $content ) {
 		}
 
 		// generate shortcode
-		$shortcode = '[podlove'.$type.' '.$title.' type="'.$mime_type.'" src="'.$enclosure[0].'" '.$duration.']';
+		$shortcode = '[podlove'.$type.' '.$title.' type="'.trim($mime_type).'" src="'.trim($enclosure[0]).'" url="'.trim($enclosure[0]).'" '.$duration.']';
 		$pwpcode = do_shortcode( $shortcode );
 
 		if ( isset( $wp_options['enclosure_bottom'] ) ) {
