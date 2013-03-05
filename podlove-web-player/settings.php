@@ -195,7 +195,7 @@ function podlovewebplayer_enclosure_bottom() {
 function podlovewebplayer_info() {
 	$scriptname = explode('/wp-admin', $_SERVER["SCRIPT_FILENAME"]);
 	$dirname    = explode('/wp-content', dirname(__FILE__));
-	print "<p>This is <strong>Version 2.0.2</strong> of the <strong>Podlove Web Player</strong>.<br>
+	print "<p>This is <strong>Version 2.0.4</strong> of the <strong>Podlove Web Player</strong>.<br>
 	The <strong>Including file</strong> is: <code>wp-admin".$scriptname[1]."</code><br>
 	The <strong>PWP-directory</strong> is: <code>wp-content".$dirname[1]."</code></p>";
 }

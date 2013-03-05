@@ -4,9 +4,9 @@ Donate link: http://podlove.org/
 Tags: podcasting, podlove, html5audio, audio, video, podcast, player
 Requires at least: 3.4.0
 Tested up to: 3.5.1
-Stable tag: 2.0.2
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Stable tag: 2.0.4
+License: BSD 2-Clause License
+License URI: http://opensource.org/licenses/BSD-2-Clause
 
 HTML5 based audio/video player, focused on podcasts and similar media blogs. It supports chapters, deeplinks, captions and even more.
 
@@ -194,6 +194,25 @@ Earlier versions of this plugin could handle alternative shortcodes, too: [audio
 2. Podlove Web Player in chapters hidden and timecontrol-bar visible view.
 
 == Changelog ==
+
+= 2.0.4 =
+* fixed flash fallback again
+* parameter handover improved
+* encoding issues fixed
+
+= 2.0.3 =
+* reduced DOM interaction at player creation
+* improved readability of JS code
+* improved JS performance
+* fixed video
+* fixed flash fallback
+* fixed player slowing down Firefox
+* fixed buttons not being displayed properly
+* added a new bar with social sharing buttons
+* updated submodules
+
+= 2.0.2 =
+* equivalent to 2.0.1
 
 = 2.0.1 =
 * does not crash in PHP 5.2 anymore
