@@ -49,7 +49,8 @@
 			timecontrolsVisible: false,
 			sharebuttonsVisible: false,
 			downloadbuttonsVisible: false,
-			summaryVisible: false
+			summaryVisible: false,
+			sources: []
 		}, options);
 
 		// turn each player in the current set into a Podlove Web Player
@@ -118,10 +119,18 @@
 
 			players.push(player);
 
-			//add params from html fallback area
+			//add params from html fallback area and remove them from the DOM-tree
 			$(player).find('[data-pwp]').each(function(){
 				params[$(this).data('pwp')] = $(this).html();
 				$(this).remove();
+			});
+			//add params from audio and video elements
+			$(player).find('source').each(function(){
+				if(typeof params['sources'] !== 'undefined') {
+					params.sources.push($(this).attr('src'));
+				} else {
+					params[sources][0] = $(this).attr('src');
+				}
 			});
 
 			//build rich player with meta data
@@ -231,20 +240,30 @@
 				wrapper.find('.podlovewebplayer_sharebuttons').append('<a href="#" target="_blank" class="adnbutton infobuttons icon-appnet" title="Share this on App.net"></a>');
 				wrapper.find('.podlovewebplayer_sharebuttons').append('<a href="#" target="_blank" class="mailbutton infobuttons icon-mail" title="Share this via e-mail"></a>');
 			}
-			if (typeof params.downloads !== 'undefined') {
-				var key, size, selectform = '<select name="downloads" class="fileselect" size="1" onchange="this.value=this.options[this.selectedIndex].value;">';
+			if ((typeof params.downloads !== 'undefined')||(typeof params.sources !== 'undefined')) {
+				var key, size, name, selectform = '<select name="downloads" class="fileselect" size="1" onchange="this.value=this.options[this.selectedIndex].value;">';
 				wrapper.append('<div class="podlovewebplayer_downloadbuttons podlovewebplayer_controlbox'+downloadbuttonsActive+'"></div>');
 				wrapper.find('.togglers').append('<a href="#" class="showdownloadbuttons infobuttons icon-download" title="Show/hide download bar"></a>');
-				for (key in params.downloads) {
-					size = (parseInt(params.downloads[key]['size'],10) < 1048704) ? Math.round(parseInt(params.downloads[key]['size'],10)/100)/10+'kB' : Math.round(parseInt(params.downloads[key]['size'],10)/1000/100)/10+'MB';
-					selectform += '<option value="'+params.downloads[key]['url']+'" data-url="'+params.downloads[key]['url']+'" data-dlurl="'+params.downloads[key]['dlurl']+'">'+params.downloads[key]['name']+' (<small>'+size+'</small>)</option>';
+				if (typeof params.downloads !== 'undefined') {
+					for (key in params.downloads) {
+						size = (parseInt(params.downloads[key]['size'],10) < 1048704) ? Math.round(parseInt(params.downloads[key]['size'],10)/100)/10+'kB' : Math.round(parseInt(params.downloads[key]['size'],10)/1000/100)/10+'MB';
+						selectform += '<option value="'+params.downloads[key]['url']+'" data-url="'+params.downloads[key]['url']+'" data-dlurl="'+params.downloads[key]['dlurl']+'">'+params.downloads[key]['name']+' (<small>'+size+'</small>)</option>';
+					}
+				} else {
+					for (key in params.sources) {
+						name = params.sources[key].split('.');
+						name = name[name.length-1];
+						selectform += '<option value="'+params.sources[key]+'" data-url="'+params.sources[key]+'" data-dlurl="'+params.sources[key]+'">'+name+'</option>';
+					}
 				}
 				
 				selectform += '</select>';
 				wrapper.find('.podlovewebplayer_downloadbuttons').append(selectform);
-				wrapper.find('.podlovewebplayer_downloadbuttons').append('<a href="#" class="downloadbutton infobuttons icon-download-alt" title="Download"> <span> Download</span></a> ');
-				wrapper.find('.podlovewebplayer_downloadbuttons').append('<a href="#" class="openfilebutton infobuttons icon-external-link" title="Open"> <span> Open</span></a> ');
-				wrapper.find('.podlovewebplayer_downloadbuttons').append('<a href="#" class="fileinfobutton infobuttons icon-question-sign" title="Info"> <span> Info</span></a> ');
+				if (typeof params.downloads !== 'undefined') {
+					wrapper.find('.podlovewebplayer_downloadbuttons').append('<a href="#" class="downloadbutton infobuttons icon-download" title="Download"> <span></span></a> ');
+				}
+				wrapper.find('.podlovewebplayer_downloadbuttons').append('<a href="#" class="openfilebutton infobuttons icon-link-ext" title="Open"> <span></span></a> ');
+				wrapper.find('.podlovewebplayer_downloadbuttons').append('<a href="#" class="fileinfobutton infobuttons icon-info-circle" title="Info"> <span></span></a> ');
 			}
 
 			//build chapter table
@@ -608,18 +627,20 @@
 
 			wrapper.find('.openfilebutton').click(function(){
 				$(this).parent().find(".fileselect option:selected").each(function() {
-					if(window.confirm($(this).val())) {
+					window.open($(this).data('url'), 'Podlove Popup', 'width=550,height=420,resizable=yes');
+					/*
+					if(window.confirm(''+$(this).val())) {
 						window.open($(this).data('url'), 'Podlove Popup', 'width=550,height=420,resizable=yes');
-					}
+					}*/
 				});
 				return false;
 			});
 
 			wrapper.find('.fileinfobutton').click(function(){
 				$(this).parent().find(".fileselect option:selected").each(function() {
-					if(window.confirm($(this).val())) {
-						var infowindow = window.open('', 'Podlove Popup', 'width=550,height=420,resizable=yes');
-						infowindow.document.write('<html><head></head><body>'+$(this).data('url')+'</body>');
+					if(window.prompt('file URL:', $(this).val())) {
+						//var infowindow = window.open('', 'Podlove Popup', 'width=550,height=420,resizable=yes');
+						//infowindow.document.write('<html><head></head><body>'+$(this).data('url')+'</body>');
 					}
 				});
 				return false;
