@@ -3,6 +3,11 @@
 	-webkit-text-size-adjust: inherit;
 }
 
+.podlovewebplayer_wrapper a {
+	background: transparent !important;
+	text-decoration: none;
+}
+
 .mejs-container.mejs-audio {
 	min-height: 30px;
 }
@@ -172,11 +177,12 @@
 }
 
 .podlovewebplayer_meta .bigplay {
-	font-family: 'fontello';
+	font-family: 'fontello' !important;
 	font-style: normal;
 	font-weight: normal;
 	speak: none;
 	color: #ffffff;
+	background: transparent !important;
 	float: left;
 	position: relative;
 	z-index: 78;
@@ -252,11 +258,11 @@
 	border-radius: 0px;
 }
 
-
 .podlovewebplayer_meta h3 a,
 .podlovewebplayer_meta h3 {
 	clear: none;
 	color: #fff!important;
+	background: transparent !important;
 	padding: 7px 0 0 0;
 	font-size: 16px;
 	line-height: 29px;
@@ -286,6 +292,7 @@
 	margin-right: 75px;
 	font-size: 12px;
 	color: #eee !important;
+	background: transparent !important;
 }
 
 .podlovewebplayer_meta .subtitle strong{
@@ -416,6 +423,7 @@ filter: dropshadow(color=#000000, offx=0, offy=0);
 .podlovewebplayer_wrapper .podlovewebplayer_controlbox .infobuttons,
 .podlovewebplayer_wrapper .podlovewebplayer_controlbox .infobuttons a {
 	color: #fff;
+	background: transparent !important;
 	font-size: 1.75em;
 	-webkit-text-shadow: 0px 0px 1px #000000;
 	-moz-text-shadow: 0px 0px 1px #000000;
@@ -437,6 +445,24 @@ filter: dropshadow(color=#000000, offx=0, offy=0);
 	z-index: 78;
 	font-size: 2.4em;
 	font-weight: bold;
+}
+
+.podlovewebplayer_wrapper .podlovewebplayer_downloadbuttons .infobuttons,
+.podlovewebplayer_wrapper .podlovewebplayer_downloadbuttons .infobuttons a {
+	margin: 2%;
+}
+
+.podlovewebplayer_wrapper .podlovewebplayer_downloadbuttons select {
+	outline: none;
+	vertical-align: top;
+	height: 22px;
+	font-size: 14px;
+	margin-right: 25px;
+	background: #000000;
+	color: #ffffff;
+	border: #222222 1px solid;
+	-webkit-box-shadow:  0px 0px 5px 1px #4B8CF7;
+	box-shadow:  0px 0px 5px 1px #4B8CF7;
 }
 
 .podlovewebplayer_meta .togglers .infobuttons:hover,
@@ -693,7 +719,17 @@ and (max-width : 500px) {
 	
 	.podlovewebplayer_wrapper .podlovewebplayer_controlbox a.infobuttons {
 		margin: 4%;
+		white-space: nowrap;
 	}
+	
+	.podlovewebplayer_wrapper .podlovewebplayer_controlbox.active {
+		height: auto !important;
+	}
+	
+	.podlovewebplayer_wrapper .podlovewebplayer_controlbox .infobuttons span {
+		font-size: 13pt;
+	}
+	
 	.podlovewebplayer_wrapper .podlovewebplayer_tableend,
 	.podlovewebplayer_wrapper .podlovewebplayer_top {
 		-webkit-border-top-left-radius: 0px;
