@@ -200,7 +200,7 @@
 }
 
 .podlovewebplayer_meta .bigplay:before {
-	content: '\25b6';
+	content: "\25b6";
 }
 
 .podlovewebplayer_meta .bigplay:focus,
@@ -215,7 +215,7 @@
 }
 
 .podlovewebplayer_meta .bigplay.playing:before {
-	content: '\2389';
+	content: "\2389";
 }
 
 .podlovewebplayer_meta .bigplay.playing {
@@ -232,6 +232,23 @@
 	-o-text-shadow: 0px 0px 10px #FFFFFF;
 	text-shadow: 0px 0px 10px #FFFFFF;
 }
+
+.podlovewebplayer_wrapper .togglers a.pwp-icon-info-circle:before { content: "\e705"; }
+.podlovewebplayer_wrapper .togglers a.pwp-icon-list-bullet:before { content: "\f0ca"; }
+.podlovewebplayer_wrapper .togglers a.pwp-icon-clock:before { content: "\1f554"; }
+.podlovewebplayer_wrapper .togglers a.pwp-icon-export:before { content: "\e715"; }
+
+.podlovewebplayer_wrapper .podlovewebplayer_timecontrol.podlovewebplayer_controlbox a.pwp-icon-to-start:before { content: "\23ee"; }
+.podlovewebplayer_wrapper .podlovewebplayer_timecontrol.podlovewebplayer_controlbox a.pwp-icon-to-end:before { content: "\23ed"; }
+.podlovewebplayer_wrapper .podlovewebplayer_timecontrol.podlovewebplayer_controlbox a.pwp-icon-fast-bw:before { content: "\23ea"; }
+.podlovewebplayer_wrapper .podlovewebplayer_timecontrol.podlovewebplayer_controlbox a.pwp-icon-fast-fw:before { content: "\23e9"; }
+
+.podlovewebplayer_wrapper .podlovewebplayer_sharebuttons.podlovewebplayer_controlbox a.pwp-icon-link:before { content: "\f08e"; }
+.podlovewebplayer_wrapper .podlovewebplayer_sharebuttons.podlovewebplayer_controlbox a.pwp-icon-twitter:before { content: "\f309"; }
+.podlovewebplayer_wrapper .podlovewebplayer_sharebuttons.podlovewebplayer_controlbox a.pwp-icon-facebook:before { content: "\f30c"; }
+.podlovewebplayer_wrapper .podlovewebplayer_sharebuttons.podlovewebplayer_controlbox a.pwp-icon-gplus:before { content: "\f30f"; }
+.podlovewebplayer_wrapper .podlovewebplayer_sharebuttons.podlovewebplayer_controlbox a.pwp-icon-appnet:before { content: "\e1"; }
+.podlovewebplayer_wrapper .podlovewebplayer_sharebuttons.podlovewebplayer_controlbox a.pwp-icon-mail:before { content: "\2709"; }
 
 .podlovewebplayer_meta .coverart {
 	display: inline;
