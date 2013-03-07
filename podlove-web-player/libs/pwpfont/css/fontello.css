@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 @font-face {
-  font-family: pwpfont !important;
+  font-family: pwpfont;
   text-rendering: optimizeLegibility;
   src: url("../font/fontello.eot?45650229");
   src: local('☺'),
@@ -26,7 +26,7 @@
 
 [class^="pwp-icon-"]:before,
 [class*=" pwp-icon-"]:before {
-  font-family: pwpfont !important;
+  font-family: pwpfont;
   font-style: normal !important;
   font-weight: normal !important;
   text-decoration: inherit;
