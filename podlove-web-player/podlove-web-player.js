@@ -1,3 +1,5 @@
+/* PWP 2.0.5 */
+
 (function($) {
 	'use strict';
 
@@ -176,6 +178,14 @@
 				if (typeof params.subtitle !== 'undefined') {
 					wrapper.find('.podlovewebplayer_meta').append(
 						'<div class="subtitle">'+params.subtitle+'</div>');
+				} else {
+					if (typeof params.title !== 'undefined') {
+						if (params.title.length < 42) {
+							wrapper.addClass('podlovewebplayer_smallplayer');
+						}
+					}
+					wrapper.find('.podlovewebplayer_meta').append(
+						'<div class="subtitle"></div>');
 				}
 
 				//always render toggler buttons wrapper
