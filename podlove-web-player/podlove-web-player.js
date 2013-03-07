@@ -418,6 +418,8 @@
 			$(this).data('height', $(this).height());
 			if (!$(this).hasClass('active')) {
 				$(this).height('0px');
+			} else {
+				$(this).height($(this).height()+'px');
 			}
 		});
 
@@ -425,6 +427,8 @@
 			$(this).data('height', $(this).find('.podlovewebplayer_chapters').height());
 			if (!$(this).hasClass('active')) {
 				$(this).height('0px');
+			} else {
+				$(this).height($(this).find('.podlovewebplayer_chapters').height()+'px');
 			}
 		});
 
