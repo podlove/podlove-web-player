@@ -2,14 +2,14 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
 <svg xmlns="http://www.w3.org/2000/svg">
 <metadata>
-Created by FontForge 20100429 at Wed Feb 27 16:08:36 2013
+Created by FontForge 20100429 at Thu Mar  7 12:42:53 2013
  By root
 Copyright (C) 2012 by original authors @ fontello.com
 </metadata>
 <defs>
-<font id="fontello" horiz-adv-x="1030" >
+<font id="pwpfont" horiz-adv-x="1030" >
   <font-face 
-    font-family="fontello"
+    font-family="pwpfont"
     font-weight="500"
     font-stretch="normal"
     units-per-em="1000"
@@ -86,6 +86,8 @@ q-181 0 -245 -73q-66 -77 -41 -264q2 -20 -18 -20q-12 0 -26 24q-51 80 -71 158q-10 
     <glyph glyph-name="uniE758" unicode="&#xe758;" horiz-adv-x="887" 
 d="M15 350q0 123 60 219.5t153 151.5q101 58 216 58q123 0 219.5 -60t151.5 -154q57 -99 57 -215q0 -123 -60 -219.5t-153 -151.5q-101 -58 -215 -58q-123 0 -220 60t-152 154q-57 99 -57 215zM158 350q0 -118 84 -202t202 -84t202 84q83 83 83 202t-83 202q-84 84 -202 84
 t-202 -84t-84 -202zM247 332q0 8 5.5 13t12.5 5h107v196q0 8 5 13t13 5h107q7 0 12.5 -5t5.5 -13v-196h107q8 0 13 -5t5 -13q0 -7 -6 -13l-178 -178q-5 -5 -12 -5q-8 0 -13 5l-179 178q-5 5 -5 13z" />
+    <glyph glyph-name="uniE800" unicode="&#xe800;" horiz-adv-x="705" 
+d="M18 -52v893h223v-893h-223zM464 -52v893h224v-893h-224z" />
     <glyph glyph-name="uniF08E" unicode="&#xf08e;" 
 d="M176 -7q-66 0 -113.5 47.5t-47.5 113.5v464q0 66 47.5 113.5t113.5 47.5h393q17 0 17 -18v-36q0 -18 -17 -18h-393q-37 0 -63.5 -26t-26.5 -63v-464q0 -37 26.5 -63.5t63.5 -26.5h464q37 0 63 26.5t26 63.5v178q0 8 5.5 13t12.5 5h36q7 0 12.5 -5t5.5 -13v-178
 q0 -66 -47.5 -113.5t-113.5 -47.5h-464zM397 314q0 7 6 13l364 364l-99 98q-10 10 -10 25q0 14 11 25t25 11h285q14 0 25 -11t11 -25v-285q0 -14 -11 -25t-25 -11q-15 0 -25 10l-98 99l-364 -364q-6 -6 -13 -6t-13 6l-63 63q-6 6 -6 13z" />

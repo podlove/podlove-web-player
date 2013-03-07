@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 @font-face {
-  font-family: 'fontello' !important;
+  font-family: "pwpfont" !important;
   src: url("../font/fontello.eot?77417884");
   src: url("../font/fontello.eot?77417884#iefix") format('embedded-opentype'), url("../font/fontello.woff?77417884") format('woff'), url("../font/fontello.ttf?77417884") format('truetype'), url("../font/fontello.svg?77417884#fontello") format('svg');
   font-weight: normal;
@@ -12,14 +12,14 @@
 /*
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
-    font-family: 'fontello';
+    font-family: 'pwpfont';
     src: url('../font/fontello.svg?77417884#fontello') format('svg');
   }
 }
 */
-[class^="icon-"]:before,
-[class*=" icon-"]:before {
-  font-family: 'fontello' !important;
+[class^="pwp-icon-"]:before,
+[class*=" pwp-icon-"]:before {
+  font-family: "pwpfont" !important;
   font-style: normal;
   font-weight: normal;
   speak: none;
@@ -40,34 +40,34 @@
 /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
 
-.icon-gplus:before { content: '\2b'; } /* '+' */
-.icon-appstore:before { content: '\41'; } /* 'A' */
-.icon-twitter:before { content: '\54'; } /* 'T' */
-.icon-podcast:before { content: '\60'; } /* '`' */
-.icon-cloudapp:before { content: '\63'; } /* 'c' */
-.icon-facebook:before { content: '\66'; } /* 'f' */
-.icon-itunes:before { content: '\69'; } /* 'i' */
-.icon-soundcloud:before { content: '\73'; } /* 's' */
-.icon-appnet:before { content: '\e1'; } /* 'á' */
-.icon-pause:before { content: '\2389'; } /* '⎉' */
-.icon-fast-fw:before { content: '\23e9'; } /* '⏩' */
-.icon-fast-bw:before { content: '\23ea'; } /* '⏪' */
-.icon-to-end:before { content: '\23ed'; } /* '⏭' */
-.icon-to-start:before { content: '\23ee'; } /* '⏮' */
-.icon-play:before { content: '\25b6'; } /* '▶' */
-.icon-mail:before { content: '\2709'; } /* '✉' */
-.icon-info-circle:before { content: '\e705'; } /* '' */
-.icon-export:before { content: '\e715'; } /* '' */
-.icon-down-circle2:before { content: '\e758'; } /* '' */
-.icon-link-ext:before { content: '\f08e'; } /* '' */
-.icon-down-circled:before { content: '\f0ab'; } /* '' */
-.icon-list-bullet:before { content: '\f0ca'; } /* '' */
-.icon-paste:before { content: '\f0ea'; } /* '' */
-.icon-download-cloud:before { content: '\f0ed'; } /* '' */
-.icon-user:before { content: '👤'; } /* '\1f464' */
-.icon-download:before { content: '📥'; } /* '\1f4e5' */
-.icon-volume-off:before { content: '🔇'; } /* '\1f507' */
-.icon-volume-down:before { content: '🔉'; } /* '\1f509' */
-.icon-volume-up:before { content: '🔊'; } /* '\1f50a' */
-.icon-link:before { content: '🔗'; } /* '\1f517' */
-.icon-clock:before { content: '🕔'; } /* '\1f554' */
+.pwp-icon-gplus:before { content: '\2b'; } /* '+' */
+.pwp-icon-appstore:before { content: '\41'; } /* 'A' */
+.pwp-icon-twitter:before { content: '\54'; } /* 'T' */
+.pwp-icon-podcast:before { content: '\60'; } /* '`' */
+.pwp-icon-cloudapp:before { content: '\63'; } /* 'c' */
+.pwp-icon-facebook:before { content: '\66'; } /* 'f' */
+.pwp-icon-itunes:before { content: '\69'; } /* 'i' */
+.pwp-icon-soundcloud:before { content: '\73'; } /* 's' */
+.pwp-icon-appnet:before { content: '\e1'; } /* 'á' */
+.pwp-icon-pause:before { content: '\2389'; } /* '⎉' */
+.pwp-icon-fast-fw:before { content: '\23e9'; } /* '⏩' */
+.pwp-icon-fast-bw:before { content: '\23ea'; } /* '⏪' */
+.pwp-icon-to-end:before { content: '\23ed'; } /* '⏭' */
+.pwp-icon-to-start:before { content: '\23ee'; } /* '⏮' */
+.pwp-icon-play:before { content: '\25b6'; } /* '▶' */
+.pwp-icon-mail:before { content: '\2709'; } /* '✉' */
+.pwp-icon-info-circle:before { content: '\e705'; } /* '' */
+.pwp-icon-export:before { content: '\e715'; } /* '' */
+.pwp-icon-down-circle2:before { content: '\e758'; } /* '' */
+.pwp-icon-link-ext:before { content: '\f08e'; } /* '' */
+.pwp-icon-down-circled:before { content: '\f0ab'; } /* '' */
+.pwp-icon-list-bullet:before { content: '\f0ca'; } /* '' */
+.pwp-icon-paste:before { content: '\f0ea'; } /* '' */
+.pwp-icon-download-cloud:before { content: '\f0ed'; } /* '' */
+.pwp-icon-user:before { content: '👤'; } /* '\1f464' */
+.pwp-icon-download:before { content: '📥'; } /* '\1f4e5' */
+.pwp-icon-volume-off:before { content: '🔇'; } /* '\1f507' */
+.pwp-icon-volume-down:before { content: '🔉'; } /* '\1f509' */
+.pwp-icon-volume-up:before { content: '🔊'; } /* '\1f50a' */
+.pwp-icon-link:before { content: '🔗'; } /* '\1f517' */
+.pwp-icon-clock:before { content: '🕔'; } /* '\1f554' */
