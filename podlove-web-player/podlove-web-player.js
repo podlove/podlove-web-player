@@ -276,10 +276,10 @@
 				selectform += '</select>';
 				wrapper.find('.podlovewebplayer_downloadbuttons').append(selectform);
 				if (typeof params.downloads !== 'undefined') {
-					wrapper.find('.podlovewebplayer_downloadbuttons').append('<a href="#" class="downloadbutton infobuttons icon-download" title="Download"> <span></span></a> ');
+					wrapper.find('.podlovewebplayer_downloadbuttons').append('<a href="#" class="downloadbutton infobuttons pwp-icon-download" title="Download"> <span>Download</span></a> ');
 				}
-				wrapper.find('.podlovewebplayer_downloadbuttons').append('<a href="#" class="openfilebutton infobuttons icon-link-ext" title="Open"> <span></span></a> ');
-				wrapper.find('.podlovewebplayer_downloadbuttons').append('<a href="#" class="fileinfobutton infobuttons icon-info-circle" title="Info"> <span></span></a> ');
+				wrapper.find('.podlovewebplayer_downloadbuttons').append('<a href="#" class="openfilebutton infobuttons pwp-icon-link-ext" title="Open"> <span>Open</span></a> ');
+				wrapper.find('.podlovewebplayer_downloadbuttons').append('<a href="#" class="fileinfobutton infobuttons pwp-icon-info-circle" title="Info"> <span>Info</span></a> ');
 			}
 
 			//build chapter table
