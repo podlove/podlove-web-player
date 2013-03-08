@@ -195,6 +195,9 @@ Earlier versions of this plugin could handle alternative shortcodes, too: [audio
 
 == Changelog ==
 
+= 2.0.6 =
+* podPress compatibility
+
 = 2.0.5 =
 * fixed Blubrry PowerPress compatibility
 * fixed style Interference with various WP Themes

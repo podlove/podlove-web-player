@@ -378,8 +378,24 @@ function podlovewebplayer_get_enclosed( $post_id ) {
 			$pung[] = explode( "\n", $enc );
 		}
 	}
-	$pung = apply_filters( 'get_enclosed', $pung, $post_id );
-	return $pung;
+
+	$podPress_enclosures = get_post_meta( $post_id, '_podPressMedia', true );
+	if ( $podPress_enclosures ) {
+		foreach ( $podPress_enclosures as $enclosure ) {
+			$pung[] = array(
+				$enclosure['URI'],
+				$enclosure['size'],
+				str_replace(
+					array( 'audio_mp3',  '_' ),
+					array( 'audio/mpeg', '/'),
+					$enclosure['type']
+				),
+				serialize(array('duration' => $enclosure['duration']))
+			);
+		}
+	}
+
+	return apply_filters( 'get_enclosed', $pung, $post_id );
 }
 
 function podlovewebplayer_enclosures( $content ) {
