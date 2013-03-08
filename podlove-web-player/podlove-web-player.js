@@ -52,6 +52,10 @@
 			sharebuttonsVisible: false,
 			downloadbuttonsVisible: false,
 			summaryVisible: false,
+			hidetimebutton: false,
+			hidedownloadbutton: false,
+			hidesharebutton: false,
+			sharewholeepisode: false,
 			sources: []
 		}, options);
 
@@ -203,7 +207,7 @@
 				
 				if (typeof params.summary !== 'undefined') {
 					var summaryActive = "";
-					if (params.summaryVisible == true) {
+					if (params.summaryVisible === true) {
 						summaryActive = " active";
 					}
 					wrapper.find('.togglers').append(
@@ -215,19 +219,21 @@
 					wrapper.find('.togglers').append(
 						'<a href="#" class="chaptertoggle infobuttons pwp-icon-list-bullet" title="Show/hide chapters"></a>');
 				}
-				wrapper.find('.togglers').append('<a href="#" class="showcontrols infobuttons pwp-icon-clock" title="Show/hide time navigation controls"></a>');
+				if (params.hidetimebutton !== true) {
+					wrapper.find('.togglers').append('<a href="#" class="showcontrols infobuttons pwp-icon-clock" title="Show/hide time navigation controls"></a>');
+				}
 			}
 
 			var timecontrolsActive = "";
-			if (params.timecontrolsVisible == true) {
+			if (params.timecontrolsVisible === true) {
 				timecontrolsActive = " active";
 			}
 			var sharebuttonsActive = "";
-			if (params.sharebuttonsVisible == true) {
+			if (params.sharebuttonsVisible === true) {
 				sharebuttonsActive = " active";
 			}
 			var downloadbuttonsActive = "";
-			if (params.downloadbuttonsVisible == true) {
+			if (params.downloadbuttonsVisible === true) {
 				downloadbuttonsActive = " active";
 			}
 
@@ -240,7 +246,7 @@
 			wrapper.find('.podlovewebplayer_timecontrol').append(
 				'<a href="#" class="rewindbutton infobuttons pwp-icon-fast-bw" title="Rewind 30 seconds"></a>');
 			wrapper.find('.podlovewebplayer_timecontrol').append('<a href="#" class="forwardbutton infobuttons pwp-icon-fast-fw" title="Fast forward 30 seconds"></a>');
-			if (typeof wrapper.closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href') !== 'undefined') {
+			if ((typeof wrapper.closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href') !== 'undefined')&&(params.hidesharebutton !== true)) {
 				wrapper.append('<div class="podlovewebplayer_sharebuttons podlovewebplayer_controlbox'+sharebuttonsActive+'"></div>');
 				wrapper.find('.togglers').append('<a href="#" class="showsharebuttons infobuttons pwp-icon-export" title="Show/hide sharing controls"></a>')
 				wrapper.find('.podlovewebplayer_sharebuttons').append('<a href="#" class="currentbutton infobuttons pwp-icon-link" title="Get URL for this"></a>');
@@ -250,10 +256,10 @@
 				wrapper.find('.podlovewebplayer_sharebuttons').append('<a href="#" target="_blank" class="adnbutton infobuttons pwp-icon-appnet" title="Share this on App.net"></a>');
 				wrapper.find('.podlovewebplayer_sharebuttons').append('<a href="#" target="_blank" class="mailbutton infobuttons pwp-icon-mail" title="Share this via e-mail"></a>');
 			}
-			if ((typeof params.downloads !== 'undefined')||(typeof params.sources !== 'undefined')) {
+			if (((typeof params.downloads !== 'undefined')||(typeof params.sources !== 'undefined'))&&(params.hidedownloadbutton !== true)) {
 				var key, size, name, selectform = '<select name="downloads" class="fileselect" size="1" onchange="this.value=this.options[this.selectedIndex].value;">';
 				wrapper.append('<div class="podlovewebplayer_downloadbuttons podlovewebplayer_controlbox'+downloadbuttonsActive+'"></div>');
-				wrapper.find('.togglers').append('<a href="#" class="showdownloadbuttons infobuttons icon-download" title="Show/hide download bar"></a>');
+				wrapper.find('.togglers').append('<a href="#" class="showdownloadbuttons infobuttons pwp-icon-download" title="Show/hide download bar"></a>');
 				if (typeof params.downloads !== 'undefined') {
 					for (key in params.downloads) {
 						size = (parseInt(params.downloads[key]['size'],10) < 1048704) ? Math.round(parseInt(params.downloads[key]['size'],10)/100)/10+'kB' : Math.round(parseInt(params.downloads[key]['size'],10)/1000/100)/10+'MB';
@@ -603,32 +609,38 @@
 			});
 
 			wrapper.find('.currentbutton').click(function(){
-				window.prompt('This URL directly points to the current playback position', $(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href'));
+				var timepos = (params.sharewholeepisode === true) ? '' : '%23t%3D'+generateTimecode([player.currentTime]);
+				window.prompt('This URL directly points to the current playback position', $(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href'))+timepos;
 				return false;
 			});
 
 			wrapper.find('.tweetbutton').click(function(){
-				window.open('https://twitter.com/share?text='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text())+'&url='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href')), 'tweet it', 'width=550,height=420,resizable=yes');
+				var timepos = (params.sharewholeepisode === true) ? '' : '%23t%3D'+generateTimecode([player.currentTime]);
+				window.open('https://twitter.com/share?text='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text())+'&url='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href'))+timepos, 'tweet it', 'width=550,height=420,resizable=yes');
 				return false;
 			});
 
 			wrapper.find('.fbsharebutton').click(function(){
-				window.open('http://www.facebook.com/share.php?t='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text())+'&u='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href')), 'share it', 'width=550,height=340,resizable=yes');
+				var timepos = (params.sharewholeepisode === true) ? '' : '%23t%3D'+generateTimecode([player.currentTime]);
+				window.open('http://www.facebook.com/share.php?t='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text())+'&u='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href'))+timepos, 'share it', 'width=550,height=340,resizable=yes');
 				return false;
 			});
 
 			wrapper.find('.gplusbutton').click(function(){
-				window.open('https://plus.google.com/share?title='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text())+'&url='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href')), 'plus it', 'width=550,height=420,resizable=yes');
+				var timepos = (params.sharewholeepisode === true) ? '' : '%23t%3D'+generateTimecode([player.currentTime]);
+				window.open('https://plus.google.com/share?title='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text())+'&url='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href'))+timepos, 'plus it', 'width=550,height=420,resizable=yes');
 				return false;
 			});
 
 			wrapper.find('.adnbutton').click(function(){
-				window.open('https://alpha.app.net/intent/post?text='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text())+'%20'+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href')), 'plus it', 'width=550,height=420,resizable=yes');
+				var timepos = (params.sharewholeepisode === true) ? '' : '%23t%3D'+generateTimecode([player.currentTime]);
+				window.open('https://alpha.app.net/intent/post?text='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text())+'%20'+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href'))+timepos, 'plus it', 'width=550,height=420,resizable=yes');
 				return false;
 			});
 
 			wrapper.find('.mailbutton').click(function(){
-				window.location = 'mailto:?subject='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text())+'&body='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text())+'%20%3C'+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href'))+'%3E';
+				var timepos = (params.sharewholeepisode === true) ? '' : '%23t%3D'+generateTimecode([player.currentTime]);
+				window.location = 'mailto:?subject='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text())+'&body='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text())+'%20%3C'+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href'))+timepos+'%3E';
 				return false;
 			});
 

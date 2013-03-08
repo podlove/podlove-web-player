@@ -35,33 +35,43 @@ function podlovewebplayer_register_settings() {
 
 	$settings = array(
 		'audio' => array(
-			'title' => 'Audio player defaults',
+			'title'  => 'Audio player defaults',
 			'fields' => array(
-				'width' => 'Audio width',
+				'width'  => 'Audio width',
 				'height' => 'Audio height',
-				'type' => 'Default MIME type'
+				'type'   => 'Default MIME type'
 			)
 		),
 		'video' => array(
-			'title' => 'Video player defaults',
+			'title'  => 'Video player defaults',
 			'fields' => array(
-				'width' => 'Video width',
+				'width'  => 'Video width',
 				'height' => 'Video height',
-				'type' => 'Default MIME type'
+				'type'   => 'Default MIME type'
 			)
 		),
 		'enclosure' => array(
-			'title' => 'WordPress “enclosures”',
+			'title'    => 'WordPress “enclosures”',
 			'function' => true,
-			'fields' => array(
-				'detect' => 'Turn enclosures to players:',
-				'force' => 'Force enclosure:',
+			'fields'   => array(
+				'detect'     => 'Turn enclosures to players:',
+				'force'      => 'Force enclosure:',
 				'richplayer' => 'Advanced player:',
-				'bottom' => 'Put player to bottom of post:'
+				'bottom'     => 'Put player to bottom of post:'
+			)
+		),
+		'buttons' => array(
+			'title'    => 'PWP buttons',
+			'function' => true,
+			'fields'   => array(
+				'time'      => 'Hide time buttons:',
+				'download'  => 'Hide download buttons:',
+				'share'     => 'Hide share buttons:',
+				'sharemode' => 'share the whole episode:'
 			)
 		),
 		'info' => array(
-			'title' => 'Information',
+			'title'    => 'Information',
 			'function' => true
 		)
 	);
@@ -190,6 +200,47 @@ function podlovewebplayer_enclosure_bottom() {
 	print "<input id='pwpenclosure4' name='podlovewebplayer_options[enclosure_bottom]' 
 		$checked type='checkbox' value='1' />&nbsp;&nbsp;
 		(instead of the top)";
+}
+
+function podlovewebplayer_buttons() {
+	print "<p>Here you can select, which buttons will be displayd and (for the share buttons) what happens on a click. The Chapter-Toggle- and Summary-Info-Button are not configurable here, because they automaticle hidden, when no chapters/summary are provided.</p>\n\n";
+}
+
+function podlovewebplayer_buttons_time() { 
+	$options = get_option('podlovewebplayer_options');
+	$checked = "";
+	if ( isset( $options['buttons_time'] ) )
+		$checked = "checked ";
+	print "<input id='pwpbuttons1' name='podlovewebplayer_options[buttons_time]' 
+		$checked type='checkbox' value='1' />&nbsp;&nbsp;";
+}
+
+function podlovewebplayer_buttons_download() { 
+	$options = get_option('podlovewebplayer_options');
+	$checked = "";
+	if ( isset( $options['buttons_download'] ) )
+		$checked = "checked ";
+	print "<input id='pwpbuttons2' name='podlovewebplayer_options[buttons_download]' 
+		$checked type='checkbox' value='1' />&nbsp;&nbsp;";
+}
+
+function podlovewebplayer_buttons_share() { 
+	$options = get_option('podlovewebplayer_options');
+	$checked = "";
+	if ( isset( $options['buttons_share'] ) )
+		$checked = "checked ";
+	print "<input id='pwpbuttons3' name='podlovewebplayer_options[buttons_share]' 
+		$checked type='checkbox' value='1' />&nbsp;&nbsp;";
+}
+
+function podlovewebplayer_buttons_sharemode() { 
+	$options = get_option('podlovewebplayer_options');
+	$checked = "";
+	if ( isset( $options['buttons_sharemode'] ) )
+		$checked = "checked ";
+	print "<input id='pwpbuttons4' name='podlovewebplayer_options[buttons_sharemode]' 
+		$checked type='checkbox' value='1' />&nbsp;&nbsp;
+		(instead of current position)";
 }
 
 function podlovewebplayer_info() {
