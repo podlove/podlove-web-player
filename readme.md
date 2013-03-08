@@ -15,5 +15,5 @@ The Podlove Web Player supports almost every browser and also does captions, cha
 
 Contributors: [Gerrit van Aaken](https://github.com/gerritvanaaken/), [Simon Waldherr](https://github.com/simonwaldherr/), [Frank Hase](https://github.com/Kambfhase/), [Eric Teubert](https://github.com/eteubert/) and [others](https://github.com/podlove/podlove-web-player/contributors)  
 Donate: [podlove.org/donations/](http://podlove.org/donations/)  
-Version: 2.0.4 ([Download](http://downloads.wordpress.org/plugin/podlove-web-player.2.0.4.zip))  
+Version: 2.0.5 ([Download](http://downloads.wordpress.org/plugin/podlove-web-player.2.0.5.zip))  
 License: [BSD 2-Clause License](http://opensource.org/licenses/BSD-2-Clause)  

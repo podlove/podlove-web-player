@@ -4,7 +4,7 @@ Donate link: http://podlove.org/
 Tags: podcasting, podlove, html5audio, audio, video, podcast, player
 Requires at least: 3.4.0
 Tested up to: 3.5.1
-Stable tag: 2.0.4
+Stable tag: 2.0.5
 License: BSD 2-Clause License
 License URI: http://opensource.org/licenses/BSD-2-Clause
 
@@ -194,6 +194,13 @@ Earlier versions of this plugin could handle alternative shortcodes, too: [audio
 2. Podlove Web Player in chapters hidden and timecontrol-bar visible view.
 
 == Changelog ==
+
+= 2.0.5 =
+* fixed Blubrry PowerPress compatibility
+* fixed style Interference with various WP Themes
+* firefox flash fallback multiple playing fix
+* opera font bug fix
+* more stable CSS
 
 = 2.0.4 =
 * fixed flash fallback again
