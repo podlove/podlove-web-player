@@ -478,12 +478,6 @@ filter: dropshadow(color=#000000, offx=0, offy=0);
 	height: 30px;
 }
 
-.podlovewebplayer_meta .togglers .infobuttons {
-	display: inline-block;
-	height: 30px;
-	width: 30px;
-}
-
 .podlovewebplayer_wrapper .podlovewebplayer_controlbox {
 	height: 0px;
 	font-size: 4px;
@@ -515,6 +509,12 @@ filter: dropshadow(color=#000000, offx=0, offy=0);
 	text-decoration: none;
 	speak: none;
 	display: inline;
+}
+
+.podlovewebplayer_meta .togglers a.infobuttons {
+	display: inline-block !important;
+	height: 30px;
+	width: 30px;
 }
 
 .podlovewebplayer_wrapper .podlovewebplayer_controlbox .infobuttons,
