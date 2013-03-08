@@ -253,7 +253,7 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 
 	// ------------------- prepare podlove call inits
 
-	$truthy = array( true, 'true', 'on', 1 );
+	$truthy = array( true, 'true', 'on', 1, "1" );
 
 	$init_options = array(
 		'pluginPath'          => plugins_url( 'libs/mediaelement/build/', __FILE__),
@@ -265,6 +265,7 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 		'loop'                => in_array( $loop, $truthy, true ),
 		'chapterlinks'        => $chapterlinks
 	);
+
 	if ( $poster ) {
 		$init_options['poster'] = htmlspecialchars( $poster, ENT_QUOTES );
 	}
@@ -382,8 +383,9 @@ function podlovewebplayer_get_enclosed( $post_id ) {
 	$podPress_enclosures = get_post_meta( $post_id, '_podPressMedia', true );
 	if ( $podPress_enclosures ) {
 		foreach ( $podPress_enclosures as $enclosure ) {
+			$fileurl = (strpos($enclosure['URI'], '://') !== -1) ? './wp-content/uploads/'.$enclosure['URI'] : $enclosure['URI'];
 			$pung[] = array(
-				$enclosure['URI'],
+				$fileurl,
 				$enclosure['size'],
 				str_replace(
 					array( 'audio_mp3',  '_' ),
