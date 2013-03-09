@@ -350,14 +350,14 @@
 
 			//make sure the duration for all chapters are equally formatted
 			if (!finalchapter) {
-				this.duration = generateTimecode([duration], forceHours);
+				this.duration = generateTimecode([duration], false);
 			} else {
 				if (params.duration == 0) {
 					this.end = 9999999999;
 					this.duration = '…';
 				} else {
 					this.end = params.duration;
-					this.duration = generateTimecode([Math.round(this.end-this.start)], forceHours);
+					this.duration = generateTimecode([Math.round(this.end-this.start)], false);
 				}
 			}
 
@@ -376,7 +376,7 @@
 			forceHours = (maxchapterstart >= 3600);
 
 			//insert the chapter data
-			row.find('.starttime > span').text( generateTimecode([Math.round(this.start)], forceHours));
+			row.find('.starttime > span').text( generateTimecode([Math.round(this.start)], true, forceHours));
 			row.find('.chaptername').html(this.title);
 			row.find('.timecode > span').text( this.duration);
 
@@ -681,22 +681,32 @@
 	 * @param forceHours bool (optional)
 	 * @return string
 	 **/
-	var generateTimecode = $.generateTimecode = function(times, forceHours) {
-		function generatePart(seconds) {
-			var part, hours, milliseconds;
+	var generateTimecode = $.generateTimecode = function(times, leadingZeros, forceHours) {
+		function generatePart(time) {
+			var part, hours, minutes, seconds, milliseconds;
 			// prevent negative values from player
-			if (!seconds || seconds <= 0) {
-				return forceHours ? '00:00:00' : '00:00';
+			if (!time || time <= 0) {
+				return leadingZeros ? (forceHours ? '00:00:00' : '00:00') : '--';
 			}
 
-			// required (minutes : seconds)
-			part = zeroFill(Math.floor(seconds / 60) % 60, 2) + ':' +
-					zeroFill(Math.floor(seconds % 60) % 60, 2);
+			hours = Math.floor(time / 60 / 60);
+			minutes = Math.floor(time / 60) % 60;
+			seconds = Math.floor(time % 60) % 60;
+			milliseconds = Math.floor(time % 1 * 1000);
 
-			hours = zeroFill(Math.floor(seconds / 60 / 60), 2);
-			hours = hours === '00' && !forceHours ? '' : hours + ':';
-			milliseconds = zeroFill(Math.floor(seconds % 1 * 1000), 3);
-			milliseconds = milliseconds === '000' ? '' : '.' + milliseconds;
+			if( leadingZeros){
+				// required (minutes : seconds)
+				part = zeroFill(minutes, 2) + ':' +
+						zeroFill(seconds, 2);
+				hours = zeroFill(hours, 2);
+				hours = hours === '00' && !forceHours ? '' : hours + ':';
+				milliseconds = milliseconds ? '.' + zerofill( milliseconds, 3) : '';
+			} else {
+				part = hours ? zeroFill(minutes, 2) : minutes + '';
+				part += ':' + zeroFill(seconds, 2);
+				hours = hours ?  hours + ':' : '';
+				milliseconds = milliseconds ? '.' + milliseconds : '';
+			}
 
 			return hours + part + milliseconds;
 		}
