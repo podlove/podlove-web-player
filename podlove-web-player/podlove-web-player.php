@@ -383,16 +383,24 @@ function podlovewebplayer_get_enclosed( $post_id ) {
 	$podPress_enclosures = get_post_meta( $post_id, '_podPressMedia', true );
 	if ( $podPress_enclosures ) {
 		foreach ( $podPress_enclosures as $enclosure ) {
-			$fileurl = (strpos($enclosure['URI'], '://') !== -1) ? './wp-content/uploads/'.$enclosure['URI'] : $enclosure['URI'];
+
+			$fileurl = $enclosure['URI'];
+
+			if ( strpos( $fileurl, '://' ) === false ) {
+				$config = get_option( 'podPress_config', array() );
+				$podPress_upload_path = isset( $config['mediaWebPath'] ) ? $config['mediaWebPath'] : './wp-content/uploads/';
+				$fileurl = trailingslashit( $podPress_upload_path ) . '/' . $fileurl;
+			} 
+
 			$pung[] = array(
 				$fileurl,
 				$enclosure['size'],
 				str_replace(
-					array( 'audio_mp3',  '_' ),
-					array( 'audio/mpeg', '/'),
+					array( 'audio_mp3',  'audio_m4a', '_' ),
+					array( 'audio/mpeg', 'audio/mp4', '/' ),
 					$enclosure['type']
 				),
-				serialize(array('duration' => $enclosure['duration']))
+				serialize( array( 'duration' => $enclosure['duration'] ) )
 			);
 		}
 	}
