@@ -300,7 +300,6 @@
 
 		//prepare row data
 		var tempchapters = [];
-		var maxchapterlength = 0;
 		var maxchapterstart  = 0;
 
 		//first round: kill empty rows and build structured object
@@ -317,19 +316,20 @@
 		});
 
 		//second round: collect more information
-		$.each(tempchapters, function(i){
-			var next = tempchapters[i+1];
+		maxchapterstart = Math.max.apply( Math,
+			$.map(tempchapters, function( value, i){
+				var next = tempchapters[i+1];
 
-			// exit early if this is the final chapter
-			if( !next) return;
-			
-			// we need this data for proper formatting
-			this.end = next.start;
-			if(Math.round(this.end-this.start) > maxchapterlength) {
-				maxchapterlength = Math.round(this.end-this.start);
-				maxchapterstart = Math.round(next.start);
-			}
-		});
+				// we use `this.end` to quickly calculate the duration in the next round
+				if( next){
+					value.end = next.start;
+				}
+
+				// we need this data for proper formatting
+				return value.start;
+			})
+		);
+
 
 		//this is a "template" for each chapter row
 		var rowDummy = $(
@@ -345,7 +345,7 @@
 		$.each(tempchapters, function(i){
 			var finalchapter = !tempchapters[i+1],
 				duration = Math.round(this.end-this.start),
-				forceHours = (maxchapterlength >= 3600),
+				forceHours,
 				row = rowDummy.clone();
 
 			//make sure the duration for all chapters are equally formatted
