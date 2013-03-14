@@ -195,9 +195,13 @@ function podlovewebplayer_enclosure_bottom() {
 function podlovewebplayer_info() {
 	$scriptname = explode('/wp-admin', $_SERVER["SCRIPT_FILENAME"]);
 	$dirname    = explode('/wp-content', dirname(__FILE__));
-	print "<p>This is <strong>Version 2.0.5</strong> of the <strong>Podlove Web Player</strong>.<br>
-	The <strong>Including file</strong> is: <code>wp-admin".$scriptname[1]."</code><br>
-	The <strong>PWP-directory</strong> is: <code>wp-content".$dirname[1]."</code></p>";
+	print '<p>This is <strong>Version 2.0.5</strong> of the <strong>Podlove Web Player</strong>.<br>
+	The <strong>Including file</strong> is: <code>wp-admin'.$scriptname[1].'</code><br>
+	The <strong>PWP-directory</strong> is: <code>wp-content'.$dirname[1].'</code></p>
+	<p>Want to contribute? Found a bug? Need some help? <br/>you can found our github repo/page at
+	<a href="https://github.com/podlove/podlove-web-player">github.com/podlove/podlove-web-player</a></p>
+	<p>If you found a bug, please tell us your WP- and PWP- (and PPP- if you use PPP) Version. <br/>Also your 
+	Browser version, your PHP version and the URL of your Podcast can help us, find the bug.</p>';
 }
 
 ?>
