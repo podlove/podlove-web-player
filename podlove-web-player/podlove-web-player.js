@@ -190,6 +190,12 @@
 
 				//always render toggler buttons wrapper
 				wrapper.find('.podlovewebplayer_meta').append('<div class="togglers"></div>');
+				wrapper.on('playerresize', function (event) {
+					wrapper.find('.podlovewebplayer_chapterbox').data('height', wrapper.find('.podlovewebplayer_chapters').height());
+					if(wrapper.find('.podlovewebplayer_chapterbox').hasClass('active')) {
+						wrapper.find('.podlovewebplayer_chapterbox').height(wrapper.find('.podlovewebplayer_chapters').height()+'px');
+					}
+				});
 				
 				if (typeof params.summary !== 'undefined') {
 					var summaryActive = "";

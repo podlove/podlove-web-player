@@ -197,6 +197,8 @@ Earlier versions of this plugin could handle alternative shortcodes, too: [audio
 
 = 2.0.6 =
 * podPress compatibility
+* chapterbox height fix
+* infobutton style fixes
 
 = 2.0.5 =
 * fixed Blubrry PowerPress compatibility
