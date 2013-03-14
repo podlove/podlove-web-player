@@ -90,7 +90,17 @@ function podlovewebplayer_add_styles() {
 }
 add_action( 'wp_print_styles', 'podlovewebplayer_add_styles' );
 
-
+function podlovewebplayer_get_supported_sources( $tag_name ) {
+	return array(
+		'mp4'  => $tag_name . '/mp4',
+		'webm' => 'video/webm; codecs="vp8, vorbis"',
+		'ogg'  => sprintf( '%s/ogg; codecs="%s"', $tag_name, ( $tag_name == 'video' ) ? 'theora, vorbis' : 'vorbis' ),
+		'mp3'  => $tag_name . '/mpeg',
+		'opus' => $tag_name . '/ogg; codecs=opus',
+		'flv'  => $tag_name . '/flv',
+		'wmv'  => $tag_name . '/wmv',
+	);
+}
 
 /* ---------------------------------------- render player on shortcode */
 
@@ -164,16 +174,8 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 		$attributes[] = 'autoplay="' . $autoplay . '"';
 	}
 	
-	$supported_sources = array(
-		'mp4'  => $tag_name . '/mp4',
-		'webm' => 'video/webm; codecs="vp8, vorbis"',
-		'ogg'  => sprintf( '%s/ogg; codecs="%s"', $tag_name, ( $tag_name == 'video' ) ? 'theora, vorbis' : 'vorbis' ),
-		'mp3'  => $tag_name . '/mpeg',
-		'opus' => $tag_name . '/ogg; codecs=opus',
-		'flv'  => $tag_name . '/flv',
-		'wmv'  => $tag_name . '/wmv',
-	);
 
+	$supported_sources = podlovewebplayer_get_supported_sources( $tag_name );
 	$supported_mime_types = array_flip( $supported_sources );
 
 	// try to avoid src="" attribute by determining the actual type
@@ -387,15 +389,24 @@ function podlovewebplayer_get_enclosed( $post_id ) {
 	$podPress_enclosures = get_post_meta( $post_id, '_podPressMedia', true );
 	if ( $podPress_enclosures ) {
 		foreach ( $podPress_enclosures as $enclosure ) {
+
+			$fileurl = $enclosure['URI'];
+
+			if ( strpos( $fileurl, '://' ) === false ) {
+				$config = get_option( 'podPress_config', array() );
+				$podPress_upload_path = isset( $config['mediaWebPath'] ) ? $config['mediaWebPath'] : './wp-content/uploads/';
+				$fileurl = trailingslashit( $podPress_upload_path ) . '/' . $fileurl;
+			} 
+
 			$pung[] = array(
-				$enclosure['URI'],
+				$fileurl,
 				$enclosure['size'],
 				str_replace(
-					array( 'audio_mp3',  '_' ),
-					array( 'audio/mpeg', '/'),
+					array( 'audio_mp3',  'audio_m4a', '_' ),
+					array( 'audio/mpeg', 'audio/mp4', '/' ),
 					$enclosure['type']
 				),
-				serialize(array('duration' => $enclosure['duration']))
+				serialize( array( 'duration' => $enclosure['duration'] ) )
 			);
 		}
 	}
@@ -427,6 +438,10 @@ function podlovewebplayer_enclosures( $content ) {
 		return $content;
 	}
 
+	$found_files = array();
+	$duration = "";
+	
+
 	foreach( $enclosures as $enclosure ) {
 
 		$mime_type = $enclosure[2];
@@ -435,29 +450,43 @@ function podlovewebplayer_enclosures( $content ) {
 		$type    = $mime_type_data[0];
 		$subtype = $mime_type_data[1];
 
+		$supported_sources = podlovewebplayer_get_supported_sources( $type );
+		$supported_mime_types = array_flip( $supported_sources );
+
+		if ( isset( $supported_mime_types[ $mime_type ] ) ) {
+			$found_files[ $supported_mime_types[ $mime_type ] ] = trim( $enclosure[0] );
+		} else {
+			$found_files[ 'src' ] = trim( $enclosure[0] );
+		}
+
 		// determine duration
-		$duration = "";
 		if ( isset( $enclosure[3] ) && $enc3_array = unserialize( $enclosure[3] ) ) {
 			if ( isset( $enc3_array['duration'] ) ) {
-				$duration = 'duration="' . trim($enc3_array['duration']) . '"';
+				$duration = 'duration="' . trim( $enc3_array['duration'] ) . '"';
 			}
 		}
 
-		// determine title
-		$title = "";
-		if ( isset( $wp_options['enclosure_richplayer'] ) ) {
-			$title = 'title="'.$post->post_title.'"';
-		}
+	}
 
-		// generate shortcode
-		$shortcode = '[podlove'.$type.' '.$title.' type="'.trim($mime_type).'" src="'.trim($enclosure[0]).'" url="'.trim($enclosure[0]).'" '.$duration.']';
-		$pwpcode = do_shortcode( $shortcode );
+	// determine title
+	// $title = "";
+	if ( isset( $wp_options['enclosure_richplayer'] ) ) {
+		$title = 'title="' . $post->post_title . '"';
+	}
 
-		if ( isset( $wp_options['enclosure_bottom'] ) ) {
-			$content = $content . $pwpcode;
-		} else {
-			$content = $pwpcode . $content;
-		}
+	$file_string = '';
+	foreach ( $found_files as $key => $url ) {
+		$file_string .= sprintf( ' %s="%s" ', $key, $url );
+	}
+
+	// generate shortcode
+	$shortcode = '[podlove' . $type . ' ' . $title . ' ' . $duration . ' ' . $file_string . ']';
+	$pwpcode = do_shortcode( $shortcode );
+
+	if ( isset( $wp_options['enclosure_bottom'] ) ) {
+		$content = $content . $pwpcode;
+	} else {
+		$content = $pwpcode . $content;
 	}
 
 	return $content;
