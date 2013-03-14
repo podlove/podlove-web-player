@@ -300,7 +300,6 @@
 
 		//prepare row data
 		var tempchapters = [];
-		var maxchapterlength = 0;
 		var maxchapterstart  = 0;
 
 		//first round: kill empty rows and build structured object
@@ -317,19 +316,20 @@
 		});
 
 		//second round: collect more information
-		$.each(tempchapters, function(i){
-			var next = tempchapters[i+1];
+		maxchapterstart = Math.max.apply( Math,
+			$.map(tempchapters, function( value, i){
+				var next = tempchapters[i+1];
 
-			// exit early if this is the final chapter
-			if( !next) return;
-			
-			// we need this data for proper formatting
-			this.end = next.start;
-			if(Math.round(this.end-this.start) > maxchapterlength) {
-				maxchapterlength = Math.round(this.end-this.start);
-				maxchapterstart = Math.round(next.start);
-			}
-		});
+				// we use `this.end` to quickly calculate the duration in the next round
+				if( next){
+					value.end = next.start;
+				}
+
+				// we need this data for proper formatting
+				return value.start;
+			})
+		);
+
 
 		//this is a "template" for each chapter row
 		var rowDummy = $(
@@ -345,19 +345,19 @@
 		$.each(tempchapters, function(i){
 			var finalchapter = !tempchapters[i+1],
 				duration = Math.round(this.end-this.start),
-				forceHours = (maxchapterlength >= 3600),
+				forceHours,
 				row = rowDummy.clone();
 
 			//make sure the duration for all chapters are equally formatted
 			if (!finalchapter) {
-				this.duration = generateTimecode([duration], forceHours);
+				this.duration = generateTimecode([duration], false);
 			} else {
 				if (params.duration == 0) {
 					this.end = 9999999999;
 					this.duration = '…';
 				} else {
 					this.end = params.duration;
-					this.duration = generateTimecode([Math.round(this.end-this.start)], forceHours);
+					this.duration = generateTimecode([Math.round(this.end-this.start)], false);
 				}
 			}
 
@@ -376,7 +376,7 @@
 			forceHours = (maxchapterstart >= 3600);
 
 			//insert the chapter data
-			row.find('.starttime > span').text( generateTimecode([Math.round(this.start)], forceHours));
+			row.find('.starttime > span').text( generateTimecode([Math.round(this.start)], true, forceHours));
 			row.find('.chaptername').html(this.title);
 			row.find('.timecode > span').text( this.duration);
 
@@ -681,22 +681,32 @@
 	 * @param forceHours bool (optional)
 	 * @return string
 	 **/
-	var generateTimecode = $.generateTimecode = function(times, forceHours) {
-		function generatePart(seconds) {
-			var part, hours, milliseconds;
+	var generateTimecode = $.generateTimecode = function(times, leadingZeros, forceHours) {
+		function generatePart(time) {
+			var part, hours, minutes, seconds, milliseconds;
 			// prevent negative values from player
-			if (!seconds || seconds <= 0) {
-				return forceHours ? '00:00:00' : '00:00';
+			if (!time || time <= 0) {
+				return leadingZeros ? (forceHours ? '00:00:00' : '00:00') : '--';
 			}
 
-			// required (minutes : seconds)
-			part = zeroFill(Math.floor(seconds / 60) % 60, 2) + ':' +
-					zeroFill(Math.floor(seconds % 60) % 60, 2);
+			hours = Math.floor(time / 60 / 60);
+			minutes = Math.floor(time / 60) % 60;
+			seconds = Math.floor(time % 60) % 60;
+			milliseconds = Math.floor(time % 1 * 1000);
 
-			hours = zeroFill(Math.floor(seconds / 60 / 60), 2);
-			hours = hours === '00' && !forceHours ? '' : hours + ':';
-			milliseconds = zeroFill(Math.floor(seconds % 1 * 1000), 3);
-			milliseconds = milliseconds === '000' ? '' : '.' + milliseconds;
+			if( leadingZeros){
+				// required (minutes : seconds)
+				part = zeroFill(minutes, 2) + ':' +
+						zeroFill(seconds, 2);
+				hours = zeroFill(hours, 2);
+				hours = hours === '00' && !forceHours ? '' : hours + ':';
+				milliseconds = milliseconds ? '.' + zerofill( milliseconds, 3) : '';
+			} else {
+				part = hours ? zeroFill(minutes, 2) : minutes + '';
+				part += ':' + zeroFill(seconds, 2);
+				hours = hours ?  hours + ':' : '';
+				milliseconds = milliseconds ? '.' + milliseconds : '';
+			}
 
 			return hours + part + milliseconds;
 		}
