@@ -199,6 +199,7 @@
 	font-family: "pwpfont" !important;
 	font-style: normal;
 	font-weight: normal;
+	line-height: 1.33em;
 	speak: none;
 	color: #ffffff;
 	background: transparent !important;
@@ -220,6 +221,7 @@
 
 .podlovewebplayer_meta .bigplay:before {
 	content: "\25b6";
+	padding-left: 0.02em;
 }
 
 .podlovewebplayer_meta .bigplay:focus,
