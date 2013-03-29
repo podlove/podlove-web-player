@@ -1,0 +1,158 @@
+.podlovewebplayer_wrapper {
+  box-shadow: 0px 0px 15px black;
+  color: black !important;
+}
+
+.podlovewebplayer_wrapper .podlovewebplayer_meta,
+.podlovewebplayer_wrapper .podlovewebplayer_meta .subtitle,
+.podlovewebplayer_wrapper .podlovewebplayer_meta h3,
+.podlovewebplayer_wrapper .podlovewebplayer_meta h3 a,
+.podlovewebplayer_meta + .summary, 
+.podlovewebplayer_wrapper .podlovewebplayer_controlbox,
+.podlovewebplayer_wrapper .podlovewebplayer_meta .togglers {
+  color: black !important;
+}
+
+.podlovewebplayer_wrapper .podlovewebplayer_top,
+.podlovewebplayer_wrapper .podlovewebplayer_meta {
+  background: #d2ff52;
+  background: -moz-linear-gradient(top, #d2ff52 0%, #91e842 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#d2ff52), color-stop(100%,#91e842));
+  background: -webkit-linear-gradient(top, #d2ff52 0%,#91e842 100%);
+  background: -o-linear-gradient(top, #d2ff52 0%,#91e842 100%);
+  background: -ms-linear-gradient(top, #d2ff52 0%,#91e842 100%);
+  background: linear-gradient(to bottom, #d2ff52 0%,#91e842 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d2ff52', endColorstr='#91e842',GradientType=0 );
+}
+
+.podlovewebplayer_meta .bigplay {
+  color: #555555;
+  border-color: #555555 !important;
+}
+
+.podlovewebplayer_meta .bigplay:hover,
+.podlovewebplayer_meta .bigplay:active,
+.podlovewebplayer_meta .bigplay.playing:hover,
+.podlovewebplayer_meta .bigplay.playing:active {
+  color: #777777 !important;
+  border-color: #777777 !important;
+  text-shadow: 0px 0px 4px #FFFFFF;
+  text-decoration: none;
+  filter: dropshadow(color=#FFFFFF, offx=0, offy=0);
+  cursor: pointer;
+}
+
+.podlovewebplayer_meta .togglers .infobuttons, 
+.podlovewebplayer_meta .togglers .infobuttons a, 
+.podlovewebplayer_wrapper .podlovewebplayer_controlbox .infobuttons, 
+.podlovewebplayer_wrapper .podlovewebplayer_controlbox .infobuttons a {
+  color: #555555;
+  text-shadow: 0px 0px 1px #ffffff;
+  text-decoration: none;
+}
+
+.podlovewebplayer_meta .togglers .infobuttons:hover,
+.podlovewebplayer_meta .togglers .infobuttons a:hover,
+.podlovewebplayer_wrapper .podlovewebplayer_controlbox .infobuttons:hover,
+.podlovewebplayer_wrapper .podlovewebplayer_controlbox .infobuttons a:hover  {
+  color: #777777 !important;
+  text-shadow: 0px 0px 4px #FFFFFF;
+  text-decoration: none;
+  filter: dropshadow(color=#FFFFFF, offx=0, offy=0);
+  cursor: pointer;
+}
+
+.podlovewebplayer_meta + .summary, 
+.podlovewebplayer_wrapper .podlovewebplayer_controlbox {
+  background: #91e842 !important;
+  border-left: 3px #91e842 solid !important;
+  border-right: 3px #91e842 solid !important;
+}
+
+.podlovewebplayer_wrapper .podlovewebplayer_controlbox {
+  background: #6bd847 !important;
+  border-left: 3px #6bd847 solid !important;
+  border-right: 3px #6bd847 solid !important;
+}
+
+.mejs-controls .mejs-button button {
+  background: transparent url(img/controls_grey.svg) no-repeat;
+}
+
+.mejs-controls .mejs-play button {
+  background-position: 0 0;
+}
+.mejs-controls .mejs-pause button {
+  background-position: 0 -16px;
+}
+
+.mejs-controls .mejs-stop button {
+  background-position: -112px 0;
+}
+
+.mejs-controls .mejs-fullscreen-button button {
+  background-position: -32px 0;
+}
+
+.mejs-controls .mejs-unfullscreen button {
+  background-position: -32px -16px;
+}
+
+.mejs-controls .mejs-mute button {
+  background-position: -16px -16px;
+}
+
+.mejs-controls .mejs-unmute button {
+  background-position: -16px 0;
+}
+
+.mejs-controls .mejs-captions-button button {
+  background-position: -48px 0;
+}
+
+.mejs-controls .mejs-loop-off button {
+  background-position: -64px -16px;
+}
+
+.mejs-controls .mejs-loop-on button {
+  background-position: -64px 0;
+}
+
+.mejs-controls .mejs-backlight-off button {
+  background-position: -80px -16px;
+}
+
+.mejs-controls .mejs-backlight-on button {
+  background-position: -80px 0;
+}
+
+.mejs-controls .mejs-sourcechooser-button button {
+  background-position: -128px 0;
+}
+
+.podlovewebplayer_wrapper .mejs-container .mejs-inner .mejs-controls {
+  background: #91e842 !important;
+  background: -moz-linear-gradient(top, #91e842 0%, #6bd847 100%) !important;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#91e842), color-stop(100%,#6bd847)) !important;
+  background: -webkit-linear-gradient(top, #91e842 0%,#6bd847 100%) !important;
+  background: -o-linear-gradient(top, #91e842 0%,#6bd847 100%) !important;
+  background: -ms-linear-gradient(top, #91e842 0%,#6bd847 100%) !important;
+  background: linear-gradient(to bottom, #91e842 0%,#6bd847 100%) !important;
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#91e842', endColorstr='#6bd847',GradientType=0 ) !important;
+}
+
+.mejs-container .mejs-controls .mejs-time span {
+  color: #111;
+}
+
+.podlovewebplayer_wrapper .podlovewebplayer_chapterbox {
+  border: 3px #6bd847 solid !important;
+  border-bottom: 0px #6bd847 solid !important;
+}
+
+.podlovewebplayer_wrapper .podlovewebplayer_tableend {
+  background: #6bd847 !important;
+  -webkit-box-shadow: 0px 1px #6bd847;
+  -moz-box-shadow: 0px 1px #6bd847;
+  box-shadow: 0px 1px #6bd847;
+}
