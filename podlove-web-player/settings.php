@@ -258,12 +258,12 @@ function podlovewebplayer_style() {
 
 function podlovewebplayer_style_custom() { 
 	$options = get_option('podlovewebplayer_options');
-	//$customstyle = $options['style_custom'];
 	print "<textarea name='podlovewebplayer_options[style_custom]' id='pwpstyle1' dir='ltr' style='display:none;'>".$options['style_custom']."</textarea><script language='javascript'></script><p></p>
 <div class='colorslider'><div id='color1' class='box'>
 	<div><label for='hue'>Hue</label><input id='hue' onchange='colorize();' name='hue' type='range' max='360' min='0'></div>
 	<div><label for='sat'>Saturation</label><input id='sat' onchange='colorize();' name='sat' type='range' max='100' min='0'></div>
 	<div><label for='lum'>Luminance</label><input id='lum' onchange='colorize();' name='lum' type='range' max='100' min='0'></div>
+	<div><input type='button' onclick='colorreset();' class='button' value='reset' /> <input name='Submit' type='submit' class='button button-primary' value='save'/></div><br/>
 </div></div></div>";
 	print '<audio id="demoplayer">
 			<source src="http://podlove.github.com/podlove-web-player/samples/podlove-test-track.mp4" type="audio/mp4"></source>

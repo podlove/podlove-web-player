@@ -2,6 +2,3 @@
 	path = podlove-web-player/libs/mediaelement
 	url=git@github.com:podlove/mediaelement.git
 
-[submodule "podlove-web-player/libs/spectrum"]
-	path = podlove-web-player/libs/spectrum
-	url = https://github.com/bgrins/spectrum.git
