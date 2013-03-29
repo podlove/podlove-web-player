@@ -192,6 +192,7 @@ Earlier versions of this plugin could handle alternative shortcodes, too: [audio
 
 1. Podlove Web Player in full swing, using the chapters table to jump to different section of the audio source.
 2. Podlove Web Player in chapters hidden and timecontrol-bar visible view.
+3. Podlove Web Player Designer with colorized Player.
 
 == Changelog ==
 
