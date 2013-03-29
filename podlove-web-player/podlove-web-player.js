@@ -1,4 +1,4 @@
-/* PWP 2.0.5 */
+/* PWP 2.0.6 */
 
 (function($) {
 	'use strict';
@@ -195,6 +195,10 @@
 					if(wrapper.find('.podlovewebplayer_chapterbox').hasClass('active')) {
 						wrapper.find('.podlovewebplayer_chapterbox').height(wrapper.find('.podlovewebplayer_chapters').height()+'px');
 					}
+					wrapper.find('.summary').data('height', wrapper.find('.summarydiv').height());
+					if(wrapper.find('.summary').hasClass('active')) {
+						wrapper.find('.summary').height(wrapper.find('.summarydiv').height()+'px');
+					}
 				});
 				
 				if (typeof params.summary !== 'undefined') {
@@ -205,7 +209,7 @@
 					wrapper.find('.togglers').append(
 						'<a href="#" class="infowindow infobuttons pwp-icon-info-circle" title="More information about this"></a>');
 					wrapper.find('.podlovewebplayer_meta').after(
-						'<div class="summary'+summaryActive+'">'+params.summary+'</div>');
+						'<div class="summary'+summaryActive+'"><div class="summarydiv">'+params.summary+'</div></div>');
 				}
 				if (typeof params.chapters !== 'undefined') {
 					wrapper.find('.togglers').append(
@@ -435,7 +439,7 @@
 			if (!$(this).hasClass('active')) {
 				$(this).height('0px');
 			} else {
-				$(this).height($(this).height()+'px');
+				$(this).height($(this).find('div.summarydiv').height()+'px');
 			}
 		});
 
@@ -453,7 +457,7 @@
 			metainfo.find('a.infowindow').click(function(){
 				summary.toggleClass('active');
 				if(summary.hasClass('active')) {
-					summary.height(summary.data('height') + 'px');
+					summary.height(summary.find('div.summarydiv').height() + 'px');
 				} else {
 					summary.height('0px');
 				}

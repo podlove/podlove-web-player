@@ -1,10 +1,64 @@
 <?php 
 
 if ( is_admin() ){
+	global $blog_id;
+	$wp_options = get_option('podlovewebplayer_options');
+	wp_enqueue_style( 'mediaelementjs', plugins_url('libs/mediaelement/build/mediaelementplayer.css', __FILE__) );
+	wp_enqueue_style( 'podlovewebplayer', plugins_url('podlove-web-player.css', __FILE__) );
+	wp_enqueue_style( 'pwpfont', plugins_url('libs/pwpfont/css/fontello.css', __FILE__) );
+	//wp_enqueue_style( 'spectrumpoly', plugins_url('libs/spectrum/spectrum.css', __FILE__) );
+	wp_enqueue_style( 'pwpdesigner', plugins_url('libs/pwpdesigner/style.css', __FILE__) );
+	if(isset($wp_options['style_custom'])) {
+		wp_enqueue_style( 'custom-pwp-style', plugins_url('pwp_custom_id-'.$blog_id.'.css', __FILE__) );
+	}
+	wp_enqueue_script( 'colorconverter', plugins_url('libs/pwpdesigner/colorconv.js', __FILE__) );
+	wp_enqueue_script( 'pwpdesigner', plugins_url('libs/pwpdesigner/script.js', __FILE__) );
+	//wp_enqueue_script( 'spectrumpoly', plugins_url('libs/spectrum/spectrum.js', __FILE__) );
+	
+	
+	//add_action( 'admin_head', 'admin_register_head');
 	add_action( 'admin_menu', 'podlovewebplayer_create_menu' );
 	add_action( 'admin_init', 'podlovewebplayer_register_settings' );
 }
 
+function admin_register_head() { 
+	global $blog_id;
+	$wp_options = get_option('podlovewebplayer_options');
+	wp_enqueue_style( 'mediaelementjs', plugins_url('libs/mediaelement/build/mediaelementplayer.css', __FILE__) );
+	wp_enqueue_style( 'podlovewebplayer', plugins_url('podlove-web-player.css', __FILE__) );
+	wp_enqueue_style( 'pwpfont', plugins_url('libs/pwpfont/css/fontello.css', __FILE__) );
+	//wp_enqueue_style( 'spectrumpoly', plugins_url('libs/spectrum/spectrum.css', __FILE__) );
+	wp_enqueue_style( 'pwpdesigner', plugins_url('libs/pwpdesigner/style.css', __FILE__) );
+	if(isset($wp_options['style_custom'])) {
+		wp_enqueue_style( 'custom-pwp-style', plugins_url('pwp_custom_id-'.$blog_id.'.css', __FILE__) );
+	}
+	wp_enqueue_script( 'colorconverter', plugins_url('libs/pwpdesigner/colorconv.js', __FILE__) );
+	wp_enqueue_script( 'pwpdesigner', plugins_url('libs/pwpdesigner/script.js', __FILE__) );
+	//wp_enqueue_script( 'spectrumpoly', plugins_url('libs/spectrum/spectrum.js', __FILE__) );
+}
+
+function css_path() {
+	global $blog_id;
+	$cssid = '_id-'.$blog_id;
+	return plugin_dir_path(__FILE__) . "pwp_custom" . $cssid . ".css";
+}
+
+function css_url() {
+	global $blog_id;
+	$cssid = '_id-'.$blog_id;
+	return plugin_dir_url(__FILE__) . "pwp_custom" . $cssid . ".css";
+}
+
+function custompwpstyle() {
+	$options = get_option('podlovewebplayer_options');
+	$customstyle = $options['style_custom'];
+	return $customstyle;
+}
+
+function makecss() {
+	$makecss = file_put_contents(css_path(), "/* PodloveWebPlayer Custom Style */\n\n" . custompwpstyle());
+	return $makecss;
+}
 
 function podlovewebplayer_settings_page() { ?>
 	<div class="wrap">
@@ -58,6 +112,12 @@ function podlovewebplayer_register_settings() {
 				'force' => 'Force enclosure:',
 				'richplayer' => 'Advanced player:',
 				'bottom' => 'Put player to bottom of post:'
+			)
+		),
+		'style' => array(
+			'title'    => 'Player Style',
+			'fields' => array(
+				'custom' => 'Style your Player:'
 			)
 		),
 		'info' => array(
@@ -192,10 +252,59 @@ function podlovewebplayer_enclosure_bottom() {
 		(instead of the top)";
 }
 
+function podlovewebplayer_style() { 
+	print "<div class='wrap'><h2>Custom CSS Style</h2>";
+}
+
+function podlovewebplayer_style_custom() { 
+	$options = get_option('podlovewebplayer_options');
+	//$customstyle = $options['style_custom'];
+	print "<textarea name='podlovewebplayer_options[style_custom]' id='pwpstyle1' dir='ltr' style='display:none;'>".$options['style_custom']."</textarea><script language='javascript'></script><p></p>
+<div class='colorslider'><div id='color1' class='box'>
+	<div><label for='hue'>Hue</label><input id='hue' onchange='colorize();' name='hue' type='range' max='360' min='0'></div>
+	<div><label for='sat'>Saturation</label><input id='sat' onchange='colorize();' name='sat' type='range' max='100' min='0'></div>
+	<div><label for='lum'>Luminance</label><input id='lum' onchange='colorize();' name='lum' type='range' max='100' min='0'></div>
+</div></div></div>";
+	print '<audio id="demoplayer">
+			<source src="http://podlove.github.com/podlove-web-player/samples/podlove-test-track.mp4" type="audio/mp4"></source>
+			<source src="http://podlove.github.com/podlove-web-player/samples/podlove-test-track.mp3" type="audio/mp3"></source>
+			<source src="http://podlove.github.com/podlove-web-player/samples/podlove-test-track.ogg" type="audio/ogg; codecs=vorbis"></source>
+			<source src="http://podlove.github.com/podlove-web-player/samples/podlove-test-track.opus" type="audio/ogg; codecs=opus"></source>
+		</audio>
+		<script>
+			jQuery("#demoplayer").podlovewebplayer({
+				poster: "http://podlove.github.com/podlove-web-player/samples/coverimage.png",
+				title: "PWP001 – Lorem ipsum dolor sit amet",
+				permalink: "http://podlove.github.com/podlove-web-player/standalone.html",
+				subtitle: "Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.",
+				chapters: "00:00:00.000 Chapter One title"
++"\n"+"00:00:01.000 Chapter Two with <a href=\"#\">hyperlink</a>"
++"\n"+"00:00:01.500 Chapter Three",
+				summary: "<p>Summary and even links <a href=\"https://github.com/gerritvanaaken/podlove-web-player\">Podlove Web Player</a>"
++"\n"+"Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Maecenas sed diam eget risus varius blandit sit amet non magna. Maecenas sed diam eget risus varius blandit sit amet non magna.</p>"
++"\n"+"<p>Nullam id dolor id nibh ultricies vehicula ut id elit. Nulla vitae elit libero, a pharetra augue. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Cras mattis consectetur purus sit amet fermentum. Nullam id dolor id nibh ultricies vehicula ut id elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p>",
+				duration: "00:02.500",
+				alwaysShowHours: true,
+				startVolume: 0.3,
+				width: "auto",
+				summaryVisible: false,
+				timecontrolsVisible: false,
+				sharebuttonsVisible: false,
+				chaptersVisible: true	
+			});
+		</script>';
+	$custompwpstyle = custompwpstyle();
+	if (!empty($custompwpstyle)) {
+		makecss();
+	} elseif (empty($custompwpstyle) && file_exists(css_path())) {
+		unlink(css_path());
+	}
+}
+
 function podlovewebplayer_info() {
 	$scriptname = explode('/wp-admin', $_SERVER["SCRIPT_FILENAME"]);
 	$dirname    = explode('/wp-content', dirname(__FILE__));
-	print '<p>This is <strong>Version 2.0.5</strong> of the <strong>Podlove Web Player</strong>.<br>
+	print '<p>This is <strong>Version 2.0.6</strong> of the <strong>Podlove Web Player</strong>.<br>
 	The <strong>Including file</strong> is: <code>wp-admin'.$scriptname[1].'</code><br>
 	The <strong>PWP-directory</strong> is: <code>wp-content'.$dirname[1].'</code></p>
 	<p>Want to contribute? Found a bug? Need some help? <br/>you can found our github repo/page at
@@ -203,5 +312,7 @@ function podlovewebplayer_info() {
 	<p>If you found a bug, please tell us your WP- and PWP- (and PPP- if you use PPP) Version. <br/>Also your 
 	Browser version, your PHP version and the URL of your Podcast can help us, find the bug.</p>';
 }
+
+//add_action('wp_head', 'add_pwp_custom', 999);
 
 ?>

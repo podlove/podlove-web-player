@@ -1,4 +1,4 @@
-/* PWP 2.0.5 */
+/* PWP 2.0.6 */
 
 .podlovewebplayer_wrapper * {
 	font: normal 11px/1.25 helvetica, arial, sans-serif;
@@ -62,7 +62,6 @@
 }
 
 .podlovewebplayer_wrapper .podlovewebplayer_chapters {
-	display: none; /* only show if js works */
 	margin: 0 !important;
 	width: 100%;
 	border-collapse: collapse;
@@ -331,9 +330,11 @@
 	margin-right: 15px;
 	font-size: 12px;
 	color: #eee !important;
+	text-shadow: none !important;
 	background: transparent !important;
 	margin-left: 180px;
 	padding-bottom: 35px;
+	padding-left: 0px;
 }
 
 .podlovewebplayer_meta .subtitle strong{
@@ -447,6 +448,10 @@ filter: dropshadow(color=#000000, offx=0, offy=0);
 	background: rgb(36,36,36);
 }
 
+.podlovewebplayer_meta .summary .summarydiv {
+	margin: 0px 5px;
+}
+
 .podlovewebplayer_video .podlovewebplayer_meta + .summary,
 .podlovewebplayer_video.podlovewebplayer_wrapper .podlovewebplayer_controlbox {
 	margin-top: 0px;
@@ -511,6 +516,12 @@ filter: dropshadow(color=#000000, offx=0, offy=0);
 	text-decoration: none;
 	speak: none;
 	display: inline;
+	text-decoration: none;
+	/* Animation for Buttons
+	-webkit-transition: all 0.1s ease;
+	-moz-transition: all 0.1s ease;
+	-o-transition: all 0.1s ease;
+	transition: all 0.1s ease; */
 }
 
 .podlovewebplayer_meta .togglers a.infobuttons {
