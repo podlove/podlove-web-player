@@ -4,7 +4,7 @@ Donate link: http://podlove.org/
 Tags: podcasting, podlove, html5audio, audio, video, podcast, player
 Requires at least: 3.4.0
 Tested up to: 3.5.1
-Stable tag: 2.0.5
+Stable tag: 2.0.6
 License: BSD 2-Clause License
 License URI: http://opensource.org/licenses/BSD-2-Clause
 
@@ -198,7 +198,9 @@ Earlier versions of this plugin could handle alternative shortcodes, too: [audio
 = 2.0.6 =
 * podPress compatibility
 * chapterbox height fix
+* summary height fix
 * infobutton style fixes
+* PWP Style designer added
 
 = 2.0.5 =
 * fixed Blubrry PowerPress compatibility

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package PodloveWebPlayer
- * @version 2.0.5
+ * @version 2.0.6
  */
 
 /*
@@ -9,7 +9,7 @@ Plugin Name: Podlove Web Player
 Plugin URI: http://podlove.org/podlove-web-player/
 Description: Video and audio plugin for WordPress built on the MediaElement.js HTML5 media player library.
 Author: Gerrit van Aaken and Simon Waldherr
-Version: 2.0.5
+Version: 2.0.6
 Author URI: http://praegnanz.de
 License: BSD 2-Clause License
 
@@ -57,23 +57,21 @@ include_once( PODLOVEWEBPLAYER_DIR . 'settings.php' );
 /* embed javascript files */
 
 function podlovewebplayer_add_scripts() {
-	if ( !is_admin() ) {
-		wp_enqueue_script( 
-			'mediaelementjs', 
-			plugins_url('libs/mediaelement/build/mediaelement-and-player.min.js', __FILE__), 
-			array('jquery'), '2.10.3', false 
-		);
-		wp_enqueue_script( 
-			'ba_hashchange', 
-			plugins_url('libs/jquery.ba-hashchange.min.js', __FILE__), 
-			array('jquery'), '1.3.0', false
-		);
-		wp_enqueue_script( 
-			'podlovewebplayer', 
-			plugins_url('podlove-web-player.js', __FILE__), 
-			array('jquery', 'mediaelementjs'), '2.0.5', false
-		);
-	}
+	wp_enqueue_script( 
+		'mediaelementjs', 
+		plugins_url('libs/mediaelement/build/mediaelement-and-player.min.js', __FILE__), 
+		array('jquery'), '2.10.3', false 
+	);
+	wp_enqueue_script( 
+		'ba_hashchange', 
+		plugins_url('libs/jquery.ba-hashchange.min.js', __FILE__), 
+		array('jquery'), '1.3.0', false
+	);
+	wp_enqueue_script( 
+		'podlovewebplayer', 
+		plugins_url('podlove-web-player.js', __FILE__), 
+		array('jquery', 'mediaelementjs'), '2.0.6', false
+	);
 }
 add_action('wp_print_scripts', 'podlovewebplayer_add_scripts');
 
@@ -82,10 +80,13 @@ add_action('wp_print_scripts', 'podlovewebplayer_add_scripts');
 /* embed css files */
 
 function podlovewebplayer_add_styles() {
-	if ( !is_admin() ) {
-		wp_enqueue_style( 'pwpfont', plugins_url('libs/pwpfont/css/fontello.css', __FILE__) );
-		wp_enqueue_style( 'mediaelementjs', plugins_url('libs/mediaelement/build/mediaelementplayer.css', __FILE__) );
-		wp_enqueue_style( 'podlovewebplayer', plugins_url('podlove-web-player.css', __FILE__) );
+	global $blog_id;
+	$wp_options = get_option('podlovewebplayer_options');
+	wp_enqueue_style( 'pwpfont', plugins_url('libs/pwpfont/css/fontello.css', __FILE__) );
+	wp_enqueue_style( 'mediaelementjs', plugins_url('libs/mediaelement/build/mediaelementplayer.css', __FILE__) );
+	wp_enqueue_style( 'podlovewebplayer', plugins_url('podlove-web-player.css', __FILE__) );
+	if($wp_options['style_custom'] !== '') {
+		wp_enqueue_style( 'custom-pwp-style', plugins_url('pwp_custom_id-'.$blog_id.'.css', __FILE__) );
 	}
 }
 add_action( 'wp_print_styles', 'podlovewebplayer_add_styles' );
@@ -506,6 +507,6 @@ function podlovewebplayer_init() {
 add_action('init', 'podlovewebplayer_init');
 
 
-} // End of code
+}
 
 ?>
