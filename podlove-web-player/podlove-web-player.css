@@ -480,7 +480,7 @@ filter: dropshadow(color=#000000, offx=0, offy=0);
 	position: relative;
 	text-align: right;
 	right: 9px;
-	top: -25px;
+	top: -30px;
 	margin-bottom: -25px;
 	height: 30px;
 }
@@ -529,6 +529,8 @@ filter: dropshadow(color=#000000, offx=0, offy=0);
 	height: 30px;
 	width: 30px;
 }
+
+.podlovewebplayer_meta .togglers a.pwp-icon-download { display: none !important; }
 
 .podlovewebplayer_wrapper .podlovewebplayer_controlbox .infobuttons,
 .podlovewebplayer_wrapper .podlovewebplayer_controlbox .infobuttons a {
