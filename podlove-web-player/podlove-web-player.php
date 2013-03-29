@@ -265,6 +265,10 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 		'chaptersVisible'     => in_array( $chaptersvisible, $truthy, true ),
 		'timecontrolsVisible' => in_array( $timecontrolsvisible, $truthy, true ),
 		'summaryVisible'      => in_array( $summaryvisible, $truthy, true ),
+		'hidetimebutton'      => in_array( $wp_options['buttons_time'], $truthy, true ),
+		'hidedownloadbutton'  => in_array( $wp_options['buttons_download'], $truthy, true ),
+		'hidesharebutton'     => in_array( $wp_options['buttons_share'], $truthy, true ),
+		'sharewholeepisode'   => in_array( $wp_options['buttons_sharemode'], $truthy, true ),
 		'loop'                => in_array( $loop, $truthy, true ),
 		'chapterlinks'        => $chapterlinks
 	);

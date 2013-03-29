@@ -1,4 +1,3 @@
 [submodule "podlove-web-player/libs/mediaelement"]
 	path = podlove-web-player/libs/mediaelement
 	url=git@github.com:podlove/mediaelement.git
-
