@@ -6,35 +6,15 @@ if ( is_admin() ){
 	wp_enqueue_style( 'mediaelementjs', plugins_url('libs/mediaelement/build/mediaelementplayer.css', __FILE__) );
 	wp_enqueue_style( 'podlovewebplayer', plugins_url('podlove-web-player.css', __FILE__) );
 	wp_enqueue_style( 'pwpfont', plugins_url('libs/pwpfont/css/fontello.css', __FILE__) );
-	//wp_enqueue_style( 'spectrumpoly', plugins_url('libs/spectrum/spectrum.css', __FILE__) );
 	wp_enqueue_style( 'pwpdesigner', plugins_url('libs/pwpdesigner/style.css', __FILE__) );
 	if(isset($wp_options['style_custom'])) {
 		wp_enqueue_style( 'custom-pwp-style', plugins_url('pwp_custom_id-'.$blog_id.'.css', __FILE__) );
 	}
 	wp_enqueue_script( 'colorconverter', plugins_url('libs/pwpdesigner/colorconv.js', __FILE__) );
 	wp_enqueue_script( 'pwpdesigner', plugins_url('libs/pwpdesigner/script.js', __FILE__) );
-	//wp_enqueue_script( 'spectrumpoly', plugins_url('libs/spectrum/spectrum.js', __FILE__) );
 	
-	
-	//add_action( 'admin_head', 'admin_register_head');
 	add_action( 'admin_menu', 'podlovewebplayer_create_menu' );
 	add_action( 'admin_init', 'podlovewebplayer_register_settings' );
-}
-
-function admin_register_head() { 
-	global $blog_id;
-	$wp_options = get_option('podlovewebplayer_options');
-	wp_enqueue_style( 'mediaelementjs', plugins_url('libs/mediaelement/build/mediaelementplayer.css', __FILE__) );
-	wp_enqueue_style( 'podlovewebplayer', plugins_url('podlove-web-player.css', __FILE__) );
-	wp_enqueue_style( 'pwpfont', plugins_url('libs/pwpfont/css/fontello.css', __FILE__) );
-	//wp_enqueue_style( 'spectrumpoly', plugins_url('libs/spectrum/spectrum.css', __FILE__) );
-	wp_enqueue_style( 'pwpdesigner', plugins_url('libs/pwpdesigner/style.css', __FILE__) );
-	if(isset($wp_options['style_custom'])) {
-		wp_enqueue_style( 'custom-pwp-style', plugins_url('pwp_custom_id-'.$blog_id.'.css', __FILE__) );
-	}
-	wp_enqueue_script( 'colorconverter', plugins_url('libs/pwpdesigner/colorconv.js', __FILE__) );
-	wp_enqueue_script( 'pwpdesigner', plugins_url('libs/pwpdesigner/script.js', __FILE__) );
-	//wp_enqueue_script( 'spectrumpoly', plugins_url('libs/spectrum/spectrum.js', __FILE__) );
 }
 
 function css_path() {
