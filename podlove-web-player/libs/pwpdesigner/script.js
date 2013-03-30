@@ -1,4 +1,4 @@
-function buildcss(color1,color2,color3) {
+function buildcss(color1,color2,color3,gradient) {
   var css, fontcolor = [], color1hsl = [], color2hsl = [], color3hsl = [];
   
   color1hsl = convHEXtoHSL(color1);
@@ -7,17 +7,17 @@ function buildcss(color1,color2,color3) {
   } else {
     fontcolor = [0,0,100];
   }
-  if(color2 === undefined) {
+  if((color2 === undefined)||(color2 === false)) {
     color2hsl[0] = color1hsl[0];
     color2hsl[1] = color1hsl[1];
-    color2hsl[2] = Math.max(Math.min(color1hsl[2]-20, 100), 0);
+    color2hsl[2] = Math.max(Math.min(color1hsl[2]-(gradient*2), 100), 0);
   } else {
     color2hsl = convHEXtoHSL(color2);
   }
-  if(color3 === undefined) {
+  if((color3 === undefined)||(color3 === false)) {
     color3hsl[0] = color1hsl[0];
     color3hsl[1] = color1hsl[1];
-    color3hsl[2] = Math.max(Math.min(color1hsl[2]-30, 100), 0);
+    color3hsl[2] = Math.max(Math.min(color1hsl[2]-(gradient*3), 100), 0);
   } else {
     color3hsl = convHEXtoHSL(color3);
   }
@@ -32,7 +32,8 @@ function colorize() {
   hue = document.getElementById('hue').value;
   sat = document.getElementById('sat').value;
   lum = document.getElementById('lum').value;
-  css = buildcss(convHSLtoHEX([hue, sat, lum]));
+  gra = document.getElementById('gra').value;
+  css = buildcss(convHSLtoHEX([hue, sat, lum]),false,false,gra);
   document.getElementById('pwpdesigner').innerHTML = css;
   document.getElementById('pwpstyle1').innerHTML = css;
 }

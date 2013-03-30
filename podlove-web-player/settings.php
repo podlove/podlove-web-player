@@ -243,6 +243,7 @@ function podlovewebplayer_style_custom() {
 	<div><label for='hue'>Hue</label><input id='hue' onchange='colorize();' name='hue' type='range' max='360' min='0'></div>
 	<div><label for='sat'>Saturation</label><input id='sat' onchange='colorize();' name='sat' type='range' max='100' min='0'></div>
 	<div><label for='lum'>Luminance</label><input id='lum' onchange='colorize();' name='lum' type='range' max='100' min='0'></div>
+	<div><label for='gra'>Gradient</label><input id='gra' onchange='colorize();' name='gra' type='range' max='20' min='0'></div>
 	<div><input type='button' onclick='colorreset();' class='button' value='reset' /> <input name='Submit' type='submit' class='button button-primary' value='save'/></div><br/>
 </div></div></div>";
 	print '<audio id="demoplayer">
