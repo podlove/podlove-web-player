@@ -331,7 +331,7 @@ function podlovewebplayer_render_chapters( $input ) {
 		) {
 			$chapters = trim( file_get_contents( $input ) );
 		} elseif ( $chapters = get_post_custom_values( $input, $post->ID ) ) {
-			$chapters = $chapters[0];
+			$chapters = trim( $chapters[0] );
 		}
 	}
 	$chapters = preg_replace("(\r?\n)", "\n".'+"\n"', htmlspecialchars($chapters, ENT_QUOTES));
