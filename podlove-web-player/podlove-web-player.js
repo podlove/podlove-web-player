@@ -782,7 +782,7 @@
 			var part, hours, minutes, seconds, milliseconds;
 			// prevent negative values from player
 			if (!time || time <= 0) {
-				return leadingZeros ? (forceHours ? '00:00:00' : '00:00') : '--';
+				return (leadingZeros || !time) ? (forceHours ? '00:00:00' : '00:00') : '--';
 			}
 
 			hours = Math.floor(time / 60 / 60);
