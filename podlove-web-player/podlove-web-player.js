@@ -620,7 +620,7 @@
 
 			wrapper.find('.currentbutton').click(function(){
 				var timepos = (params.sharewholeepisode === true) ? '' : '%23t%3D'+generateTimecode([player.currentTime]);
-				window.prompt('This URL directly points to the current playback position', $(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href'))+timepos;
+				window.prompt('This URL directly points to the current playback position', $(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href')+timepos);
 				return false;
 			});
 
