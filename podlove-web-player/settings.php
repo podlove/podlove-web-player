@@ -132,7 +132,7 @@ function podlovewebplayer_register_settings() {
 function podlovewebplayer_audio_width(){
 	$options = get_option('podlovewebplayer_options');
 	if ( !isset( $options['audio_width'] ) )
-		$options['audio_width'] = "";
+		$options['audio_width'] = '';
 	print "<input id='pwpaudio1' name='podlovewebplayer_options[audio_width]' 
 		value='".$options['audio_width']."' style='width:3em;' /> px&nbsp;&nbsp;(keep blank for automatic width)";
 }
@@ -147,10 +147,10 @@ function podlovewebplayer_audio_height() {
 
 function podlovewebplayer_audio_type() { 
 	$options = get_option('podlovewebplayer_options');
-	if ( !isset( $options['audio_type'] ) )
-		$options['audio_type'] = "audio/mp3";
+	if (( !isset( $options['audio_type'] ) ) || ( $options['audio_type'] == 'audio/mp3' ))
+		$options['audio_type'] = 'audio/mpeg';
 	print "<input id='pwpaudio3' name='podlovewebplayer_options[audio_type]' 
-		value='".$options['audio_type']."' style='width:6em;' />&nbsp;&nbsp;(such as \"audio/mp3\")";
+		value='".$options['audio_type']."' style='width:6em;' />&nbsp;&nbsp;(such as \"audio/mpeg\")";
 }
 
 function podlovewebplayer_video_width() { 
@@ -248,7 +248,7 @@ function podlovewebplayer_style_custom() {
 </div></div></div>";
 	print '<audio id="demoplayer">
 			<source src="http://podlove.github.com/podlove-web-player/samples/podlove-test-track.mp4" type="audio/mp4"></source>
-			<source src="http://podlove.github.com/podlove-web-player/samples/podlove-test-track.mp3" type="audio/mp3"></source>
+			<source src="http://podlove.github.com/podlove-web-player/samples/podlove-test-track.mp3" type="audio/mpeg"></source>
 			<source src="http://podlove.github.com/podlove-web-player/samples/podlove-test-track.ogg" type="audio/ogg; codecs=vorbis"></source>
 			<source src="http://podlove.github.com/podlove-web-player/samples/podlove-test-track.opus" type="audio/ogg; codecs=opus"></source>
 		</audio>
