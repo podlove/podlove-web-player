@@ -619,38 +619,32 @@
 			});
 
 			wrapper.find('.currentbutton').click(function(){
-				var timepos = (params.sharewholeepisode === true) ? '' : '%23t%3D'+generateTimecode([player.currentTime]);
-				window.prompt('This URL directly points to the current playback position', $(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href')+timepos);
+				window.prompt('This URL directly points to this episode', $(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href'));
 				return false;
 			});
 
 			wrapper.find('.tweetbutton').click(function(){
-				var timepos = (params.sharewholeepisode === true) ? '' : '%23t%3D'+generateTimecode([player.currentTime]);
-				window.open('https://twitter.com/share?text='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text())+'&url='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href'))+timepos, 'tweet it', 'width=550,height=420,resizable=yes');
+				window.open('https://twitter.com/share?text='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text())+'&url='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href')), 'tweet it', 'width=550,height=420,resizable=yes');
 				return false;
 			});
 
 			wrapper.find('.fbsharebutton').click(function(){
-				var timepos = (params.sharewholeepisode === true) ? '' : '%23t%3D'+generateTimecode([player.currentTime]);
-				window.open('http://www.facebook.com/share.php?t='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text())+'&u='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href'))+timepos, 'share it', 'width=550,height=340,resizable=yes');
+				window.open('http://www.facebook.com/share.php?t='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text())+'&u='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href')), 'share it', 'width=550,height=340,resizable=yes');
 				return false;
 			});
 
 			wrapper.find('.gplusbutton').click(function(){
-				var timepos = (params.sharewholeepisode === true) ? '' : '%23t%3D'+generateTimecode([player.currentTime]);
-				window.open('https://plus.google.com/share?title='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text())+'&url='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href'))+timepos, 'plus it', 'width=550,height=420,resizable=yes');
+				window.open('https://plus.google.com/share?title='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text())+'&url='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href')), 'plus it', 'width=550,height=420,resizable=yes');
 				return false;
 			});
 
 			wrapper.find('.adnbutton').click(function(){
-				var timepos = (params.sharewholeepisode === true) ? '' : '%23t%3D'+generateTimecode([player.currentTime]);
-				window.open('https://alpha.app.net/intent/post?text='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text())+'%20'+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href'))+timepos, 'plus it', 'width=550,height=420,resizable=yes');
+				window.open('https://alpha.app.net/intent/post?text='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text())+'%20'+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href')), 'plus it', 'width=550,height=420,resizable=yes');
 				return false;
 			});
 
 			wrapper.find('.mailbutton').click(function(){
-				var timepos = (params.sharewholeepisode === true) ? '' : '%23t%3D'+generateTimecode([player.currentTime]);
-				window.location = 'mailto:?subject='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text())+'&body='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text())+'%20%3C'+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href'))+timepos+'%3E';
+				window.location = 'mailto:?subject='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text())+'&body='+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text())+'%20%3C'+encodeURI($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href'))+'%3E';
 				return false;
 			});
 
