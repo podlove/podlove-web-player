@@ -194,15 +194,7 @@
 	 */
 	var generateChapterTable = function( params){
 		
-		var div = $(
-			'<div class="podlovewebplayer_chapterbox showonplay"><table>'
-			+ '<caption>Podcast Chapters</caption><thead><tr>'
-			+ '<th scope="col">Chapter Number</th>'
-			+ '<th scope="col">Start time</th>'
-			+ '<th scope="col">Title</th>'
-			+ '<th scope="col">Duration</th>'
-			+ '</tr></thead>'
-			+ '<tbody></tbody></table></div>'),
+		var div = $('<div class="podlovewebplayer_chapterbox showonplay"><table><caption>Podcast Chapters</caption><thead><tr><th scope="col">Chapter Number</th><th scope="col">Start time</th><th scope="col">Title</th><th scope="col">Duration</th></tr></thead><tbody></tbody></table></div>'),
 			table = div.children('table'),
 			tbody = table.children('tbody');
 	
@@ -272,14 +264,7 @@
 	
 	
 		//this is a "template" for each chapter row
-		var rowDummy = $(
-			'<tr class="chaptertr" data-start="" data-end="">'
-			+ '<td class="starttime"><span></span></td>'
-			+ '<td class="chaptername"></td>'
-			+ '<td class="timecode">\n'
-			+ '<span></span>\n'
-			+ '</td>\n'
-			+ '</tr>');
+		var rowDummy = $('<tr class="chaptertr" data-start="" data-end=""><td class="starttime"><span></span></td><td class="chaptername"></td><td class="timecode">\n<span></span>\n</td>\n</tr>');
 	
 		//third round: build actual dom table
 		$.each(tempchapters, function(i){
@@ -714,7 +699,7 @@
 					mejsoptions.videoHeight = params.height;
 				}
 
-			 	if ($(player).attr('width') !== undefined) {
+				if ($(player).attr('width') !== undefined) {
 					params.width = $(player).attr('width');
 				}
 			}
@@ -726,7 +711,7 @@
 			}
 			
 			//Overwrite MEJS default values with actual data
-			$.each(mejsoptions, function(key, value){
+			$.each(mejsoptions, function(key){
 				if (params[key] !== undefined) {
 					mejsoptions[key] = params[key];
 				}
@@ -752,10 +737,10 @@
 			});
 			//add params from audio and video elements
 			$(player).find('source').each(function(){
-				if(params['sources'] !== undefined) {
+				if(params.sources !== undefined) {
 					params.sources.push($(this).attr('src'));
 				} else {
-					params['sources'][0] = $(this).attr('src');
+					params.sources[0] = $(this).attr('src');
 				}
 			});
 
@@ -823,7 +808,7 @@
 
 				//always render toggler buttons wrapper
 				wrapper.find('.podlovewebplayer_meta').append('<div class="togglers"></div>');
-				wrapper.on('playerresize', function (event) {
+				wrapper.on('playerresize', function () {
 					wrapper.find('.podlovewebplayer_chapterbox').data('height', wrapper.find('.podlovewebplayer_chapters').height());
 					if(wrapper.find('.podlovewebplayer_chapterbox').hasClass('active')) {
 						wrapper.find('.podlovewebplayer_chapterbox').height(wrapper.find('.podlovewebplayer_chapters').height()+'px');
@@ -891,8 +876,8 @@
 				wrapper.find('.togglers').append('<a href="#" class="showdownloadbuttons infobuttons pwp-icon-download" title="Show/hide download bar"></a>');
 				if ( params.downloads !== undefined) {
 					for (i=0; i<params.downloads.length; i+=1) {
-						size = (parseInt(params.downloads[i]['size'],10) < 1048704) ? Math.round(parseInt(params.downloads[i]['size'],10)/100)/10+'kB' : Math.round(parseInt(params.downloads[i]['size'],10)/1000/100)/10+'MB';
-						selectform += '<option value="'+params.downloads[i]['url']+'" data-url="'+params.downloads[i]['url']+'" data-dlurl="'+params.downloads[i]['dlurl']+'">'+params.downloads[i]['name']+' (<small>'+size+'</small>)</option>';
+						size = (parseInt(params.downloads[i].size,10) < 1048704) ? Math.round(parseInt(params.downloads[i].size,10)/100)/10+'kB' : Math.round(parseInt(params.downloads[i].size,10)/1000/100)/10+'MB';
+						selectform += '<option value="'+params.downloads[i].url+'" data-url="'+params.downloads[i].url+'" data-dlurl="'+params.downloads[i].dlurl+'">'+params.downloads[i].name+' (<small>'+size+'</small>)</option>';
 					}
 				} else {
 					for (i=0; i<params.sources.length; i+=1) {
