@@ -99,7 +99,7 @@
 				}
 			}
 
-			//duration can be given in seconds or in timecode format
+			//duration can be given in seconds or in NPT format
 			if (params.duration && params.duration != parseInt( params.duration, 10)) {
 				var secArray = parseTimecode(params.duration);
 				params.duration = secArray[0];
@@ -167,7 +167,7 @@
 					wrapper.find('.podlovewebplayer_meta').prepend('<a class="bigplay" title="Play Episode" href="#"></a>');
 					if (typeof params.poster !== 'undefined') {
 						wrapper.find('.podlovewebplayer_meta').append(
-							'<div class="coverart"><img src="'+params.poster+'" alt=""></div>');
+							'<div class="coverart"><img class="coverimg" src="'+params.poster+'" alt=""></div>');
 					}
 					if (typeof $(player).attr('poster') !== 'undefined') {
 						wrapper.find('.podlovewebplayer_meta').append(
@@ -375,11 +375,7 @@
 		} else {
 			// assume array of objects
 			$.each(tempchapters, function( key, value){
-				if( !value.href){
-					value.code = value.title;
-				} else {
-					value.code = '<a href="'+value.href+'">' + value.title + '</a>';
-				}
+				value.code = value.title;
 				if( typeof value.start == 'string') {
 					value.start = parseTimecode(value.start)[0];
 				}
@@ -409,7 +405,7 @@
 
 		//this is a "template" for each chapter row
 		var rowDummy = $(
-			'<tr class="chaptertr" data-start="" data-end="">'
+			'<tr class="chaptertr" data-start="" data-end="" data-img="">'
 			+ '<td class="starttime"><span></span></td>'
 			+ '<td class="chaptername"></td>'
 			+ '<td class="timecode">\n'
@@ -445,7 +441,8 @@
 			//deeplink, start and end
 			row.attr({
 				'data-start': this.start,
-				'data-end' : this.end
+				'data-end' : this.end,
+				'data-img' : (this.img !== undefined) ? this.img : ''
 			});
 
 			//if there is a chapter that starts after an hour, force '00:' on all previous chapters
@@ -889,7 +886,7 @@
 
 	// update the chapter list when the data is loaded
 	var updateChapterMarks = function(player, marks) {
-		var doLinkMarks = marks.closest('table').hasClass('linked');
+		var coverimg = marks.closest('.podlovewebplayer_wrapper').find('.coverimg');
 
 		marks.each(function () {
 			var deepLink,
@@ -900,14 +897,21 @@
 				// isBuffered = player.buffered.end(0) > startTime,
 				isActive   = player.currentTime > startTime - 0.3 &&
 						player.currentTime <= endTime;
-
 			// prevent timing errors
 			if (player.buffered.length > 0) {
 			  var isBuffered = player.buffered.end(0) > startTime;
 			}
-
+			if ((isActive)&&(mark.hasClass('active') === false)) {
+				//console.log(mark.data('img'));
+			}
 			if (isActive) {
 				mark.addClass('active').siblings().removeClass('active');
+				if((mark.data('img') !== undefined)&&(mark.data('img').length > 5)) {
+					if(coverimg[0].src !== mark.data('img')) {
+						coverimg[0].src = mark.data('img');
+					}
+					//console.log(coverimg[0].src);
+				}
 			}
 			if (!isEnabled && isBuffered) {
 				deepLink = '#t=' + generateTimecode([startTime, endTime]);
