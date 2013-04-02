@@ -161,7 +161,7 @@
 				isBuffered = player.buffered.end(0) > startTime;
 			}
 			if (isActive) {
-				chapterimg = validateURL(mark.data('img'));
+				chapterimg = validateURL(mark.data('image'));
 				if ((chapterimg !== null)&&(mark.hasClass('active'))) {
 					if (coverimg[0].src !== chapterimg) {
 						coverimg[0].src = chapterimg;
@@ -308,7 +308,7 @@
 			row.attr({
 				'data-start': this.start,
 				'data-end': this.end,
-				'data-img': (this.img !== undefined) ? this.img : ''
+				'data-img': (this.image !== undefined) ? this.image : ''
 			});
 
 			//if there is a chapter that starts after an hour, force '00:' on all previous chapters
