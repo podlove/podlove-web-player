@@ -186,6 +186,7 @@ If you have an audio file and use one of the following attributes, the player wi
 
 ### Deprecated usage
 
+Chapters now handed over as JSON, please take a look at the standalone-json.html. The previous solution will still work, however we recommend to use the new solution, as it offers some more features.
 Earlier versions of this plugin could handle alternative shortcodes, too: [audio] and [video]. As of version 1.1, these are deprecated as they conflict with other plugins.
 
 == Screenshots ==
@@ -204,6 +205,7 @@ Earlier versions of this plugin could handle alternative shortcodes, too: [audio
 * infobutton style fixes
 * PWP Style designer added
 * various small fixes
+* Chapter hand over via JSON
 
 = 2.0.5 =
 * fixed Blubrry PowerPress compatibility
