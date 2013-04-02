@@ -355,20 +355,37 @@
 
 
 		//prepare row data
-		var tempchapters = [];
+		var tempchapters = params.chapters;
 		var maxchapterstart  = 0;
 
 		//first round: kill empty rows and build structured object
-		$.each(params.chapters.split("\n"), function(i, chapter){
+		if( typeof params.chapters == 'string'){
+			tempchapters = [];
+			$.each(params.chapters.split("\n"), function(i, chapter){
 
-			//exit early if this line contains nothing but whitespace
-			if( !/\S/.test(chapter)) return;
+				//exit early if this line contains nothing but whitespace
+				if( !/\S/.test(chapter)) return;
 
-			//extract the timestamp
-			var line = $.trim(chapter);
-			var tc = parseTimecode(line.substring(0,line.indexOf(' ')));
-			var chaptitle = $.trim(line.substring(line.indexOf(' ')));
-			tempchapters.push({start: tc[0], title: chaptitle });
+				//extract the timestamp
+				var line = $.trim(chapter);
+				var tc = parseTimecode(line.substring(0,line.indexOf(' ')));
+				var chaptitle = $.trim(line.substring(line.indexOf(' ')));
+				tempchapters.push({start: tc[0], code: chaptitle });
+			});
+		} else {
+			// assume array of objects
+			$.each(tempchapters, function( key, value){
+				if( !value.href){
+					value.code = value.title;
+				} else {
+					value.code = '<a href="'+value.href+'">' + value.title + '</a>';
+				}
+			});
+		}
+
+		// order is not guaranteed: http://podlove.org/simple-chapters/
+		tempchapters = tempchapters.sort(function( a, b){
+			return a.start - b.start;
 		});
 
 		//second round: collect more information
@@ -433,7 +450,7 @@
 
 			//insert the chapter data
 			row.find('.starttime > span').text( generateTimecode([Math.round(this.start)], true, forceHours));
-			row.find('.chaptername').html(this.title);
+			row.find('.chaptername').html(this.code);
 			row.find('.timecode > span').text( this.duration);
 
 			row.appendTo( tbody);
