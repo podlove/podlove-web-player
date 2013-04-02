@@ -879,6 +879,11 @@
 		}
 	};
 
+	var validateURL = function(url) {
+		var urlregex = /(^|\s)((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gi;
+		return url.match(urlregex)
+	}
+
 	var setFragmentURL = function(fragment) {
 		var url;
 		window.location.hash = fragment;
@@ -889,7 +894,7 @@
 		var coverimg = marks.closest('.podlovewebplayer_wrapper').find('.coverimg');
 
 		marks.each(function () {
-			var deepLink,
+			var deepLink, chapterimg = null,
 				mark       = $(this),
 				startTime  = mark.data('start'),
 				endTime    = mark.data('end'),
@@ -901,16 +906,13 @@
 			if (player.buffered.length > 0) {
 			  var isBuffered = player.buffered.end(0) > startTime;
 			}
-			if ((isActive)&&(mark.hasClass('active') === false)) {
-				//console.log(mark.data('img'));
-			}
 			if (isActive) {
+				chapterimg = validateURL(mark.data('img'));
 				mark.addClass('active').siblings().removeClass('active');
-				if((mark.data('img') !== undefined)&&(mark.data('img').length > 5)) {
-					if(coverimg[0].src !== mark.data('img')) {
-						coverimg[0].src = mark.data('img');
+				if(chapterimg !== null) {
+					if(coverimg[0].src !== chapterimg) {
+						coverimg[0].src = chapterimg;
 					}
-					//console.log(coverimg[0].src);
 				}
 			}
 			if (!isEnabled && isBuffered) {
