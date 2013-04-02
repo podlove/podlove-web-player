@@ -126,9 +126,11 @@
 	};
 
 	var validateURL = function (url) {
-		var urlregex = /(^|\s)((https?:\/\/)?[\w\-]+(\.[\w\-]+)+\.?(:\d+)?(\/\S*)?)/gi;
-		url = url.match(urlregex);
-		return (url !== null) ? url[0] : url;
+		//de comment this to validate URLs, if you want use relative paths leave it so.
+		//var urlregex = /(^|\s)((https?:\/\/)?[\w\-]+(\.[\w\-]+)+\.?(:\d+)?(\/\S*)?)/gi;
+		//url = url.match(urlregex);
+		//return (url !== null) ? url[0] : url;
+		return url.trim();
 	};
 
 	/**
