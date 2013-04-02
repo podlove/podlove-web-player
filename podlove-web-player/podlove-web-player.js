@@ -1,9 +1,9 @@
 /* PWP 2.0.6 */
 /*jslint browser: true*/
 /*global jQuery, window*/
+
 (function ($) {
 	'use strict';
-
 	var startAtTime = false,
 		stopAtTime = false,
 		// Keep all Players on site
@@ -125,11 +125,11 @@
 		}
 	};
 
-	var validateURL = function(url) {
-		var urlregex = /(^|\s)((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gi;
-		return url.match(urlregex);
+	var validateURL = function (url) {
+		var urlregex = /(^|\s)((https?:\/\/)?[\w\-]+(\.[\w\-]+)+\.?(:\d+)?(\/\S*)?)/gi;
+		url = url.match(urlregex);
+		return (url !== null) ? url[0] : url;
 	};
-
 
 	/**
 	 * add a string as hash in the adressbar
@@ -160,12 +160,14 @@
 			}
 			if (isActive) {
 				chapterimg = validateURL(mark.data('img'));
-				mark.addClass('active').siblings().removeClass('active');
-				if(chapterimg !== null) {
-					if(coverimg[0].src !== chapterimg) {
+				if ((chapterimg !== null)&&(mark.hasClass('active'))) {
+					if (coverimg[0].src !== chapterimg) {
 						coverimg[0].src = chapterimg;
 					}
+				} else {
+					coverimg[0].src = coverimg[0].getAttribute('data-img');
 				}
+				mark.addClass('active').siblings().removeClass('active');
 			}
 			if (!isEnabled && isBuffered) {
 				deepLink = '#t=' + generateTimecode([startTime, endTime]);
@@ -785,7 +787,7 @@
 					wrapper.find('.podlovewebplayer_meta').prepend('<a class="bigplay" title="Play Episode" href="#"></a>');
 					if (params.poster !== undefined) {
 						wrapper.find('.podlovewebplayer_meta').append(
-							'<div class="coverart"><img class="coverimg" src="'+params.poster+'" alt=""></div>');
+							'<div class="coverart"><img class="coverimg" src="' + params.poster + '" data-img="' + params.poster + '" alt=""></div>');
 					}
 					if ($(player).attr('poster') !== undefined) {
 						wrapper.find('.podlovewebplayer_meta').append(
@@ -947,5 +949,4 @@
 			$(player).mediaelementplayer(mejsoptions);
 		});
 	};
-
 }(jQuery));
