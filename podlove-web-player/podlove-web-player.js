@@ -161,7 +161,7 @@
 				isBuffered = player.buffered.end(0) > startTime;
 			}
 			if (isActive) {
-				chapterimg = validateURL(mark.data('image'));
+				chapterimg = validateURL(mark.data('img'));
 				if ((chapterimg !== null)&&(mark.hasClass('active'))) {
 					if (coverimg[0].src !== chapterimg) {
 						coverimg[0].src = chapterimg;
