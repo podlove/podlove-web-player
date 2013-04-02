@@ -66,7 +66,7 @@ function pwpdrandomcolor() {
   document.getElementById('sat').value = random(0,100);
   document.getElementById('lum').value = random(0,100);
   document.getElementById('gra').value = random(0,20);
-  colorize();
+  pwpdcolorize();
 }
 
 function pwpdinsertcolor() {
