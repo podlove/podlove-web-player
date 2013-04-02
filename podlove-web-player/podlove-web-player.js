@@ -380,6 +380,9 @@
 				} else {
 					value.code = '<a href="'+value.href+'">' + value.title + '</a>';
 				}
+				if( typeof value.start == 'string') {
+					value.start = parseTimecode(value.start)[0];
+				}
 			});
 		}
 
