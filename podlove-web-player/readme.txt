@@ -203,6 +203,7 @@ Earlier versions of this plugin could handle alternative shortcodes, too: [audio
 * summary height fix
 * infobutton style fixes
 * PWP Style designer added
+* jshint and jslint valid
 * various small fixes
 
 = 2.0.5 =
