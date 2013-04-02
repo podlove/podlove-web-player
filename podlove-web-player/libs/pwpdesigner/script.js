@@ -1,4 +1,4 @@
-function buildcss(color1,color2,color3,gradient) {
+function pwpdbuildcss(color1,color2,color3,gradient) {
   var css, fontcolor = [], color1hsl = [], color2hsl = [], color3hsl = [];
   
   color1hsl = convHEXtoHSL(color1);
@@ -27,20 +27,30 @@ function buildcss(color1,color2,color3,gradient) {
   return css;
 }
 
-function colorize() {
-  var hue, sat, lum, css;
+function pwpdcolorize() {
+  var hue, sat, lum, css, styleele;
   hue = document.getElementById('hue').value;
   sat = document.getElementById('sat').value;
   lum = document.getElementById('lum').value;
   gra = document.getElementById('gra').value;
-  css = buildcss(convHSLtoHEX([hue, sat, lum]),false,false,gra);
+  css = pwpdbuildcss(convHSLtoHEX([hue, sat, lum]),false,false,gra);
+  if(document.getElementById('pwpdesigner') === null) {
+    styleele = document.createElement('style');
+    document.getElementsByTagName('head')[0].appendChild(styleele);
+  }
   document.getElementById('pwpdesigner').innerHTML = css;
   document.getElementById('pwpstyle1').innerHTML = css;
+  document.getElementById('pwpconsole').value = JSON.stringify({'hue':hue,'sat':sat,'lum':lum,'gra':gra});
 }
 
-function colorreset() {
+function pwpdcolorreset() {
   document.getElementById('pwpdesigner').innerHTML = '';
   document.getElementById('pwpstyle1').innerHTML = '';
+  document.getElementById('hue').value = 180;
+  document.getElementById('sat').value = 0;
+  document.getElementById('lum').value = 33;
+  document.getElementById('gra').value = 9;
+  document.getElementById('pwpconsole').value = '{"hue":180,"sat":0,"lum":33,"gra":9}';
   if(document.getElementById('custom-pwp-style-css') === null) {
     return;
   }
@@ -48,10 +58,48 @@ function colorreset() {
   customcss.parentNode.removeChild(customcss);
 }
 
-function pwpdesignerinit() {
-  var style = document.createElement('style');
-  style.id = 'pwpdesigner';
-  document.getElementsByTagName('head')[0].appendChild(style);
+function pwpdrandomcolor() {
+  function random(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+  document.getElementById('hue').value = random(0,360);
+  document.getElementById('sat').value = random(0,100);
+  document.getElementById('lum').value = random(0,100);
+  document.getElementById('gra').value = random(0,20);
+  colorize();
 }
 
-pwpdesignerinit();
+function pwpdinsertcolor() {
+  var color = window.prompt('please enter your color', '#545454');
+  if(convHEXtoRGB(color.replace('#','')) !== false) {
+    color = convRGBtoHSL(convHEXtoRGB(color.replace('#','')));
+  } else {
+    if(color.indexOf(',') !== -1) {
+      color = convRGBtoHSL(color.split(','));
+    } else if(color.indexOf(' ') !== -1) {
+      color = convRGBtoHSL(color.split(' '));
+    } else {
+      alert('color not compatible');
+      return false;
+    }
+  }
+  document.getElementById('hue').value = color[0];
+  document.getElementById('sat').value = color[1];
+  document.getElementById('lum').value = color[2];
+  document.getElementById('gra').value = 10;
+  pwpdcolorize();
+}
+
+function pwpdesignerinit() {
+  var style, styleele = document.createElement('style');
+  styleele.id = 'pwpdesigner';
+  document.getElementsByTagName('head')[0].appendChild(styleele);
+  style = JSON.parse(document.getElementById('pwpconsole').value);
+  document.getElementById('hue').value = style.hue;
+  document.getElementById('sat').value = style.sat;
+  document.getElementById('lum').value = style.lum;
+  document.getElementById('gra').value = style.gra;
+  pwpdcolorize();
+}
+
+window.onload = pwpdesignerinit;

@@ -1,4 +1,4 @@
-/* PWP 2.0.6 */
+/* PWP 2.0.6 */ 
 
 (function($) {
 	'use strict';

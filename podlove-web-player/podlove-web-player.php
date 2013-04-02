@@ -82,11 +82,13 @@ add_action('wp_print_scripts', 'podlovewebplayer_add_scripts');
 function podlovewebplayer_add_styles() {
 	global $blog_id;
 	$wp_options = get_option('podlovewebplayer_options');
-	wp_enqueue_style( 'pwpfont', plugins_url('libs/pwpfont/css/fontello.css', __FILE__) );
-	wp_enqueue_style( 'mediaelementjs', plugins_url('libs/mediaelement/build/mediaelementplayer.css', __FILE__) );
-	wp_enqueue_style( 'podlovewebplayer', plugins_url('podlove-web-player.css', __FILE__) );
+	wp_enqueue_style( 'pwpfont', plugins_url('libs/pwpfont/css/fontello.css', __FILE__), array(), '2.0.6' );
+	wp_enqueue_style( 'mediaelementjs', plugins_url('libs/mediaelement/build/mediaelementplayer.css', __FILE__), array(), '2.0.6' );
+	wp_enqueue_style( 'podlovewebplayer', plugins_url('podlove-web-player.css', __FILE__), array(), '2.0.6' );
 	if(($wp_options['style_custom'] !== '')&&(isset($wp_options['style_custom']))) {
-		wp_enqueue_style( 'custom-pwp-style', plugins_url('pwp_custom_id-'.$blog_id.'.css', __FILE__) );
+		wp_enqueue_style( 'custom-pwp-style', plugins_url('customcss/pwp_custom_id-'.$blog_id.'.css', __FILE__), array(), $wp_options['style_version'] );
+	} else {
+		wp_dequeue_style( 'custom-pwp-style');
 	}
 }
 add_action( 'wp_print_styles', 'podlovewebplayer_add_styles' );

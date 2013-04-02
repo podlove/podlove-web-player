@@ -1,4 +1,4 @@
-/* PWP 2.0.6 */
+/* PWP 2.0.6 */ 
 
 .podlovewebplayer_wrapper * {
 	font: normal 11px/1.25 helvetica, arial, sans-serif;
@@ -154,8 +154,8 @@
 	opacity: 0.5;
 }
 
-.podlovewebplayer_meta,
-.podlovewebplayer_top {
+.podlovewebplayer_wrapper .podlovewebplayer_top,
+.podlovewebplayer_wrapper .podlovewebplayer_meta {
 	position: relative;
 	display: block;
 	background: #000;
@@ -170,18 +170,19 @@
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
 	background: url(libs/mediaelement/build/background.png);
-	background: #111;
-	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(50, 50, 50, 0.9)), to(rgba(12, 12, 12, 0.9)));
-	background: -webkit-linear-gradient(top, rgba(50, 50, 50, 0.9), rgba(12, 12, 12, 0.9));
-	background: -moz-linear-gradient(top, rgba(50, 50, 50, 0.9), rgba(12, 12, 12, 0.9));
-	background: -o-linear-gradient(top, rgba(50, 50, 50, 0.9), rgba(12, 12, 12, 0.9));
-	background: -ms-linear-gradient(top, rgba(50, 50, 50, 0.9), rgba(12, 12, 12, 0.9));
-	background: linear-gradient(rgba(50, 50, 50, 0.9), rgba(12, 12, 12, 0.9));
+	background: #545454;
+	background: -moz-linear-gradient(top,#545454 0%,#262626 100%);
+	background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#545454),color-stop(100%,#262626));
+	background: -webkit-linear-gradient(top,#545454 0%,#262626 100%);
+	background: -o-linear-gradient(top,#545454 0%,#262626 100%);
+	background: -ms-linear-gradient(top,#545454 0%,#262626 100%);
+	background: linear-gradient(to bottom,#545454 0%,#262626 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#545454',endColorstr='#262626',GradientType=0 );
 }
 
 .podlovewebplayer_top {
-	min-height: 11px;
-	height: 11px;
+	min-height: 11px !important;
+	height: 11px !important;
 	margin-bottom: 0px !important;
 	padding-bottom: 0px;
 }
@@ -379,6 +380,10 @@
 	height: 100%;
 }
 
+.podlovewebplayer_wrapper.podlovewebplayer_video .mejs-container div.mejs-poster.mejs-layer {
+	display: none !important;
+}
+
 .podlovewebplayer_video .mejs-container .mejs-overlay-button {
 	position: absolute;
 	top: 50%;
@@ -438,13 +443,13 @@ filter: dropshadow(color=#000000, offx=0, offy=0);
 	font-size: 12px;
 	line-height: 1.5;
 	color: #fff;
-	border-left: 3px #111 solid;
-	border-right: 3px #111 solid;
+	background: #262626;
+	border-left: 3px #262626 solid;
+	border-right: 3px #262626 solid;
 	-webkit-transition: all 0.5s;
 	-moz-transition: all 0.5s;
 	-o-transition: all 0.5s;
 	transition: all 0.5s;
-	background: rgb(36,36,36);
 }
 
 .podlovewebplayer_meta .summary .summarydiv {
@@ -488,7 +493,9 @@ filter: dropshadow(color=#000000, offx=0, offy=0);
 	height: 0px;
 	font-size: 4px;
 	text-align: center;
-	background: #000;
+	background: #0f0f0f;
+	border-left: 3px #0f0f0f solid;
+	border-right: 3px #0f0f0f solid;
 }
 
 .podlovewebplayer_wrapper .podlovewebplayer_controlbox.active {
@@ -697,8 +704,8 @@ filter: dropshadow(color=#000000, offx=0, offy=0);
 .podlovewebplayer_wrapper .podlovewebplayer_chapterbox {
 	display: block;
 	height: auto;
-	border: 3px #000 solid;
-	border-bottom: 0px #000 solid;
+	border: 3px #0f0f0f solid;
+	border-bottom: 0px #0f0f0f solid;
 	border-top: 0px;
 	overflow-y: hidden;
 	-webkit-transition: all 0.5s;
@@ -725,8 +732,10 @@ filter: dropshadow(color=#000000, offx=0, offy=0);
 	display: block;
 	height: 11px;
 	left: 0px;
-	background: #000;
-	box-shadow: 0px 1px black;
+	background: #0f0f0f;
+	-webkit-box-shadow: 0px 1px #0f0f0f;
+	-moz-box-shadow: 0px 1px #0f0f0f;
+	box-shadow: 0px 1px #0f0f0f;
 	-webkit-border-bottom-left-radius: 10px;
 	-webkit-border-bottom-right-radius: 10px;
 	-moz-border-radius-bottomleft: 10px;

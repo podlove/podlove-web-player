@@ -8,3 +8,7 @@
 .colorslider label:after {
   content: ':';
 }
+
+.colorslider input[type='range'] {
+min-width: 300px;
+}
