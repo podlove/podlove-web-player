@@ -284,7 +284,7 @@
 	height: 75px !important;
 	width: auto !important;
 	max-width: 275px !important;
-	top: 12px !important;
+	top: 10px !important;
 	left: 0px !important;
 	right: auto !important;
 	bottom: auto !important;
@@ -360,6 +360,7 @@
 	min-height: 40px;
 	height: auto;
 	padding-top: 30px;
+	padding-bottom: 45px;
 	margin-bottom: 0px !important;
 	-webkit-border-top-left-radius: 0px;
 	-webkit-border-top-right-radius: 0px;
@@ -487,6 +488,11 @@ filter: dropshadow(color=#000000, offx=0, offy=0);
 	top: -30px;
 	margin-bottom: -25px;
 	height: 30px;
+}
+
+.podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_meta .togglers {
+	top: auto;
+	bottom: -10px;
 }
 
 .podlovewebplayer_wrapper .podlovewebplayer_controlbox {
