@@ -48,8 +48,7 @@
 
 			if (leadingZeros) {
 				// required (minutes : seconds)
-				part = zeroFill(minutes, 2) + ':' +
-					zeroFill(seconds, 2);
+				part = zeroFill(minutes, 2) + ':' + zeroFill(seconds, 2);
 				hours = zeroFill(hours, 2);
 				hours = hours === '00' && !forceHours ? '' : hours + ':';
 				milliseconds = milliseconds ? '.' + zeroFill(milliseconds, 3) : '';
@@ -163,11 +162,13 @@
 			if (isActive) {
 				chapterimg = validateURL(mark.data('img'));
 				if ((chapterimg !== null)&&(mark.hasClass('active'))) {
-					if (coverimg[0].src !== chapterimg) {
+					if ((coverimg[0].src !== chapterimg)&&(chapterimg.length > 5)) {
 						coverimg[0].src = chapterimg;
 					}
 				} else {
-					coverimg[0].src = coverimg[0].getAttribute('data-img');
+					if (coverimg[0].src !== coverimg[0].getAttribute('data-img')) {
+						coverimg[0].src = coverimg[0].getAttribute('data-img');
+					}
 				}
 				mark.addClass('active').siblings().removeClass('active');
 			}
@@ -221,7 +222,6 @@
 		if (params.chapterlinks !== 'false') {
 			table.addClass('linked linked_' + params.chapterlinks);
 		}
-
 
 		//prepare row data
 		var tempchapters = params.chapters;
@@ -292,7 +292,7 @@
 			} else {
 				if (params.duration === 0) {
 					this.end = 9999999999;
-					this.duration = '…';
+					this.duration = '&#8230;';
 				} else {
 					this.end = params.duration;
 					this.duration = generateTimecode([Math.round(this.end - this.start)], false);
@@ -908,10 +908,10 @@
 				selectform += '</select>';
 				wrapper.find('.podlovewebplayer_downloadbuttons').append(selectform);
 				if (params.downloads !== undefined) {
-					wrapper.find('.podlovewebplayer_downloadbuttons').append('<a href="#" class="downloadbutton infobuttons pwp-icon-download" title="Download"> <span>Download</span></a> ');
+					wrapper.find('.podlovewebplayer_downloadbuttons').append('<a href="#" class="downloadbutton infobuttons pwp-icon-download" title="Download"></a> ');
 				}
-				wrapper.find('.podlovewebplayer_downloadbuttons').append('<a href="#" class="openfilebutton infobuttons pwp-icon-link-ext" title="Open"> <span>Open</span></a> ');
-				wrapper.find('.podlovewebplayer_downloadbuttons').append('<a href="#" class="fileinfobutton infobuttons pwp-icon-info-circle" title="Info"> <span>Info</span></a> ');
+				wrapper.find('.podlovewebplayer_downloadbuttons').append('<a href="#" class="openfilebutton infobuttons pwp-icon-link-ext" title="Open"></a> ');
+				wrapper.find('.podlovewebplayer_downloadbuttons').append('<a href="#" class="fileinfobutton infobuttons pwp-icon-info-circle" title="Info"></a> ');
 			}
 
 			//build chapter table
@@ -924,7 +924,6 @@
 			if (richplayer || haschapters) {
 				wrapper.append('<div class="podlovewebplayer_tableend"></div>');
 			}
-
 
 			// parse deeplink
 			deepLink = parseTimecode(window.location.href);

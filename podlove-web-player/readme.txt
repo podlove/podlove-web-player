@@ -201,8 +201,8 @@ Earlier versions of this plugin could handle alternative shortcodes, too: [audio
 == Changelog ==
 
 = 2.1.0 =
-* preparation for 2.1
 * PWP Style Editor added
+* Download bar added
 
 = 2.0.6 =
 * podPress compatibility

@@ -257,6 +257,7 @@
 .podlovewebplayer_wrapper .togglers a.pwp-icon-list-bullet:before { content: "\f0ca"; }
 .podlovewebplayer_wrapper .togglers a.pwp-icon-clock:before { content: "\1f554"; }
 .podlovewebplayer_wrapper .togglers a.pwp-icon-export:before { content: "\e715"; }
+.podlovewebplayer_wrapper .togglers a.pwp-icon-download:before { content: "\1f4e5"; }
 
 .podlovewebplayer_wrapper .podlovewebplayer_timecontrol.podlovewebplayer_controlbox a.pwp-icon-to-start:before { content: "\23ee"; }
 .podlovewebplayer_wrapper .podlovewebplayer_timecontrol.podlovewebplayer_controlbox a.pwp-icon-to-end:before { content: "\23ed"; }
@@ -269,6 +270,10 @@
 .podlovewebplayer_wrapper .podlovewebplayer_sharebuttons.podlovewebplayer_controlbox a.pwp-icon-gplus:before { content: "\f30f"; }
 .podlovewebplayer_wrapper .podlovewebplayer_sharebuttons.podlovewebplayer_controlbox a.pwp-icon-appnet:before { content: "\e1"; }
 .podlovewebplayer_wrapper .podlovewebplayer_sharebuttons.podlovewebplayer_controlbox a.pwp-icon-mail:before { content: "\2709"; }
+
+.podlovewebplayer_wrapper .podlovewebplayer_downloadbuttons.podlovewebplayer_controlbox a.pwp-icon-download:before { content: "\1f4e5"; }
+.podlovewebplayer_wrapper .podlovewebplayer_downloadbuttons.podlovewebplayer_controlbox a.pwp-icon-link-ext:before { content: "\f08e"; }
+.podlovewebplayer_wrapper .podlovewebplayer_downloadbuttons.podlovewebplayer_controlbox a.pwp-icon-info-circle:before { content: "\e705"; }
 
 .podlovewebplayer_meta .coverart {
 	display: inline;
@@ -541,8 +546,6 @@
 	height: 30px;
 	width: 30px;
 }
-
-.podlovewebplayer_meta .togglers a.pwp-icon-download { display: none !important; }
 
 .podlovewebplayer_wrapper .podlovewebplayer_controlbox .infobuttons,
 .podlovewebplayer_wrapper .podlovewebplayer_controlbox .infobuttons a {
