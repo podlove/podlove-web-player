@@ -292,7 +292,7 @@
 			} else {
 				if (params.duration === 0) {
 					this.end = 9999999999;
-					this.duration = '&#8230;';
+					this.duration = '…';
 				} else {
 					this.end = params.duration;
 					this.duration = generateTimecode([Math.round(this.end - this.start)], false);

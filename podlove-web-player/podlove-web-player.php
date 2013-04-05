@@ -196,23 +196,24 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 	$attributes_string = !empty($attributes) ? implode(' ', $attributes) : '';
 	
 	// ------------------- prepare <source> elements
+	$mp3source = '';
 	foreach ( $supported_sources as $source_extension => $source_type ) {
 		if ( ${$source_extension} ) {
 			$src       = htmlspecialchars( ${$source_extension} );
 			$sources[] = '<source src="' . $src . '" type=\'' . $source_type . '\' />';
 			$files[]   = $src;
+			if ($source_type == 'audio/mpeg') {
+				$mp3source = 'src="'.$src.'" type="'.$source_type.'" preload="none"';
+				$sources[] = '<object type="application/x-shockwave-flash" data="flashmediaelement.swf">
+					<param name="movie" value="flashmediaelement.swf" />
+					<param name="flashvars" value="controls=true&file=' . $files[0] . '" />
+				</object>';
+			}
 		}
 	}
 
 	if ( $captions ) {
 		$sources[] = '<track src="' . $captions . '" kind="subtitles" srclang="' . $captionslang . '" />';
-	}
-
-	if ( count( $files ) ) {
-		$sources[] = '<object type="application/x-shockwave-flash" data="flashmediaelement.swf">
-						<param name="movie" value="flashmediaelement.swf" />
-						<param name="flashvars" value="controls=true&file=' . $files[0] . '" />
-					</object>';
 	}
 
 	$sources_string = !empty($sources) ? implode("\n\t\t", $sources) : '';
@@ -305,13 +306,10 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 	}
 
 	// ------------------- build actual html player code
-
-	$return = <<<_end_
-	<{$tag_name} id="podlovewebplayer_{$podlovewebplayer_index}" {$dimensions} controls {$attributes_string}>
+	$return = "<{$tag_name} id=\"podlovewebplayer_{$podlovewebplayer_index}\" {$dimensions} controls {$attributes_string} {$mp3source}>
 		{$sources_string}
 		{$fallback}
-	</{$tag_name}>
-_end_;
+	</{$tag_name}>";
 	$return .= "\n\n<script>jQuery('#podlovewebplayer_{$podlovewebplayer_index}').podlovewebplayer(" . json_encode( $init_options ) . ");</script>\n";
 	$podlovewebplayer_index++;
 	return $return;

@@ -676,10 +676,6 @@
 
 }
 
-.podlovewebplayer_chapters .active .chapterplay a[rel=player] span {
-	/*background-position: -1px -16px;*/
-}
-
 .podlovewebplayer_chapters .paused .chapterplay a[rel=player] span {
 	background-position: 0 0 !important;
 }
@@ -753,13 +749,6 @@
 	border-bottom-right-radius: 10px;
 }
 
-/*
-.podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_tableend {
-	position: relative;
-	height: 30px;
-	top: -10px;
-}*/
-
 .podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_tableend,
 .podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_controlbox,
 .podlovewebplayer_wrapper.podlovewebplayer_video .summary {
@@ -784,49 +773,18 @@ and (max-width : 500px) {
 		margin-right: 0px;
 	}
 	.podlovewebplayer_meta {
-		height: 210px;
-		-webkit-border-top-left-radius: 0px;
-		-webkit-border-top-right-radius: 0px;
-		-moz-border-radius-topleft: 0px;
-		-moz-border-radius-topright: 0px;
-		border-top-left-radius: 0px;
-		border-top-right-radius: 0px;
-	}
-	.podlovewebplayer_video.podlovewebplayer_meta {
-		height: auto;
-	}
-	.podlovewebplayer_meta h3 a, .podlovewebplayer_meta h3 {
-		position: initial !important;
-		top: 5px !important;
-		left: 10px !important;
-		right: 10px !important;
-		text-align: center !important;
-	}
-	.podlovewebplayer_meta .coverart {
-		position: absolute;
-		bottom: 20px;
-		left: 120px;
-	}
-	.podlovewebplayer_meta .coverart img {
-		height: 75px !important;
-		width: 75px !important;
-	}
-	.podlovewebplayer_meta .bigplay {
-		position: absolute;
-		bottom: 5px;
+		-webkit-border-top-left-radius: 0px !important;
+		-webkit-border-top-right-radius: 0px !important;
+		-moz-border-radius-topleft: 0px !important;
+		-moz-border-radius-topright: 0px !important;
+		border-top-left-radius: 0px !important;
+		border-top-right-radius: 0px !important;
 	}
 
 	.podlovewebplayer_meta .subtitle {
 		position: initial;
 		left: 10px;
 		right: 10px;
-		margin: auto;
-		text-align: center;
-	}
-	.podlovewebplayer_wrapper.podlovewebplayer_audio .podlovewebplayer_meta .togglers {
-		width: 20px;
-		right: 20px;
-		bottom: 15px;
 	}
 
 	.podlovewebplayer_wrapper .podlovewebplayer_controlbox a.infobuttons {
