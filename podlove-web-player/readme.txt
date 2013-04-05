@@ -4,7 +4,7 @@ Donate link: http://podlove.org/
 Tags: podcasting, podlove, html5audio, audio, video, podcast, player
 Requires at least: 3.4.0
 Tested up to: 3.5.1
-Stable tag: 2.1
+Stable tag: 2.0.7
 License: BSD 2-Clause License
 License URI: http://opensource.org/licenses/BSD-2-Clause
 
@@ -195,14 +195,12 @@ Earlier versions of this plugin could handle alternative shortcodes, too: [audio
 
 1. Podlove Web Player in full swing, using the chapters table to jump to different section of the audio source.
 2. Podlove Web Player in chapters hidden and timecontrol-bar visible view.
-3. Podlove Web Player Designer with colorized Player.
-4. Podlove Web Player in "einschlafen Podcast"-Style.
 
 == Changelog ==
 
-= 2.1.0 =
-* PWP Style Editor added
+= 2.0.7 =
 * Download bar added
+* Button config added
 
 = 2.0.6 =
 * podPress compatibility

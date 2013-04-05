@@ -1,14 +1,14 @@
 <?php
 /**
  * @package PodloveWebPlayer
- * @version 2.0.6
+ * @version 2.0.7
  */
 
 /*
 Plugin Name: Podlove Web Player
 Plugin URI: http://podlove.org/podlove-web-player/
 Description: Video and audio plugin for WordPress built on the MediaElement.js HTML5 media player library.
-Version: 2.0.6
+Version: 2.0.7
 Author: Podlove Team
 Author URI: http://podlove.org/
 License: BSD 2-Clause License
@@ -68,7 +68,7 @@ function podlovewebplayer_add_scripts() {
 	wp_enqueue_script( 
 		'podlovewebplayer', 
 		plugins_url('podlove-web-player.js', __FILE__), 
-		array('jquery', 'mediaelementjs'), '2.0.6', false
+		array('jquery', 'mediaelementjs'), '2.0.7', false
 	);
 }
 add_action('wp_print_scripts', 'podlovewebplayer_add_scripts');
@@ -80,14 +80,9 @@ add_action('wp_print_scripts', 'podlovewebplayer_add_scripts');
 function podlovewebplayer_add_styles() {
 	global $blog_id;
 	$wp_options = get_option('podlovewebplayer_options');
-	wp_enqueue_style( 'pwpfont', plugins_url('libs/pwpfont/css/fontello.css', __FILE__), array(), '2.0.6' );
-	wp_enqueue_style( 'mediaelementjs', plugins_url('libs/mediaelement/build/mediaelementplayer.css', __FILE__), array(), '2.0.6' );
-	wp_enqueue_style( 'podlovewebplayer', plugins_url('podlove-web-player.css', __FILE__), array(), '2.0.6' );
-	if(($wp_options['style_custom'] !== '')&&(isset($wp_options['style_custom']))) {
-		wp_enqueue_style( 'custom-pwp-style', plugins_url('customcss/pwp_custom_id-'.$blog_id.'.css', __FILE__), array(), $wp_options['style_version'] );
-	} else {
-		wp_dequeue_style( 'custom-pwp-style');
-	}
+	wp_enqueue_style( 'pwpfont', plugins_url('libs/pwpfont/css/fontello.css', __FILE__), array(), '2.0.7' );
+	wp_enqueue_style( 'mediaelementjs', plugins_url('libs/mediaelement/build/mediaelementplayer.css', __FILE__), array(), '2.0.7' );
+	wp_enqueue_style( 'podlovewebplayer', plugins_url('podlove-web-player.css', __FILE__), array(), '2.0.7' );
 }
 add_action( 'wp_print_styles', 'podlovewebplayer_add_styles' );
 
@@ -206,7 +201,7 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 				$mp3source = 'src="'.$src.'" type="'.$source_type.'" preload="none"';
 				$sources[] = '<object type="application/x-shockwave-flash" data="flashmediaelement.swf">
 					<param name="movie" value="flashmediaelement.swf" />
-					<param name="flashvars" value="controls=true&file=' . $files[0] . '" />
+					<param name="flashvars" value="controls=true&file=' . $src . '" />
 				</object>';
 			}
 		}
@@ -266,10 +261,10 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 		'chaptersVisible'     => in_array( $chaptersvisible, $truthy, true ),
 		'timecontrolsVisible' => in_array( $timecontrolsvisible, $truthy, true ),
 		'summaryVisible'      => in_array( $summaryvisible, $truthy, true ),
-		'hidetimebutton'      => in_array( $wp_options['buttons_time'], $truthy, true ),
-		'hidedownloadbutton'  => in_array( $wp_options['buttons_download'], $truthy, true ),
-		'hidesharebutton'     => in_array( $wp_options['buttons_share'], $truthy, true ),
-		'sharewholeepisode'   => in_array( $wp_options['buttons_sharemode'], $truthy, true ),
+		'hidetimebutton'      => in_array( @$wp_options['buttons_time'], $truthy, true ),
+		'hidedownloadbutton'  => in_array( @$wp_options['buttons_download'], $truthy, true ),
+		'hidesharebutton'     => in_array( @$wp_options['buttons_share'], $truthy, true ),
+		'sharewholeepisode'   => in_array( @$wp_options['buttons_sharemode'], $truthy, true ),
 		'loop'                => in_array( $loop, $truthy, true ),
 		'chapterlinks'        => $chapterlinks
 	);
@@ -468,7 +463,7 @@ function podlovewebplayer_enclosures( $content ) {
 	}
 
 	// determine title
-	// $title = "";
+	 $title = "";
 	if ( isset( $wp_options['enclosure_richplayer'] ) ) {
 		$title = 'title="' . $post->post_title . '"';
 	}
