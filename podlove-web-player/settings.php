@@ -1,6 +1,11 @@
 <?php 
 
 if ( is_admin() ){
+	add_action( 'admin_menu', 'podlovewebplayer_create_menu' );
+	add_action( 'admin_init', 'podlovewebplayer_register_settings' );
+}
+
+function pwp_register_admin_styles() {
 	global $blog_id;
 	$wp_options = get_option('podlovewebplayer_options');
 	wp_enqueue_style( 'mediaelementjs', plugins_url('libs/mediaelement/build/mediaelementplayer.css', __FILE__), array(), '2.0.6' );
@@ -14,10 +19,8 @@ if ( is_admin() ){
 	}
 	wp_enqueue_script( 'colorconverter', plugins_url('libs/pwpdesigner/colorconv.js', __FILE__), array(), '2.0.6' );
 	wp_enqueue_script( 'pwpdesigner', plugins_url('libs/pwpdesigner/script.js', __FILE__), array(), '2.0.6' );
-	
-	add_action( 'admin_menu', 'podlovewebplayer_create_menu' );
-	add_action( 'admin_init', 'podlovewebplayer_register_settings' );
 }
+add_action( 'admin_enqueue_scripts', 'pwp_register_admin_styles' );
 
 function css_path() {
 	global $blog_id;
