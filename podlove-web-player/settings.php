@@ -79,8 +79,9 @@ function podlovewebplayer_register_settings() {
 
 	foreach($settings as $sectionname => $section) {
 		$function = false;
-		if ( isset( $section['function'] ) )
+		if ( isset( $section['function'] ) ) {
 			$function = $pwp.'_'.$sectionname;
+		}
 		add_settings_section( $pwp.'_'.$sectionname, $section['title'], $function, $pwp );
 		if ( isset( $section['fields'] ) ) {
 			$i = 0;
