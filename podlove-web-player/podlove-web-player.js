@@ -162,13 +162,11 @@
 			if (isActive) {
 				chapterimg = validateURL(mark.data('img'));
 				if ((chapterimg !== null)&&(mark.hasClass('active'))) {
-					if ((coverimg[0].src !== chapterimg)&&(chapterimg.length > 5)) {
-						coverimg[0].src = chapterimg;
+					if ((coverimg.attr('src') !== chapterimg)&&(chapterimg.length > 5)) {
+						coverimg.attr('src',chapterimg);
 					}
 				} else {
-					if (coverimg[0].src !== coverimg[0].getAttribute('data-img')) {
-						coverimg[0].src = coverimg[0].getAttribute('data-img');
-					}
+					coverimg.attr('src', coverimg.data('img'));
 				}
 				mark.addClass('active').siblings().removeClass('active');
 			}
