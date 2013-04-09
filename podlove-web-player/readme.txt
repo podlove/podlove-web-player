@@ -201,6 +201,8 @@ Earlier versions of this plugin could handle alternative shortcodes, too: [audio
 = 2.0.7 =
 * Download bar added
 * Button config added
+* PHP Warnings removed
+* various small changes
 
 = 2.0.6 =
 * podPress compatibility
