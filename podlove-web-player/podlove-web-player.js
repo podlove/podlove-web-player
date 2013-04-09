@@ -1,4 +1,4 @@
-/* PWP 2.0.6 */
+/* PWP 2.0.7 */
 /*jslint browser: true*/
 /*global jQuery, window*/
 
@@ -166,7 +166,9 @@
 						coverimg.attr('src',chapterimg);
 					}
 				} else {
-					coverimg.attr('src', coverimg.data('img'));
+					if (coverimg.attr('src') !== coverimg.data('img')) {
+						coverimg.attr('src', coverimg.data('img'));
+					}
 				}
 				mark.addClass('active').siblings().removeClass('active');
 			}
