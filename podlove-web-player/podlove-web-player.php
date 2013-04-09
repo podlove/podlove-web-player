@@ -118,8 +118,8 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 		'ogg' => '',
 		'opus' => '', // new file type. not part of mejs, but works anyway
 		'poster' => '',
-		'width' => $wp_options[ $tag_name . '_width' ],
-		'height' => $wp_options[ $tag_name . '_height' ],
+		'width' => @$wp_options[ $tag_name . '_width' ],
+		'height' => @$wp_options[ $tag_name . '_height' ],
 		'type' => '',
 		'preload' => 'none',
 		'autoplay' => '',
@@ -148,7 +148,7 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 	if ( $type ) {
 		$type = strtolower( $type );
 		$attributes[] = 'type="' . $type . '"';
-	} elseif ( $wp_options[$tag_name . '_type'] ) {
+	} elseif ( @$wp_options[$tag_name . '_type'] ) {
 		$attributes[] = 'type="' . $wp_options[$tag_name . '_type'] . '"';
 	}
 
