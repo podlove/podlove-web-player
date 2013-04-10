@@ -1,7 +1,3 @@
-/* PWP 2.0.7 */
-/*jslint browser: true*/
-/*global jQuery, window*/
-
 (function ($) {
 	'use strict';
 	var startAtTime = false,
