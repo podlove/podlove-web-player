@@ -56,19 +56,14 @@ include_once( PODLOVEWEBPLAYER_DIR . 'settings.php' );
 
 function podlovewebplayer_add_scripts() {
 	wp_enqueue_script( 
-		'mediaelementjs', 
-		plugins_url('libs/mediaelement/build/mediaelement-and-player.min.js', __FILE__), 
-		array('jquery'), '2.10.3', false 
-	);
-	wp_enqueue_script( 
 		'ba_hashchange', 
-		plugins_url('libs/jquery.ba-hashchange.min.js', __FILE__), 
-		array('jquery'), '1.3.0', false
+		plugins_url('static/hashchange.min.js', __FILE__), 
+		array(), '1.3.0', false
 	);
 	wp_enqueue_script( 
 		'podlovewebplayer', 
-		plugins_url('podlove-web-player.js', __FILE__), 
-		array('jquery', 'mediaelementjs'), '2.0.7', false
+		plugins_url('static/podlove-web-player.js', __FILE__), 
+		array(), '2.0.8', false
 	);
 }
 add_action('wp_print_scripts', 'podlovewebplayer_add_scripts');
@@ -80,9 +75,7 @@ add_action('wp_print_scripts', 'podlovewebplayer_add_scripts');
 function podlovewebplayer_add_styles() {
 	global $blog_id;
 	$wp_options = get_option('podlovewebplayer_options');
-	wp_enqueue_style( 'pwpfont', plugins_url('libs/pwpfont/css/fontello.css', __FILE__), array(), '2.0.7' );
-	wp_enqueue_style( 'mediaelementjs', plugins_url('libs/mediaelement/build/mediaelementplayer.css', __FILE__), array(), '2.0.7' );
-	wp_enqueue_style( 'podlovewebplayer', plugins_url('podlove-web-player.css', __FILE__), array(), '2.0.7' );
+	wp_enqueue_style( 'pwpfont', plugins_url('static/podlove-web-player.css', __FILE__), array(), '2.0.8' );
 }
 add_action( 'wp_print_styles', 'podlovewebplayer_add_styles' );
 

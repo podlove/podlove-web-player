@@ -1,5 +1,3 @@
-/* PWP 2.0.7 */ 
-
 .podlovewebplayer_wrapper * {
 	font: normal 11px/1.25 helvetica, arial, sans-serif;
 	-webkit-text-size-adjust: inherit;
@@ -137,23 +135,6 @@
 	text-align: right;
 }
 
-.podlovewebplayer_wrapper .podlovewebplayer_chapters a.deeplink {
-	background: url(img/deeplink.png) 50% 100% no-repeat;
-	background-size: 85%;
-	float: right;
-	width: 1em;
-	margin-left: 0.5em;
-	text-indent: 100%;
-	white-space: nowrap;
-	overflow: hidden;
-}
-
-.podlovewebplayer_wrapper .podlovewebplayer_chapters a.deeplink:focus,
-.podlovewebplayer_wrapper .podlovewebplayer_chapters a.deeplink:hover,
-.podlovewebplayer_wrapper .podlovewebplayer_chapters a.deeplink:active {
-	opacity: 0.5;
-}
-
 .podlovewebplayer_wrapper .podlovewebplayer_top,
 .podlovewebplayer_wrapper .podlovewebplayer_meta {
 	position: relative;
@@ -169,7 +150,7 @@
 	-moz-border-radius-topright: 10px;
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
-	background: url(libs/mediaelement/build/background.png);
+	background: url(background.png);
 	background: #545454;
 	background: -moz-linear-gradient(top,#545454 0%,#262626 100%);
 	background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#545454),color-stop(100%,#262626));
@@ -402,11 +383,11 @@
 	width: 100px;
 	height: 100px;
 	margin: -50px 0 0 -50px;
-	background: url(./libs/mediaelement/build/bigplay.svg) no-repeat;
+	background: url(bigplay.svg) no-repeat;
 }
 
 .no-svg .mejs-overlay-button { 
-	background-image: url(./libs/mediaelement/build/bigplay.png);
+	background-image: url(bigplay.png);
 }
 
 .mejs-overlay:hover .mejs-overlay-button {
@@ -417,7 +398,7 @@
 	display: block;
 	width: 80px;
 	height: 80px;
-	background: transparent url(./libs/mediaelement/build/loading.gif) 50% 50% no-repeat;
+	background: transparent url(loading.gif) 50% 50% no-repeat;
 }
 
 .podlovewebplayer_wrapper .mejs-container .mejs-inner .mejs-controls .mejs-time-rail .mejs-time-total .mejs-time-loaded {
@@ -557,7 +538,7 @@
 .podlovewebplayer_wrapper .podlovewebplayer_controlbox .infobuttons,
 .podlovewebplayer_wrapper .podlovewebplayer_controlbox .infobuttons a {
 	position: relative;
-	margin: 5%;
+	margin: 4%;
 	padding: 0px;
 	z-index: 78;
 	font-size: 2.4em;
@@ -678,8 +659,8 @@
 	top: 4px;
 	text-indent: -1000px;
 	margin: 0 0 0 6px;
-	background: transparent url(libs/mediaelement/build/controls.png) no-repeat 0 0;
-	background-image: url(libs/mediaelement/build/controls.svg);
+	background: transparent url(controls.png) no-repeat 0 0;
+	background-image: url(controls.svg);
 
 }
 
