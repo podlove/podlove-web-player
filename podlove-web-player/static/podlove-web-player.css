@@ -1320,6 +1320,11 @@
 	font-size: 13px !important;
 }
 
+.podlovewebplayer_video.podlovewebplayer_wrapper {
+	margin-left: auto;
+	margin-right: auto;
+}
+
 .podlovewebplayer_video .podlovewebplayer_meta .episodetitle {
 	text-align: left;
 	padding-left: 20px;
@@ -1525,7 +1530,7 @@
 .podlovewebplayer_wrapper .podlovewebplayer_controlbox .infobuttons,
 .podlovewebplayer_wrapper .podlovewebplayer_controlbox .infobuttons a {
 	position: relative;
-	margin: 5%;
+	margin: 4%;
 	padding: 0px;
 	z-index: 78;
 	font-size: 2.4em;

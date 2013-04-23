@@ -732,8 +732,8 @@
 			});
 
 			//wrapper and init stuff
-			if (params.width === parseInt(params.width, 10)) {
-				params.width += 'px';
+			if (params.width.toString().trim() === parseInt(params.width, 10).toString().trim()) {
+				params.width = params.width.toString().trim()+'px';
 			}
 
 			var orig = player;
