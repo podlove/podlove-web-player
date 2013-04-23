@@ -707,6 +707,7 @@
 
 			var richplayer = false,
 				haschapters = false,
+				hiddenTab = false,
 				i = 0;
 
 			//fine tuning params
@@ -949,10 +950,26 @@
 			// parse deeplink
 			deepLink = parseTimecode(window.location.href);
 			if (deepLink !== false && players.length === 1) {
-				$(player).attr({
-					preload: 'auto',
-					autoplay: 'autoplay'
-				});
+				if (document.hidden !== undefined) {
+					hiddenTab = document.hidden;
+				} else if (document.mozHidden !== undefined) {
+					hiddenTab = document.mozHidden;
+				} else if (document.msHidden !== undefined) {
+					hiddenTab = document.msHidden;
+				} else if (document.webkitHidden !== undefined) {
+					hiddenTab = document.webkitHidden;
+				}
+				
+				if(hiddenTab === true) {
+					$(player).attr({
+						preload: 'auto'
+					});
+				} else {
+					$(player).attr({
+						preload: 'auto',
+						autoplay: 'autoplay'
+					});
+				}
 				startAtTime = deepLink[0];
 				stopAtTime = deepLink[1];
 			} else if (params && params.permalink) {
