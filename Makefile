@@ -10,6 +10,8 @@ build:
 	cp ./podlove-web-player/libs/mediaelement/build/flashmediaelement.swf ./podlove-web-player/static/flashmediaelement.swf
 	cp ./podlove-web-player/libs/mediaelement/build/controls.svg ./podlove-web-player/static/controls.svg
 	cp ./podlove-web-player/libs/mediaelement/build/controls.png ./podlove-web-player/static/controls.png
+	cp ./podlove-web-player/libs/mediaelement/build/background.png ./podlove-web-player/static/background.png
+	cp ./podlove-web-player/libs/mediaelement/build/loading.gif ./podlove-web-player/static/loading.gif
 	cp ./podlove-web-player/libs/jquery.ba-hashchange.min.js ./podlove-web-player/static/hashchange.min.js
 	cp ./podlove-web-player/libs/mediaelement/build/bigplay.svg ./podlove-web-player/static/bigplay.svg
 	cp ./podlove-web-player/libs/mediaelement/build/bigplay.png ./podlove-web-player/static/bigplay.png
