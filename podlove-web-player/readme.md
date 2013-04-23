@@ -1,10 +1,11 @@
 # Podlove Web Player
-Contributors: [Gerrit van Aaken](https://github.com/gerritvanaaken/), [Simon Waldherr](https://github.com/simonwaldherr/)
-Donate link: http://podlove.org/
-Tags: `podcasting`, `podlove`, `html5audio`, `audio`, `video`, `podcast`, `player`
-Requires at least: 3.4.0
-Tested up to: 3.5.1
-Stable tag: 2.0.7
+
+Contributors: [Gerrit van Aaken](https://github.com/gerritvanaaken/), [Simon Waldherr](https://github.com/simonwaldherr/)  
+Donate link: http://podlove.org/  
+Tags: `podcasting`, `podlove`, `html5audio`, `audio`, `video`, `podcast`, `player`  
+Requires at least: 3.4.0  
+Tested up to: 3.5.1  
+Stable tag: 2.0.7  
 License: [BSD 2-Clause](http://opensource.org/licenses/BSD-2-Clause)
 
 HTML5 based audio/video player, focused on podcasts and similar media blogs. It supports chapters, deeplinks, captions, social media buttons and more.
