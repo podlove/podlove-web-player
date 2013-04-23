@@ -186,7 +186,8 @@ function(){f.ajax({dataType:"html",url:d,success:function(e){c.find(".mejs-postr
 		players = [],
 		// Timecode as described in http://podlove.org/deep-link/
 		// and http://www.w3.org/TR/media-frags/#fragment-dimensions
-		timecodeRegExp = /(?:(\d+):)?(\d+):(\d+)(\.\d+)?([,\-](?:(\d+):)?(\d+):(\d+)(\.\d+)?)?/;
+		timecodeRegExp = /(?:(\d+):)?(\d+):(\d+)(\.\d+)?([,\-](?:(\d+):)?(\d+):(\d+)(\.\d+)?)?/,
+		ignoreHashChange = false;
 
 	/**
 	 * return number as string lefthand filled with zeros
@@ -601,17 +602,19 @@ function(){f.ajax({dataType:"html",url:d,success:function(e){c.find(".mejs-postr
 
 			metainfo.find('.bigplay').on('click', function () {
 				if ($(this).hasClass('bigplay')) {
+					var playButton = $(this).parent().find('.bigplay');
+
 					if ((typeof player.currentTime === 'number') && (player.currentTime > 0)) {
 						if (player.paused) {
-							$(this).parent().find('.bigplay').addClass('playing');
+							playButton.addClass('playing');
 							player.play();
 						} else {
-							$(this).parent().find('.bigplay').removeClass('playing');
+							playButton.removeClass('playing');
 							player.pause();
 						}
 					} else {
-						if (!$(this).parent().find('.bigplay').hasClass('playing')) {
-							$(this).parent().find('.bigplay').addClass('playing');
+						if (!playButton.hasClass('playing')) {
+							playButton.addClass('playing');
 							$(this).parent().parent().find('.mejs-time-buffering').show();
 						}
 						// flash fallback needs additional pause
@@ -761,7 +764,9 @@ function(){f.ajax({dataType:"html",url:d,success:function(e){c.find(".mejs-postr
 		});
 
 		// wait for the player or you'll get DOM EXCEPTIONS
-		jqPlayer.bind('canplay', function () {
+		// And just listen once because of a special behaviour in firefox
+		// --> https://bugzilla.mozilla.org/show_bug.cgi?id=664842
+		jqPlayer.one('canplay', function () {
 			canplay = true;
 
 			// add duration of final chapter
@@ -787,28 +792,44 @@ function(){f.ajax({dataType:"html",url:d,success:function(e){c.find(".mejs-postr
 				checkCurrentURL();
 
 				// handle browser history navigation
-				$(window).bind('hashchange onpopstate', checkCurrentURL);
-
+				$(window).bind('hashchange onpopstate', function(e) {
+					if (!ignoreHashChange) {
+						checkCurrentURL();
+					}
+					ignoreHashChange = false;
+				});
 			}
+		});
 
-			// always update Chaptermarks though
-			jqPlayer.bind('timeupdate', function () {
+		// always update Chaptermarks though
+		jqPlayer
+			.on('timeupdate', function () {
 				updateChapterMarks(player, marks);
-			});
-
+			})
 			// update play/pause status
-			jqPlayer.bind('play playing', function () {
+			.on('play playing', function () {
+				if (!player.persistingTimer) {
+					player.persistingTimer = window.setInterval(function() {
+						if (players.length === 1) {
+							ignoreHashChange = true;
+							window.location.replace('#t=' + generateTimecode([player.currentTime, false]));
+						}
+						localStorage['podlovePlayerTime-' + params.permalink] = player.currentTime;
+					}, 5000);
+				}
 				list.find('.paused').removeClass('paused');
 				if (metainfo.length === 1) {
 					metainfo.find('.bigplay').addClass('playing');
 				}
-			});
-			jqPlayer.bind('pause', function () {
+			})
+			.on('pause', function () {
+				window.clearInterval(player.persistingTimer);
+				player.persistingTimer = null;
+
 				if (metainfo.length === 1) {
 					metainfo.find('.bigplay').removeClass('playing');
 				}
 			});
-		});
 	};
 
 	$.fn.podlovewebplayer = function (options) {
@@ -862,6 +883,7 @@ function(){f.ajax({dataType:"html",url:d,success:function(e){c.find(".mejs-postr
 
 			var richplayer = false,
 				haschapters = false,
+				hiddenTab = false,
 				i = 0;
 
 			//fine tuning params
@@ -1104,13 +1126,40 @@ function(){f.ajax({dataType:"html",url:d,success:function(e){c.find(".mejs-postr
 			// parse deeplink
 			deepLink = parseTimecode(window.location.href);
 			if (deepLink !== false && players.length === 1) {
-				$(player).attr({
-					preload: 'auto',
-					autoplay: 'autoplay'
-				});
+				if (document.hidden !== undefined) {
+					hiddenTab = document.hidden;
+				} else if (document.mozHidden !== undefined) {
+					hiddenTab = document.mozHidden;
+				} else if (document.msHidden !== undefined) {
+					hiddenTab = document.msHidden;
+				} else if (document.webkitHidden !== undefined) {
+					hiddenTab = document.webkitHidden;
+				}
+				
+				if(hiddenTab === true) {
+					$(player).attr({
+						preload: 'auto'
+					});
+				} else {
+					$(player).attr({
+						preload: 'auto',
+						autoplay: 'autoplay'
+					});
+				}
 				startAtTime = deepLink[0];
 				stopAtTime = deepLink[1];
+			} else if (params && params.permalink) {
+				var storageKey = 'podlovePlayerTime-' + params.permalink;
+				if (localStorage[storageKey]) {
+					$(player).one('canplay', function() {
+						this.currentTime = +localStorage[storageKey];
+					});
+				}
 			}
+
+			$(player).on('ended', function() {
+				localStorage.removeItem('podlovePlayerTime-' + params.permalink);
+			});
 
 			// init MEJS to player
 			mejsoptions.success = function (player) {
