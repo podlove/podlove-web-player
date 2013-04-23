@@ -347,6 +347,11 @@
 	font-size: 13px !important;
 }
 
+.podlovewebplayer_video.podlovewebplayer_wrapper {
+	margin-left: auto;
+	margin-right: auto;
+}
+
 .podlovewebplayer_video .podlovewebplayer_meta .episodetitle {
 	text-align: left;
 	padding-left: 20px;
