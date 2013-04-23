@@ -857,6 +857,7 @@ function(){f.ajax({dataType:"html",url:d,success:function(e){c.find(".mejs-postr
 			pauseOtherPlayers: true,
 			duration: false,
 			plugins: ['flash', 'silverlight'],
+			pluginPath: './static/',
 			flashName: 'flashmediaelement.swf',
 			silverlightName: 'silverlightmediaelement.xap'
 		};

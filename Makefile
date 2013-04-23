@@ -8,6 +8,7 @@ build:
 	cat ./podlove-web-player/header.txt ./podlove-web-player/static/podlove-web-player.tmp.css > ./podlove-web-player/static/podlove-web-player.css
 	cp ./podlove-web-player/libs/podlove-font/css/podlovefont-ie7.css ./podlove-web-player/static/podlovefont-ie7.css
 	cp ./podlove-web-player/libs/mediaelement/build/flashmediaelement.swf ./podlove-web-player/static/flashmediaelement.swf
+	cp ./podlove-web-player/libs/mediaelement/build/silverlightmediaelement.xap ./podlove-web-player/static/silverlightmediaelement.xap
 	cp ./podlove-web-player/libs/mediaelement/build/controls.svg ./podlove-web-player/static/controls.svg
 	cp ./podlove-web-player/libs/mediaelement/build/controls.png ./podlove-web-player/static/controls.png
 	cp ./podlove-web-player/libs/mediaelement/build/background.png ./podlove-web-player/static/background.png
