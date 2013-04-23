@@ -198,6 +198,11 @@ Earlier versions of this plugin could handle alternative shortcodes, too: [audio
 
 == Changelog ==
 
+= 2.0.8 =
+* better compatibility
+* resume at last position
+* build script (less requests)
+
 = 2.0.7 =
 * Download bar added
 * Button config added

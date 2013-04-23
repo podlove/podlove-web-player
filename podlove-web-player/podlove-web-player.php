@@ -320,7 +320,13 @@ function podlovewebplayer_render_chapters( $input ) {
 			$chapters = trim( $chapters[0] );
 		}
 	}
-	$chapters = preg_replace("(\r?\n)", "\n".'+"\n"', htmlspecialchars($chapters, ENT_QUOTES));
+	$chapterArrayTemp = split("(\r?\n)", htmlspecialchars($chapters, ENT_QUOTES));
+	for($i = 0; $i < count($chapterArrayTemp); ++$i) {
+		$thisChapter = split(" ", $chapterArrayTemp[$i],2);
+		$chapterArray[$i]['start'] = $thisChapter[0];
+		$chapterArray[$i]['title'] = $thisChapter[1];
+	}
+	$chapters = $chapterArray;
 	return $chapters;
 }
 
