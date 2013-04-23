@@ -248,7 +248,7 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 	$truthy = array( true, 'true', 'on', 1, "1" );
 
 	$init_options = array(
-		'pluginPath'          => plugins_url( 'libs/mediaelement/build/', __FILE__),
+		'pluginPath'          => plugins_url( 'static/', __FILE__),
 		'alwaysShowHours'     => in_array( $alwaysshowhours, $truthy, true ),
 		'alwaysShowControls'  => in_array( $alwaysshowcontrols, $truthy, true ),
 		'chaptersVisible'     => in_array( $chaptersvisible, $truthy, true ),

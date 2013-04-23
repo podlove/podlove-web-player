@@ -677,6 +677,7 @@
 			pauseOtherPlayers: true,
 			duration: false,
 			plugins: ['flash', 'silverlight'],
+			pluginPath: './static/',
 			flashName: 'flashmediaelement.swf',
 			silverlightName: 'silverlightmediaelement.xap'
 		};
