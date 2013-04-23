@@ -59,19 +59,19 @@ Just use the shortcode options that are described on this FAQ page!
 = src =
 
 This location of any audio or video file, local ore remote:
-    
+
     [podloveaudio src="http://mysite.com/mymedia.mp3"]
-    
+
 = type =
 
 The media type of the resource:
-    
+
     [podlovevideo src="http://mysite.com/mymedia.m4v" type="video/mp4"]    
 
 = mp4 / webm / ogg  = 
 
 The location of a file with a specific video type:
-    
+
     [podlovevideo mp4="mymedia.mp4" webm="mymedia.webm" ogg="mymedia.ogv"]
 
 = mp4 / mp3 / ogg / opus =
@@ -90,11 +90,11 @@ The location of the poster frame for the video (or cover image for the rich audi
 The width and/or height of the video (or the audio player):
 
     [podlovevideo width="640" height="264"]
-    
+
 = loop =
 
 Loops the video or audio when it ends:
-    
+
     [podlovevideo src="http://mysite.com/mymedia.mp4" loop="true"]    
 
 = preload =
@@ -112,13 +112,13 @@ Start playing the video as soon as it's ready. This might not work on all (mobil
 = fullscreen =
 
 Disables the fullscreen button for video:
-    
+
     [podlovevideo fullscreen="false"]
-    
+
 = duration =
 
 Enables display of duration without having to load the media file. Use seconds or timecode as a unit:
-    
+
     [podlovevideo duration="3522"]
     [podloveaudio duration="00:58:42"]
 
@@ -133,23 +133,23 @@ Displays the time in 00:00:00 instead of 00:00. Default is "true".
 Defines whether the player control bar is permanently visible. For videos, it might be suitable to fade the controls out when not hovering the video.
 
     [podlovevideo alwaysShowControls="false"]   
-    
+
 = volume = 
 
 Disables the volume slider:
-    
+
     [podloveaudio volume="false"]    
-    
+
 = progress =
 
 Disables the progress bar:
-    
+
     [podlovevideo progress="false"] 
-    
+
 = captions = 
 
 URL to a WebVTT captions file:
-    
+
     [podlovevideo captions="http://mysite.com/mymedia.vtt"]  
 
 = chapters = 
@@ -160,7 +160,7 @@ Takes chapter string from the defined custom field (the standard WordPress ones)
 00:00:57.099 First chapter title  
 00:10:03.104 Second chapter title  
 00:12:44.625 Final chapter  
-    
+
     [podloveaudio chapters="my_chapter_field"]                
     [podloveaudio chapters="http://mychapters.com/chapters.txt"]                
 
