@@ -1,10 +1,14 @@
-/**
+/*
  * ===========================================
  * Podlove Web Player v2.0.8
  * Licensed under The BSD 2-Clause License
  * http://opensource.org/licenses/BSD-2-Clause
  * ===========================================
  */
+
+
+/*jslint browser: true, plusplus: true, unparam: true, vars: true, white: true */
+/*global window, jQuery */
 
 /*!
 * MediaElement.js
