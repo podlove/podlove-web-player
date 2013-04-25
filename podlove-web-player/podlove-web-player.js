@@ -634,7 +634,7 @@
 							ignoreHashChange = true;
 							window.location.replace('#t=' + generateTimecode([player.currentTime, false]));
 						}
-						localStorage['podlovePlayerTime-' + params.permalink] = player.currentTime;
+						localStorage['podloveWebPlayerTime-' + params.permalink] = player.currentTime;
 					}, 5000);
 				}
 				list.find('.paused').removeClass('paused');
@@ -970,7 +970,7 @@
 				startAtTime = deepLink[0];
 				stopAtTime = deepLink[1];
 			} else if (params && params.permalink) {
-				var storageKey = 'podlovePlayerTime-' + params.permalink;
+				var storageKey = 'podloveWebPlayerTime-' + params.permalink;
 				if (localStorage[storageKey]) {
 					$(player).one('canplay', function() {
 						this.currentTime = +localStorage[storageKey];
@@ -979,7 +979,7 @@
 			}
 
 			$(player).on('ended', function() {
-				localStorage.removeItem('podlovePlayerTime-' + params.permalink);
+				localStorage.removeItem('podloveWebPlayerTime-' + params.permalink);
 			});
 
 			// init MEJS to player
