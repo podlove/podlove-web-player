@@ -649,6 +649,12 @@
 				if (metainfo.length === 1) {
 					metainfo.find('.bigplay').removeClass('playing');
 				}
+			})
+			.on('progress',function(){
+				Piecon.setProgress((player.currentTime / player.duration) * 100);
+			})
+			.on('ended',function(){
+				Piecon.reset();
 			});
 	};
 
@@ -977,6 +983,13 @@
 					});
 				}
 			}
+
+			Piecon.setOptions({
+				color: '#ff0084', // Pie chart color
+				background: '#bbb', // Empty pie chart color
+				shadow: '#fff', // Outer ring color
+				fallback: false // Toggles displaying percentage in the title bar (possible values - true, false, 'force')
+			});
 
 			$(player).on('ended', function() {
 				localStorage.removeItem('podloveWebPlayerTime-' + params.permalink);
