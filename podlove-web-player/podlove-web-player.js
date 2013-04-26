@@ -329,7 +329,8 @@
 	var addBehavior = function (player, params, wrapper) {
 		var jqPlayer = $(player),
 			layoutedPlayer = jqPlayer,
-			canplay = false;
+			canplay = false,
+			original_title = document.title;
 
 		/**
 		 * The `player` is an interface. It provides the play and pause functionality. The
@@ -637,6 +638,11 @@
 						localStorage['podloveWebPlayerTime-' + params.permalink] = player.currentTime;
 					}, 5000);
 				}
+				if (!player.progressTimer) {
+					player.progressTimer = window.setInterval(function(){
+						document.title = '(' + generateTimecode([player.currentTime]) + ') ' + original_title;
+					},1000);
+				}
 				list.find('.paused').removeClass('paused');
 				if (metainfo.length === 1) {
 					metainfo.find('.bigplay').addClass('playing');
@@ -645,10 +651,15 @@
 			.on('pause', function () {
 				window.clearInterval(player.persistingTimer);
 				player.persistingTimer = null;
+				window.clearInterval(player.progressTimer);
+				player.progressTimer = null;
 
 				if (metainfo.length === 1) {
 					metainfo.find('.bigplay').removeClass('playing');
 				}
+			})
+			.on('ended',function(){
+				document.title = original_title;
 			});
 	};
 
@@ -956,7 +967,7 @@
 				} else if (document.webkitHidden !== undefined) {
 					hiddenTab = document.webkitHidden;
 				}
-				
+
 				if(hiddenTab === true) {
 					$(player).attr({
 						preload: 'auto'
