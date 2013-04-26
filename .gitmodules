@@ -4,3 +4,6 @@
 [submodule "podlove-web-player/libs/podlove-font"]
 	path = podlove-web-player/libs/podlove-font
 	url = https://github.com/SimonWaldherr/podlove-font.git
+[submodule "podlove-web-player\\libs\\piecon"]
+	path = podlove-web-player\\libs\\piecon
+	url = git://github.com/lipka/piecon.git
