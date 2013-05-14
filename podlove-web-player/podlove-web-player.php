@@ -324,7 +324,7 @@ function podlovewebplayer_render_chapters( $input ) {
 	$chaptercount = count($chapterArrayTemp);
 	for($i = 0; $i < $chaptercount; ++$i) {
 		$chapterArray[$i]['start'] = $chapterArrayTemp[$i][1];
-		$chapterArray[$i]['title'] = $chapterArrayTemp[$i][6];
+		$chapterArray[$i]['title'] = htmlspecialchars($chapterArrayTemp[$i][6], ENT_QUOTES);
 		$chapterArray[$i]['href'] = $chapterArrayTemp[$i][7];
 	}
 	return $chapterArray;
