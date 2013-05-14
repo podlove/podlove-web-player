@@ -1,14 +1,14 @@
 <?php
 /**
  * @package PodloveWebPlayer
- * @version 2.0.7
+ * @version 2.0.8
  */
 
 /*
 Plugin Name: Podlove Web Player
 Plugin URI: http://podlove.org/podlove-web-player/
 Description: Video and audio plugin for WordPress built on the MediaElement.js HTML5 media player library.
-Version: 2.0.7
+Version: 2.0.8
 Author: Podlove Team
 Author URI: http://podlove.org/
 License: BSD 2-Clause License
@@ -320,14 +320,14 @@ function podlovewebplayer_render_chapters( $input ) {
 			$chapters = trim( $chapters[0] );
 		}
 	}
-	$chapterArrayTemp = split("(\r?\n)", htmlspecialchars($chapters, ENT_QUOTES));
-	for($i = 0; $i < count($chapterArrayTemp); ++$i) {
-		$thisChapter = split(" ", $chapterArrayTemp[$i],2);
-		$chapterArray[$i]['start'] = $thisChapter[0];
-		$chapterArray[$i]['title'] = $thisChapter[1];
+	preg_match_all('/((\d+:)?(\d\d?):(\d\d?)(?:\.(\d+))?) ([^<>\r]*) ?<?([^<>\r]*)>?\r?/', $chapters, $chapterArrayTemp, PREG_SET_ORDER);
+	$chaptercount = count($chapterArrayTemp);
+	for($i = 0; $i < $chaptercount; ++$i) {
+		$chapterArray[$i]['start'] = $chapterArrayTemp[$i][1];
+		$chapterArray[$i]['title'] = $chapterArrayTemp[$i][6];
+		$chapterArray[$i]['href'] = $chapterArrayTemp[$i][7];
 	}
-	$chapters = $chapterArray;
-	return $chapters;
+	return $chapterArray;
 }
 
 
