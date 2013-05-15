@@ -814,7 +814,7 @@ function(){f.ajax({dataType:"html",url:d,success:function(e){c.find(".mejs-postr
 							ignoreHashChange = true;
 							window.location.replace('#t=' + generateTimecode([player.currentTime, false]));
 						}
-						localStorage['podlovePlayerTime-' + params.permalink] = player.currentTime;
+						localStorage['podloveWebPlayerTime-' + params.permalink] = player.currentTime;
 					}, 5000);
 				}
 				list.find('.paused').removeClass('paused');
@@ -1015,7 +1015,7 @@ function(){f.ajax({dataType:"html",url:d,success:function(e){c.find(".mejs-postr
 						'<div class="subtitle">' + params.subtitle + '</div>');
 				} else {
 					if (params.title !== undefined) {
-						if (params.title.length < 42) {
+						if ((params.title.length < 42)&&(params.poster === undefined)) {
 							wrapper.addClass('podlovewebplayer_smallplayer');
 						}
 					}
@@ -1150,7 +1150,7 @@ function(){f.ajax({dataType:"html",url:d,success:function(e){c.find(".mejs-postr
 				startAtTime = deepLink[0];
 				stopAtTime = deepLink[1];
 			} else if (params && params.permalink) {
-				var storageKey = 'podlovePlayerTime-' + params.permalink;
+				var storageKey = 'podloveWebPlayerTime-' + params.permalink;
 				if (localStorage[storageKey]) {
 					$(player).one('canplay', function() {
 						this.currentTime = +localStorage[storageKey];
@@ -1159,7 +1159,7 @@ function(){f.ajax({dataType:"html",url:d,success:function(e){c.find(".mejs-postr
 			}
 
 			$(player).on('ended', function() {
-				localStorage.removeItem('podlovePlayerTime-' + params.permalink);
+				localStorage.removeItem('podloveWebPlayerTime-' + params.permalink);
 			});
 
 			// init MEJS to player
