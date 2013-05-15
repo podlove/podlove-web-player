@@ -835,7 +835,7 @@
 						'<div class="subtitle">' + params.subtitle + '</div>');
 				} else {
 					if (params.title !== undefined) {
-						if (params.title.length < 42) {
+						if ((params.title.length < 42)&&(params.poster === undefined)) {
 							wrapper.addClass('podlovewebplayer_smallplayer');
 						}
 					}
