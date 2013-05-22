@@ -4,7 +4,7 @@ Donate link: http://podlove.org/
 Tags: podcasting, podlove, html5audio, audio, video, podcast, player
 Requires at least: 3.4.0
 Tested up to: 3.5.1
-Stable tag: 2.0.7
+Stable tag: 2.0.8
 License: BSD 2-Clause License
 License URI: http://opensource.org/licenses/BSD-2-Clause
 
