@@ -154,24 +154,38 @@ URL to a WebVTT captions file:
 
 = chapters = 
 
-Takes chapter string from the defined custom field (the standard WordPress ones) and builds an interactive chapter table. Can be referenced to an external text file, too. Chapters must be written in the following format:
+Takes chapter json string from the defined custom field (the standard WordPress ones) and builds an interactive chapter table. Can be referenced to an external json file, too. Chapters must be written in the following format:
 
-00:00:00.000 Introduction  
-00:00:57.099 First chapter title  
-00:10:03.104 Second chapter title  
-00:12:44.625 Final chapter  
+[{  
+  "start": "00:00:00",  
+  "title": "foo",  
+  "href": "http://podlove.org",  
+  "image":""  
+},{  
+  "start": "00:01:00",  
+  "title": "lorem",  
+  "href": "https://github.com/podlove/",  
+  "image":"samples/coverimage-red.png"  
+},{  
+  "start": "00:02:30",  
+  "title": "ipsum",  
+  "href": "https://github.com/shownotes/",  
+  "image":"samples/coverimage-green.png"  
+},{  
+  "start": "00:03:00",  
+  "title": "end",  
+  "href": "",  
+  "image":"samples/coverimage-blue.png"  
+}]  
 
-    [podloveaudio chapters="my_chapter_field"]                
-    [podloveaudio chapters="http://mychapters.com/chapters.txt"]                
 
+* "start" has to be defined as HH:MM:SS
+* "title" is the name of the chapter
+* "href" is an optional URL
+* "image" is an optional image URL or relative path
 
-= chapterlinks = 
-
-Option for the jumplink behaviour in chapter table
-
-    [podloveaudio chapterlinks="all"] (default, all chapter links are clickable)
-    [podloveaudio chapterlinks="buffered"] (only buffered chapters are clickable)
-    [podloveaudio chapterlinks="false"] (chapters are not linked)
+    [podloveaudio chapters="my_chapter_field"]  
+    [podloveaudio chapters="http://mychapters.com/chapters.json"]  
 
 = chaptersVisible / timecontrolsVisible / summaryVisible =
 
@@ -183,12 +197,15 @@ Defines the default visibility status of toggable player modules. Standard value
 
 If you have an audio file and use one of the following attributes, the player will sport a richer visual experience: "title", "subtitle", "summary", "poster", "permalink". Full example:
 
-    [podloveaudio mp3="http://mysite.com/mymedia.mp3" ogg="http://mysite.com/mymedia.ogg" title="PWP – First show" subtitle="We talk about this and that" summary="Here goes a summary of the episode which should be about 256 characters long" poster="http://mysite.com/mymedia.jpg" permalink="http://mysite.com/my-first-episode/"]
+    [podloveaudio mp3="http://mysite.com/mymedia.mp3" ogg="http://mysite.com/mymedia.ogg" title="PWP – First show" subtitle="We talk about this and that" summary="Here goes a summary of the episode which should be about 256 characters long" poster="http://mysite.com/mymedia.jpg" chapters="my_chapter_field" permalink="http://mysite.com/my-first-episode/"]
 
+= Podlove Web Player Shortcode in multiple lines =
+
+Don't do it, always write the shortcode in a single line.
 
 ### Deprecated usage
 
-Chapters now handed over as JSON, please take a look at the standalone-json.html. The previous solution will still work, however we recommend to use the new solution, as it offers some more features.
+Chapters now handed over as JSON, please take a look at the standalone.html. The previous solution will still work, however we recommend to use the new solution, as it offers some more features.
 Earlier versions of this plugin could handle alternative shortcodes, too: [audio] and [video]. As of version 1.1, these are deprecated as they conflict with other plugins.
 
 == Screenshots ==
@@ -202,6 +219,7 @@ Earlier versions of this plugin could handle alternative shortcodes, too: [audio
 * better compatibility
 * resume at last position
 * build script (less requests)
+* accept chapters as json-file
 
 = 2.0.7 =
 * Download bar added

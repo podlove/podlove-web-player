@@ -308,26 +308,37 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 
 function podlovewebplayer_render_chapters( $input ) {
 	global $post;
-	$input = trim( $input );
-	$chapters = false;
-	if ( $input != '' ) {
-		if ( 
-			substr( $input, 0, 7 ) == 'http://' || 
-			substr( $input, 0, 8 ) == 'https://'
-		) {
-			$chapters = trim( file_get_contents( $input ) );
-		} elseif ( $chapters = get_post_custom_values( $input, $post->ID ) ) {
-			$chapters = trim( $chapters[0] );
+	if(json_decode($input) === null) {
+		$input = trim( $input );
+		$chapters = false;
+		if ( $input != '' ) {
+			if ( 
+				substr( $input, 0, 7 ) == 'http://' || 
+				substr( $input, 0, 8 ) == 'https://'
+			) {
+				$chapters = trim( file_get_contents( $input ) );
+				$json_chapters = json_decode($chapters);
+				if($json_chapters !== null) {
+					return $json_chapters;
+				}
+			} elseif ( $chapters = get_post_custom_values( $input, $post->ID ) ) {
+				$chapters = trim( $chapters[0] );
+				$json_chapters = json_decode($chapters);
+				if($json_chapters !== null) {
+					return $json_chapters;
+				}
+			}
 		}
+		preg_match_all('/((\d+:)?(\d\d?):(\d\d?)(?:\.(\d+))?) ([^<>\r]*) ?<?([^<>\r]*)>?\r?/', $chapters, $chapterArrayTemp, PREG_SET_ORDER);
+		$chaptercount = count($chapterArrayTemp);
+		for($i = 0; $i < $chaptercount; ++$i) {
+			$chapterArray[$i]['start'] = $chapterArrayTemp[$i][1];
+			$chapterArray[$i]['title'] = htmlspecialchars($chapterArrayTemp[$i][6], ENT_QUOTES);
+			$chapterArray[$i]['href'] = $chapterArrayTemp[$i][7];
+		}
+		return $chapterArray;
 	}
-	preg_match_all('/((\d+:)?(\d\d?):(\d\d?)(?:\.(\d+))?) ([^<>\r]*) ?<?([^<>\r]*)>?\r?/', $chapters, $chapterArrayTemp, PREG_SET_ORDER);
-	$chaptercount = count($chapterArrayTemp);
-	for($i = 0; $i < $chaptercount; ++$i) {
-		$chapterArray[$i]['start'] = $chapterArrayTemp[$i][1];
-		$chapterArray[$i]['title'] = htmlspecialchars($chapterArrayTemp[$i][6], ENT_QUOTES);
-		$chapterArray[$i]['href'] = $chapterArrayTemp[$i][7];
-	}
-	return $chapterArray;
+	return $input;
 }
 
 
