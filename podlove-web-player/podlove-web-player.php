@@ -362,7 +362,7 @@ add_shortcode( 'podlovevideo', 'podlovewebplayer_video_shortcode' );
 /* Announce deprecation of [audio] and [video] shortcode */
 
 function podlovewebplayer_deprecated_widget_function() {
-	echo '<p style="border-top:2px solid red;padding-top:6px;color:#c00">Using the shortcode <code>[audio]</code> and <code>[video]</code> for the Podlove Web Player is <strong>deprecated</strong> and will be dropped.<br /> Use <code>[podloveaudio]</code> and <code>[podlovevideo]</code> instead!</p>';
+	echo '<p style="border-top:2px solid red;padding-top:6px;color:#c00">Using the shortcode <code>[audio]</code> and <code>[video]</code> for the Podlove Web Player is <strong>deprecated</strong> and will be dropped.<br /> Use <code>[podloveaudio]</code> and <code>[podlovevideo]</code> instead!<br/>The Chapters has now to be handed over as JSON as described in the <a href="http://wordpress.org/plugins/podlove-web-player/faq/">FAQ</a></p>';
 }
 function podlovewebplayer_add_dashboard_widgets() {
 	wp_add_dashboard_widget('podlovewebplayer_deprecated_widget', 'Podlove Web Player', 'podlovewebplayer_deprecated_widget_function');
