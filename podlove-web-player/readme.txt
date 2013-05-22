@@ -4,7 +4,7 @@ Donate link: http://podlove.org/
 Tags: podcasting, podlove, html5audio, audio, video, podcast, player
 Requires at least: 3.4.0
 Tested up to: 3.5.1
-Stable tag: 2.0.8
+Stable tag: 2.0.9
 License: BSD 2-Clause License
 License URI: http://opensource.org/licenses/BSD-2-Clause
 
@@ -214,6 +214,10 @@ Earlier versions of this plugin could handle alternative shortcodes, too: [audio
 2. Podlove Web Player in chapters hidden and timecontrol-bar visible view.
 
 == Changelog ==
+
+= 2.0.9 =
+* sorry for the mp4 chaps bug
+* now it's working again
 
 = 2.0.8 =
 * better compatibility
