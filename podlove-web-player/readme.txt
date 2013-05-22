@@ -4,7 +4,7 @@ Donate link: http://podlove.org/
 Tags: podcasting, podlove, html5audio, audio, video, podcast, player
 Requires at least: 3.4.0
 Tested up to: 3.5.1
-Stable tag: 2.0.10
+Stable tag: trunk
 License: BSD 2-Clause License
 License URI: http://opensource.org/licenses/BSD-2-Clause
 
@@ -215,6 +215,9 @@ Earlier versions of this plugin could handle alternative shortcodes, too: [audio
 3. Podlove Web Player Options
 
 == Changelog ==
+
+= 2.0.11 =
+* prepare for 2.0.11
 
 = 2.0.10 =
 * wordpress.org has some problems with the last commit
