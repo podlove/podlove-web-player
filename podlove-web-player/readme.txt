@@ -1,10 +1,10 @@
-=== Plugin Name ===
+=== Podlove Web Player ===
 Contributors: gerritvanaaken, simonwaldherr
 Donate link: http://podlove.org/
 Tags: podcasting, podlove, html5audio, audio, video, podcast, player
 Requires at least: 3.4.0
 Tested up to: 3.5.1
-Stable tag: 2.0.9
+Stable tag: 2.0.10
 License: BSD 2-Clause License
 License URI: http://opensource.org/licenses/BSD-2-Clause
 
@@ -212,8 +212,13 @@ Earlier versions of this plugin could handle alternative shortcodes, too: [audio
 
 1. Podlove Web Player in full swing, using the chapters table to jump to different section of the audio source.
 2. Podlove Web Player in chapters hidden and timecontrol-bar visible view.
+3. Podlove Web Player Options
 
 == Changelog ==
+
+= 2.0.10 =
+* wordpress.org has some problems with the last commit
+* sorry for the inconvenience
 
 = 2.0.9 =
 * sorry for the mp4 chaps bug
@@ -314,3 +319,23 @@ Earlier versions of this plugin could handle alternative shortcodes, too: [audio
 = 1.0 =
 * First version on wordpress.org
 * Full of bugs
+
+== Upgrade Notice ==
+
+= 2.0.10 =
+readme.txt update because of wordpress.org validator foo
+
+= 2.0.9 =
+mp4 chaps bug fixed
+
+= 2.0.8 =
+better compatibility, resume at last position and accept chapters as json-file
+
+= 2.0.7 =
+PHP Warnings removed and various small changes
+
+= 2.0.6 =
+podPress compatible, chapterbox/summary height fix and jshint/jslint valid
+
+= 2.0.5 =
+Blubrry PowerPress compatible and firefox flash fallback multiple playing fix
