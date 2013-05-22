@@ -329,7 +329,7 @@ function podlovewebplayer_render_chapters( $input ) {
 				}
 			}
 		}
-		preg_match_all('/((\d+:)?(\d\d?):(\d\d?)(?:\.(\d+))?) ([^<>\r]*) ?<?([^<>\r]*)>?\r?/', $chapters, $chapterArrayTemp, PREG_SET_ORDER);
+		preg_match_all('/((\d+:)?(\d\d?):(\d\d?)(?:\.(\d+))?) ([^<>\r\n]*) ?<?([^<>\r\n]*)>?\r?/', $chapters, $chapterArrayTemp, PREG_SET_ORDER);
 		$chaptercount = count($chapterArrayTemp);
 		for($i = 0; $i < $chaptercount; ++$i) {
 			$chapterArray[$i]['start'] = $chapterArrayTemp[$i][1];
