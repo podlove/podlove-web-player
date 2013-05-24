@@ -217,7 +217,7 @@ Earlier versions of this plugin could handle alternative shortcodes, too: [audio
 == Changelog ==
 
 = 2.0.11 =
-* prepare for 2.0.11
+* empty chapter file and empty meta_box bug fixed
 
 = 2.0.10 =
 * wordpress.org has some problems with the last commit

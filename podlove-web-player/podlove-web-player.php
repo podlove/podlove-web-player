@@ -308,15 +308,14 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 
 function podlovewebplayer_render_chapters( $input ) {
 	global $post;
-	if(json_decode($input) === null) {
+	if ( json_decode($input) === null ) {
 		$input = trim( $input );
 		$chapters = false;
 		if ( $input != '' ) {
-			if ( 
-				substr( $input, 0, 7 ) == 'http://' || 
-				substr( $input, 0, 8 ) == 'https://'
-			) {
-				$chapters = trim( file_get_contents( $input ) );
+			if ( substr( $input, 0, 7 ) == 'http://' || substr( $input, 0, 8 ) == 'https://') {
+				$http_context = stream_context_create();
+				stream_context_set_params($http_context, array('user_agent' => 'UserAgent/1.0'));
+				$chapters = trim( @file_get_contents( $input, 0, $http_context ) );
 				$json_chapters = json_decode($chapters);
 				if($json_chapters !== null) {
 					return $json_chapters;
@@ -328,6 +327,9 @@ function podlovewebplayer_render_chapters( $input ) {
 					return $json_chapters;
 				}
 			}
+		}
+		if ( $chapters == '' ) {
+			return '';
 		}
 		preg_match_all('/((\d+:)?(\d\d?):(\d\d?)(?:\.(\d+))?) ([^<>\r\n]*) ?<?([^<>\r\n]*)>?\r?/', $chapters, $chapterArrayTemp, PREG_SET_ORDER);
 		$chaptercount = count($chapterArrayTemp);

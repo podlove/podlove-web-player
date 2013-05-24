@@ -1,6 +1,6 @@
 /*
  * ===========================================
- * Podlove Web Player v2.0.9
+ * Podlove Web Player v2.0.11
  * Licensed under The BSD 2-Clause License
  * http://opensource.org/licenses/BSD-2-Clause
  * ===========================================
@@ -1047,8 +1047,10 @@ function(){f.ajax({dataType:"html",url:d,success:function(e){c.find(".mejs-postr
 						'<div class="summary' + summaryActive + '"><div class="summarydiv">' + params.summary + '</div></div>');
 				}
 				if (params.chapters !== undefined) {
-					wrapper.find('.togglers').append(
-						'<a href="#" class="chaptertoggle infobuttons pwp-icon-list-bullet" title="Show/hide chapters"></a>');
+					if (params.chapters.length > 10) {
+						wrapper.find('.togglers').append(
+							'<a href="#" class="chaptertoggle infobuttons pwp-icon-list-bullet" title="Show/hide chapters"></a>');
+					}
 				}
 				if (params.hidetimebutton !== true) {
 					wrapper.find('.togglers').append('<a href="#" class="showcontrols infobuttons pwp-icon-clock" title="Show/hide time navigation controls"></a>');
@@ -1071,8 +1073,10 @@ function(){f.ajax({dataType:"html",url:d,success:function(e){c.find(".mejs-postr
 			wrapper.append('<div class="podlovewebplayer_timecontrol podlovewebplayer_controlbox' + timecontrolsActive + '"></div>');
 
 			if (params.chapters !== undefined) {
-				wrapper.find('.podlovewebplayer_timecontrol').append('<a href="#" class="prevbutton infobuttons pwp-icon-to-start" title="Jump backward to previous chapter"></a><a href="#" class="nextbutton infobuttons pwp-icon-to-end" title="next chapter"></a>');
-				wrapper.find('.controlbox').append('<a href="#" class="prevbutton infobuttons pwp-icon-step-backward" title="previous chapter"></a><a href="#" class="nextbutton infobuttons pwp-icon-to-end" title="Jump to next chapter"></a>');
+				if (params.chapters.length > 10) {
+					wrapper.find('.podlovewebplayer_timecontrol').append('<a href="#" class="prevbutton infobuttons pwp-icon-to-start" title="Jump backward to previous chapter"></a><a href="#" class="nextbutton infobuttons pwp-icon-to-end" title="next chapter"></a>');
+					wrapper.find('.controlbox').append('<a href="#" class="prevbutton infobuttons pwp-icon-step-backward" title="previous chapter"></a><a href="#" class="nextbutton infobuttons pwp-icon-to-end" title="Jump to next chapter"></a>');
+				}
 			}
 			wrapper.find('.podlovewebplayer_timecontrol').append(
 				'<a href="#" class="rewindbutton infobuttons pwp-icon-fast-bw" title="Rewind 30 seconds"></a>');
@@ -1115,9 +1119,10 @@ function(){f.ajax({dataType:"html",url:d,success:function(e){c.find(".mejs-postr
 
 			//build chapter table
 			if (params.chapters !== undefined) {
-				haschapters = true;
-
-				generateChapterTable(params).appendTo(wrapper);
+				if (params.chapters.length > 10) {
+					haschapters = true;
+					generateChapterTable(params).appendTo(wrapper);
+				}
 			}
 
 			if (richplayer || haschapters) {
