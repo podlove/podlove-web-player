@@ -278,6 +278,9 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 	}
 	if ( $chapters ) {
 		$init_options['chapters'] = podlovewebplayer_render_chapters( $chapters );
+		if (( $init_options['chapters'] == false )||( $init_options['chapters'] == '' )) {
+			unset($init_options['chapters']);
+		}
 	}
 	if ( $summary ) {
 		$init_options['summary'] = nl2br( $summary );

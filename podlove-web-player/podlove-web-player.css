@@ -175,6 +175,37 @@
 	background: #000000;
 }
 
+.mejs-button.mejs-volume-button button {
+	font-size: 16px;
+	background: transparent;
+	color: white;
+}
+.mejs-button.mejs-volume-button button::after {
+	font-size: 16;
+	padding-left: 0.02em;
+	font-family: "pwpfont" !important;
+	font-style: normal !important;
+	font-weight: normal !important;
+	text-decoration: inherit;
+	-webkit-font-smoothing: antialiased;
+	speak: none;
+	display: inline-block;
+	width: 1em;
+	margin-right: 0.2em;
+	text-align: center;
+	font-variant: normal !important;
+	text-transform: none !important;
+	line-height: 1em;
+}
+
+.mejs-button.mejs-volume-button.mejs-unmute button::after {
+	content: "\1f507";
+}
+
+.mejs-button.mejs-volume-button.mejs-mute button::after {
+	content: "\1f50a";
+}
+
 .podlovewebplayer_meta .bigplay {
 	font-family: "pwpfont" !important;
 	font-style: normal;
