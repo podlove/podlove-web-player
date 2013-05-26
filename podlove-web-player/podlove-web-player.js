@@ -206,10 +206,16 @@
 	 * Given a list of chapters, this function creates the chapter table for the player.
 	 */
 	var generateChapterTable = function (params) {
-
-		var div = $('<div class="podlovewebplayer_chapterbox showonplay"><table><caption>Podcast Chapters</caption><thead><tr><th scope="col">Chapter Number</th><th scope="col">Start time</th><th scope="col">Title</th><th scope="col">Duration</th></tr></thead><tbody></tbody></table></div>'),
-			table = div.children('table'),
-			tbody = table.children('tbody');
+		var div, table, tbody, scroll = '';
+		
+		if (params.chapterHeight !== "") {
+			if (typeof parseInt(params.chapterHeight,10) === 'number') {
+				scroll = 'style="overflow-y: auto; max-height: '+parseInt(params.chapterHeight,10) +'px;"';
+			}
+		}
+		div = $('<div class="podlovewebplayer_chapterbox showonplay" ' + scroll + '><table><caption>Podcast Chapters</caption><thead><tr><th scope="col">Chapter Number</th><th scope="col">Start time</th><th scope="col">Title</th><th scope="col">Duration</th></tr></thead><tbody></tbody></table></div>');
+		table = div.children('table');
+		tbody = table.children('tbody');
 
 		if (params.chaptersVisible === true) {
 			div.addClass('active');
@@ -450,7 +456,7 @@
 			wrapper.find('.chaptertoggle').unbind('click').click(function () {
 				wrapper.find('.podlovewebplayer_chapterbox').toggleClass('active');
 				if (wrapper.find('.podlovewebplayer_chapterbox').hasClass('active')) {
-					wrapper.find('.podlovewebplayer_chapterbox').height(wrapper.find('.podlovewebplayer_chapterbox').data('height') + 'px');
+					wrapper.find('.podlovewebplayer_chapterbox').height(parseInt(wrapper.find('.podlovewebplayer_chapterbox').data('height'),10) + 4 + 'px');
 				} else {
 					wrapper.find('.podlovewebplayer_chapterbox').height('0px');
 				}
@@ -848,7 +854,7 @@
 				wrapper.on('playerresize', function () {
 					wrapper.find('.podlovewebplayer_chapterbox').data('height', wrapper.find('.podlovewebplayer_chapters').height());
 					if (wrapper.find('.podlovewebplayer_chapterbox').hasClass('active')) {
-						wrapper.find('.podlovewebplayer_chapterbox').height(wrapper.find('.podlovewebplayer_chapters').height() + 'px');
+						wrapper.find('.podlovewebplayer_chapterbox').height(parseInt(wrapper.find('.podlovewebplayer_chapterbox').data('height'),10) + 4 + 'px');
 					}
 					wrapper.find('.summary').data('height', wrapper.find('.summarydiv').height());
 					if (wrapper.find('.summary').hasClass('active')) {

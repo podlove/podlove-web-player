@@ -59,8 +59,14 @@ function podlovewebplayer_register_settings() {
 				'bottom'     => 'Put player to bottom of post:'
 			)
 		),
+		'chapter' => array(
+			'title' => 'Chapter',
+			'fields' => array(
+				'height' => 'Maximal Chapter height'
+			),
+		),
 		'buttons' => array(
-			'title'    => 'PWP buttons',
+			'title'    => 'Buttons',
 			'function' => true,
 			'fields'   => array(
 				'time'      => 'Hide time buttons:',
@@ -198,6 +204,14 @@ function podlovewebplayer_enclosure_bottom() {
 	print "<input id='pwpenclosure4' name='podlovewebplayer_options[enclosure_bottom]' 
 		$checked type='checkbox' value='1' />&nbsp;&nbsp;
 		(instead of the top)";
+}
+
+function podlovewebplayer_chapter_height() {
+	$options = get_option('podlovewebplayer_options');
+	if ( !isset( $options['chapter_height'] ) )
+		$options['chapter_height'] = "";
+	print "<input id='chapter_height' name='podlovewebplayer_options[chapter_height]' 
+		value='".$options['chapter_height']."' style='width:3em;' /> px&nbsp;&nbsp;(keep empty to show all)";
 }
 
 function podlovewebplayer_buttons() {

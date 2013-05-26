@@ -133,6 +133,7 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 		'chapters' => '',
 		'chapterlinks' => 'all', // could also be 'false' or 'buffered'
 		'duration' => 'false',
+		'chapterHeight' => 'false',
 		'chaptersvisible' => 'false',
 		'timecontrolsvisible' => 'false',
 		'summaryvisible' => 'false'
@@ -259,6 +260,7 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 		'hidesharebutton'     => in_array( @$wp_options['buttons_share'], $truthy, true ),
 		'sharewholeepisode'   => in_array( @$wp_options['buttons_sharemode'], $truthy, true ),
 		'loop'                => in_array( $loop, $truthy, true ),
+		'chapterHeight'       => @$wp_options['chapter_height'],
 		'chapterlinks'        => $chapterlinks
 	);
 
