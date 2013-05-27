@@ -37,13 +37,13 @@
 	position: relative;
 	padding-bottom: 1.5em;
 	background: white;
-	padding: 0px;
+	padding: 0;
 	border-radius: 15px;
-	border: 0px solid black;
+	border: 0 solid black;
 }
 
 .podlovewebplayer_wrapper a, .podlovewebplayer_wrapper a:active, .podlovewebplayer_wrapper a:focus {
-	border: 0px none !important;
+	border: 0 none !important;
 	text-decoration: none !important;
 	outline: none !important;
 }
@@ -61,7 +61,7 @@
 .podlovewebplayer_wrapper .podlovewebplayer_chapters {
 	margin: 0 !important;
 	width: 100%;
-	border-collapse: collapse;
+    border-spacing: 0;
 }
 
 /*
@@ -79,7 +79,7 @@
 	width: 1px;
 }
 
-.podlovewebplayer_wrapper .podlovewebplayer_chapters tr {
+.podlovewebplayer_wrapper .podlovewebplayer_chapters tr td {
 	color: black;
 	cursor: pointer;
 	background: -moz-linear-gradient(top, #ffffff 0%, #f2f2f2 100%);
@@ -90,7 +90,7 @@
 	background: linear-gradient(to bottom, #ffffff 0%,#f2f2f2 100%);
 }
 
-.podlovewebplayer_wrapper .podlovewebplayer_chapters tr:hover {
+.podlovewebplayer_wrapper .podlovewebplayer_chapters tr:hover td {
 	background: -moz-linear-gradient(top, #efefef 0%, #d2d2d2 100%);
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#efefef), color-stop(100%,#d2d2d2));
 	background: -webkit-linear-gradient(top, #efefef 0%,#d2d2d2 100%);
@@ -99,8 +99,8 @@
 	background: linear-gradient(to bottom, #efefef 0%,#d2d2d2 100%);
 }
 
-.podlovewebplayer_wrapper .podlovewebplayer_chapters tr.active,
-.podlovewebplayer_wrapper .podlovewebplayer_chapters tr.active:hover {
+.podlovewebplayer_wrapper .podlovewebplayer_chapters tr.active td,
+.podlovewebplayer_wrapper .podlovewebplayer_chapters tr.active:hover td {
 	background: #a6c9dd;
 	background: -moz-linear-gradient(top, #a6c9dd 0%, #d8f1ff 100%);
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a6c9dd), color-stop(100%,#d8f1ff));
@@ -113,11 +113,12 @@
 .podlovewebplayer_wrapper .podlovewebplayer_chapters tr td {
 	padding: 8px 5px 6px 5px !important;
 	vertical-align: middle;
+    border: none;
 	border-bottom: 1px solid #e9e9e9;
 	cursor: pointer!important;
 }
 
-.podlovewebplayer_wrapper .podlovewebplayer_chapters tr:hover {
+.podlovewebplayer_wrapper .podlovewebplayer_chapters tr:hover td {
 	background: #e3e3e3;
 }
 
@@ -139,7 +140,6 @@
 .podlovewebplayer_wrapper .podlovewebplayer_meta {
 	position: relative;
 	display: block;
-	background: #000;
 	min-height: 100px;
 	height: auto;
 	margin-bottom: 1px;
@@ -164,8 +164,8 @@
 .podlovewebplayer_top {
 	min-height: 11px !important;
 	height: 11px !important;
-	margin-bottom: 0px !important;
-	padding-bottom: 0px;
+	margin-bottom: 0 !important;
+	padding-bottom: 0;
 }
 
 .mejs-container {
@@ -209,10 +209,10 @@
 .podlovewebplayer_meta .bigplay:active {
 	border: 5px solid white !important;
 	border-radius: 60px !important;
-	-webkit-text-shadow: 0px 0px 10px #FFFFFF;
-	-moz-text-shadow: 0px 0px 10px #FFFFFF;
-	-o-text-shadow: 0px 0px 10px #FFFFFF;
-	text-shadow: 0px 0px 10px #FFFFFF;
+	-webkit-text-shadow: 0 0 10px #FFFFFF;
+	-moz-text-shadow: 0 0 10px #FFFFFF;
+	-o-text-shadow: 0 0 10px #FFFFFF;
+	text-shadow: 0 0 10px #FFFFFF;
 }
 
 .podlovewebplayer_meta .bigplay.playing:before {
@@ -228,10 +228,10 @@
 .podlovewebplayer_meta .bigplay.playing:active {
 	border: 5px solid white !important;
 	border-radius: 60px !important;
-	-webkit-text-shadow: 0px 0px 10px #FFFFFF;
-	-moz-text-shadow: 0px 0px 10px #FFFFFF;
-	-o-text-shadow: 0px 0px 10px #FFFFFF;
-	text-shadow: 0px 0px 10px #FFFFFF;
+	-webkit-text-shadow: 0 0 10px #FFFFFF;
+	-moz-text-shadow: 0 0 10px #FFFFFF;
+	-o-text-shadow: 0 0 10px #FFFFFF;
+	text-shadow: 0 0 10px #FFFFFF;
 }
 
 .podlovewebplayer_wrapper .togglers a.pwp-icon-info-circle:before { content: "\e705"; }
@@ -263,22 +263,22 @@
 .podlovewebplayer_meta .coverart img {
 	position: relative !important;
 	float: left !important;
-	margin-top: 0px !important;
+	margin-top: 0 !important;
 	margin-right: 10px !important;
-	margin-left: 0px !important;
+	margin-left: 0 !important;
 	margin-bottom: 10px !important;
 	height: 75px !important;
 	width: auto !important;
 	max-width: 275px !important;
 	top: 10px !important;
-	left: 0px !important;
+	left: 0 !important;
 	right: auto !important;
 	bottom: auto !important;
 	box-shadow: none!important;
-	-webkit-border-radius: 0px;
-	-moz-border-radius: 0px;
-	-o-border-radius: 0px;
-	border-radius: 0px;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	-o-border-radius: 0;
+	border-radius: 0;
 }
 
 .podlovewebplayer_meta h3 a,
@@ -286,12 +286,11 @@
 	clear: none;
 	color: #fff!important;
 	background: transparent !important;
-	padding: 7px 0 0 0;
+	padding: 7px 0 10px 0;
 	font-size: 16px;
 	line-height: 22px;
 	font-weight: bold;
 	margin: 0!important;
-	padding-right: 10px;
 	text-transform: none;
 	letter-spacing: 0;
 	text-shadow: none;
@@ -320,7 +319,7 @@
 	background: transparent !important;
 	margin-left: 180px;
 	padding-bottom: 35px;
-	padding-left: 0px;
+	padding-left: 0;
 }
 
 .podlovewebplayer_meta .subtitle strong{
@@ -352,13 +351,13 @@
 	height: auto;
 	padding-top: 30px;
 	padding-bottom: 45px;
-	margin-bottom: 0px !important;
-	-webkit-border-top-left-radius: 0px;
-	-webkit-border-top-right-radius: 0px;
-	-moz-border-radius-topleft: 0px;
-	-moz-border-radius-topright: 0px;
-	border-top-left-radius: 0px;
-	border-top-right-radius: 0px;
+	margin-bottom: 0 !important;
+	-webkit-border-top-left-radius: 0;
+	-webkit-border-top-right-radius: 0;
+	-moz-border-radius-topleft: 0;
+	-moz-border-radius-topright: 0;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
 }
 
 .podlovewebplayer_video .mejs-container .mejs-inner .mejs-controls {
@@ -420,17 +419,17 @@
 }
 
 .podlovewebplayer_wrapper .mejs-container .mejs-inner .mejs-container .mejs-controls .mejs-time span {
-	-webkit-text-shadow: 0px 0px 2px #000000;
-	-moz-text-shadow: 0px 0px 2px #000000;
-	-o-text-shadow: 0px 0px 2px #000000;
-	text-shadow: 0px 0px 2px #000000;
+	-webkit-text-shadow: 0 0 2px #000000;
+	-moz-text-shadow: 0 0 2px #000000;
+	-o-text-shadow: 0 0 2px #000000;
+	text-shadow: 0 0 2px #000000;
 	filter: dropshadow(color=#000000, offx=0, offy=0);
 }
 
 .podlovewebplayer_meta + .summary,
 .podlovewebplayer_wrapper .podlovewebplayer_controlbox {
 	overflow: hidden;
-	padding: 0px 10px;
+	padding: 0 10px;
 	margin-top: -1px;
 	font-size: 12px;
 	line-height: 1.5;
@@ -445,12 +444,12 @@
 }
 
 .podlovewebplayer_meta .summary .summarydiv {
-	margin: 0px 5px;
+	margin: 0 5px;
 }
 
 .podlovewebplayer_video .podlovewebplayer_meta + .summary,
 .podlovewebplayer_video.podlovewebplayer_wrapper .podlovewebplayer_controlbox {
-	margin-top: 0px;
+	margin-top: 0;
 }
 
 .podlovewebplayer_meta + .summary.active {
@@ -487,7 +486,7 @@
 }
 
 .podlovewebplayer_wrapper .podlovewebplayer_controlbox {
-	height: 0px;
+	height: 0;
 	font-size: 4px;
 	text-align: center;
 	background: #0f0f0f;
@@ -508,10 +507,10 @@
 	color: #fff;
 	background: transparent !important;
 	font-size: 1.75em;
-	-webkit-text-shadow: 0px 0px 1px #000000;
-	-moz-text-shadow: 0px 0px 1px #000000;
-	-o-text-shadow: 0px 0px 1px #000000;
-	text-shadow: 0px 0px 1px #000000;
+	-webkit-text-shadow: 0 0 1px #000000;
+	-moz-text-shadow: 0 0 1px #000000;
+	-o-text-shadow: 0 0 1px #000000;
+	text-shadow: 0 0 1px #000000;
 	-webkit-font-smoothing: antialiased;
 	-moz-font-smoothing: antialiased;
 	-o-font-smoothing: antialiased;
@@ -539,7 +538,7 @@
 .podlovewebplayer_wrapper .podlovewebplayer_controlbox .infobuttons a {
 	position: relative;
 	margin: 4%;
-	padding: 0px;
+	padding: 0;
 	z-index: 78;
 	font-size: 2.4em;
 	font-weight: bold;
@@ -559,15 +558,15 @@
 	background: #000000;
 	color: #ffffff;
 	border: #222222 1px solid;
-	-webkit-box-shadow:  0px 0px 5px 1px #4B8CF7;
-	box-shadow:  0px 0px 5px 1px #4B8CF7;
+	-webkit-box-shadow:  0 0 5px 1px #4B8CF7;
+	box-shadow:  0 0 5px 1px #4B8CF7;
 }
 
 .podlovewebplayer_meta .togglers .infobuttons:hover,
 .podlovewebplayer_meta .togglers .infobuttons a:hover,
 .podlovewebplayer_wrapper .podlovewebplayer_controlbox .infobuttons:hover,
 .podlovewebplayer_wrapper .podlovewebplayer_controlbox .infobuttons a:hover  {
-	text-shadow: 0px 0px 4px #FFFFFF;
+	text-shadow: 0 0 4px #FFFFFF;
 	text-decoration: none;
 	filter: dropshadow(color=#FFFFFF, offx=0, offy=0);
 	cursor: pointer;
@@ -588,15 +587,28 @@
 }
 
 .podlovewebplayer_wrapper .podlovewebplayer_chapters tr td.chapternr {
-	min-width: 0px;
+	min-width: 0;
 	width: 20px;
-	padding-left: 0px;
+	padding-left: 0;
 	text-align: center;
 }
 
 .podlovewebplayer_wrapper .podlovewebplayer_chapters tr td.starttime {
 	width: 50px;
 	text-align: right;
+}
+/* rounded corners for chapters */
+.podlovewebplayer_wrapper .podlovewebplayer_chapters tr:first-child td.starttime {
+    border-top-left-radius: 10px;
+}
+.podlovewebplayer_wrapper .podlovewebplayer_chapters tr:last-child td.starttime {
+    border-bottom-left-radius: 10px;
+}
+.podlovewebplayer_wrapper .podlovewebplayer_chapters tr:first-child td.timecode {
+    border-top-right-radius: 10px;
+}
+.podlovewebplayer_wrapper .podlovewebplayer_chapters tr:last-child td.timecode {
+    border-bottom-right-radius: 10px;
 }
 
 .podlovewebplayer_chapters .chapterplay {
@@ -668,11 +680,11 @@
 	background-position: 0 0 !important;
 }
 
-.podlovewebplayer_chapters tr.chaptertr:active {
+.podlovewebplayer_chapters tr.chaptertr:active td {
 	color: #ffffff;
-	-webkit-text-shadow: 0px 0px 3px #111111; 
-	-moz-text-shadow: 0px 0px 3px #111111; 
-	text-shadow: 0px 0px 3px #111111; 
+	-webkit-text-shadow: 0 0 3px #111111;
+	-moz-text-shadow: 0 0 3px #111111;
+	text-shadow: 0 0 3px #111111;
 	background: #ffffff;
 	background: -moz-linear-gradient(top, #ffffff 0%, #f6f6f6 47%, #ededed 100%);
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(47%,#f6f6f6), color-stop(100%,#ededed));
@@ -697,9 +709,11 @@
 .podlovewebplayer_wrapper .podlovewebplayer_chapterbox {
 	display: block;
 	height: auto;
-	border: 3px #0f0f0f solid;
-	border-bottom: 0px #0f0f0f solid;
-	border-top: 0px;
+	border: 0;
+	border-left: 3px #0f0f0f solid;
+	border-right: 3px #0f0f0f solid;
+	margin-top: 3px;
+	background: #0f0f0f;
 	overflow-y: hidden;
 	-webkit-transition: all 0.5s;
 	-moz-transition: all 0.5s;
@@ -724,11 +738,11 @@
 	position: initial;
 	display: block;
 	height: 11px;
-	left: 0px;
+	left: 0;
 	background: #0f0f0f;
-	-webkit-box-shadow: 0px 1px #0f0f0f;
-	-moz-box-shadow: 0px 1px #0f0f0f;
-	box-shadow: 0px 1px #0f0f0f;
+	-webkit-box-shadow: 0 1px #0f0f0f;
+	-moz-box-shadow: 0 1px #0f0f0f;
+	box-shadow: 0 1px #0f0f0f;
 	-webkit-border-bottom-left-radius: 10px;
 	-webkit-border-bottom-right-radius: 10px;
 	-moz-border-radius-bottomleft: 10px;
@@ -751,7 +765,7 @@
 }
 
 .podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_controlbox {
-	margin-top: 0px;
+	margin-top: 0;
 }
 
 .podlovewebplayer_smallplayer .mejs-controls .mejs-time-rail .mejs-time-float {
@@ -763,7 +777,7 @@
 	padding: 6px 11px 19px 14px;
 	height: 20px;
 	width: 20px;
-	margin: 10px 10px 0px 10px;
+	margin: 10px 10px 0 10px;
 	border: 4px solid #ffffff !important;
 }
 
@@ -785,16 +799,16 @@
 @media only screen 
 and (max-width : 500px) {
 	.podlovewebplayer_wrapper {
-		margin-left: 0px;
-		margin-right: 0px;
+		margin-left: 0;
+		margin-right: 0;
 	}
 	.podlovewebplayer_meta {
-		-webkit-border-top-left-radius: 0px !important;
-		-webkit-border-top-right-radius: 0px !important;
-		-moz-border-radius-topleft: 0px !important;
-		-moz-border-radius-topright: 0px !important;
-		border-top-left-radius: 0px !important;
-		border-top-right-radius: 0px !important;
+		-webkit-border-top-left-radius: 0 !important;
+		-webkit-border-top-right-radius: 0 !important;
+		-moz-border-radius-topleft: 0 !important;
+		-moz-border-radius-topright: 0 !important;
+		border-top-left-radius: 0 !important;
+		border-top-right-radius: 0 !important;
 	}
 
 	.podlovewebplayer_meta .subtitle {
@@ -818,18 +832,18 @@ and (max-width : 500px) {
 	
 	.podlovewebplayer_wrapper .podlovewebplayer_tableend,
 	.podlovewebplayer_wrapper .podlovewebplayer_top {
-		-webkit-border-top-left-radius: 0px;
-		-webkit-border-top-right-radius: 0px;
-		-moz-border-radius-topleft: 0px;
-		-moz-border-radius-topright: 0px;
-		border-top-left-radius: 0px;
-		border-top-right-radius: 0px;
+		-webkit-border-top-left-radius: 0;
+		-webkit-border-top-right-radius: 0;
+		-moz-border-radius-topleft: 0;
+		-moz-border-radius-topright: 0;
+		border-top-left-radius: 0;
+		border-top-right-radius: 0;
 
-		-webkit-border-bottom-left-radius: 0px;
-		-webkit-border-bottom-right-radius: 0px;
-		-moz-border-radius-bottomleft: 0px;
-		-moz-border-radius-bottomright: 0px;
-		border-bottom-left-radius: 0px;
-		border-bottom-right-radius: 0px;
+		-webkit-border-bottom-left-radius: 0;
+		-webkit-border-bottom-right-radius: 0;
+		-moz-border-radius-bottomleft: 0;
+		-moz-border-radius-bottomright: 0;
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
 	}
 }
