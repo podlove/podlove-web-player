@@ -726,6 +726,8 @@
 }
 
 .podlovewebplayer_wrapper .podlovewebplayer_chapterbox {
+	position: relative;
+	top: 3px !important;
 	display: block;
 	height: auto;
 	border: 3px #0f0f0f solid;

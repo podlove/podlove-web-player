@@ -207,7 +207,8 @@
 	 */
 	var generateChapterTable = function (params) {
 		var div, table, tbody, scroll = '';
-		
+		console.log(div);
+		console.log(params);
 		if (params.chapterHeight !== "") {
 			if (typeof parseInt(params.chapterHeight,10) === 'number') {
 				scroll = 'style="overflow-y: auto; max-height: '+parseInt(params.chapterHeight,10) +'px;"';
@@ -456,7 +457,7 @@
 			wrapper.find('.chaptertoggle').unbind('click').click(function () {
 				wrapper.find('.podlovewebplayer_chapterbox').toggleClass('active');
 				if (wrapper.find('.podlovewebplayer_chapterbox').hasClass('active')) {
-					wrapper.find('.podlovewebplayer_chapterbox').height(parseInt(wrapper.find('.podlovewebplayer_chapterbox').data('height'),10) + 4 + 'px');
+					wrapper.find('.podlovewebplayer_chapterbox').height(parseInt(wrapper.find('.podlovewebplayer_chapterbox').data('height'),10) + 2 + 'px');
 				} else {
 					wrapper.find('.podlovewebplayer_chapterbox').height('0px');
 				}
@@ -854,7 +855,7 @@
 				wrapper.on('playerresize', function () {
 					wrapper.find('.podlovewebplayer_chapterbox').data('height', wrapper.find('.podlovewebplayer_chapters').height());
 					if (wrapper.find('.podlovewebplayer_chapterbox').hasClass('active')) {
-						wrapper.find('.podlovewebplayer_chapterbox').height(parseInt(wrapper.find('.podlovewebplayer_chapterbox').data('height'),10) + 4 + 'px');
+						wrapper.find('.podlovewebplayer_chapterbox').height(parseInt(wrapper.find('.podlovewebplayer_chapterbox').data('height'),10) + 2 + 'px');
 					}
 					wrapper.find('.summary').data('height', wrapper.find('.summarydiv').height());
 					if (wrapper.find('.summary').hasClass('active')) {
@@ -873,7 +874,7 @@
 						'<div class="summary' + summaryActive + '"><div class="summarydiv">' + params.summary + '</div></div>');
 				}
 				if (params.chapters !== undefined) {
-					if (params.chapters.length > 10) {
+					if (((params.chapters.length > 10)&&(typeof params.chapters === 'string'))||((params.chapters.length > 1)&&(typeof params.chapters === 'object'))) {
 						wrapper.find('.togglers').append(
 							'<a href="#" class="chaptertoggle infobuttons pwp-icon-list-bullet" title="Show/hide chapters"></a>');
 					}
@@ -944,8 +945,9 @@
 			}
 
 			//build chapter table
+			//console.log(params.chapters);
 			if (params.chapters !== undefined) {
-				if (params.chapters.length > 10) {
+				if (((params.chapters.length > 10)&&(typeof params.chapters === 'string'))||((params.chapters.length > 1)&&(typeof params.chapters === 'object'))) {
 					haschapters = true;
 					generateChapterTable(params).appendTo(wrapper);
 				}
