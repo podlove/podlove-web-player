@@ -180,7 +180,8 @@
 	background: transparent;
 	color: white;
 }
-.mejs-button.mejs-volume-button button::after {
+.mejs-button.mejs-volume-button button::after,
+.podlovewebplayer_wrapper .podlovewebplayer_chapterbox .chaptername a {
 	font-size: 16;
 	padding-left: 0.02em;
 	font-family: "pwpfont" !important;
@@ -490,16 +491,17 @@
 	padding: 20px 10px;
 }
 
-.podlovewebplayer_wrapper .summary.active a:visited {
-	color: blue;
-}
-
-.podlovewebplayer_wrapper .summary.active a:hover {
-	text-decoration: underline;
+.podlovewebplayer_wrapper .summary a:visited {
+	color: #8AB7E5;
+	font-weight: 700;
 }
 
 .podlovewebplayer_wrapper .summary.active a {
 	text-decoration: none;
+}
+
+.podlovewebplayer_wrapper .summary a:hover {
+	text-decoration: underline;
 }
 
 .podlovewebplayer_meta .togglers {
@@ -749,6 +751,24 @@
 .podlovewebplayer_wrapper .podlovewebplayer_chapterbox .timecode span,
 .podlovewebplayer_wrapper .podlovewebplayer_chapterbox .starttime span {
 	text-align: right;
+}
+
+.podlovewebplayer_wrapper .podlovewebplayer_chapterbox .chaptername a::after {
+	content: "\f08e";
+}
+
+.podlovewebplayer_wrapper .podlovewebplayer_chapterbox .chapterimage {
+	width: 45px;
+	max-width: 45px;
+	text-align: center;
+}
+
+.podlovewebplayer_wrapper .podlovewebplayer_chapterbox .chapterimage img {
+	max-width: 40px;
+	max-height: 32px;
+	margin-top: -8px;
+	margin-bottom: -7px;
+	display: block;
 }
 
 .podlovewebplayer_wrapper .podlovewebplayer_tableend {
