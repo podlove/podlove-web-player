@@ -386,9 +386,7 @@ function(){f.ajax({dataType:"html",url:d,success:function(e){c.find(".mejs-postr
 	 * Given a list of chapters, this function creates the chapter table for the player.
 	 */
 	var generateChapterTable = function (params) {
-		var div, table, tbody, scroll = '';
-		console.log(div);
-		console.log(params);
+		var div, table, tbody, chapterImages, tempchapters, maxchapterstart, line, tc, chaptitle, next, chapterImages, rowDummy, i, scroll = '';
 		if (params.chapterHeight !== "") {
 			if (typeof parseInt(params.chapterHeight,10) === 'number') {
 				scroll = 'style="overflow-y: auto; max-height: '+parseInt(params.chapterHeight,10) +'px;"';
@@ -408,8 +406,8 @@ function(){f.ajax({dataType:"html",url:d,success:function(e){c.find(".mejs-postr
 		}
 
 		//prepare row data
-		var tempchapters = params.chapters;
-		var maxchapterstart = 0;
+		tempchapters = params.chapters;
+		maxchapterstart = 0;
 
 		//first round: kill empty rows and build structured object
 		if (typeof params.chapters === 'string') {
@@ -422,9 +420,9 @@ function(){f.ajax({dataType:"html",url:d,success:function(e){c.find(".mejs-postr
 				}
 
 				//extract the timestamp
-				var line = $.trim(chapter);
-				var tc = parseTimecode(line.substring(0, line.indexOf(' ')));
-				var chaptitle = $.trim(line.substring(line.indexOf(' ')));
+				line = $.trim(chapter);
+				tc = parseTimecode(line.substring(0, line.indexOf(' ')));
+				chaptitle = $.trim(line.substring(line.indexOf(' ')));
 				tempchapters.push({
 					start: tc[0],
 					code: chaptitle
@@ -448,7 +446,7 @@ function(){f.ajax({dataType:"html",url:d,success:function(e){c.find(".mejs-postr
 		//second round: collect more information
 		maxchapterstart = Math.max.apply(Math,
 			$.map(tempchapters, function (value, i) {
-			var next = tempchapters[i + 1];
+			next = tempchapters[i + 1];
 
 			// we use `this.end` to quickly calculate the duration in the next round
 			if (next) {
@@ -461,7 +459,17 @@ function(){f.ajax({dataType:"html",url:d,success:function(e){c.find(".mejs-postr
 
 
 		//this is a "template" for each chapter row
-		var rowDummy = $('<tr class="chaptertr" data-start="" data-end="" data-img=""><td class="starttime"><span></span></td><td class="chaptername"></td><td class="timecode">\n<span></span>\n</td>\n</tr>');
+		chapterImages = false;
+		for (i = 0; i < tempchapters.length; i++) {
+			if ((tempchapters[i].image !== "")&&(tempchapters[i].image !== undefined)) {
+				chapterImages = true;
+			}
+		}
+		if (chapterImages) {
+			rowDummy = $('<tr class="chaptertr" data-start="" data-end="" data-img=""><td class="starttime"><span></span></td><td class="chapterimage"></td><td class="chaptername"></td><td class="timecode">\n<span></span>\n</td>\n</tr>');
+		} else {
+			rowDummy = $('<tr class="chaptertr" data-start="" data-end="" data-img=""><td class="starttime"><span></span></td><td class="chaptername"></td><td class="timecode">\n<span></span>\n</td>\n</tr>');
+		}
 
 		//third round: build actual dom table
 		$.each(tempchapters, function (i) {
@@ -500,8 +508,17 @@ function(){f.ajax({dataType:"html",url:d,success:function(e){c.find(".mejs-postr
 
 			//insert the chapter data
 			row.find('.starttime > span').text(generateTimecode([Math.round(this.start)], true, forceHours));
-			row.find('.chaptername').html(this.code);
-			row.find('.timecode > span').text(this.duration);
+			if((this.href !== "")&&(this.href !== undefined)) {
+				row.find('.chaptername').html('<span>'+this.code+'</span>'+' <a href="'+this.href+'"></a>');
+			} else {
+				row.find('.chaptername').html('<span>'+this.code+'</span>');
+			}
+			row.find('.timecode > span').html('<span>'+this.duration+'</span>');
+			if(chapterImages) {
+				if((this.image !== "")&&(this.image !== undefined)) {
+					row.find('.chapterimage').html('<img src="'+this.image+'"/>');
+				}
+			}
 
 			row.appendTo(tbody);
 		});
@@ -739,33 +756,37 @@ function(){f.ajax({dataType:"html",url:d,success:function(e){c.find(".mejs-postr
 		// chapters list
 		list
 			.show()
-			.delegate('.chaptertr', 'click', function (e) {
-			if ($(this).closest('table').hasClass('linked_all') || $(this).closest('tr').hasClass('loaded')) {
-				e.preventDefault();
-				var mark = $(this).closest('tr'),
-					startTime = mark.data('start');
-				//endTime = mark.data('end');
-
-				// If there is only one player also set deepLink
-				if (players.length === 1) {
-					// setFragmentURL('t=' + generateTimecode([startTime, endTime]));
-					setFragmentURL('t=' + generateTimecode([startTime]));
-				} else {
-					if (canplay) {
-						// Basic Chapter Mark function (without deeplinking)
-						player.setCurrentTime(startTime);
+			.delegate('.chaptertr td > *', 'click', function (e) {
+			if ($(this).closest('table').hasClass('linked_all') || $(this).closest('td').hasClass('loaded')) {
+				if ($(this)[0].localName !== 'a') {
+					e.preventDefault();
+					var mark = $(this).closest('tr'),
+						startTime = mark.data('start');
+					//endTime = mark.data('end');
+					
+					// If there is only one player also set deepLink
+					if (players.length === 1) {
+						// setFragmentURL('t=' + generateTimecode([startTime, endTime]));
+						setFragmentURL('t=' + generateTimecode([startTime]));
 					} else {
-						jqPlayer.one('canplay', function () {
+						if (canplay) {
+							// Basic Chapter Mark function (without deeplinking)
 							player.setCurrentTime(startTime);
-						});
+						} else {
+							jqPlayer.one('canplay', function () {
+								player.setCurrentTime(startTime);
+							});
+						}
 					}
+					
+					// flash fallback needs additional pause
+					if (player.pluginType === 'flash') {
+						player.pause();
+					}
+					player.play();
+				} else {
+					window.open($(this)[0].href,'_blank');
 				}
-
-				// flash fallback needs additional pause
-				if (player.pluginType === 'flash') {
-					player.pause();
-				}
-				player.play();
 			}
 			return false;
 		});
@@ -1125,7 +1146,6 @@ function(){f.ajax({dataType:"html",url:d,success:function(e){c.find(".mejs-postr
 			}
 
 			//build chapter table
-			//console.log(params.chapters);
 			if (params.chapters !== undefined) {
 				if (((params.chapters.length > 10)&&(typeof params.chapters === 'string'))||((params.chapters.length > 1)&&(typeof params.chapters === 'object'))) {
 					haschapters = true;
