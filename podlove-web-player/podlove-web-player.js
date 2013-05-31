@@ -576,37 +576,42 @@
 		// chapters list
 		list
 			.show()
-			.delegate('.chaptertr td > *', 'click', function (e) {
-			if ($(this).closest('table').hasClass('linked_all') || $(this).closest('td').hasClass('loaded')) {
-				if ($(this)[0].localName !== 'a') {
-					e.preventDefault();
-					var mark = $(this).closest('tr'),
-						startTime = mark.data('start');
-					//endTime = mark.data('end');
-					
-					// If there is only one player also set deepLink
-					if (players.length === 1) {
-						// setFragmentURL('t=' + generateTimecode([startTime, endTime]));
-						setFragmentURL('t=' + generateTimecode([startTime]));
-					} else {
-						if (canplay) {
-							// Basic Chapter Mark function (without deeplinking)
-							player.setCurrentTime(startTime);
-						} else {
-							jqPlayer.one('canplay', function () {
-								player.setCurrentTime(startTime);
-							});
-						}
-					}
-					
-					// flash fallback needs additional pause
-					if (player.pluginType === 'flash') {
-						player.pause();
-					}
-					player.play();
+			.delegate('.chaptertr', 'click', function (e) {
+			if ($(this).closest('table').hasClass('linked_all') || $(this).closest('tr').hasClass('loaded')) {
+				e.preventDefault();
+				var mark = $(this).closest('tr'),
+					startTime = mark.data('start');
+				//endTime = mark.data('end');
+		
+				// If there is only one player also set deepLink
+				if (players.length === 1) {
+					// setFragmentURL('t=' + generateTimecode([startTime, endTime]));
+					setFragmentURL('t=' + generateTimecode([startTime]));
 				} else {
-					window.open($(this)[0].href,'_blank');
+					if (canplay) {
+						// Basic Chapter Mark function (without deeplinking)
+						player.setCurrentTime(startTime);
+					} else {
+						jqPlayer.one('canplay', function () {
+							player.setCurrentTime(startTime);
+						});
+					}
 				}
+		
+				// flash fallback needs additional pause
+				if (player.pluginType === 'flash') {
+					player.pause();
+				}
+				player.play();
+			}
+			return false;
+		});
+		list
+			.show()
+			.delegate('.chaptertr a', 'click', function (e) {
+			if ($(this).closest('table').hasClass('linked_all') || $(this).closest('td').hasClass('loaded')) {
+				e.preventDefault();
+				window.open($(this)[0].href,'_blank');
 			}
 			return false;
 		});
