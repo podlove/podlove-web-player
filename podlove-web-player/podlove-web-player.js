@@ -216,7 +216,7 @@
 		table = div.children('table');
 		tbody = table.children('tbody');
 
-		if (params.chaptersVisible === 'true') {
+		if ((params.chaptersVisible === 'true') || (params.chaptersVisible === true)) {
 			div.addClass('active');
 		}
 
