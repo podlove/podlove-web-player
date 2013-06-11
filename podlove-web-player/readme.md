@@ -223,6 +223,11 @@ Chapters now handed over as JSON, please take a look at the standalone.html. The
 
 ## Changelog
 
+### trunk (2.1.0)
+* //Playback Speed changeable
+* //Style Editor
+* //smaller and bigger player styles
+
 ### 2.0.11
 * empty chapter file and empty meta_box bug fixed
 * chapter images added to chapter table
@@ -336,6 +341,9 @@ Chapters now handed over as JSON, please take a look at the standalone.html. The
 * Full of bugs
 
 ## Upgrade Notice
+
+### 2.0.11
+tiny bugs removed and style improved
 
 ### 2.0.10
 readme.txt update because of wordpress.org validator foo
