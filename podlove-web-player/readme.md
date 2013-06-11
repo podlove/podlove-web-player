@@ -228,6 +228,8 @@ Chapters now handed over as JSON, please take a look at the standalone.html. The
 * chapter images added to chapter table
 * chapter links added to chapter table
 * chapter table bugfix
+* max chapter table height changeable
+* buttons improved (style and size)
 
 ### 2.0.10
 * wordpress.org has some problems with the last commit

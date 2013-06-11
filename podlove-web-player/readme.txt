@@ -221,6 +221,8 @@ Earlier versions of this plugin could handle alternative shortcodes, too: [audio
 * chapter images added to chapter table
 * chapter links added to chapter table
 * chapter table bugfix
+* max chapter table height changeable
+* buttons improved (style and size)
 
 = 2.0.10 =
 * wordpress.org has some problems with the last commit
@@ -327,6 +329,9 @@ Earlier versions of this plugin could handle alternative shortcodes, too: [audio
 * Full of bugs
 
 == Upgrade Notice ==
+
+= 2.0.11 =
+tiny bugs removed and style improved
 
 = 2.0.10 =
 readme.txt update because of wordpress.org validator foo
