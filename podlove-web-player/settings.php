@@ -65,6 +65,14 @@ function podlovewebplayer_register_settings() {
 				'height' => 'Maximal Chapter height'
 			),
 		),
+		'style' => array(
+		'title'    => 'Player Style',
+		'fields' => array(
+			'custom'  => 'Style your Player:',
+			'values'  => 'Designer Console:',
+			'version' => 'Custon Style Version:'
+			),
+		),
 		'buttons' => array(
 			'title'    => 'Buttons',
 			'function' => true,
@@ -214,6 +222,75 @@ function podlovewebplayer_chapter_height() {
 		value='".$options['chapter_height']."' style='width:3em;' /> px&nbsp;&nbsp;(keep empty to show all)";
 }
 
+function podlovewebplayer_style() { 
+	print "<div class='wrap'><h2>Custom CSS Style</h2>";
+}
+
+function podlovewebplayer_style_custom() {
+	$options = get_option('podlovewebplayer_options');
+	print "<textarea name='podlovewebplayer_options[style_custom]' id='pwpstyle1' dir='ltr' style='display:none;'>".$options['style_custom']."</textarea><script language='javascript'></script><p></p>
+<div class='colorslider'><div id='color1' class='box'>
+	<div><label for='hue'>Hue</label><input id='hue' onchange='pwpdcolorize();' name='hue' type='range' max='360' min='0'></div>
+	<div><label for='sat'>Saturation</label><input id='sat' onchange='pwpdcolorize();' name='sat' type='range' max='100' min='0'></div>
+	<div><label for='lum'>Luminance</label><input id='lum' onchange='pwpdcolorize();' name='lum' type='range' max='100' min='0'></div>
+	<div><label for='gra'>Gradient</label><input id='gra' onchange='pwpdcolorize();' name='gra' type='range' max='20' min='0'></div>
+	<div><input type='button' onclick='pwpdinsertcolor();' class='button' value='enter color' /> <input type='button' onclick='pwpdrandomcolor();' class='button' value='random' /> <input type='button' onclick='pwpdcolorreset();' class='button' value='reset' /> <input name='Submit' type='submit' class='button button-primary' value='save'/></div><br/>
+</div></div></div>";
+	print '<audio id="demoplayer">
+			<source src="http://podlove.github.com/podlove-web-player/samples/podlove-test-track.mp4" type="audio/mp4"></source>
+			<source src="http://podlove.github.com/podlove-web-player/samples/podlove-test-track.mp3" type="audio/mpeg"></source>
+			<source src="http://podlove.github.com/podlove-web-player/samples/podlove-test-track.ogg" type="audio/ogg; codecs=vorbis"></source>
+			<source src="http://podlove.github.com/podlove-web-player/samples/podlove-test-track.opus" type="audio/ogg; codecs=opus"></source>
+		</audio>
+		<script>
+			$(\'#testplayer\').podlovewebplayer({
+				poster: \'samples/coverimage.png\',
+				title: \'PWP001 – Lorem ipsum dolor sit amet\',
+				permalink: \'http://podlove.github.com/podlove-web-player/standalone.html\',
+				subtitle: \'Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.\',
+				chapters: [{\'start\':\'00:00:00.000\',\'title\':\'Chapter One\',   \'image\':\'\'}
+									,{\'start\':\'00:00:00.500\',\'title\':\'Chapter Two\',   \'image\':\'samples/coverimage-red.png\'}
+									,{\'start\':\'00:00:01.500\',\'title\':\'Chapter Three\', \'image\':\'samples/coverimage-green.png\'}
+									,{\'start\':\'00:00:02.000\',\'title\':\'Chapter Four\',  \'image\':\'samples/coverimage-blue.png\'}],
+				summary: \'<p>Summary and even links <a href="https://github.com/gerritvanaaken/podlove-web-player">Podlove Web Player</a>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Maecenas sed diam eget risus varius blandit sit amet non magna. Maecenas sed diam eget risus varius blandit sit amet non magna.</p><p>Nullam id dolor id nibh ultricies vehicula ut id elit. Nulla vitae elit libero, a pharetra augue. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Cras mattis consectetur purus sit amet fermentum. Nullam id dolor id nibh ultricies vehicula ut id elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p>\',
+				downloads: {0: {"name": "MPEG-1 Audio Layer III (MP3) High Quality","size": 58725,"url": "samples/podlove-test-track.mp3","dlurl": "samples/podlove-test-track.mp3"},1: {"name": "ogg","size": 50494,"url": "samples/podlove-test-track.ogg","dlurl": "samples/podlove-test-track.mp3"},2: {"name": "mp4","size": 78328,"url": "samples/podlove-test-track.mp4","dlurl": "samples/podlove-test-track.mp4"},3: {"name": "opus","size": 37314,"url": "samples/podlove-test-track.opus","dlurl": "samples/podlove-test-track.opus"}},
+				duration: \'00:02.500\',
+				alwaysShowHours: true,
+				startVolume: 0.8,
+				width: \'auto\',
+				summaryVisible: false,
+				timecontrolsVisible: false,
+				sharebuttonsVisible: false,
+				chaptersVisible: true	
+			});
+		</script>';
+	$custompwpstyle = custompwpstyle();
+	if (!empty($custompwpstyle)) {
+		makecss();
+	} elseif (empty($custompwpstyle) && file_exists(css_path())) {
+		unlink(css_path());
+	}
+}
+
+function podlovewebplayer_style_values() {
+	$options = get_option('podlovewebplayer_options');
+	if ( !isset( $options['style_values'] ) ) {
+		$options['style_values'] = "{'hue':180,'sat':0,'lum':33,'gra':9}";
+	}
+	print "<input id='pwpconsole' name='podlovewebplayer_options[style_values]' value='".$options['style_values']."' style='width:19em;' />";
+}
+
+function podlovewebplayer_style_version() {
+	$options = get_option('podlovewebplayer_options');
+	if ( !isset( $options['style_version'] ) ) {
+		$options['style_version'] = 1;
+	} else {
+		$options['style_version'] = $options['style_version']+1;
+	}
+	print $options['style_version']."<input id='pwpcustomstyleversion' name='podlovewebplayer_options[style_version]' value='".$options['style_version']."' style='display:none;' />";
+}
+
+
 function podlovewebplayer_buttons() {
 	print "<p>Here you can select, which buttons will be displayd. The Chapter-Toggle- and Summary-Info-Button are not configurable here, because they automaticle hidden, when no chapters/summary are provided.</p>\n\n";
 }
@@ -239,7 +316,7 @@ function podlovewebplayer_buttons_share() {
 function podlovewebplayer_info() {
 	$scriptname = explode('/wp-admin', $_SERVER["SCRIPT_FILENAME"]);
 	$dirname    = explode('/wp-content', dirname(__FILE__));
-	print '<p>This is <strong>Version 2.0.9</strong> of the <strong>Podlove Web Player</strong>.<br>
+	print '<p>This is <strong>Version 2.1.0</strong> of the <strong>Podlove Web Player</strong>.<br>
 	The <strong>Including file</strong> is: <code>wp-admin'.$scriptname[1].'</code><br>
 	The <strong>PWP-directory</strong> is: <code>wp-content'.$dirname[1].'</code></p>
 	<p>Want to contribute? Found a bug? Need some help? <br/>you can found our github repo/page at
