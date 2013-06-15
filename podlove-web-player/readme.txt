@@ -47,10 +47,17 @@ The used icons are built in as fonts and provided by <a href="http://fortawesome
 
 1. Upload the `podlove-web-player` folder to the `/wp-content/plugins/` directory
 2. Activate the plugin through the `Plugins` menu in WordPress
-3. Use the `[podlovevideo]` or `[podloveaudio]` shortcode in your post or page with the options on the front page.
+3. Use the `[podlovevideo]` or `[podloveaudio]` shortcode in your post or page with the options on the front page
 4. Visit the options page
+5. If you need help, go to the github repo https://github.com/podlove/podlove-web-player and use the issue tracker
 
 == Frequently Asked Questions ==
+
+### Where can i get help?
+
+Definitely not on wordpress.org  
+If you need help, please go to our github repo  
+You can find it at https://github.com/podlove/podlove-web-player  
 
 ### How can I configure the player’s appearance?
 
@@ -66,9 +73,9 @@ This location of any audio or video file, local ore remote:
 
 The media type of the resource:
 
-    [podlovevideo src="http://mysite.com/mymedia.m4v" type="video/mp4"]    
+    [podlovevideo src="http://mysite.com/mymedia.m4v" type="video/mp4"]
 
-= mp4 / webm / ogg  = 
+= mp4 / webm / ogg  =
 
 The location of a file with a specific video type:
 
@@ -95,7 +102,7 @@ The width and/or height of the video (or the audio player):
 
 Loops the video or audio when it ends:
 
-    [podlovevideo src="http://mysite.com/mymedia.mp4" loop="true"]    
+    [podlovevideo src="http://mysite.com/mymedia.mp4" loop="true"]
 
 = preload =
 
@@ -126,31 +133,31 @@ Enables display of duration without having to load the media file. Use seconds o
 
 Displays the time in 00:00:00 instead of 00:00. Default is "true".
 
-    [podloveaudio alwaysShowHours="false"]  
+    [podloveaudio alwaysShowHours="false"]
 
 = alwaysShowControls =
 
 Defines whether the player control bar is permanently visible. For videos, it might be suitable to fade the controls out when not hovering the video.
 
-    [podlovevideo alwaysShowControls="false"]   
+    [podlovevideo alwaysShowControls="false"]
 
 = volume = 
 
 Disables the volume slider:
 
-    [podloveaudio volume="false"]    
+    [podloveaudio volume="false"]
 
 = progress =
 
 Disables the progress bar:
 
-    [podlovevideo progress="false"] 
+    [podlovevideo progress="false"]
 
 = captions = 
 
 URL to a WebVTT captions file:
 
-    [podlovevideo captions="http://mysite.com/mymedia.vtt"]  
+    [podlovevideo captions="http://mysite.com/mymedia.vtt"]
 
 = chapters = 
 
