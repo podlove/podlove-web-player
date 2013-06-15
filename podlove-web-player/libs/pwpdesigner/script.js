@@ -92,6 +92,25 @@ function pwpdinsertcolor() {
 
 function pwpdesignerinit() {
   var style, styleele = document.createElement('style');
+  jQuery("#pwpexample").podlovewebplayer({
+    title: 'PWP001 – Lorem ipsum dolor sit amet',
+    permalink: 'http://podlove.github.com/podlove-web-player/standalone.html',
+    chapters: [{'start':'00:00:00.000','title':'Chapter One'}
+              ,{'start':'00:00:00.500','title':'Chapter Two'}
+              ,{'start':'00:00:01.500','title':'Chapter Three'}
+              ,{'start':'00:00:02.000','title':'Chapter Four'}],
+    summary: '<p>Summary and even links <a href="https://github.com/gerritvanaaken/podlove-web-player">Podlove Web Player</a>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Maecenas sed diam eget risus varius blandit sit amet non magna. Maecenas sed diam eget risus varius blandit sit amet non magna.</p><p>Nullam id dolor id nibh ultricies vehicula ut id elit. Nulla vitae elit libero, a pharetra augue. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Cras mattis consectetur purus sit amet fermentum. Nullam id dolor id nibh ultricies vehicula ut id elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p>',
+    downloads: {0: {"name": "MPEG-1 Audio Layer III (MP3) High Quality","size": 58725,"url": "samples/podlove-test-track.mp3","dlurl": "samples/podlove-test-track.mp3"},1: {"name": "ogg","size": 50494,"url": "samples/podlove-test-track.ogg","dlurl": "samples/podlove-test-track.ogg"},2: {"name": "mp4","size": 78328,"url": "samples/podlove-test-track.mp4","dlurl": "samples/podlove-test-track.mp4"},3: {"name": "opus","size": 37314,"url": "samples/podlove-test-track.opus","dlurl": "samples/podlove-test-track.opus"}},
+    duration: '00:02.500',
+    alwaysShowHours: true,
+    startVolume: 0.8,
+    width: 'auto',
+    summaryVisible: false,
+    timecontrolsVisible: false,
+    sharebuttonsVisible: false,
+    chaptersVisible: true	
+  });
+
   styleele.id = 'pwpdesigner';
   document.getElementsByTagName('head')[0].appendChild(styleele);
   style = JSON.parse(document.getElementById('pwpconsole').value);

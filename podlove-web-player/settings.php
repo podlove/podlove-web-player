@@ -8,15 +8,13 @@ function podlovewebplayer_settings_init() {
 		wp_enqueue_style( 'pwpdesigner', plugins_url('static/libs/pwpdesigner/style.css', __FILE__), array(), '2.1.0' );
 		if(isset($wp_options['style_custom'])) {
 			if($wp_options['style_custom'] !== '') {
-				wp_enqueue_style( 'custom-pwp-style', plugins_url('customcss/pwp_custom_id-'.$blog_id.'.css', __FILE__), array(), $wp_options['style_version'] );
+				wp_enqueue_style( 'custom-pwp-style', plugins_url('static/customcss/pwp_custom_id-'.$blog_id.'.css', __FILE__), array(), $wp_options['style_version'] );
 			}
 		} else {
 			wp_dequeue_style( 'custom-pwp-style');
 		}
-		//wp_enqueue_script( 'colorconverter', plugins_url('static/podlove-web-player.js', __FILE__), array(), '2.1.0' );
 		wp_enqueue_script( 'colorconverter', plugins_url('static/libs/pwpdesigner/colorconv.js', __FILE__), array(), '2.1.0' );
 		wp_enqueue_script( 'pwpdesigner', plugins_url('static/libs/pwpdesigner/script.js', __FILE__), array(), '2.1.0' );
-		
 		add_action( 'admin_menu', 'podlovewebplayer_create_menu' );
 		add_action( 'admin_init', 'podlovewebplayer_register_settings' );
 	}
@@ -40,13 +38,13 @@ function podlovewebplayer_settings_page() { ?>
 function podlovewebplayer_css_path() {
 	global $blog_id;
 	$cssid = '_id-'.$blog_id;
-	return plugin_dir_path(__FILE__) . "customcss/pwp_custom" . $cssid . ".css";
+	return plugin_dir_path(__FILE__) . "static/customcss/pwp_custom" . $cssid . ".css";
 }
 
 function podlovewebplayer_css_url() {
 	global $blog_id;
 	$cssid = '_id-'.$blog_id;
-	return plugin_dir_url(__FILE__) . "customcss/pwp_custom" . $cssid . ".css";
+	return plugin_dir_url(__FILE__) . "static/customcss/pwp_custom" . $cssid . ".css";
 }
 
 function podlovewebplayer_custompwpstyle() {
@@ -56,7 +54,7 @@ function podlovewebplayer_custompwpstyle() {
 }
 
 function podlovewebplayer_makecss() {
-	if(chmod(plugin_dir_path(__FILE__) . "customcss/",0755)) {
+	if(chmod(plugin_dir_path(__FILE__) . "static/customcss/",0755)) {
 		$podlovewebplayer_makecss = file_put_contents(podlovewebplayer_css_path(), "/* PodloveWebPlayer Custom Style */\n\n" . podlovewebplayer_custompwpstyle());
 		return $podlovewebplayer_makecss;
 	}
@@ -280,33 +278,14 @@ function podlovewebplayer_style_custom() {
 	<div><label for='gra'>Gradient</label><input id='gra' onchange='pwpdcolorize();' name='gra' type='range' max='20' min='0'></div>
 	<div><input type='button' onclick='pwpdinsertcolor();' class='button' value='enter color' /> <input type='button' onclick='pwpdrandomcolor();' class='button' value='random' /> <input type='button' onclick='pwpdcolorreset();' class='button' value='reset' /> <input name='Submit' type='submit' class='button button-primary' value='save'/></div><br/>
 </div></div></div>";
-	print '<audio id="demoplayer">
+	print '<audio id="pwpexample">
 			<source src="http://podlove.github.com/podlove-web-player/samples/podlove-test-track.mp4" type="audio/mp4"></source>
 			<source src="http://podlove.github.com/podlove-web-player/samples/podlove-test-track.mp3" type="audio/mpeg"></source>
 			<source src="http://podlove.github.com/podlove-web-player/samples/podlove-test-track.ogg" type="audio/ogg; codecs=vorbis"></source>
 			<source src="http://podlove.github.com/podlove-web-player/samples/podlove-test-track.opus" type="audio/ogg; codecs=opus"></source>
 		</audio>
 		<script>
-			$(\'#testplayer\').podlovewebplayer({
-				poster: \'samples/coverimage.png\',
-				title: \'PWP001 – Lorem ipsum dolor sit amet\',
-				permalink: \'http://podlove.github.com/podlove-web-player/standalone.html\',
-				subtitle: \'Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.\',
-				chapters: [{\'start\':\'00:00:00.000\',\'title\':\'Chapter One\',   \'image\':\'\'}
-									,{\'start\':\'00:00:00.500\',\'title\':\'Chapter Two\',   \'image\':\'samples/coverimage-red.png\'}
-									,{\'start\':\'00:00:01.500\',\'title\':\'Chapter Three\', \'image\':\'samples/coverimage-green.png\'}
-									,{\'start\':\'00:00:02.000\',\'title\':\'Chapter Four\',  \'image\':\'samples/coverimage-blue.png\'}],
-				summary: \'<p>Summary and even links <a href="https://github.com/gerritvanaaken/podlove-web-player">Podlove Web Player</a>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Maecenas sed diam eget risus varius blandit sit amet non magna. Maecenas sed diam eget risus varius blandit sit amet non magna.</p><p>Nullam id dolor id nibh ultricies vehicula ut id elit. Nulla vitae elit libero, a pharetra augue. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Cras mattis consectetur purus sit amet fermentum. Nullam id dolor id nibh ultricies vehicula ut id elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p>\',
-				downloads: {0: {"name": "MPEG-1 Audio Layer III (MP3) High Quality","size": 58725,"url": "samples/podlove-test-track.mp3","dlurl": "samples/podlove-test-track.mp3"},1: {"name": "ogg","size": 50494,"url": "samples/podlove-test-track.ogg","dlurl": "samples/podlove-test-track.mp3"},2: {"name": "mp4","size": 78328,"url": "samples/podlove-test-track.mp4","dlurl": "samples/podlove-test-track.mp4"},3: {"name": "opus","size": 37314,"url": "samples/podlove-test-track.opus","dlurl": "samples/podlove-test-track.opus"}},
-				duration: \'00:02.500\',
-				alwaysShowHours: true,
-				startVolume: 0.8,
-				width: \'auto\',
-				summaryVisible: false,
-				timecontrolsVisible: false,
-				sharebuttonsVisible: false,
-				chaptersVisible: true	
-			});
+			
 		</script>';
 	$podlovewebplayer_custompwpstyle = podlovewebplayer_custompwpstyle();
 	if (!empty($podlovewebplayer_custompwpstyle)) {

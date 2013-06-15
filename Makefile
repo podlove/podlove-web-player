@@ -23,5 +23,6 @@ build:
 	cp ./podlove-web-player/libs/pwpdesigner/script.js ./podlove-web-player/static/libs/pwpdesigner/script.js
 	cp ./podlove-web-player/libs/pwpdesigner/style.css ./podlove-web-player/static/libs/pwpdesigner/style.css
 	cp ./podlove-web-player/libs/pwpdesigner/pwp_custom_id-1.css ./podlove-web-player/static/customcss/pwp_custom_id-1.css
+	cp ./podlove-web-player/libs/jquery-1.10.0.min.js ./podlove-web-player/static/jquery-1.10.0.min.js
 	cp -R ./podlove-web-player/libs/podlove-font/font/ ./podlove-web-player/font/
 	rm  ./podlove-web-player/static/podlove-web-player.tmp.css ./podlove-web-player/static/podlove-web-player.tmp.js
