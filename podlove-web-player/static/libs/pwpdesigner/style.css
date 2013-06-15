@@ -1,0 +1,14 @@
+.colorslider label {
+  min-width: 80px !important;
+  display: inline-block;
+  position: relative;
+  top: -10px;
+}
+
+.colorslider label:after {
+  content: ':';
+}
+
+.colorslider input[type='range'] {
+min-width: 300px;
+}

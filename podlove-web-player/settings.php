@@ -1,9 +1,27 @@
 <?php 
 
-if ( is_admin() ){
-	add_action( 'admin_menu', 'podlovewebplayer_create_menu' );
-	add_action( 'admin_init', 'podlovewebplayer_register_settings' );
+function podlovewebplayer_settings_init() {
+	if ( is_admin() ){
+		global $blog_id;
+		$wp_options = get_option('podlovewebplayer_options');
+		wp_enqueue_style( 'podlovewebplayer', plugins_url('static/podlove-web-player.css', __FILE__), array(), '2.1.0' );
+		wp_enqueue_style( 'pwpdesigner', plugins_url('static/libs/pwpdesigner/style.css', __FILE__), array(), '2.1.0' );
+		if(isset($wp_options['style_custom'])) {
+			if($wp_options['style_custom'] !== '') {
+				wp_enqueue_style( 'custom-pwp-style', plugins_url('customcss/pwp_custom_id-'.$blog_id.'.css', __FILE__), array(), $wp_options['style_version'] );
+			}
+		} else {
+			wp_dequeue_style( 'custom-pwp-style');
+		}
+		wp_enqueue_script( 'colorconverter', plugins_url('static/podlove-web-player.js', __FILE__), array(), '2.1.0' );
+		wp_enqueue_script( 'colorconverter', plugins_url('static/libs/pwpdesigner/colorconv.js', __FILE__), array(), '2.1.0' );
+		wp_enqueue_script( 'pwpdesigner', plugins_url('static/libs/pwpdesigner/script.js', __FILE__), array(), '2.1.0' );
+		
+		add_action( 'admin_menu', 'podlovewebplayer_create_menu' );
+		add_action( 'admin_init', 'podlovewebplayer_register_settings' );
+	}
 }
+add_action('init', 'podlovewebplayer_settings_init');
 
 function podlovewebplayer_settings_page() { ?>
 	<div class="wrap">
@@ -17,6 +35,32 @@ function podlovewebplayer_settings_page() { ?>
 		</form>
 	</div>
 <?php } 
+
+
+function podlovewebplayer_css_path() {
+	global $blog_id;
+	$cssid = '_id-'.$blog_id;
+	return plugin_dir_path(__FILE__) . "customcss/pwp_custom" . $cssid . ".css";
+}
+
+function podlovewebplayer_css_url() {
+	global $blog_id;
+	$cssid = '_id-'.$blog_id;
+	return plugin_dir_url(__FILE__) . "customcss/pwp_custom" . $cssid . ".css";
+}
+
+function podlovewebplayer_custompwpstyle() {
+	$options = get_option('podlovewebplayer_options');
+	$customstyle = $options['style_custom'];
+	return $customstyle;
+}
+
+function podlovewebplayer_makecss() {
+	if(chmod(plugin_dir_path(__FILE__) . "customcss/",0755)) {
+		$podlovewebplayer_makecss = file_put_contents(podlovewebplayer_css_path(), "/* PodloveWebPlayer Custom Style */\n\n" . podlovewebplayer_custompwpstyle());
+		return $podlovewebplayer_makecss;
+	}
+}
 
 
 function podlovewebplayer_create_menu() {
@@ -264,11 +308,11 @@ function podlovewebplayer_style_custom() {
 				chaptersVisible: true	
 			});
 		</script>';
-	$custompwpstyle = custompwpstyle();
-	if (!empty($custompwpstyle)) {
-		makecss();
-	} elseif (empty($custompwpstyle) && file_exists(css_path())) {
-		unlink(css_path());
+	$podlovewebplayer_custompwpstyle = podlovewebplayer_custompwpstyle();
+	if (!empty($podlovewebplayer_custompwpstyle)) {
+		podlovewebplayer_makecss();
+	} elseif (empty($podlovewebplayer_custompwpstyle) && file_exists(podlovewebplayer_css_path())) {
+		unlink(podlovewebplayer_css_path());
 	}
 }
 
@@ -277,7 +321,7 @@ function podlovewebplayer_style_values() {
 	if ( !isset( $options['style_values'] ) ) {
 		$options['style_values'] = "{'hue':180,'sat':0,'lum':33,'gra':9}";
 	}
-	print "<input id='pwpconsole' name='podlovewebplayer_options[style_values]' value='".$options['style_values']."' style='width:19em;' />";
+	print '<input id="pwpconsole" name="podlovewebplayer_options[style_values]" value="'.$options['style_values'].'" style="width:19em;" />';
 }
 
 function podlovewebplayer_style_version() {
@@ -287,12 +331,12 @@ function podlovewebplayer_style_version() {
 	} else {
 		$options['style_version'] = $options['style_version']+1;
 	}
-	print $options['style_version']."<input id='pwpcustomstyleversion' name='podlovewebplayer_options[style_version]' value='".$options['style_version']."' style='display:none;' />";
+	print $options['style_version'].'<input id="pwpcustomstyleversion" name="podlovewebplayer_options[style_version]" value="'.$options['style_version'].'" style="display:none;" />';
 }
 
 
 function podlovewebplayer_buttons() {
-	print "<p>Here you can select, which buttons will be displayd. The Chapter-Toggle- and Summary-Info-Button are not configurable here, because they automaticle hidden, when no chapters/summary are provided.</p>\n\n";
+	print '<p>Here you can select, which buttons will be displayd. The Chapter-Toggle- and Summary-Info-Button are not configurable here, because they automaticle hidden, when no chapters/summary are provided.</p>'."\n\n";
 }
 
 function podlovewebplayer_buttons_time() { 
@@ -300,8 +344,7 @@ function podlovewebplayer_buttons_time() {
 	$checked = "";
 	if ( isset( $options['buttons_time'] ) )
 		$checked = "checked ";
-	print "<input id='pwpbuttons1' name='podlovewebplayer_options[buttons_time]' 
-		$checked type='checkbox' value='1' />&nbsp;&nbsp;";
+	print '<input id="pwpbuttons1" name="podlovewebplayer_options[buttons_time]" ' . $checked . ' type="checkbox" value="1" />&nbsp;&nbsp;';
 }
 
 function podlovewebplayer_buttons_share() { 
@@ -309,8 +352,7 @@ function podlovewebplayer_buttons_share() {
 	$checked = "";
 	if ( isset( $options['buttons_share'] ) )
 		$checked = "checked ";
-	print "<input id='pwpbuttons3' name='podlovewebplayer_options[buttons_share]' 
-		$checked type='checkbox' value='1' />&nbsp;&nbsp;";
+	print '<input id="pwpbuttons3" name="podlovewebplayer_options[buttons_share]" ' . $checked . ' type="checkbox" value="1" />&nbsp;&nbsp;';
 }
 
 function podlovewebplayer_info() {
