@@ -2,6 +2,7 @@
 
 build:
 	mkdir -p ./podlove-web-player/static
+	mkdir -p ./podlove-web-player/static/customcss
 	mkdir -p ./podlove-web-player/static/libs
 	mkdir -p ./podlove-web-player/static/libs/pwpdesigner
 	cat ./podlove-web-player/libs/podlove-font/css/podlovefont.css ./podlove-web-player/libs/mediaelement/build/mediaelementplayer.css ./podlove-web-player/podlove-web-player.css > ./podlove-web-player/static/podlove-web-player.tmp.css
@@ -21,5 +22,6 @@ build:
 	cp ./podlove-web-player/libs/pwpdesigner/colorconv.js ./podlove-web-player/static/libs/pwpdesigner/colorconv.js
 	cp ./podlove-web-player/libs/pwpdesigner/script.js ./podlove-web-player/static/libs/pwpdesigner/script.js
 	cp ./podlove-web-player/libs/pwpdesigner/style.css ./podlove-web-player/static/libs/pwpdesigner/style.css
+	cp ./podlove-web-player/libs/pwpdesigner/pwp_custom_id-1.css ./podlove-web-player/static/customcss/pwp_custom_id-1.css
 	cp -R ./podlove-web-player/libs/podlove-font/font/ ./podlove-web-player/font/
 	rm  ./podlove-web-player/static/podlove-web-player.tmp.css ./podlove-web-player/static/podlove-web-player.tmp.js

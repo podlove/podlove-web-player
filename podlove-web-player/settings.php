@@ -13,7 +13,7 @@ function podlovewebplayer_settings_init() {
 		} else {
 			wp_dequeue_style( 'custom-pwp-style');
 		}
-		wp_enqueue_script( 'colorconverter', plugins_url('static/podlove-web-player.js', __FILE__), array(), '2.1.0' );
+		//wp_enqueue_script( 'colorconverter', plugins_url('static/podlove-web-player.js', __FILE__), array(), '2.1.0' );
 		wp_enqueue_script( 'colorconverter', plugins_url('static/libs/pwpdesigner/colorconv.js', __FILE__), array(), '2.1.0' );
 		wp_enqueue_script( 'pwpdesigner', plugins_url('static/libs/pwpdesigner/script.js', __FILE__), array(), '2.1.0' );
 		
