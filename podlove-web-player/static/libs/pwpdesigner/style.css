@@ -10,5 +10,9 @@
 }
 
 .colorslider input[type='range'] {
-min-width: 300px;
+  min-width: 300px;
+}
+
+.podlovewebplayer_wrapper.podlovewebplayer_audio.podlovewebplayer_smallplayer {
+  max-width: 400px;
 }

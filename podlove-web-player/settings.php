@@ -300,7 +300,7 @@ function podlovewebplayer_style_values() {
 	if ( !isset( $options['style_values'] ) ) {
 		$options['style_values'] = "{'hue':180,'sat':0,'lum':33,'gra':9}";
 	}
-	print '<input id="pwpconsole" name="podlovewebplayer_options[style_values]" value="'.$options['style_values'].'" style="width:19em;" />';
+	print "<input id='pwpconsole' name='podlovewebplayer_options[style_values]' value='".$options['style_values']."' style='width:19em;' />";
 }
 
 function podlovewebplayer_style_version() {
