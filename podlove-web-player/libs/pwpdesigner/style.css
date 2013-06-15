@@ -16,3 +16,12 @@
 .podlovewebplayer_wrapper.podlovewebplayer_audio.podlovewebplayer_smallplayer {
   max-width: 400px;
 }
+
+#colorboxes div {
+  height: 30px;
+  width: 30px;
+  display: inline-block;
+  border-radius: 5px;
+  margin: 3px;
+  cursor: pointer;
+}

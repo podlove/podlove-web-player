@@ -272,11 +272,14 @@ function podlovewebplayer_style_custom() {
 	$options = get_option('podlovewebplayer_options');
 	print "<textarea name='podlovewebplayer_options[style_custom]' id='pwpstyle1' dir='ltr' style='display:none;'>".$options['style_custom']."</textarea><script language='javascript'></script><p></p>
 <div class='colorslider'><div id='color1' class='box'>
-	<div><label for='hue'>Hue</label><input id='hue' onchange='pwpdcolorize();' name='hue' type='range' max='360' min='0'></div>
-	<div><label for='sat'>Saturation</label><input id='sat' onchange='pwpdcolorize();' name='sat' type='range' max='100' min='0'></div>
-	<div><label for='lum'>Luminance</label><input id='lum' onchange='pwpdcolorize();' name='lum' type='range' max='100' min='0'></div>
-	<div><label for='gra'>Gradient</label><input id='gra' onchange='pwpdcolorize();' name='gra' type='range' max='20' min='0'></div>
-	<div><input type='button' onclick='pwpdinsertcolor();' class='button' value='enter color' /> <input type='button' onclick='pwpdrandomcolor();' class='button' value='random' /> <input type='button' onclick='pwpdcolorreset();' class='button' value='reset' /> <input name='Submit' type='submit' class='button button-primary' value='save'/></div><br/>
+	<div id='colorboxes'></div>
+	<div id='colorsliders'>
+		<div><label for='hue'>Hue</label><input id='hue' onchange='pwpdcolorize();' name='hue' type='range' max='360' min='0'></div>
+		<div><label for='sat'>Saturation</label><input id='sat' onchange='pwpdcolorize();' name='sat' type='range' max='100' min='0'></div>
+		<div><label for='lum'>Luminance</label><input id='lum' onchange='pwpdcolorize();' name='lum' type='range' max='100' min='0'></div>
+		<div><label for='gra'>Gradient</label><input id='gra' onchange='pwpdcolorize();' name='gra' type='range' max='20' min='0'></div>
+	</div>
+	<div><input type='button' onclick='pwpdexpertmode();' class='button' value='expert mode' /> <input type='button' onclick='pwpdinsertcolor();' class='button' value='enter color' /> <input type='button' onclick='pwpdrandomcolor();' class='button' value='random' /> <input type='button' onclick='pwpdcolorreset();' class='button' value='reset' /> <input name='Submit' type='submit' class='button button-primary' value='save'/></div><br/>
 </div></div></div>";
 	print '<audio id="pwpexample">
 			<source src="http://podlove.github.com/podlove-web-player/samples/podlove-test-track.mp4" type="audio/mp4"></source>

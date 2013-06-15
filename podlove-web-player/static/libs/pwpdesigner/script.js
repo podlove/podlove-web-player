@@ -90,8 +90,26 @@ function pwpdinsertcolor() {
   pwpdcolorize();
 }
 
+function setWPSettingsDisplyByName(string, displaymode) {
+  var i, elements;
+  elements = document.getElementsByClassName('wrap')[0].getElementsByTagName('form')[0].getElementsByTagName('tr');
+  for(i = 0; i < elements.length; i++) {
+    if (elements[i].getElementsByTagName('label')[0] !== undefined) {
+      if (elements[i].getElementsByTagName('label')[0].innerHTML === string) {
+        elements[i].style.display = displaymode;
+      }
+    }
+  }
+}
+
+function pwpdexpertmode() {
+  setWPSettingsDisplyByName('Designer Console:', 'table-row');
+  setWPSettingsDisplyByName('Custon Style Version:', 'table-row');
+  document.getElementById('colorsliders').style.display = 'block';
+}
+
 function pwpdesignerinit() {
-  var style, styleele = document.createElement('style');
+  var i, style, colors, colorbox, styleele = document.createElement('style');
   jQuery("#pwpexample").podlovewebplayer({
     title: 'PWP001 - Lorem ipsum dolor sit amet',
     permalink: 'http://podlove.github.com/podlove-web-player/standalone.html',
@@ -111,6 +129,16 @@ function pwpdesignerinit() {
     chaptersVisible: false
   });
 
+  colors = [
+    {"hue":208,"sat":89,"lum":50,"gra":8},
+    {"hue":107,"sat":89,"lum":50,"gra":8},
+    {"hue":37,"sat":100,"lum":56,"gra":7},
+    {"hue":12,"sat":91,"lum":52,"gra":7},
+    {"hue":187,"sat":0,"lum":93,"gra":0},
+    {"hue":187,"sat":0,"lum":38,"gra":0},
+    {"hue":187,"sat":0,"lum":8,"gra":0},
+    {"hue":180,"sat":0,"lum":33,"gra":9}
+  ];
   styleele.id = 'pwpdesigner';
   document.getElementsByTagName('head')[0].appendChild(styleele);
   style = JSON.parse(document.getElementById('pwpconsole').value);
@@ -119,6 +147,24 @@ function pwpdesignerinit() {
   document.getElementById('lum').value = style.lum;
   document.getElementById('gra').value = style.gra;
   pwpdcolorize();
+  setWPSettingsDisplyByName('Designer Console:', 'none');
+  setWPSettingsDisplyByName('Custon Style Version:', 'none');
+  document.getElementById('colorsliders').style.display = 'none';
+  for(i = 0; i < colors.length; i++) {
+    colorbox = document.createElement('div');
+    colorbox.style.background = 'hsl('+colors[i].hue+', '+colors[i].sat+'%, '+colors[i].lum+'%)';
+    colorbox.setAttribute('hslg', colors[i].hue+','+colors[i].sat+','+colors[i].lum+','+colors[i].gra);
+    colorbox.onclick = function () {
+      var colors;
+      colors = this.getAttribute('hslg').split(',');
+      document.getElementById('hue').value = colors[0];
+      document.getElementById('sat').value = colors[1];
+      document.getElementById('lum').value = colors[2];
+      document.getElementById('gra').value = colors[3];
+      pwpdcolorize();
+    };
+    document.getElementById('colorboxes').appendChild(colorbox);
+  }
 }
 
 window.onload = pwpdesignerinit;
