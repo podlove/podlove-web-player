@@ -1,6 +1,6 @@
 /*
  * ===========================================
- * Podlove Web Player v2.0.11
+ * Podlove Web Player v2.1.0
  * Licensed under The BSD 2-Clause License
  * http://opensource.org/licenses/BSD-2-Clause
  * ===========================================
@@ -1564,8 +1564,6 @@
 	width: 30px;
 }
 
-.podlovewebplayer_wrapper .togglers a.pwp-icon-download { display: none !important; }
-
 .podlovewebplayer_wrapper .podlovewebplayer_controlbox .infobuttons,
 .podlovewebplayer_wrapper .podlovewebplayer_controlbox .infobuttons a {
 	position: relative;
@@ -1585,6 +1583,7 @@
 	outline: none;
 	vertical-align: top;
 	height: 22px;
+	max-width: 180px;
 	font-size: 14px;
 	margin-right: 25px;
 	background: #000000;

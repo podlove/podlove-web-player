@@ -1,6 +1,6 @@
 /*
  * ===========================================
- * Podlove Web Player v2.0.11
+ * Podlove Web Player v2.1.0
  * Licensed under The BSD 2-Clause License
  * http://opensource.org/licenses/BSD-2-Clause
  * ===========================================
@@ -731,9 +731,16 @@ function(){f.ajax({dataType:"html",url:d,success:function(e){c.find(".mejs-postr
 				return false;
 			});
 
-			wrapper.find('.downloadbutton').click(function () {
+			wrapper.find('.fileselect').change(function () {
+				var dlurl, dlname;
 				$(this).parent().find(".fileselect option:selected").each(function () {
-					window.location = $(this).data('dlurl');
+					dlurl = $(this).data('dlurl');
+				});
+				$(this).parent().find(".downloadbutton").each(function () {
+					dlname = dlurl.split('/');
+					dlname = dlname[dlname.length-1];
+					$(this).attr('href', dlurl);
+					$(this).attr('download', dlname);
 				});
 				return false;
 			});
@@ -1125,13 +1132,13 @@ function(){f.ajax({dataType:"html",url:d,success:function(e){c.find(".mejs-postr
 				wrapper.find('.podlovewebplayer_sharebuttons').append('<a href="#" target="_blank" class="mailbutton infobuttons pwp-icon-mail" title="Share this via e-mail"></a>');
 			}
 			if (((params.downloads !== undefined) || (params.sources !== undefined)) && (params.hidedownloadbutton !== true)) {
-				var size, name, selectform = '<select name="downloads" class="fileselect" size="1" onchange="this.value=this.options[this.selectedIndex].value;">';
+				var size, name, downloadname, selectform = '<select name="downloads" class="fileselect" size="1" onchange="this.value=this.options[this.selectedIndex].value;">';
 				wrapper.append('<div class="podlovewebplayer_downloadbuttons podlovewebplayer_controlbox' + downloadbuttonsActive + '"></div>');
 				wrapper.find('.togglers').append('<a href="#" class="showdownloadbuttons infobuttons pwp-icon-download" title="Show/hide download bar"></a>');
 				if (params.downloads !== undefined) {
 					for (i = 0; i < params.downloads.length; i += 1) {
 						size = (parseInt(params.downloads[i].size, 10) < 1048704) ? Math.round(parseInt(params.downloads[i].size, 10) / 100) / 10 + 'kB' : Math.round(parseInt(params.downloads[i].size, 10) / 1000 / 100) / 10 + 'MB';
-						selectform += '<option value="' + params.downloads[i].url + '" data-url="' + params.downloads[i].url + '" data-dlurl="' + params.downloads[i].dlurl + '">' + params.downloads[i].name + ' (<small>' + size + '</small>)</option>';
+						selectform += '<option value="' + params.downloads[i].url + '" data-url="' + params.downloads[i].url + '" data-dlurl="' + params.downloads[i].dlurl + '">' + params.downloads[i].name + ' (' + size + ')</option>';
 					}
 				} else {
 					for (i = 0; i < params.sources.length; i += 1) {
@@ -1144,7 +1151,9 @@ function(){f.ajax({dataType:"html",url:d,success:function(e){c.find(".mejs-postr
 				selectform += '</select>';
 				wrapper.find('.podlovewebplayer_downloadbuttons').append(selectform);
 				if (params.downloads !== undefined) {
-					wrapper.find('.podlovewebplayer_downloadbuttons').append('<a href="#" class="downloadbutton infobuttons pwp-icon-download" title="Download"></a> ');
+					downloadname = params.downloads[0].url.split('/');
+					downloadname = downloadname[downloadname.length-1];
+					wrapper.find('.podlovewebplayer_downloadbuttons').append('<a href="'+params.downloads[0].url+'" download="'+downloadname+'" class="downloadbutton infobuttons pwp-icon-download" title="Download"></a> ');
 				}
 				wrapper.find('.podlovewebplayer_downloadbuttons').append('<a href="#" class="openfilebutton infobuttons pwp-icon-link-ext" title="Open"></a> ');
 				wrapper.find('.podlovewebplayer_downloadbuttons').append('<a href="#" class="fileinfobutton infobuttons pwp-icon-info-circle" title="Info"></a> ');
