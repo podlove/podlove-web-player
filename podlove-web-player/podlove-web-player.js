@@ -1,3 +1,6 @@
+/*jslint browser: true, plusplus: true, white: true, unparam: true */
+/*global jQuery, console */
+
 (function ($) {
 	'use strict';
 	var startAtTime = false,
@@ -7,7 +10,9 @@
 		// Timecode as described in http://podlove.org/deep-link/
 		// and http://www.w3.org/TR/media-frags/#fragment-dimensions
 		timecodeRegExp = /(?:(\d+):)?(\d+):(\d+)(\.\d+)?([,\-](?:(\d+):)?(\d+):(\d+)(\.\d+)?)?/,
-		ignoreHashChange = false;
+		ignoreHashChange = false,
+		// all used functions
+		zeroFill, generateTimecode, parseTimecode, checkCurrentURL, validateURL, setFragmentURL, updateChapterMarks, checkTime, addressCurrentTime, generateChapterTable, addBehavior;
 
 	/**
 	 * return number as string lefthand filled with zeros
@@ -15,7 +20,7 @@
 	 * @param width number
 	 * @return string
 	 **/
-	var zeroFill = function (number, width) {
+	zeroFill = function (number, width) {
 		var s = number.toString();
 		while (s.length < width) {
 			s = "0" + s;
@@ -30,7 +35,7 @@
 	 * @param forceHours bool (optional)
 	 * @return string
 	 **/
-	var generateTimecode = $.generateTimecode = function (times, leadingZeros, forceHours) {
+	$.generateTimecode = function (times, leadingZeros, forceHours) {
 		function generatePart(time) {
 			var part, hours, minutes, seconds, milliseconds;
 			// prevent negative values from player
@@ -65,13 +70,14 @@
 
 		return generatePart(times[0]);
 	};
+	generateTimecode = $.generateTimecode();
 
 	/**
 	 * parses time code into seconds
 	 * @param string timecode
 	 * @return number
 	 **/
-	var parseTimecode = function (timecode) {
+	parseTimecode = function (timecode) {
 		var parts, startTime = 0,
 			endTime = 0;
 
@@ -112,7 +118,7 @@
 		return false;
 	};
 
-	var checkCurrentURL = function () {
+	checkCurrentURL = function () {
 		var deepLink;
 		deepLink = parseTimecode(window.location.href);
 		if (deepLink !== false) {
@@ -121,7 +127,7 @@
 		}
 	};
 
-	var validateURL = function (url) {
+	validateURL = function (url) {
 		//de comment this to validate URLs, if you want use relative paths leave it so.
 		//var urlregex = /(^|\s)((https?:\/\/)?[\w\-]+(\.[\w\-]+)+\.?(:\d+)?(\/\S*)?)/gi;
 		//url = url.match(urlregex);
@@ -133,7 +139,7 @@
 	 * add a string as hash in the adressbar
 	 * @param string fragment
 	 **/
-	var setFragmentURL = function (fragment) {
+	setFragmentURL = function (fragment) {
 		window.location.hash = fragment;
 	};
 
@@ -142,10 +148,10 @@
 	 * @param object player
 	 * @param object marks
 	 **/
-	var updateChapterMarks = function (player, marks) {
+	updateChapterMarks = function (player, marks) {
 		var coverimg = marks.closest('.podlovewebplayer_wrapper').find('.coverimg');
 		marks.each(function () {
-			var deepLink, isBuffered, chapterimg = null,
+			var isBuffered, chapterimg = null,
 				mark = $(this),
 				startTime = mark.data('start'),
 				endTime = mark.data('end'),
@@ -158,9 +164,9 @@
 			}
 			if (isActive) {
 				chapterimg = validateURL(mark.data('img'));
-				if ((chapterimg !== null)&&(mark.hasClass('active'))) {
-					if ((coverimg.attr('src') !== chapterimg)&&(chapterimg.length > 5)) {
-						coverimg.attr('src',chapterimg);
+				if ((chapterimg !== null) && (mark.hasClass('active'))) {
+					if ((coverimg.attr('src') !== chapterimg) && (chapterimg.length > 5)) {
+						coverimg.attr('src', chapterimg);
 					}
 				} else {
 					if (coverimg.attr('src') !== coverimg.data('img')) {
@@ -170,13 +176,12 @@
 				mark.addClass('active').siblings().removeClass('active');
 			}
 			if (!isEnabled && isBuffered) {
-				deepLink = '#t=' + generateTimecode([startTime, endTime]);
 				$(mark).data('enabled', true).addClass('loaded').find('a[rel=player]').removeClass('disabled');
 			}
 		});
 	};
 
-	var checkTime = function (e) {
+	checkTime = function (e) {
 		if (players.length > 1) {
 			return;
 		}
@@ -194,7 +199,7 @@
 		}
 	};
 
-	var addressCurrentTime = function (e) {
+	addressCurrentTime = function (e) {
 		var fragment;
 		if (players.length === 1) {
 			fragment = 't=' + generateTimecode([e.data.player.currentTime]);
@@ -205,11 +210,11 @@
 	/**
 	 * Given a list of chapters, this function creates the chapter table for the player.
 	 */
-	var generateChapterTable = function (params) {
-		var div, table, tbody, chapterImages, tempchapters, maxchapterstart, line, tc, chaptitle, next, chapterImages, rowDummy, i, scroll = '';
+	generateChapterTable = function (params) {
+		var div, table, tbody, tempchapters, maxchapterstart, line, tc, chaptitle, next, chapterImages, rowDummy, i, scroll = '';
 		if (params.chapterHeight !== "") {
 			if (typeof parseInt(params.chapterHeight,10) === 'number') {
-				scroll = 'style="overflow-y: auto; max-height: '+parseInt(params.chapterHeight,10) +'px;"';
+				scroll = 'style="overflow-y: auto; max-height: ' + parseInt(params.chapterHeight, 10) + 'px;"';
 			}
 		}
 		div = $('<div class="podlovewebplayer_chapterbox showonplay" ' + scroll + '><table><caption>Podcast Chapters</caption><thead><tr><th scope="col">Chapter Number</th><th scope="col">Start time</th><th scope="col">Title</th><th scope="col">Duration</th></tr></thead><tbody></tbody></table></div>');
@@ -281,7 +286,7 @@
 		//this is a "template" for each chapter row
 		chapterImages = false;
 		for (i = 0; i < tempchapters.length; i++) {
-			if ((tempchapters[i].image !== "")&&(tempchapters[i].image !== undefined)) {
+			if ((tempchapters[i].image !== "") && (tempchapters[i].image !== undefined)) {
 				chapterImages = true;
 			}
 		}
@@ -328,15 +333,19 @@
 
 			//insert the chapter data
 			row.find('.starttime > span').text(generateTimecode([Math.round(this.start)], true, forceHours));
-			if((this.href !== "")&&(this.href !== undefined)) {
-				row.find('.chaptername').html('<span>'+this.code+'</span>'+' <a href="'+this.href+'"></a>');
+			if (this.href !== undefined) {
+				if (this.href !== "") {
+					row.find('.chaptername').html('<span>' + this.code + '</span>' + ' <a href="' + this.href + '"></a>');
+				}
 			} else {
-				row.find('.chaptername').html('<span>'+this.code+'</span>');
+				row.find('.chaptername').html('<span>' + this.code + '</span>');
 			}
-			row.find('.timecode > span').html('<span>'+this.duration+'</span>');
-			if(chapterImages) {
-				if((this.image !== "")&&(this.image !== undefined)) {
-					row.find('.chapterimage').html('<img src="'+this.image+'"/>');
+			row.find('.timecode > span').html('<span>' + this.duration + '</span>');
+			if (chapterImages) {
+				if (this.image !== undefined) {
+					if (this.image !== "") {
+						row.find('.chapterimage').html('<img src="' + this.image + '"/>');
+					}
 				}
 			}
 
@@ -350,10 +359,19 @@
 	 * time position & write current time into address
 	 * @param player object
 	 */
-	var addBehavior = function (player, params, wrapper) {
+
+	addBehavior = function (player, params, wrapper) {
 		var jqPlayer = $(player),
 			layoutedPlayer = jqPlayer,
-			canplay = false;
+			canplay = false,
+			metainfo,
+			summary,
+			podlovewebplayer_timecontrol,
+			podlovewebplayer_sharebuttons,
+			podlovewebplayer_downloadbuttons,
+			chapterdiv,
+			list,
+			marks;
 
 		/**
 		 * The `player` is an interface. It provides the play and pause functionality. The
@@ -369,17 +387,18 @@
 		// get things straight for flash fallback
 		if (player.pluginType === 'flash') {
 			layoutedPlayer = $('#mep_' + player.id.substring(9));
+			console.log(layoutedPlayer);
 		}
 
 		// cache some jQ objects
-		var metainfo = wrapper.find('.podlovewebplayer_meta'),
-			summary = wrapper.find('.summary'),
-			podlovewebplayer_timecontrol = wrapper.find('.podlovewebplayer_timecontrol'),
-			podlovewebplayer_sharebuttons = wrapper.find('.podlovewebplayer_sharebuttons'),
-			podlovewebplayer_downloadbuttons = wrapper.find('.podlovewebplayer_downloadbuttons'),
-			chapterdiv = wrapper.find('.podlovewebplayer_chapterbox'),
-			list = wrapper.find('table'),
-			marks = list.find('tr');
+		metainfo = wrapper.find('.podlovewebplayer_meta');
+		summary = wrapper.find('.summary');
+		podlovewebplayer_timecontrol = wrapper.find('.podlovewebplayer_timecontrol');
+		podlovewebplayer_sharebuttons = wrapper.find('.podlovewebplayer_sharebuttons');
+		podlovewebplayer_downloadbuttons = wrapper.find('.podlovewebplayer_downloadbuttons');
+		chapterdiv = wrapper.find('.podlovewebplayer_chapterbox');
+		list = wrapper.find('table');
+		marks = list.find('tr');
 
 		// fix height of summary for better toggability
 		summary.each(function () {
@@ -474,7 +493,7 @@
 			wrapper.find('.chaptertoggle').unbind('click').click(function () {
 				wrapper.find('.podlovewebplayer_chapterbox').toggleClass('active');
 				if (wrapper.find('.podlovewebplayer_chapterbox').hasClass('active')) {
-					wrapper.find('.podlovewebplayer_chapterbox').height(parseInt(wrapper.find('.podlovewebplayer_chapterbox').data('height'),10) + 2 + 'px');
+					wrapper.find('.podlovewebplayer_chapterbox').height(parseInt(wrapper.find('.podlovewebplayer_chapterbox').data('height'), 10) + 2 + 'px');
 				} else {
 					wrapper.find('.podlovewebplayer_chapterbox').height('0px');
 				}
@@ -558,7 +577,7 @@
 				});
 				$(this).parent().find(".downloadbutton").each(function () {
 					dlname = dlurl.split('/');
-					dlname = dlname[dlname.length-1];
+					dlname = dlname[dlname.length - 1];
 					$(this).attr('href', dlurl);
 					$(this).attr('download', dlname);
 				});
@@ -618,7 +637,7 @@
 			.delegate('.chaptertr a', 'click', function (e) {
 			if ($(this).closest('table').hasClass('linked_all') || $(this).closest('td').hasClass('loaded')) {
 				e.preventDefault();
-				window.open($(this)[0].href,'_blank');
+				window.open($(this)[0].href, '_blank');
 			}
 			return false;
 		});
@@ -632,8 +651,9 @@
 			// add duration of final chapter
 			if (player.duration) {
 				marks.find('.timecode code').eq(-1).each(function () {
-					var start = Math.floor($(this).closest('tr').data('start'));
-					var end = Math.floor(player.duration);
+					var start, end;
+					start = Math.floor($(this).closest('tr').data('start'));
+					end = Math.floor(player.duration);
 					$(this).text(generateTimecode([end - start]));
 				});
 			}
@@ -652,7 +672,7 @@
 				checkCurrentURL();
 
 				// handle browser history navigation
-				$(window).bind('hashchange onpopstate', function(e) {
+				jQuery(window).bind('hashchange onpopstate', function (e) {
 					if (!ignoreHashChange) {
 						checkCurrentURL();
 					}
@@ -669,7 +689,7 @@
 			// update play/pause status
 			.on('play playing', function () {
 				if (!player.persistingTimer) {
-					player.persistingTimer = window.setInterval(function() {
+					player.persistingTimer = window.setInterval(function () {
 						if (players.length === 1) {
 							ignoreHashChange = true;
 							window.location.replace('#t=' + generateTimecode([player.currentTime, false]));
@@ -720,10 +740,10 @@
 			pluginPath: './static/',
 			flashName: 'flashmediaelement.swf',
 			silverlightName: 'silverlightmediaelement.xap'
-		};
+		},
 
 		// Additional parameters default values
-		var params = $.extend({}, {
+		params = $.extend({}, {
 			chapterlinks: 'all',
 			width: '100%',
 			duration: false,
@@ -745,7 +765,20 @@
 			var richplayer = false,
 				haschapters = false,
 				hiddenTab = false,
-				i = 0;
+				i = 0,
+				secArray,
+				orig,
+				deepLink,
+				wrapper,
+				summaryActive,
+				timecontrolsActive,
+				sharebuttonsActive,
+				downloadbuttonsActive,
+				size,
+				name,
+				downloadname,
+				selectform,
+				storageKey;
 
 			//fine tuning params
 			if (params.width.toLowerCase() === 'auto') {
@@ -783,7 +816,7 @@
 
 			//duration can be given in seconds or in NPT format
 			if (params.duration && params.duration !== parseInt(params.duration, 10)) {
-				var secArray = parseTimecode(params.duration);
+				secArray = parseTimecode(params.duration);
 				params.duration = secArray[0];
 			}
 
@@ -796,14 +829,13 @@
 
 			//wrapper and init stuff
 			if (params.width.toString().trim() === parseInt(params.width, 10).toString().trim()) {
-				params.width = params.width.toString().trim()+'px';
+				params.width = params.width.toString().trim() + 'px';
 			}
 
-			var orig = player;
+			orig = player;
 
 			player = $(player).clone().wrap('<div class="podlovewebplayer_wrapper" style="width: ' + params.width + '"></div>')[0];
-			var deepLink,
-				wrapper = $(player).parent();
+			wrapper = $(player).parent();
 
 			players.push(player);
 
@@ -875,7 +907,7 @@
 						'<div class="subtitle">' + params.subtitle + '</div>');
 				} else {
 					if (params.title !== undefined) {
-						if ((params.title.length < 42)&&(params.poster === undefined)) {
+						if ((params.title.length < 42) && (params.poster === undefined)) {
 							wrapper.addClass('podlovewebplayer_smallplayer');
 						}
 					}
@@ -888,7 +920,7 @@
 				wrapper.on('playerresize', function () {
 					wrapper.find('.podlovewebplayer_chapterbox').data('height', wrapper.find('.podlovewebplayer_chapters').height());
 					if (wrapper.find('.podlovewebplayer_chapterbox').hasClass('active')) {
-						wrapper.find('.podlovewebplayer_chapterbox').height(parseInt(wrapper.find('.podlovewebplayer_chapterbox').data('height'),10) + 2 + 'px');
+						wrapper.find('.podlovewebplayer_chapterbox').height(parseInt(wrapper.find('.podlovewebplayer_chapterbox').data('height'), 10) + 2 + 'px');
 					}
 					wrapper.find('.summary').data('height', wrapper.find('.summarydiv').height());
 					if (wrapper.find('.summary').hasClass('active')) {
@@ -897,7 +929,7 @@
 				});
 
 				if (params.summary !== undefined) {
-					var summaryActive = "";
+					summaryActive = "";
 					if (params.summaryVisible === true) {
 						summaryActive = " active";
 					}
@@ -907,7 +939,7 @@
 						'<div class="summary' + summaryActive + '"><div class="summarydiv">' + params.summary + '</div></div>');
 				}
 				if (params.chapters !== undefined) {
-					if (((params.chapters.length > 10)&&(typeof params.chapters === 'string'))||((params.chapters.length > 1)&&(typeof params.chapters === 'object'))) {
+					if (((params.chapters.length > 10) && (typeof params.chapters === 'string')) || ((params.chapters.length > 1) && (typeof params.chapters === 'object'))) {
 						wrapper.find('.togglers').append(
 							'<a href="#" class="chaptertoggle infobuttons pwp-icon-list-bullet" title="Show/hide chapters"></a>');
 					}
@@ -917,15 +949,15 @@
 				}
 			}
 
-			var timecontrolsActive = "";
+			timecontrolsActive = "";
 			if (params.timecontrolsVisible === true) {
 				timecontrolsActive = " active";
 			}
-			var sharebuttonsActive = "";
+			sharebuttonsActive = "";
 			if (params.sharebuttonsVisible === true) {
 				sharebuttonsActive = " active";
 			}
-			var downloadbuttonsActive = "";
+			downloadbuttonsActive = "";
 			if (params.downloadbuttonsVisible === true) {
 				downloadbuttonsActive = " active";
 			}
@@ -952,7 +984,7 @@
 				wrapper.find('.podlovewebplayer_sharebuttons').append('<a href="#" target="_blank" class="mailbutton infobuttons pwp-icon-mail" title="Share this via e-mail"></a>');
 			}
 			if (((params.downloads !== undefined) || (params.sources !== undefined)) && (params.hidedownloadbutton !== true)) {
-				var size, name, downloadname, selectform = '<select name="downloads" class="fileselect" size="1" onchange="this.value=this.options[this.selectedIndex].value;">';
+				selectform = '<select name="downloads" class="fileselect" size="1" onchange="this.value=this.options[this.selectedIndex].value;">';
 				wrapper.append('<div class="podlovewebplayer_downloadbuttons podlovewebplayer_controlbox' + downloadbuttonsActive + '"></div>');
 				wrapper.find('.togglers').append('<a href="#" class="showdownloadbuttons infobuttons pwp-icon-download" title="Show/hide download bar"></a>');
 				if (params.downloads !== undefined) {
@@ -972,8 +1004,8 @@
 				wrapper.find('.podlovewebplayer_downloadbuttons').append(selectform);
 				if (params.downloads !== undefined) {
 					downloadname = params.downloads[0].url.split('/');
-					downloadname = downloadname[downloadname.length-1];
-					wrapper.find('.podlovewebplayer_downloadbuttons').append('<a href="'+params.downloads[0].url+'" download="'+downloadname+'" class="downloadbutton infobuttons pwp-icon-download" title="Download"></a> ');
+					downloadname = downloadname[downloadname.length - 1];
+					wrapper.find('.podlovewebplayer_downloadbuttons').append('<a href="' + params.downloads[0].url + '" download="' + downloadname + '" class="downloadbutton infobuttons pwp-icon-download" title="Download"></a> ');
 				}
 				wrapper.find('.podlovewebplayer_downloadbuttons').append('<a href="#" class="openfilebutton infobuttons pwp-icon-link-ext" title="Open"></a> ');
 				wrapper.find('.podlovewebplayer_downloadbuttons').append('<a href="#" class="fileinfobutton infobuttons pwp-icon-info-circle" title="Info"></a> ');
@@ -981,7 +1013,7 @@
 
 			//build chapter table
 			if (params.chapters !== undefined) {
-				if (((params.chapters.length > 10)&&(typeof params.chapters === 'string'))||((params.chapters.length > 1)&&(typeof params.chapters === 'object'))) {
+				if (((params.chapters.length > 10) && (typeof params.chapters === 'string')) || ((params.chapters.length > 1) && (typeof params.chapters === 'object'))) {
 					haschapters = true;
 					generateChapterTable(params).appendTo(wrapper);
 				}
@@ -1004,7 +1036,7 @@
 					hiddenTab = document.webkitHidden;
 				}
 				
-				if(hiddenTab === true) {
+				if (hiddenTab === true) {
 					$(player).attr({
 						preload: 'auto'
 					});
@@ -1017,15 +1049,15 @@
 				startAtTime = deepLink[0];
 				stopAtTime = deepLink[1];
 			} else if (params && params.permalink) {
-				var storageKey = 'podloveWebPlayerTime-' + params.permalink;
+				storageKey = 'podloveWebPlayerTime-' + params.permalink;
 				if (localStorage[storageKey]) {
-					$(player).one('canplay', function() {
+					$(player).one('canplay', function () {
 						this.currentTime = +localStorage[storageKey];
 					});
 				}
 			}
 
-			$(player).on('ended', function() {
+			$(player).on('ended', function () {
 				localStorage.removeItem('podloveWebPlayerTime-' + params.permalink);
 			});
 
