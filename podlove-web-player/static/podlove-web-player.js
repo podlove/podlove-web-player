@@ -250,7 +250,7 @@ function(){f.ajax({dataType:"html",url:d,success:function(e){c.find(".mejs-postr
 
 		return generatePart(times[0]);
 	};
-	generateTimecode = $.generateTimecode();
+	generateTimecode = $.generateTimecode;
 
 	/**
 	 * parses time code into seconds

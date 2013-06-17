@@ -70,7 +70,7 @@
 
 		return generatePart(times[0]);
 	};
-	generateTimecode = $.generateTimecode();
+	generateTimecode = $.generateTimecode;
 
 	/**
 	 * parses time code into seconds
