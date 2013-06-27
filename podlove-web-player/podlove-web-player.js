@@ -1002,7 +1002,7 @@
 
 				selectform += '</select>';
 				wrapper.find('.podlovewebplayer_downloadbuttons').append(selectform);
-				if (params.downloads !== undefined) {
+				if (params.downloads !== undefined && params.downloads.length > 0) {
 					downloadname = params.downloads[0].url.split('/');
 					downloadname = downloadname[downloadname.length - 1];
 					wrapper.find('.podlovewebplayer_downloadbuttons').append('<a href="' + params.downloads[0].url + '" download="' + downloadname + '" class="downloadbutton infobuttons pwp-icon-download" title="Download"></a> ');
