@@ -139,8 +139,10 @@
 	 * add a string as hash in the adressbar
 	 * @param string fragment
 	 **/
-	setFragmentURL = function (fragment) {
-		window.location.hash = fragment;
+	setFragmentURL = function (player, fragment) {
+		if(player.params.rememberPlaytime) {
+			window.location.hash = fragment;
+		}
 	};
 
 	/**
@@ -203,7 +205,7 @@
 		var fragment;
 		if (players.length === 1) {
 			fragment = 't=' + generateTimecode([e.data.player.currentTime]);
-			setFragmentURL(fragment);
+			setFragmentURL(e.data.player, fragment);
 		}
 	};
 
@@ -611,8 +613,8 @@
 		
 				// If there is only one player also set deepLink
 				if (players.length === 1) {
-					// setFragmentURL('t=' + generateTimecode([startTime, endTime]));
-					setFragmentURL('t=' + generateTimecode([startTime]));
+					// setFragmentURL(player, 't=' + generateTimecode([startTime, endTime]));
+					setFragmentURL(player, 't=' + generateTimecode([startTime]));
 				} else {
 					if (canplay) {
 						// Basic Chapter Mark function (without deeplinking)
@@ -690,11 +692,13 @@
 			.on('play playing', function () {
 				if (!player.persistingTimer) {
 					player.persistingTimer = window.setInterval(function () {
-						if (players.length === 1) {
+						if (players.length === 1 && player.params.rememberPlaytime) {
 							ignoreHashChange = true;
 							window.location.replace('#t=' + generateTimecode([player.currentTime, false]));
 						}
-						localStorage['podloveWebPlayerTime-' + params.permalink] = player.currentTime;
+						if(player.params.rememberPlaytime) {
+							localStorage['podloveWebPlayerTime-' + params.permalink] = player.currentTime;
+						}
 					}, 5000);
 				}
 				list.find('.paused').removeClass('paused');
@@ -756,6 +760,7 @@
 			hidedownloadbutton: false,
 			hidesharebutton: false,
 			sharewholeepisode: false,
+			rememberPlaytime: true,
 			sources: []
 		}, options);
 
@@ -836,6 +841,7 @@
 
 			player = $(player).clone().wrap('<div class="podlovewebplayer_wrapper" style="width: ' + params.width + '"></div>')[0];
 			wrapper = $(player).parent();
+			player.params = params;
 
 			players.push(player);
 
@@ -1048,7 +1054,7 @@
 				}
 				startAtTime = deepLink[0];
 				stopAtTime = deepLink[1];
-			} else if (params && params.permalink) {
+			} else if (params && params.permalink && params.rememberPlaytime) {
 				storageKey = 'podloveWebPlayerTime-' + params.permalink;
 				if (localStorage[storageKey]) {
 					$(player).one('canplay', function () {
