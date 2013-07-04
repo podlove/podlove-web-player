@@ -200,6 +200,10 @@ Defines the default visibility status of toggable player modules. Standard value
 
     [podloveaudio chaptersVisible="true" timecontrolsVisible="false" summaryVisible="false"]
 
+= rememberPlaytime =
+
+Enables (`true`) or disables (`false`) the deeplinking URL and localStorage to remember the current play time.
+
 = Rich Podlove Web Player player with meta information =
 
 If you have an audio file and use one of the following attributes, the player will sport a richer visual experience: "title", "subtitle", "summary", "poster", "permalink". Full example:
