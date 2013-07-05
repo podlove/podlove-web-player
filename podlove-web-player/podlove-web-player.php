@@ -342,10 +342,10 @@ function podlovewebplayer_render_chapters( $input ) {
 			$chapterArray[$i]['start'] = $chapterArrayTemp[$i][1];
 			$chapterArray[$i]['title'] = htmlspecialchars($chapterArrayTemp[$i][6], ENT_QUOTES);
 			if (isset($chapterArrayTemp[$i][9])) {
-				$chapterArray[$i]['image'] = $chapterArrayTemp[$i][9];
+				$chapterArray[$i]['image'] = trim($chapterArrayTemp[$i][10], '<> ()\'');
 			}
 			if (isset($chapterArrayTemp[$i][7])) {
-				$chapterArray[$i]['href'] = $chapterArrayTemp[$i][7];
+				$chapterArray[$i]['href'] = trim($chapterArrayTemp[$i][8], '<> ()\'');
 			}
 		}
 		return $chapterArray;
