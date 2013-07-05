@@ -336,12 +336,17 @@ function podlovewebplayer_render_chapters( $input ) {
 		if ( $chapters == '' ) {
 			return '';
 		}
-		preg_match_all('/((\d+:)?(\d\d?):(\d\d?)(?:\.(\d+))?) ([^<>\r\n]*) ?<?([^<>\r\n]*)>?\r?/', $chapters, $chapterArrayTemp, PREG_SET_ORDER);
+		preg_match_all('/((\d+:)?(\d\d?):(\d\d?)(?:\.(\d+))?) ([^<>\r\n]{3,}) ?(<([^<>\r\n]*)>\s*(<([^<>\r\n]*)>\s*)?)?\r?/', $chapters, $chapterArrayTemp, PREG_SET_ORDER);
 		$chaptercount = count($chapterArrayTemp);
 		for($i = 0; $i < $chaptercount; ++$i) {
 			$chapterArray[$i]['start'] = $chapterArrayTemp[$i][1];
 			$chapterArray[$i]['title'] = htmlspecialchars($chapterArrayTemp[$i][6], ENT_QUOTES);
-			$chapterArray[$i]['href'] = $chapterArrayTemp[$i][7];
+			if (isset($chapterArrayTemp[$i][9])) {
+				$chapterArray[$i]['image'] = trim($chapterArrayTemp[$i][10], '<> ()\'');
+			}
+			if (isset($chapterArrayTemp[$i][7])) {
+				$chapterArray[$i]['href'] = trim($chapterArrayTemp[$i][8], '<> ()\'');
+			}
 		}
 		return $chapterArray;
 	}

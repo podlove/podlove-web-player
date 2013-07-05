@@ -227,6 +227,8 @@ Chapters now handed over as JSON, please take a look at the standalone.html. The
 * //Playback Speed changeable
 * //Style Editor
 * //smaller and bigger player styles
+* save playtime in cookies
+* mp4chaps image support
 
 ### 2.0.11
 * empty chapter file and empty meta_box bug fixed

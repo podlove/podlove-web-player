@@ -228,6 +228,8 @@ Earlier versions of this plugin could handle alternative shortcodes, too: [audio
 * //Playback Speed changeable
 * //Style Editor
 * //smaller and bigger player styles
+* save playtime in cookies
+* mp4chaps image support
 
 = 2.0.11 =
 * empty chapter file and empty meta_box bug fixed
