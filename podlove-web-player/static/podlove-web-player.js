@@ -192,7 +192,7 @@ function(){f.ajax({dataType:"html",url:d,success:function(e){c.find(".mejs-postr
 		timecodeRegExp = /(?:(\d+):)?(\d+):(\d+)(\.\d+)?([,\-](?:(\d+):)?(\d+):(\d+)(\.\d+)?)?/,
 		ignoreHashChange = false,
 		// all used functions
-		zeroFill, generateTimecode, parseTimecode, checkCurrentURL, validateURL, setFragmentURL, updateChapterMarks, checkTime, addressCurrentTime, generateChapterTable, addBehavior;
+		zeroFill, generateTimecode, parseTimecode, checkCurrentURL, validateURL, setFragmentURL, updateChapterMarks, checkTime, addressCurrentTime, generateChapterTable, addBehavior, handleCookies;
 
 	/**
 	 * return number as string lefthand filled with zeros
@@ -321,6 +321,51 @@ function(){f.ajax({dataType:"html",url:d,success:function(e){c.find(".mejs-postr
 	 **/
 	setFragmentURL = function (fragment) {
 		window.location.hash = fragment;
+	};
+
+	/**
+	* handle Cookies
+	**/
+	handleCookies = {
+		getItem: function (sKey) {
+			if (!sKey || !this.hasItem(sKey)) {
+				return null
+			}
+			return unescape(document.cookie.replace(new RegExp("(?:^|.*;\\s*)" + escape(sKey).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=\\s*((?:[^;](?!;))*[^;]?).*"), "$1"))
+		},
+		setItem: function (sKey, sValue, vEnd, sPath, sDomain, bSecure) {
+			if (!sKey || /^(?:expires|max\-age|path|domain|secure)$/.test(sKey)) {
+				return
+			}
+			var sExpires = "";
+			if (vEnd) {
+				switch (typeof vEnd) {
+				case "number":
+					sExpires = "; max-age=" + vEnd;
+					break;
+				case "string":
+					sExpires = "; expires=" + vEnd;
+					break;
+				case "object":
+					if (vEnd.hasOwnProperty("toGMTString")) {
+						sExpires = "; expires=" + vEnd.toGMTString()
+					}
+					break
+				}
+			}
+			document.cookie = escape(sKey) + "=" + escape(sValue) + sExpires + (sDomain ? "; domain=" + sDomain : "") + (sPath ? "; path=" + sPath : "") + (bSecure ? "; secure" : "")
+		},
+		removeItem: function (sKey) {
+			if (!sKey || !this.hasItem(sKey)) {
+				return
+			}
+			var oExpDate = new Date();
+			oExpDate.setDate(oExpDate.getDate() - 1);
+			document.cookie = escape(sKey) + "=; expires=" + oExpDate.toGMTString() + "; path=/"
+		},
+		hasItem: function (sKey) {
+			return (new RegExp("(?:^|;\\s*)" + escape(sKey).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=")).test(document.cookie)
+		}
 	};
 
 	/**
@@ -874,7 +919,7 @@ function(){f.ajax({dataType:"html",url:d,success:function(e){c.find(".mejs-postr
 							ignoreHashChange = true;
 							window.location.replace('#t=' + generateTimecode([player.currentTime, false]));
 						}
-						localStorage['podloveWebPlayerTime-' + params.permalink] = player.currentTime;
+						handleCookies.setItem('podloveWebPlayerTime-' + params.permalink, player.currentTime);
 					}, 5000);
 				}
 				list.find('.paused').removeClass('paused');
@@ -1182,7 +1227,7 @@ function(){f.ajax({dataType:"html",url:d,success:function(e){c.find(".mejs-postr
 
 				selectform += '</select>';
 				wrapper.find('.podlovewebplayer_downloadbuttons').append(selectform);
-				if (params.downloads !== undefined) {
+				if (params.downloads !== undefined && params.downloads.length > 0) {
 					downloadname = params.downloads[0].url.split('/');
 					downloadname = downloadname[downloadname.length - 1];
 					wrapper.find('.podlovewebplayer_downloadbuttons').append('<a href="' + params.downloads[0].url + '" download="' + downloadname + '" class="downloadbutton infobuttons pwp-icon-download" title="Download"></a> ');
@@ -1230,15 +1275,15 @@ function(){f.ajax({dataType:"html",url:d,success:function(e){c.find(".mejs-postr
 				stopAtTime = deepLink[1];
 			} else if (params && params.permalink) {
 				storageKey = 'podloveWebPlayerTime-' + params.permalink;
-				if (localStorage[storageKey]) {
+				if (handleCookies.getItem(storageKey)) {
 					$(player).one('canplay', function () {
-						this.currentTime = +localStorage[storageKey];
+						this.currentTime = handleCookies.getItem(storageKey);
 					});
 				}
 			}
 
 			$(player).on('ended', function () {
-				localStorage.removeItem('podloveWebPlayerTime-' + params.permalink);
+				handleCookies.setItem('podloveWebPlayerTime-' + params.permalink, '', new Date(2000, 1, 1));
 			});
 
 			// init MEJS to player
