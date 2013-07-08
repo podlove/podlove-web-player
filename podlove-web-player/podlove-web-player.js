@@ -378,19 +378,15 @@
 
 			//insert the chapter data
 			row.find('.starttime > span').text(generateTimecode([Math.round(this.start)], true, forceHours));
-			if (this.href !== undefined) {
-				if (this.href !== "") {
-					row.find('.chaptername').html('<span>' + this.code + '</span>' + ' <a href="' + this.href + '"></a>');
-				}
+			if ( this.href !== undefined && this.href !== "") {
+				row.find('.chaptername').html('<span>' + this.code + '</span>' + ' <a href="' + this.href + '"></a>');
 			} else {
 				row.find('.chaptername').html('<span>' + this.code + '</span>');
 			}
 			row.find('.timecode > span').html('<span>' + this.duration + '</span>');
 			if (chapterImages) {
-				if (this.image !== undefined) {
-					if (this.image !== "") {
-						row.find('.chapterimage').html('<img src="' + this.image + '"/>');
-					}
+				if ( this.image !== undefined && this.image !== "") {
+					row.find('.chapterimage').html('<img src="' + this.image + '"/>');
 				}
 			}
 
