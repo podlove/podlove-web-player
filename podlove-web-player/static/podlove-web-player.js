@@ -561,6 +561,8 @@ function(){f.ajax({dataType:"html",url:d,success:function(e){c.find(".mejs-postr
 			if (this.href !== undefined) {
 				if (this.href !== "") {
 					row.find('.chaptername').html('<span>' + this.code + '</span>' + ' <a href="' + this.href + '"></a>');
+				} else {
+					row.find('.chaptername').html('<span>' + this.code + '</span>');
 				}
 			} else {
 				row.find('.chaptername').html('<span>' + this.code + '</span>');
