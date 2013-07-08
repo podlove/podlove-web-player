@@ -223,6 +223,12 @@ Chapters now handed over as JSON, please take a look at the standalone.html. The
 
 ## Changelog
 
+### 2.0.12
+* increase version number to fix wordpress.org issues
+* support images in mp4chaps
+* more valid/better js code
+* save playtime in cookies
+
 ### 2.0.11
 * empty chapter file and empty meta_box bug fixed
 * chapter images added to chapter table
@@ -336,6 +342,12 @@ Chapters now handed over as JSON, please take a look at the standalone.html. The
 * Full of bugs
 
 ## Upgrade Notice
+
+### 2.0.12
+support images in mp4chaps, more valid/better js code and save playtime in cookies
+
+### 2.0.11
+tiny bugs removed and style improved
 
 ### 2.0.10
 readme.txt update because of wordpress.org validator foo

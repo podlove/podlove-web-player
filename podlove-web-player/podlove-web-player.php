@@ -1,14 +1,14 @@
 <?php
 /**
  * @package PodloveWebPlayer
- * @version 2.0.9
+ * @version 2.0.12
  */
 
 /*
 Plugin Name: Podlove Web Player
 Plugin URI: http://podlove.org/podlove-web-player/
 Description: Video and audio plugin for WordPress built on the MediaElement.js HTML5 media player library.
-Version: 2.0.9
+Version: 2.0.12
 Author: Podlove Team
 Author URI: http://podlove.org/
 License: BSD 2-Clause License
@@ -63,7 +63,7 @@ function podlovewebplayer_add_scripts() {
 	wp_enqueue_script( 
 		'podlovewebplayer', 
 		plugins_url('static/podlove-web-player.js', __FILE__), 
-		array(), '2.0.9', false
+		array(), '2.0.12', false
 	);
 }
 add_action('wp_print_scripts', 'podlovewebplayer_add_scripts');
@@ -75,7 +75,7 @@ add_action('wp_print_scripts', 'podlovewebplayer_add_scripts');
 function podlovewebplayer_add_styles() {
 	global $blog_id;
 	$wp_options = get_option('podlovewebplayer_options');
-	wp_enqueue_style( 'pwpfont', plugins_url('static/podlove-web-player.css', __FILE__), array(), '2.0.9' );
+	wp_enqueue_style( 'pwpfont', plugins_url('static/podlove-web-player.css', __FILE__), array(), '2.0.12' );
 }
 add_action( 'wp_print_styles', 'podlovewebplayer_add_styles' );
 
@@ -336,12 +336,17 @@ function podlovewebplayer_render_chapters( $input ) {
 		if ( $chapters == '' ) {
 			return '';
 		}
-		preg_match_all('/((\d+:)?(\d\d?):(\d\d?)(?:\.(\d+))?) ([^<>\r\n]*) ?<?([^<>\r\n]*)>?\r?/', $chapters, $chapterArrayTemp, PREG_SET_ORDER);
+		preg_match_all('/((\d+:)?(\d\d?):(\d\d?)(?:\.(\d+))?) ([^<>\r\n]{3,}) ?(<([^<>\r\n]*)>\s*(<([^<>\r\n]*)>\s*)?)?\r?/', $chapters, $chapterArrayTemp, PREG_SET_ORDER);
 		$chaptercount = count($chapterArrayTemp);
 		for($i = 0; $i < $chaptercount; ++$i) {
 			$chapterArray[$i]['start'] = $chapterArrayTemp[$i][1];
 			$chapterArray[$i]['title'] = htmlspecialchars($chapterArrayTemp[$i][6], ENT_QUOTES);
-			$chapterArray[$i]['href'] = $chapterArrayTemp[$i][7];
+			if (isset($chapterArrayTemp[$i][9])) {
+				$chapterArray[$i]['image'] = $chapterArrayTemp[$i][9];
+			}
+			if (isset($chapterArrayTemp[$i][7])) {
+				$chapterArray[$i]['href'] = $chapterArrayTemp[$i][7];
+			}
 		}
 		return $chapterArray;
 	}
