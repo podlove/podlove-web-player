@@ -230,6 +230,10 @@ Chapters now handed over as JSON, please take a look at the standalone.html. The
 * save playtime in cookies
 * mp4chaps image support
 
+### 2.0.13
+* fix IE8 support
+* more valid/better js code
+
 ### 2.0.12
 * increase version number to fix wordpress.org issues
 * support images in mp4chaps
@@ -349,6 +353,9 @@ Chapters now handed over as JSON, please take a look at the standalone.html. The
 * Full of bugs
 
 ## Upgrade Notice
+
+### 2.0.13
+fix IE8 support and more valid/better js code
 
 ### 2.0.12
 support images in mp4chaps, more valid/better js code and save playtime in cookies
