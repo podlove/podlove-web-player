@@ -216,6 +216,10 @@ Earlier versions of this plugin could handle alternative shortcodes, too: [audio
 
 == Changelog ==
 
+= 2.0.13 =
+* fix IE8 support
+* more valid/better js code
+
 = 2.0.12 =
 * increase version number to fix wordpress.org issues
 * support images in mp4chaps
@@ -335,6 +339,9 @@ Earlier versions of this plugin could handle alternative shortcodes, too: [audio
 * Full of bugs
 
 == Upgrade Notice ==
+
+= 2.0.13 =
+fix IE8 support and more valid/better js code
 
 = 2.0.12 =
 support images in mp4chaps, more valid/better js code and save playtime in cookies
