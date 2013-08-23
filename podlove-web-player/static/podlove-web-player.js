@@ -607,6 +607,11 @@ if(typeof String.prototype.trim !== 'function') {
 			list,
 			marks;
 
+		// expose the player interface
+		wrapper.data('podlovewebplayer',{
+			player: jqPlayer
+		});
+
 		/**
 		 * The `player` is an interface. It provides the play and pause functionality. The
 		 * `layoutedPlayer` on the other hand is a DOM element. In native mode, these two
