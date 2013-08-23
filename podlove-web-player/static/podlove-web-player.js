@@ -612,6 +612,15 @@ if(typeof String.prototype.trim !== 'function') {
 			player: jqPlayer
 		});
 
+		// This might be a fix to some Firefox AAC issues.
+		jqPlayer.on('error', function(){
+			if( $(this).attr('src')){
+				$(this).removeAttr('src');
+			} else {
+				$(this).children().first().remove();
+			}
+		});
+
 		/**
 		 * The `player` is an interface. It provides the play and pause functionality. The
 		 * `layoutedPlayer` on the other hand is a DOM element. In native mode, these two
