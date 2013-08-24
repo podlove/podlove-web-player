@@ -483,9 +483,9 @@ if(typeof String.prototype.trim !== 'function') {
 			metainfo.find('a.infowindow').click(function () {
 				summary.toggleClass('active');
 				if (summary.hasClass('active')) {
-					summary.height(summary.find('div.summarydiv').height() + 10 + 'px');
+					summary.height(summary.find('div.summarydiv').height() + 10 + 60 + 'px');
 				} else {
-					summary.height('0px');
+					summary.css('height','0px');
 				}
 				return false;
 			});
