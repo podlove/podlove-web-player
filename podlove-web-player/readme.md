@@ -230,6 +230,14 @@ Chapters now handed over as JSON, please take a look at the standalone.html. The
 * save playtime in cookies
 * mp4chaps image support
 
+### 2.0.14
+* style improvements
+* wordpress twenty thirteen theme compatibility
+* FireFox AAC fix
+* summary style fix
+* XSS Firefox Bugfix
+* jslint valid whitespace
+
 ### 2.0.13
 * fix IE8 support
 * more valid/better js code
@@ -353,6 +361,9 @@ Chapters now handed over as JSON, please take a look at the standalone.html. The
 * Full of bugs
 
 ## Upgrade Notice
+
+### 2.0.14
+style improvements, wordpress twenty thirteen theme compatibility, Firefox AAC fix, XSS Firefox Bugfix
 
 ### 2.0.13
 fix IE8 support and more valid/better js code

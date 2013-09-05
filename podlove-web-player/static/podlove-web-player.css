@@ -1001,6 +1001,10 @@
 	-webkit-text-size-adjust: inherit;
 }
 
+*, *:before, *:after {
+  -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+}
+
 .podlovewebplayer_wrapper div {
 	display: block;
 }
@@ -1112,7 +1116,7 @@
 	padding: 8px 5px 6px 5px !important;
 	vertical-align: middle;
 	border-bottom: 1px solid #e9e9e9;
-	cursor: pointer!important;
+	cursor: pointer !important;
 }
 
 .podlovewebplayer_wrapper .podlovewebplayer_chapters tr:hover {
@@ -1219,9 +1223,9 @@
 	border: 5px solid white !important;
 	border-radius: 60px !important;
 	font-size: 42px;
-	padding: 5px 6px 20px 19px;
-	height: 40px;
-	width: 40px;
+	padding: 0 6px 20px 16px;
+	height: 65px;
+	width: 65px;
 	margin: 10px 10px 10px 10px;
 	-webkit-transition: none;
 	-moz-transition: none;
@@ -1250,7 +1254,7 @@
 }
 
 .podlovewebplayer_meta .bigplay.playing {
-	padding: 5px 11px 20px 14px;
+	padding: 0 11px 20px 10px;
 }
 
 .podlovewebplayer_meta .bigplay.playing:focus,
@@ -1304,7 +1308,7 @@
 	left: 0px !important;
 	right: auto !important;
 	bottom: auto !important;
-	box-shadow: none!important;
+	box-shadow: none !important;
 	-webkit-border-radius: 0px;
 	-moz-border-radius: 0px;
 	-o-border-radius: 0px;
@@ -1314,13 +1318,13 @@
 .podlovewebplayer_meta h3 a,
 .podlovewebplayer_meta h3 {
 	clear: none;
-	color: #fff!important;
+	color: #fff !important;
 	background: transparent !important;
 	padding: 7px 0 0 0;
 	font-size: 16px;
 	line-height: 22px;
 	font-weight: bold;
-	margin: 0!important;
+	margin: 0 !important;
 	padding-right: 10px;
 	text-transform: none;
 	letter-spacing: 0;
@@ -1348,7 +1352,7 @@
 	color: #eee !important;
 	text-shadow: none !important;
 	background: transparent !important;
-	margin-left: 180px;
+	margin-left: 170px;
 	padding-bottom: 35px;
 	padding-left: 0px;
 }
@@ -1486,7 +1490,7 @@
 .podlovewebplayer_meta + .summary.active {
 	min-height: 35px;
 	height: auto;
-	padding: 20px 10px;
+  padding: 25px 10px 35px;
 }
 
 .podlovewebplayer_wrapper .summary a:visited {
@@ -1808,15 +1812,15 @@
 
 .podlovewebplayer_smallplayer .podlovewebplayer_meta .bigplay {
 	font-size: 25px;
-	padding: 6px 11px 19px 14px;
-	height: 20px;
-	width: 20px;
+	padding: 0 11px 19px 9px;
+	height: 40px;
+	width: 40px;
 	margin: 10px 10px 0px 10px;
 	border: 4px solid #ffffff !important;
 }
 
 .podlovewebplayer_smallplayer .podlovewebplayer_meta .bigplay.playing {
-	padding: 6px 13px 19px 12px;
+	padding: 0 13px 19px 5px;
 }
 
 .podlovewebplayer_smallplayer .bigplay.playing:focus, 

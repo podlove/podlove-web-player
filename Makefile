@@ -24,4 +24,5 @@ build:
 	cp ./podlove-web-player/libs/pwpdesigner/style.css ./podlove-web-player/static/libs/pwpdesigner/style.css
 	cp ./podlove-web-player/libs/pwpdesigner/pwp_custom_id-1.css ./podlove-web-player/static/customcss/pwp_custom_id-1.css
 	cp -R ./podlove-web-player/libs/podlove-font/font/ ./podlove-web-player/font/
+	cp ./podlove-web-player/help/xss.htaccess ./podlove-web-player/font/.htaccess
 	rm  ./podlove-web-player/static/podlove-web-player.tmp.css ./podlove-web-player/static/podlove-web-player.tmp.js
