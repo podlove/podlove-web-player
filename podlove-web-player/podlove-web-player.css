@@ -118,7 +118,7 @@
 	padding: 8px 5px 6px 5px !important;
 	vertical-align: middle;
 	border-bottom: 1px solid #e9e9e9;
-	cursor: pointer!important;
+	cursor: pointer !important;
 }
 
 .podlovewebplayer_wrapper .podlovewebplayer_chapters tr:hover {
@@ -310,7 +310,7 @@
 	left: 0px !important;
 	right: auto !important;
 	bottom: auto !important;
-	box-shadow: none!important;
+	box-shadow: none !important;
 	-webkit-border-radius: 0px;
 	-moz-border-radius: 0px;
 	-o-border-radius: 0px;
@@ -320,13 +320,13 @@
 .podlovewebplayer_meta h3 a,
 .podlovewebplayer_meta h3 {
 	clear: none;
-	color: #fff!important;
+	color: #fff !important;
 	background: transparent !important;
 	padding: 7px 0 0 0;
 	font-size: 16px;
 	line-height: 22px;
 	font-weight: bold;
-	margin: 0!important;
+	margin: 0 !important;
 	padding-right: 10px;
 	text-transform: none;
 	letter-spacing: 0;
