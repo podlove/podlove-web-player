@@ -216,6 +216,14 @@ Earlier versions of this plugin could handle alternative shortcodes, too: [audio
 
 == Changelog ==
 
+= 2.0.14 =
+* style improvements
+* wordpress twenty thirteen theme compatibility
+* FireFox AAC fix
+* summary style fix
+* XSS Firefox Bugfix
+* jslint valid whitespace
+
 = 2.0.13 =
 * fix IE8 support
 * more valid/better js code
@@ -339,6 +347,9 @@ Earlier versions of this plugin could handle alternative shortcodes, too: [audio
 * Full of bugs
 
 == Upgrade Notice ==
+
+= 2.0.14 =
+style improvements, wordpress twenty thirteen theme compatibility, Firefox AAC fix, XSS Firefox Bugfix
 
 = 2.0.13 =
 fix IE8 support and more valid/better js code
