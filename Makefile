@@ -17,4 +17,5 @@ build:
 	cp ./podlove-web-player/libs/mediaelement/build/bigplay.svg ./podlove-web-player/static/bigplay.svg
 	cp ./podlove-web-player/libs/mediaelement/build/bigplay.png ./podlove-web-player/static/bigplay.png
 	cp -R ./podlove-web-player/libs/podlove-font/font/ ./podlove-web-player/font/
+	cp ./podlove-web-player/help/xss.htaccess ./podlove-web-player/font/.htaccess
 	rm  ./podlove-web-player/static/podlove-web-player.tmp.css ./podlove-web-player/static/podlove-web-player.tmp.js
