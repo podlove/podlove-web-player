@@ -1,6 +1,6 @@
 /*
  * ===========================================
- * Podlove Web Player v2.0.14
+ * Podlove Web Player v2.0.15
  * Licensed under The BSD 2-Clause License
  * http://opensource.org/licenses/BSD-2-Clause
  * ===========================================
@@ -1223,9 +1223,9 @@
 	border: 5px solid white !important;
 	border-radius: 60px !important;
 	font-size: 42px;
-	padding: 0 6px 20px 16px;
-	height: 65px;
-	width: 65px;
+	padding: 5px 6px 10px 20px;
+	height: 75px;
+	width: 75px;
 	margin: 10px 10px 10px 10px;
 	-webkit-transition: none;
 	-moz-transition: none;
@@ -1254,7 +1254,7 @@
 }
 
 .podlovewebplayer_meta .bigplay.playing {
-	padding: 0 11px 20px 10px;
+	padding: 5px 11px 20px 15px;
 }
 
 .podlovewebplayer_meta .bigplay.playing:focus,
@@ -1532,7 +1532,7 @@
 
 .podlovewebplayer_wrapper .podlovewebplayer_controlbox.active {
 	height: 25px;
-	padding: 3px 10px 4px 10px;
+	padding: 3px 10px 28px 10px;
 	font-size: 8px;
 }
 

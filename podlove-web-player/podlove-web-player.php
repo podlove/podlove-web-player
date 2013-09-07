@@ -1,14 +1,14 @@
 <?php
 /**
  * @package PodloveWebPlayer
- * @version 2.0.14
+ * @version 2.0.15
  */
 
 /*
 Plugin Name: Podlove Web Player
 Plugin URI: http://podlove.org/podlove-web-player/
 Description: Video and audio plugin for WordPress built on the MediaElement.js HTML5 media player library.
-Version: 2.0.14
+Version: 2.0.15
 Author: Podlove Team
 Author URI: http://podlove.org/
 License: BSD 2-Clause License
@@ -27,10 +27,13 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 */
 
 
-if ( // Prevent conflicts with already running versions of PWP
-	!function_exists( 'podlovewebplayer_install' ) &&
-	!function_exists( 'podlove_pwp_install' ) ) { 
 
+
+// Prevent conflicts with already running versions of PWP
+if (!function_exists( 'podlovewebplayer_install' ) && !function_exists( 'podlove_pwp_install' )) {
+
+// Prevent Header Errors by Error and Warnings output
+ob_start();
 
 /* global-ish init variables */
 $podlovewebplayer_index = 1;
@@ -63,7 +66,7 @@ function podlovewebplayer_add_scripts() {
 	wp_enqueue_script( 
 		'podlovewebplayer', 
 		plugins_url('static/podlove-web-player.js', __FILE__), 
-		array(), '2.0.14', false
+		array(), '2.0.15', false
 	);
 }
 add_action('wp_print_scripts', 'podlovewebplayer_add_scripts');
@@ -75,7 +78,7 @@ add_action('wp_print_scripts', 'podlovewebplayer_add_scripts');
 function podlovewebplayer_add_styles() {
 	global $blog_id;
 	$wp_options = get_option('podlovewebplayer_options');
-	wp_enqueue_style( 'pwpfont', plugins_url('static/podlove-web-player.css', __FILE__), array(), '2.0.14' );
+	wp_enqueue_style( 'pwpfont', plugins_url('static/podlove-web-player.css', __FILE__), array(), '2.0.15' );
 }
 add_action( 'wp_print_styles', 'podlovewebplayer_add_styles' );
 
@@ -308,7 +311,6 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 	return $return;
 }
 
-
 /* Helper functions */
 
 function podlovewebplayer_render_chapters( $input ) {
@@ -353,33 +355,20 @@ function podlovewebplayer_render_chapters( $input ) {
 	return $input;
 }
 
-
 /* Shortcodes */
 
 function podlovewebplayer_audio_shortcode( $attributes ) {
 	return @is_feed() ? '' : podlovewebplayer_render_player( 'audio', $attributes );
 }
+
 // [audio] is deprecated
-add_shortcode( 'audio', 'podlovewebplayer_audio_shortcode' );
 add_shortcode( 'podloveaudio', 'podlovewebplayer_audio_shortcode' );
 
 function podlovewebplayer_video_shortcode( $attributes ) {
 	return @is_feed() ? '' : podlovewebplayer_render_player( 'video', $attributes );
 }
 // [video] is deprecated
-add_shortcode( 'video', 'podlovewebplayer_video_shortcode' );
 add_shortcode( 'podlovevideo', 'podlovewebplayer_video_shortcode' );
-
-
-/* Announce deprecation of [audio] and [video] shortcode 
-function podlovewebplayer_deprecated_widget_function() {
-	echo '<p style="border-top:2px solid red;padding-top:6px;color:#c00">Using the shortcode <code>[audio]</code> and <code>[video]</code> for the Podlove Web Player is <strong>deprecated</strong> and will be dropped.<br /> Use <code>[podloveaudio]</code> and <code>[podlovevideo]</code> instead!<br/>The Chapters has now to be handed over as JSON as described in the <a href="http://wordpress.org/plugins/podlove-web-player/faq/">FAQ</a></p>';
-}
-function podlovewebplayer_add_dashboard_widgets() {
-	wp_add_dashboard_widget('podlovewebplayer_deprecated_widget', 'Podlove Web Player', 'podlovewebplayer_deprecated_widget_function');
-}
-add_action('wp_dashboard_setup', 'podlovewebplayer_add_dashboard_widgets' ); // Hint: For Multisite Network Admin Dashboard use wp_network_dashboard_setup instead of wp_dashboard_setup.
-*/
 
 /* Auto-detect enclosures */
 
@@ -425,7 +414,6 @@ function podlovewebplayer_get_enclosed( $post_id ) {
 			);
 		}
 	}
-
 	return apply_filters( 'get_enclosed', $pung, $post_id );
 }
 
@@ -516,6 +504,7 @@ function podlovewebplayer_enclosures_init() {
 }
 add_action( 'wp', 'podlovewebplayer_enclosures_init' );
 
+ob_end_clean();
 
 /* Initialisation */
 
@@ -523,8 +512,9 @@ function podlovewebplayer_init() {
 	wp_enqueue_script('jquery');
 }
 add_action('init', 'podlovewebplayer_init');
-
-
+	
 }
+
+
 
 ?>

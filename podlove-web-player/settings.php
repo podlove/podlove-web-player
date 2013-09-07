@@ -239,7 +239,7 @@ function podlovewebplayer_buttons_share() {
 function podlovewebplayer_info() {
 	$scriptname = explode('/wp-admin', $_SERVER["SCRIPT_FILENAME"]);
 	$dirname    = explode('/wp-content', dirname(__FILE__));
-	print '<p>This is <strong>Version 2.0.14</strong> of the <strong>Podlove Web Player</strong>.<br>
+	print '<p>This is <strong>Version 2.0.15</strong> of the <strong>Podlove Web Player</strong>.<br>
 	The <strong>Including file</strong> is: <code>wp-admin'.$scriptname[1].'</code><br>
 	The <strong>PWP-directory</strong> is: <code>wp-content'.$dirname[1].'</code></p>
 	<p>Want to contribute? Found a bug? Need some help? <br/>you can found our github repo/page at

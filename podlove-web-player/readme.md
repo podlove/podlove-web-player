@@ -223,6 +223,10 @@ Chapters now handed over as JSON, please take a look at the standalone.html. The
 
 ## Changelog
 
+### 2.0.15
+* small fixes
+* .htaccess examples added in /help
+
 ### 2.0.14
 * style improvements
 * wordpress twenty thirteen theme compatibility
@@ -354,6 +358,9 @@ Chapters now handed over as JSON, please take a look at the standalone.html. The
 * Full of bugs
 
 ## Upgrade Notice
+
+### 2.0.15
+small fixes and .htaccess examples added in /help
 
 ### 2.0.14
 style improvements, wordpress twenty thirteen theme compatibility, Firefox AAC fix, XSS Firefox Bugfix
