@@ -231,6 +231,10 @@ Earlier versions of this plugin could handle alternative shortcodes, too: [audio
 * save playtime in cookies
 * mp4chaps image support
 
+= 2.0.15 =
+* small fixes
+* .htaccess examples added in /help
+
 = 2.0.14 =
 * style improvements
 * wordpress twenty thirteen theme compatibility
@@ -362,6 +366,9 @@ Earlier versions of this plugin could handle alternative shortcodes, too: [audio
 * Full of bugs
 
 == Upgrade Notice ==
+
+= 2.0.15 =
+small fixes and .htaccess examples added in /help
 
 = 2.0.14 =
 style improvements, wordpress twenty thirteen theme compatibility, Firefox AAC fix, XSS Firefox Bugfix
