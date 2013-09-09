@@ -1010,8 +1010,11 @@
 	-webkit-text-size-adjust: inherit;
 }
 
-*, *:before, *:after {
-  -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+.podlovewebplayer_wrapper,
+.podlovewebplayer_wrapper *,
+.podlovewebplayer_wrapper *:before,
+.podlovewebplayer_wrapper *:after {
+	-moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
 }
 
 .podlovewebplayer_wrapper div {
