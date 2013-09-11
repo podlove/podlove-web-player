@@ -593,8 +593,8 @@ if (typeof String.prototype.trim !== 'function') {
     jqPlayer.on('error', function () {
       if ($(this).attr('src')) {
         $(this).removeAttr('src');
-      } else {
-        $(this).children().first().remove();
+      } else if($(this).children('source').length) {
+        $(this).children('source').first().remove();
       }
     });
     /**
