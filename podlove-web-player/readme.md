@@ -226,7 +226,7 @@ Chapters now handed over as JSON, please take a look at the standalone.html. The
 ### 2.0.16
 * fixes unspecific css selector bug, introduced in last version
 * fixes removing elements other than sources
-* fixes false milliseconds 
+* fixes false milliseconds
 
 ### 2.0.15
 * small fixes
@@ -363,6 +363,9 @@ Chapters now handed over as JSON, please take a look at the standalone.html. The
 * Full of bugs
 
 ## Upgrade Notice
+
+### 2.0.16
+* fixes css, removing elements other than sources and false milliseconds bugs
 
 ### 2.0.15
 small fixes and .htaccess examples added in /help
