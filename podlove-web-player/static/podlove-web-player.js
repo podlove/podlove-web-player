@@ -1,6 +1,6 @@
 /*
  * ===========================================
- * Podlove Web Player v2.0.15
+ * Podlove Web Player v2.0.16
  * Licensed under The BSD 2-Clause License
  * http://opensource.org/licenses/BSD-2-Clause
  * ===========================================
@@ -259,14 +259,13 @@ if (typeof String.prototype.trim !== 'function') {
         // required (minutes : seconds)
         part = zeroFill(minutes, 2) + ':' + zeroFill(seconds, 2);
         hours = zeroFill(hours, 2);
-        hours = hours === '00' && !forceHours ? '' : hours + ':';
-        milliseconds = milliseconds ? '.' + zeroFill(milliseconds, 3) : '';
+        hours = hours === '00' && !forceHours ? '' : hours + ':';        
       } else {
         part = hours ? zeroFill(minutes, 2) : minutes.toString();
         part += ':' + zeroFill(seconds, 2);
         hours = hours ? hours + ':' : '';
-        milliseconds = milliseconds ? '.' + milliseconds : '';
       }
+      milliseconds = milliseconds ? '.' + zeroFill(milliseconds, 3) : '';
       return hours + part + milliseconds;
     }
     if (times[1] > 0 && times[1] < 9999999 && times[0] < times[1]) {
