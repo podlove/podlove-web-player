@@ -216,6 +216,12 @@ Earlier versions of this plugin could handle alternative shortcodes, too: [audio
 
 == Changelog ==
 
+
+= 2.0.16
+* fixes unspecific css selector bug, introduced in last version
+* fixes removing elements other than sources
+* fixes false milliseconds 
+
 = 2.0.15 =
 * small fixes
 * .htaccess examples added in /help
