@@ -223,6 +223,9 @@ Chapters now handed over as JSON, please take a look at the standalone.html. The
 
 ## Changelog
 
+### 2.0.17
+* fixes an error on apaches without mod_headers
+
 ### 2.0.16
 * fixes unspecific css selector bug, introduced in last version
 * fixes removing elements other than sources
@@ -363,6 +366,9 @@ Chapters now handed over as JSON, please take a look at the standalone.html. The
 * Full of bugs
 
 ## Upgrade Notice
+
+### 2.0.17
+* fixes an error on apaches without mod_headers
 
 ### 2.0.16
 * fixes css, removing elements other than sources and false milliseconds bugs

@@ -1,5 +1,10 @@
 #gecko browsers (FireFox) has very strict XSS rules and even disallow fonts from third domain sources
 #to allow these fonts to be loaded, you can use the following three lines of Apache configuration
-Header add Access-Control-Allow-Origin "*"
-Header add Access-Control-Allow-Headers "origin, x-requested-with, content-type"
-Header add Access-Control-Allow-Methods "GET"
+
+<FilesMatch "\.(ttf|ttc|otf|eot|woff|svg|pfa|ps)$">
+    <IfModule mod_headers.c>
+        Header set Access-Control-Allow-Origin "*"
+        Header set Access-Control-Allow-Headers "origin, x-requested-with, content-type"
+        Header set Access-Control-Allow-Methods "GET"
+    </IfModule>
+</FilesMatch>
