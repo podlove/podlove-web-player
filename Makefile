@@ -2,6 +2,9 @@
 
 build:
 	mkdir -p ./podlove-web-player/static
+	mkdir -p ./podlove-web-player/static/customcss
+	mkdir -p ./podlove-web-player/static/libs
+	mkdir -p ./podlove-web-player/static/libs/pwpdesigner
 	cat ./podlove-web-player/libs/podlove-font/css/podlovefont.css ./podlove-web-player/libs/mediaelement/build/mediaelementplayer.css ./podlove-web-player/podlove-web-player.css > ./podlove-web-player/static/podlove-web-player.tmp.css
 	cat ./podlove-web-player/libs/mediaelement/build/mediaelement-and-player.min.js ./podlove-web-player/podlove-web-player.js > ./podlove-web-player/static/podlove-web-player.tmp.js
 	cat ./podlove-web-player/header.txt ./podlove-web-player/jslint.js ./podlove-web-player/static/podlove-web-player.tmp.js  > ./podlove-web-player/static/podlove-web-player.js
@@ -16,5 +19,10 @@ build:
 	cp ./podlove-web-player/libs/jquery.ba-hashchange.min.js ./podlove-web-player/static/hashchange.min.js
 	cp ./podlove-web-player/libs/mediaelement/build/bigplay.svg ./podlove-web-player/static/bigplay.svg
 	cp ./podlove-web-player/libs/mediaelement/build/bigplay.png ./podlove-web-player/static/bigplay.png
+	cp ./podlove-web-player/libs/pwpdesigner/colorconv.js ./podlove-web-player/static/libs/pwpdesigner/colorconv.js
+	cp ./podlove-web-player/libs/pwpdesigner/script.js ./podlove-web-player/static/libs/pwpdesigner/script.js
+	cp ./podlove-web-player/libs/pwpdesigner/style.css ./podlove-web-player/static/libs/pwpdesigner/style.css
+	cp ./podlove-web-player/libs/pwpdesigner/pwp_custom_id-1.css ./podlove-web-player/static/customcss/pwp_custom_id-1.css
 	cp -R ./podlove-web-player/libs/podlove-font/font/ ./podlove-web-player/font/
+	cp ./podlove-web-player/help/xss.htaccess ./podlove-web-player/font/.htaccess
 	rm  ./podlove-web-player/static/podlove-web-player.tmp.css ./podlove-web-player/static/podlove-web-player.tmp.js

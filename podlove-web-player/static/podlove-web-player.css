@@ -1,9 +1,18 @@
 /*
  * ===========================================
- * Podlove Web Player v2.0.11
+ * Podlove Web Player v2.1.0
  * Licensed under The BSD 2-Clause License
  * http://opensource.org/licenses/BSD-2-Clause
  * ===========================================
+ * Copyright (c) 2013, Gerrit van Aaken (https://github.com/gerritvanaaken/), Simon Waldherr (https://github.com/simonwaldherr/), Frank Hase (https://github.com/Kambfhase/), Eric Teubert (https://github.com/eteubert/) and others (https://github.com/podlove/podlove-web-player/contributors)
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+ *
+ * - Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+ * - Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 
@@ -12,13 +21,11 @@
 @font-face {
   font-family: pwpfont;
   text-rendering: optimizeLegibility;
-  src: url("../font/podlovefont.eot?45650229");
-  src: local('☺'),
-       url("../font/podlovefont.eot?45650229#iefix") format('embedded-opentype'),
-       url("../font/podlovefont.woff?45650229") format('woff'),
-       url("../font/podlovefont.ttf?45650229") format('truetype'),
-       url("../font/podlovefont.otf?45650229") format('opentype'),
-       url("../font/podlovefont.svg?45650229#pwpfont") format('svg');
+  src: url("../font/podlovefont.eot?62787671");
+  src: url("../font/podlovefont.eot?62787671#iefix") format("embedded-opentype"),
+       url("../font/podlovefont.woff?62787671") format("woff"),
+       url("../font/podlovefont.ttf?62787671") format("truetype"),
+       url("../font/podlovefont.svg?62787671#pwpfont") format("svg");
   font-weight: normal !important;
   font-style: normal !important;
 }
@@ -27,12 +34,12 @@
 /*
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
-    font-family: "pwpfont";
-    src: url('../font/podlovefont.svg?45650229#pwpfont') format('svg');
+    font-family: 'pwpfont';
+    src: url('../font/podlovefont.svg?62787671#pwpfont') format('svg');
   }
 }
 */
-
+ 
 [class^="pwp-icon-"]:before,
 [class*=" pwp-icon-"]:before {
   font-family: pwpfont;
@@ -41,25 +48,32 @@
   text-decoration: inherit;
   -webkit-font-smoothing: antialiased;
   speak: none;
+ 
   display: inline-block;
+  text-decoration: inherit;
   width: 1em;
   margin-right: 0.2em;
   text-align: center;
-/* opacity .8 */
-/* For safety - reset parent styles, that can break glyph codes*/
+  /* opacity: 0.8; */
+ 
+  /* For safety - reset parent styles, that can break glyph codes*/
   font-variant: normal !important;
   text-transform: none !important;
-/* fix buttons height, for twitter bootstrap */
+  
+  /* fix buttons height, for twitter bootstrap */
   line-height: 1em;
-/* Animation center compensation - magrins should be symmetric */
-/* remove if not needed */
+ 
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
   margin-left: 0.2em;
-/* you can be more comfortable with increased icons size */
-/* font-size: 120%; */
-/* Uncomment for 3D effect */
-/* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+ 
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+ 
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
-
+ 
 .pwp-icon-gplus:before { content: "\2b"; } /* '+' */
 .pwp-icon-appstore:before { content: "\41"; } /* 'A' */
 .pwp-icon-twitter:before { content: "\54"; } /* 'T' */
@@ -77,53 +91,70 @@
 .pwp-icon-to-end:before { content: "\23ed"; } /* '⏭' */
 .pwp-icon-to-start:before { content: "\23ee"; } /* '⏮' */
 .pwp-icon-play:before { content: "\25b6"; } /* '▶' */
-.pwp-icon-cog:before { content: "\2699"; } /* '⚙' */
+.pwp-icon-star:before { content: "\e805"; } /* '' */
+.pwp-icon-star-empty:before { content: "\e806"; } /* '' */
+.pwp-icon-th-list:before { content: "\e80c"; } /* '' */
+.pwp-icon-th:before { content: "\e80e"; } /* '' */
 .pwp-icon-cog-1:before { content: "\e801"; } /* '' */
+.pwp-icon-cog:before { content: "\2699"; } /* '⚙' */
 .pwp-icon-cog-alt:before { content: "\26ef"; } /* '⛯' */
 .pwp-icon-mail:before { content: "\2709"; } /* '✉' */
+.pwp-icon-edit:before { content: "\e815"; } /* '' */
+.pwp-icon-ok-circled:before { content: "\e80d"; } /* '' */
+.pwp-icon-cw:before { content: "\27f3"; } /* '⟳' */
 .pwp-icon-wordpress:before { content: "\e005"; } /* '' */
-.pwp-icon-params:before { content: "\e01f"; } /* '' */
 .pwp-icon-github-1:before { content: "\e0b6"; } /* '' */
 .pwp-icon-github-text:before { content: "\e0e5"; } /* '' */
+.pwp-icon-help-circled:before { content: "\e809"; } /* '' */
 .pwp-icon-info-circle:before { content: "\e705"; } /* '' */
+.pwp-icon-tag:before { content: "\e813"; } /* '' */
+.pwp-icon-tags:before { content: "\e814"; } /* '' */
 .pwp-icon-export:before { content: "\e715"; } /* '' */
 .pwp-icon-down-circle2:before { content: "\e758"; } /* '' */
-.pwp-icon-magnet:before { content: "\e7a1"; } /* '' */
 .pwp-icon-terminal:before { content: "\e7ac"; } /* '' */
 .pwp-icon-ipod:before { content: "\e7b2"; } /* '' */
+.pwp-icon-ccw:before { content: "\f025"; } /* '' */
 .pwp-icon-link-ext:before { content: "\f08e"; } /* '' */
+.pwp-icon-rss:before { content: "\e816"; } /* '' */
 .pwp-icon-down-circled:before { content: "\f0ab"; } /* '' */
 .pwp-icon-list-bullet:before { content: "\f0ca"; } /* '' */
+.pwp-icon-gplus-squared:before { content: "\f0d4"; } /* '' */
 .pwp-icon-paste:before { content: "\f0ea"; } /* '' */
 .pwp-icon-download-cloud:before { content: "\f0ed"; } /* '' */
-.pwp-icon-github:before { content: "\f300"; } /* '' */
-.pwp-icon-github-circled:before { content: "\f301"; } /* '' */
-.pwp-icon-flickr:before { content: "\f303"; } /* '' */
-.pwp-icon-flickr-circled:before { content: "\f304"; } /* '' */
-.pwp-icon-vimeo:before { content: "\f306"; } /* '' */
-.pwp-icon-vimeo-circled:before { content: "\f307"; } /* '' */
-.pwp-icon-twitter-1:before { content: "\f309"; } /* '' */
-.pwp-icon-twitter-circled:before { content: "\f30a"; } /* '' */
-.pwp-icon-facebook-1:before { content: "\f30c"; } /* '' */
-.pwp-icon-facebook-circled:before { content: "\f30d"; } /* '' */
-.pwp-icon-gplus-1:before { content: "\f30f"; } /* '' */
-.pwp-icon-gplus-circled:before { content: "\f310"; } /* '' */
-.pwp-icon-tumblr:before { content: "\f315"; } /* '' */
-.pwp-icon-tumblr-circled:before { content: "\f316"; } /* '' */
-.pwp-icon-stumbleupon:before { content: "\f31e"; } /* '' */
-.pwp-icon-stumbleupon-circled:before { content: "\f31f"; } /* '' */
-.pwp-icon-flattr:before { content: "\f336"; } /* '' */
-.pwp-icon-paypal:before { content: "\f342"; } /* '' */
-.pwp-icon-soundcloud-1:before { content: "\f348"; } /* '' */
+.pwp-icon-plus-squared:before { content: "\e80a"; } /* '' */
+.pwp-icon-quote-left:before { content: "\f10d"; } /* '' */
+.pwp-icon-quote-right:before { content: "\f10e"; } /* '' */
+.pwp-icon-code:before { content: "\e812"; } /* '' */
+.pwp-icon-star-half-alt:before { content: "\e807"; } /* '' */
+.pwp-icon-fork:before { content: "\e820"; } /* '' */
+.pwp-icon-puzzle:before { content: "\e821"; } /* '' */
+.pwp-icon-mic:before { content: "\e817"; } /* '' */
+.pwp-icon-minus-squared:before { content: "\e80b"; } /* '' */
+.pwp-icon-github-squared:before { content: "\e803"; } /* '' */
+.pwp-icon-facebook-rect:before { content: "\e818"; } /* '' */
+.pwp-icon-facebook-rect-1:before { content: "\e81b"; } /* '' */
+.pwp-icon-twitter-bird:before { content: "\e819"; } /* '' */
+.pwp-icon-twitter-bird-1:before { content: "\e81c"; } /* '' */
+.pwp-icon-twitter-squared:before { content: "\e804"; } /* '' */
+.pwp-icon-facebook-squared:before { content: "\f308"; } /* '' */
+.pwp-icon-googleplus-rect:before { content: "\e81a"; } /* '' */
+.pwp-icon-googleplus-rect-1:before { content: "\e81d"; } /* '' */
+.pwp-icon-picture:before { content: "\e80f"; } /* '' */
+.pwp-icon-picture-1:before { content: "\e81e"; } /* '' */
 .pwp-icon-user:before { content: "\1f464"; } /* '👤' */
+.pwp-icon-users:before { content: "\e808"; } /* '' */
+.pwp-icon-pin:before { content: "\e811"; } /* '' */
+.pwp-icon-attach-1:before { content: "\e81f"; } /* '' */
+.pwp-icon-attach:before { content: "\e810"; } /* '' */
 .pwp-icon-download:before { content: "\1f4e5"; } /* '📥' */
 .pwp-icon-volume-off:before { content: "\1f507"; } /* '🔇' */
 .pwp-icon-volume-down:before { content: "\1f509"; } /* '🔉' */
 .pwp-icon-volume-up:before { content: "\1f50a"; } /* '🔊' */
 .pwp-icon-link:before { content: "\1f517"; } /* '🔗' */
-.pwp-icon-wrench:before { content: "\1f527"; } /* '🔧' */
 .pwp-icon-wrench-1:before { content: "\e802"; } /* '' */
+.pwp-icon-wrench:before { content: "\1f527"; } /* '🔧' */
 .pwp-icon-clock:before { content: "\1f554"; } /* '🕔' */
+
 .mejs-container {
 	position: relative;
 	background: #000;
@@ -979,6 +1010,13 @@
 	-webkit-text-size-adjust: inherit;
 }
 
+.podlovewebplayer_wrapper,
+.podlovewebplayer_wrapper *,
+.podlovewebplayer_wrapper *:before,
+.podlovewebplayer_wrapper *:after {
+	-moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+}
+
 .podlovewebplayer_wrapper div {
 	display: block;
 }
@@ -1090,7 +1128,7 @@
 	padding: 8px 5px 6px 5px !important;
 	vertical-align: middle;
 	border-bottom: 1px solid #e9e9e9;
-	cursor: pointer!important;
+	cursor: pointer !important;
 }
 
 .podlovewebplayer_wrapper .podlovewebplayer_chapters tr:hover {
@@ -1156,7 +1194,8 @@
 	background: transparent;
 	color: white;
 }
-.mejs-button.mejs-volume-button button::after {
+.mejs-button.mejs-volume-button button::after,
+.podlovewebplayer_wrapper .podlovewebplayer_chapterbox .chaptername a {
 	font-size: 16;
 	padding-left: 0.02em;
 	font-family: "pwpfont" !important;
@@ -1196,9 +1235,9 @@
 	border: 5px solid white !important;
 	border-radius: 60px !important;
 	font-size: 42px;
-	padding: 5px 6px 20px 19px;
-	height: 40px;
-	width: 40px;
+	padding: 5px 6px 10px 20px;
+	height: 75px;
+	width: 75px;
 	margin: 10px 10px 10px 10px;
 	-webkit-transition: none;
 	-moz-transition: none;
@@ -1227,7 +1266,7 @@
 }
 
 .podlovewebplayer_meta .bigplay.playing {
-	padding: 5px 11px 20px 14px;
+	padding: 5px 11px 20px 15px;
 }
 
 .podlovewebplayer_meta .bigplay.playing:focus,
@@ -1252,11 +1291,11 @@
 .podlovewebplayer_wrapper .podlovewebplayer_timecontrol.podlovewebplayer_controlbox a.pwp-icon-fast-bw:before { content: "\23ea"; }
 .podlovewebplayer_wrapper .podlovewebplayer_timecontrol.podlovewebplayer_controlbox a.pwp-icon-fast-fw:before { content: "\23e9"; }
 
-.podlovewebplayer_wrapper .podlovewebplayer_sharebuttons.podlovewebplayer_controlbox a.pwp-icon-link:before { content: "\1f517"; }
-.podlovewebplayer_wrapper .podlovewebplayer_sharebuttons.podlovewebplayer_controlbox a.pwp-icon-twitter:before { content: "\f309"; }
-.podlovewebplayer_wrapper .podlovewebplayer_sharebuttons.podlovewebplayer_controlbox a.pwp-icon-facebook:before { content: "\f30c"; }
-.podlovewebplayer_wrapper .podlovewebplayer_sharebuttons.podlovewebplayer_controlbox a.pwp-icon-gplus:before { content: "\f30f"; }
-.podlovewebplayer_wrapper .podlovewebplayer_sharebuttons.podlovewebplayer_controlbox a.pwp-icon-appnet:before { content: "\e1"; }
+.podlovewebplayer_wrapper .podlovewebplayer_sharebuttons.podlovewebplayer_controlbox a.pwp-icon-link:before { content: "\1f517"; font-size: 0.9em; }
+.podlovewebplayer_wrapper .podlovewebplayer_sharebuttons.podlovewebplayer_controlbox a.pwp-icon-twitter:before { content: "\54"; font-size: 0.9em; }
+.podlovewebplayer_wrapper .podlovewebplayer_sharebuttons.podlovewebplayer_controlbox a.pwp-icon-facebook:before { content: "\f308"; }
+.podlovewebplayer_wrapper .podlovewebplayer_sharebuttons.podlovewebplayer_controlbox a.pwp-icon-gplus:before { content: "\e81a"; font-size: 0.9em; }
+.podlovewebplayer_wrapper .podlovewebplayer_sharebuttons.podlovewebplayer_controlbox a.pwp-icon-appnet:before { content: "\e1"; font-size: 0.8em; }
 .podlovewebplayer_wrapper .podlovewebplayer_sharebuttons.podlovewebplayer_controlbox a.pwp-icon-mail:before { content: "\2709"; }
 
 .podlovewebplayer_wrapper .podlovewebplayer_downloadbuttons.podlovewebplayer_controlbox a.pwp-icon-download:before { content: "\1f4e5"; }
@@ -1281,7 +1320,7 @@
 	left: 0px !important;
 	right: auto !important;
 	bottom: auto !important;
-	box-shadow: none!important;
+	box-shadow: none !important;
 	-webkit-border-radius: 0px;
 	-moz-border-radius: 0px;
 	-o-border-radius: 0px;
@@ -1291,13 +1330,13 @@
 .podlovewebplayer_meta h3 a,
 .podlovewebplayer_meta h3 {
 	clear: none;
-	color: #fff!important;
+	color: #fff !important;
 	background: transparent !important;
 	padding: 7px 0 0 0;
 	font-size: 16px;
 	line-height: 22px;
 	font-weight: bold;
-	margin: 0!important;
+	margin: 0 !important;
 	padding-right: 10px;
 	text-transform: none;
 	letter-spacing: 0;
@@ -1325,7 +1364,7 @@
 	color: #eee !important;
 	text-shadow: none !important;
 	background: transparent !important;
-	margin-left: 180px;
+	margin-left: 170px;
 	padding-bottom: 35px;
 	padding-left: 0px;
 }
@@ -1409,13 +1448,13 @@
 }
 
 .podlovewebplayer_wrapper .mejs-container .mejs-inner .mejs-controls .mejs-time-rail .mejs-time-total .mejs-time-loaded {
-	background: rgb(67,131,219);
-	background: -moz-linear-gradient(top, rgb(67,131,219) 0%, rgb(88,156,239) 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(67,131,219)), color-stop(100%,rgb(88,156,239)));
-	background: -webkit-linear-gradient(top, rgb(67,131,219) 0%,rgb(88,156,239) 100%);
-	background: -o-linear-gradient(top, rgb(67,131,219) 0%,rgb(88,156,239) 100%);
-	background: -ms-linear-gradient(top, rgb(67,131,219) 0%,rgb(88,156,239) 100%);
-	background: linear-gradient(to bottom, rgb(67,131,219) 0%,rgb(88,156,239) 100%);
+	background: #11B5DB;
+	background: -moz-linear-gradient(top, #11B5DB 0%, #589CEF 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#11B5DB), color-stop(100%,#589CEF));
+	background: -webkit-linear-gradient(top, #11B5DB 0%,#589CEF 100%);
+	background: -o-linear-gradient(top, #11B5DB 0%,#589CEF 100%);
+	background: -ms-linear-gradient(top, #11B5DB 0%,#589CEF 100%);
+	background: linear-gradient(to bottom, #11B5DB 0%,#589CEF 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc4383db', endColorstr='#cc589cef',GradientType=0 );
 }
 
@@ -1463,19 +1502,20 @@
 .podlovewebplayer_meta + .summary.active {
 	min-height: 35px;
 	height: auto;
-	padding: 20px 10px;
+  padding: 25px 10px 35px;
 }
 
-.podlovewebplayer_wrapper .summary.active a:visited {
-	color: blue;
-}
-
-.podlovewebplayer_wrapper .summary.active a:hover {
-	text-decoration: underline;
+.podlovewebplayer_wrapper .summary a:visited {
+	color: #8AB7E5;
+	font-weight: 700;
 }
 
 .podlovewebplayer_wrapper .summary.active a {
 	text-decoration: none;
+}
+
+.podlovewebplayer_wrapper .summary a:hover {
+	text-decoration: underline;
 }
 
 .podlovewebplayer_meta .togglers {
@@ -1504,7 +1544,7 @@
 
 .podlovewebplayer_wrapper .podlovewebplayer_controlbox.active {
 	height: 25px;
-	padding: 3px 10px 4px 10px;
+	padding: 3px 10px 28px 10px;
 	font-size: 8px;
 }
 
@@ -1540,8 +1580,6 @@
 	width: 30px;
 }
 
-.podlovewebplayer_wrapper .togglers a.pwp-icon-download { display: none !important; }
-
 .podlovewebplayer_wrapper .podlovewebplayer_controlbox .infobuttons,
 .podlovewebplayer_wrapper .podlovewebplayer_controlbox .infobuttons a {
 	position: relative;
@@ -1561,6 +1599,7 @@
 	outline: none;
 	vertical-align: top;
 	height: 22px;
+	max-width: 180px;
 	font-size: 14px;
 	margin-right: 25px;
 	background: #000000;
@@ -1727,6 +1766,24 @@
 	text-align: right;
 }
 
+.podlovewebplayer_wrapper .podlovewebplayer_chapterbox .chaptername a::after {
+	content: "\f08e";
+}
+
+.podlovewebplayer_wrapper .podlovewebplayer_chapterbox .chapterimage {
+	width: 45px;
+	max-width: 45px;
+	text-align: center;
+}
+
+.podlovewebplayer_wrapper .podlovewebplayer_chapterbox .chapterimage img {
+	max-width: 40px;
+	max-height: 32px;
+	margin-top: -8px;
+	margin-bottom: -7px;
+	display: block;
+}
+
 .podlovewebplayer_wrapper .podlovewebplayer_tableend {
 	position: initial;
 	display: block;
@@ -1767,15 +1824,15 @@
 
 .podlovewebplayer_smallplayer .podlovewebplayer_meta .bigplay {
 	font-size: 25px;
-	padding: 6px 11px 19px 14px;
-	height: 20px;
-	width: 20px;
+	padding: 0 11px 19px 9px;
+	height: 40px;
+	width: 40px;
 	margin: 10px 10px 0px 10px;
 	border: 4px solid #ffffff !important;
 }
 
 .podlovewebplayer_smallplayer .podlovewebplayer_meta .bigplay.playing {
-	padding: 6px 13px 19px 12px;
+	padding: 0 13px 19px 5px;
 }
 
 .podlovewebplayer_smallplayer .bigplay.playing:focus, 
