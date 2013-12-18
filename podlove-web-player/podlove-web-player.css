@@ -25,16 +25,25 @@
 	text-decoration: none;
 }
 
-.mejs-container.mejs-audio {
+.podlovewebplayer_wrapper .mejs-container.mejs-audio {
 	min-height: 30px;
 }
 
+.podlovewebplayer_wrapper .mejs-container .mejs-controls {
+    background: url(background.png);
+    background: rgba(0, 0, 0, 0.7);
+    background: -webkit-linear-gradient(top, rgba(50,50,50,0.7), rgba(0,0,0,0.7));
+    background: -moz-linear-gradient(top, rgba(50,50,50,0.7), rgba(0,0,0,0.7));
+    background: -o-linear-gradient(top, rgba(50,50,50,0.7), rgba(0,0,0,0.7));
+    background: -ms-linear-gradient(top, rgba(50,50,50,0.7), rgba(0,0,0,0.7));
+    background: linear-gradient(rgba(50,50,50,0.7), rgba(0,0,0,0.7));
+}
 
-.mejs-container .mejs-controls > div:first-child {
+.podlovewebplayer_wrapper .mejs-container .mejs-controls > div:first-child {
 	margin-left: 8px;
 }
 
-.mejs-container .mejs-controls > div.mejs-duration-container:last-child {
+.podlovewebplayer_wrapper .mejs-container .mejs-controls > div.mejs-duration-container:last-child {
 	margin-right: 5px;
 }
 
@@ -175,19 +184,20 @@
 	padding-bottom: 0px;
 }
 
-.mejs-container {
+.podlovewebplayer_wrapper .mejs-container {
 	display: block;
 	position: relative;
 	margin-top: -1px;
+	margin-bottom: 0;
 	background: #000000;
 }
 
-.mejs-button.mejs-volume-button button {
+.podlovewebplayer_wrapper .mejs-button.mejs-volume-button button {
 	font-size: 16px;
 	background: transparent;
 	color: white;
 }
-.mejs-button.mejs-volume-button button::after,
+.podlovewebplayer_wrapper .mejs-button.mejs-volume-button button::after,
 .podlovewebplayer_wrapper .podlovewebplayer_chapterbox .chaptername a {
 	font-size: 16;
 	padding-left: 0.02em;
@@ -206,11 +216,11 @@
 	line-height: 1em;
 }
 
-.mejs-button.mejs-volume-button.mejs-unmute button::after {
+.podlovewebplayer_wrapper .mejs-button.mejs-volume-button.mejs-unmute button::after {
 	content: "\1f507";
 }
 
-.mejs-button.mejs-volume-button.mejs-mute button::after {
+.podlovewebplayer_wrapper .mejs-button.mejs-volume-button.mejs-mute button::after {
 	content: "\1f50a";
 }
 
@@ -425,15 +435,15 @@
 	background: url(bigplay.svg) no-repeat;
 }
 
-.no-svg .mejs-overlay-button { 
+.no-svg .mejs-overlay-button {
 	background-image: url(bigplay.png);
 }
 
-.mejs-overlay:hover .mejs-overlay-button {
+.podlovewebplayer_wrapper .mejs-overlay:hover .mejs-overlay-button {
 	background-position: 0 -100px ;
 }
 
-.mejs-overlay-loading span {
+.podlovewebplayer_wrapper .mejs-overlay-loading span {
 	display: block;
 	width: 80px;
 	height: 80px;
@@ -451,11 +461,12 @@
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc4383db', endColorstr='#cc589cef',GradientType=0 );
 }
 
+.podlovewebplayer_wrapper .mejs-container .mejs-controls .mejs-time-rail span,
+.podlovewebplayer_wrapper .mejs-container .mejs-controls .mejs-horizontal-volume-slider .mejs-horizontal-volume-total,
+.podlovewebplayer_wrapper .mejs-container .mejs-controls .mejs-horizontal-volume-slider .mejs-horizontal-volume-current,
 .podlovewebplayer_wrapper .mejs-container .mejs-inner .mejs-controls .mejs-volume-button .mejs-volume-slider .mejs-volume-handle {
 	cursor: move;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
+	border-radius: 2px;
 }
 
 .podlovewebplayer_wrapper .mejs-container .mejs-inner .mejs-container .mejs-controls .mejs-time span {
@@ -709,9 +720,9 @@
 
 .podlovewebplayer_chapters tr.chaptertr:active {
 	color: #ffffff;
-	-webkit-text-shadow: 0px 0px 3px #111111; 
-	-moz-text-shadow: 0px 0px 3px #111111; 
-	text-shadow: 0px 0px 3px #111111; 
+	-webkit-text-shadow: 0px 0px 3px #111111;
+	-moz-text-shadow: 0px 0px 3px #111111;
+	text-shadow: 0px 0px 3px #111111;
 	background: #ffffff;
 	background: -moz-linear-gradient(top, #ffffff 0%, #f6f6f6 47%, #ededed 100%);
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(47%,#f6f6f6), color-stop(100%,#ededed));
@@ -797,7 +808,7 @@
 .podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_tableend,
 .podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_controlbox,
 .podlovewebplayer_wrapper.podlovewebplayer_video .summary {
-	background: #252525; 
+	background: #252525;
 }
 
 .podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_chapterbox,
@@ -828,18 +839,18 @@
 	padding: 0 13px 19px 5px;
 }
 
-.podlovewebplayer_smallplayer .bigplay.playing:focus, 
-.podlovewebplayer_smallplayer .bigplay.playing:hover, 
+.podlovewebplayer_smallplayer .bigplay.playing:focus,
+.podlovewebplayer_smallplayer .bigplay.playing:hover,
 .podlovewebplayer_smallplayer .bigplay.playing:active {
 	border: 4px solid white !important;
 }
 
-.podlovewebplayer_smallplayer .podlovewebplayer_top, 
+.podlovewebplayer_smallplayer .podlovewebplayer_top,
 .podlovewebplayer_smallplayer .podlovewebplayer_meta {
 	min-height: 60px;
 }
 
-@media only screen 
+@media only screen
 and (max-width : 500px) {
 	.podlovewebplayer_wrapper {
 		margin-left: 0px;
@@ -864,15 +875,15 @@ and (max-width : 500px) {
 		margin: 4%;
 		white-space: nowrap;
 	}
-	
+
 	.podlovewebplayer_wrapper .podlovewebplayer_controlbox.active {
 		height: auto !important;
 	}
-	
+
 	.podlovewebplayer_wrapper .podlovewebplayer_controlbox .infobuttons span {
 		font-size: 13pt;
 	}
-	
+
 	.podlovewebplayer_wrapper .podlovewebplayer_tableend,
 	.podlovewebplayer_wrapper .podlovewebplayer_top {
 		-webkit-border-top-left-radius: 0px;
