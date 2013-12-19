@@ -1,6 +1,6 @@
 /*
  * ===========================================
- * Podlove Web Player v2.0.17
+ * Podlove Web Player v2.0.18
  * Licensed under The BSD 2-Clause License
  * http://opensource.org/licenses/BSD-2-Clause
  * ===========================================

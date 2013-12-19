@@ -24,7 +24,7 @@ You won’t need any of the PHP or WordPress files in this package. Just stick t
 
 Use a simple shortcode in your posts and pages, and the Podlove Web Player will appear, playing any media file you want to assign. Basic usage:
 
-   [podloveaudio src="http://mysite.com/mymedia.mp3" duration="03:33" title="My track"]   
+   [podloveaudio src="http://mysite.com/mymedia.mp3" duration="03:33" title="My track"]
 
 ### 3) WordPress enclosures
 
@@ -66,9 +66,9 @@ This location of any audio or video file, local ore remote:
 
 The media type of the resource:
 
-    [podlovevideo src="http://mysite.com/mymedia.m4v" type="video/mp4"]    
+    [podlovevideo src="http://mysite.com/mymedia.m4v" type="video/mp4"]
 
-= mp4 / webm / ogg  = 
+= mp4 / webm / ogg  =
 
 The location of a file with a specific video type:
 
@@ -78,14 +78,14 @@ The location of a file with a specific video type:
 
     [podloveaudio mp4="mymedia.m4a" mp3="mymedia.mp3" ogg="mymedia.oga" opus="mymedia.opus"]
 
-= poster = 
+= poster =
 
 The location of the poster frame for the video (or cover image for the rich audio player):
 
     [podlovevideo poster="http://mysite.com/mymedia.png"]
     [podloveaudio poster="http://mysite.com/mymedia.png"]
 
-= width / height = 
+= width / height =
 
 The width and/or height of the video (or the audio player):
 
@@ -95,7 +95,7 @@ The width and/or height of the video (or the audio player):
 
 Loops the video or audio when it ends:
 
-    [podlovevideo src="http://mysite.com/mymedia.mp4" loop="true"]    
+    [podlovevideo src="http://mysite.com/mymedia.mp4" loop="true"]
 
 = preload =
 
@@ -103,7 +103,7 @@ Start loading the video as soon as possible, before the user clicks play. This m
 
     [podloveaudio preload="true"]
 
-= autoplay = 
+= autoplay =
 
 Start playing the video as soon as it's ready. This might not work on all (mobile) devices.
 
@@ -126,57 +126,57 @@ Enables display of duration without having to load the media file. Use seconds o
 
 Displays the time in 00:00:00 instead of 00:00. Default is "true".
 
-    [podloveaudio alwaysShowHours="false"]  
+    [podloveaudio alwaysShowHours="false"]
 
 = alwaysShowControls =
 
 Defines whether the player control bar is permanently visible. For videos, it might be suitable to fade the controls out when not hovering the video.
 
-    [podlovevideo alwaysShowControls="false"]   
+    [podlovevideo alwaysShowControls="false"]
 
-= volume = 
+= volume =
 
 Disables the volume slider:
 
-    [podloveaudio volume="false"]    
+    [podloveaudio volume="false"]
 
 = progress =
 
 Disables the progress bar:
 
-    [podlovevideo progress="false"] 
+    [podlovevideo progress="false"]
 
-= captions = 
+= captions =
 
 URL to a WebVTT captions file:
 
-    [podlovevideo captions="http://mysite.com/mymedia.vtt"]  
+    [podlovevideo captions="http://mysite.com/mymedia.vtt"]
 
-= chapters = 
+= chapters =
 
 Takes chapter json string from the defined custom field (the standard WordPress ones) and builds an interactive chapter table. Can be referenced to an external json file, too. Chapters must be written in the following format:
 
-[{  
-  "start": "00:00:00",  
-  "title": "foo",  
-  "href": "http://podlove.org",  
-  "image":""  
-},{  
-  "start": "00:01:00",  
-  "title": "lorem",  
-  "href": "https://github.com/podlove/",  
-  "image":"samples/coverimage-red.png"  
-},{  
-  "start": "00:02:30",  
-  "title": "ipsum",  
-  "href": "https://github.com/shownotes/",  
-  "image":"samples/coverimage-green.png"  
-},{  
-  "start": "00:03:00",  
-  "title": "end",  
-  "href": "",  
-  "image":"samples/coverimage-blue.png"  
-}]  
+[{
+  "start": "00:00:00",
+  "title": "foo",
+  "href": "http://podlove.org",
+  "image":""
+},{
+  "start": "00:01:00",
+  "title": "lorem",
+  "href": "https://github.com/podlove/",
+  "image":"samples/coverimage-red.png"
+},{
+  "start": "00:02:30",
+  "title": "ipsum",
+  "href": "https://github.com/shownotes/",
+  "image":"samples/coverimage-green.png"
+},{
+  "start": "00:03:00",
+  "title": "end",
+  "href": "",
+  "image":"samples/coverimage-blue.png"
+}]
 
 
 * "start" has to be defined as HH:MM:SS
@@ -184,8 +184,8 @@ Takes chapter json string from the defined custom field (the standard WordPress 
 * "href" is an optional URL
 * "image" is an optional image URL or relative path
 
-    [podloveaudio chapters="my_chapter_field"]  
-    [podloveaudio chapters="http://mychapters.com/chapters.json"]  
+    [podloveaudio chapters="my_chapter_field"]
+    [podloveaudio chapters="http://mychapters.com/chapters.json"]
 
 = chaptersVisible / timecontrolsVisible / summaryVisible =
 
@@ -216,13 +216,17 @@ Earlier versions of this plugin could handle alternative shortcodes, too: [audio
 
 == Changelog ==
 
+= 2.0.18 =
+* compatible with Wordpress theme Twenty-Fourteen
+* read plugin version dynamically in settings.php
+
 = 2.0.17 =
 * fixes an error on apaches without mod_headers
 
 = 2.0.16
 * fixes unspecific css selector bug, introduced in last version
 * fixes removing elements other than sources
-* fixes false milliseconds 
+* fixes false milliseconds
 
 = 2.0.15 =
 * small fixes
