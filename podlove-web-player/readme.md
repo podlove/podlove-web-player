@@ -377,6 +377,9 @@ Chapters now handed over as JSON, please take a look at the standalone.html. The
 
 ## Upgrade Notice
 
+### 2.0.18
+* compatible with Wordpress theme Twenty-Fourteen
+
 ### 2.0.17
 * fixes an error on apaches without mod_headers
 

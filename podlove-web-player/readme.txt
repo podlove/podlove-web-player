@@ -365,6 +365,9 @@ Earlier versions of this plugin could handle alternative shortcodes, too: [audio
 == Upgrade Notice ==
 
 = 2.0.17 =
+compatible with Wordpress theme Twenty-Fourteen
+
+= 2.0.17 =
 fixes an error on apaches without mod_headers
 
 = 2.0.16 =
