@@ -1,12 +1,12 @@
 # Podlove Web Player
-**Contributors:** gerritvanaaken, simonwaldherr
-**Donate link:** http://podlove.org/
-**Tags:** podcasting, podlove, html5audio, audio, video, podcast, player
-**Requires at least:** 3.4.0
-**Tested up to:** 3.5.1
-**Stable tag:** trunk
-**License:** BSD 2-Clause License
-**License URI:** http://opensource.org/licenses/BSD-2-Clause
+**Contributors:** gerritvanaaken, simonwaldherr  
+**Donate link:** http://podlove.org/  
+**Tags:** podcasting, podlove, html5audio, audio, video, podcast, player  
+**Requires at least:** 3.4.0  
+**Tested up to:** 3.5.1  
+**Stable tag:** trunk  
+**License:** BSD 2-Clause License  
+**License URI:** http://opensource.org/licenses/BSD-2-Clause  
 
 HTML5 based audio/video player, focused on podcasts and similar media blogs. It supports chapters, deeplinks, captions, social media buttons and more.
 
@@ -198,7 +198,13 @@ Defines the default visibility status of toggable player modules. Standard value
 
 **If you have an audio file and use one of the following attributes, the player will sport a richer visual experience:** "title", "subtitle", "summary", "poster", "permalink". Full example:
 
-    [podloveaudio mp3="http://mysite.com/mymedia.mp3" ogg="http://mysite.com/mymedia.ogg" title="PWP – First show" subtitle="We talk about this and that" summary="Here goes a summary of the episode which should be about 256 characters long" poster="http://mysite.com/mymedia.jpg" chapters="my_chapter_field" permalink="http://mysite.com/my-first-episode/"]
+    [podloveaudio mp3="http://mysite.com/mymedia.mp3" 
+                  ogg="http://mysite.com/mymedia.ogg" 
+                  title="PWP – First show" subtitle="We talk about this and that" 
+                  summary="Here goes a summary of the episode which should be about 256 characters long" 
+                  poster="http://mysite.com/mymedia.jpg" 
+                  chapters="my_chapter_field" 
+                  permalink="http://mysite.com/my-first-episode/"]
 
 ### Podlove Web Player Shortcode in multiple lines
 
