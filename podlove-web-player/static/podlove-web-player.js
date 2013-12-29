@@ -1229,8 +1229,6 @@ if (typeof String.prototype.trim !== 'function') {
 
     (function pollHeight(){
       var neuHeight = $body.height();
-      if (neuHeight == null )
-        console.log( $body.length)
 
       if( lastHeight != neuHeight){
         postToOpener({
