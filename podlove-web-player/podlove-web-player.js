@@ -701,7 +701,7 @@ if (typeof String.prototype.trim !== 'function') {
           metainfo.find('.bigplay').addClass('playing');
         }
         postToOpener({
-          arg: 'play'
+          action: 'play'
         });
       })
       .on('pause', function () {
@@ -1034,7 +1034,7 @@ if (typeof String.prototype.trim !== 'function') {
 
     if( lastHeight != neuHeight){
       postToOpener{
-        cmd: 'resize',
+        action: 'resize',
         arg: neuHeight
       });
     }
@@ -1046,7 +1046,7 @@ if (typeof String.prototype.trim !== 'function') {
   $(window).on('message', function( event ){
     var orig = event.originalEvent;
 
-    if( orig.data.cmd == 'pause' ){
+    if( orig.data.action == 'pause' ){
       $('audio').get(0).pause();
     }
   });
