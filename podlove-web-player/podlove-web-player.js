@@ -700,6 +700,9 @@ if (typeof String.prototype.trim !== 'function') {
         if (metainfo.length === 1) {
           metainfo.find('.bigplay').addClass('playing');
         }
+        postToOpener({
+          arg: 'play'
+        });
       })
       .on('pause', function () {
         window.clearInterval(player.persistingTimer);
@@ -1019,4 +1022,33 @@ if (typeof String.prototype.trim !== 'function') {
       $(player).mediaelementplayer(mejsoptions);
     });
   };
+
+  function postToOpener( obj){
+    window.opener.postMessage(obj, '*');
+  }
+
+  var lastHeight = 0, $body = $(document.body);
+
+  (function pollHeight(){
+    var neuHeight = $body.height();
+
+    if( lastHeight != neuHeight){
+      postToOpener{
+        cmd: 'resize',
+        arg: neuHeight
+      });
+    }
+
+    lastHeight = neuHeight;
+    requestAnimationFrame(pollHeight);
+  })();
+
+  $(window).on('message', function( event ){
+    var orig = event.originalEvent;
+
+    if( orig.data.cmd == 'pause' ){
+      $('audio').get(0).pause();
+    }
+  });
+
 }(jQuery));
