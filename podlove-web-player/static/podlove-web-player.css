@@ -1005,6 +1005,10 @@
 	cursor: pointer;
 }
 /* End: Postroll */
+body {
+    margin: 0;
+}
+
 .podlovewebplayer_wrapper * {
 	font: normal 11px/1.25 helvetica, arial, sans-serif;
 	-webkit-text-size-adjust: inherit;
