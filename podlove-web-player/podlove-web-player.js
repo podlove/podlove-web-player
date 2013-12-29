@@ -70,7 +70,7 @@ if (typeof String.prototype.trim !== 'function') {
         // required (minutes : seconds)
         part = zeroFill(minutes, 2) + ':' + zeroFill(seconds, 2);
         hours = zeroFill(hours, 2);
-        hours = hours === '00' && !forceHours ? '' : hours + ':';        
+        hours = hours === '00' && !forceHours ? '' : hours + ':';
       } else {
         part = hours ? zeroFill(minutes, 2) : minutes.toString();
         part += ':' + zeroFill(seconds, 2);
@@ -1024,7 +1024,7 @@ if (typeof String.prototype.trim !== 'function') {
   };
 
   function postToOpener( obj){
-    window.opener.postMessage(obj, '*');
+    window.parent.postMessage(obj, '*');
   }
 
   var lastHeight = 0, $body = $(document.body);
@@ -1033,7 +1033,7 @@ if (typeof String.prototype.trim !== 'function') {
     var neuHeight = $body.height();
 
     if( lastHeight != neuHeight){
-      postToOpener{
+      postToOpener({
         action: 'resize',
         arg: neuHeight
       });

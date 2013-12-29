@@ -259,7 +259,7 @@ if (typeof String.prototype.trim !== 'function') {
         // required (minutes : seconds)
         part = zeroFill(minutes, 2) + ':' + zeroFill(seconds, 2);
         hours = zeroFill(hours, 2);
-        hours = hours === '00' && !forceHours ? '' : hours + ':';        
+        hours = hours === '00' && !forceHours ? '' : hours + ':';
       } else {
         part = hours ? zeroFill(minutes, 2) : minutes.toString();
         part += ':' + zeroFill(seconds, 2);
@@ -889,6 +889,9 @@ if (typeof String.prototype.trim !== 'function') {
         if (metainfo.length === 1) {
           metainfo.find('.bigplay').addClass('playing');
         }
+        postToOpener({
+          action: 'play'
+        });
       })
       .on('pause', function () {
         window.clearInterval(player.persistingTimer);
@@ -1208,4 +1211,33 @@ if (typeof String.prototype.trim !== 'function') {
       $(player).mediaelementplayer(mejsoptions);
     });
   };
+
+  function postToOpener( obj){
+    window.parent.postMessage(obj, '*');
+  }
+
+  var lastHeight = 0, $body = $(document.body);
+
+  (function pollHeight(){
+    var neuHeight = $body.height();
+
+    if( lastHeight != neuHeight){
+      postToOpener({
+        action: 'resize',
+        arg: neuHeight
+      });
+    }
+
+    lastHeight = neuHeight;
+    requestAnimationFrame(pollHeight);
+  })();
+
+  $(window).on('message', function( event ){
+    var orig = event.originalEvent;
+
+    if( orig.data.action == 'pause' ){
+      $('audio').get(0).pause();
+    }
+  });
+
 }(jQuery));
