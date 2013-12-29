@@ -16,7 +16,7 @@
 
             $(window).on('message', function(event){
                 var orig = event.originalEvent;
-                console.log(orig.source.location);
+
                 if( frame.get(0).contentWindow != orig.source) {
                     return;
                 }
@@ -25,7 +25,6 @@
                 }
 
                 if( orig.data.action == 'resize'){
-                    console.log(orig.data.arg);
                     frame.height(orig.data.arg);
                 }
             });
