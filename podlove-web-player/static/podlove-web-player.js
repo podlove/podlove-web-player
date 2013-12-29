@@ -1216,28 +1216,32 @@ if (typeof String.prototype.trim !== 'function') {
     window.parent.postMessage(obj, '*');
   }
 
-  var lastHeight = 0, $body = $(document.body);
-
-  (function pollHeight(){
-    var neuHeight = $body.height();
-
-    if( lastHeight != neuHeight){
-      postToOpener({
-        action: 'resize',
-        arg: neuHeight
-      });
-    }
-
-    lastHeight = neuHeight;
-    requestAnimationFrame(pollHeight);
-  })();
-
   $(window).on('message', function( event ){
     var orig = event.originalEvent;
 
     if( orig.data.action == 'pause' ){
       $('audio').get(0).pause();
     }
+  });
+
+  $(function(){
+    var lastHeight = 0, $body = $(document.body);
+
+    (function pollHeight(){
+      var neuHeight = $body.height();
+      if (neuHeight == null )
+        console.log( $body.length)
+
+      if( lastHeight != neuHeight){
+        postToOpener({
+          action: 'resize',
+          arg: neuHeight
+        });
+      }
+
+      lastHeight = neuHeight;
+      requestAnimationFrame(pollHeight);
+    })();
   });
 
 }(jQuery));
