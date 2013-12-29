@@ -18,6 +18,11 @@
                 var orig = event.originalEvent;
 
                 if( frame.get(0).contentWindow != orig.source) {
+                    if( orig.data.action == 'play'){
+                        frame.get(0).contentWindow.postMessage({
+                            action: 'pause'
+                        },'*');
+                    }
                     return;
                 }
 
