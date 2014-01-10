@@ -21,18 +21,23 @@ function podlovewebplayer_settings_page() { ?>
 
 function podlovewebplayer_create_menu() {
 	add_options_page(
-		'Podlove Web Player Options', 
-		'Podlove Web Player', 
-		'manage_options', 
-		'podlovewebplayer', 
+		'Podlove Web Player Options',
+		'Podlove Web Player',
+		'manage_options',
+		'podlovewebplayer',
 		'podlovewebplayer_settings_page'
 	);
 }
 
 function podlovewebplayer_register_settings() {
 	$pwp = 'podlovewebplayer';
-
 	$settings = array(
+		'main' => array(
+			'title' => 'General defaults',
+			'fields' => array(
+				'poster' => 'Poster URL'
+			)
+		),
 		'audio' => array(
 			'title'  => 'Audio player defaults',
 			'fields' => array(
@@ -102,51 +107,65 @@ function podlovewebplayer_register_settings() {
 	}
 }
 
+function podlovewebplayer_main_poster(){
+	$options = get_option('podlovewebplayer_options');
+	if ( !isset( $options['main_poster'] ) ) {
+		$options['main_poster'] = '';
+	}
+	print "<input id='pwpposter' name='podlovewebplayer_options[main_poster]' 
+		value='".$options['main_poster']."' style='width:6em;' /> ";
+}
 
 function podlovewebplayer_audio_width(){
 	$options = get_option('podlovewebplayer_options');
-	if ( !isset( $options['audio_width'] ) )
+	if ( !isset( $options['audio_width'] ) ) {
 		$options['audio_width'] = '';
+	}
 	print "<input id='pwpaudio1' name='podlovewebplayer_options[audio_width]' 
 		value='".$options['audio_width']."' style='width:3em;' /> px&nbsp;&nbsp;(keep blank for automatic width)";
 }
 
 function podlovewebplayer_audio_height() {
 	$options = get_option('podlovewebplayer_options');
-	if ( !isset( $options['audio_width'] ) )
+	if ( !isset( $options['audio_width'] ) ) {
 		$options['audio_height'] = "30";
+	}
 	print "<input id='pwpaudio2' name='podlovewebplayer_options[audio_height]' 
 		value='".$options['audio_height']."' style='width:3em;' /> px&nbsp;&nbsp;(keep 30, if unsure)";
 }
 
 function podlovewebplayer_audio_type() { 
 	$options = get_option('podlovewebplayer_options');
-	if (( !isset( $options['audio_type'] ) ) || ( $options['audio_type'] == 'audio/mp3' ))
+	if (( !isset( $options['audio_type'] ) ) || ( $options['audio_type'] == 'audio/mp3' )) {
 		$options['audio_type'] = 'audio/mpeg';
+	}
 	print "<input id='pwpaudio3' name='podlovewebplayer_options[audio_type]' 
 		value='".$options['audio_type']."' style='width:6em;' />&nbsp;&nbsp;(such as \"audio/mpeg\")";
 }
 
 function podlovewebplayer_video_width() { 
 	$options = get_option('podlovewebplayer_options');
-	if ( !isset( $options['video_width'] ) )
+	if ( !isset( $options['video_width'] ) ) {
 		$options['video_width'] = "640";
+	}
 	print "<input id='pwpvideo1' name='podlovewebplayer_options[video_width]' 
 		value='".$options['video_width']."' style='width:3em' /> px";
 }
 
 function podlovewebplayer_video_height() { 
 	$options = get_option('podlovewebplayer_options');
-	if ( !isset( $options['video_height'] ) )
+	if ( !isset( $options['video_height'] ) ) {
 		$options['video_height'] = "270";
+	}
 	print "<input id='pwpvideo2' name='podlovewebplayer_options[video_height]' 
 		value='".$options['video_height']."' style='width:3em' /> px";
 }
 
 function podlovewebplayer_video_type() { 
 	$options = get_option('podlovewebplayer_options');
-	if ( !isset( $options['video_type'] ) )
+	if ( !isset( $options['video_type'] ) ) {
 		$options['video_type'] = "video/mp4";
+	}
 	print "<input id='pwpvideo3' name='podlovewebplayer_options[video_type]' 
 		value='".$options['video_type']."' style='width:6em;' />
 		&nbsp;&nbsp;(such as \"video/mp4\")";
@@ -169,8 +188,9 @@ function podlovewebplayer_enclosure() {
 function podlovewebplayer_enclosure_detect() { 
 	$options = get_option('podlovewebplayer_options');
 	$checked = "";
-	if ( isset( $options['enclosure_detect'] ) )
+	if ( isset( $options['enclosure_detect'] ) ) {
 		$checked = "checked ";
+	}
 	print "<input id='pwpenclosure1' name='podlovewebplayer_options[enclosure_detect]' 
 		$checked type='checkbox' value='1' />";
 }
@@ -178,8 +198,9 @@ function podlovewebplayer_enclosure_detect() {
 function podlovewebplayer_enclosure_force() { 
 	$options = get_option('podlovewebplayer_options');
 	$checked = "";
-	if ( isset( $options['enclosure_force'] ) )
+	if ( isset( $options['enclosure_force'] ) ) {
 		$checked = "checked ";
+	}
 	print "<input id='pwpenclosure2' name='podlovewebplayer_options[enclosure_force]' 
 		$checked type='checkbox' value='1' />&nbsp;&nbsp;
 		(additionally to manually shortcoded Podlove Web Players, if both are present)";
@@ -188,8 +209,9 @@ function podlovewebplayer_enclosure_force() {
 function podlovewebplayer_enclosure_richplayer() { 
 	$options = get_option('podlovewebplayer_options');
 	$checked = "";
-	if ( isset( $options['enclosure_richplayer'] ) )
+	if ( isset( $options['enclosure_richplayer'] ) ) {
 		$checked = "checked ";
+	}
 	print "<input id='pwpenclosure3' name='podlovewebplayer_options[enclosure_richplayer]' 
 		$checked type='checkbox' value='1' />&nbsp;&nbsp;
 		(Use advanced player for enclosures)";
@@ -199,8 +221,9 @@ function podlovewebplayer_enclosure_richplayer() {
 function podlovewebplayer_enclosure_bottom() { 
 	$options = get_option('podlovewebplayer_options');
 	$checked = "";
-	if ( isset( $options['enclosure_bottom'] ) )
+	if ( isset( $options['enclosure_bottom'] ) ) {
 		$checked = "checked ";
+	}
 	print "<input id='pwpenclosure4' name='podlovewebplayer_options[enclosure_bottom]' 
 		$checked type='checkbox' value='1' />&nbsp;&nbsp;
 		(instead of the top)";
@@ -208,8 +231,9 @@ function podlovewebplayer_enclosure_bottom() {
 
 function podlovewebplayer_chapter_height() {
 	$options = get_option('podlovewebplayer_options');
-	if ( !isset( $options['chapter_height'] ) )
+	if ( !isset( $options['chapter_height'] ) ) {
 		$options['chapter_height'] = "";
+	}
 	print "<input id='chapter_height' name='podlovewebplayer_options[chapter_height]' 
 		value='".$options['chapter_height']."' style='width:3em;' /> px&nbsp;&nbsp;(keep empty to show all)";
 }
@@ -221,8 +245,9 @@ function podlovewebplayer_buttons() {
 function podlovewebplayer_buttons_time() { 
 	$options = get_option('podlovewebplayer_options');
 	$checked = "";
-	if ( isset( $options['buttons_time'] ) )
+	if ( isset( $options['buttons_time'] ) ) {
 		$checked = "checked ";
+	}
 	print "<input id='pwpbuttons1' name='podlovewebplayer_options[buttons_time]' 
 		$checked type='checkbox' value='1' />&nbsp;&nbsp;";
 }
@@ -230,8 +255,9 @@ function podlovewebplayer_buttons_time() {
 function podlovewebplayer_buttons_share() { 
 	$options = get_option('podlovewebplayer_options');
 	$checked = "";
-	if ( isset( $options['buttons_share'] ) )
+	if ( isset( $options['buttons_share'] ) ) {
 		$checked = "checked ";
+	}
 	print "<input id='pwpbuttons3' name='podlovewebplayer_options[buttons_share]' 
 		$checked type='checkbox' value='1' />&nbsp;&nbsp;";
 }
