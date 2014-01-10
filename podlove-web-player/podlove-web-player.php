@@ -267,7 +267,9 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 	if ( $poster ) {
 		$init_options['poster'] = htmlspecialchars( $poster, ENT_QUOTES );
 	} elseif (isset($wp_options['main_poster'])) {
-		$init_options['poster'] = htmlspecialchars( $wp_options['main_poster'], ENT_QUOTES );
+		if ($wp_options['main_poster'] != '') {
+			$init_options['poster'] = htmlspecialchars( $wp_options['main_poster'], ENT_QUOTES );
+		}
 	}
 	if ( $title ) {
 		$init_options['title'] = $title;
