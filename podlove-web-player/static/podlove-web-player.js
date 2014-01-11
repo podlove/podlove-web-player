@@ -1,6 +1,6 @@
 /*
  * ===========================================
- * Podlove Web Player v2.0.18
+ * Podlove Web Player v2.0.19
  * Licensed under The BSD 2-Clause License
  * http://opensource.org/licenses/BSD-2-Clause
  * ===========================================
@@ -265,7 +265,7 @@ if (typeof String.prototype.trim !== 'function') {
         // required (minutes : seconds)
         part = zeroFill(minutes, 2) + ':' + zeroFill(seconds, 2);
         hours = zeroFill(hours, 2);
-        hours = hours === '00' && !forceHours ? '' : hours + ':';        
+        hours = hours === '00' && !forceHours ? '' : hours + ':';
       } else {
         part = hours ? zeroFill(minutes, 2) : minutes.toString();
         part += ':' + zeroFill(seconds, 2);
@@ -329,11 +329,9 @@ if (typeof String.prototype.trim !== 'function') {
     }
   };
   validateURL = function (url) {
-    //de comment this to validate URLs, if you want use relative paths leave it so.
-    //var urlregex = /(^|\s)((https?:\/\/)?[\w\-]+(\.[\w\-]+)+\.?(:\d+)?(\/\S*)?)/gi;
-    //url = url.match(urlregex);
-    //return (url !== null) ? url[0] : url;
-    return url.trim();
+    var urlregex = /(^|\s)((https?:\/\/)?[\w\-]+(\.[\w\-]+)+\.?(:\d+)?(\/\S*)?)/gi;
+    url = url.match(urlregex);
+    return (url !== null) ? url[0] : url;
   };
   /**
    * add a string as hash in the adressbar
@@ -598,7 +596,7 @@ if (typeof String.prototype.trim !== 'function') {
     jqPlayer.on('error', function () {
       if ($(this).attr('src')) {
         $(this).removeAttr('src');
-      } else if($(this).children('source').length) {
+      } else if ($(this).children('source').length) {
         $(this).children('source').first().remove();
       }
     });
@@ -752,27 +750,33 @@ if (typeof String.prototype.trim !== 'function') {
         return false;
       });
       wrapper.find('.currentbutton').click(function () {
-        window.prompt('This URL directly points to this episode', $(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href'));
+        var timepos = (params.sharewholeepisode === true) ? '' : '%23t%3D' + generateTimecode([player.currentTime]);
+        window.prompt('This URL directly points to this episode on the current time', $(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href') + timepos);
         return false;
       });
       wrapper.find('.tweetbutton').click(function () {
-        window.open('https://twitter.com/share?text=' + encodeURIComponent($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text()) + '&url=' + encodeURIComponent($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href')), 'tweet it', 'width=550,height=420,resizable=yes');
+        var timepos = (params.sharewholeepisode === true) ? '' : '%23t%3D' + generateTimecode([player.currentTime]);
+        window.open('https://twitter.com/share?text=' + encodeURIComponent($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text()) + '&url=' + encodeURIComponent($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href')) + timepos, 'tweet it', 'width=550,height=420,resizable=yes');
         return false;
       });
       wrapper.find('.fbsharebutton').click(function () {
-        window.open('http://www.facebook.com/share.php?t=' + encodeURIComponent($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text()) + '&u=' + encodeURIComponent($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href')), 'share it', 'width=550,height=340,resizable=yes');
+        var timepos = (params.sharewholeepisode === true) ? '' : '%23t%3D' + generateTimecode([player.currentTime]);
+        window.open('http://www.facebook.com/share.php?t=' + encodeURIComponent($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text()) + '&u=' + encodeURIComponent($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href')) + timepos, 'share it', 'width=550,height=340,resizable=yes');
         return false;
       });
       wrapper.find('.gplusbutton').click(function () {
-        window.open('https://plus.google.com/share?title=' + encodeURIComponent($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text()) + '&url=' + encodeURIComponent($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href')), 'plus it', 'width=550,height=420,resizable=yes');
+        var timepos = (params.sharewholeepisode === true) ? '' : '%23t%3D' + generateTimecode([player.currentTime]);
+        window.open('https://plus.google.com/share?title=' + encodeURIComponent($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text()) + '&url=' + encodeURIComponent($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href')) + timepos, 'plus it', 'width=550,height=420,resizable=yes');
         return false;
       });
       wrapper.find('.adnbutton').click(function () {
-        window.open('https://alpha.app.net/intent/post?text=' + encodeURIComponent($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text()) + '%20' + encodeURIComponent($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href')), 'plus it', 'width=550,height=420,resizable=yes');
+        var timepos = (params.sharewholeepisode === true) ? '' : '%23t%3D' + generateTimecode([player.currentTime]);
+        window.open('https://alpha.app.net/intent/post?text=' + encodeURIComponent($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text()) + '%20' + encodeURIComponent($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href')) + timepos, 'plus it', 'width=550,height=420,resizable=yes');
         return false;
       });
       wrapper.find('.mailbutton').click(function () {
-        window.location = 'mailto:?subject=' + encodeURIComponent($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text()) + '&body=' + encodeURIComponent($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text()) + '%20%3C' + encodeURIComponent($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href')) + '%3E';
+        var timepos = (params.sharewholeepisode === true) ? '' : '%23t%3D' + generateTimecode([player.currentTime]);
+        window.location = 'mailto:?subject=' + encodeURIComponent($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text()) + '&body=' + encodeURIComponent($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text()) + '%20%3C' + encodeURIComponent($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href')) + timepos + '%3E';
         return false;
       });
       wrapper.find('.fileselect').change(function () {
