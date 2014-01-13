@@ -10,7 +10,8 @@ if (typeof String.prototype.trim !== 'function') {
   'use strict';
   var startAtTime = false,
     stopAtTime = false,
-    // Keep all Players on site
+    // Keep all Players on site - for inline players
+    // embedded players are registered in podlove-webplayer-moderator in the embedding page
     players = [],
     // Timecode as described in http://podlove.org/deep-link/
     // and http://www.w3.org/TR/media-frags/#fragment-dimensions
@@ -688,6 +689,10 @@ if (typeof String.prototype.trim !== 'function') {
       // update play/pause status
       .on('play playing', function () {
         if (!player.persistingTimer) {
+            postToOpener({
+                action: 'play',
+                arg: player.currentTime
+            });
           player.persistingTimer = window.setInterval(function () {
             if (players.length === 1) {
               ignoreHashChange = true;
@@ -700,9 +705,6 @@ if (typeof String.prototype.trim !== 'function') {
         if (metainfo.length === 1) {
           metainfo.find('.bigplay').addClass('playing');
         }
-        postToOpener({
-          action: 'play'
-        });
       })
       .on('pause', function () {
         window.clearInterval(player.persistingTimer);
@@ -710,6 +712,10 @@ if (typeof String.prototype.trim !== 'function') {
         if (metainfo.length === 1) {
           metainfo.find('.bigplay').removeClass('playing');
         }
+        postToOpener({
+          action: 'pause',
+          arg: player.currentTime
+        });
       });
   };
   $.fn.podlovewebplayer = function (options) {
@@ -1008,6 +1014,10 @@ if (typeof String.prototype.trim !== 'function') {
       }
       $(player).on('ended', function () {
         handleCookies.setItem('podloveWebPlayerTime-' + params.permalink, '', new Date(2000, 1, 1));
+        postToOpener({
+            action: 'stop',
+            arg: player.currentTime
+        });
       });
       // init MEJS to player
       mejsoptions.success = function (player) {
@@ -1023,15 +1033,19 @@ if (typeof String.prototype.trim !== 'function') {
     });
   };
 
+  // everything for an embedded player
   function postToOpener( obj){
+    console.debug('postToOpener', obj);
     window.parent.postMessage(obj, '*');
   }
 
   $(window).on('message', function( event ){
     var orig = event.originalEvent;
 
-    if( orig.data.action == 'pause' ){
-      $('audio').get(0).pause();
+    if( orig.data.action == 'pause' ) {
+      players.forEach(function (player) {
+          player.pause();
+      });
     }
   });
 
