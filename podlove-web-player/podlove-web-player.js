@@ -1052,20 +1052,17 @@ if (typeof String.prototype.trim !== 'function') {
   $(function(){
     var lastHeight = 0, $body = $(document.body);
 
-    (function pollHeight(){
-      var neuHeight = $body.height();
-      if (neuHeight == null )
-        console.log( $body.length)
-
-      if( lastHeight != neuHeight){
+    (function pollHeight() {
+      var newHeight = $body.height();
+      if (lastHeight != newHeight) {
         postToOpener({
           action: 'resize',
-          arg: neuHeight
+          arg: newHeight
         });
       }
 
-      lastHeight = neuHeight;
-      requestAnimationFrame(pollHeight);
+      lastHeight = newHeight;
+      requestAnimationFrame(pollHeight, document.body);
     })();
   });
 
