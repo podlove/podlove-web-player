@@ -1224,7 +1224,7 @@ if (typeof String.prototype.trim !== 'function') {
 
   // everything for an embedded player
   function postToOpener( obj){
-    console.debug('postToOpener', obj);
+    //console.debug('postToOpener', obj);
     window.parent.postMessage(obj, '*');
   }
 
