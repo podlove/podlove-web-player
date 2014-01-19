@@ -268,7 +268,16 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 		$init_options['poster'] = htmlspecialchars( $poster, ENT_QUOTES );
 	} elseif (isset($wp_options['main_poster'])) {
 		if ($wp_options['main_poster'] != '') {
-			$init_options['poster'] = htmlspecialchars( $wp_options['main_poster'], ENT_QUOTES );
+			$pwp_posters = explode("\n", $wp_options['main_poster']);
+			$pwp_categories = get_the_category();
+			foreach ($pwp_posters as $pwp_poster) {
+				$pwp_poster = explode('=', $pwp_poster, 2);
+				foreach ($pwp_categories as $pwp_category) {
+					if (trim($pwp_poster[0]) == $pwp_category->name) {
+						$init_options['poster'] = htmlspecialchars(trim($pwp_poster[1]), ENT_QUOTES );
+					}
+				}
+			}
 		}
 	}
 	if ( $title ) {
