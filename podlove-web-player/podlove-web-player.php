@@ -316,7 +316,7 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 		{$sources_string}
 		{$fallback}
 	</{$tag_name}>";
-	$return .= "\n\n<script>jQuery('#podlovewebplayer_{$podlovewebplayer_index}').podlovewebplayer(" . json_encode( $init_options ) . ");</script>\n";
+	$return .= "\n\n<script>var pwp_settings_{$podlovewebplayer_index} = " . json_encode( $init_options ) . "; window.setTimeout(function() {jQuery('#podlovewebplayer_{$podlovewebplayer_index}').podlovewebplayer(pwp_settings_{$podlovewebplayer_index});}, 200);</script>\n";
 	$podlovewebplayer_index++;
 	return $return;
 }
