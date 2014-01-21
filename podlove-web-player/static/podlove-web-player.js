@@ -1166,6 +1166,12 @@ if (typeof String.prototype.trim !== 'function') {
           haschapters = true;
           generateChapterTable(params).appendTo(wrapper);
         }
+      } else {
+        if ($(this).parent()[0].getElementsByClassName('mp4chaps').length > 0) {
+          params.chapters = $(this).parent()[0].getElementsByClassName('mp4chaps')[0].innerHTML.trim();
+          haschapters = true;
+          generateChapterTable(params).appendTo(wrapper);
+        }
       }
       if (richplayer || haschapters) {
         wrapper.append('<div class="podlovewebplayer_tableend"></div>');
