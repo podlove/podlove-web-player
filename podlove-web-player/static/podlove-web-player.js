@@ -194,7 +194,7 @@ b){for(var c=this,e="",d=c.options.contextMenuItems,g=0,k=d.length;g<k;g++)if(d[
 function(){f.ajax({dataType:"html",url:e,success:function(d){c.find(".mejs-postroll-layer-content").html(d)}});a.postroll.show()},false)}}})})(mejs.$);
 
 /*jslint browser: true, plusplus: true, unparam: true, indent: 2 */
-/*global jQuery, console */
+/*global jQuery */
 if (typeof String.prototype.trim !== 'function') {
   String.prototype.trim = function () {
     "use strict";
@@ -612,7 +612,6 @@ if (typeof String.prototype.trim !== 'function') {
     // get things straight for flash fallback
     if (player.pluginType === 'flash') {
       layoutedPlayer = $('#mep_' + player.id.substring(9));
-      console.log(layoutedPlayer);
     }
     // cache some jQ objects
     metainfo = wrapper.find('.podlovewebplayer_meta');
@@ -1094,8 +1093,16 @@ if (typeof String.prototype.trim !== 'function') {
           wrapper.find('.podlovewebplayer_meta').after('<div class="summary' + summaryActive + '"><div class="summarydiv">' + params.summary + '</div></div>');
         }
         if (params.chapters !== undefined) {
-          if (((params.chapters.length > 10) && (typeof params.chapters === 'string')) || ((params.chapters.length > 1) && (typeof params.chapters === 'object'))) {
+          if (((params.chapters.length > 10) && (typeof params.chapters === 'string')) || ((params.chapters.length > 0) && (typeof params.chapters === 'object'))) {
             wrapper.find('.togglers').append('<a href="#" class="chaptertoggle infobuttons pwp-icon-list-bullet" title="Show/hide chapters"></a>');
+          }
+        } else {
+          if ($(this).parent()[0].getElementsByClassName('mp4chaps').length > 0) {
+            params.chapters = $(this).parent()[0].getElementsByClassName('mp4chaps')[0].innerHTML.trim();
+            haschapters = true;
+            if (((params.chapters.length > 10) && (typeof params.chapters === 'string')) || ((params.chapters.length > 0) && (typeof params.chapters === 'object'))) {
+              wrapper.find('.togglers').append('<a href="#" class="chaptertoggle infobuttons pwp-icon-list-bullet" title="Show/hide chapters"></a>');
+            }
           }
         }
         if (params.hidetimebutton !== true) {
@@ -1163,12 +1170,6 @@ if (typeof String.prototype.trim !== 'function') {
       //build chapter table
       if (params.chapters !== undefined) {
         if (((params.chapters.length > 10) && (typeof params.chapters === 'string')) || ((params.chapters.length > 1) && (typeof params.chapters === 'object'))) {
-          haschapters = true;
-          generateChapterTable(params).appendTo(wrapper);
-        }
-      } else {
-        if ($(this).parent()[0].getElementsByClassName('mp4chaps').length > 0) {
-          params.chapters = $(this).parent()[0].getElementsByClassName('mp4chaps')[0].innerHTML.trim();
           haschapters = true;
           generateChapterTable(params).appendTo(wrapper);
         }

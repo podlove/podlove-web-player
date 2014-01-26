@@ -229,6 +229,12 @@ Chapters now handed over as JSON, please take a look at the standalone.html. The
 
 ## Changelog
 
+### 2.0.19
+* mejs update
+* link to timecode
+* default posters configurable
+* get chapters from other sources
+
 ### 2.0.18
 * compatible with Wordpress theme Twenty-Fourteen
 * read plugin version dynamically in settings.php

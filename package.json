@@ -2,7 +2,7 @@
   "name": "podlovewebplayer",
   "title": "PodloveWebPlayer",
   "description": "a Podcast-optimized, HTML5-based video and audio player with Flash fallback. It can be used as a WordPress plugin or within a static HTML/JavaScript context.",
-  "version": "2.0.18",
+  "version": "2.0.19",
   "homepage": "https://github.com/podlove/podlove-web-player",
   "contributors": [{
       "name": "Gerrit van Aaken",
