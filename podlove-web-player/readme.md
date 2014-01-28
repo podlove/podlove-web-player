@@ -234,6 +234,10 @@ Chapters now handed over as JSON, please take a look at the standalone.html. The
 * link to timecode
 * default posters configurable
 * get chapters from other sources
+* Style Editor
+* smaller and bigger player styles
+* save playtime in cookies
+* mp4chaps image support
 
 ### 2.0.18
 * compatible with Wordpress theme Twenty-Fourteen

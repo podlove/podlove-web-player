@@ -47,10 +47,17 @@ The used icons are built in as fonts and provided by <a href="http://fortawesome
 
 1. Upload the `podlove-web-player` folder to the `/wp-content/plugins/` directory
 2. Activate the plugin through the `Plugins` menu in WordPress
-3. Use the `[podlovevideo]` or `[podloveaudio]` shortcode in your post or page with the options on the front page.
+3. Use the `[podlovevideo]` or `[podloveaudio]` shortcode in your post or page with the options on the front page
 4. Visit the options page
+5. If you need help, go to the github repo https://github.com/podlove/podlove-web-player and use the issue tracker
 
 == Frequently Asked Questions ==
+
+### Where can i get help?
+
+Definitely not on wordpress.org  
+If you need help, please go to our github repo  
+You can find it at https://github.com/podlove/podlove-web-player  
 
 ### How can I configure the player’s appearance?
 
@@ -221,6 +228,10 @@ Earlier versions of this plugin could handle alternative shortcodes, too: [audio
 * link to timecode
 * default posters configurable
 * get chapters from other sources
+* Style Editor
+* smaller and bigger player styles
+* save playtime in cookies
+* mp4chaps image support
 
 = 2.0.18 =
 * compatible with Wordpress theme Twenty-Fourteen
@@ -370,7 +381,10 @@ Earlier versions of this plugin could handle alternative shortcodes, too: [audio
 
 == Upgrade Notice ==
 
-= 2.0.17 =
+= 2.0.19 =
+mejs update, link to timecode, default posters configurable, get chapters from other sources and style editor added
+
+= 2.0.18 =
 compatible with Wordpress theme Twenty-Fourteen
 
 = 2.0.17 =
