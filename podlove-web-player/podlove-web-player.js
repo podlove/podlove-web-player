@@ -160,6 +160,7 @@ if (typeof String.prototype.trim !== 'function') {
         return;
       }
       var sExpires = "";
+
       if (vEnd) {
         switch (typeof vEnd) {
         case "number":
@@ -169,9 +170,7 @@ if (typeof String.prototype.trim !== 'function') {
           sExpires = "; expires=" + vEnd;
           break;
         case "object":
-          if (vEnd.hasOwnProperty("toGMTString")) {
-            sExpires = "; expires=" + vEnd.toGMTString();
-          }
+          sExpires = "; expires=" + vEnd.toGMTString();
           break;
         }
       }
@@ -696,7 +695,7 @@ if (typeof String.prototype.trim !== 'function') {
               ignoreHashChange = true;
               window.location.replace('#t=' + generateTimecode([player.currentTime, false]));
             }
-            handleCookies.setItem('podloveWebPlayerTime-' + params.permalink, player.currentTime);
+            handleCookies.setItem('podloveWebPlayerTime-' + params.permalink, player.currentTime, new Date(2020, 1, 1));
           }, 5000);
         }
         list.find('.paused').removeClass('paused');
