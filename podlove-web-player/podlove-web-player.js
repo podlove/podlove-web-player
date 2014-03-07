@@ -6,30 +6,59 @@ if (typeof String.prototype.trim !== 'function') {
     return this.replace(/^\s+|\s+$/g, '');
   };
 }
-(function ($) {
-  'use strict';
-  var startAtTime = false,
-    stopAtTime = false,
-    // Keep all Players on site - for inline players
-    // embedded players are registered in podlove-webplayer-moderator in the embedding page
-    players = [],
-    // Timecode as described in http://podlove.org/deep-link/
-    // and http://www.w3.org/TR/media-frags/#fragment-dimensions
-    timecodeRegExp = /(?:(\d+):)?(\d+):(\d+)(\.\d+)?([,\-](?:(\d+):)?(\d+):(\d+)(\.\d+)?)?/,
-    ignoreHashChange = false,
-    // all used functions
-    zeroFill,
-    generateTimecode,
-    parseTimecode,
-    checkCurrentURL,
-    validateURL,
-    setFragmentURL,
-    updateChapterMarks,
-    checkTime,
-    addressCurrentTime,
-    generateChapterTable,
-    addBehavior,
-    handleCookies;
+
+var pwp = {};
+
+/**
+ * cookiehandling
+ * FIXME: replace with jQuery.cookie
+ */
+(function (ctx) {
+  ctx.cookieHandler = {
+    getItem: function (sKey) {
+      return decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*" + encodeURIComponent(sKey).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1")) || null;
+    },
+    setItem: function (sKey, sValue, vEnd, sPath, sDomain, bSecure) {
+      if (!sKey || /^(?:expires|max\-age|path|domain|secure)$/i.test(sKey)) { return false; }
+      var sExpires = "";
+      if (vEnd) {
+        switch (vEnd.constructor) {
+          case Number:
+            sExpires = vEnd === Infinity ? "; expires=Fri, 31 Dec 9999 23:59:59 GMT" : "; max-age=" + vEnd;
+            break;
+          case String:
+            sExpires = "; expires=" + vEnd;
+            break;
+          case Date:
+            sExpires = "; expires=" + vEnd.toUTCString();
+            break;
+        }
+      }
+      document.cookie = encodeURIComponent(sKey) + "=" + encodeURIComponent(sValue) + sExpires + (sDomain ? "; domain=" + sDomain : "") + (sPath ? "; path=" + sPath : "") + (bSecure ? "; secure" : "");
+      return true;
+    },
+    removeItem: function (sKey, sPath, sDomain) {
+      if (!sKey || !this.hasItem(sKey)) { return false; }
+      document.cookie = encodeURIComponent(sKey) + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT" + ( sDomain ? "; domain=" + sDomain : "") + ( sPath ? "; path=" + sPath : "");
+      return true;
+    },
+    hasItem: function (sKey) {
+      return (new RegExp("(?:^|;\\s*)" + encodeURIComponent(sKey).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=")).test(document.cookie);
+    },
+    keys: /* optional method: you can safely remove it! */ function () {
+      var aKeys = document.cookie.replace(/((?:^|\s*;)[^\=]+)(?=;|$)|^\s*|\s*(?:\=[^;]*)?(?:\1|$)/g, "").split(/\s*(?:\=[^;]*)?;\s*/);
+      for (var nIdx = 0; nIdx < aKeys.length; nIdx++) { aKeys[nIdx] = decodeURIComponent(aKeys[nIdx]); }
+      return aKeys;
+    }
+  };
+})(jQuery);
+
+/**
+ * Timecode as described in http://podlove.org/deep-link/
+ *  and http://www.w3.org/TR/media-frags/#fragment-dimensions
+ */
+!function($){
+  var timecodeRegExp = /(?:(\d+):)?(\d+):(\d+)(\.\d+)?([,\-](?:(\d+):)?(\d+):(\d+)(\.\d+)?)?/;
 
   /**
    * return number as string lefthand filled with zeros
@@ -37,21 +66,24 @@ if (typeof String.prototype.trim !== 'function') {
    * @param width number
    * @return string
    **/
-  zeroFill = function (number, width) {
+  var zeroFill = function (number, width) {
     var s = number.toString();
     while (s.length < width) {
       s = "0" + s;
     }
     return s;
   };
+
+  pwp.tc = {};
   /**
    * accepts array with start and end time in seconds
    * returns timecode in deep-linking format
-   * @param times array
-   * @param forceHours bool (optional)
-   * @return string
+   * @param {Array} times
+   * @param {Boolean} leadingZeros
+   * @param {Boolean} forceHours (optional)
+   * @return {string}
    **/
-  $.generateTimecode = function (times, leadingZeros, forceHours) {
+  pwp.tc.generate = function (times, leadingZeros, forceHours) {
     function generatePart(time) {
       var part,
         hours,
@@ -80,125 +112,104 @@ if (typeof String.prototype.trim !== 'function') {
       milliseconds = milliseconds ? '.' + zeroFill(milliseconds, 3) : '';
       return hours + part + milliseconds;
     }
+
     if (times[1] > 0 && times[1] < 9999999 && times[0] < times[1]) {
       return generatePart(times[0]) + ',' + generatePart(times[1]);
     }
     return generatePart(times[0]);
   };
-  generateTimecode = $.generateTimecode;
+
+
+  /**
+   * convert an array of string to timecode
+   * @param {Array} parts
+   * @returns {number}
+   */
+  function extractTime(parts) {
+    var time = 0;
+    // hours
+    time += parts[1] ? parseInt(parts[1], 10) * 60 * 60 : 0;
+    // minutes
+    time += parseInt(parts[2], 10) * 60;
+    // seconds
+    time += parseInt(parts[3], 10);
+    // milliseconds
+    time += parts[4] ? parseFloat(parts[4]) : 0;
+    // no negative time
+    time = Math.max(time, 0);
+    return time;
+  }
+
   /**
    * parses time code into seconds
-   * @param string timecode
-   * @return number
+   * @param {String} timecode
+   * @return {Array}
    **/
-  parseTimecode = function (timecode) {
-    var parts, startTime = 0,
-      endTime = 0;
-    if (timecode) {
-      parts = timecode.match(timecodeRegExp);
-      if (parts && parts.length === 10) {
-        // hours
-        startTime += parts[1] ? parseInt(parts[1], 10) * 60 * 60 : 0;
-        // minutes
-        startTime += parseInt(parts[2], 10) * 60;
-        // seconds
-        startTime += parseInt(parts[3], 10);
-        // milliseconds
-        startTime += parts[4] ? parseFloat(parts[4]) : 0;
-        // no negative time
-        startTime = Math.max(startTime, 0);
-        // if there only a startTime but no endTime
-        if (parts[5] === undefined) {
-          return [startTime, false];
-        }
-        // hours
-        endTime += parts[6] ? parseInt(parts[6], 10) * 60 * 60 : 0;
-        // minutes
-        endTime += parseInt(parts[7], 10) * 60;
-        // seconds
-        endTime += parseInt(parts[8], 10);
-        // milliseconds
-        endTime += parts[9] ? parseFloat(parts[9]) : 0;
-        // no negative time
-        endTime = Math.max(endTime, 0);
-        return (endTime > startTime) ? [startTime, endTime] : [startTime, false];
-      }
+  pwp.tc.parse = function (timecode) {
+    var parts, startTime, endTime;
+    if (!timecode) {
+      return false;
     }
-    return false;
-  };
-  checkCurrentURL = function () {
-    var deepLink;
-    deepLink = parseTimecode(window.location.href);
-    if (deepLink !== false) {
-      startAtTime = deepLink[0];
-      stopAtTime = deepLink[1];
+
+    parts = timecode.match(timecodeRegExp);
+    if (!parts || parts.length < 10) {
+      return false;
     }
+    startTime = extractTime(parts);
+
+    // if there only a startTime but no endTime
+    if (parts[5] === undefined) {
+      return [startTime, false];
+    }
+
+    endTime = extractTime(parts.splice(6));
+
+    return (endTime > startTime) ? [startTime, endTime] : [startTime, false];
   };
-  validateURL = function (url) {
-    //de comment this to validate URLs, if you want use relative paths leave it so.
+
+}(jQuery);
+
+/**
+ * url handling
+ */
+!function($){
+  $.url = {};
+  $.url.checkCurrent = function () {
+    return pwp.tc.parse(window.location.href);
+  };
+
+  $.url.validate = function (url) {
+    // uncomment next three lines to validate URLs, if you want use relative paths leave it so.
     //var urlregex = /(^|\s)((https?:\/\/)?[\w\-]+(\.[\w\-]+)+\.?(:\d+)?(\/\S*)?)/gi;
     //url = url.match(urlregex);
     //return (url !== null) ? url[0] : url;
     return url.trim();
   };
+
   /**
    * add a string as hash in the adressbar
-   * @param string fragment
+   * @param {string} fragment
    **/
-  setFragmentURL = function (fragment) {
-    window.location.hash = fragment;
+  $.url.setFragment = function (fragment) {
+    console.debug('setting url fragment', fragment);
+    window.location.hash = '#' + fragment;
   };
-  /**
-   * handle Cookies
-   **/
-  handleCookies = {
-    getItem: function (sKey) {
-      if (!sKey || !this.hasItem(sKey)) {
-        return null;
-      }
-      return window.unescape(document.cookie.replace(new RegExp("(?:^|.*;\\s*)" + window.escape(sKey).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=\\s*((?:[^;](?!;))*[^;]?).*"), "$1"));
-    },
-    setItem: function (sKey, sValue, vEnd, sPath, sDomain, bSecure) {
-      if (!sKey || /^(?:expires|max\-age|path|domain|secure)$/.test(sKey)) {
-        return;
-      }
-      var sExpires = "";
-      if (vEnd) {
-        switch (typeof vEnd) {
-        case "number":
-          sExpires = "; max-age=" + vEnd;
-          break;
-        case "string":
-          sExpires = "; expires=" + vEnd;
-          break;
-        case "object":
-          if (vEnd.hasOwnProperty("toGMTString")) {
-            sExpires = "; expires=" + vEnd.toGMTString();
-          }
-          break;
-        }
-      }
-      document.cookie = window.escape(sKey) + "=" + window.escape(sValue) + sExpires + (sDomain ? "; domain=" + sDomain : "") + (sPath ? "; path=" + sPath : "") + (bSecure ? "; secure" : "");
-    },
-    removeItem: function (sKey) {
-      if (!sKey || !this.hasItem(sKey)) {
-        return;
-      }
-      var oExpDate = new Date();
-      oExpDate.setDate(oExpDate.getDate() - 1);
-      document.cookie = window.escape(sKey) + "=; expires=" + oExpDate.toGMTString() + "; path=/";
-    },
-    hasItem: function (sKey) {
-      return (new RegExp("(?:^|;\\s*)" + window.escape(sKey).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=")).test(document.cookie);
-    }
-  };
+
+}(jQuery);
+
+/**
+ * chapter handling
+ */
+!function($){
+  $.chapters = {};
+
   /**
    * update the chapter list when the data is loaded
-   * @param object player
-   * @param object marks
+   * @param {object} player
+   * @param {object} marks
    **/
-  updateChapterMarks = function (player, marks) {
-    var coverimg = marks.closest('.podlovewebplayer_wrapper').find('.coverimg');
+  $.chapters.update = function (player, marks) {
+    var coverImg = marks.closest('.podlovewebplayer_wrapper').find('.coverimg');
     marks.each(function () {
       var isBuffered, chapterimg = null,
         mark = $(this),
@@ -211,14 +222,14 @@ if (typeof String.prototype.trim !== 'function') {
         isBuffered = player.buffered.end(0) > startTime;
       }
       if (isActive) {
-        chapterimg = validateURL(mark.data('img'));
+        chapterimg = $.url.validate(mark.data('img'));
         if ((chapterimg !== null) && (mark.hasClass('active'))) {
-          if ((coverimg.attr('src') !== chapterimg) && (chapterimg.length > 5)) {
-            coverimg.attr('src', chapterimg);
+          if ((coverImg.attr('src') !== chapterimg) && (chapterimg.length > 5)) {
+            coverImg.attr('src', chapterimg);
           }
         } else {
-          if (coverimg.attr('src') !== coverimg.data('img')) {
-            coverimg.attr('src', coverimg.data('img'));
+          if (coverImg.attr('src') !== coverImg.data('img')) {
+            coverImg.attr('src', coverImg.data('img'));
           }
         }
         mark.addClass('active').siblings().removeClass('active');
@@ -228,6 +239,189 @@ if (typeof String.prototype.trim !== 'function') {
       }
     });
   };
+
+  /**
+   * Given a list of chapters, this function creates the chapter table for the player.
+   * @param {object} params
+   * @returns {HTMLDivElement}
+   */
+  $.chapters.generateTable = function (params) {
+    var div, table, tbody, tempchapters, maxchapterstart, forceHours, line, tc, chaptitle, next, chapterImages, rowDummy, i, scroll = '';
+    if (params.chapterHeight !== "") {
+      if (typeof parseInt(params.chapterHeight, 10) === 'number') {
+        scroll = 'style="overflow-y: auto; max-height: ' + parseInt(params.chapterHeight, 10) + 'px;"';
+      }
+    }
+    div = $('<div class="podlovewebplayer_chapterbox showonplay" ' + scroll + '><table><caption>Podcast Chapters</caption><thead><tr><th scope="col">Chapter Number</th><th scope="col">Start time</th><th scope="col">Title</th><th scope="col">Duration</th></tr></thead><tbody></tbody></table></div>');
+    if ((params.chaptersVisible === 'true') || (params.chaptersVisible === true)) {
+      div.addClass('active');
+    }
+
+    table = div.children('table');
+    table.addClass('podlovewebplayer_chapters');
+    if (params.chapterlinks !== 'false') {
+      table.addClass('linked linked_' + params.chapterlinks);
+    }
+
+    tbody = table.children('tbody');
+
+    //prepare row data
+    tempchapters = prepareRowData(params.chapters);
+
+    //second round: collect more information
+    maxchapterstart = getMaxChapterStart(tempchapters, next);
+
+    //this is a "template" for each chapter row
+    chapterImages = tempchapters.reduce(function (result, next) {
+      if (next.image !== "" && next.image !== undefined) {
+        chapterImages = true;
+      }
+      return (result || next);
+    }, false);
+
+    rowDummy = getDummyRow(chapterImages);
+
+    //third round: build actual dom table
+    forceHours = (maxchapterstart >= 3600);
+    $.each(tempchapters, buildChapter);
+
+    function buildChapter(i) {
+      var finalchapter = !tempchapters[i + 1],
+        duration = Math.round(this.end - this.start),
+        row = rowDummy.clone();
+      //make sure the duration for all chapters are equally formatted
+      if (!finalchapter) {
+        this.duration = pwp.tc.generate([duration], false);
+      } else {
+        if (params.duration === 0) {
+          this.end = 9999999999;
+          this.duration = '…';
+        } else {
+          this.end = params.duration;
+          this.duration = pwp.tc.generate([Math.round(this.end - this.start)], false);
+        }
+      }
+      if (i % 2) {
+        row.addClass('oddchapter');
+      }
+      //deeplink, start and end
+      row.attr({
+        'data-start': this.start,
+        'data-end': this.end,
+        'data-img': (this.image !== undefined) ? this.image : ''
+      });
+      //if there is a chapter that starts after an hour, force '00:' on all previous chapters
+      //insert the chapter data
+      row.find('.starttime > span').text(pwp.tc.generate([Math.round(this.start)], true, forceHours));
+
+      var timeSpan = '<span>' + this.code + '</span>';
+      if (this.href !== undefined && this.href !== "") {
+        timeSpan += ' <a href="' + this.href + '"></a>';
+      }
+      row.find('.chaptername').html(timeSpan);
+
+      row.find('.timecode > span').html('<span>' + this.duration + '</span>');
+
+      if (chapterImages && this.image !== undefined && this.image !== "") {
+        row.find('.chapterimage').html('<img src="' + this.image + '"/>');
+      }
+      row.appendTo(tbody);
+    }
+
+    return div;
+  };
+
+  function getMaxChapterStart(tempchapters, next) {
+    return Math.max.apply(Math,
+      $.map(tempchapters, function (value, i) {
+        next = tempchapters[i + 1];
+        // we use `this.end` to quickly calculate the duration in the next round
+        if (next) {
+          value.end = next.start;
+        }
+        // we need this data for proper formatting
+        return value.start;
+      }));
+  }
+
+  function getDummyRow (withImage) {
+    var rowStart = '<tr class="chaptertr" data-start="" data-end="" data-img=""><td class="starttime"><span></span></td>';
+    var rowEnd = '<td class="chaptername"></td><td class="timecode">\n<span></span>\n</td>\n</tr>';
+    var chapterImage = '<td class="chapterimage"></td>';
+    var template = rowStart + (withImage ? chapterImage : '') + rowEnd;
+    return $(template);
+  }
+
+  function prepareRowData(chapterData) {
+    function chapterFromString (chapter) {
+      var line = $.trim(chapter);
+      //exit early if this line contains nothing but whitespace
+      if (line === '') {
+        return {};
+      }
+      //extract the timestamp
+      var parts = line.split(' ', 2);
+      var tc = getStartTimecode(parts[0]);
+      var chaptitle = $.trim(parts[1]);
+      return { start: tc, code: chaptitle };
+    }
+    function transformChapter (chapter) {
+      chapter.code = chapter.title;
+      if (typeof chapter.start === 'string') {
+        chapter.start = getStartTimecode(chapter.start);
+      }
+      return chapter;
+    }
+    function getStartTimecode(start) {
+      return pwp.tc.parse(start)[0];
+    }
+    var chapters;
+
+    //first round: kill empty rows and build structured object
+    if (typeof chapterData === 'string') {
+      chapters = chapterData.split("\n").map(chapterFromString);
+    } else {
+      // assume array of objects
+      chapters = chapterData.map(transformChapter);
+    }
+    // order is not guaranteed: http://podlove.org/simple-chapters/
+    return chapters.sort(function (a, b) {
+      return a.start - b.start;
+    });
+  }
+
+}(jQuery);
+
+/**
+ * player
+ */
+(function ($) {
+  'use strict';
+  var startAtTime = false,
+    stopAtTime = false,
+  // Keep all Players on site - for inline players
+  // embedded players are registered in podlove-webplayer-moderator in the embedding page
+    players = [],
+    ignoreHashChange = false,
+  // all used functions
+    generateTimecode = pwp.tc.generate,
+    parseTimecode = pwp.tc.parse,
+    handleCookies = $.cookieHandler,
+    checkCurrentURL = function () {
+      var deepLink = $.url.checkCurrent ();
+      if (!deepLink) { return; }
+      startAtTime = deepLink[0];
+      stopAtTime = deepLink[1];
+    },
+    setFragmentURL = $.url.setFragment,
+    updateChapterMarks = $.chapters.update,
+    generateChapterTable = $.chapters.generateTable,
+    checkTime,
+    addressCurrentTime,
+    addBehavior;
+
+  pwp.players = players;
+
   checkTime = function (e) {
     if (players.length > 1) {
       return;
@@ -244,6 +438,7 @@ if (typeof String.prototype.trim !== 'function') {
       stopAtTime = false;
     }
   };
+
   addressCurrentTime = function (e) {
     var fragment;
     if (players.length === 1) {
@@ -251,138 +446,13 @@ if (typeof String.prototype.trim !== 'function') {
       setFragmentURL(fragment);
     }
   };
-  /**
-   * Given a list of chapters, this function creates the chapter table for the player.
-   */
-  generateChapterTable = function (params) {
-    var div, table, tbody, tempchapters, maxchapterstart, line, tc, chaptitle, next, chapterImages, rowDummy, i, scroll = '';
-    if (params.chapterHeight !== "") {
-      if (typeof parseInt(params.chapterHeight, 10) === 'number') {
-        scroll = 'style="overflow-y: auto; max-height: ' + parseInt(params.chapterHeight, 10) + 'px;"';
-      }
-    }
-    div = $('<div class="podlovewebplayer_chapterbox showonplay" ' + scroll + '><table><caption>Podcast Chapters</caption><thead><tr><th scope="col">Chapter Number</th><th scope="col">Start time</th><th scope="col">Title</th><th scope="col">Duration</th></tr></thead><tbody></tbody></table></div>');
-    table = div.children('table');
-    tbody = table.children('tbody');
-    if ((params.chaptersVisible === 'true') || (params.chaptersVisible === true)) {
-      div.addClass('active');
-    }
-    table.addClass('podlovewebplayer_chapters');
-    if (params.chapterlinks !== 'false') {
-      table.addClass('linked linked_' + params.chapterlinks);
-    }
-    //prepare row data
-    tempchapters = params.chapters;
-    maxchapterstart = 0;
-    //first round: kill empty rows and build structured object
-    if (typeof params.chapters === 'string') {
-      tempchapters = [];
-      $.each(params.chapters.split("\n"), function (i, chapter) {
-        //exit early if this line contains nothing but whitespace
-        if (!/\S/.test(chapter)) {
-          return;
-        }
-        //extract the timestamp
-        line = $.trim(chapter);
-        tc = parseTimecode(line.substring(0, line.indexOf(' ')));
-        chaptitle = $.trim(line.substring(line.indexOf(' ')));
-        tempchapters.push({
-          start: tc[0],
-          code: chaptitle
-        });
-      });
-    } else {
-      // assume array of objects
-      $.each(tempchapters, function (key, value) {
-        value.code = value.title;
-        if (typeof value.start === 'string') {
-          value.start = parseTimecode(value.start)[0];
-        }
-      });
-    }
-    // order is not guaranteed: http://podlove.org/simple-chapters/
-    tempchapters = tempchapters.sort(function (a, b) {
-      return a.start - b.start;
-    });
-    //second round: collect more information
-    maxchapterstart = Math.max.apply(Math,
-      $.map(tempchapters, function (value, i) {
-        next = tempchapters[i + 1];
-        // we use `this.end` to quickly calculate the duration in the next round
-        if (next) {
-          value.end = next.start;
-        }
-        // we need this data for proper formatting
-        return value.start;
-      }));
-    //this is a "template" for each chapter row
-    chapterImages = false;
-    for (i = 0; i < tempchapters.length; i++) {
-      if ((tempchapters[i].image !== "") && (tempchapters[i].image !== undefined)) {
-        chapterImages = true;
-      }
-    }
-    if (chapterImages) {
-      rowDummy = $('<tr class="chaptertr" data-start="" data-end="" data-img=""><td class="starttime"><span></span></td><td class="chapterimage"></td><td class="chaptername"></td><td class="timecode">\n<span></span>\n</td>\n</tr>');
-    } else {
-      rowDummy = $('<tr class="chaptertr" data-start="" data-end="" data-img=""><td class="starttime"><span></span></td><td class="chaptername"></td><td class="timecode">\n<span></span>\n</td>\n</tr>');
-    }
-    //third round: build actual dom table
-    $.each(tempchapters, function (i) {
-      var finalchapter = !tempchapters[i + 1],
-        duration = Math.round(this.end - this.start),
-        forceHours,
-        row = rowDummy.clone();
-      //make sure the duration for all chapters are equally formatted
-      if (!finalchapter) {
-        this.duration = generateTimecode([duration], false);
-      } else {
-        if (params.duration === 0) {
-          this.end = 9999999999;
-          this.duration = '…';
-        } else {
-          this.end = params.duration;
-          this.duration = generateTimecode([Math.round(this.end - this.start)], false);
-        }
-      }
-      if (i % 2) {
-        row.addClass('oddchapter');
-      }
-      //deeplink, start and end
-      row.attr({
-        'data-start': this.start,
-        'data-end': this.end,
-        'data-img': (this.image !== undefined) ? this.image : ''
-      });
-      //if there is a chapter that starts after an hour, force '00:' on all previous chapters
-      forceHours = (maxchapterstart >= 3600);
-      //insert the chapter data
-      row.find('.starttime > span').text(generateTimecode([Math.round(this.start)], true, forceHours));
-      if (this.href !== undefined) {
-        if (this.href !== "") {
-          row.find('.chaptername').html('<span>' + this.code + '</span>' + ' <a href="' + this.href + '"></a>');
-        } else {
-          row.find('.chaptername').html('<span>' + this.code + '</span>');
-        }
-      } else {
-        row.find('.chaptername').html('<span>' + this.code + '</span>');
-      }
-      row.find('.timecode > span').html('<span>' + this.duration + '</span>');
-      if (chapterImages) {
-        if (this.image !== undefined) {
-          if (this.image !== "") {
-            row.find('.chapterimage').html('<img src="' + this.image + '"/>');
-          }
-        }
-      }
-      row.appendTo(tbody);
-    });
-    return div;
-  };
+
   /**
    * add chapter behavior and deeplinking: skip to referenced
    * time position & write current time into address
-   * @param player object
+   * @param {object} player
+   * @param {object} params
+   * @param {object} wrapper
    */
   addBehavior = function (player, params, wrapper) {
     var jqPlayer = $(player),
@@ -393,21 +463,18 @@ if (typeof String.prototype.trim !== 'function') {
       podlovewebplayer_timecontrol,
       podlovewebplayer_sharebuttons,
       podlovewebplayer_downloadbuttons,
-      chapterdiv,
+      chapterBox,
       list,
       marks;
+
     // expose the player interface
     wrapper.data('podlovewebplayer', {
       player: jqPlayer
     });
+
     // This might be a fix to some Firefox AAC issues.
-    jqPlayer.on('error', function () {
-      if ($(this).attr('src')) {
-        $(this).removeAttr('src');
-      } else if($(this).children('source').length) {
-        $(this).children('source').first().remove();
-      }
-    });
+    jqPlayer.on('error', removeUnplayableMedia);
+
     /**
      * The `player` is an interface. It provides the play and pause functionality. The
      * `layoutedPlayer` on the other hand is a DOM element. In native mode, these two
@@ -428,26 +495,31 @@ if (typeof String.prototype.trim !== 'function') {
     podlovewebplayer_timecontrol = wrapper.find('.podlovewebplayer_timecontrol');
     podlovewebplayer_sharebuttons = wrapper.find('.podlovewebplayer_sharebuttons');
     podlovewebplayer_downloadbuttons = wrapper.find('.podlovewebplayer_downloadbuttons');
-    chapterdiv = wrapper.find('.podlovewebplayer_chapterbox');
+    chapterBox = wrapper.find('.podlovewebplayer_chapterbox');
     list = wrapper.find('table');
     marks = list.find('tr');
-    // fix height of summary for better toggability
+    // fix height of summary for better togglability
     summary.each(function () {
-      $(this).data('height', $(this).height() + 10);
-      if (!$(this).hasClass('active')) {
-        $(this).height('0px');
-      } else {
-        $(this).height($(this).find('div.summarydiv').height() + 10 + 'px');
+      var $this = $(this), height = 0;
+      $this.data('height', $this.height() + 10);
+      if ($this.hasClass('active')) {
+        height = $this.find('div.summarydiv').height() + 10;
       }
+      $this.height(height + 'px');
     });
-    chapterdiv.each(function () {
-      $(this).data('height', $(this).find('.podlovewebplayer_chapters').height());
-      if (!$(this).hasClass('active')) {
-        $(this).height('0px');
-      } else {
-        $(this).height($(this).find('.podlovewebplayer_chapters').height() + 'px');
+
+    chapterBox.each(function () {
+      var $this = $(this),
+        height = 0,
+        chapterHeight = $this.find('.podlovewebplayer_chapters').height();
+
+      $this.data('height', chapterHeight);
+      if ($this.hasClass('active')) {
+        height = chapterHeight;
       }
+      $this.height(height + 'px');
     });
+
     if (metainfo.length === 1) {
       metainfo.find('a.infowindow').click(function () {
         summary.toggleClass('active');
@@ -488,45 +560,47 @@ if (typeof String.prototype.trim !== 'function') {
         return false;
       });
       metainfo.find('.bigplay').on('click', function () {
-        if ($(this).hasClass('bigplay')) {
-          var playButton = $(this).parent().find('.bigplay');
-          if ((typeof player.currentTime === 'number') && (player.currentTime > 0)) {
-            if (player.paused) {
-              playButton.addClass('playing');
-              player.play();
-            } else {
-              playButton.removeClass('playing');
-              player.pause();
-            }
-          } else {
-            if (!playButton.hasClass('playing')) {
-              playButton.addClass('playing');
-              $(this).parent().parent().find('.mejs-time-buffering').show();
-            }
-            // flash fallback needs additional pause
-            if (player.pluginType === 'flash') {
-              player.pause();
-            }
+        var $this = $(this);
+        if (!$this.hasClass('bigplay')) {
+          return false;
+        }
+        var playButton = $this.parent().find('.bigplay');
+        if ((typeof player.currentTime === 'number') && (player.currentTime > 0)) {
+          if (player.paused) {
+            playButton.addClass('playing');
             player.play();
+          } else {
+            playButton.removeClass('playing');
+            player.pause();
           }
-        }
-        return false;
-      });
-      wrapper.find('.chaptertoggle').unbind('click').click(function () {
-        wrapper.find('.podlovewebplayer_chapterbox').toggleClass('active');
-        if (wrapper.find('.podlovewebplayer_chapterbox').hasClass('active')) {
-          wrapper.find('.podlovewebplayer_chapterbox').height(parseInt(wrapper.find('.podlovewebplayer_chapterbox').data('height'), 10) + 2 + 'px');
         } else {
-          wrapper.find('.podlovewebplayer_chapterbox').height('0px');
+          if (!playButton.hasClass('playing')) {
+            playButton.addClass('playing');
+            $this.parent().parent().find('.mejs-time-buffering').show();
+          }
+          // flash fallback needs additional pause
+          if (player.pluginType === 'flash') {
+            player.pause();
+          }
+          player.play();
         }
+      });
+
+      wrapper.find('.chaptertoggle').unbind('click').click(function () {
+        var height = 0;
+        chapterBox.toggleClass('active');
+        if (chapterBox.hasClass('active')) {
+          height = parseInt(chapterBox.data('height'), 10) + 2;
+        }
+        chapterBox.height(height + 'px');
         return false;
       });
       wrapper.find('.prevbutton').click(function () {
         if ((typeof player.currentTime === 'number') && (player.currentTime > 0)) {
-          if (player.currentTime > chapterdiv.find('.active').data('start') + 10) {
-            player.setCurrentTime(chapterdiv.find('.active').data('start'));
+          if (player.currentTime > chapterBox.find('.active').data('start') + 10) {
+            player.setCurrentTime(chapterBox.find('.active').data('start'));
           } else {
-            player.setCurrentTime(chapterdiv.find('.active').prev().data('start'));
+            player.setCurrentTime(chapterBox.find('.active').prev().data('start'));
           }
         } else {
           player.play();
@@ -535,7 +609,7 @@ if (typeof String.prototype.trim !== 'function') {
       });
       wrapper.find('.nextbutton').click(function () {
         if ((typeof player.currentTime === 'number') && (player.currentTime > 0)) {
-          player.setCurrentTime(chapterdiv.find('.active').next().data('start'));
+          player.setCurrentTime(chapterBox.find('.active').next().data('start'));
         } else {
           player.play();
         }
@@ -561,6 +635,11 @@ if (typeof String.prototype.trim !== 'function') {
         window.prompt('This URL directly points to this episode', $(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href'));
         return false;
       });
+
+      /**
+       * share buttons
+       */
+
       wrapper.find('.tweetbutton').click(function () {
         window.open('https://twitter.com/share?text=' + encodeURIComponent($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text()) + '&url=' + encodeURIComponent($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href')), 'tweet it', 'width=550,height=420,resizable=yes');
         return false;
@@ -607,6 +686,7 @@ if (typeof String.prototype.trim !== 'function') {
         return false;
       });
     }
+
     // chapters list
     list
       .show()
@@ -663,12 +743,9 @@ if (typeof String.prototype.trim !== 'function') {
       }
       // add Deeplink Behavior if there is only one player on the site
       if (players.length === 1) {
-        jqPlayer.bind('play timeupdate', {
-          player: player
-        }, checkTime)
-          .bind('pause', {
-            player: player
-          }, addressCurrentTime);
+        jqPlayer
+          .bind('play timeupdate', { player: player }, checkTime)
+          .bind('pause', { player: player }, addressCurrentTime);
         // disabled 'cause it overrides chapter clicks
         // bind seeked to addressCurrentTime
         checkCurrentURL();
@@ -689,15 +766,17 @@ if (typeof String.prototype.trim !== 'function') {
       // update play/pause status
       .on('play playing', function () {
         if (!player.persistingTimer) {
-            postToOpener({
-                action: 'play',
-                arg: player.currentTime
-            });
+          $.postToOpener({
+            action: 'play',
+            arg: player.currentTime
+          });
           player.persistingTimer = window.setInterval(function () {
             if (players.length === 1) {
               ignoreHashChange = true;
+              console.debug('time', generateTimecode([player.currentTime, false]));
               window.location.replace('#t=' + generateTimecode([player.currentTime, false]));
             }
+            console.debug(player.currentTime);
             handleCookies.setItem('podloveWebPlayerTime-' + params.permalink, player.currentTime);
           }, 5000);
         }
@@ -712,41 +791,42 @@ if (typeof String.prototype.trim !== 'function') {
         if (metainfo.length === 1) {
           metainfo.find('.bigplay').removeClass('playing');
         }
-        postToOpener({
+        $.postToOpener({
           action: 'pause',
           arg: player.currentTime
         });
       });
   };
+
   $.fn.podlovewebplayer = function (options) {
     // MEJS options default values
     var mejsoptions = {
-      defaultVideoWidth: 480,
-      defaultVideoHeight: 270,
-      videoWidth: -1,
-      videoHeight: -1,
-      audioWidth: -1,
-      audioHeight: 30,
-      startVolume: 0.8,
-      loop: false,
-      enableAutosize: true,
-      features: ['playpause', 'current', 'progress', 'duration', 'tracks', 'volume', 'fullscreen'],
-      alwaysShowControls: false,
-      iPadUseNativeControls: false,
-      iPhoneUseNativeControls: false,
-      AndroidUseNativeControls: false,
-      alwaysShowHours: false,
-      showTimecodeFrameCount: false,
-      framesPerSecond: 25,
-      enableKeyboard: true,
-      pauseOtherPlayers: true,
-      duration: false,
-      plugins: ['flash', 'silverlight'],
-      pluginPath: './static/',
-      flashName: 'flashmediaelement.swf',
-      silverlightName: 'silverlightmediaelement.xap'
-    },
-      // Additional parameters default values
+        defaultVideoWidth: 480,
+        defaultVideoHeight: 270,
+        videoWidth: -1,
+        videoHeight: -1,
+        audioWidth: -1,
+        audioHeight: 30,
+        startVolume: 0.8,
+        loop: false,
+        enableAutosize: true,
+        features: ['playpause', 'current', 'progress', 'duration', 'tracks', 'volume', 'fullscreen'],
+        alwaysShowControls: false,
+        iPadUseNativeControls: false,
+        iPhoneUseNativeControls: false,
+        AndroidUseNativeControls: false,
+        alwaysShowHours: false,
+        showTimecodeFrameCount: false,
+        framesPerSecond: 25,
+        enableKeyboard: true,
+        pauseOtherPlayers: true,
+        duration: false,
+        plugins: ['flash', 'silverlight'],
+        pluginPath: './static/',
+        flashName: 'flashmediaelement.swf',
+        silverlightName: 'silverlightmediaelement.xap'
+      },
+    // Additional parameters default values
       params = $.extend({}, {
         chapterlinks: 'all',
         width: '100%',
@@ -830,16 +910,16 @@ if (typeof String.prototype.trim !== 'function') {
       players.push(player);
       //add params from html fallback area and remove them from the DOM-tree
       $(player).find('[data-pwp]').each(function () {
-        params[$(this).data('pwp')] = $(this).html();
-        $(this).remove();
+        var $this = $(this);
+        params[$this.data('pwp')] = $this.html();
+        $this.remove();
       });
       //add params from audio and video elements
       $(player).find('source').each(function () {
-        if (params.sources !== undefined) {
-          params.sources.push($(this).attr('src'));
-        } else {
-          params.sources[0] = $(this).attr('src');
+        if (!params.sources) {
+          params.sources = [];
         }
+        params.sources.push($(this).attr('src'));
       });
       //build rich player with meta data
       if (params.chapters !== undefined || params.title !== undefined || params.subtitle !== undefined || params.summary !== undefined || params.poster !== undefined || $(player).attr('poster') !== undefined) {
@@ -854,12 +934,13 @@ if (typeof String.prototype.trim !== 'function') {
             }
           });
           wrapper.prepend('<div class="podlovewebplayer_meta"></div>');
-          wrapper.find('.podlovewebplayer_meta').prepend('<a class="bigplay" title="Play Episode" href="#"></a>');
+          var metaElement = wrapper.find('.podlovewebplayer_meta')
+          metaElement.prepend('<a class="bigplay" title="Play Episode" href="#"></a>');
           if (params.poster !== undefined) {
-            wrapper.find('.podlovewebplayer_meta').append('<div class="coverart"><img class="coverimg" src="' + params.poster + '" data-img="' + params.poster + '" alt=""></div>');
+            metaElement.append('<div class="coverart"><img class="coverimg" src="' + params.poster + '" data-img="' + params.poster + '" alt=""></div>');
           }
           if ($(player).attr('poster') !== undefined) {
-            wrapper.find('.podlovewebplayer_meta').append('<div class="coverart"><img src="' + $(player).attr('poster') + '" alt=""></div>');
+            metaElement.append('<div class="coverart"><img src="' + $(player).attr('poster') + '" alt=""></div>');
           }
         }
         if (player.tagName === "VIDEO") {
@@ -925,24 +1006,26 @@ if (typeof String.prototype.trim !== 'function') {
         downloadbuttonsActive = " active";
       }
       wrapper.append('<div class="podlovewebplayer_timecontrol podlovewebplayer_controlbox' + timecontrolsActive + '"></div>');
+      var timeControlElement = wrapper.find('.podlovewebplayer_timecontrol');
       if (params.chapters !== undefined) {
         if (params.chapters.length > 10) {
-          wrapper.find('.podlovewebplayer_timecontrol').append('<a href="#" class="prevbutton infobuttons pwp-icon-to-start" title="Jump backward to previous chapter"></a><a href="#" class="nextbutton infobuttons pwp-icon-to-end" title="next chapter"></a>');
+          timeControlElement.append('<a href="#" class="prevbutton infobuttons pwp-icon-to-start" title="Jump backward to previous chapter"></a><a href="#" class="nextbutton infobuttons pwp-icon-to-end" title="next chapter"></a>');
           wrapper.find('.controlbox').append('<a href="#" class="prevbutton infobuttons pwp-icon-step-backward" title="previous chapter"></a><a href="#" class="nextbutton infobuttons pwp-icon-to-end" title="Jump to next chapter"></a>');
         }
       }
-      wrapper.find('.podlovewebplayer_timecontrol').append('<a href="#" class="rewindbutton infobuttons pwp-icon-fast-bw" title="Rewind 30 seconds"></a>');
-      wrapper.find('.podlovewebplayer_timecontrol').append('<a href="#" class="forwardbutton infobuttons pwp-icon-fast-fw" title="Fast forward 30 seconds"></a>');
+      timeControlElement.append('<a href="#" class="rewindbutton infobuttons pwp-icon-fast-bw" title="Rewind 30 seconds"></a>')
+      timeControlElement.append('<a href="#" class="forwardbutton infobuttons pwp-icon-fast-fw" title="Fast forward 30 seconds"></a>');
 
+      var shareButtonsElement = wrapper.find('.podlovewebplayer_sharebuttons');
       if ((wrapper.closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href') !== undefined) && (params.hidesharebutton !== true)) {
         wrapper.append('<div class="podlovewebplayer_sharebuttons podlovewebplayer_controlbox' + sharebuttonsActive + '"></div>');
         wrapper.find('.togglers').append('<a href="#" class="showsharebuttons infobuttons pwp-icon-export" title="Show/hide sharing controls"></a>');
-        wrapper.find('.podlovewebplayer_sharebuttons').append('<a href="#" class="currentbutton infobuttons pwp-icon-link" title="Get URL for this"></a>');
-        wrapper.find('.podlovewebplayer_sharebuttons').append('<a href="#" target="_blank" class="tweetbutton infobuttons pwp-icon-twitter" title="Share this on Twitter"></a>');
-        wrapper.find('.podlovewebplayer_sharebuttons').append('<a href="#" target="_blank" class="fbsharebutton infobuttons pwp-icon-facebook" title="Share this on Facebook"></a>');
-        wrapper.find('.podlovewebplayer_sharebuttons').append('<a href="#" target="_blank" class="gplusbutton infobuttons pwp-icon-gplus" title="Share this on Google+"></a>');
-        wrapper.find('.podlovewebplayer_sharebuttons').append('<a href="#" target="_blank" class="adnbutton infobuttons pwp-icon-appnet" title="Share this on App.net"></a>');
-        wrapper.find('.podlovewebplayer_sharebuttons').append('<a href="#" target="_blank" class="mailbutton infobuttons pwp-icon-mail" title="Share this via e-mail"></a>');
+        shareButtonsElement.append('<a href="#" class="currentbutton infobuttons pwp-icon-link" title="Get URL for this"></a>');
+        shareButtonsElement.append('<a href="#" target="_blank" class="tweetbutton infobuttons pwp-icon-twitter" title="Share this on Twitter"></a>');
+        shareButtonsElement.append('<a href="#" target="_blank" class="fbsharebutton infobuttons pwp-icon-facebook" title="Share this on Facebook"></a>');
+        shareButtonsElement.append('<a href="#" target="_blank" class="gplusbutton infobuttons pwp-icon-gplus" title="Share this on Google+"></a>');
+        shareButtonsElement.append('<a href="#" target="_blank" class="adnbutton infobuttons pwp-icon-appnet" title="Share this on App.net"></a>');
+        shareButtonsElement.append('<a href="#" target="_blank" class="mailbutton infobuttons pwp-icon-mail" title="Share this via e-mail"></a>');
       }
       if (((params.downloads !== undefined) || (params.sources !== undefined)) && (params.hidedownloadbutton !== true)) {
         selectform = '<select name="downloads" class="fileselect" size="1" onchange="this.value=this.options[this.selectedIndex].value;">';
@@ -961,14 +1044,15 @@ if (typeof String.prototype.trim !== 'function') {
           }
         }
         selectform += '</select>';
-        wrapper.find('.podlovewebplayer_downloadbuttons').append(selectform);
+        var downloadButtons = wrapper.find('.podlovewebplayer_downloadbuttons');
+        downloadButtons.append(selectform);
         if (params.downloads !== undefined && params.downloads.length > 0) {
           downloadname = params.downloads[0].url.split('/');
           downloadname = downloadname[downloadname.length - 1];
-          wrapper.find('.podlovewebplayer_downloadbuttons').append('<a href="' + params.downloads[0].url + '" download="' + downloadname + '" class="downloadbutton infobuttons pwp-icon-download" title="Download"></a> ');
+          downloadButtons.append('<a href="' + params.downloads[0].url + '" download="' + downloadname + '" class="downloadbutton infobuttons pwp-icon-download" title="Download"></a> ');
         }
-        wrapper.find('.podlovewebplayer_downloadbuttons').append('<a href="#" class="openfilebutton infobuttons pwp-icon-link-ext" title="Open"></a> ');
-        wrapper.find('.podlovewebplayer_downloadbuttons').append('<a href="#" class="fileinfobutton infobuttons pwp-icon-info-circle" title="Info"></a> ');
+        downloadButtons.append('<a href="#" class="openfilebutton infobuttons pwp-icon-link-ext" title="Open"></a> ');
+        downloadButtons.append('<a href="#" class="fileinfobutton infobuttons pwp-icon-info-circle" title="Info"></a> ');
       }
       //build chapter table
       if (params.chapters !== undefined) {
@@ -992,31 +1076,29 @@ if (typeof String.prototype.trim !== 'function') {
         } else if (document.webkitHidden !== undefined) {
           hiddenTab = document.webkitHidden;
         }
-        if (hiddenTab === true) {
-          $(player).attr({
-            preload: 'auto'
-          });
-        } else {
-          $(player).attr({
-            preload: 'auto',
-            autoplay: 'autoplay'
-          });
+        var playerAttributes = {preload: 'auto'};
+        if (hiddenTab !== true) {
+          playerAttributes.autoplay = 'autoplay';
         }
+        $(player).attr(playerAttributes);
         startAtTime = deepLink[0];
         stopAtTime = deepLink[1];
       } else if (params && params.permalink) {
+        console.debug(params);
         storageKey = 'podloveWebPlayerTime-' + params.permalink;
         if (handleCookies.getItem(storageKey)) {
           $(player).one('canplay', function () {
-            this.currentTime = handleCookies.getItem(storageKey);
+            var time = handleCookies.getItem(storageKey);
+            console.debug(time);
+            this.currentTime = time;
           });
         }
       }
       $(player).on('ended', function () {
         handleCookies.setItem('podloveWebPlayerTime-' + params.permalink, '', new Date(2000, 1, 1));
-        postToOpener({
-            action: 'stop',
-            arg: player.currentTime
+        $.postToOpener({
+          action: 'stop',
+          arg: player.currentTime
         });
       });
       // init MEJS to player
@@ -1033,37 +1115,55 @@ if (typeof String.prototype.trim !== 'function') {
     });
   };
 
-  // everything for an embedded player
-  function postToOpener( obj){
-    //console.debug('postToOpener', obj);
+  /**
+   * player error handling function
+   * will remove the topmost mediafile from src or source list
+   * possible fix for Firefox AAC issues
+   */
+  function removeUnplayableMedia() {
+    var $this = $(this);
+    if ($this.attr('src')) {
+      $this.removeAttr('src');
+      return;
+    }
+    var sourceList = $this.children('source');
+    if (sourceList.length) {
+      sourceList.first().remove();
+    }
+  }
+}(jQuery));
+
+// everything for an embedded player
+(function($){
+  var lastHeight = 0, $body = $(document.body);
+
+  function postToOpener(obj) {
+    console.debug('postToOpener', obj);
     window.parent.postMessage(obj, '*');
   }
+  $.postToOpener = postToOpener;
 
-  $(window).on('message', function( event ){
+  $(window).on('message', function (event) {
     var orig = event.originalEvent;
 
-    if( orig.data.action == 'pause' ) {
-      players.forEach(function (player) {
-          player.pause();
+    if (orig.data.action == 'pause') {
+      pwp.players.forEach(function (player) {
+        player.pause();
       });
     }
   });
 
-  $(function(){
-    var lastHeight = 0, $body = $(document.body);
+  (function pollHeight() {
+    var newHeight = $body.height();
+    if (lastHeight != newHeight) {
+      postToOpener({
+        action: 'resize',
+        arg: newHeight
+      });
+    }
 
-    (function pollHeight() {
-      var newHeight = $body.height();
-      if (lastHeight != newHeight) {
-        postToOpener({
-          action: 'resize',
-          arg: newHeight
-        });
-      }
-
-      lastHeight = newHeight;
-      requestAnimationFrame(pollHeight, document.body);
-    })();
-  });
+    lastHeight = newHeight;
+    requestAnimationFrame(pollHeight, document.body);
+  })();
 
 }(jQuery));
