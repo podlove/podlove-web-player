@@ -84,7 +84,8 @@
      * @returns {Number}
      */
     function getPlayerWidth (width) {
-        return getDimension(width, IFRAME_WIDTH_MIN, IFRAME_WIDTH_MAX, IFRAME_WIDTH_DEFAULT);
+        return '100%';
+        //return getDimension(width, IFRAME_WIDTH_MIN, IFRAME_WIDTH_MAX, IFRAME_WIDTH_DEFAULT);
     }
 
     /**
