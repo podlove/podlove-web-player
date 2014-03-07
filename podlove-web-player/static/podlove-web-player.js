@@ -1181,6 +1181,8 @@ module.exports = {
 },{"./timecode":5}],7:[function(require,module,exports){
 /*jslint browser: true, plusplus: true, unparam: true, indent: 2 */
 /*global jQuery, console */
+
+// FIXME put in compat mode module
 if (typeof String.prototype.trim !== 'function') {
   String.prototype.trim = function () {
     "use strict";
@@ -1190,6 +1192,7 @@ if (typeof String.prototype.trim !== 'function') {
 
 $.cookieHandler = require('./js/cookie');
 $.chapters = require('./js/chapter');
+
 var embed = require('./js/embed');
 embed.init($);
 
@@ -1198,6 +1201,5 @@ var pwp = {
   players: require('./js/player').players,
   embed: embed
 };
-
 
 },{"./js/chapter":1,"./js/cookie":2,"./js/embed":3,"./js/player":4,"./js/timecode":5}]},{},[7])
