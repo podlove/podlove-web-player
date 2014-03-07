@@ -1,32 +1,30 @@
 /**
  * player
  */
-(function ($) {
-  'use strict';
-  var startAtTime = false,
-    stopAtTime = false,
-  // Keep all Players on site - for inline players
-  // embedded players are registered in podlove-webplayer-moderator in the embedding page
-    players = [],
-    ignoreHashChange = false,
-  // all used functions
-    generateTimecode = pwp.tc.generate,
-    parseTimecode = pwp.tc.parse,
-    handleCookies = $.cookieHandler,
-    checkCurrentURL = function () {
-      var deepLink = $.url.checkCurrent ();
-      if (!deepLink) { return; }
-      startAtTime = deepLink[0];
-      stopAtTime = deepLink[1];
-    },
-    setFragmentURL = $.url.setFragment,
-    updateChapterMarks = $.chapters.update,
-    generateChapterTable = $.chapters.generateTable,
-    checkTime,
-    addressCurrentTime,
-    addBehavior;
-
-  pwp.players = players;
+'use strict';
+var startAtTime = false,
+  stopAtTime = false,
+// Keep all Players on site - for inline players
+// embedded players are registered in podlove-webplayer-moderator in the embedding page
+  players = [],
+  ignoreHashChange = false,
+// all used functions
+  embed = require('./embed'),
+  generateTimecode = require('./timecode').generate,
+  parseTimecode = require('./timecode').parse,
+  handleCookies = require('./cookie'),
+  checkCurrentURL = function () {
+    var deepLink = require('./url').checkCurrent ();
+    if (!deepLink) { return; }
+    startAtTime = deepLink[0];
+    stopAtTime = deepLink[1];
+  },
+  setFragmentURL = require('./url').setFragment,
+  updateChapterMarks = require('./chapter').update,
+  generateChapterTable = require('./chapter').generateTable,
+  checkTime,
+  addressCurrentTime,
+  addBehavior;
 
   checkTime = function (e) {
     if (players.length > 1) {
@@ -372,7 +370,7 @@
       // update play/pause status
       .on('play playing', function () {
         if (!player.persistingTimer) {
-          $.postToOpener({
+          embed.postToOpener({
             action: 'play',
             arg: player.currentTime
           });
@@ -397,7 +395,7 @@
         if (metainfo.length === 1) {
           metainfo.find('.bigplay').removeClass('playing');
         }
-        $.postToOpener({
+        embed.postToOpener({
           action: 'pause',
           arg: player.currentTime
         });
@@ -702,7 +700,7 @@
       }
       $(player).on('ended', function () {
         handleCookies.setItem('podloveWebPlayerTime-' + params.permalink, '', new Date(2000, 1, 1));
-        $.postToOpener({
+        embed.postToOpener({
           action: 'stop',
           arg: player.currentTime
         });
@@ -737,5 +735,8 @@
       sourceList.first().remove();
     }
   }
-}(jQuery));
+
+module.exports = {
+  players: players
+};
 

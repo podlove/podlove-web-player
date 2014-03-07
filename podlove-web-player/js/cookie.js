@@ -2,8 +2,7 @@
  * cookiehandling
  * FIXME: replace with jQuery.cookie
  */
-(function (ctx) {
-  ctx.cookieHandler = {
+module.exports = {
     getItem: function (sKey) {
       return decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*" + encodeURIComponent(sKey).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1")) || null;
     },
@@ -39,6 +38,5 @@
       for (var nIdx = 0; nIdx < aKeys.length; nIdx++) { aKeys[nIdx] = decodeURIComponent(aKeys[nIdx]); }
       return aKeys;
     }
-  };
-})(jQuery);
+};
 

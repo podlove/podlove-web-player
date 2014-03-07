@@ -1,34 +1,44 @@
 // everything for an embedded player
-(function($){
-  var lastHeight = 0, $body = $(document.body);
+var
+  players = require('./player').players,
+  lastHeight = 0,
+  $body;
 
-  function postToOpener(obj) {
-    console.debug('postToOpener', obj);
-    window.parent.postMessage(obj, '*');
+function init($) {
+  $body = $(document.body);
+  $(window).on('message', messageListener);
+  pollHeight();
+}
+
+function postToOpener(obj) {
+  console.debug('postToOpener', obj);
+  window.parent.postMessage(obj, '*');
+}
+
+function messageListener (event) {
+  var orig = event.originalEvent;
+
+  if (orig.data.action == 'pause') {
+    players.forEach(function (player) {
+      player.pause();
+    });
   }
-  $.postToOpener = postToOpener;
+}
 
-  $(window).on('message', function (event) {
-    var orig = event.originalEvent;
+function pollHeight() {
+  var newHeight = $body.height();
+  if (lastHeight != newHeight) {
+    postToOpener({
+      action: 'resize',
+      arg: newHeight
+    });
+  }
 
-    if (orig.data.action == 'pause') {
-      pwp.players.forEach(function (player) {
-        player.pause();
-      });
-    }
-  });
+  lastHeight = newHeight;
+  requestAnimationFrame(pollHeight, document.body);
+}
 
-  (function pollHeight() {
-    var newHeight = $body.height();
-    if (lastHeight != newHeight) {
-      postToOpener({
-        action: 'resize',
-        arg: newHeight
-      });
-    }
-
-    lastHeight = newHeight;
-    requestAnimationFrame(pollHeight, document.body);
-  })();
-
-}(jQuery));
+module.exports = {
+  postToOpener: postToOpener,
+  init: init
+};

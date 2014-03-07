@@ -1,15 +1,16 @@
+var tc = require('./timecode');
+
 /**
  * chapter handling
  */
-!function($){
-  $.chapters = {};
+module.exports = {
 
   /**
    * update the chapter list when the data is loaded
    * @param {object} player
    * @param {object} marks
    **/
-  $.chapters.update = function (player, marks) {
+  update: function (player, marks) {
     var coverImg = marks.closest('.podlovewebplayer_wrapper').find('.coverimg');
     marks.each(function () {
       var isBuffered, chapterimg = null,
@@ -39,15 +40,15 @@
         $(mark).data('enabled', true).addClass('loaded').find('a[rel=player]').removeClass('disabled');
       }
     });
-  };
+  },
 
   /**
    * Given a list of chapters, this function creates the chapter table for the player.
    * @param {object} params
    * @returns {HTMLDivElement}
    */
-  $.chapters.generateTable = function (params) {
-    var div, table, tbody, tempchapters, maxchapterstart, forceHours, line, tc, chaptitle, next, chapterImages, rowDummy, i, scroll = '';
+  generateTable: function (params) {
+    var div, table, tbody, tempchapters, maxchapterstart, forceHours,  next, chapterImages, rowDummy, scroll = '';
     if (params.chapterHeight !== "") {
       if (typeof parseInt(params.chapterHeight, 10) === 'number') {
         scroll = 'style="overflow-y: auto; max-height: ' + parseInt(params.chapterHeight, 10) + 'px;"';
@@ -92,14 +93,14 @@
         row = rowDummy.clone();
       //make sure the duration for all chapters are equally formatted
       if (!finalchapter) {
-        this.duration = pwp.tc.generate([duration], false);
+        this.duration = tc.generate([duration], false);
       } else {
         if (params.duration === 0) {
           this.end = 9999999999;
           this.duration = '…';
         } else {
           this.end = params.duration;
-          this.duration = pwp.tc.generate([Math.round(this.end - this.start)], false);
+          this.duration = tc.generate([Math.round(this.end - this.start)], false);
         }
       }
       if (i % 2) {
@@ -113,7 +114,7 @@
       });
       //if there is a chapter that starts after an hour, force '00:' on all previous chapters
       //insert the chapter data
-      row.find('.starttime > span').text(pwp.tc.generate([Math.round(this.start)], true, forceHours));
+      row.find('.starttime > span').text(tc.generate([Math.round(this.start)], true, forceHours));
 
       var timeSpan = '<span>' + this.code + '</span>';
       if (this.href !== undefined && this.href !== "") {
@@ -130,66 +131,66 @@
     }
 
     return div;
-  };
-
-  function getMaxChapterStart(tempchapters, next) {
-    return Math.max.apply(Math,
-      $.map(tempchapters, function (value, i) {
-        next = tempchapters[i + 1];
-        // we use `this.end` to quickly calculate the duration in the next round
-        if (next) {
-          value.end = next.start;
-        }
-        // we need this data for proper formatting
-        return value.start;
-      }));
   }
 
-  function getDummyRow (withImage) {
-    var rowStart = '<tr class="chaptertr" data-start="" data-end="" data-img=""><td class="starttime"><span></span></td>';
-    var rowEnd = '<td class="chaptername"></td><td class="timecode">\n<span></span>\n</td>\n</tr>';
-    var chapterImage = '<td class="chapterimage"></td>';
-    var template = rowStart + (withImage ? chapterImage : '') + rowEnd;
-    return $(template);
-  }
 
-  function prepareRowData(chapterData) {
-    function chapterFromString (chapter) {
-      var line = $.trim(chapter);
-      //exit early if this line contains nothing but whitespace
-      if (line === '') {
-        return {};
+};
+
+function getMaxChapterStart(tempchapters, next) {
+  return Math.max.apply(Math,
+    $.map(tempchapters, function (value, i) {
+      next = tempchapters[i + 1];
+      // we use `this.end` to quickly calculate the duration in the next round
+      if (next) {
+        value.end = next.start;
       }
-      //extract the timestamp
-      var parts = line.split(' ', 2);
-      var tc = getStartTimecode(parts[0]);
-      var chaptitle = $.trim(parts[1]);
-      return { start: tc, code: chaptitle };
-    }
-    function transformChapter (chapter) {
-      chapter.code = chapter.title;
-      if (typeof chapter.start === 'string') {
-        chapter.start = getStartTimecode(chapter.start);
-      }
-      return chapter;
-    }
-    function getStartTimecode(start) {
-      return pwp.tc.parse(start)[0];
-    }
-    var chapters;
+      // we need this data for proper formatting
+      return value.start;
+    }));
+}
 
-    //first round: kill empty rows and build structured object
-    if (typeof chapterData === 'string') {
-      chapters = chapterData.split("\n").map(chapterFromString);
-    } else {
-      // assume array of objects
-      chapters = chapterData.map(transformChapter);
+function getDummyRow (withImage) {
+  var rowStart = '<tr class="chaptertr" data-start="" data-end="" data-img=""><td class="starttime"><span></span></td>';
+  var rowEnd = '<td class="chaptername"></td><td class="timecode">\n<span></span>\n</td>\n</tr>';
+  var chapterImage = '<td class="chapterimage"></td>';
+  var template = rowStart + (withImage ? chapterImage : '') + rowEnd;
+  return $(template);
+}
+
+function prepareRowData(chapterData) {
+  function chapterFromString (chapter) {
+    var line = $.trim(chapter);
+    //exit early if this line contains nothing but whitespace
+    if (line === '') {
+      return {};
     }
-    // order is not guaranteed: http://podlove.org/simple-chapters/
-    return chapters.sort(function (a, b) {
-      return a.start - b.start;
-    });
+    //extract the timestamp
+    var parts = line.split(' ', 2);
+    var tc = getStartTimecode(parts[0]);
+    var chaptitle = $.trim(parts[1]);
+    return { start: tc, code: chaptitle };
   }
+  function transformChapter (chapter) {
+    chapter.code = chapter.title;
+    if (typeof chapter.start === 'string') {
+      chapter.start = getStartTimecode(chapter.start);
+    }
+    return chapter;
+  }
+  function getStartTimecode(start) {
+    return tc.parse(start)[0];
+  }
+  var chapters;
 
-}(jQuery);
-
+  //first round: kill empty rows and build structured object
+  if (typeof chapterData === 'string') {
+    chapters = chapterData.split("\n").map(chapterFromString);
+  } else {
+    // assume array of objects
+    chapters = chapterData.map(transformChapter);
+  }
+  // order is not guaranteed: http://podlove.org/simple-chapters/
+  return chapters.sort(function (a, b) {
+    return a.start - b.start;
+  });
+}
