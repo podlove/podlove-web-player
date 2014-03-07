@@ -13,15 +13,25 @@
 </head>
 <body>
 <audio id="testplayer1" controls="controls" preload="none" style="width: auto; height: 30px">
-    <source src="samples/podlove-test-track.mp4" type="audio/mp4"></source>
-    <source src="samples/podlove-test-track.mp3" type="audio/mpeg"></source>
-    <source src="samples/podlove-test-track.ogg" type="audio/ogg; codecs=vorbis"></source>
-    <source src="samples/podlove-test-track.opus" type="audio/ogg; codecs=opus"></source>
+    <source src="http://brick.local:8080/samples/podlove-test-track.mp4" type="audio/mp4"></source>
+    <source src="http://brick.local:8080/samples/podlove-test-track.mp3" type="audio/mpeg"></source>
+    <source src="http://brick.local:8080/samples/podlove-test-track.ogg" type="audio/ogg; codecs=vorbis"></source>
+    <source src="http://brick.local:8080/samples/podlove-test-track.opus" type="audio/ogg; codecs=opus"></source>
     <object type="application/x-shockwave-flash" data="flashmediaelement.swf">
         <param name="movie" value="flashmediaelement.swf"/>
         <param name="flashvars" value="controls=true&amp;file=samples/podlove-test-track.mp4"/>
     </object>
 </audio>
+<script src="libs/html5shiv.js"></script>
+<script src="libs/jquery-1.9.1.min.js"></script>
+<script src="libs/mediaelement/build/mediaelement-and-player.min.js"></script>
+<script src="podlove-web-player.js"></script>
+<script src="js/cookie.js"></script>
+<script src="js/url.js"></script>
+<script src="js/timecode.js"></script>
+<script src="js/chapter.js"></script>
+<script src="js/embed.js"></script>
+<script src="js/player.js"></script>
 <script>
     $('#testplayer1').podlovewebplayer({
         poster: 'samples/coverimage.png',
