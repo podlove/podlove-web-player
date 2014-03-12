@@ -1521,8 +1521,8 @@
 	transition: all 0.5s;
 }
 
-.podlovewebplayer_meta .summary .summarydiv {
-	margin: 0px 5px;
+.podlovewebplayer_meta + .summary .summarydiv {
+	padding: 25px 10px 35px;
 }
 
 .podlovewebplayer_video .podlovewebplayer_meta + .summary,
@@ -1533,7 +1533,6 @@
 .podlovewebplayer_meta + .summary.active {
 	min-height: 35px;
 	height: auto;
-  padding: 25px 10px 35px;
 }
 
 .podlovewebplayer_wrapper .summary a:visited {
