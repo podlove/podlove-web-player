@@ -1,0 +1,29 @@
+{
+  "name": "podlove-web-player",
+  "version": "2.1.0-beta",
+  "homepage": "http://podlove.org/",
+  "authors": [
+    "Juri Leino <github@line-o.de>"
+  ],
+  "description": "Next generation media player for the web. Special features for podcast and other metadata rich productions.",
+  "main": "static/podlove-web-player.js",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "web",
+    "media",
+    "player"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "mediaelement": "~2.13.2"
+  }
+}
