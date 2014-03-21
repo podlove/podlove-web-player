@@ -1,0 +1,139 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: pwpfont;
+  text-rendering: optimizeLegibility;
+  src: url("../font/podlovefont.eot?62787671");
+  src: url("../font/podlovefont.eot?62787671#iefix") format("embedded-opentype"),
+       url("../font/podlovefont.woff?62787671") format("woff"),
+       url("../font/podlovefont.ttf?62787671") format("truetype"),
+       url("../font/podlovefont.svg?62787671#pwpfont") format("svg");
+  font-weight: normal !important;
+  font-style: normal !important;
+}
+/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
+/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
+/*
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: 'pwpfont';
+    src: url('../font/podlovefont.svg?62787671#pwpfont') format('svg');
+  }
+}
+*/
+ 
+[class^="pwp-icon-"]:before,
+[class*=" pwp-icon-"]:before {
+  font-family: pwpfont;
+  font-style: normal !important;
+  font-weight: normal !important;
+  text-decoration: inherit;
+  -webkit-font-smoothing: antialiased;
+  speak: none;
+ 
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: 0.2em;
+  text-align: center;
+  /* opacity: 0.8; */
+ 
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal !important;
+  text-transform: none !important;
+  
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+ 
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+  margin-left: 0.2em;
+ 
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+ 
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+ 
+.pwp-icon-gplus:before { content: "\2b"; } /* '+' */
+.pwp-icon-appstore:before { content: "\41"; } /* 'A' */
+.pwp-icon-twitter:before { content: "\54"; } /* 'T' */
+.pwp-icon-podcast:before { content: "\60"; } /* '`' */
+.pwp-icon-cloudapp:before { content: "\63"; } /* 'c' */
+.pwp-icon-facebook:before { content: "\66"; } /* 'f' */
+.pwp-icon-itunes:before { content: "\69"; } /* 'i' */
+.pwp-icon-soundcloud:before { content: "\73"; } /* 's' */
+.pwp-icon-appnet:before { content: "\e1"; } /* 'á' */
+.pwp-icon-statusnet:before { content: "\e2"; } /* 'â' */
+.pwp-icon-pause:before { content: "\2389"; } /* '⎉' */
+.pwp-icon-pause-1:before { content: "\e800"; } /* '' */
+.pwp-icon-fast-fw:before { content: "\23e9"; } /* '⏩' */
+.pwp-icon-fast-bw:before { content: "\23ea"; } /* '⏪' */
+.pwp-icon-to-end:before { content: "\23ed"; } /* '⏭' */
+.pwp-icon-to-start:before { content: "\23ee"; } /* '⏮' */
+.pwp-icon-play:before { content: "\25b6"; } /* '▶' */
+.pwp-icon-star:before { content: "\e805"; } /* '' */
+.pwp-icon-star-empty:before { content: "\e806"; } /* '' */
+.pwp-icon-th-list:before { content: "\e80c"; } /* '' */
+.pwp-icon-th:before { content: "\e80e"; } /* '' */
+.pwp-icon-cog-1:before { content: "\e801"; } /* '' */
+.pwp-icon-cog:before { content: "\2699"; } /* '⚙' */
+.pwp-icon-cog-alt:before { content: "\26ef"; } /* '⛯' */
+.pwp-icon-mail:before { content: "\2709"; } /* '✉' */
+.pwp-icon-edit:before { content: "\e815"; } /* '' */
+.pwp-icon-ok-circled:before { content: "\e80d"; } /* '' */
+.pwp-icon-cw:before { content: "\27f3"; } /* '⟳' */
+.pwp-icon-wordpress:before { content: "\e005"; } /* '' */
+.pwp-icon-github-1:before { content: "\e0b6"; } /* '' */
+.pwp-icon-github-text:before { content: "\e0e5"; } /* '' */
+.pwp-icon-help-circled:before { content: "\e809"; } /* '' */
+.pwp-icon-info-circle:before { content: "\e705"; } /* '' */
+.pwp-icon-tag:before { content: "\e813"; } /* '' */
+.pwp-icon-tags:before { content: "\e814"; } /* '' */
+.pwp-icon-export:before { content: "\e715"; } /* '' */
+.pwp-icon-down-circle2:before { content: "\e758"; } /* '' */
+.pwp-icon-terminal:before { content: "\e7ac"; } /* '' */
+.pwp-icon-ipod:before { content: "\e7b2"; } /* '' */
+.pwp-icon-ccw:before { content: "\f025"; } /* '' */
+.pwp-icon-link-ext:before { content: "\f08e"; } /* '' */
+.pwp-icon-rss:before { content: "\e816"; } /* '' */
+.pwp-icon-down-circled:before { content: "\f0ab"; } /* '' */
+.pwp-icon-list-bullet:before { content: "\f0ca"; } /* '' */
+.pwp-icon-gplus-squared:before { content: "\f0d4"; } /* '' */
+.pwp-icon-paste:before { content: "\f0ea"; } /* '' */
+.pwp-icon-download-cloud:before { content: "\f0ed"; } /* '' */
+.pwp-icon-plus-squared:before { content: "\e80a"; } /* '' */
+.pwp-icon-quote-left:before { content: "\f10d"; } /* '' */
+.pwp-icon-quote-right:before { content: "\f10e"; } /* '' */
+.pwp-icon-code:before { content: "\e812"; } /* '' */
+.pwp-icon-star-half-alt:before { content: "\e807"; } /* '' */
+.pwp-icon-fork:before { content: "\e820"; } /* '' */
+.pwp-icon-puzzle:before { content: "\e821"; } /* '' */
+.pwp-icon-mic:before { content: "\e817"; } /* '' */
+.pwp-icon-minus-squared:before { content: "\e80b"; } /* '' */
+.pwp-icon-github-squared:before { content: "\e803"; } /* '' */
+.pwp-icon-facebook-rect:before { content: "\e818"; } /* '' */
+.pwp-icon-facebook-rect-1:before { content: "\e81b"; } /* '' */
+.pwp-icon-twitter-bird:before { content: "\e819"; } /* '' */
+.pwp-icon-twitter-bird-1:before { content: "\e81c"; } /* '' */
+.pwp-icon-twitter-squared:before { content: "\e804"; } /* '' */
+.pwp-icon-facebook-squared:before { content: "\f308"; } /* '' */
+.pwp-icon-googleplus-rect:before { content: "\e81a"; } /* '' */
+.pwp-icon-googleplus-rect-1:before { content: "\e81d"; } /* '' */
+.pwp-icon-picture:before { content: "\e80f"; } /* '' */
+.pwp-icon-picture-1:before { content: "\e81e"; } /* '' */
+.pwp-icon-user:before { content: "\1f464"; } /* '👤' */
+.pwp-icon-users:before { content: "\e808"; } /* '' */
+.pwp-icon-pin:before { content: "\e811"; } /* '' */
+.pwp-icon-attach-1:before { content: "\e81f"; } /* '' */
+.pwp-icon-attach:before { content: "\e810"; } /* '' */
+.pwp-icon-download:before { content: "\1f4e5"; } /* '📥' */
+.pwp-icon-volume-off:before { content: "\1f507"; } /* '🔇' */
+.pwp-icon-volume-down:before { content: "\1f509"; } /* '🔉' */
+.pwp-icon-volume-up:before { content: "\1f50a"; } /* '🔊' */
+.pwp-icon-link:before { content: "\1f517"; } /* '🔗' */
+.pwp-icon-wrench-1:before { content: "\e802"; } /* '' */
+.pwp-icon-wrench:before { content: "\1f527"; } /* '🔧' */
+.pwp-icon-clock:before { content: "\1f554"; } /* '🕔' */
+
