@@ -1,5 +1,6 @@
 .*
 *Thumbs.db
+node_modules/
 !.gitignore
 !.jshintrc
 !.editorconfig

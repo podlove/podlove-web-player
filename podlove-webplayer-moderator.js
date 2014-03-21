@@ -1,5 +1,5 @@
-;
 (function ($) {
+    'use strict';
     var IFRAME_HEIGHT_DEFAULT = 300,
         IFRAME_HEIGHT_MIN = 100,
         IFRAME_HEIGHT_MAX = 3000,
@@ -7,50 +7,6 @@
         IFRAME_WIDTH_MIN = 400,
         IFRAME_WIDTH_MAX = 2000,
         players = {};
-
-    /**
-     * decide what to do with a received message
-     * @param {jQuery.Event} event
-     */
-    function handleMessage (event) {
-        // discard hash - it changes along with the time media is played
-        var originalEvent = event.originalEvent,
-            data = originalEvent.data,
-            action = data.action,
-            argumentObject = data.arg,
-            eventLocation = originalEvent.source.location,
-            href = eventLocation.href,
-            hash = eventLocation.hash,
-            id = href.substr(0, href.length - hash.length),
-            player = players[id];
-
-        //console.debug('received message', action, argumentObject);
-
-        if (player == null) {
-            //console.debug('no player found with src=', id);
-            return;
-        }
-
-        if (action == null || argumentObject == null) {
-            //console.debug('no action or data was given');
-            return;
-        }
-
-        //console.debug('received', event.data.action, 'from', id, 'with', event.data.arg);
-
-        if (action == 'ready' || action == 'pause') {
-            player.state = 0;
-        }
-
-        if (action == 'play') {
-            player.state = 1;
-            pausePlayersExceptOne(id);
-        }
-
-        if (action == 'resize') {
-            player.frame.height(getPlayerHeight(argumentObject));
-        }
-    }
 
     /**
      * Pause all registered players except the one with the given ID
@@ -70,25 +26,6 @@
     }
 
     /**
-     * Sanitize player height
-     * @param {Number} height
-     * @returns {Number}
-     */
-    function getPlayerHeight (height) {
-        return getDimension(height, IFRAME_HEIGHT_MIN, IFRAME_HEIGHT_MAX, IFRAME_HEIGHT_DEFAULT);
-    }
-
-    /**
-     * Sanitize player width
-     * @param {Number} width
-     * @returns {Number}
-     */
-    function getPlayerWidth (width) {
-        return '100%';
-        //return getDimension(width, IFRAME_WIDTH_MIN, IFRAME_WIDTH_MAX, IFRAME_WIDTH_DEFAULT);
-    }
-
-    /**
      * Sanitize player dimension
      * @param {Number} value
      * @param {Number} min
@@ -96,7 +33,7 @@
      * @param {Number} defaultValue
      * @returns {Number} new dimension
      */
-    function getDimension (value, min, max, defaultValue) {
+    function getDimension(value, min, max, defaultValue) {
         if (isNaN(value)) {
             console.warn('Dimension', value, 'is not a number.');
             return defaultValue;
@@ -106,6 +43,69 @@
             return defaultValue;
         }
         return value;
+    }
+
+    /**
+     * Sanitize player height
+     * @param {Number} height
+     * @returns {Number}
+     */
+    function getPlayerHeight(height) {
+        return getDimension(height, IFRAME_HEIGHT_MIN, IFRAME_HEIGHT_MAX, IFRAME_HEIGHT_DEFAULT);
+    }
+
+    /**
+     * Sanitize player width
+     * @param {Number} width
+     * @returns {Number}
+     */
+    function getPlayerWidth(width) {
+        return '100%';
+        //return getDimension(width, IFRAME_WIDTH_MIN, IFRAME_WIDTH_MAX, IFRAME_WIDTH_DEFAULT);
+    }
+
+    /**
+     * decide what to do with a received message
+     * @param {jQuery.Event} event
+     */
+    function handleMessage(event) {
+        // discard hash - it changes along with the time media is played
+        var originalEvent = event.originalEvent,
+            data = originalEvent.data,
+            action = data.action,
+            argumentObject = data.arg,
+            eventLocation = originalEvent.source.location,
+            href = eventLocation.href,
+            hash = eventLocation.hash,
+            id = href.substr(0, href.length - hash.length),
+            player = players[id];
+
+        //console.debug('received message', action, argumentObject);
+
+        if (player === null) {
+            //console.debug('no player found with src=', id);
+            return;
+        }
+
+        if (action === null || argumentObject === null) {
+            //console.debug('no action or data was given');
+            return;
+        }
+
+        //console.debug('received', event.data.action, 'from', id, 'with', event.data.arg);
+
+        if (action === 'ready' || action === 'pause') {
+            player.state = 0;
+        }
+
+        if (action === 'play') {
+            player.state = 1;
+            pausePlayersExceptOne(id);
+        }
+
+        if (action === 'resize') {
+            player.frame.height(getPlayerHeight(argumentObject));
+        }
     }
 
     // receive messages from embedded players
@@ -118,18 +118,18 @@
      */
     $.fn.podlovewebplayer = function (options) {
         return this.replaceWith(function () {
-            var $element = $(this);
-            var $frame = $('<iframe>', {
-                src: $element.data('podlove-web-player-source'),
-                height: getPlayerHeight($element.data('podlove-web-player-height')),
-                width: getPlayerWidth($element.data('podlove-web-player-width')),
-                className: 'podlove-webplayer-frame',
-                css: {
-                    border: "none",
-                    overflow: "hidden"
-                }
-            });
-            var frame = $frame.get(0);
+            var $element = $(this),
+                $frame = $('<iframe>', {
+                    src: $element.data('podlove-web-player-source'),
+                    height: getPlayerHeight($element.data('podlove-web-player-height')),
+                    width: getPlayerWidth($element.data('podlove-web-player-width')),
+                    className: 'podlove-webplayer-frame',
+                    css: {
+                        border: "none",
+                        overflow: "hidden"
+                    }
+                }),
+                frame = $frame.get(0);
 
             // register player frame
             players[frame.src] = {
@@ -141,5 +141,5 @@
             return $frame;
         });
     };
-})(jQuery);
+}(jQuery));
 
