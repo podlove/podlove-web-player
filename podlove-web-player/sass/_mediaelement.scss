@@ -1,0 +1,916 @@
+//
+// Mediaelement
+// --------------------------------------------------
+
+// Control Bar
+.mejs-container {
+  position: relative;
+  display: block;
+  background: $black;
+  font-family: $font-family-base;
+  text-indent: 0;
+  text-align: left;
+  vertical-align: top;
+  margin-top: -1px;
+  margin-bottom: 0;
+
+  .mejs-controls {
+    height: 30px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    //background: none;
+    list-style-type: none;
+    background: url(background.png);
+    background: rgba(0, 0, 0, 0.7);
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(50,50,50,0.7)), to(rgba(0,0,0,0.7)));
+    background: -webkit-linear-gradient(top, rgba(50,50,50,0.7), rgba(0,0,0,0.7));
+    background: -moz-linear-gradient(top, rgba(50,50,50,0.7), rgba(0,0,0,0.7));
+    background: -o-linear-gradient(top, rgba(50,50,50,0.7), rgba(0,0,0,0.7));
+    background: -ms-linear-gradient(top, rgba(50,50,50,0.7), rgba(0,0,0,0.7));
+    background: linear-gradient(rgba(50,50,50,0.7), rgba(0,0,0,0.7));
+    div {
+      width: 26px;
+      height: 26px;
+      display: block;
+      float: left;
+      //list-style-type: none;
+      background-image: none;
+      //margin: 0;
+      //padding: 0;
+      font-size: 11px;
+      line-height: 11px;
+      background: 0;
+      //font-family: $font-family-base;
+      border: 0;
+
+      &:first-child {
+        margin-left: 8px;
+      }
+    }
+    .mejs-time {
+      color: #fff;
+      display: block;
+      height: 17px;
+      width: auto;
+      padding: 8px 3px 0 3px ;
+      overflow: hidden;
+      text-align: center;
+      padding: auto 4px;
+      -moz-box-sizing: content-box;
+      -webkit-box-sizing: content-box;
+      box-sizing: content-box;
+      span {
+        font-size: 11px;
+        color: #fff;
+        line-height: 12px;
+        display: block;
+        float: left;
+        margin: 1px 2px 0 0;
+        width: auto;
+        -webkit-text-shadow: 0px 0px 2px #000000;
+        -moz-text-shadow: 0px 0px 2px #000000;
+        -o-text-shadow: 0px 0px 2px #000000;
+        text-shadow: 0px 0px 2px #000000;
+        filter: dropshadow(color=#000000, offx=0, offy=0);
+      }
+    }
+
+    .mejs-duration-container:last-child {
+      margin-right: 5px;
+    }
+
+    /* picture controls */
+    .mejs-picturecontrols-button {
+      background-position: -96px 0;
+    }
+  }
+}
+
+.mejs-container.mejs-audio {
+  min-height: 30px;
+}
+
+// Mute/Volume Sliders and Handles
+// -----------------------------------
+
+.mejs-volume-slider {
+  display: none;
+  height: 115px;
+  width: 25px;
+  background: url(background.png);
+  background: rgba(50, 50, 50, 0.7);
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  top: -115px;
+  left: 0;
+  z-index: 1;
+  position: absolute;
+  margin: 0;
+
+  .mejs-volume-total,
+  .mejs-volume-current,
+  .mejs-volume-handle {
+    position: absolute;
+    background: #ddd;
+    background: rgba(255, 255, 255, 0.5);
+    margin: 0;
+  }
+
+  .mejs-volume-total {
+    left: 11px;
+    top: 8px;
+    width: 2px;
+    height: 100px;
+  }
+  .mejs-volume-current {
+    left: 11px;
+    top: 8px;
+    width: 2px;
+    height: 100px;
+  }
+  .mejs-volume-handle {
+    left: 4px;
+    top: -3px;
+    width: 16px;
+    height: 6px;
+    cursor: N-resize;
+    -webkit-border-radius: 1px;
+    -moz-border-radius: 1px;
+    border-radius: 1px;
+  }
+}
+
+
+/* horizontal version */
+.mejs-horizontal-volume-slider  {
+  height: 26px;
+  width: 60px;
+  position: relative;
+
+  .mejs-horizontal-volume-handle {
+    display: none;
+  }
+
+  .mejs-horizontal-volume-total,
+  .mejs-horizontal-volume-current {
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    position: absolute;
+    left: 0;
+    top: 11px;
+    width: 50px;
+    height: 8px;
+    margin: 0;
+    padding: 0;
+    font-size: 1px;
+  }
+  .mejs-horizontal-volume-total {
+    background: $gray-dark;
+    background: rgba(50,50,50,0.8);
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(30,30,30,0.8)), to(rgba(60,60,60,0.8)));
+    background: -webkit-linear-gradient(top, rgba(30,30,30,0.8), rgba(60,60,60,0.8));
+    background: -moz-linear-gradient(top, rgba(30,30,30,0.8), rgba(60,60,60,0.8));
+    background: -o-linear-gradient(top, rgba(30,30,30,0.8), rgba(60,60,60,0.8));
+    background: -ms-linear-gradient(top, rgba(30,30,30,0.8), rgba(60,60,60,0.8));
+    background: linear-gradient(rgba(30,30,30,0.8), rgba(60,60,60,0.8));
+  }
+  .mejs-horizontal-volume-current {
+    background: $white;
+    background: rgba(255,255,255,0.8);
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(255,255,255,0.9)), to(rgba(200,200,200,0.8)));
+    background: -webkit-linear-gradient(top, rgba(255,255,255,0.9), rgba(200,200,200,0.8));
+    background: -moz-linear-gradient(top, rgba(255,255,255,0.9), rgba(200,200,200,0.8));
+    background: -o-linear-gradient(top, rgba(255,255,255,0.9), rgba(200,200,200,0.8));
+    background: -ms-linear-gradient(top, rgba(255,255,255,0.9), rgba(200,200,200,0.8));
+    background: linear-gradient(rgba(255,255,255,0.9), rgba(200,200,200,0.8));
+  }
+}
+
+.mejs-time-rail span,
+.mejs-horizontal-volume-slider .mejs-horizontal-volume-total,
+.mejs-horizontal-volume-slider .mejs-horizontal-volume-current,
+.mejs-inner .mejs-volume-button .mejs-volume-slider .mejs-volume-handle {
+  cursor: move;
+  border-radius: 2px;
+}
+
+.mejs-embed, .mejs-embed body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: $black;
+  overflow: hidden;
+}
+
+.mejs-container-fullscreen {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  z-index: 1000;
+
+  video, .mejs-mediaelement {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.me-plugin {
+  position: absolute;
+}
+
+// Layers
+// -------------------
+.mejs-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.mejs-mediaelement {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.mejs-poster {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  img {
+    border: 0;
+    padding: 0;
+    border: 0;
+    display: block;
+  }
+}
+
+.mejs-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  &:hover {
+    background-position: 0 -100px;
+  }
+}
+
+.mejs-overlay-play {
+  cursor: pointer;
+}
+
+.mejs-overlay-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+  margin: -50px 0 0 -50px;
+  background: url(bigplay.svg) no-repeat;
+  background-position: 0 -100px ;
+}
+
+.mejs-overlay-loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80px;
+  height: 80px;
+  margin: -40px 0 0 -40px;
+  background: $gray-dark;
+  background: url(background.png);
+  @include gradient-vertical($start-color: $gray-dark, $end-color: $black);
+/*
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(50,50,50,0.9)), to(rgba(0,0,0,0.9)));
+  background: -webkit-linear-gradient(top, rgba(50,50,50,0.9), rgba(0,0,0,0.9));
+  background: -moz-linear-gradient(top, rgba(50,50,50,0.9), rgba(0,0,0,0.9));
+  background: -o-linear-gradient(top, rgba(50,50,50,0.9), rgba(0,0,0,0.9));
+  background: -ms-linear-gradient(top, rgba(50,50,50,0.9), rgba(0,0,0,0.9));
+  background: linear-gradient(rgba(50,50,50,0.9), rgba(0,0,0,0.9));
+*/
+
+  span {
+    display: block;
+    width: 80px;
+    height: 80px;
+    background: transparent url(loading.gif) 50% 50% no-repeat;
+  }
+}
+
+// Context Menu
+// -------------------------
+.mejs-contextmenu {
+  position: absolute;
+  width: 150px;
+  padding: 10px;
+  border-radius: 4px;
+  top: 0;
+  left: 0;
+  background: $white;
+  border: solid 1px $gray-light;
+  z-index: 1001; /* make sure it shows on fullscreen */
+  .mejs-contextmenu-separator {
+    height: 1px;
+    font-size: 0;
+    margin: 5px 6px;
+    background: $gray-dark;
+  }
+  .mejs-contextmenu-item {
+    font-family: $font-family-base;
+    font-size: 12px;
+    padding: 4px 6px;
+    cursor: pointer;
+    color: $gray-dark;
+    &:hover {
+      background: #2C7C91;
+      color: $white;
+    }
+  }
+}
+
+// SourceChooser
+// -------------------
+.mejs-sourcechooser-button {
+  position: relative;
+  .mejs-sourcechooser-selector {
+    visibility: hidden;
+    position: absolute;
+    bottom: 26px;
+    right: -10px;
+    width: 130px;
+    height: 100px;
+    background: url(background.png);
+    background: rgba(50,50,50,0.7);
+    border: solid 1px transparent;
+    padding: 10px;
+    overflow: hidden;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    ul {
+      margin: 0;
+      padding: 0;
+      display: block;
+      list-style-type: none !important;
+      overflow: hidden;
+      li {
+        margin: 0 0 6px 0;
+        padding: 0;
+        list-style-type: none !important;
+        display: block;
+        color: $white;
+        overflow: hidden;
+        input {
+          clear: both;
+          float: left;
+          margin: 3px 3px 0 5px;
+        }
+        label {
+          width: 100px;
+          float: left;
+          padding: 4px 0 0 0;
+          line-height: 15px;
+          font-family: $font-family-base;
+          font-size: 10px;
+        }
+      }
+    }
+  }
+}
+
+// Postroll
+// ----------------------
+.mejs-postroll-layer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url(background.png);
+  background: rgba(50,50,50,0.7);
+  z-index: 1000;
+  overflow: hidden;
+}
+.mejs-postroll-layer-content {
+  width: 100%;
+  height: 100%;
+}
+.mejs-postroll-close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: url(background.png);
+  background: rgba(50,50,50,0.7);
+  color: $white;
+  padding: 4px;
+  z-index: 100;
+  cursor: pointer;
+}
+
+
+// Buttons
+// -------------------------------------------------------
+.mejs-button button {
+  width: 16px;
+  height: 16px;
+  margin: 7px 5px;
+  padding: 0;
+  position: absolute;
+  display: block;
+  font-size: 0;
+  line-height: 0;
+  text-decoration: none;
+  cursor: pointer;
+  border: 0;
+  background: transparent url(controls.svg) no-repeat;
+
+  /* :focus for accessibility */
+  &:focus {
+    outline: solid 1px yellow;
+  }
+}
+/* SourceChooser Button */
+.mejs-sourcechooser-button button {
+    background-position: -128px 0;
+}
+
+
+.no-svg .mejs-controls .mejs-button button {
+  background-image: url(controls.png);
+}
+
+// Backlight Buttons
+// ------------------------
+.mejs-backlight-off button {
+  background-position: -80px -16px;
+}
+.mejs-backlight-on button {
+  background-position: -80px 0;
+}
+
+// Mute/Volume Buttons
+// -----------------------------------
+
+.mejs-mute button {
+  background-position: -16px -16px;
+}
+
+.mejs-unmute button {
+  background-position: -16px 0;
+}
+
+.mejs-volume-button {
+  position: relative;
+
+  &:hover {
+    -webkit-border-radius: 0 0 4px 4px;
+    -moz-border-radius: 0 0 4px 4px;
+    border-radius: 0 0 4px 4px;
+  }
+
+  button {
+    font-size: 16px;
+    background: transparent;
+    color: $white;
+
+    &::after {
+      font-size: 16;
+      padding-left: 0.02em;
+      font-family: $font-family-icons !important;
+      font-style: normal !important;
+      font-weight: normal !important;
+      text-decoration: inherit;
+      -webkit-font-smoothing: antialiased;
+      speak: none;
+      display: inline-block;
+      width: 1em;
+      margin-right: 0.2em;
+      text-align: center;
+      font-variant: normal !important;
+      text-transform: none !important;
+      line-height: 1em;
+    }
+  }
+}
+
+/* Stop */
+.mejs-stop button {
+  background-position: -112px 0;
+}
+
+/* Start: Play/pause */
+.mejs-play button {
+  background-position: 0 0;
+}
+.mejs-pause button {
+  background-position: 0 -16px;
+}
+
+.no-svg .mejs-overlay-button {
+  background-image: url(../img/bigplay.png);
+}
+
+// Fullscreen Buttons
+// -----------------------------------
+.mejs-fullscreen-button button {
+  background-position: -32px 0;
+}
+.mejs-unfullscreen button {
+  background-position: -32px -16px;
+}
+
+// Loop Buttons
+// -----------------------------------
+.mejs-loop-off button {
+  background-position: -64px -16px;
+}
+.mejs-loop-on button {
+  background-position: -64px 0;
+}
+
+// Bar of progress
+// -------------------------------------------------
+
+// Call animation for the active one
+.mejs-time-buffering {
+  @include animation(progress-bar-stripes 2s linear infinite);
+  @include gradient-striped();
+  @include background-size($bg-width, $bg-height);
+  /*
+    -webkit-background-size: 15px 15px;
+    -moz-background-size: 15px 15px;
+    -o-background-size: 15px 15px;
+    background-size: 15px 15px;
+  */
+}
+@-webkit-keyframes buffering-stripes { from {background-position: 0 0;} to {background-position: 30px 0;} }
+@-moz-keyframes buffering-stripes { from {background-position: 0 0;} to {background-position: 30px 0;} }
+@-ms-keyframes buffering-stripes { from {background-position: 0 0;} to {background-position: 30px 0;} }
+@-o-keyframes buffering-stripes { from {background-position: 0 0;} to {background-position: 30px 0;} }
+@keyframes buffering-stripes { from {background-position: 0 0;} to {background-position: 30px 0;} }
+
+.mejs-time-rail {
+  width: 200px;
+  padding-top: 5px;
+
+  span {
+    display: block;
+    position: absolute;
+    width: 180px;
+    height: 10px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    cursor: pointer;
+  }
+  .mejs-time-total {
+    margin: 5px;
+    background: #333;
+    background: rgba(50,50,50,0.8);
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(30,30,30,0.8)), to(rgba(60,60,60,0.8)));
+    background: -webkit-linear-gradient(top, rgba(30,30,30,0.8), rgba(60,60,60,0.8));
+    background: -moz-linear-gradient(top, rgba(30,30,30,0.8), rgba(60,60,60,0.8));
+    background: -o-linear-gradient(top, rgba(30,30,30,0.8), rgba(60,60,60,0.8));
+    background: -ms-linear-gradient(top, rgba(30,30,30,0.8), rgba(60,60,60,0.8));
+    background: linear-gradient(rgba(30,30,30,0.8), rgba(60,60,60,0.8));
+    .mejs-time-loaded {
+      background: #11B5DB;
+      background: -moz-linear-gradient(top, #11B5DB 0%, #589CEF 100%);
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#11B5DB), color-stop(100%,#589CEF));
+      background: -webkit-linear-gradient(top, #11B5DB 0%,#589CEF 100%);
+      background: -o-linear-gradient(top, #11B5DB 0%,#589CEF 100%);
+      background: -ms-linear-gradient(top, #11B5DB 0%,#589CEF 100%);
+      background: linear-gradient(to bottom, #11B5DB 0%,#589CEF 100%);
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc4383db', endColorstr='#cc589cef',GradientType=0 );
+    }
+  }
+  .mejs-time-buffering {
+    width: 100%;
+  }
+  .mejs-time-loaded {
+    background: #3caac8;
+    background: rgba(60,170,200,0.8);
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(44,124,145,0.8)), to(rgba(78,183,212,0.8)));
+    background: -webkit-linear-gradient(top, rgba(44,124,145,0.8), rgba(78,183,212,0.8));
+    background: -moz-linear-gradient(top, rgba(44,124,145,0.8), rgba(78,183,212,0.8));
+    background: -o-linear-gradient(top, rgba(44,124,145,0.8), rgba(78,183,212,0.8));
+    background: -ms-linear-gradient(top, rgba(44,124,145,0.8), rgba(78,183,212,0.8));
+    background: linear-gradient(rgba(44,124,145,0.8), rgba(78,183,212,0.8));
+    width: 0;
+  }
+  .mejs-time-current {
+    width: 0;
+    background: #fff;
+    background: rgba(255,255,255,0.8);
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(255,255,255,0.9)), to(rgba(200,200,200,0.8)));
+    background: -webkit-linear-gradient(top, rgba(255,255,255,0.9), rgba(200,200,200,0.8));
+    background: -moz-linear-gradient(top, rgba(255,255,255,0.9), rgba(200,200,200,0.8));
+    background: -o-linear-gradient(top, rgba(255,255,255,0.9), rgba(200,200,200,0.8));
+    background: -ms-linear-gradient(top, rgba(255,255,255,0.9), rgba(200,200,200,0.8));
+    background: linear-gradient(rgba(255,255,255,0.9), rgba(200,200,200,0.8));
+  }
+  .mejs-time-handle {
+    display: none;
+    position: absolute;
+    margin: 0;
+    width: 10px;
+    background: #fff;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: solid 2px $gray-dark;
+    top: -2px;
+    text-align: center;
+  }
+  .mejs-time-float {
+    position: absolute;
+    display: none;
+    background: #eee;
+    width: 36px;
+    height: 17px;
+    border: solid 1px $gray-dark;
+    top: -26px;
+    margin-left: -18px;
+    text-align: center;
+    color: #111;
+  }
+  .mejs-time-float-current {
+    margin: 2px;
+    width: 30px;
+    display: block;
+    text-align: center;
+    left: 0;
+  }
+  .mejs-time-float-corner {
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    line-height: 0;
+    border: solid 5px $gray-lighter;
+    border-color: $gray-lighter transparent transparent transparent;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    top: 15px;
+    left: 13px;
+  }
+  .mejs-time-float {
+    width: 48px;
+  }
+  .mejs-time-float-current {
+    width: 44px;
+  }
+  .mejs-time-float-corner {
+    left: 18px;
+  }
+}
+
+// TRACK (Captions and Chapters)
+// -----------------------------------
+.mejs-captions-button {
+  position: relative;
+  button {
+    background-position: -48px 0;
+  }
+
+  .mejs-captions-translations {
+    font-size: 10px;
+    margin: 0 0 5px 0;
+  }
+  .mejs-captions-selector {
+      visibility: hidden;
+      position: absolute;
+      bottom: 26px;
+      right: -10px;
+      width: 130px;
+      height: 100px;
+      background: url(background.png);
+      background: rgba(50,50,50,0.7);
+      border: solid 1px transparent;
+      padding: 10px;
+      overflow: hidden;
+      -webkit-border-radius: 0;
+      -moz-border-radius: 0;
+      border-radius: 0;
+
+    ul {
+      margin: 0;
+      padding: 0;
+      display: block;
+      list-style-type: none !important;
+      overflow: hidden;
+      li {
+        margin: 0 0 6px 0;
+        padding: 0;
+        list-style-type: none !important;
+        display: block;
+        color: $white;
+        overflow: hidden;
+        input {
+          clear: both;
+          float: left;
+          margin: 3px 3px 0 5px;
+        }
+        label {
+          width: 100px;
+          float: left;
+          padding: 4px 0 0 0;
+          line-height: 15px;
+          font-family: $font-family-base;
+          font-size: 10px;
+        }
+      }
+    }
+  }
+}
+
+.mejs-chapters {
+  position: absolute;
+  top: 0;
+  left: 0;
+  -xborder-right: solid 1px $white;
+  width: 10000px;
+  z-index: 1;
+
+  .mejs-chapter {
+    position: absolute;
+    float: left;
+    background: $gray-darker;
+    background: rgba(0, 0, 0, 0.7);
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(50,50,50,0.7)), to(rgba(0,0,0,0.7)));
+    background: -webkit-linear-gradient(top, rgba(50,50,50,0.7), rgba(0,0,0,0.7));
+    background: -moz-linear-gradient(top, rgba(50,50,50,0.7), rgba(0,0,0,0.7));
+    background: -o-linear-gradient(top, rgba(50,50,50,0.7), rgba(0,0,0,0.7));
+    background: -ms-linear-gradient(top, rgba(50,50,50,0.7), rgba(0,0,0,0.7));
+    background: linear-gradient(rgba(50,50,50,0.7), rgba(0,0,0,0.7));
+    filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, startColorstr=#323232,endColorstr=#000000);
+    overflow: hidden;
+    border: 0;
+
+    .mejs-chapter-block {
+      font-size: 11px;
+      color: $white;
+      padding: 5px;
+      display: block;
+      border-right: solid 1px #333;
+      border-bottom: solid 1px #333;
+      cursor: pointer;
+      &:hover {
+        background: #666;
+        background: rgba(102,102,102, 0.7);
+        background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(102,102,102,0.7)), to(rgba(50,50,50,0.6)));
+        background: -webkit-linear-gradient(top, rgba(102,102,102,0.7), rgba(50,50,50,0.6));
+        background: -moz-linear-gradient(top, rgba(102,102,102,0.7), rgba(50,50,50,0.6));
+        background: -o-linear-gradient(top, rgba(102,102,102,0.7), rgba(50,50,50,0.6));
+        background: -ms-linear-gradient(top, rgba(102,102,102,0.7), rgba(50,50,50,0.6));
+        background: linear-gradient(rgba(102,102,102,0.7), rgba(50,50,50,0.6));
+        filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, startColorstr=#666666,endColorstr=#323232);
+      }
+      .ch-title {
+        font-size: 12px;
+        font-weight: bold;
+        display: block;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        margin: 0 0 3px 0;
+        line-height: 12px;
+      }
+      .ch-timespan {
+        font-size: 12px;
+        line-height: 12px;
+        margin: 3px 0 4px 0;
+        display: block;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+    }
+    .mejs-chapter-block-last {
+      border-right: none;
+    }
+  }
+}
+
+.mejs-captions-layer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  text-align:center;
+  /*font-weight: bold;*/
+  line-height: 22px;
+  font-size: 12px;
+  color: $white;
+  a {
+    color: $white;
+    text-decoration: underline;
+  }
+  &[lang=ar] {
+    font-size: 20px;
+    font-weight: normal;
+  }
+}
+
+.mejs-captions-position {
+  position: absolute;
+  width: 100%;
+  bottom: 15px;
+  left: 0;
+}
+
+.mejs-captions-position-hover {
+  bottom: 45px;
+}
+
+.mejs-captions-text {
+  padding: 3px 5px;
+  background: url(background.png);
+  background: rgba(20, 20, 20, 0.8);
+
+}
+
+// Error
+// ----------
+.me-cannotplay {
+  a {
+    color: $white;
+    font-weight: bold;
+  }
+  span {
+    padding: 15px;
+    display: block;
+  }
+}
+
+.mejs-clear {
+  clear: both;
+}
+
+// Video
+// ------------------------
+
+.podlovewebplayer_video {
+  .podlovewebplayer_meta {
+    min-height: 40px;
+    height: auto;
+    padding-top: 30px;
+    padding-bottom: 45px;
+    margin-bottom: 0px !important;
+    -webkit-border-top-left-radius: 0px;
+    -webkit-border-top-right-radius: 0px;
+    -moz-border-radius-topleft: 0px;
+    -moz-border-radius-topright: 0px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    .subtitle {
+      font-size: 13px;
+      float: none;
+      margin-right: 20px;
+      margin-left: 20px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+    .episodetitle {
+      text-align: left;
+      padding-left: 20px;
+    }
+  }
+  .mejs-controls {
+    bottom: -30px;
+    z-index: 78;
+    background: initial;
+  }
+  .mejs-poster.mejs-layer img {
+    width: 100%;
+    height: 100%;
+  }
+  .mejs-overlay-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100px;
+    height: 100px;
+    margin: -50px 0 0 -50px;
+    background: url(bigplay.svg) no-repeat;
+  }
+}
+
+.podlovewebplayer_video.podlovewebplayer_wrapper {
+  margin-left: auto;
+  margin-right: auto;
+  .mejs-container div.mejs-poster.mejs-layer {
+    display: none !important;
+  }
+}
