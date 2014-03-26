@@ -5,54 +5,55 @@
 // Global values
 // --------------------------------------------------
 
-$white:                  #fff;
-$black:                  #000;
+$white:                   #fff;
+$black:                   #000;
 
 // Grays
 // -------------------------
 
-$gray-darker:            lighten(#000, 13.5%) !default; // #222
-$gray-dark:              lighten(#000, 20%) !default;   // #333
-$gray:                   lighten(#000, 33.5%) !default; // #555
-$gray-light:             lighten(#000, 60%) !default;   // #999
-$gray-lighter:           lighten(#000, 93.5%) !default; // #eee
+$gray-darker:             lighten(#000, 13.5%) !default; // #222
+$gray-dark:               lighten(#000, 20%) !default;   // #333
+$gray:                    lighten(#000, 33.5%) !default; // #555
+$gray-light:              lighten(#000, 60%) !default;   // #999
+$gray-lighter:            lighten(#000, 93.5%) !default; // #eee
 
 // Brand colors
 // -------------------------
 
-$brand-primary:         #428bca !default;
-$brand-success:         #5cb85c !default;
-$brand-warning:         #f0ad4e !default;
-$brand-danger:          #d9534f !default;
-$brand-info:            #5bc0de !default;
+$brand-primary:           #3e5634 !default;
+$brand-info:              #506680 !default;
+$brand-success:           #5cb85c !default;
+$brand-warning:           #f0ad4e !default;
+$brand-danger:            #d9534f !default;
 
 // Scaffolding
 // -------------------------
 
-$body-bg:               $white !default;
-$text-color:            $gray-dark !default;
+$body-bg:                 $white !default;
+$text-color:              $gray-dark !default;
 
 // Links
 // -------------------------
 
-$link-color:            $brand-primary !default;
-$link-hover-color:      lighten($link-color, 15%) !default;
+$link-color:              $brand-primary !default;
+$link-hover-color:        lighten($link-color, 15%) !default;
 
 // Typography
 // -------------------------
 
 $font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif !default;
-//$font-family-serif:       Georgia, "Times New Roman", Times, serif !default;
-//$font-family-monospace:   Monaco, Menlo, Consolas, "Courier New", monospace !default;
+$font-family-serif:       Georgia, "Times New Roman", Times, serif !default;
+$font-family-monospace:   Monaco, Menlo, Consolas, "Courier New", monospace !default;
 $font-family-base:        $font-family-sans-serif !default;
+$font-family-icons:       "pwpfont";
 
 $font-size-base:          13px !default;
 $font-size-large:         ceil($font-size-base * 1.25) !default; // ~18px
 $font-size-small:         ceil($font-size-base * 0.85) !default; // ~12px
 
 $font-size-h1:            floor($font-size-base * 2.6) !default; // ~36px
-$font-size-h2:            floor($font-size-base * 2.15) !default; // ~30px
-$font-size-h3:            ceil($font-size-base * 1.7) !default; // ~24px
+$font-size-h2:            floor($font-size-base * 2.15) !default;
+$font-size-h3:            ceil($font-size-base * 1.25) !default; // ~16px
 $font-size-h4:            ceil($font-size-base * 1.25) !default; // ~18px
 $font-size-h5:            $font-size-base !default;
 $font-size-h6:            ceil($font-size-base * 0.85) !default; // ~12px

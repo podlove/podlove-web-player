@@ -82,3 +82,40 @@
 .pwp-icon-wrench-1:before { content: "\e802"; } /* '' */
 .pwp-icon-wrench:before { content: "\1f527"; } /* '🔧' */
 .pwp-icon-clock:before { content: "\1f554"; } /* '🕔' */
+
+.togglers {
+  .pwp-icon-info-circle:before {content: "\e705";}
+  .pwp-icon-list-bullet:before {content: "\f0ca";}
+  .pwp-icon-clock:before {content: "\1f554";} // 🕔
+  .pwp-icon-export:before {content: "\e715";}
+  .pwp-icon-download:before {content: "\1f4e5";} // 📥
+}
+
+.podlovewebplayer_wrapper .mejs-button.mejs-volume-button.mejs-unmute button::after {content: "\1f507"; } // 🔇
+.podlovewebplayer_wrapper .mejs-button.mejs-volume-button.mejs-mute button::after {content: "\1f50a"; } // 🔊
+.podlovewebplayer_wrapper .podlovewebplayer_chapterbox .chaptername a::after {content: "\f08e";}
+
+[class^="pwp-icon-"]:before,
+[class*=" pwp-icon-"]:before {
+  font-family: $font-family-icons;
+  font-style: normal !important;
+  font-weight: normal !important;
+  text-decoration: inherit;
+  -webkit-font-smoothing: antialiased;
+  speak: none;
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: 0.2em;
+  text-align: center;
+
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal !important;
+  text-transform: none !important;
+
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+
+  /* Animation center compensation - margins should be symmetric */
+  margin-left: 0.2em;
+}

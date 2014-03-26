@@ -29,22 +29,3 @@
   from  { background-position: 30px 0; }
   to    { background-position: 0 0; }
 }
-
-
-// Bar of progress
-
-
-
-// Call animation for the active one
-.mejs-time-buffering {
-  @include animation(progress-bar-stripes 2s linear infinite);
-  @include gradient-striped();
-  @include background-size($bg-width, $bg-height);
-/*
-  -webkit-background-size: 15px 15px;
-  -moz-background-size: 15px 15px;
-  -o-background-size: 15px 15px;
-  background-size: 15px 15px;
-*/
-}
-
