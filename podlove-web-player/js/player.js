@@ -447,7 +447,7 @@ var startAtTime = false,
         sources: []
       }, options);
     // turn each player in the current set into a Podlove Web Player
-    return this.each(function (index, player) {
+    var pwps = this.each(function (index, player) {
       var richplayer = false,
         haschapters = false,
         hiddenTab = false,
@@ -717,6 +717,8 @@ var startAtTime = false,
       $(orig).replaceWith(wrapper);
       $(player).mediaelementplayer(mejsoptions);
     });
+    embed.init($, players);
+    return pwps;
   };
 
   /**

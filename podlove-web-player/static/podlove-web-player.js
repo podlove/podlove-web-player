@@ -1,5 +1,7 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-var tc = require('./timecode');
+var tc = require('./timecode')
+  , url = require('./url')
+  ;
 
 /**
  * chapter handling
@@ -25,7 +27,7 @@ module.exports = {
         isBuffered = player.buffered.end(0) > startTime;
       }
       if (isActive) {
-        chapterimg = $.url.validate(mark.data('img'));
+        chapterimg = url.validate(mark.data('img'));
         if ((chapterimg !== null) && (mark.hasClass('active'))) {
           if ((coverImg.attr('src') !== chapterimg) && (chapterimg.length > 5)) {
             coverImg.attr('src', chapterimg);
@@ -196,7 +198,7 @@ function prepareRowData(chapterData) {
   });
 }
 
-},{"./timecode":5}],2:[function(require,module,exports){
+},{"./timecode":5,"./url":6}],2:[function(require,module,exports){
 /**
  * cookiehandling
  * FIXME: replace with jQuery.cookie
@@ -243,20 +245,17 @@ module.exports = {
 },{}],3:[function(require,module,exports){
 // everything for an embedded player
 var
-  players = require('./player').players,
+  players = [],
   lastHeight = 0,
   $body;
 
-function init($) {
+function init($, playerList) {
+  players = playerList;
   $body = $(document.body);
   $(window).on('message', messageListener);
   pollHeight();
 }
 
-function postToOpener(obj) {
-  console.debug('postToOpener', obj);
-  window.parent.postMessage(obj, '*');
-}
 
 function messageListener (event) {
   var orig = event.originalEvent;
@@ -266,6 +265,11 @@ function messageListener (event) {
       player.pause();
     });
   }
+}
+
+function postToOpener(obj) {
+  console.debug('postToOpener', obj);
+  window.parent.postMessage(obj, '*');
 }
 
 function pollHeight() {
@@ -286,7 +290,7 @@ module.exports = {
   init: init
 };
 
-},{"./player":4}],4:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 /**
  * player
  */
@@ -736,7 +740,7 @@ var startAtTime = false,
         sources: []
       }, options);
     // turn each player in the current set into a Podlove Web Player
-    return this.each(function (index, player) {
+    var pwps = this.each(function (index, player) {
       var richplayer = false,
         haschapters = false,
         hiddenTab = false,
@@ -1006,6 +1010,8 @@ var startAtTime = false,
       $(orig).replaceWith(wrapper);
       $(player).mediaelementplayer(mejsoptions);
     });
+    embed.init($, players);
+    return pwps;
   };
 
   /**
@@ -1194,7 +1200,6 @@ $.cookieHandler = require('./js/cookie');
 $.chapters = require('./js/chapter');
 
 var embed = require('./js/embed');
-embed.init($);
 
 var pwp = {
   tc: require('./js/timecode'),

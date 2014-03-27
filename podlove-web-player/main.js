@@ -13,7 +13,6 @@ $.cookieHandler = require('./js/cookie');
 $.chapters = require('./js/chapter');
 
 var embed = require('./js/embed');
-embed.init($);
 
 var pwp = {
   tc: require('./js/timecode'),
