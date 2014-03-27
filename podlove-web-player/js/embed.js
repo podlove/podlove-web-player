@@ -1,10 +1,11 @@
 // everything for an embedded player
 var
-  players = require('./player').players,
+  players = [],
   lastHeight = 0,
   $body;
 
-function init($) {
+function init($, playerList) {
+  players = playerList;
   $body = $(document.body);
   $(window).on('message', messageListener);
   pollHeight();
