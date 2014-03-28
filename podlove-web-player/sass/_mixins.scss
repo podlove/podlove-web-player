@@ -33,6 +33,14 @@
   margin-right: auto;
 }
 
+// Box sizing
+@mixin box-sizing($boxmodel) {
+  -webkit-box-sizing: $boxmodel;
+  -moz-box-sizing: $boxmodel;
+  box-sizing: $boxmodel;
+}
+
+
 // Sizing shortcuts
 @mixin size($width, $height) {
   width: $width;
@@ -97,26 +105,6 @@
   animation: $animation;
 }
 
-// Vertical gradient, from top to bottom
-//
-// Creates two color stops, start and end, by specifying a color and position for each color stop.
-// Color stops are not available in IE9 and below.
-@mixin gradient-vertical($start-color: #333, $end-color: #000, $start-percent: 0%, $end-percent: 100%) {
-  background-image: -webkit-gradient(linear, left $start-percent, left $end-percent, from($start-color), to($end-color)); // Safari 4+, Chrome 2+
-  background-image: -webkit-linear-gradient(top, $start-color $start-percent, $end-color $end-percent); // Safari 5.1+, Chrome 10+
-  background-image:  -moz-linear-gradient(top, $start-color $start-percent, $end-color $end-percent); // FF 3.6+
-  background-image: linear-gradient(to bottom, $start-color $start-percent, $end-color $end-percent); // Standard, IE10
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str($start-color)}', endColorstr='#{ie-hex-str($end-color)}', GradientType=0); // IE9 and down
-}
-
-@mixin gradient-striped($color: rgba(255,255,255,.15), $angle: -45deg) {
-  background-image: -webkit-gradient(linear, 0 100%, 100% 0, color-stop(.25, $color), color-stop(.25, transparent), color-stop(.5, transparent), color-stop(.5, $color), color-stop(.75, $color), color-stop(.75, transparent), to(transparent));
-  background-image: -webkit-linear-gradient($angle, $color 25%, transparent 25%, transparent 50%, $color 50%, $color 75%, transparent 75%, transparent);
-  background-image: -moz-linear-gradient($angle, $color 25%, transparent 25%, transparent 50%, $color 50%, $color 75%, transparent 75%, transparent);
-  background-image: -o-linear-gradient($angle, $color 25%, transparent 25%, transparent 50%, $color 50%, $color 75%, transparent 75%, transparent);
-  background-image: linear-gradient($angle, $color 25%, transparent 25%, transparent 50%, $color 50%, $color 75%, transparent 75%, transparent);
-}
 
 // Background Size
 
