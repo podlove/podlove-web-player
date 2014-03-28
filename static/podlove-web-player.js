@@ -199,44 +199,22 @@ function prepareRowData(chapterData) {
 
 },{"./timecode":5,"./url":6}],2:[function(require,module,exports){
 /**
- * cookiehandling
- * FIXME: replace with jQuery.cookie
+ * Saving the playtime
  */
+var prefix = 'podlove-web-player-playtime-';
+
 module.exports = {
-    getItem: function (sKey) {
-      return decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*" + encodeURIComponent(sKey).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1")) || null;
+    getItem: function (permalink) {
+      return +localStorage[prefix+permalink];
     },
-    setItem: function (sKey, sValue, vEnd, sPath, sDomain, bSecure) {
-      if (!sKey || /^(?:expires|max\-age|path|domain|secure)$/i.test(sKey)) { return false; }
-      var sExpires = "";
-      if (vEnd) {
-        switch (vEnd.constructor) {
-          case Number:
-            sExpires = vEnd === Infinity ? "; expires=Fri, 31 Dec 9999 23:59:59 GMT" : "; max-age=" + vEnd;
-            break;
-          case String:
-            sExpires = "; expires=" + vEnd;
-            break;
-          case Date:
-            sExpires = "; expires=" + vEnd.toUTCString();
-            break;
-        }
-      }
-      document.cookie = encodeURIComponent(sKey) + "=" + encodeURIComponent(sValue) + sExpires + (sDomain ? "; domain=" + sDomain : "") + (sPath ? "; path=" + sPath : "") + (bSecure ? "; secure" : "");
-      return true;
+    setItem: function (permalink, value) {
+      return localStorage[prefix+permalink] = value;
     },
-    removeItem: function (sKey, sPath, sDomain) {
-      if (!sKey || !this.hasItem(sKey)) { return false; }
-      document.cookie = encodeURIComponent(sKey) + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT" + ( sDomain ? "; domain=" + sDomain : "") + ( sPath ? "; path=" + sPath : "");
-      return true;
+    removeItem: function (permalink) {
+      return localStorage.removeItem(prefix+permalink);
     },
-    hasItem: function (sKey) {
-      return (new RegExp("(?:^|;\\s*)" + encodeURIComponent(sKey).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=")).test(document.cookie);
-    },
-    keys: /* optional method: you can safely remove it! */ function () {
-      var aKeys = document.cookie.replace(/((?:^|\s*;)[^\=]+)(?=;|$)|^\s*|\s*(?:\=[^;]*)?(?:\1|$)/g, "").split(/\s*(?:\=[^;]*)?;\s*/);
-      for (var nIdx = 0; nIdx < aKeys.length; nIdx++) { aKeys[nIdx] = decodeURIComponent(aKeys[nIdx]); }
-      return aKeys;
+    hasItem: function (permalink) {
+      return (prefix+permalink) in localStorage;
     }
 };
 
@@ -657,8 +635,8 @@ var startAtTime = false,
               window.location.replace('#t=' + generateTimecode([player.currentTime, false]));
             }
             console.debug(player.currentTime);
-            handleCookies.setItem('podloveWebPlayerTime-' + params.permalink, player.currentTime);
-          }, 5000);
+            handleCookies.setItem(params.permalink, player.currentTime);
+          }, 50);
         }
         list.find('.paused').removeClass('paused');
         if (metainfo.length === 1) {
@@ -953,7 +931,7 @@ var startAtTime = false,
         stopAtTime = deepLink[1];
       } else if (params && params.permalink) {
         console.debug(params);
-        storageKey = 'podloveWebPlayerTime-' + params.permalink;
+        storageKey = params.permalink;
         if (handleCookies.getItem(storageKey)) {
           $(player).one('canplay', function () {
             var time = handleCookies.getItem(storageKey);
@@ -963,7 +941,7 @@ var startAtTime = false,
         }
       }
       $(player).on('ended', function () {
-        handleCookies.setItem('podloveWebPlayerTime-' + params.permalink, '', new Date(2000, 1, 1));
+        handleCookies.removeItem( params.permalink);
         embed.postToOpener({
           action: 'stop',
           arg: player.currentTime
