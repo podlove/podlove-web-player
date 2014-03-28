@@ -244,11 +244,17 @@ module.exports = {
 },{}],3:[function(require,module,exports){
 // everything for an embedded player
 var
-  players = require('./player').players,
+  players = [],
   lastHeight = 0,
   $body;
 
-function init($) {
+/**
+ * initialize embed functionality
+ * @param {function} $
+ * @param {Array} playerList
+ */
+function init($, playerList) {
+  players = playerList;
   $body = $(document.body);
   $(window).on('message', messageListener);
   pollHeight();
@@ -287,7 +293,7 @@ module.exports = {
   init: init
 };
 
-},{"./player":4}],4:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 /**
  * player
  */
