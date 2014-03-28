@@ -1,5 +1,6 @@
 /*jslint browser: true, plusplus: true, unparam: true, indent: 2 */
 /*global jQuery, console */
+require('./libs/mediaelement/build/mediaelement-and-player.js');
 
 // FIXME put in compat mode module
 if (typeof String.prototype.trim !== 'function') {
@@ -11,7 +12,6 @@ if (typeof String.prototype.trim !== 'function') {
 
 $.cookieHandler = require('./js/cookie');
 $.chapters = require('./js/chapter');
-
 
 var pwp = {
   tc: require('./js/timecode'),
