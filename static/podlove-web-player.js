@@ -244,11 +244,17 @@ module.exports = {
 },{}],3:[function(require,module,exports){
 // everything for an embedded player
 var
-  players = require('./player').players,
+  players = [],
   lastHeight = 0,
   $body;
 
-function init($) {
+/**
+ * initialize embed functionality
+ * @param {function} $
+ * @param {Array} playerList
+ */
+function init($, playerList) {
+  players = playerList;
   $body = $(document.body);
   $(window).on('message', messageListener);
   pollHeight();
@@ -287,7 +293,7 @@ module.exports = {
   init: init
 };
 
-},{"./player":4}],4:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 /**
  * player
  */
@@ -534,26 +540,6 @@ var startAtTime = false,
        * share buttons
        */
 
-      wrapper.find('.tweetbutton').click(function () {
-        window.open('https://twitter.com/share?text=' + encodeURIComponent($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text()) + '&url=' + encodeURIComponent($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href')), 'tweet it', 'width=550,height=420,resizable=yes');
-        return false;
-      });
-      wrapper.find('.fbsharebutton').click(function () {
-        window.open('http://www.facebook.com/share.php?t=' + encodeURIComponent($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text()) + '&u=' + encodeURIComponent($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href')), 'share it', 'width=550,height=340,resizable=yes');
-        return false;
-      });
-      wrapper.find('.gplusbutton').click(function () {
-        window.open('https://plus.google.com/share?title=' + encodeURIComponent($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text()) + '&url=' + encodeURIComponent($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href')), 'plus it', 'width=550,height=420,resizable=yes');
-        return false;
-      });
-      wrapper.find('.adnbutton').click(function () {
-        window.open('https://alpha.app.net/intent/post?text=' + encodeURIComponent($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text()) + '%20' + encodeURIComponent($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href')), 'plus it', 'width=550,height=420,resizable=yes');
-        return false;
-      });
-      wrapper.find('.mailbutton').click(function () {
-        window.location = 'mailto:?subject=' + encodeURIComponent($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text()) + '&body=' + encodeURIComponent($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').text()) + '%20%3C' + encodeURIComponent($(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href')) + '%3E';
-        return false;
-      });
       wrapper.find('.fileselect').change(function () {
         var dlurl, dlname;
         $(this).parent().find(".fileselect option:selected").each(function () {
@@ -891,10 +877,6 @@ var startAtTime = false,
       if (params.timecontrolsVisible === true) {
         timecontrolsActive = " active";
       }
-      sharebuttonsActive = "";
-      if (params.sharebuttonsVisible === true) {
-        sharebuttonsActive = " active";
-      }
       downloadbuttonsActive = "";
       if (params.downloadbuttonsVisible === true) {
         downloadbuttonsActive = " active";
@@ -910,16 +892,8 @@ var startAtTime = false,
       timeControlElement.append('<a href="#" class="rewindbutton infobuttons pwp-icon-fast-bw" title="Rewind 30 seconds"></a>')
       timeControlElement.append('<a href="#" class="forwardbutton infobuttons pwp-icon-fast-fw" title="Fast forward 30 seconds"></a>');
 
-      var shareButtonsElement = wrapper.find('.podlovewebplayer_sharebuttons');
       if ((wrapper.closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href') !== undefined) && (params.hidesharebutton !== true)) {
-        wrapper.append('<div class="podlovewebplayer_sharebuttons podlovewebplayer_controlbox' + sharebuttonsActive + '"></div>');
-        wrapper.find('.togglers').append('<a href="#" class="showsharebuttons infobuttons pwp-icon-export" title="Show/hide sharing controls"></a>');
-        shareButtonsElement.append('<a href="#" class="currentbutton infobuttons pwp-icon-link" title="Get URL for this"></a>');
-        shareButtonsElement.append('<a href="#" target="_blank" class="tweetbutton infobuttons pwp-icon-twitter" title="Share this on Twitter"></a>');
-        shareButtonsElement.append('<a href="#" target="_blank" class="fbsharebutton infobuttons pwp-icon-facebook" title="Share this on Facebook"></a>');
-        shareButtonsElement.append('<a href="#" target="_blank" class="gplusbutton infobuttons pwp-icon-gplus" title="Share this on Google+"></a>');
-        shareButtonsElement.append('<a href="#" target="_blank" class="adnbutton infobuttons pwp-icon-appnet" title="Share this on App.net"></a>');
-        shareButtonsElement.append('<a href="#" target="_blank" class="mailbutton infobuttons pwp-icon-mail" title="Share this via e-mail"></a>');
+        createShareButtons(wrapper, !!params.sharebuttonsVisible);
       }
       if (((params.downloads !== undefined) || (params.sources !== undefined)) && (params.hidedownloadbutton !== true)) {
         selectform = '<select name="downloads" class="fileselect" size="1" onchange="this.value=this.options[this.selectedIndex].value;">';
@@ -1025,6 +999,71 @@ var startAtTime = false,
       sourceList.first().remove();
     }
   }
+
+function createShowShareButton(wrapper) {
+  wrapper.find('.togglers').append(
+    '<a href="#" class="showsharebuttons infobuttons pwp-icon-export" title="Show/hide sharing controls"></a>'
+  );
+}
+function createShareButtonControlBox(shareButtonsActive) {
+  var classes = ["podlovewebplayer_sharebuttons", "podlovewebplayer_controlbox"];
+  if (shareButtonsActive) {
+    classes.push("active");
+  }
+  return $('<div class="' + classes.join(' ') + '"></div>');
+}
+/**
+ *
+ * @param {object} wrapper
+ * @param {boolean} shareButtonsActive
+ */
+function createShareButtons(wrapper, shareButtonsActive) {
+  var shareButtonsControlBox = createShareButtonControlBox(shareButtonsActive);
+  var episodeTitle = encodeURIComponent(wrapper.find('.episodetitle a').text());
+  var episodeUrl = encodeURIComponent(wrapper.find('.episodetitle a').attr('href'));
+  var windowFeatures = 'width=550,height=420,resizable=yes';
+  wrapper.append(shareButtonsControlBox);
+
+  var currentButton = $('<a href="#" class="currentbutton infobuttons pwp-icon-link" title="Get URL for this"></a>');
+  shareButtonsControlBox.append(currentButton);
+
+  var tweetButton = $('<a href="#" target="_blank" class="infobuttons pwp-icon-twitter" title="Share this on Twitter"></a>');
+  shareButtonsControlBox.append(tweetButton);
+  tweetButton.click(function () {
+    window.open('https://twitter.com/share?text=' + episodeTitle + '&url=' + episodeUrl, 'tweet it', windowFeatures);
+    return false;
+  });
+
+  var fbButton = $('<a href="#" target="_blank" class="infobuttons pwp-icon-facebook" title="Share this on Facebook"></a>');
+  shareButtonsControlBox.append(fbButton);
+  fbButton.click(function () {
+    window.open('http://www.facebook.com/share.php?t=' + episodeTitle + '&u=' + episodeUrl, 'share it', windowFeatures);
+    return false;
+  });
+
+  var gPlusButton = $('<a href="#" target="_blank" class="infobuttons pwp-icon-gplus" title="Share this on Google+"></a>');
+  shareButtonsControlBox.append(gPlusButton);
+  gPlusButton.click(function () {
+    window.open('https://plus.google.com/share?title=' + episodeTitle + '&url=' + episodeUrl, 'plus it', windowFeatures);
+    return false;
+  });
+
+  var adnButton = $('<a href="#" target="_blank" class="infobuttons pwp-icon-appnet" title="Share this on App.net"></a>');
+  shareButtonsControlBox.append(adnButton);
+  adnButton.click(function () {
+    window.open('https://alpha.app.net/intent/post?text=' + episodeTitle + '%20' + episodeUrl, 'post it', windowFeatures);
+    return false;
+  });
+
+  var mailButton = $('<a href="#" target="_blank" class="infobuttons pwp-icon-mail" title="Share this via e-mail"></a>');
+  shareButtonsControlBox.append(mailButton);
+  mailButton.click(function () {
+    window.location = 'mailto:?subject=' + episodeTitle + '&body=' + episodeTitle + '%20%3C' + episodeUrl + '%3E';
+    return false;
+  });
+
+  createShowShareButton(wrapper);
+}
 
 module.exports = {
   players: players
