@@ -1,5 +1,6 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-var tc = require('./timecode');
+var tc = require('./timecode'),
+  url = require('./url');
 
 /**
  * chapter handling
@@ -25,7 +26,7 @@ module.exports = {
         isBuffered = player.buffered.end(0) > startTime;
       }
       if (isActive) {
-        chapterimg = $.url.validate(mark.data('img'));
+        chapterimg = url.validate(mark.data('img'));
         if ((chapterimg !== null) && (mark.hasClass('active'))) {
           if ((coverImg.attr('src') !== chapterimg) && (chapterimg.length > 5)) {
             coverImg.attr('src', chapterimg);
@@ -196,7 +197,7 @@ function prepareRowData(chapterData) {
   });
 }
 
-},{"./timecode":5}],2:[function(require,module,exports){
+},{"./timecode":5,"./url":6}],2:[function(require,module,exports){
 /**
  * cookiehandling
  * FIXME: replace with jQuery.cookie
@@ -1193,13 +1194,15 @@ if (typeof String.prototype.trim !== 'function') {
 $.cookieHandler = require('./js/cookie');
 $.chapters = require('./js/chapter');
 
-var embed = require('./js/embed');
-embed.init($);
 
 var pwp = {
   tc: require('./js/timecode'),
   players: require('./js/player').players,
-  embed: embed
+  embed: require('./js/embed')
 };
+
+pwp.embed.init($, pwp.players);
+
+module.exports = pwp;
 
 },{"./js/chapter":1,"./js/cookie":2,"./js/embed":3,"./js/player":4,"./js/timecode":5}]},{},[7])

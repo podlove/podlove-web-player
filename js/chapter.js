@@ -1,4 +1,5 @@
-var tc = require('./timecode');
+var tc = require('./timecode'),
+  url = require('./url');
 
 /**
  * chapter handling
@@ -24,7 +25,7 @@ module.exports = {
         isBuffered = player.buffered.end(0) > startTime;
       }
       if (isActive) {
-        chapterimg = $.url.validate(mark.data('img'));
+        chapterimg = url.validate(mark.data('img'));
         if ((chapterimg !== null) && (mark.hasClass('active'))) {
           if ((coverImg.attr('src') !== chapterimg) && (chapterimg.length > 5)) {
             coverImg.attr('src', chapterimg);

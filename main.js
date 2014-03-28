@@ -12,11 +12,13 @@ if (typeof String.prototype.trim !== 'function') {
 $.cookieHandler = require('./js/cookie');
 $.chapters = require('./js/chapter');
 
-var embed = require('./js/embed');
-embed.init($);
 
 var pwp = {
   tc: require('./js/timecode'),
   players: require('./js/player').players,
-  embed: embed
+  embed: require('./js/embed')
 };
+
+pwp.embed.init($, pwp.players);
+
+module.exports = pwp;
