@@ -1,5 +1,7 @@
 /*jslint browser: true, plusplus: true, unparam: true, indent: 2 */
 /*global jQuery, console */
+'use strict';
+
 require('./libs/mediaelement/build/mediaelement-and-player.js');
 
 // FIXME put in compat mode module
@@ -10,15 +12,13 @@ if (typeof String.prototype.trim !== 'function') {
   };
 }
 
-$.cookieHandler = require('./js/cookie');
-$.chapters = require('./js/chapter');
-
 var pwp = {
   tc: require('./js/timecode'),
   players: require('./js/player').players,
   embed: require('./js/embed')
 };
 
-pwp.embed.init($, pwp.players);
+//FIXME without embed animations are fluent
+//pwp.embed.init($, pwp.players);
 
 module.exports = pwp;
