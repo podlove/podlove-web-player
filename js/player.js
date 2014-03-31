@@ -10,6 +10,7 @@ var startAtTime = false,
   ignoreHashChange = false,
 // all used functions
   embed = require('./embed'),
+  tabs = require('./tabs'),
   generateTimecode = require('./timecode').generate,
   parseTimecode = require('./timecode').parse,
   handleCookies = require('./cookie'),
@@ -20,8 +21,25 @@ var startAtTime = false,
     stopAtTime = deepLink[1];
   },
   setFragmentURL = require('./url').setFragment,
-  updateChapterMarks = require('./chapter').update,
-  generateChapterTable = require('./chapter').generateTable,
+  share = require('./tabs/share'),
+  downloads = require('./tabs/downloads'),
+  updateChapterMarks = require('./tabs/chapter').update,
+  generateChapterTable = require('./tabs/chapter').generateTable,
+  _playerDefaults = {
+    chapterlinks: 'all',
+    width: '100%',
+    duration: false,
+    chaptersVisible: false,
+    timecontrolsVisible: false,
+    sharebuttonsVisible: false,
+    downloadbuttonsVisible: false,
+    summaryVisible: false,
+    hidetimebutton: false,
+    hidedownloadbutton: false,
+    hidesharebutton: false,
+    sharewholeepisode: false,
+    sources: []
+  },
   checkTime,
   addressCurrentTime,
   addBehavior;
@@ -62,12 +80,7 @@ var startAtTime = false,
     var jqPlayer = $(player),
       layoutedPlayer = jqPlayer,
       canplay = false,
-      metainfo,
-      summary,
-      podlovewebplayer_timecontrol,
-      podlovewebplayer_sharebuttons,
-      podlovewebplayer_downloadbuttons,
-      chapterBox,
+      metaElement,
       list,
       marks;
 
@@ -94,76 +107,13 @@ var startAtTime = false,
       console.log(layoutedPlayer);
     }
     // cache some jQ objects
-    metainfo = wrapper.find('.podlovewebplayer_meta');
-    summary = wrapper.find('.summary');
-    podlovewebplayer_timecontrol = wrapper.find('.podlovewebplayer_timecontrol');
-    podlovewebplayer_sharebuttons = wrapper.find('.podlovewebplayer_sharebuttons');
-    podlovewebplayer_downloadbuttons = wrapper.find('.podlovewebplayer_downloadbuttons');
-    chapterBox = wrapper.find('.podlovewebplayer_chapterbox');
+    metaElement = wrapper.find('.podlovewebplayer_meta');
     list = wrapper.find('table');
     marks = list.find('tr');
     // fix height of summary for better togglability
-    summary.each(function () {
-      var $this = $(this), height = 0;
-      $this.data('height', $this.height() + 10);
-      if ($this.hasClass('active')) {
-        height = $this.find('div.summarydiv').height() + 10;
-      }
-      $this.height(height + 'px');
-    });
 
-    chapterBox.each(function () {
-      var $this = $(this),
-        height = 0,
-        chapterHeight = $this.find('.podlovewebplayer_chapters').height();
-
-      $this.data('height', chapterHeight);
-      if ($this.hasClass('active')) {
-        height = chapterHeight;
-      }
-      $this.height(height + 'px');
-    });
-
-    if (metainfo.length === 1) {
-      metainfo.find('a.infowindow').click(function () {
-        summary.toggleClass('active');
-        if (summary.hasClass('active')) {
-          summary.height(summary.find('div.summarydiv').height() + 10 + 60 + 'px');
-        } else {
-          summary.css('height', '0px');
-        }
-        return false;
-      });
-      metainfo.find('a.showcontrols').on('click', function () {
-        podlovewebplayer_timecontrol.toggleClass('active');
-        if (podlovewebplayer_sharebuttons !== undefined) {
-          if (podlovewebplayer_sharebuttons.hasClass('active')) {
-            podlovewebplayer_sharebuttons.removeClass('active');
-          } else if (podlovewebplayer_downloadbuttons.hasClass('active')) {
-            podlovewebplayer_downloadbuttons.removeClass('active');
-          }
-        }
-        return false;
-      });
-      metainfo.find('a.showsharebuttons').on('click', function () {
-        podlovewebplayer_sharebuttons.toggleClass('active');
-        if (podlovewebplayer_timecontrol.hasClass('active')) {
-          podlovewebplayer_timecontrol.removeClass('active');
-        } else if (podlovewebplayer_downloadbuttons.hasClass('active')) {
-          podlovewebplayer_downloadbuttons.removeClass('active');
-        }
-        return false;
-      });
-      metainfo.find('a.showdownloadbuttons').on('click', function () {
-        podlovewebplayer_downloadbuttons.toggleClass('active');
-        if (podlovewebplayer_timecontrol.hasClass('active')) {
-          podlovewebplayer_timecontrol.removeClass('active');
-        } else if (podlovewebplayer_sharebuttons.hasClass('active')) {
-          podlovewebplayer_sharebuttons.removeClass('active');
-        }
-        return false;
-      });
-      metainfo.find('.bigplay').on('click', function () {
+    if (metaElement.length === 1) {
+      metaElement.find('.bigplay').on('click', function () {
         var $this = $(this);
         if (!$this.hasClass('bigplay')) {
           return false;
@@ -190,85 +140,7 @@ var startAtTime = false,
         }
       });
 
-      wrapper.find('.chaptertoggle').unbind('click').click(function () {
-        var height = 0;
-        chapterBox.toggleClass('active');
-        if (chapterBox.hasClass('active')) {
-          height = parseInt(chapterBox.data('height'), 10) + 2;
-        }
-        chapterBox.height(height + 'px');
-        return false;
-      });
-      wrapper.find('.prevbutton').click(function () {
-        if ((typeof player.currentTime === 'number') && (player.currentTime > 0)) {
-          if (player.currentTime > chapterBox.find('.active').data('start') + 10) {
-            player.setCurrentTime(chapterBox.find('.active').data('start'));
-          } else {
-            player.setCurrentTime(chapterBox.find('.active').prev().data('start'));
-          }
-        } else {
-          player.play();
-        }
-        return false;
-      });
-      wrapper.find('.nextbutton').click(function () {
-        if ((typeof player.currentTime === 'number') && (player.currentTime > 0)) {
-          player.setCurrentTime(chapterBox.find('.active').next().data('start'));
-        } else {
-          player.play();
-        }
-        return false;
-      });
-      wrapper.find('.rewindbutton').click(function () {
-        if ((typeof player.currentTime === 'number') && (player.currentTime > 0)) {
-          player.setCurrentTime(player.currentTime - 30);
-        } else {
-          player.play();
-        }
-        return false;
-      });
-      wrapper.find('.forwardbutton').click(function () {
-        if ((typeof player.currentTime === 'number') && (player.currentTime > 0)) {
-          player.setCurrentTime(player.currentTime + 30);
-        } else {
-          player.play();
-        }
-        return false;
-      });
-      wrapper.find('.currentbutton').click(function () {
-        window.prompt('This URL directly points to this episode', $(this).closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href'));
-        return false;
-      });
 
-      /**
-       * share buttons
-       */
-
-      wrapper.find('.fileselect').change(function () {
-        var dlurl, dlname;
-        $(this).parent().find(".fileselect option:selected").each(function () {
-          dlurl = $(this).data('dlurl');
-        });
-        $(this).parent().find(".downloadbutton").each(function () {
-          dlname = dlurl.split('/');
-          dlname = dlname[dlname.length - 1];
-          $(this).attr('href', dlurl);
-          $(this).attr('download', dlname);
-        });
-        return false;
-      });
-      wrapper.find('.openfilebutton').click(function () {
-        $(this).parent().find(".fileselect option:selected").each(function () {
-          window.open($(this).data('url'), 'Podlove Popup', 'width=550,height=420,resizable=yes');
-        });
-        return false;
-      });
-      wrapper.find('.fileinfobutton').click(function () {
-        $(this).parent().find(".fileselect option:selected").each(function () {
-          window.prompt('file URL:', $(this).val());
-        });
-        return false;
-      });
     }
 
     // chapters list
@@ -365,24 +237,71 @@ var startAtTime = false,
           }, 5000);
         }
         list.find('.paused').removeClass('paused');
-        if (metainfo.length === 1) {
-          metainfo.find('.bigplay').addClass('playing');
+        if (metaElement.length === 1) {
+          metaElement.find('.bigplay').addClass('playing');
         }
       })
       .on('pause', function () {
         window.clearInterval(player.persistingTimer);
         player.persistingTimer = null;
-        if (metainfo.length === 1) {
-          metainfo.find('.bigplay').removeClass('playing');
+        if (metaElement.length === 1) {
+          metaElement.find('.bigplay').removeClass('playing');
         }
         embed.postToOpener({
           action: 'pause',
           arg: player.currentTime
         });
+      })
+      .on('ended', function () {
+        handleCookies.setItem('podloveWebPlayerTime-' + params.permalink, '', new Date(2000, 1, 1));
+        embed.postToOpener({
+          action: 'stop',
+          arg: player.currentTime
+        });
       });
   };
 
-  $.fn.podlovewebplayer = function (options) {
+function renderTitle(text, link) {
+  var titleBegin = '<h3 class="episodetitle">',
+    titleEnd = '</h3>';
+  if (text !== undefined && link !== undefined) {
+    text = '<a href="' + link + '">' + text + '</a>';
+  }
+  return titleBegin + text + titleEnd;
+}
+
+/**
+ * remove 'px' unit, set witdth to 100% for 'auto'
+ * @param {string} width
+ * @returns {string}
+ */
+function normalizeWidth(width) {
+  if (width.toLowerCase() === 'auto') {
+    return '100%';
+  }
+  return width.replace('px', '');
+}
+
+function renderSubTitle(text) {
+  return '<div class="subtitle">' + text + '</div>';
+}
+function renderPoster(poster) {
+  if (!poster) { return ''; }
+  return '<div class="coverart"><img class="coverimg" src="' + poster + '" data-img="' + poster + '" alt="Poster Image"></div>';
+}
+
+function playerStarted(player) {
+  return ((typeof player.currentTime === 'number') && (player.currentTime > 0));
+}
+
+function checkForChapters(params) {
+  return params.chapters && (
+    (typeof params.chapters === 'string' && params.chapters.length > 10) ||
+    (typeof params.chapters === 'object' && params.chapters.length > 1)
+    );
+}
+
+$.fn.podlovewebplayer = function (options) {
     // MEJS options default values
     var mejsoptions = {
         defaultVideoWidth: 480,
@@ -411,46 +330,23 @@ var startAtTime = false,
         silverlightName: 'silverlightmediaelement.xap'
       },
     // Additional parameters default values
-      params = $.extend({}, {
-        chapterlinks: 'all',
-        width: '100%',
-        duration: false,
-        chaptersVisible: false,
-        timecontrolsVisible: false,
-        sharebuttonsVisible: false,
-        downloadbuttonsVisible: false,
-        summaryVisible: false,
-        hidetimebutton: false,
-        hidedownloadbutton: false,
-        hidesharebutton: false,
-        sharewholeepisode: false,
-        sources: []
-      }, options);
+      params = $.extend({}, _playerDefaults, options);
     // turn each player in the current set into a Podlove Web Player
     return this.each(function (index, player) {
-      var richplayer = false,
-        haschapters = false,
-        hiddenTab = false,
-        i = 0,
+      var jqPlayer,
+        richplayer = false,
+        hasChapters = checkForChapters(params),
         secArray,
         orig,
         deepLink,
         wrapper,
         summaryActive,
-        timecontrolsActive,
-        sharebuttonsActive,
-        downloadbuttonsActive,
-        size,
-        name,
-        downloadname,
-        selectform,
+        chapterBox,
+        metaElement = $('<div class="podlovewebplayer_meta"></div>'),
+        togglerElement = $('<div class="togglers"></div>'),
         storageKey;
       //fine tuning params
-      if (params.width.toLowerCase() === 'auto') {
-        params.width = '100%';
-      } else {
-        params.width = params.width.replace('px', '');
-      }
+      params.width = normalizeWidth(params.width);
       //audio params
       if (player.tagName === 'AUDIO') {
         if (params.audioWidth !== undefined) {
@@ -469,6 +365,7 @@ var startAtTime = false,
           mejsoptions.videoWidth = params.width;
           mejsoptions.videoHeight = params.height;
         }
+        // FIXME
         if ($(player).attr('width') !== undefined) {
           params.width = $(player).attr('width');
         }
@@ -490,23 +387,24 @@ var startAtTime = false,
       }
       orig = player;
       player = $(player).clone().wrap('<div class="podlovewebplayer_wrapper" style="width: ' + params.width + '"></div>')[0];
-      wrapper = $(player).parent();
+      jqPlayer = $(player);
+      wrapper = jqPlayer.parent();
       players.push(player);
       //add params from html fallback area and remove them from the DOM-tree
-      $(player).find('[data-pwp]').each(function () {
+      jqPlayer.find('[data-pwp]').each(function () {
         var $this = $(this);
         params[$this.data('pwp')] = $this.html();
         $this.remove();
       });
       //add params from audio and video elements
-      $(player).find('source').each(function () {
+      jqPlayer.find('source').each(function () {
         if (!params.sources) {
           params.sources = [];
         }
         params.sources.push($(this).attr('src'));
       });
       //build rich player with meta data
-      if (params.chapters !== undefined || params.title !== undefined || params.subtitle !== undefined || params.summary !== undefined || params.poster !== undefined || $(player).attr('poster') !== undefined) {
+      if (params.chapters !== undefined || params.title !== undefined || params.subtitle !== undefined || params.summary !== undefined || params.poster !== undefined || jqPlayer.attr('poster') !== undefined) {
         //set status variable
         richplayer = true;
         wrapper.addClass('podlovewebplayer_' + player.tagName.toLowerCase());
@@ -517,162 +415,209 @@ var startAtTime = false,
               mejsoptions.features.splice(i, 1);
             }
           });
-          wrapper.prepend('<div class="podlovewebplayer_meta"></div>');
-          var metaElement = wrapper.find('.podlovewebplayer_meta')
+          wrapper.prepend(metaElement);
           metaElement.prepend('<a class="bigplay" title="Play Episode" href="#"></a>');
-          if (params.poster !== undefined) {
-            metaElement.append('<div class="coverart"><img class="coverimg" src="' + params.poster + '" data-img="' + params.poster + '" alt=""></div>');
-          }
-          if ($(player).attr('poster') !== undefined) {
-            metaElement.append('<div class="coverart"><img src="' + $(player).attr('poster') + '" alt=""></div>');
-          }
+          var poster = params.poster || jqPlayer.attr('poster');
+          metaElement.append(renderPoster(poster));
         }
         if (player.tagName === "VIDEO") {
           wrapper.prepend('<div class="podlovewebplayer_top"></div>');
-          wrapper.append('<div class="podlovewebplayer_meta"></div>');
+          wrapper.append(metaElement);
         }
-        if (params.title !== undefined) {
-          if (params.permalink !== undefined) {
-            wrapper.find('.podlovewebplayer_meta').append('<h3 class="episodetitle"><a href="' + params.permalink + '">' + params.title + '</a></h3>');
-          } else {
-            wrapper.find('.podlovewebplayer_meta').append('<h3 class="episodetitle">' + params.title + '</h3>');
-          }
-        }
-        if (params.subtitle !== undefined) {
-          wrapper.find('.podlovewebplayer_meta').append('<div class="subtitle">' + params.subtitle + '</div>');
-        } else {
-          if (params.title !== undefined) {
-            if ((params.title.length < 42) && (params.poster === undefined)) {
-              wrapper.addClass('podlovewebplayer_smallplayer');
-            }
-          }
-          wrapper.find('.podlovewebplayer_meta').append('<div class="subtitle"></div>');
-        }
-        //always render toggler buttons wrapper
-        wrapper.find('.podlovewebplayer_meta').append('<div class="togglers"></div>');
-        wrapper.on('playerresize', function () {
-          wrapper.find('.podlovewebplayer_chapterbox').data('height', wrapper.find('.podlovewebplayer_chapters').height());
-          if (wrapper.find('.podlovewebplayer_chapterbox').hasClass('active')) {
-            wrapper.find('.podlovewebplayer_chapterbox').height(parseInt(wrapper.find('.podlovewebplayer_chapterbox').data('height'), 10) + 2 + 'px');
-          }
-          wrapper.find('.summary').data('height', wrapper.find('.summarydiv').height());
-          if (wrapper.find('.summary').hasClass('active')) {
-            wrapper.find('.summary').height(wrapper.find('.summarydiv').height() + 'px');
-          }
-        });
-        if (params.summary !== undefined) {
-          summaryActive = "";
-          if (params.summaryVisible === true) {
-            summaryActive = " active";
-          }
-          wrapper.find('.togglers').append('<a href="#" class="infowindow infobuttons pwp-icon-info-circle" title="More information about this"></a>');
-          wrapper.find('.podlovewebplayer_meta').after('<div class="summary' + summaryActive + '"><div class="summarydiv">' + params.summary + '</div></div>');
-        }
-        if (params.chapters !== undefined) {
-          if (((params.chapters.length > 10) && (typeof params.chapters === 'string')) || ((params.chapters.length > 1) && (typeof params.chapters === 'object'))) {
-            wrapper.find('.togglers').append('<a href="#" class="chaptertoggle infobuttons pwp-icon-list-bullet" title="Show/hide chapters"></a>');
-          }
-        }
-        if (params.hidetimebutton !== true) {
-          wrapper.find('.togglers').append('<a href="#" class="showcontrols infobuttons pwp-icon-clock" title="Show/hide time navigation controls"></a>');
-        }
-      }
-      timecontrolsActive = "";
-      if (params.timecontrolsVisible === true) {
-        timecontrolsActive = " active";
-      }
-      downloadbuttonsActive = "";
-      if (params.downloadbuttonsVisible === true) {
-        downloadbuttonsActive = " active";
-      }
-      wrapper.append('<div class="podlovewebplayer_timecontrol podlovewebplayer_controlbox' + timecontrolsActive + '"></div>');
-      var timeControlElement = wrapper.find('.podlovewebplayer_timecontrol');
-      if (params.chapters !== undefined) {
-        if (params.chapters.length > 10) {
-          timeControlElement.append('<a href="#" class="prevbutton infobuttons pwp-icon-to-start" title="Jump backward to previous chapter"></a><a href="#" class="nextbutton infobuttons pwp-icon-to-end" title="next chapter"></a>');
-          wrapper.find('.controlbox').append('<a href="#" class="prevbutton infobuttons pwp-icon-step-backward" title="previous chapter"></a><a href="#" class="nextbutton infobuttons pwp-icon-to-end" title="Jump to next chapter"></a>');
-        }
-      }
-      timeControlElement.append('<a href="#" class="rewindbutton infobuttons pwp-icon-fast-bw" title="Rewind 30 seconds"></a>')
-      timeControlElement.append('<a href="#" class="forwardbutton infobuttons pwp-icon-fast-fw" title="Fast forward 30 seconds"></a>');
 
-      if ((wrapper.closest('.podlovewebplayer_wrapper').find('.episodetitle a').attr('href') !== undefined) && (params.hidesharebutton !== true)) {
-        createShareButtons(wrapper, !!params.sharebuttonsVisible);
+        metaElement.append(renderTitle(params.title, params.permalink));
+        metaElement.append(renderSubTitle(params.subtitle));
+
+        if (params.subtitle && params.title && params.title.length < 42 && !params.poster) {
+            wrapper.addClass('podlovewebplayer_smallplayer');
+        }
+
+        //always render toggler buttons wrapper
+        metaElement.append(togglerElement);
+
+        if (params.summary !== undefined) {
+          summaryActive = (params.summaryVisible === true) ? " active" : "";
+          var summary = $('<div class="summary' + summaryActive + '">' + params.summary + '</div');
+          var infoToggle = tabs.createToggleButton("pwp-icon-info-circle", "More information about this");
+          var summaryActive = false;
+          togglerElement.append(infoToggle);
+          infoToggle.click(function (evt) {
+            evt.preventDefault();
+            summary.toggleClass('active');
+            summaryActive = !summaryActive;
+            summary.css('height', summaryActive ? 'auto' : '0');
+          });
+          metaElement.after(summary);
+          $(document).ready(function () {
+            summary.css('height', '0');
+          });
+        }
+
+        if (params.hidetimebutton !== true) {
+          var timeToggle = tabs.createToggleButton("pwp-icon-clock", "Show/hide time navigation tabs");
+          togglerElement.append(timeToggle);
+        }
       }
+
+      /**
+       * Timecontrols
+       */
+      if (params.chapters !== undefined && params.chapters.length > 1) {
+        var timeControlElement = tabs.createControlBox('podlovewebplayer_timecontrol', !!params.timecontrolsVisible);
+        timeToggle.on('click', function () {
+          timeControlElement.toggleClass('active');
+          shareTab.removeClass('active');
+          downloadTab.removeClass('active');
+          return false;
+        });
+        wrapper.append(timeControlElement);
+
+        var prevButton = tabs.createToggleButton("pwp-icon-to-start", "Jump backward to previous chapter");
+        timeControlElement.append(prevButton);
+        prevButton.click(function (evt) {
+          evt.preventDefault();
+          if (playerStarted(player)) {
+            var activeChapter = chapterBox.find('.active');
+            if (player.currentTime > activeChapter.data('start') + 10) {
+              return player.setCurrentTime(activeChapter.data('start'));
+            }
+            return player.setCurrentTime(activeChapter.prev().data('start'));
+          }
+          return player.play();
+        });
+
+        var nextButton = tabs.createToggleButton("pwp-icon-to-end", "Jump to next chapter");
+        timeControlElement.append(nextButton);
+        nextButton.click(function (evt) {
+          evt.preventDefault();
+          if (playerStarted(player)) {
+            player.setCurrentTime(chapterBox.find('.active').next().data('start'));
+          }
+          return player.play();
+        });
+      }
+
+      var rewindButton = tabs.createToggleButton("pwp-icon-fast-bw", "Rewind 30 seconds");
+      timeControlElement.append(rewindButton);
+      rewindButton.click(function (evt) {
+        evt.preventDefault();
+        if (playerStarted(player)) {
+          return player.setCurrentTime(player.currentTime - 30);
+        }
+        return player.play();
+      });
+
+      var forwardButton = tabs.createToggleButton("pwp-icon-fast-fw", "Fast forward 30 seconds");
+      timeControlElement.append(forwardButton);
+      forwardButton.click(function (evt) {
+        evt.preventDefault();
+        if (playerStarted(player)) {
+          return player.setCurrentTime(player.currentTime + 30);
+        }
+        return player.play();
+      });
+
+      /**
+       * -- TABS --
+       * FIXME timecontrols are treated as a tab
+       * FIXME share and downloads should be equally important to chapters
+       * FIXME info must be treated as a tab as well
+       */
+
+      /**
+       * Share
+       */
+      if (params.permalink && params.hidesharebutton !== true) {
+        var shareToggle = share.createToggleButton();
+        togglerElement.append(shareToggle);
+        var episode = {
+          title: params.title,
+          titleEncoded: encodeURIComponent(params.title),
+          url: params.permalink,
+          urlEncoded: encodeURIComponent(params.permalink)
+        };
+        var shareTab = share.createControlBox(episode, !!params.sharebuttonsVisible);
+        wrapper.append(shareTab);
+        shareToggle.on('click', function (evt) {
+          evt.preventDefault();
+          shareTab.toggleClass('active');
+          timeControlElement.removeClass('active');
+          downloadTab.removeClass('active');
+        });
+      }
+
+      /**
+       * Downloads
+       */
       if (((params.downloads !== undefined) || (params.sources !== undefined)) && (params.hidedownloadbutton !== true)) {
-        selectform = '<select name="downloads" class="fileselect" size="1" onchange="this.value=this.options[this.selectedIndex].value;">';
-        wrapper.append('<div class="podlovewebplayer_downloadbuttons podlovewebplayer_controlbox' + downloadbuttonsActive + '"></div>');
-        wrapper.find('.togglers').append('<a href="#" class="showdownloadbuttons infobuttons pwp-icon-download" title="Show/hide download bar"></a>');
-        if (params.downloads !== undefined) {
-          for (i = 0; i < params.downloads.length; i += 1) {
-            size = (parseInt(params.downloads[i].size, 10) < 1048704) ? Math.round(parseInt(params.downloads[i].size, 10) / 100) / 10 + 'kB' : Math.round(parseInt(params.downloads[i].size, 10) / 1000 / 100) / 10 + 'MB';
-            selectform += '<option value="' + params.downloads[i].url + '" data-url="' + params.downloads[i].url + '" data-dlurl="' + params.downloads[i].dlurl + '">' + params.downloads[i].name + ' (' + size + ')</option>';
-          }
-        } else {
-          for (i = 0; i < params.sources.length; i += 1) {
-            name = params.sources[i].split('.');
-            name = name[name.length - 1];
-            selectform += '<option value="' + params.sources[i] + '" data-url="' + params.sources[i] + '" data-dlurl="' + params.sources[i] + '">' + name + '</option>';
-          }
-        }
-        selectform += '</select>';
-        var downloadButtons = wrapper.find('.podlovewebplayer_downloadbuttons');
-        downloadButtons.append(selectform);
-        if (params.downloads !== undefined && params.downloads.length > 0) {
-          downloadname = params.downloads[0].url.split('/');
-          downloadname = downloadname[downloadname.length - 1];
-          downloadButtons.append('<a href="' + params.downloads[0].url + '" download="' + downloadname + '" class="downloadbutton infobuttons pwp-icon-download" title="Download"></a> ');
-        }
-        downloadButtons.append('<a href="#" class="openfilebutton infobuttons pwp-icon-link-ext" title="Open"></a> ');
-        downloadButtons.append('<a href="#" class="fileinfobutton infobuttons pwp-icon-info-circle" title="Info"></a> ');
+        var downloadTab = downloads.createTab(params);
+        wrapper.append(downloadTab);
+        var downloadToggle = downloads.createToggle();
+        togglerElement.append(downloadToggle);
+        downloadToggle.on('click', function () {
+          downloadTab.toggleClass('active');
+          shareTab.removeClass('active');
+          timeControlElement.removeClass('active');
+          return false;
+        });
       }
+
+      /**
+       * Chapters
+       */
       //build chapter table
-      if (params.chapters !== undefined) {
-        if (((params.chapters.length > 10) && (typeof params.chapters === 'string')) || ((params.chapters.length > 1) && (typeof params.chapters === 'object'))) {
-          haschapters = true;
-          generateChapterTable(params).appendTo(wrapper);
-        }
+      if (hasChapters) {
+        chapterBox = generateChapterTable(params);
+        chapterBox.appendTo(wrapper);
+        $(document).ready(function () {
+          var height = 0,
+            chapterHeight = chapterBox.height();
+
+          chapterBox.data('height', chapterHeight);
+          console.log('chapterBox data.height', chapterHeight);
+          if (chapterBox.hasClass('active')) {
+            height = chapterHeight;
+          }
+          chapterBox.height(height + 'px');
+        });
+        var chapterToggle = tabs.createToggleButton("pwp-icon-list-bullet", "Show/hide chapters");
+        togglerElement.append(chapterToggle);
+        chapterToggle.click(function (evt) {
+          evt.preventDefault();
+          chapterBox.toggleClass('active');
+          var height = chapterBox.hasClass('active') ? chapterBox.data('height') : 0;
+          console.log('set chapterBox height', height);
+          chapterBox.height(height + 'px');
+        });
       }
-      if (richplayer || haschapters) {
+
+
+      if (richplayer || hasChapters) {
         wrapper.append('<div class="podlovewebplayer_tableend"></div>');
       }
+
       // parse deeplink
       deepLink = parseTimecode(window.location.href);
       if (deepLink !== false && players.length === 1) {
-        if (document.hidden !== undefined) {
-          hiddenTab = document.hidden;
-        } else if (document.mozHidden !== undefined) {
-          hiddenTab = document.mozHidden;
-        } else if (document.msHidden !== undefined) {
-          hiddenTab = document.msHidden;
-        } else if (document.webkitHidden !== undefined) {
-          hiddenTab = document.webkitHidden;
-        }
         var playerAttributes = {preload: 'auto'};
-        if (hiddenTab !== true) {
+        if (!isHidden()) {
           playerAttributes.autoplay = 'autoplay';
         }
-        $(player).attr(playerAttributes);
+        jqPlayer.attr(playerAttributes);
         startAtTime = deepLink[0];
         stopAtTime = deepLink[1];
       } else if (params && params.permalink) {
         console.debug(params);
         storageKey = 'podloveWebPlayerTime-' + params.permalink;
         if (handleCookies.getItem(storageKey)) {
-          $(player).one('canplay', function () {
+          jqPlayer.one('canplay', function () {
             var time = handleCookies.getItem(storageKey);
             console.debug(time);
             this.currentTime = time;
           });
         }
       }
-      $(player).on('ended', function () {
-        handleCookies.setItem('podloveWebPlayerTime-' + params.permalink, '', new Date(2000, 1, 1));
-        embed.postToOpener({
-          action: 'stop',
-          arg: player.currentTime
-        });
-      });
+
       // init MEJS to player
       mejsoptions.success = function (player) {
         addBehavior(player, params, wrapper);
@@ -682,8 +627,9 @@ var startAtTime = false,
           });
         }
       };
+
       $(orig).replaceWith(wrapper);
-      $(player).mediaelementplayer(mejsoptions);
+      jqPlayer.mediaelementplayer(mejsoptions);
     });
   };
 
@@ -704,69 +650,20 @@ var startAtTime = false,
     }
   }
 
-function createShowShareButton(wrapper) {
-  wrapper.find('.togglers').append(
-    '<a href="#" class="showsharebuttons infobuttons pwp-icon-export" title="Show/hide sharing controls"></a>'
-  );
-}
-function createShareButtonControlBox(shareButtonsActive) {
-  var classes = ["podlovewebplayer_sharebuttons", "podlovewebplayer_controlbox"];
-  if (shareButtonsActive) {
-    classes.push("active");
+function isHidden() {
+  var props = [
+      'hidden',
+      'mozHidden',
+      'msHidden',
+      'webkitHidden'
+    ];
+
+  for (var index in props) {
+    if (props[index] in document) {
+      return document[props[index]];
+    }
   }
-  return $('<div class="' + classes.join(' ') + '"></div>');
-}
-/**
- *
- * @param {object} wrapper
- * @param {boolean} shareButtonsActive
- */
-function createShareButtons(wrapper, shareButtonsActive) {
-  var shareButtonsControlBox = createShareButtonControlBox(shareButtonsActive);
-  var episodeTitle = encodeURIComponent(wrapper.find('.episodetitle a').text());
-  var episodeUrl = encodeURIComponent(wrapper.find('.episodetitle a').attr('href'));
-  var windowFeatures = 'width=550,height=420,resizable=yes';
-  wrapper.append(shareButtonsControlBox);
-
-  var currentButton = $('<a href="#" class="currentbutton infobuttons pwp-icon-link" title="Get URL for this"></a>');
-  shareButtonsControlBox.append(currentButton);
-
-  var tweetButton = $('<a href="#" target="_blank" class="infobuttons pwp-icon-twitter" title="Share this on Twitter"></a>');
-  shareButtonsControlBox.append(tweetButton);
-  tweetButton.click(function () {
-    window.open('https://twitter.com/share?text=' + episodeTitle + '&url=' + episodeUrl, 'tweet it', windowFeatures);
-    return false;
-  });
-
-  var fbButton = $('<a href="#" target="_blank" class="infobuttons pwp-icon-facebook" title="Share this on Facebook"></a>');
-  shareButtonsControlBox.append(fbButton);
-  fbButton.click(function () {
-    window.open('http://www.facebook.com/share.php?t=' + episodeTitle + '&u=' + episodeUrl, 'share it', windowFeatures);
-    return false;
-  });
-
-  var gPlusButton = $('<a href="#" target="_blank" class="infobuttons pwp-icon-gplus" title="Share this on Google+"></a>');
-  shareButtonsControlBox.append(gPlusButton);
-  gPlusButton.click(function () {
-    window.open('https://plus.google.com/share?title=' + episodeTitle + '&url=' + episodeUrl, 'plus it', windowFeatures);
-    return false;
-  });
-
-  var adnButton = $('<a href="#" target="_blank" class="infobuttons pwp-icon-appnet" title="Share this on App.net"></a>');
-  shareButtonsControlBox.append(adnButton);
-  adnButton.click(function () {
-    window.open('https://alpha.app.net/intent/post?text=' + episodeTitle + '%20' + episodeUrl, 'post it', windowFeatures);
-    return false;
-  });
-
-  var mailButton = $('<a href="#" target="_blank" class="infobuttons pwp-icon-mail" title="Share this via e-mail"></a>');
-  shareButtonsControlBox.append(mailButton);
-  mailButton.click(function () {
-    window.location = 'mailto:?subject=' + episodeTitle + '&body=' + episodeTitle + '%20%3C' + episodeUrl + '%3E';
-    return false;
-  });
-
-  createShowShareButton(wrapper);
+  return false;
 }
 
 module.exports = {
