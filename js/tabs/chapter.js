@@ -1,5 +1,6 @@
-var tc = require('./../timecode'),
-  url = require('./../url');
+var tc = require('./../timecode')
+  , url = require('./../url')
+  ;
 
 /**
  * chapter handling

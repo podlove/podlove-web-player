@@ -13,7 +13,7 @@ Thanks to MediaElement.js for providing the foundation.
 * [Official Site on podlove.org](http://podlove.org/podlove-web-player/)
 * [WordPress Plugin Page](http://wordpress.org/plugins/podlove-web-player/)
 
-## Build
+## Build JavaScript
 
 We will replace *make* with *grunt.js* or *gulp.js* in combination with *browserify*.
 
@@ -24,6 +24,61 @@ Install prerequisites for building:
 Create podlove-web-player/static/podlove-web-player.js with
 
     browserify main.js -o static/podlove-web-player.js
+
+## Build CSS
+
+### Setting up the ruby environment
+
+       $ gem update --system
+
+### Install SASS
+
+* [Official SASS site](http://sass-lang.com/install)
+
+
+    gem install sass
+
+or
+
+    sudo gem install sass
+
+Then check your version
+
+    sass -v
+
+
+### Install Compass
+
+* [Official Compass site](http://compass-style.org/install/)
+
+Compass runs on any computer that has ruby installed.
+
+Then install compass
+
+    $ gem install compass
+
+The Compass settings can be found in this file:
+
+    podlove-web-player/config.rb
+
+To enable the debugging comments that display
+the original location of your selectors, comment-in following line:
+
+    line_comments = false
+
+### Build the CSS file
+
+In the command line, navigate to your working directory and compile the output css with
+
+    compass compile
+
+For development you should add a watcher with the command
+
+    compass watch
+
+Finally, for a compressed and minified production file, just run the command:
+
+    compass compile --output-style compressed
 
 ## Test
 
@@ -36,6 +91,23 @@ You can then access the examples with your browser via `http://localhost:8080/ex
 **Important!**
 The Wordpress-plugin that includes the Podlove-Webplayer alone will be moved to its own repo.
 
+## Contributing
+
+Fork it
+
+Create your feature branch
+
+    git checkout -b my-new-feature
+
+Commit your changes
+
+    git commit -am 'Added some feature'
+
+Push to the branch
+
+    git push origin my-new-feature
+
+Create new Pull Request
 
 Contributors:
 [Gerrit van Aaken](https://github.com/gerritvanaaken/), [Simon Waldherr](https://github.com/simonwaldherr/),
