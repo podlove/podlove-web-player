@@ -46,6 +46,11 @@ Then check your version
 
     sass -v
 
+### Install SASS CSS Importer
+
+Next you need to installe the [SASS CSS Importer](https://github.com/chriseppstein/sass-css-importer) ruby gem.
+
+    $ gem install --pre sass-css-importer
 
 ### Install Compass
 
