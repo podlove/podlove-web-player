@@ -14,6 +14,7 @@ var startAtTime = false,
   generateTimecode = require('./timecode').generate,
   parseTimecode = require('./timecode').parse,
   handleCookies = require('./cookie'),
+  Controls = require('./controls'),
   checkCurrentURL = function () {
     var deepLink = require('./url').checkCurrent ();
     if (!deepLink) { return; }
@@ -290,15 +291,15 @@ function renderPoster(poster) {
   return '<div class="coverart"><img class="coverimg" src="' + poster + '" data-img="' + poster + '" alt="Poster Image"></div>';
 }
 
-function playerStarted(player) {
-  return ((typeof player.currentTime === 'number') && (player.currentTime > 0));
-}
-
 function checkForChapters(params) {
   return params.chapters && (
     (typeof params.chapters === 'string' && params.chapters.length > 10) ||
     (typeof params.chapters === 'object' && params.chapters.length > 1)
     );
+}
+
+function getPlayerType (player) {
+  return player.tagName.toLowerCase();
 }
 
 $.fn.podlovewebplayer = function (options) {
@@ -343,12 +344,16 @@ $.fn.podlovewebplayer = function (options) {
         summaryActive,
         chapterBox,
         metaElement = $('<div class="podlovewebplayer_meta"></div>'),
+        controls,
+        controlBox,
         togglerElement = $('<div class="togglers"></div>'),
         storageKey;
+      //audio params
+      var playerType = getPlayerType(player);
+
       //fine tuning params
       params.width = normalizeWidth(params.width);
-      //audio params
-      if (player.tagName === 'AUDIO') {
+      if (playerType === 'audio') {
         if (params.audioWidth !== undefined) {
           params.width = params.audioWidth;
         }
@@ -359,8 +364,9 @@ $.fn.podlovewebplayer = function (options) {
             mejsoptions.features.splice(i, 1);
           }
         });
+      }
+      else if (playerType === 'video') {
         //video params
-      } else if (player.tagName === 'VIDEO') {
         if (params.height !== undefined) {
           mejsoptions.videoWidth = params.width;
           mejsoptions.videoHeight = params.height;
@@ -370,21 +376,25 @@ $.fn.podlovewebplayer = function (options) {
           params.width = $(player).attr('width');
         }
       }
+
       //duration can be given in seconds or in NPT format
       if (params.duration && params.duration !== parseInt(params.duration, 10)) {
         secArray = parseTimecode(params.duration);
         params.duration = secArray[0];
       }
+
       //Overwrite MEJS default values with actual data
       $.each(mejsoptions, function (key) {
-        if (params[key] !== undefined) {
+        if (key in params) {
           mejsoptions[key] = params[key];
         }
       });
+
       //wrapper and init stuff
       if (params.width.toString().trim() === parseInt(params.width, 10).toString().trim()) {
         params.width = params.width.toString().trim() + 'px';
       }
+
       orig = player;
       player = $(player).clone().wrap('<div class="podlovewebplayer_wrapper" style="width: ' + params.width + '"></div>')[0];
       jqPlayer = $(player);
@@ -416,7 +426,6 @@ $.fn.podlovewebplayer = function (options) {
             }
           });
           wrapper.prepend(metaElement);
-          metaElement.prepend('<a class="bigplay" title="Play Episode" href="#"></a>');
           var poster = params.poster || jqPlayer.attr('poster');
           metaElement.append(renderPoster(poster));
         }
@@ -427,102 +436,48 @@ $.fn.podlovewebplayer = function (options) {
 
         metaElement.append(renderTitle(params.title, params.permalink));
         metaElement.append(renderSubTitle(params.subtitle));
+        metaElement.append('<a class="bigplay" title="Play Episode" href="#"></a>');
 
         if (params.subtitle && params.title && params.title.length < 42 && !params.poster) {
             wrapper.addClass('podlovewebplayer_smallplayer');
         }
 
+        /**
+         * Timecontrols
+         */
+        controls = new Controls();
+        controlBox = controls.box;
         //always render toggler buttons wrapper
-        metaElement.append(togglerElement);
-
-        if (params.summary !== undefined) {
-          summaryActive = (params.summaryVisible === true) ? " active" : "";
-          var summary = $('<div class="summary' + summaryActive + '">' + params.summary + '</div');
-          var infoToggle = tabs.createToggleButton("pwp-icon-info-circle", "More information about this");
-          var summaryActive = false;
-          togglerElement.append(infoToggle);
-          infoToggle.click(function (evt) {
-            evt.preventDefault();
-            summary.toggleClass('active');
-            summaryActive = !summaryActive;
-            summary.css('height', summaryActive ? 'auto' : '0');
-          });
-          metaElement.after(summary);
-          $(document).ready(function () {
-            summary.css('height', '0');
-          });
-        }
-
-        if (params.hidetimebutton !== true) {
-          var timeToggle = tabs.createToggleButton("pwp-icon-clock", "Show/hide time navigation tabs");
-          togglerElement.append(timeToggle);
-        }
+        controlBox.append(togglerElement);
+        wrapper.append(controlBox);
       }
 
-      /**
-       * Timecontrols
-       */
-      if (params.chapters !== undefined && params.chapters.length > 1) {
-        var timeControlElement = tabs.createControlBox('podlovewebplayer_timecontrol', !!params.timecontrolsVisible);
-        timeToggle.on('click', function () {
-          timeControlElement.toggleClass('active');
-          shareTab.removeClass('active');
-          downloadTab.removeClass('active');
-          return false;
-        });
-        wrapper.append(timeControlElement);
 
-        var prevButton = tabs.createToggleButton("pwp-icon-to-start", "Jump backward to previous chapter");
-        timeControlElement.append(prevButton);
-        prevButton.click(function (evt) {
-          evt.preventDefault();
-          if (playerStarted(player)) {
-            var activeChapter = chapterBox.find('.active');
-            if (player.currentTime > activeChapter.data('start') + 10) {
-              return player.setCurrentTime(activeChapter.data('start'));
-            }
-            return player.setCurrentTime(activeChapter.prev().data('start'));
-          }
-          return player.play();
-        });
-
-        var nextButton = tabs.createToggleButton("pwp-icon-to-end", "Jump to next chapter");
-        timeControlElement.append(nextButton);
-        nextButton.click(function (evt) {
-          evt.preventDefault();
-          if (playerStarted(player)) {
-            player.setCurrentTime(chapterBox.find('.active').next().data('start'));
-          }
-          return player.play();
-        });
-      }
-
-      var rewindButton = tabs.createToggleButton("pwp-icon-fast-bw", "Rewind 30 seconds");
-      timeControlElement.append(rewindButton);
-      rewindButton.click(function (evt) {
-        evt.preventDefault();
-        if (playerStarted(player)) {
-          return player.setCurrentTime(player.currentTime - 30);
-        }
-        return player.play();
-      });
-
-      var forwardButton = tabs.createToggleButton("pwp-icon-fast-fw", "Fast forward 30 seconds");
-      timeControlElement.append(forwardButton);
-      forwardButton.click(function (evt) {
-        evt.preventDefault();
-        if (playerStarted(player)) {
-          return player.setCurrentTime(player.currentTime + 30);
-        }
-        return player.play();
-      });
 
       /**
        * -- TABS --
        * FIXME timecontrols are treated as a tab
-       * FIXME share and downloads should be equally important to chapters
+       * FIXME all tabs are equally important
        * FIXME info must be treated as a tab as well
        */
+
+      if (params.summary !== undefined) {
+        summaryActive = !!params.summaryVisible;
+        var infoToggle = tabs.createToggleButton("pwp-icon-info-circle", "More information about this");
+        var summary = tabs.createControlBox('summary', summaryActive);
+        summary.append(params.summary);
+        togglerElement.append(infoToggle);
+        infoToggle.click(function (evt) {
+          evt.preventDefault();
+          summary.toggleClass('active');
+          summaryActive = !summaryActive;
+          summary.css('height', summaryActive ? 'auto' : '0');
+        });
+        wrapper.append(summary);
+        $(document).ready(function () {
+          summary.css('height', '0');
+        });
+      }
 
       /**
        * Share
@@ -541,7 +496,6 @@ $.fn.podlovewebplayer = function (options) {
         shareToggle.on('click', function (evt) {
           evt.preventDefault();
           shareTab.toggleClass('active');
-          timeControlElement.removeClass('active');
           downloadTab.removeClass('active');
         });
       }
@@ -557,7 +511,6 @@ $.fn.podlovewebplayer = function (options) {
         downloadToggle.on('click', function () {
           downloadTab.toggleClass('active');
           shareTab.removeClass('active');
-          timeControlElement.removeClass('active');
           return false;
         });
       }
@@ -596,6 +549,8 @@ $.fn.podlovewebplayer = function (options) {
         wrapper.append('<div class="podlovewebplayer_tableend"></div>');
       }
 
+      controls.createTimeControls(player, chapterBox);
+
       // parse deeplink
       deepLink = parseTimecode(window.location.href);
       if (deepLink !== false && players.length === 1) {
@@ -617,7 +572,7 @@ $.fn.podlovewebplayer = function (options) {
           });
         }
       }
-      
+
       // init MEJS to player
       mejsoptions.success = function (player) {
         addBehavior(player, params, wrapper);
