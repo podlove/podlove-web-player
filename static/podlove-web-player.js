@@ -73,6 +73,46 @@ module.exports = {
 };
 
 },{}],3:[function(require,module,exports){
+/*
+ * ===========================================
+ * Podlove Web Player v2.1.0-alpha
+ * Licensed under The BSD 2-Clause License
+ * http://opensource.org/licenses/BSD-2-Clause
+ * ===========================================
+ * Copyright (c) 2013, Gerrit van Aaken (https://github.com/gerritvanaaken/), Simon Waldherr (https://github.com/simonwaldherr/), Frank Hase (https://github.com/Kambfhase/), Eric Teubert (https://github.com/eteubert/) and others (https://github.com/podlove/podlove-web-player/contributors)
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+ *
+ * - Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+ * - Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+'use strict';
+
+require('./../libs/mediaelement/build/mediaelement-and-player.js');
+
+// FIXME put in compat mode module
+if (typeof String.prototype.trim !== 'function') {
+  String.prototype.trim = function () {
+    "use strict";
+    return this.replace(/^\s+|\s+$/g, '');
+  };
+}
+
+var pwp = {
+  tc: require('./timecode'),
+  players: require('./player').players,
+  embed: require('./embed')
+};
+
+//FIXME without embed animations are fluent
+//pwp.embed.init($, pwp.players);
+
+module.exports = pwp;
+
+},{"./../libs/mediaelement/build/mediaelement-and-player.js":11,"./embed":2,"./player":4,"./timecode":9}],4:[function(require,module,exports){
 /**
  * player
  */
@@ -491,6 +531,7 @@ $.fn.podlovewebplayer = function (options) {
             }
           });
           wrapper.prepend(metaElement);
+          metaElement.prepend('<a class="bigplay" title="Play Episode" href="#"></a>');
           var poster = params.poster || jqPlayer.attr('poster');
           metaElement.append(renderPoster(poster));
         }
@@ -501,14 +542,31 @@ $.fn.podlovewebplayer = function (options) {
 
         metaElement.append(renderTitle(params.title, params.permalink));
         metaElement.append(renderSubTitle(params.subtitle));
-        metaElement.append('<a class="bigplay" title="Play Episode" href="#"></a>');
 
         if (params.subtitle && params.title && params.title.length < 42 && !params.poster) {
             wrapper.addClass('podlovewebplayer_smallplayer');
         }
 
         //always render toggler buttons wrapper
-        wrapper.append(togglerElement);
+        metaElement.append(togglerElement);
+
+        if (params.summary !== undefined) {
+          summaryActive = (params.summaryVisible === true) ? " active" : "";
+          var summary = $('<div class="summary' + summaryActive + '">' + params.summary + '</div');
+          var infoToggle = tabs.createToggleButton("pwp-icon-info-circle", "More information about this");
+          var summaryActive = false;
+          togglerElement.append(infoToggle);
+          infoToggle.click(function (evt) {
+            evt.preventDefault();
+            summary.toggleClass('active');
+            summaryActive = !summaryActive;
+            summary.css('height', summaryActive ? 'auto' : '0');
+          });
+          metaElement.after(summary);
+          $(document).ready(function () {
+            summary.css('height', '0');
+          });
+        }
 
         if (params.hidetimebutton !== true) {
           var timeToggle = tabs.createToggleButton("pwp-icon-clock", "Show/hide time navigation tabs");
@@ -580,24 +638,6 @@ $.fn.podlovewebplayer = function (options) {
        * FIXME share and downloads should be equally important to chapters
        * FIXME info must be treated as a tab as well
        */
-
-      if (params.summary !== undefined) {
-        summaryActive = !!params.summaryVisible;
-        var infoToggle = tabs.createToggleButton("pwp-icon-info-circle", "More information about this");
-        var summary = tabs.createControlBox('summary', summaryActive);
-        summary.append(params.summary);
-        togglerElement.append(infoToggle);
-        infoToggle.click(function (evt) {
-          evt.preventDefault();
-          summary.toggleClass('active');
-          summaryActive = !summaryActive;
-          summary.css('height', summaryActive ? 'auto' : '0');
-        });
-        wrapper.append(summary);
-        $(document).ready(function () {
-          summary.css('height', '0');
-        });
-      }
 
       /**
        * Share
@@ -692,7 +732,7 @@ $.fn.podlovewebplayer = function (options) {
           });
         }
       }
-
+      
       // init MEJS to player
       mejsoptions.success = function (player) {
         addBehavior(player, params, wrapper);
@@ -746,7 +786,7 @@ module.exports = {
 };
 
 
-},{"./cookie":1,"./embed":2,"./tabs":4,"./tabs/chapter":5,"./tabs/downloads":6,"./tabs/share":7,"./timecode":8,"./url":9}],4:[function(require,module,exports){
+},{"./cookie":1,"./embed":2,"./tabs":5,"./tabs/chapter":6,"./tabs/downloads":7,"./tabs/share":8,"./timecode":9,"./url":10}],5:[function(require,module,exports){
 /**
  * will store references to tab instances to close all other when one is opened
  * @type {Array}
@@ -780,7 +820,7 @@ function createControlBox(name, active) {
 
 module.exports.createControlBox = createControlBox;
 
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 var tc = require('./../timecode')
   , url = require('./../url')
   ;
@@ -980,7 +1020,7 @@ function prepareRowData(chapterData) {
   });
 }
 
-},{"./../timecode":8,"./../url":9}],6:[function(require,module,exports){
+},{"./../timecode":9,"./../url":10}],7:[function(require,module,exports){
 'use strict';
 
 var tabs = require('../tabs');
@@ -1060,7 +1100,7 @@ function createDownloadTab(params) {
 
 module.exports.createTab = createDownloadTab;
 
-},{"../tabs":4}],7:[function(require,module,exports){
+},{"../tabs":5}],8:[function(require,module,exports){
 var tabs = require('../tabs');
 
 /**
@@ -1177,7 +1217,7 @@ function createShareButtonControlBox(shareButtonsActive) {
   return tabs.createControlBox("podlovewebplayer_sharebuttons", shareButtonsActive);
 }
 
-},{"../tabs":4}],8:[function(require,module,exports){
+},{"../tabs":5}],9:[function(require,module,exports){
 /**
  * Timecode as described in http://podlove.org/deep-link/
  *  and http://www.w3.org/TR/media-frags/#fragment-dimensions
@@ -1295,7 +1335,7 @@ module.exports = {
 
 };
 
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 var tc = require('./timecode');
 
 /**
@@ -1325,7 +1365,7 @@ module.exports = {
   }
 };
 
-},{"./timecode":8}],10:[function(require,module,exports){
+},{"./timecode":9}],11:[function(require,module,exports){
 /*!
 * MediaElement.js
 * HTML5 <video> and <audio> shim and player
@@ -6377,30 +6417,4 @@ $.extend(mejs.MepDefaults,
 })(mejs.$);
 
 
-},{}],11:[function(require,module,exports){
-/*jslint browser: true, plusplus: true, unparam: true, indent: 2 */
-/*global jQuery, console */
-'use strict';
-
-require('./libs/mediaelement/build/mediaelement-and-player.js');
-
-// FIXME put in compat mode module
-if (typeof String.prototype.trim !== 'function') {
-  String.prototype.trim = function () {
-    "use strict";
-    return this.replace(/^\s+|\s+$/g, '');
-  };
-}
-
-var pwp = {
-  tc: require('./js/timecode'),
-  players: require('./js/player').players,
-  embed: require('./js/embed')
-};
-
-//FIXME without embed animations are fluent
-//pwp.embed.init($, pwp.players);
-
-module.exports = pwp;
-
-},{"./js/embed":2,"./js/player":3,"./js/timecode":8,"./libs/mediaelement/build/mediaelement-and-player.js":10}]},{},[11])
+},{}]},{},[3])
