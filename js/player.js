@@ -10,7 +10,8 @@ var startAtTime = false,
   ignoreHashChange = false,
 // all used functions
   embed = require('./embed'),
-  tabs = require('./tabs'),
+  TabRegistry = require('./tabregistry'),
+  tabs = new TabRegistry(),
   generateTimecode = require('./timecode').generate,
   parseTimecode = require('./timecode').parse,
   handleCookies = require('./cookie'),
@@ -22,8 +23,9 @@ var startAtTime = false,
     stopAtTime = deepLink[1];
   },
   setFragmentURL = require('./url').setFragment,
-  share = require('./tabs/share'),
-  downloads = require('./tabs/downloads'),
+  infoTab = require('./tabs/info'),
+  shareTab = require('./tabs/share'),
+  downloadsTab = require('./tabs/downloads'),
   updateChapterMarks = require('./tabs/chapter').update,
   generateChapterTable = require('./tabs/chapter').generateTable,
   _playerDefaults = {
@@ -341,12 +343,10 @@ $.fn.podlovewebplayer = function (options) {
         orig,
         deepLink,
         wrapper,
-        summaryActive,
         chapterBox,
         metaElement = $('<div class="podlovewebplayer_meta"></div>'),
         controls,
         controlBox,
-        togglerElement = $('<div class="togglers"></div>'),
         storageKey;
       //audio params
       var playerType = getPlayerType(player);
@@ -448,77 +448,27 @@ $.fn.podlovewebplayer = function (options) {
         controls = new Controls();
         controlBox = controls.box;
         //always render toggler buttons wrapper
-        controlBox.append(togglerElement);
         wrapper.append(controlBox);
+
       }
 
 
 
       /**
        * -- TABS --
-       * FIXME timecontrols are treated as a tab
-       * FIXME all tabs are equally important
-       * FIXME info must be treated as a tab as well
+       * FIXME enable chapter tab
        */
-
-      if (params.summary !== undefined) {
-        summaryActive = !!params.summaryVisible;
-        var infoToggle = tabs.createToggleButton("pwp-icon-info-circle", "More information about this");
-        var summary = tabs.createControlBox('summary', summaryActive);
-        summary.append(params.summary);
-        togglerElement.append(infoToggle);
-        infoToggle.click(function (evt) {
-          evt.preventDefault();
-          summary.toggleClass('active');
-          summaryActive = !summaryActive;
-          summary.css('height', summaryActive ? 'auto' : '0');
-        });
-        wrapper.append(summary);
-        $(document).ready(function () {
-          summary.css('height', '0');
-        });
-      }
-
-      /**
-       * Share
-       */
-      if (params.permalink && params.hidesharebutton !== true) {
-        var shareToggle = share.createToggleButton();
-        togglerElement.append(shareToggle);
-        var episode = {
-          title: params.title,
-          titleEncoded: encodeURIComponent(params.title),
-          url: params.permalink,
-          urlEncoded: encodeURIComponent(params.permalink)
-        };
-        var shareTab = share.createControlBox(episode, !!params.sharebuttonsVisible);
-        wrapper.append(shareTab);
-        shareToggle.on('click', function (evt) {
-          evt.preventDefault();
-          shareTab.toggleClass('active');
-          downloadTab.removeClass('active');
-        });
-      }
-
-      /**
-       * Downloads
-       */
-      if (((params.downloads !== undefined) || (params.sources !== undefined)) && (params.hidedownloadbutton !== true)) {
-        var downloadTab = downloads.createTab(params);
-        wrapper.append(downloadTab);
-        var downloadToggle = downloads.createToggle();
-        togglerElement.append(downloadToggle);
-        downloadToggle.on('click', function () {
-          downloadTab.toggleClass('active');
-          shareTab.removeClass('active');
-          return false;
-        });
-      }
+      controlBox.append(tabs.toggles);
+      wrapper.append(tabs.container);
+      tabs.add(infoTab(params));
+      tabs.add(shareTab(params));
+      tabs.add(downloadsTab(params));
 
       /**
        * Chapters
        */
       //build chapter table
+      /*
       if (hasChapters) {
         chapterBox = generateChapterTable(params);
         chapterBox.appendTo(wrapper);
@@ -543,7 +493,7 @@ $.fn.podlovewebplayer = function (options) {
           chapterBox.height(height + 'px');
         });
       }
-
+*/
 
       if (richplayer || hasChapters) {
         wrapper.append('<div class="podlovewebplayer_tableend"></div>');
