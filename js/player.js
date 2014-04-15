@@ -26,8 +26,8 @@ var startAtTime = false,
   infoTab = require('./tabs/info'),
   shareTab = require('./tabs/share'),
   downloadsTab = require('./tabs/downloads'),
-  updateChapterMarks = require('./tabs/chapter').update,
-  generateChapterTable = require('./tabs/chapter').generateTable,
+  chapterTab = require('./tabs/chapter'),
+  updateChapterMarks,
   _playerDefaults = {
     chapterlinks: 'all',
     width: '100%',
@@ -463,37 +463,11 @@ $.fn.podlovewebplayer = function (options) {
       tabs.add(infoTab(params));
       tabs.add(shareTab(params));
       tabs.add(downloadsTab(params));
-
-      /**
-       * Chapters
-       */
-      //build chapter table
-      /*
       if (hasChapters) {
-        chapterBox = generateChapterTable(params);
-        chapterBox.appendTo(wrapper);
-        $(document).ready(function () {
-          var height = 0,
-            chapterHeight = chapterBox.height();
-
-          chapterBox.data('height', chapterHeight);
-          console.log('chapterBox data.height', chapterHeight);
-          if (chapterBox.hasClass('active')) {
-            height = chapterHeight;
-          }
-          chapterBox.height(height + 'px');
-        });
-        var chapterToggle = tabs.createToggleButton("pwp-icon-list-bullet", "Show/hide chapters");
-        togglerElement.append(chapterToggle);
-        chapterToggle.click(function (evt) {
-          evt.preventDefault();
-          chapterBox.toggleClass('active');
-          var height = chapterBox.hasClass('active') ? chapterBox.data('height') : 0;
-          console.log('set chapterBox height', height);
-          chapterBox.height(height + 'px');
-        });
+        var myChapterTab = chapterTab(params);
+        tabs.add(myChapterTab);
+        updateChapterMarks = myChapterTab.update;
       }
-*/
 
       if (richplayer || hasChapters) {
         wrapper.append('<div class="podlovewebplayer_tableend"></div>');
