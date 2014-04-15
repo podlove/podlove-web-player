@@ -67,7 +67,7 @@
 
 
 .podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_tableend,
-.podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_controlbox,
+.podlovewebplayer_wrapper.podlovewebplayer_video .tab,
 .podlovewebplayer_wrapper.podlovewebplayer_video .summary {
   background: $gray-darker; //#252525
 }
@@ -75,11 +75,11 @@
 .podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_chapterbox,
 .podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_chapters,
 .podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_meta + .summary,
-.podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_controlbox {
+.podlovewebplayer_wrapper.podlovewebplayer_video .tab {
   border-color: $gray-darker; //#252525
 }
 
-.podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_controlbox {
+.podlovewebplayer_wrapper.podlovewebplayer_video .tab {
   margin-top: 0px;
 }
 
@@ -226,7 +226,7 @@
 }
 
 .podlovewebplayer_meta + .summary,
-.podlovewebplayer_wrapper .podlovewebplayer_controlbox {
+.podlovewebplayer_wrapper .tab {
   overflow: hidden;
   padding: 0px 10px;
   margin-top: -1px;
@@ -263,7 +263,7 @@
 
 
 .podlovewebplayer_video .summary,
-.podlovewebplayer_video.podlovewebplayer_wrapper .podlovewebplayer_controlbox {
+.podlovewebplayer_video.podlovewebplayer_wrapper .tab {
   margin-top: 0px;
 }
 
@@ -293,7 +293,7 @@
   line-height: 1em;
 }
 
-.podlovewebplayer_wrapper .podlovewebplayer_controlbox {
+.podlovewebplayer_wrapper .tab {
   height: 0px;
   font-size: 4px;
   text-align: center;
@@ -305,8 +305,8 @@
   }
 }
 
-.podlovewebplayer_controlbox .infobuttons,
-.podlovewebplayer_controlbox .infobuttons a,
+.tab .infobuttons,
+.tab .infobuttons a,
 .togglers .infobuttons,
 .togglers .infobuttons a {
   color: $white;
@@ -332,8 +332,8 @@
   }
 }
 
-.podlovewebplayer_controlbox .infobuttons,
-.podlovewebplayer_controlbox .infobuttons a {
+.tab .infobuttons,
+.tab .infobuttons a {
   position: relative;
   margin: 4%;
   padding: 0px;
@@ -600,7 +600,7 @@
       }
     }
 
-    .podlovewebplayer_controlbox {
+    .tab {
       &.active {
         height: auto !important;
       }

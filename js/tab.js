@@ -5,7 +5,7 @@
  * @returns {*|jQuery|HTMLElement}
  */
 function createControlBox(name, active) {
-  var classes = ["podlovewebplayer_controlbox"];
+  var classes = ["tab"];
   classes.push(name);
   if (active) {
     classes.push("active");
