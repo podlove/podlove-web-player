@@ -67,7 +67,7 @@
 
 
 .podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_tableend,
-.podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_controlbox,
+.podlovewebplayer_wrapper.podlovewebplayer_video .tab,
 .podlovewebplayer_wrapper.podlovewebplayer_video .summary {
   background: $gray-darker; //#252525
 }
@@ -75,11 +75,11 @@
 .podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_chapterbox,
 .podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_chapters,
 .podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_meta + .summary,
-.podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_controlbox {
+.podlovewebplayer_wrapper.podlovewebplayer_video .tab {
   border-color: $gray-darker; //#252525
 }
 
-.podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_controlbox {
+.podlovewebplayer_wrapper.podlovewebplayer_video .tab {
   margin-top: 0px;
 }
 
@@ -117,7 +117,7 @@
     clear: none;
     background: transparent !important;
     padding: 7px 10px 0 0;
-    margin: 0 !important;
+    margin-right: 95px;
     text-transform: none;
     letter-spacing: 0;
     text-shadow: none;
@@ -139,7 +139,7 @@
     speak: none;
     color: $white;
     background: transparent !important;
-    float: left;
+    float: right;
     position: relative;
     z-index: 78;
     border: 5px solid $white !important;
@@ -213,7 +213,6 @@
     color: $gray-lighter !important;
     text-shadow: none !important;
     background: transparent !important;
-    margin-left: 170px;
     padding-bottom: 35px;
     padding-left: 0px;
     strong{
@@ -227,7 +226,7 @@
 }
 
 .podlovewebplayer_meta + .summary,
-.podlovewebplayer_wrapper .podlovewebplayer_controlbox {
+.podlovewebplayer_wrapper .tab {
   overflow: hidden;
   padding: 0px 10px;
   margin-top: -1px;
@@ -264,7 +263,7 @@
 
 
 .podlovewebplayer_video .summary,
-.podlovewebplayer_video.podlovewebplayer_wrapper .podlovewebplayer_controlbox {
+.podlovewebplayer_video.podlovewebplayer_wrapper .tab {
   margin-top: 0px;
 }
 
@@ -294,7 +293,7 @@
   line-height: 1em;
 }
 
-.podlovewebplayer_wrapper .podlovewebplayer_controlbox {
+.podlovewebplayer_wrapper .tab {
   height: 0px;
   font-size: 4px;
   text-align: center;
@@ -306,8 +305,8 @@
   }
 }
 
-.podlovewebplayer_controlbox .infobuttons,
-.podlovewebplayer_controlbox .infobuttons a,
+.tab .infobuttons,
+.tab .infobuttons a,
 .togglers .infobuttons,
 .togglers .infobuttons a {
   color: $white;
@@ -333,8 +332,8 @@
   }
 }
 
-.podlovewebplayer_controlbox .infobuttons,
-.podlovewebplayer_controlbox .infobuttons a {
+.tab .infobuttons,
+.tab .infobuttons a {
   position: relative;
   margin: 4%;
   padding: 0px;
@@ -601,7 +600,7 @@
       }
     }
 
-    .podlovewebplayer_controlbox {
+    .tab {
       &.active {
         height: auto !important;
       }

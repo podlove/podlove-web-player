@@ -23,7 +23,7 @@ Install prerequisites for building:
 
 Create podlove-web-player/static/podlove-web-player.js with
 
-    browserify main.js -o static/podlove-web-player.js
+    browserify js/main.js -o static/podlove-web-player.js
 
 ## Build CSS
 

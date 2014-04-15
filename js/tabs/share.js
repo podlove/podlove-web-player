@@ -1,4 +1,4 @@
-var tabs = require('../tabs');
+var Tab = require('../tab');
 
 /**
  *
@@ -31,12 +31,12 @@ function createShareButton(options) {
 
 /**
  * pass episode url and name
+ * @param {Tab} shareTab
  * @param {object} episode
- * @param {boolean} shareButtonsActive
  */
-function createShareButtons(episode, shareButtonsActive) {
-  var shareButtonsControlBox = createShareButtonControlBox(shareButtonsActive);
+function createShareButtons(shareTab, episode) {
 
+  var shareButtonsControlBox = shareTab.box;
   var currentButton = createShareButton({
     icon: "pwp-icon-link",
     title: "Get URL for this",
@@ -90,26 +90,33 @@ function createShareButtons(episode, shareButtonsActive) {
     }
   });
   shareButtonsControlBox.append(mailButton);
-  return shareButtonsControlBox;
 }
-
-module.exports.createControlBox = createShareButtons;
 
 /**
  *
- * @param {*|jQuery|HTMLElement} parent
+ * @param params
+ * @returns {*}
  */
-function createShowShareButton() {
-  return tabs.createToggleButton("pwp-icon-export", "Show/hide sharing tabs");
+function createShareTab(params) {
+  if (!params.permalink || params.hidesharebutton === true) {
+    return null;
+  }
+
+  var episode = {
+    title: params.title,
+    titleEncoded: encodeURIComponent(params.title),
+    url: params.permalink,
+    urlEncoded: encodeURIComponent(params.permalink)
+  };
+  var shareTab = new Tab({
+    icon: "pwp-icon-export",
+    title: "Show/hide sharing tabs",
+    name: "podlovewebplayer_sharebuttons",
+    active: !!params.sharebuttonsVisible
+  });
+
+  createShareButtons(shareTab, episode);
+  return shareTab;
 }
 
-module.exports.createToggleButton = createShowShareButton;
-
-/**
- *
- * @param {boolean} shareButtonsActive
- * @returns {*|jQuery|HTMLElement}
- */
-function createShareButtonControlBox(shareButtonsActive) {
-  return tabs.createControlBox("podlovewebplayer_sharebuttons", shareButtonsActive);
-}
+module.exports = createShareTab;
