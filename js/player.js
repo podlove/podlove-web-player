@@ -285,9 +285,38 @@ function normalizeWidth(width) {
   return width.replace('px', '');
 }
 
-function renderSubTitle(text) {
-  return '<div class="subtitle">' + text + '</div>';
+
+
+
+/**
+ * Render HTML title area
+ * @param params
+ * @returns {string}
+ */
+function renderTitleArea(params) {
+    return '<div>' +
+        renderTitle(params.title, params.permalink) +
+        renderSubTitle(params.subtitle) +
+        '</div>';
 }
+
+/**
+ * Render HTML subtitle
+ * @param text
+ * @returns {string}
+ */
+function renderSubTitle(text) {
+  return '<p class="subtitle">' + text + '</p>';
+}
+
+/**
+ * Render HTML playbutton
+ * @returns {string}
+ */
+function renderPlaybutton() {
+   return '<a class="bigplay" title="Play Episode" href="#"></a>';
+}
+
 function renderPoster(poster) {
   if (!poster) { return ''; }
   return '<div class="coverart"><img class="coverimg" src="' + poster + '" data-img="' + poster + '" alt="Poster Image"></div>';
@@ -434,9 +463,11 @@ $.fn.podlovewebplayer = function (options) {
           wrapper.append(metaElement);
         }
 
-        metaElement.append(renderTitle(params.title, params.permalink));
-        metaElement.append(renderSubTitle(params.subtitle));
-        metaElement.append('<a class="bigplay" title="Play Episode" href="#"></a>');
+        // Render title area with title h2 and subtitle h3
+        metaElement.append(renderTitleArea(params));
+
+        // Render playbutton
+        metaElement.prepend(renderPlaybutton());
 
         if (params.subtitle && params.title && params.title.length < 42 && !params.poster) {
             wrapper.addClass('podlovewebplayer_smallplayer');
