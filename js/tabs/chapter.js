@@ -11,7 +11,7 @@ var tc = require('./../timecode')
  */
 module.exports = function (params) {
   //build chapter table
-  var downloadTab = new Tab({
+  var chapterTab = new Tab({
     icon: "pwp-icon-list-bullet",
     title: "Show/hide chapters",
     name: "podlovewebplayer_chapterbox showonplay" // FIXME clean way to add 2 classnames
@@ -19,17 +19,17 @@ module.exports = function (params) {
   ;
 
   if ((params.chaptersVisible === 'true') || (params.chaptersVisible === true)) {
-    downloadTab.box.addClass('active');
+    chapterTab.box.addClass('active');
   }
   if (params.chapterHeight !== "") {
     if (typeof parseInt(params.chapterHeight, 10) === 'number') {
-      downloadTab.box.css({"overflow-y":"auto", "max-height": parseInt(params.chapterHeight, 10) + 'px'});
+      chapterTab.box.css({"overflow-y":"auto", "max-height": parseInt(params.chapterHeight, 10) + 'px'});
     }
   }
 
-  downloadTab.box.append(generateTable(params));
-  downloadTab.update = update;
-  return downloadTab;
+  chapterTab.box.append(generateTable(params));
+  chapterTab.update = update;
+  return chapterTab;
 };
 
 
