@@ -264,75 +264,6 @@ var startAtTime = false,
       });
   };
 
-function renderTitle(text, link) {
-  var titleBegin = '<h3 class="episodetitle">',
-    titleEnd = '</h3>';
-  if (text !== undefined && link !== undefined) {
-    text = '<a href="' + link + '">' + text + '</a>';
-  }
-  return titleBegin + text + titleEnd;
-}
-
-/**
- * remove 'px' unit, set witdth to 100% for 'auto'
- * @param {string} width
- * @returns {string}
- */
-function normalizeWidth(width) {
-  if (width.toLowerCase() === 'auto') {
-    return '100%';
-  }
-  return width.replace('px', '');
-}
-
-
-
-
-/**
- * Render HTML title area
- * @param params
- * @returns {string}
- */
-function renderTitleArea(params) {
-    return '<div>' +
-        renderTitle(params.title, params.permalink) +
-        renderSubTitle(params.subtitle) +
-        '</div>';
-}
-
-/**
- * Render HTML subtitle
- * @param text
- * @returns {string}
- */
-function renderSubTitle(text) {
-  return '<p class="subtitle">' + text + '</p>';
-}
-
-/**
- * Render HTML playbutton
- * @returns {string}
- */
-function renderPlaybutton() {
-   return '<a class="bigplay" title="Play Episode" href="#"></a>';
-}
-
-function renderPoster(poster) {
-  if (!poster) { return ''; }
-  return '<div class="coverart"><img class="coverimg" src="' + poster + '" data-img="' + poster + '" alt="Poster Image"></div>';
-}
-
-function checkForChapters(params) {
-  return params.chapters && (
-    (typeof params.chapters === 'string' && params.chapters.length > 10) ||
-    (typeof params.chapters === 'object' && params.chapters.length > 1)
-    );
-}
-
-function getPlayerType (player) {
-  return player.tagName.toLowerCase();
-}
-
 $.fn.podlovewebplayer = function (options) {
     // MEJS options default values
     var mejsoptions = {
@@ -368,17 +299,16 @@ $.fn.podlovewebplayer = function (options) {
       var jqPlayer,
         richplayer = false,
         hasChapters = checkForChapters(params),
+        metaElement = $('<div class="podlovewebplayer_meta"></div>'),
+        playerType = getPlayerType(player),
         secArray,
         orig,
         deepLink,
         wrapper,
-        chapterBox,
-        metaElement = $('<div class="podlovewebplayer_meta"></div>'),
         controls,
         controlBox,
         storageKey;
       //audio params
-      var playerType = getPlayerType(player);
 
       //fine tuning params
       params.width = normalizeWidth(params.width);
@@ -446,28 +376,24 @@ $.fn.podlovewebplayer = function (options) {
       if (params.chapters !== undefined || params.title !== undefined || params.subtitle !== undefined || params.summary !== undefined || params.poster !== undefined || jqPlayer.attr('poster') !== undefined) {
         //set status variable
         richplayer = true;
-        wrapper.addClass('podlovewebplayer_' + player.tagName.toLowerCase());
-        if (player.tagName === "AUDIO") {
-          //kill play/pause button from miniplayer
-          $.each(mejsoptions.features, function (i) {
-            if (this === 'playpause') {
-              mejsoptions.features.splice(i, 1);
-            }
-          });
-          wrapper.prepend(metaElement);
+        wrapper.addClass('podlovewebplayer_' + playerType);
+
+        if (playerType === "audio") {
+          removePlayPause(mejsoptions);
+          // Render playbutton
+          metaElement.prepend(renderPlaybutton());
           var poster = params.poster || jqPlayer.attr('poster');
           metaElement.append(renderPoster(poster));
+          wrapper.prepend(metaElement);
         }
-        if (player.tagName === "VIDEO") {
+
+        if (playerType === "video") {
           wrapper.prepend('<div class="podlovewebplayer_top"></div>');
           wrapper.append(metaElement);
         }
 
         // Render title area with title h2 and subtitle h3
         metaElement.append(renderTitleArea(params));
-
-        // Render playbutton
-        metaElement.prepend(renderPlaybutton());
 
         if (params.subtitle && params.title && params.title.length < 42 && !params.poster) {
             wrapper.addClass('podlovewebplayer_smallplayer');
@@ -480,10 +406,7 @@ $.fn.podlovewebplayer = function (options) {
         controlBox = controls.box;
         //always render toggler buttons wrapper
         wrapper.append(controlBox);
-
       }
-
-
 
       /**
        * -- TABS --
@@ -544,23 +467,145 @@ $.fn.podlovewebplayer = function (options) {
     });
   };
 
-  /**
-   * player error handling function
-   * will remove the topmost mediafile from src or source list
-   * possible fix for Firefox AAC issues
-   */
-  function removeUnplayableMedia() {
-    var $this = $(this);
-    if ($this.attr('src')) {
-      $this.removeAttr('src');
-      return;
-    }
-    var sourceList = $this.children('source');
-    if (sourceList.length) {
-      sourceList.first().remove();
-    }
+/**
+ * remove 'px' unit, set witdth to 100% for 'auto'
+ * @param {string} width
+ * @returns {string}
+ */
+function normalizeWidth(width) {
+  if (width.toLowerCase() === 'auto') {
+    return '100%';
   }
+  return width.replace('px', '');
+}
 
+
+/**
+ * Render HTML title area
+ * @param params
+ * @returns {string}
+ */
+function renderTitleArea(params) {
+  return '<div>' +
+    renderShowTitle(params.show.title, params.show.url) +
+    renderTitle(params.title, params.permalink) +
+    renderSubTitle(params.subtitle) +
+    '</div>';
+}
+
+/**
+ * The most missing feature regarding embedded players
+ * @param {string} title
+ * @param {string} url
+ * @returns {string}
+ */
+function renderShowTitle(title, url) {
+  if (!title) {
+    return '';
+  }
+  if (url) {
+    title = '<a href="' + url + '">' + title + '</a>';
+  }
+  return '<h2 class="showtitle">' + title + '</h2>';
+}
+
+/**
+ * Render episode title HTML
+ * @param {string} text
+ * @param {string} link
+ * @returns {string}
+ */
+function renderTitle(text, link) {
+  var titleBegin = '<h3 class="episodetitle">',
+    titleEnd = '</h3>';
+  if (text !== undefined && link !== undefined) {
+    text = '<a href="' + link + '">' + text + '</a>';
+  }
+  return titleBegin + text + titleEnd;
+}
+
+/**
+ * Render HTML subtitle
+ * @param {string} text
+ * @returns {string}
+ */
+function renderSubTitle(text) {
+  return '<p class="subtitle">' + text + '</p>';
+}
+
+/**
+ * Render HTML playbutton
+ * @returns {string}
+ */
+function renderPlaybutton() {
+  return '<a class="bigplay" title="Play Episode" href="#"></a>';
+}
+
+/**
+ * Render the poster image in HTML
+ * returns an empty string if posterUrl is empty
+ * @param {string} posterUrl
+ * @returns {string} rendered HTML
+ */
+function renderPoster(posterUrl) {
+  if (!posterUrl) { return ''; }
+  return '<div class="coverart"><img class="coverimg" src="' + posterUrl + '" data-img="' + posterUrl + '" alt="Poster Image"></div>';
+}
+
+/**
+ *
+ * @param {object} params
+ * @returns {boolean} true if at least one chapter is present
+ */
+function checkForChapters(params) {
+  return !!params.chapters && (
+    (typeof params.chapters === 'string' && params.chapters.length > 10) ||
+      (typeof params.chapters === 'object' && params.chapters.length > 1)
+    );
+}
+
+/**
+ * audio or video tag
+ * @param {HTMLElement} player
+ * @returns {string} 'audio' | 'video'
+ */
+function getPlayerType (player) {
+  return player.tagName.toLowerCase();
+}
+
+/**
+ * kill play/pause button from miniplayer
+ * @param options
+ */
+function removePlayPause(options) {
+  $.each(options.features, function (i) {
+    if (this === 'playpause') {
+      options.features.splice(i, 1);
+    }
+  });
+}
+
+/**
+ * player error handling function
+ * will remove the topmost mediafile from src or source list
+ * possible fix for Firefox AAC issues
+ */
+function removeUnplayableMedia() {
+  var $this = $(this);
+  if ($this.attr('src')) {
+    $this.removeAttr('src');
+    return;
+  }
+  var sourceList = $this.children('source');
+  if (sourceList.length) {
+    sourceList.first().remove();
+  }
+}
+
+/**
+ * checks if the current window is hidden
+ * @returns {boolean} true if the window is hidden
+ */
 function isHidden() {
   var props = [
       'hidden',
@@ -571,7 +616,7 @@ function isHidden() {
 
   for (var index in props) {
     if (props[index] in document) {
-      return document[props[index]];
+      return !!document[props[index]];
     }
   }
   return false;

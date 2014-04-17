@@ -1,59 +1,73 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+/**
+ * @type {Tab}
+ */
+var Tab = require('./tab');
 
-
-function Controls () {
+/**
+ * instantiate new controls element
+ * @params {jQuery|HTMLElement} player
+ * @constructor
+ */
+function Controls (player) {
+  this.player = player;
   this.box = createBox();
-}
-
-module.exports = Controls;
-
-Controls.prototype.createTimeControls = function (player, chapterBox) {
   this.timeControlElement = createTimeControls();
   this.box.append(this.timeControlElement);
+}
+module.exports = Controls;
 
-  this.createButton("pwp-icon-to-start", "Jump backward to previous chapter", function (evt) {
-    evt.preventDefault();
-    if (playerStarted(player)) {
+/**
+ *
+ * @param {Tab} chapterTab
+ */
+Controls.prototype.createTimeControls = function (chapterTab) {
+  if (!chapterTab) {
+    console.info('Controls#createTimeControls: no chapterTab found');
+  }
+  var chapterBox = chapterTab instanceof Tab ? chapterTab.box : null;
+  if (chapterBox) {
+    this.createButton("pwp-icon-to-start", "Jump backward to previous chapter", function () {
       var activeChapter = chapterBox.find('.active');
-      if (player.currentTime > activeChapter.data('start') + 10) {
-        return player.setCurrentTime(activeChapter.data('start'));
-      }
-      return player.setCurrentTime(activeChapter.prev().data('start'));
-    }
-    return player.play();
+      var newTime = (this.player.currentTime > activeChapter.data('start') + 10)
+        ? activeChapter.data('start')
+        : activeChapter.prev().data('start');
+      this.player.setCurrentTime(newTime);
+    });
+  }
+
+  this.createButton("pwp-icon-fast-bw", "Rewind 30 seconds", function () {
+    this.player.setCurrentTime(this.player.currentTime - 30);
   });
 
-  this.createButton("pwp-icon-to-end", "Jump to next chapter", function (evt) {
-    evt.preventDefault();
-    if (playerStarted(player)) {
-      player.setCurrentTime(chapterBox.find('.active').next().data('start'));
-    }
-    return player.play();
+  this.createButton("pwp-icon-fast-fw", "Fast forward 30 seconds", function () {
+    this.player.setCurrentTime(this.player.currentTime + 30);
   });
 
-  this.createButton("pwp-icon-fast-bw", "Rewind 30 seconds", function (evt) {
-    evt.preventDefault();
-    if (playerStarted(player)) {
-      return player.setCurrentTime(player.currentTime - 30);
-    }
-    return player.play();
-  });
-
-  this.createButton("pwp-icon-fast-fw", "Fast forward 30 seconds", function (evt) {
-    evt.preventDefault();
-    if (playerStarted(player)) {
-      return player.setCurrentTime(player.currentTime + 30);
-    }
-    return player.play();
-  });
-
+  if (chapterBox) {
+    this.createButton("pwp-icon-to-end", "Jump to next chapter", function () {
+      this.player.setCurrentTime(chapterBox.find('.active').next().data('start'));
+    });
+  }
 };
 
 Controls.prototype.createButton = function createButton(icon, title, callback) {
   var button = $('<a href="#" class="controlbutton ' + icon + '" title="' + title + '"></a>');
   this.timeControlElement.append(button);
-  $('.podlovewebplayer_timecontrol .' + icon).on('click', callback);
+  var combinedCallback = getCombinedCallback(callback);
+  button.on('click', combinedCallback.bind(this));
 };
+
+function getCombinedCallback(callback) {
+  return function (evt) {
+    console.log(evt);
+    evt.preventDefault();
+    if (playerStarted(this.player)) {
+      callback.bind(this);
+    }
+    return this.player.play();
+  };
+}
 
 function createTimeControls() {
   return $('<div class="podlovewebplayer_timecontrol"></div>');
@@ -67,7 +81,7 @@ function playerStarted(player) {
   return ((typeof player.currentTime === 'number') && (player.currentTime > 0));
 }
 
-},{}],2:[function(require,module,exports){
+},{"./tab":6}],2:[function(require,module,exports){
 /**
  * Saving the playtime
  */
@@ -448,46 +462,6 @@ var startAtTime = false,
       });
   };
 
-function renderTitle(text, link) {
-  var titleBegin = '<h3 class="episodetitle">',
-    titleEnd = '</h3>';
-  if (text !== undefined && link !== undefined) {
-    text = '<a href="' + link + '">' + text + '</a>';
-  }
-  return titleBegin + text + titleEnd;
-}
-
-/**
- * remove 'px' unit, set witdth to 100% for 'auto'
- * @param {string} width
- * @returns {string}
- */
-function normalizeWidth(width) {
-  if (width.toLowerCase() === 'auto') {
-    return '100%';
-  }
-  return width.replace('px', '');
-}
-
-function renderSubTitle(text) {
-  return '<div class="subtitle">' + text + '</div>';
-}
-function renderPoster(poster) {
-  if (!poster) { return ''; }
-  return '<div class="coverart"><img class="coverimg" src="' + poster + '" data-img="' + poster + '" alt="Poster Image"></div>';
-}
-
-function checkForChapters(params) {
-  return params.chapters && (
-    (typeof params.chapters === 'string' && params.chapters.length > 10) ||
-    (typeof params.chapters === 'object' && params.chapters.length > 1)
-    );
-}
-
-function getPlayerType (player) {
-  return player.tagName.toLowerCase();
-}
-
 $.fn.podlovewebplayer = function (options) {
     // MEJS options default values
     var mejsoptions = {
@@ -523,17 +497,16 @@ $.fn.podlovewebplayer = function (options) {
       var jqPlayer,
         richplayer = false,
         hasChapters = checkForChapters(params),
+        metaElement = $('<div class="podlovewebplayer_meta"></div>'),
+        playerType = getPlayerType(player),
         secArray,
         orig,
         deepLink,
         wrapper,
-        chapterBox,
-        metaElement = $('<div class="podlovewebplayer_meta"></div>'),
         controls,
         controlBox,
         storageKey;
       //audio params
-      var playerType = getPlayerType(player);
 
       //fine tuning params
       params.width = normalizeWidth(params.width);
@@ -601,26 +574,24 @@ $.fn.podlovewebplayer = function (options) {
       if (params.chapters !== undefined || params.title !== undefined || params.subtitle !== undefined || params.summary !== undefined || params.poster !== undefined || jqPlayer.attr('poster') !== undefined) {
         //set status variable
         richplayer = true;
-        wrapper.addClass('podlovewebplayer_' + player.tagName.toLowerCase());
-        if (player.tagName === "AUDIO") {
-          //kill play/pause button from miniplayer
-          $.each(mejsoptions.features, function (i) {
-            if (this === 'playpause') {
-              mejsoptions.features.splice(i, 1);
-            }
-          });
-          wrapper.prepend(metaElement);
+        wrapper.addClass('podlovewebplayer_' + playerType);
+
+        if (playerType === "audio") {
+          removePlayPause(mejsoptions);
+          // Render playbutton
+          metaElement.prepend(renderPlaybutton());
           var poster = params.poster || jqPlayer.attr('poster');
           metaElement.append(renderPoster(poster));
+          wrapper.prepend(metaElement);
         }
-        if (player.tagName === "VIDEO") {
+
+        if (playerType === "video") {
           wrapper.prepend('<div class="podlovewebplayer_top"></div>');
           wrapper.append(metaElement);
         }
 
-        metaElement.append(renderTitle(params.title, params.permalink));
-        metaElement.append(renderSubTitle(params.subtitle));
-        metaElement.append('<a class="bigplay" title="Play Episode" href="#"></a>');
+        // Render title area with title h2 and subtitle h3
+        metaElement.append(renderTitleArea(params));
 
         if (params.subtitle && params.title && params.title.length < 42 && !params.poster) {
             wrapper.addClass('podlovewebplayer_smallplayer');
@@ -629,14 +600,11 @@ $.fn.podlovewebplayer = function (options) {
         /**
          * Timecontrols
          */
-        controls = new Controls();
+        controls = new Controls(player);
         controlBox = controls.box;
         //always render toggler buttons wrapper
         wrapper.append(controlBox);
-
       }
-
-
 
       /**
        * -- TABS --
@@ -644,20 +612,21 @@ $.fn.podlovewebplayer = function (options) {
        */
       controlBox.append(tabs.toggles);
       wrapper.append(tabs.container);
+
       tabs.add(infoTab(params));
       tabs.add(shareTab(params));
       tabs.add(downloadsTab(params));
+      var myChapterTab;
       if (hasChapters) {
-        var myChapterTab = chapterTab(params);
+        myChapterTab = chapterTab(params);
         tabs.add(myChapterTab);
         updateChapterMarks = myChapterTab.update;
       }
+      controls.createTimeControls(myChapterTab);
 
       if (richplayer || hasChapters) {
         wrapper.append('<div class="podlovewebplayer_tableend"></div>');
       }
-
-      controls.createTimeControls(player, chapterBox);
 
       // parse deeplink
       deepLink = parseTimecode(window.location.href);
@@ -696,23 +665,145 @@ $.fn.podlovewebplayer = function (options) {
     });
   };
 
-  /**
-   * player error handling function
-   * will remove the topmost mediafile from src or source list
-   * possible fix for Firefox AAC issues
-   */
-  function removeUnplayableMedia() {
-    var $this = $(this);
-    if ($this.attr('src')) {
-      $this.removeAttr('src');
-      return;
-    }
-    var sourceList = $this.children('source');
-    if (sourceList.length) {
-      sourceList.first().remove();
-    }
+/**
+ * remove 'px' unit, set witdth to 100% for 'auto'
+ * @param {string} width
+ * @returns {string}
+ */
+function normalizeWidth(width) {
+  if (width.toLowerCase() === 'auto') {
+    return '100%';
   }
+  return width.replace('px', '');
+}
 
+
+/**
+ * Render HTML title area
+ * @param params
+ * @returns {string}
+ */
+function renderTitleArea(params) {
+  return '<div>' +
+    renderShowTitle(params.show.title, params.show.url) +
+    renderTitle(params.title, params.permalink) +
+    renderSubTitle(params.subtitle) +
+    '</div>';
+}
+
+/**
+ * The most missing feature regarding embedded players
+ * @param {string} title
+ * @param {string} url
+ * @returns {string}
+ */
+function renderShowTitle(title, url) {
+  if (!title) {
+    return '';
+  }
+  if (url) {
+    title = '<a href="' + url + '">' + title + '</a>';
+  }
+  return '<h2 class="showtitle">' + title + '</h2>';
+}
+
+/**
+ * Render episode title HTML
+ * @param {string} text
+ * @param {string} link
+ * @returns {string}
+ */
+function renderTitle(text, link) {
+  var titleBegin = '<h3 class="episodetitle">',
+    titleEnd = '</h3>';
+  if (text !== undefined && link !== undefined) {
+    text = '<a href="' + link + '">' + text + '</a>';
+  }
+  return titleBegin + text + titleEnd;
+}
+
+/**
+ * Render HTML subtitle
+ * @param {string} text
+ * @returns {string}
+ */
+function renderSubTitle(text) {
+  return '<p class="subtitle">' + text + '</p>';
+}
+
+/**
+ * Render HTML playbutton
+ * @returns {string}
+ */
+function renderPlaybutton() {
+  return '<a class="bigplay" title="Play Episode" href="#"></a>';
+}
+
+/**
+ * Render the poster image in HTML
+ * returns an empty string if posterUrl is empty
+ * @param {string} posterUrl
+ * @returns {string} rendered HTML
+ */
+function renderPoster(posterUrl) {
+  if (!posterUrl) { return ''; }
+  return '<div class="coverart"><img class="coverimg" src="' + posterUrl + '" data-img="' + posterUrl + '" alt="Poster Image"></div>';
+}
+
+/**
+ *
+ * @param {object} params
+ * @returns {boolean} true if at least one chapter is present
+ */
+function checkForChapters(params) {
+  return !!params.chapters && (
+    (typeof params.chapters === 'string' && params.chapters.length > 10) ||
+      (typeof params.chapters === 'object' && params.chapters.length > 1)
+    );
+}
+
+/**
+ * audio or video tag
+ * @param {HTMLElement} player
+ * @returns {string} 'audio' | 'video'
+ */
+function getPlayerType (player) {
+  return player.tagName.toLowerCase();
+}
+
+/**
+ * kill play/pause button from miniplayer
+ * @param options
+ */
+function removePlayPause(options) {
+  $.each(options.features, function (i) {
+    if (this === 'playpause') {
+      options.features.splice(i, 1);
+    }
+  });
+}
+
+/**
+ * player error handling function
+ * will remove the topmost mediafile from src or source list
+ * possible fix for Firefox AAC issues
+ */
+function removeUnplayableMedia() {
+  var $this = $(this);
+  if ($this.attr('src')) {
+    $this.removeAttr('src');
+    return;
+  }
+  var sourceList = $this.children('source');
+  if (sourceList.length) {
+    sourceList.first().remove();
+  }
+}
+
+/**
+ * checks if the current window is hidden
+ * @returns {boolean} true if the window is hidden
+ */
 function isHidden() {
   var props = [
       'hidden',
@@ -723,7 +814,7 @@ function isHidden() {
 
   for (var index in props) {
     if (props[index] in document) {
-      return document[props[index]];
+      return !!document[props[index]];
     }
   }
   return false;
@@ -742,7 +833,7 @@ module.exports = {
  * @returns {*|jQuery|HTMLElement}
  */
 function createControlBox(name, active) {
-  var classes = ["podlovewebplayer_controlbox"];
+  var classes = ["tab"];
   classes.push(name);
   if (active) {
     classes.push("active");
@@ -822,7 +913,7 @@ var tc = require('./../timecode')
  */
 module.exports = function (params) {
   //build chapter table
-  var downloadTab = new Tab({
+  var chapterTab = new Tab({
     icon: "pwp-icon-list-bullet",
     title: "Show/hide chapters",
     name: "podlovewebplayer_chapterbox showonplay" // FIXME clean way to add 2 classnames
@@ -830,17 +921,17 @@ module.exports = function (params) {
   ;
 
   if ((params.chaptersVisible === 'true') || (params.chaptersVisible === true)) {
-    downloadTab.box.addClass('active');
+    chapterTab.box.addClass('active');
   }
   if (params.chapterHeight !== "") {
     if (typeof parseInt(params.chapterHeight, 10) === 'number') {
-      downloadTab.box.css({"overflow-y":"auto", "max-height": parseInt(params.chapterHeight, 10) + 'px'});
+      chapterTab.box.css({"overflow-y":"auto", "max-height": parseInt(params.chapterHeight, 10) + 'px'});
     }
   }
 
-  downloadTab.box.append(generateTable(params));
-  downloadTab.update = update;
-  return downloadTab;
+  chapterTab.box.append(generateTable(params));
+  chapterTab.update = update;
+  return chapterTab;
 };
 
 
