@@ -476,7 +476,7 @@ $.fn.podlovewebplayer = function (options) {
         /**
          * Timecontrols
          */
-        controls = new Controls();
+        controls = new Controls(player);
         controlBox = controls.box;
         //always render toggler buttons wrapper
         wrapper.append(controlBox);
@@ -491,20 +491,21 @@ $.fn.podlovewebplayer = function (options) {
        */
       controlBox.append(tabs.toggles);
       wrapper.append(tabs.container);
+
       tabs.add(infoTab(params));
       tabs.add(shareTab(params));
       tabs.add(downloadsTab(params));
+      var myChapterTab;
       if (hasChapters) {
-        var myChapterTab = chapterTab(params);
+        myChapterTab = chapterTab(params);
         tabs.add(myChapterTab);
         updateChapterMarks = myChapterTab.update;
       }
+      controls.createTimeControls(myChapterTab);
 
       if (richplayer || hasChapters) {
         wrapper.append('<div class="podlovewebplayer_tableend"></div>');
       }
-
-      controls.createTimeControls(player, chapterBox);
 
       // parse deeplink
       deepLink = parseTimecode(window.location.href);
