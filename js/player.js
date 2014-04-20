@@ -84,7 +84,6 @@ var startAtTime = false,
       layoutedPlayer = jqPlayer,
       canplay = false,
       metaElement,
-      list,
       marks;
 
     // expose the player interface
@@ -111,9 +110,6 @@ var startAtTime = false,
     }
     // cache some jQ objects
     metaElement = wrapper.find('.podlovewebplayer_meta');
-    list = wrapper.find('table');
-    marks = list.find('tr');
-    // fix height of summary for better togglability
 
     if (metaElement.length === 1) {
       metaElement.find('.bigplay').on('click', function () {
@@ -142,50 +138,8 @@ var startAtTime = false,
           player.play();
         }
       });
-
-
     }
 
-    // chapters list
-    list
-      .show()
-      .delegate('.chaptertr', 'click', function (e) {
-        if ($(this).closest('table').hasClass('linked_all') || $(this).closest('tr').hasClass('loaded')) {
-          e.preventDefault();
-          var mark = $(this).closest('tr'),
-            startTime = mark.data('start');
-          //endTime = mark.data('end');
-          // If there is only one player also set deepLink
-          if (players.length === 1) {
-            // setFragmentURL('t=' + generateTimecode([startTime, endTime]));
-            setFragmentURL('t=' + generateTimecode([startTime]));
-          } else {
-            if (canplay) {
-              // Basic Chapter Mark function (without deeplinking)
-              player.setCurrentTime(startTime);
-            } else {
-              jqPlayer.one('canplay', function () {
-                player.setCurrentTime(startTime);
-              });
-            }
-          }
-          // flash fallback needs additional pause
-          if (player.pluginType === 'flash') {
-            player.pause();
-          }
-          player.play();
-        }
-        return false;
-      });
-    list
-      .show()
-      .delegate('.chaptertr a', 'click', function (e) {
-        if ($(this).closest('table').hasClass('linked_all') || $(this).closest('td').hasClass('loaded')) {
-          e.preventDefault();
-          window.open($(this)[0].href, '_blank');
-        }
-        return false;
-      });
     // wait for the player or you'll get DOM EXCEPTIONS
     // And just listen once because of a special behaviour in firefox
     // --> https://bugzilla.mozilla.org/show_bug.cgi?id=664842
@@ -193,12 +147,14 @@ var startAtTime = false,
       canplay = true;
       // add duration of final chapter
       if (player.duration) {
+        /*
         marks.find('.timecode code').eq(-1).each(function () {
           var start, end;
           start = Math.floor($(this).closest('tr').data('start'));
           end = Math.floor(player.duration);
           $(this).text(generateTimecode([end - start]));
         });
+        */
       }
       // add Deeplink Behavior if there is only one player on the site
       if (players.length === 1) {
@@ -219,8 +175,9 @@ var startAtTime = false,
     });
     // always update Chaptermarks though
     jqPlayer
-      .on('timeupdate', function () {
-        updateChapterMarks(player, marks);
+      .on('timeupdate', function (event) {
+        console.log('t', event);
+        tabs.update(event);
       })
       // update play/pause status
       .on('play playing', function () {
@@ -233,13 +190,12 @@ var startAtTime = false,
             if (players.length === 1) {
               ignoreHashChange = true;
               console.debug('time', generateTimecode([player.currentTime, false]));
-              window.location.replace('#t=' + generateTimecode([player.currentTime, false]));
+              setFragmentURL('#t=' + generateTimecode([player.currentTime, false]));
             }
             console.debug(player.currentTime);
             handleCookies.setItem(params.permalink, player.currentTime);
           }, 5000);
         }
-        list.find('.paused').removeClass('paused');
         if (metaElement.length === 1) {
           metaElement.find('.bigplay').addClass('playing');
         }
@@ -418,13 +374,13 @@ $.fn.podlovewebplayer = function (options) {
       tabs.add(infoTab(params));
       tabs.add(shareTab(params));
       tabs.add(downloadsTab(params));
-      var myChapterTab;
+      var chapters;
       if (hasChapters) {
-        myChapterTab = chapterTab(params);
-        tabs.add(myChapterTab);
-        updateChapterMarks = myChapterTab.update;
+        chapters = new chapterTab(player, params);
+        tabs.addModule(chapters);
       }
-      controls.createTimeControls(myChapterTab);
+      chapters.addEventhandlers(player);
+      controls.createTimeControls(chapters.tab);
 
       if (richplayer || hasChapters) {
         wrapper.append('<div class="podlovewebplayer_tableend"></div>');
