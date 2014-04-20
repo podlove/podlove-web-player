@@ -299,7 +299,7 @@ $.fn.podlovewebplayer = function (options) {
       var jqPlayer,
         richplayer = false,
         hasChapters = checkForChapters(params),
-        metaElement = $('<div class="podlovewebplayer_meta"></div>'),
+        metaElement = $('<div class="podlovewebplayer_meta flexer"></div>'),
         playerType = getPlayerType(player),
         secArray,
         orig,
