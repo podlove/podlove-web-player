@@ -114,3 +114,41 @@
        -o-background-size: $bg-width $bg-height;
           background-size: $bg-width $bg-height;
 }
+
+// Buttons and Icons
+// --------------------------------------------------
+
+// Controlbuttons, Infobuttons and -Icons
+@mixin control-icon {
+  color: $white;
+  background: transparent !important;
+}
+
+// Roundbutton
+@mixin roundbuttonshadow {
+  border: 5px solid white !important;
+  border-radius: 60px !important;
+  text-shadow: 0px 0px 10px #FFFFFF;
+}
+
+// Playbutton
+@mixin playbutton {
+  font-family: $font-family-icons !important;
+  font-size: 42px;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1.33em;
+  border: 5px solid $white !important;
+  border-radius: 60px !important;
+  transition: none;
+  speak: none;
+  &:before {
+    content: "\25b6";
+    padding-left: 0.02em;
+  }
+  &:focus,
+  &:hover,
+  &:active {
+    @include roundbuttonshadow;
+  }
+}

@@ -17,6 +17,8 @@
 }
 
 .podlovewebplayer_wrapper .mejs-container .mejs-controls {
+  background: $black;
+/*
   background: url(background.png);
   background: rgba(0, 0, 0, 0.7);
   background: -webkit-linear-gradient(top, rgba(50,50,50,0.7), rgba(0,0,0,0.7));
@@ -24,6 +26,7 @@
   background: -o-linear-gradient(top, rgba(50,50,50,0.7), rgba(0,0,0,0.7));
   background: -ms-linear-gradient(top, rgba(50,50,50,0.7), rgba(0,0,0,0.7));
   background: linear-gradient(rgba(50,50,50,0.7), rgba(0,0,0,0.7));
+*/
 }
 
 .podlovewebplayer_wrapper .mejs-container .mejs-controls > div:first-child {
