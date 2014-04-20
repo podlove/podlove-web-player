@@ -62,11 +62,19 @@ $font-size-h4:            ceil($font-size-base * 1.125) !default; // ~18px
 $font-size-h5:            $font-size-base !default;
 $font-size-h6:            ceil($font-size-base * 0.85) !default; // ~13px
 
+// Typography Variables
+// -------------------------
+
+$font-weight-light:     100;
+$font-weight-normal:    300;
+$font-weight-bold:      400;
+$font-weight-bolder:    500;
+
 $line-height-base:        1.428571429 !default; // 20/14
 $line-height-computed:    floor($font-size-base * $line-height-base) !default; // ~20px
 
 $headings-font-family:    $font-family-base !default;
-$headings-font-weight:    500 !default;
+$headings-font-weight:    300 !default;
 $headings-line-height:    1.1 !default;
 $headings-color:          inherit !default;
 
