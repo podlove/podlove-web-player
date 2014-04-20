@@ -111,6 +111,9 @@ module.exports = {
     endTime = extractTime(parts.splice(6));
 
     return (endTime > startTime) ? [startTime, endTime] : [startTime, false];
-  }
+  },
 
+  getStartTimeCode: function getStartTimecode(start) {
+      return this.parse(start)[0];
+  }
 };
