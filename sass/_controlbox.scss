@@ -1,0 +1,26 @@
+//
+// Controlbox
+// --------------------------------------------------
+
+// Wrapper for audio controls and tabs-icons
+.controlbox {
+  height: 30px;
+  background: $gray-dark;
+  .togglers {
+    float: left;
+    margin-bottom: -25px;
+    height: 30px;
+    .infobuttons {
+      display: inline-block !important;
+      height: 30px;
+      width: 30px;
+    }
+    .pwp-icon-download { display: none !important; }
+  }
+  .podlovewebplayer_timecontrol {
+    float: right;
+    a {
+      color: $link-color;
+    }
+  }
+}
