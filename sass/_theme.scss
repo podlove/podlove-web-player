@@ -37,6 +37,7 @@
     border: 0px none !important;
     text-decoration: none !important;
     outline: none !important;
+    color: $link-color;
   }
   .podlovewebplayer_top,
   .podlovewebplayer_meta {
@@ -65,6 +66,35 @@
   }
 }
 
+.showtitle {
+  margin-top: 0;
+  a {
+    color: $link-color;
+  }
+}
+
+// Wrapper for audio controls and tabs-icons
+.controlbox {
+  height: 30px;
+  background: $gray-dark;
+  .togglers {
+    float: left;
+    margin-bottom: -25px;
+    height: 30px;
+    .infobuttons {
+      display: inline-block !important;
+      height: 30px;
+      width: 30px;
+    }
+    .pwp-icon-download { display: none !important; }
+  }
+  .podlovewebplayer_timecontrol {
+    float: right;
+    a {
+      color: $link-color;
+    }
+  }
+}
 
 .podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_tableend,
 .podlovewebplayer_wrapper.podlovewebplayer_video .tab,
@@ -117,18 +147,20 @@
     clear: none;
     background: transparent !important;
     padding: 7px 10px 0 0;
-    margin-right: 95px;
+    margin: 0 95px 0 0;
     text-transform: none;
     letter-spacing: 0;
     text-shadow: none;
     a {
       line-height: 20px !important;
-      color: $white;
+/*
+      color: $link-color;
       &:focus,
       &:hover,
       &:active {
         color: #bbb !important;
       }
+*/
     }
   }
   .bigplay {
@@ -209,16 +241,10 @@
   }
   .subtitle {
     margin-right: 15px;
-    font-size: 12px;
-    color: $gray-lighter !important;
+    color: $gray-light !important;
     text-shadow: none !important;
     background: transparent !important;
-    padding-bottom: 35px;
     padding-left: 0px;
-    strong{
-      color: #ccc;
-      font-size: 13px !important;
-    }
     .summary .summarydiv {
       margin: 0px 5px;
     }
@@ -311,7 +337,7 @@
 .togglers .infobuttons a {
   color: $white;
   background: transparent !important;
-  font-size: 1.75em;
+  //font-size: 1.75em;
   -webkit-text-shadow: 0px 0px 1px #000000;
   -moz-text-shadow: 0px 0px 1px #000000;
   -o-text-shadow: 0px 0px 1px #000000;
@@ -325,8 +351,8 @@
   display: inline;
   text-decoration: none;
   &:hover {
-    text-shadow: 0px 0px 4px #FFFFFF;
     text-decoration: none;
+    text-shadow: 0px 0px 4px #FFFFFF;
     filter: dropshadow(color=#FFFFFF, offx=0, offy=0);
     cursor: pointer;
   }
@@ -341,7 +367,6 @@
   font-size: 2.4em;
   font-weight: bold;
 }
-
 
 .podlovewebplayer_downloadbuttons {
   .infobuttons {
@@ -364,21 +389,6 @@
 .podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_meta .togglers {
   top: auto;
   bottom: -10px;
-}
-
-.togglers {
-  position: relative;
-  text-align: right;
-  right: 9px;
-  top: -30px;
-  margin-bottom: -25px;
-  height: 30px;
-  .infobuttons {
-    display: inline-block !important;
-    height: 30px;
-    width: 30px;
-  }
-  .pwp-icon-download { display: none !important; }
 }
 
 .icon-link,

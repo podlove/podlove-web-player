@@ -36,9 +36,12 @@
 //@import "controls";
 @import "theme";
 @import "mediaelement";
+@import "tabs";
 
 // Utility classes
 @import "utilities";
+//@import "compass/utilities/color/contrast";
+
 
 // Icons (Sass import from an external library folder)
 @import "CSS:../libs/podlove-font/css/podlovefont";
