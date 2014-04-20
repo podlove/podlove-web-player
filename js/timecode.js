@@ -94,12 +94,12 @@ module.exports = {
   parse: function (timecode) {
     var parts, startTime, endTime;
     if (!timecode) {
-      return false;
+      return [false, false];
     }
 
     parts = timecode.match(timecodeRegExp);
     if (!parts || parts.length < 10) {
-      return false;
+      return [false, false];
     }
     startTime = extractTime(parts);
 
