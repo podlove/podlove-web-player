@@ -486,11 +486,11 @@ function normalizeWidth(width) {
  * @returns {string}
  */
 function renderTitleArea(params) {
-  return '<div>' +
+  return '<header>' +
     renderShowTitle(params.show.title, params.show.url) +
     renderTitle(params.title, params.permalink) +
     renderSubTitle(params.subtitle) +
-    '</div>';
+    '</header>';
 }
 
 /**
@@ -506,7 +506,7 @@ function renderShowTitle(title, url) {
   if (url) {
     title = '<a href="' + url + '">' + title + '</a>';
   }
-  return '<h2 class="showtitle">' + title + '</h2>';
+  return '<h4 class="showtitle">' + title + '</h4>';
 }
 
 /**
@@ -516,8 +516,8 @@ function renderShowTitle(title, url) {
  * @returns {string}
  */
 function renderTitle(text, link) {
-  var titleBegin = '<h3 class="episodetitle">',
-    titleEnd = '</h3>';
+  var titleBegin = '<h2 class="episodetitle">',
+    titleEnd = '</h2>';
   if (text !== undefined && link !== undefined) {
     text = '<a href="' + link + '">' + text + '</a>';
   }
