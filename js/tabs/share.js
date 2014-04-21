@@ -24,7 +24,7 @@ function getButtonClickHandler(options) {
 function createShareButton(options) {
   var clickHandler = getButtonClickHandler(options),
     button = $('<a href="#" target="_blank" ' +
-      'class="infobuttons ' + options.icon + '" title="' + options.title + '"></a>');
+      'class="button button-toggle ' + options.icon + '" title="' + options.title + '"></a>');
   button.on('click', clickHandler);
   return button;
 }

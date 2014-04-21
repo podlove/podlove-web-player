@@ -105,6 +105,26 @@
   animation: $animation;
 }
 
+// Color Schemes
+
+// Sets the specified background color and calculates a dark or light
+// contrasted text color. The arguments are passed through to the contrast-color function.
+/*
+.example {
+  p.dark {
+    @include contrasted(#5f1210);
+  }
+  p.light {
+    @include contrasted(#c82523);
+  }
+}
+*/
+@mixin contrasted($background-color, $dark: $contrasted-dark-default, $light: $contrasted-light-default, $threshold: $contrasted-lightness-threshold) {
+  background-color: $background-color;
+  color: contrast-color($background-color, $dark, $light, $threshold);
+}
+
+
 
 // Background Size
 
@@ -181,3 +201,4 @@
     @include roundbuttonshadow;
   }
 }
+

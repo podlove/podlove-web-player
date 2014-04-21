@@ -2,7 +2,7 @@
 // Titlebar
 // --------------------------------------------------
 
-.podlovewebplayer_meta {
+.titlebar {
   @include clearfix();
   @include flexbox();
   flex-direction: row;
@@ -11,6 +11,7 @@
   background: $gray;
   min-height: 100px;
   height: auto;
+  color: $white;
 
   header {
     @include flex(1 145px);
@@ -116,7 +117,7 @@
   }
 
   .podlovewebplayer_top,
-  .podlovewebplayer_meta {
+  .titlebar {
     min-height: 60px;
   }
 }

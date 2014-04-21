@@ -34,7 +34,7 @@ Tab.prototype.close = function () {
 };
 
 Tab.prototype.createToggleButton = function(icon, title) {
-  return $('<a href="#" class="infobuttons ' + icon + '" title="' + title + '"></a>');
+  return $('<a href="#" class="button button-toggle ' + icon + '" title="' + title + '"></a>');
 }
 
 module.exports = Tab;

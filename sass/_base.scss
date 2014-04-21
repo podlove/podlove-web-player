@@ -41,11 +41,13 @@ textarea {
 a {
   color: $default-link-color;
   text-decoration: none;
+  background: transparent !important;
 
   &:hover,
   &:focus {
     color: $link-hover-color;
-    text-decoration: underline;
+    text-decoration: none;
+    outline: none;
   }
 }
 

@@ -3,19 +3,12 @@
 // --------------------------------------------------
 
 
-.podlovewebplayer_wrapper * {
-  line-height: 1.25em;
-  -webkit-text-size-adjust: inherit;
-}
-
-.podlovewebplayer_wrapper {
+.container {
   width: 100%;
   clear: both;
   display: block;
   position: relative;
   padding: 0;
-  background: white;
-  border-radius: 15px;
   border: 0px solid black;
   &:after {
     content: ".";
@@ -27,14 +20,6 @@
     clear: both;
   }
   a {
-    background: transparent !important;
-    text-decoration: none;
-  }
-  a,
-  a:active,
-  a:focus {
-    text-decoration: none !important;
-    outline: none !important;
     color: $link-color;
   }
   .podlovewebplayer_top {
@@ -62,28 +47,27 @@
   }
 }
 
-.podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_tableend,
-.podlovewebplayer_wrapper.podlovewebplayer_video .tab,
-.podlovewebplayer_wrapper.podlovewebplayer_video .summary {
+.container.podlovewebplayer_video .podlovewebplayer_tableend,
+.container.podlovewebplayer_video .tab,
+.container.podlovewebplayer_video .summary {
   background: $gray-darker; //#252525
 }
 
-.podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_chapterbox,
-.podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_chapters,
-.podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_meta + .summary,
-.podlovewebplayer_wrapper.podlovewebplayer_video .tab {
+.container.podlovewebplayer_video .podlovewebplayer_chapterbox,
+.container.podlovewebplayer_video .podlovewebplayer_chapters,
+.container.podlovewebplayer_video .titlebar + .summary,
+.container.podlovewebplayer_video .tab {
   border-color: $gray-darker; //#252525
 }
 
-.podlovewebplayer_wrapper.podlovewebplayer_video .tab {
+.container.podlovewebplayer_video .tab {
   margin-top: 0px;
 }
 
 
-.podlovewebplayer_meta + .summary,
-.podlovewebplayer_wrapper .tab {
+.titlebar + .summary,
+.container .tab {
   overflow: hidden;
-  //padding: 0px 10px;
   margin-top: -1px;
   font-size: 12px;
   line-height: 1.5;
@@ -118,7 +102,7 @@
 
 
 .podlovewebplayer_video .summary,
-.podlovewebplayer_video.podlovewebplayer_wrapper .tab {
+.podlovewebplayer_video.container .tab {
   margin-top: 0px;
 }
 
@@ -148,7 +132,7 @@
   line-height: 1em;
 }
 
-.podlovewebplayer_wrapper .tab {
+.container .tab {
   height: 0px;
   font-size: 4px;
   text-align: center;
@@ -160,10 +144,10 @@
   }
 }
 
-.tab .infobuttons,
-.tab .infobuttons a,
-.togglers .infobuttons,
-.togglers .infobuttons a {
+.tab .button-toggle,
+.tab .button-toggle a,
+.togglebar .button-toggle,
+.togglebar .button-toggle a {
   @include control-icon;
   //color: $white;
   //background: transparent !important;
@@ -192,8 +176,8 @@
   }
 }
 
-.tab .infobuttons,
-.tab .infobuttons a {
+.tab .button-toggle,
+.tab .button-toggle a {
   position: relative;
   margin: 4%;
   padding: 0px;
@@ -203,7 +187,7 @@
 }
 
 .podlovewebplayer_downloadbuttons {
-  .infobuttons {
+  .button-toggle {
     margin: 2%;
   }
   select {
@@ -220,7 +204,7 @@
   }
 }
 
-.podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_meta .togglers {
+.container.podlovewebplayer_video .titlebar .togglebar {
   top: auto;
   bottom: -10px;
 }
@@ -406,7 +390,7 @@
   }
 }
 
-.podlovewebplayer_wrapper .podlovewebplayer_tableend {
+.container .podlovewebplayer_tableend {
   position: initial;
   display: block;
   height: 11px;
@@ -426,11 +410,11 @@
 
 // Smaller Resolutions
 @media only screen and (max-width : 500px) {
-  .podlovewebplayer_wrapper {
+  .container {
     margin-left: 0px;
     margin-right: 0px;
 
-    .podlovewebplayer_meta {
+    .titlebar {
       -webkit-border-top-left-radius: 0px !important;
       -webkit-border-top-right-radius: 0px !important;
       -moz-border-radius-topleft: 0px !important;
@@ -448,7 +432,7 @@
       &.active {
         height: auto !important;
       }
-      .infobuttons {
+      .button-toggle {
         margin: 4%;
         white-space: nowrap;
         span {

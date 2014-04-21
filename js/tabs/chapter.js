@@ -77,7 +77,7 @@ function chapterFromString (chapter) {
  * @param {object} player
  */
 function update (player) {
-  //var coverImg = marks.closest('.podlovewebplayer_wrapper').find('.coverimg');
+  //var coverImg = marks.closest('.container').find('.coverimg');
   $.each(this.chapters, function (i, chapter) {
     console.log('Chapters#update', chapter);
     var isBuffered,

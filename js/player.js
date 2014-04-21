@@ -109,7 +109,7 @@ var startAtTime = false,
       console.log(layoutedPlayer);
     }
     // cache some jQ objects
-    metaElement = wrapper.find('.podlovewebplayer_meta');
+    metaElement = wrapper.find('.titlebar');
 
     if (metaElement.length === 1) {
       metaElement.find('.bigplay').on('click', function () {
@@ -255,7 +255,7 @@ $.fn.podlovewebplayer = function (options) {
       var jqPlayer,
         richplayer = false,
         hasChapters = checkForChapters(params),
-        metaElement = $('<div class="podlovewebplayer_meta"></div>'),
+        metaElement = $('<div class="titlebar"></div>'),
         playerType = getPlayerType(player),
         secArray,
         orig,
@@ -311,7 +311,7 @@ $.fn.podlovewebplayer = function (options) {
       }
 
       orig = player;
-      player = $(player).clone().wrap('<div class="podlovewebplayer_wrapper" style="width: ' + params.width + '"></div>')[0];
+      player = $(player).clone().wrap('<div class="container" style="width: ' + params.width + '"></div>')[0];
       jqPlayer = $(player);
       wrapper = jqPlayer.parent();
       players.push(player);
@@ -368,7 +368,7 @@ $.fn.podlovewebplayer = function (options) {
        * -- TABS --
        * FIXME enable chapter tab
        */
-      controlBox.append(tabs.toggles);
+      controlBox.append(tabs.togglebar);
       wrapper.append(tabs.container);
 
       tabs.add(infoTab(params));
@@ -413,7 +413,7 @@ $.fn.podlovewebplayer = function (options) {
         addBehavior(player, params, wrapper);
         if (deepLink !== false && players.length === 1) {
           $('html, body').delay(150).animate({
-            scrollTop: $('.podlovewebplayer_wrapper:first').offset().top - 25
+            scrollTop: $('.container:first').offset().top - 25
           });
         }
       };

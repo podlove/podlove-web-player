@@ -51,7 +51,7 @@ Controls.prototype.createTimeControls = function (chapterTab) {
 };
 
 Controls.prototype.createButton = function createButton(icon, title, callback) {
-  var button = $('<a href="#" class="controlbutton ' + icon + '" title="' + title + '"></a>');
+  var button = $('<a href="#" class="button button-control ' + icon + '" title="' + title + '"></a>');
   this.timeControlElement.append(button);
   var combinedCallback = getCombinedCallback(callback);
   button.on('click', combinedCallback.bind(this));
@@ -69,7 +69,7 @@ function getCombinedCallback(callback) {
 }
 
 function createTimeControls() {
-  return $('<div class="podlovewebplayer_timecontrol"></div>');
+  return $('<div class="timecontrolbar"></div>');
 }
 
 function createBox() {
