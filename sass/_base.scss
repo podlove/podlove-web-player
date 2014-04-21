@@ -39,7 +39,7 @@ textarea {
 // Links
 
 a {
-  color: $link-color;
+  color: $default-link-color;
   text-decoration: none;
 
   &:hover,
@@ -49,6 +49,10 @@ a {
   }
 }
 
+.flexer {
+  display: flex;
+  width: 100%;
+}
 
 // Horizontal rules
 

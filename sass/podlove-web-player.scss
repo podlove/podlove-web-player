@@ -32,13 +32,18 @@
 //@import "buttons";
 
 // Components
+@import "theme";
 @import "progressbar";
 //@import "controls";
-@import "theme";
+@import "titlebar";
+@import "controlbox";
 @import "mediaelement";
+@import "tabs";
 
 // Utility classes
 @import "utilities";
+//@import "compass/utilities/color/contrast";
+
 
 // Icons (Sass import from an external library folder)
 @import "CSS:../libs/podlove-font/css/podlovefont";

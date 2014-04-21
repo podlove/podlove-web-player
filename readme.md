@@ -27,6 +27,12 @@ Create podlove-web-player/static/podlove-web-player.js with
 
 ## Build CSS
 
+Install autoprefixer to parse CSS and add vendor prefixes to rules by 'Can I Use'
+[https://github.com/ai/autoprefixer](https://github.com/ai/autoprefixer)
+
+    sudo npm install --global autoprefixer
+
+
 ### Setting up the ruby environment
 
        $ gem update --system

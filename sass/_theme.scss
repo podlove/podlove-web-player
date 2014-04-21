@@ -13,9 +13,8 @@
   clear: both;
   display: block;
   position: relative;
-  padding-bottom: 1.5em;
+  padding: 0;
   background: white;
-  padding: 0px;
   border-radius: 15px;
   border: 0px solid black;
   &:after {
@@ -34,18 +33,16 @@
   a,
   a:active,
   a:focus {
-    border: 0px none !important;
     text-decoration: none !important;
     outline: none !important;
+    color: $link-color;
   }
-  .podlovewebplayer_top,
-  .podlovewebplayer_meta {
+  .podlovewebplayer_top {
     position: relative;
     display: block;
     background: $black;
     min-height: 100px;
     height: auto;
-    margin-bottom: 1px;
     padding-bottom: 5px;
     -webkit-border-top-left-radius: 10px;
     -webkit-border-top-right-radius: 10px;
@@ -65,7 +62,6 @@
   }
 }
 
-
 .podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_tableend,
 .podlovewebplayer_wrapper.podlovewebplayer_video .tab,
 .podlovewebplayer_wrapper.podlovewebplayer_video .summary {
@@ -83,156 +79,15 @@
   margin-top: 0px;
 }
 
-.podlovewebplayer_smallplayer {
-  .mejs-time-float {
-    z-index: 100;
-  }
-
-  .bigplay {
-    font-size: 25px;
-    padding: 0 11px 19px 9px;
-    height: 40px;
-    width: 40px;
-    margin: 10px 10px 0px 10px;
-    border: 4px solid #ffffff !important;
-  }
-
-  .bigplay.playing {
-    padding: 0 13px 19px 5px;
-    &:focus,
-    &:hover,
-    &:active {
-      border: 4px solid white !important;
-    }
-  }
-
-  .podlovewebplayer_top,
-  .podlovewebplayer_meta {
-    min-height: 60px;
-  }
-}
-
-.podlovewebplayer_meta {
-  h3 {
-    clear: none;
-    background: transparent !important;
-    padding: 7px 10px 0 0;
-    margin-right: 95px;
-    text-transform: none;
-    letter-spacing: 0;
-    text-shadow: none;
-    a {
-      line-height: 20px !important;
-      color: $white;
-      &:focus,
-      &:hover,
-      &:active {
-        color: #bbb !important;
-      }
-    }
-  }
-  .bigplay {
-    font-family: $font-family-icons !important;
-    font-style: normal;
-    font-weight: normal;
-    line-height: 1.33em;
-    speak: none;
-    color: $white;
-    background: transparent !important;
-    float: right;
-    position: relative;
-    z-index: 78;
-    border: 5px solid $white !important;
-    border-radius: 60px !important;
-    font-size: 42px;
-    padding: 5px 6px 10px 20px;
-    height: 75px;
-    width: 75px;
-    margin: 10px 10px 10px 10px;
-    -webkit-transition: none;
-    -moz-transition: none;
-    -o-transition: none;
-    transition: none;
-    &:before {
-      content: "\25b6";
-      padding-left: 0.02em;
-    }
-    &:focus,
-    &:hover,
-    &:active {
-      border: 5px solid $white !important;
-      border-radius: 60px !important;
-      -webkit-text-shadow: 0px 0px 10px #FFFFFF;
-      -moz-text-shadow: 0px 0px 10px #FFFFFF;
-      -o-text-shadow: 0px 0px 10px #FFFFFF;
-      text-shadow: 0px 0px 10px #FFFFFF;
-    }
-  }
-  .bigplay.playing {
-    padding: 5px 11px 20px 15px;
-    &:before {
-      content: "\2389";
-    }
-    &:focus,
-    &:hover,
-    &:active {
-      border: 5px solid white !important;
-      border-radius: 60px !important;
-      -webkit-text-shadow: 0px 0px 10px #FFFFFF;
-      -moz-text-shadow: 0px 0px 10px #FFFFFF;
-      -o-text-shadow: 0px 0px 10px #FFFFFF;
-      text-shadow: 0px 0px 10px #FFFFFF;
-    }
-  }
-  .coverart {
-    display: inline;
-    img {
-      position: relative !important;
-      float: left !important;
-      margin-top: 0px !important;
-      margin-right: 10px !important;
-      margin-left: 0px !important;
-      margin-bottom: 10px !important;
-      height: 75px !important;
-      width: auto !important;
-      max-width: 275px !important;
-      top: 10px !important;
-      left: 0px !important;
-      right: auto !important;
-      bottom: auto !important;
-      box-shadow: none !important;
-      -webkit-border-radius: 0px;
-      -moz-border-radius: 0px;
-      -o-border-radius: 0px;
-      border-radius: 0px;
-    }
-  }
-  .subtitle {
-    margin-right: 15px;
-    font-size: 12px;
-    color: $gray-lighter !important;
-    text-shadow: none !important;
-    background: transparent !important;
-    padding-bottom: 35px;
-    padding-left: 0px;
-    strong{
-      color: #ccc;
-      font-size: 13px !important;
-    }
-    .summary .summarydiv {
-      margin: 0px 5px;
-    }
-  }
-}
 
 .podlovewebplayer_meta + .summary,
 .podlovewebplayer_wrapper .tab {
   overflow: hidden;
-  padding: 0px 10px;
+  //padding: 0px 10px;
   margin-top: -1px;
   font-size: 12px;
   line-height: 1.5;
-  color: #fff;
+  color: $white;
   background: #262626;
   border-left: 3px #262626 solid;
   border-right: 3px #262626 solid;
@@ -309,24 +164,29 @@
 .tab .infobuttons a,
 .togglers .infobuttons,
 .togglers .infobuttons a {
-  color: $white;
-  background: transparent !important;
-  font-size: 1.75em;
+  @include control-icon;
+  //color: $white;
+  //background: transparent !important;
+  //font-size: 1.75em;
+/*
   -webkit-text-shadow: 0px 0px 1px #000000;
   -moz-text-shadow: 0px 0px 1px #000000;
   -o-text-shadow: 0px 0px 1px #000000;
+*/
   text-shadow: 0px 0px 1px #000000;
+/*
   -webkit-font-smoothing: antialiased;
   -moz-font-smoothing: antialiased;
   -o-font-smoothing: antialiased;
+*/
   font-smoothing: antialiased;
   text-decoration: none;
   speak: none;
   display: inline;
   text-decoration: none;
   &:hover {
-    text-shadow: 0px 0px 4px #FFFFFF;
     text-decoration: none;
+    text-shadow: 0px 0px 4px #FFFFFF;
     filter: dropshadow(color=#FFFFFF, offx=0, offy=0);
     cursor: pointer;
   }
@@ -341,7 +201,6 @@
   font-size: 2.4em;
   font-weight: bold;
 }
-
 
 .podlovewebplayer_downloadbuttons {
   .infobuttons {
@@ -364,21 +223,6 @@
 .podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_meta .togglers {
   top: auto;
   bottom: -10px;
-}
-
-.togglers {
-  position: relative;
-  text-align: right;
-  right: 9px;
-  top: -30px;
-  margin-bottom: -25px;
-  height: 30px;
-  .infobuttons {
-    display: inline-block !important;
-    height: 30px;
-    width: 30px;
-  }
-  .pwp-icon-download { display: none !important; }
 }
 
 .icon-link,

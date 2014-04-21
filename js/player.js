@@ -255,7 +255,7 @@ $.fn.podlovewebplayer = function (options) {
       var jqPlayer,
         richplayer = false,
         hasChapters = checkForChapters(params),
-        metaElement = $('<div class="podlovewebplayer_meta"></div>'),
+        metaElement = $('<div class="podlovewebplayer_meta flexer"></div>'),
         playerType = getPlayerType(player),
         secArray,
         orig,
@@ -442,11 +442,11 @@ function normalizeWidth(width) {
  * @returns {string}
  */
 function renderTitleArea(params) {
-  return '<div>' +
+  return '<header>' +
     renderShowTitle(params.show.title, params.show.url) +
     renderTitle(params.title, params.permalink) +
     renderSubTitle(params.subtitle) +
-    '</div>';
+    '</header>';
 }
 
 /**
@@ -462,7 +462,7 @@ function renderShowTitle(title, url) {
   if (url) {
     title = '<a href="' + url + '">' + title + '</a>';
   }
-  return '<h2 class="showtitle">' + title + '</h2>';
+  return '<h4 class="showtitle">' + title + '</h4>';
 }
 
 /**
@@ -472,8 +472,8 @@ function renderShowTitle(title, url) {
  * @returns {string}
  */
 function renderTitle(text, link) {
-  var titleBegin = '<h3 class="episodetitle">',
-    titleEnd = '</h3>';
+  var titleBegin = '<h2 class="episodetitle">',
+    titleEnd = '</h2>';
   if (text !== undefined && link !== undefined) {
     text = '<a href="' + link + '">' + text + '</a>';
   }
@@ -494,7 +494,7 @@ function renderSubTitle(text) {
  * @returns {string}
  */
 function renderPlaybutton() {
-  return '<a class="bigplay" title="Play Episode" href="#"></a>';
+  return '<a class="bigplay pull-right" title="Play Episode" href="#"></a>';
 }
 
 /**
@@ -505,7 +505,7 @@ function renderPlaybutton() {
  */
 function renderPoster(posterUrl) {
   if (!posterUrl) { return ''; }
-  return '<div class="coverart"><img class="coverimg" src="' + posterUrl + '" data-img="' + posterUrl + '" alt="Poster Image"></div>';
+  return '<div class="coverart pull-left"><img class="coverimg" src="' + posterUrl + '" data-img="' + posterUrl + '" alt="Poster Image"></div>';
 }
 
 /**
