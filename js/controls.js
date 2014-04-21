@@ -73,7 +73,7 @@ function createTimeControls() {
 }
 
 function createBox() {
-  return $('<div class="controlbox"></div>');
+  return $('<div class="controlbar"></div>');
 }
 
 function playerStarted(player) {
