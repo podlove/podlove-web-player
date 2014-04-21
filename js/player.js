@@ -255,7 +255,7 @@ $.fn.podlovewebplayer = function (options) {
       var jqPlayer,
         richplayer = false,
         hasChapters = checkForChapters(params),
-        metaElement = $('<div class="podlovewebplayer_meta flexer"></div>'),
+        metaElement = $('<div class="podlovewebplayer_meta"></div>'),
         playerType = getPlayerType(player),
         secArray,
         orig,
@@ -494,7 +494,7 @@ function renderSubTitle(text) {
  * @returns {string}
  */
 function renderPlaybutton() {
-  return '<a class="bigplay pull-right" title="Play Episode" href="#"></a>';
+  return '<a class="bigplay" title="Play Episode" href="#"></a>';
 }
 
 /**
@@ -505,7 +505,7 @@ function renderPlaybutton() {
  */
 function renderPoster(posterUrl) {
   if (!posterUrl) { return ''; }
-  return '<div class="coverart pull-left"><img class="coverimg" src="' + posterUrl + '" data-img="' + posterUrl + '" alt="Poster Image"></div>';
+  return '<div class="coverart"><img class="coverimg" src="' + posterUrl + '" data-img="' + posterUrl + '" alt="Poster Image"></div>';
 }
 
 /**

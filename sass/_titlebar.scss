@@ -3,17 +3,20 @@
 // --------------------------------------------------
 
 .podlovewebplayer_meta {
-  padding: 5px 5px 5px 0;
-  display: block;
+  @include clearfix();
+  @include flexbox();
+  flex-direction: row;
+  -webkit-flex-flow: row wrap;
+  width: 100%;
   background: $gray;
   min-height: 100px;
   height: auto;
 
   header {
-    margin: 0 125px;
-    padding: 0 0 0 8px;
-    width: 60%;
-    flex: 1;
+    @include flex(1 145px);
+    @include order(2);
+    margin: auto auto;
+    padding: 0 16px;
     h2 {
       margin: 5px 0;
 
@@ -34,10 +37,13 @@
 }
 
 .coverart {
+  @include flex(0 $image-height);
+  @include order(1);
+  min-width: $image-width;
+  height: $image-height;
   img {
-    height: 120px !important;
+    height: $image-height !important;
     width: auto !important;
-    max-width: 275px !important;
   }
 }
 
@@ -50,6 +56,7 @@
 
 // Description text of the episode
 .subtitle {
+  @include ellipsis;
   color: $gray-light !important;
   text-shadow: none !important;
   background: transparent !important;
@@ -62,14 +69,16 @@
 .bigplay {
   @include control-icon;
   @include playbutton;
+  @include flex(1 85px);
+  @include order(3);
+  min-width: 75px;
   position: relative;
   z-index: 78;
   padding: 5px 6px 10px 20px;
-  margin: 20px 10px;
+  margin: 33px;
   height: 75px;
-  width: 33%;
   flex: 1;
-  max-width: 75px;
+  max-width: 76px;
 }
 
 .bigplay.playing {
@@ -93,7 +102,7 @@
     padding: 0 11px 19px 9px;
     height: 40px;
     width: 40px;
-    margin: 10px 10px 0px 10px;
+    margin: 10px;
     border: 4px solid #ffffff !important;
   }
 

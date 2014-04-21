@@ -140,6 +140,9 @@ $screen-md-max:              ($screen-lg-min - 1) !default;
 // Hr border color
 $hr-border:                   $gray-lighter !default;
 
+// Image size in titlebar
+$image-height: 140px;
+$image-width: $image-height;
 // Background-Size
 $bg-width:                    15px;
 $bg-height:                   15px;
