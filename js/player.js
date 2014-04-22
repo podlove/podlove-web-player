@@ -7,7 +7,6 @@ var startAtTime = false,
 // Keep all Players on site - for inline players
 // embedded players are registered in podlove-webplayer-moderator in the embedding page
   players = [],
-  ignoreHashChange = false,
 // all used functions
   embed = require('./embed'),
   TabRegistry = require('./tabregistry'),
@@ -26,8 +25,7 @@ var startAtTime = false,
   infoTab = require('./tabs/info'),
   shareTab = require('./tabs/share'),
   downloadsTab = require('./tabs/downloads'),
-  chapterTab = require('./tabs/chapter'),
-  updateChapterMarks,
+  chapterTab = require('./modules/chapter'),
   _playerDefaults = {
     chapterlinks: 'all',
     width: '100%',
@@ -83,16 +81,12 @@ var startAtTime = false,
     var jqPlayer = $(player),
       layoutedPlayer = jqPlayer,
       canplay = false,
-      metaElement,
-      marks;
+      metaElement;
 
     // expose the player interface
     wrapper.data('podlovewebplayer', {
       player: jqPlayer
     });
-
-    // This might be a fix to some Firefox AAC issues.
-    jqPlayer.on('error', removeUnplayableMedia);
 
     /**
      * The `player` is an interface. It provides the play and pause functionality. The
@@ -110,35 +104,30 @@ var startAtTime = false,
     }
     // cache some jQ objects
     metaElement = wrapper.find('.titlebar');
-
-    if (metaElement.length === 1) {
-      metaElement.find('.bigplay').on('click', function () {
-        var $this = $(this);
-        if (!$this.hasClass('bigplay')) {
-          return false;
-        }
-        var playButton = $this.parent().find('.bigplay');
-        if ((typeof player.currentTime === 'number') && (player.currentTime > 0)) {
-          if (player.paused) {
-            playButton.addClass('playing');
-            player.play();
-          } else {
-            playButton.removeClass('playing');
-            player.pause();
-          }
-        } else {
-          if (!playButton.hasClass('playing')) {
-            playButton.addClass('playing');
-            $this.parent().parent().find('.mejs-time-buffering').show();
-          }
-          // flash fallback needs additional pause
-          if (player.pluginType === 'flash') {
-            player.pause();
-          }
+    var playButton = metaElement.find('.bigplay');
+    playButton.on('click', function () {
+      var playButton = $(this);
+      console.log(playButton);
+      if ((typeof player.currentTime === 'number') && (player.currentTime > 0)) {
+        if (player.paused) {
+          playButton.addClass('playing');
           player.play();
+        } else {
+          playButton.removeClass('playing');
+          player.pause();
         }
-      });
-    }
+      } else {
+        if (!playButton.hasClass('playing')) {
+          playButton.addClass('playing');
+          playButton.parent().parent().find('.mejs-time-buffering').show();
+        }
+        // flash fallback needs additional pause
+        if (player.pluginType === 'flash') {
+          player.pause();
+        }
+        player.play();
+      }
+    });
 
     // wait for the player or you'll get DOM EXCEPTIONS
     // And just listen once because of a special behaviour in firefox
@@ -157,6 +146,7 @@ var startAtTime = false,
         */
       }
       // add Deeplink Behavior if there is only one player on the site
+      /*
       if (players.length === 1) {
         jqPlayer
           .bind('play timeupdate', { player: player }, checkTime)
@@ -172,51 +162,32 @@ var startAtTime = false,
           ignoreHashChange = false;
         });
       }
+      */
     });
-    // always update Chaptermarks though
+
     jqPlayer
+      .on('error', removeUnplayableMedia)    // This might be a fix to some Firefox AAC issues.
       .on('timeupdate', function (event) {
-        console.log('t', event);
         tabs.update(event);
       })
       // update play/pause status
-      .on('play playing', function () {
-        if (!player.persistingTimer) {
-          embed.postToOpener({
-            action: 'play',
-            arg: player.currentTime
-          });
-          player.persistingTimer = window.setInterval(function () {
-            if (players.length === 1) {
-              ignoreHashChange = true;
-              console.debug('time', generateTimecode([player.currentTime, false]));
-              setFragmentURL('#t=' + generateTimecode([player.currentTime, false]));
-            }
-            console.debug(player.currentTime);
-            handleCookies.setItem(params.permalink, player.currentTime);
-          }, 5000);
-        }
-        if (metaElement.length === 1) {
-          metaElement.find('.bigplay').addClass('playing');
-        }
+      .on('play', function (event) {
+        //console.log('Player.play fired', event);
+        //player.setCurrentTime(0);
+      })
+      .on('playing', function (event) {
+        //console.log('Player.playing fired', event);
+        playButton.addClass('playing');
+        embed.postToOpener({ action: 'play', arg: player.currentTime });
       })
       .on('pause', function () {
-        window.clearInterval(player.persistingTimer);
-        player.persistingTimer = null;
-        if (metaElement.length === 1) {
-          metaElement.find('.bigplay').removeClass('playing');
-        }
-        embed.postToOpener({
-          action: 'pause',
-          arg: player.currentTime
-        });
+        //console.log('Player.pause playButton', playButton);
+        playButton.removeClass('playing');
+        embed.postToOpener({ action: 'pause', arg: player.currentTime });
       })
       .on('ended', function () {
-        handleCookies.removeItem( params.permalink);
-        embed.postToOpener({
-          action: 'stop',
-          arg: player.currentTime
-        });
+        embed.postToOpener({ action: 'stop', arg: player.currentTime });
+        player.setCurrentTime(0);
       });
   };
 
@@ -263,7 +234,8 @@ $.fn.podlovewebplayer = function (options) {
         wrapper,
         controls,
         controlBox,
-        storageKey;
+        storageKey,
+        autoplay;
       //audio params
 
       //fine tuning params
@@ -380,7 +352,7 @@ $.fn.podlovewebplayer = function (options) {
         tabs.addModule(chapters);
       }
       chapters.addEventhandlers(player);
-      controls.createTimeControls(chapters.tab);
+      controls.createTimeControls(chapters);
 
       if (richplayer || hasChapters) {
         wrapper.append('<div class="podlovewebplayer_tableend"></div>');
@@ -390,19 +362,19 @@ $.fn.podlovewebplayer = function (options) {
       deepLink = parseTimecode(window.location.href);
       if (deepLink !== false && players.length === 1) {
         var playerAttributes = {preload: 'auto'};
-        if (!isHidden()) {
+        if (!isHidden() && autoplay) {
           playerAttributes.autoplay = 'autoplay';
         }
         jqPlayer.attr(playerAttributes);
         startAtTime = deepLink[0];
         stopAtTime = deepLink[1];
       } else if (params && params.permalink) {
-        console.debug(params);
+        //console.debug(params);
         storageKey = params.permalink;
         if (handleCookies.getItem(storageKey)) {
           jqPlayer.one('canplay', function () {
             var time = handleCookies.getItem(storageKey);
-            console.debug(time);
+            //console.debug(time);
             this.currentTime = time;
           });
         }
