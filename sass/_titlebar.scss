@@ -68,7 +68,7 @@
 
 // Playbutton
 .bigplay {
-  @include control-icon;
+  @include iconfont-button($white);
   @include playbutton;
   @include flex(1 85px);
   @include order(3);
@@ -90,7 +90,7 @@
   &:focus,
   &:hover,
   &:active {
-    @include roundbuttonshadow;
+    @include textshadows(0px 0px 10px #FFFFFF);
   }
 }
 
@@ -99,7 +99,7 @@
     z-index: 100;
   }
   .bigplay {
-    font-size: 25px;
+    font-size: $font-size-icons;
     padding: 0 11px 19px 9px;
     height: 40px;
     width: 40px;

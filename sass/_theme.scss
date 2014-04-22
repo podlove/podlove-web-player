@@ -68,6 +68,7 @@
 .titlebar + .summary,
 .container .tab {
   overflow: hidden;
+  //padding: 0px 10px;
   margin-top: -1px;
   font-size: 12px;
   line-height: 1.5;
@@ -144,25 +145,30 @@
   }
 }
 
+/*
 .tab .button-toggle,
 .tab .button-toggle a,
 .togglebar .button-toggle,
 .togglebar .button-toggle a {
-  @include control-icon;
+  @include iconfont-button;
   //color: $white;
   //background: transparent !important;
   //font-size: 1.75em;
+*/
 /*
   -webkit-text-shadow: 0px 0px 1px #000000;
   -moz-text-shadow: 0px 0px 1px #000000;
   -o-text-shadow: 0px 0px 1px #000000;
-*/
+*//*
+
   text-shadow: 0px 0px 1px #000000;
+*/
 /*
   -webkit-font-smoothing: antialiased;
   -moz-font-smoothing: antialiased;
   -o-font-smoothing: antialiased;
-*/
+*//*
+
   font-smoothing: antialiased;
   text-decoration: none;
   speak: none;
@@ -185,6 +191,7 @@
   font-size: 2.4em;
   font-weight: bold;
 }
+*/
 
 .podlovewebplayer_downloadbuttons {
   .button-toggle {
@@ -209,14 +216,6 @@
   bottom: -10px;
 }
 
-.icon-link,
-.icon-twitter,
-.icon-facebook {
-  font-weight: normal;
-}
-.icon-twitter {
-  font-size: 2.1em;
-}
 
 // Chapters
 // ----------------------
