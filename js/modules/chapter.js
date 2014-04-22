@@ -32,11 +32,6 @@ function Chapters (player, params) {
   })
   ;
 
-  if ((params.chaptersVisible === 'true') || (params.chaptersVisible === true)) {
-    this.tab.box.addClass('active');
-  }
-  this.tab.box.css({"overflow-y":"auto", "max-height": '200px'});
-
   //build chapter table
   this.chapters = prepareChapterData(params.chapters);
   this.currentChapter = 0;

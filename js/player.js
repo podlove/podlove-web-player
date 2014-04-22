@@ -350,6 +350,9 @@ $.fn.podlovewebplayer = function (options) {
       if (hasChapters) {
         chapters = new chapterTab(player, params);
         tabs.addModule(chapters);
+        if ((params.chaptersVisible === 'true') || (params.chaptersVisible === true)) {
+          tabs.open(chapters.tab);
+        }
       }
       chapters.addEventhandlers(player);
       controls.createTimeControls(chapters);

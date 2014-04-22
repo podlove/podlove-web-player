@@ -243,11 +243,6 @@ function Chapters (player, params) {
   })
   ;
 
-  if ((params.chaptersVisible === 'true') || (params.chaptersVisible === true)) {
-    this.tab.box.addClass('active');
-  }
-  this.tab.box.css({"overflow-y":"auto", "max-height": '200px'});
-
   //build chapter table
   this.chapters = prepareChapterData(params.chapters);
   this.currentChapter = 0;
@@ -898,6 +893,9 @@ $.fn.podlovewebplayer = function (options) {
       if (hasChapters) {
         chapters = new chapterTab(player, params);
         tabs.addModule(chapters);
+        if ((params.chaptersVisible === 'true') || (params.chaptersVisible === true)) {
+          tabs.open(chapters.tab);
+        }
       }
       chapters.addEventhandlers(player);
       controls.createTimeControls(chapters);
@@ -1160,6 +1158,7 @@ function TabRegistry() {
   this.togglebar = $('<div class="togglebar"></div>');
   this.container = $('<div class="tabs"></div>');
   this.listeners = [logCurrentTime];
+  this.tabs = [];
 }
 
 module.exports = TabRegistry;
@@ -1169,10 +1168,24 @@ module.exports = TabRegistry;
  * @param {Tab} tab
  */
 TabRegistry.prototype.add = function(tab) {
+  this.tabs.push(tab);
   this.container.append(tab.box);
   var toggle = tab.createToggleButton(tab.icon, tab.title);
   this.togglebar.append(toggle);
   toggle.on('click', getToggleClickHandler.bind(this, tab));
+};
+
+/**
+ * 
+ * @param {Tab} tab
+ */
+TabRegistry.prototype.open = function(tab) {
+  var open = getToggleClickHandler.bind(this);
+  $.each(this.tabs, function () {
+    if (this.name == tab.name) {
+      open(this);
+    }
+  });
 };
 
 /**
@@ -1187,7 +1200,6 @@ TabRegistry.prototype.addModule = function(module) {
 TabRegistry.prototype.update = function(event) {
   console.log('TabRegistry#update', event);
   var player = event.currentTarget;
-  console.log('TabRegistry#update', player);
   $.each(this.listeners, function (i, listener) { listener(player); });
 };
 
