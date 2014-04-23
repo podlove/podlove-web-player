@@ -12,6 +12,7 @@ function TabRegistry() {
   this.togglebar = $('<ul class="togglebar"></ul>');
   this.container = $('<div class="tabs"></div>');
   this.listeners = [logCurrentTime];
+  this.tabs = [];
 }
 
 module.exports = TabRegistry;
@@ -21,11 +22,25 @@ module.exports = TabRegistry;
  * @param {Tab} tab
  */
 TabRegistry.prototype.add = function(tab) {
+  this.tabs.push(tab);
   this.container.append(tab.box);
   var toggle = tab.createToggleButton(tab.icon, tab.title);
   //this.togglebar.append('<li>' + toggle + '</li>');
   $('<li></li>').append(toggle).appendTo(this.togglebar);
   toggle.on('click', getToggleClickHandler.bind(this, tab));
+};
+
+/**
+ * 
+ * @param {Tab} tab
+ */
+TabRegistry.prototype.open = function(tab) {
+  var open = getToggleClickHandler.bind(this);
+  $.each(this.tabs, function () {
+    if (this.name == tab.name) {
+      open(this);
+    }
+  });
 };
 
 /**
@@ -40,7 +55,6 @@ TabRegistry.prototype.addModule = function(module) {
 TabRegistry.prototype.update = function(event) {
   console.log('TabRegistry#update', event);
   var player = event.currentTarget;
-  console.log('TabRegistry#update', player);
   $.each(this.listeners, function (i, listener) { listener(player); });
 };
 
