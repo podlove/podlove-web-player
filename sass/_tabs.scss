@@ -1,3 +1,94 @@
 //
 // Metadata Tabs
 // --------------------------------------------------
+
+.tabs {
+  color: $black;
+  background-color: $white;
+  //@include iconfont-button($brand-active);
+  a {
+    color: $default-link-color;
+  }
+  .tab {
+    overflow-y: scroll;
+    line-height: 1.5;
+    transition: all 0.5s;
+    border-left: 1px solid $gray-light;
+    border-right: 1px solid $gray-light;
+    border-bottom: 1px solid $gray-light;
+  }
+}
+
+
+.summary.active {
+  min-height: 35px;
+  height: auto;
+  padding: 10px;
+}
+
+.summary a {
+  font-weight: 500;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.container .tab {
+  height: 0px;
+  &.active {
+    height: 300px;
+    overflow-y: scroll;
+  }
+}
+
+/*
+.tab .button-toggle,
+.tab .button-toggle a,
+.togglebar .button-toggle,
+.togglebar .button-toggle a {
+  @include iconfont-button;
+  //color: $white;
+  //background: transparent !important;
+  //font-size: 1.75em;
+*/
+/*
+  -webkit-text-shadow: 0px 0px 1px #000000;
+  -moz-text-shadow: 0px 0px 1px #000000;
+  -o-text-shadow: 0px 0px 1px #000000;
+*//*
+
+  text-shadow: 0px 0px 1px #000000;
+*/
+/*
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -o-font-smoothing: antialiased;
+*//*
+
+  font-smoothing: antialiased;
+  text-decoration: none;
+  speak: none;
+  display: inline;
+  text-decoration: none;
+  &:hover {
+    text-decoration: none;
+    text-shadow: 0px 0px 4px #FFFFFF;
+    filter: dropshadow(color=#FFFFFF, offx=0, offy=0);
+    cursor: pointer;
+  }
+}
+
+.tab .button-toggle,
+.tab .button-toggle a {
+  position: relative;
+  margin: 4%;
+  padding: 0px;
+  z-index: 78;
+  font-size: 2.4em;
+  font-weight: bold;
+}
+*/
+.podlovewebplayer_tableend {
+  display: none;
+}
+

@@ -24,7 +24,7 @@ function Tab(options) {
 Tab.prototype.open = function () {
   this.active = true;
   this.box.addClass('active');
-  this.box.css('height', 'auto');
+  this.box.css('height', '300px');
 };
 
 Tab.prototype.close = function () {

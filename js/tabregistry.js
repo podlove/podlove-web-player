@@ -9,7 +9,7 @@ function TabRegistry() {
    * @type {object}
    */
   this.activeTab = null;
-  this.togglebar = $('<div class="togglebar"></div>');
+  this.togglebar = $('<ul class="togglebar"></ul>');
   this.container = $('<div class="tabs"></div>');
   this.listeners = [logCurrentTime];
 }
@@ -23,7 +23,8 @@ module.exports = TabRegistry;
 TabRegistry.prototype.add = function(tab) {
   this.container.append(tab.box);
   var toggle = tab.createToggleButton(tab.icon, tab.title);
-  this.togglebar.append(toggle);
+  //this.togglebar.append('<li>' + toggle + '</li>');
+  $('<li></li>').append(toggle).appendTo(this.togglebar);
   toggle.on('click', getToggleClickHandler.bind(this, tab));
 };
 

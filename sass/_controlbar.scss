@@ -11,4 +11,12 @@
   .timecontrolbar {
     @extend .pull-right;
   }
+  li {
+    display: inline;
+    &:last-child {
+      a {
+        padding-right: 0;
+      }
+    }
+  }
 }

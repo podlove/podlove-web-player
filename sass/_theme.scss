@@ -2,7 +2,6 @@
 // Theme
 // --------------------------------------------------
 
-
 .container {
   width: 100%;
   clear: both;
@@ -65,42 +64,6 @@
 }
 
 
-.titlebar + .summary,
-.container .tab {
-  overflow: hidden;
-  //padding: 0px 10px;
-  margin-top: -1px;
-  font-size: 12px;
-  line-height: 1.5;
-  color: $white;
-  background: #262626;
-  border-left: 3px #262626 solid;
-  border-right: 3px #262626 solid;
-  -webkit-transition: all 0.5s;
-  -moz-transition: all 0.5s;
-  -o-transition: all 0.5s;
-  transition: all 0.5s;
-}
-
-.summary.active {
-  min-height: 35px;
-  height: auto;
-  padding: 25px 10px 35px;
-  a {
-    text-decoration: none;
-  }
-}
-
-.summary a {
-  &:visited {
-    color: #8AB7E5;
-    font-weight: 700;
-  }
-  &:hover {
-    text-decoration: underline;
-  }
-}
-
 
 .podlovewebplayer_video .summary,
 .podlovewebplayer_video.container .tab {
@@ -116,98 +79,22 @@
 }
 
 .chaptername a {
-  font-size: 16;
   padding-left: 0.02em;
-  font-family: $font-family-icons !important;
-  font-style: normal !important;
-  font-weight: normal !important;
-  text-decoration: inherit;
-  -webkit-font-smoothing: antialiased;
-  speak: none;
-  display: inline-block;
   width: 1em;
   margin-right: 0.2em;
   text-align: center;
   font-variant: normal !important;
   text-transform: none !important;
-  line-height: 1em;
+  //line-height: 1em;
 }
-
-.container .tab {
-  height: 0px;
-  font-size: 4px;
-  text-align: center;
-
-  &.active {
-    height: 25px;
-    padding: 3px 10px 28px 10px;
-    font-size: 8px;
-  }
-}
-
-/*
-.tab .button-toggle,
-.tab .button-toggle a,
-.togglebar .button-toggle,
-.togglebar .button-toggle a {
-  @include iconfont-button;
-  //color: $white;
-  //background: transparent !important;
-  //font-size: 1.75em;
-*/
-/*
-  -webkit-text-shadow: 0px 0px 1px #000000;
-  -moz-text-shadow: 0px 0px 1px #000000;
-  -o-text-shadow: 0px 0px 1px #000000;
-*//*
-
-  text-shadow: 0px 0px 1px #000000;
-*/
-/*
-  -webkit-font-smoothing: antialiased;
-  -moz-font-smoothing: antialiased;
-  -o-font-smoothing: antialiased;
-*//*
-
-  font-smoothing: antialiased;
-  text-decoration: none;
-  speak: none;
-  display: inline;
-  text-decoration: none;
-  &:hover {
-    text-decoration: none;
-    text-shadow: 0px 0px 4px #FFFFFF;
-    filter: dropshadow(color=#FFFFFF, offx=0, offy=0);
-    cursor: pointer;
-  }
-}
-
-.tab .button-toggle,
-.tab .button-toggle a {
-  position: relative;
-  margin: 4%;
-  padding: 0px;
-  z-index: 78;
-  font-size: 2.4em;
-  font-weight: bold;
-}
-*/
 
 .podlovewebplayer_downloadbuttons {
-  .button-toggle {
-    margin: 2%;
-  }
   select {
     outline: none;
     vertical-align: top;
-    height: 22px;
-    font-size: 14px;
-    margin-right: 25px;
-    background: $black;
+    height: 40px;
+    background: $brand-primary;
     color: $white;
-    border: #222222 1px solid;
-    -webkit-box-shadow:  0px 0px 5px 1px #4B8CF7;
-    box-shadow:  0px 0px 5px 1px #4B8CF7;
   }
 }
 
@@ -220,17 +107,16 @@
 // Chapters
 // ----------------------
 .podlovewebplayer_chapterbox {
-  display: block;
   height: auto;
-  border: 3px #0f0f0f solid;
-  border-bottom: 0px #0f0f0f solid;
-  border-top: 0px;
-  overflow-y: hidden;
-  -webkit-transition: all 0.5s;
-  -moz-transition: all 0.5s;
-  -o-transition: all 0.5s;
   transition: all 0.5s;
 
+  .starttime {
+    //@include circle(50px);
+    //color: $highlight-color;
+    span {
+      color: $gray-dark;
+    }
+  }
   .chapterimage {
     width: 45px;
     max-width: 45px;
@@ -249,72 +135,39 @@
     border-collapse: collapse;
     thead,
     caption {
-      border: 0;
-      clip: rect(0 0 0 0);
-      height: 1px;
-      margin: -1px;
-      overflow: hidden;
-      padding: 0;
-      position: absolute;
-      width: 1px;
+      display: none
     }
     tr {
       color: black;
       cursor: pointer;
-      background: -moz-linear-gradient(top, #ffffff 0%, #f2f2f2 100%);
-      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#f2f2f2));
-      background: -webkit-linear-gradient(top, #ffffff 0%,#f2f2f2 100%);
-      background: -o-linear-gradient(top, #ffffff 0%,#f2f2f2 100%);
-      background: -ms-linear-gradient(top, #ffffff 0%,#f2f2f2 100%);
-      background: linear-gradient(to bottom, #ffffff 0%,#f2f2f2 100%);
       &:hover {
-        background: -moz-linear-gradient(top, #efefef 0%, #d2d2d2 100%);
-        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#efefef), color-stop(100%,#d2d2d2));
-        background: -webkit-linear-gradient(top, #efefef 0%,#d2d2d2 100%);
-        background: -o-linear-gradient(top, #efefef 0%,#d2d2d2 100%);
-        background: -ms-linear-gradient(top, #efefef 0%,#d2d2d2 100%);
-        background: linear-gradient(to bottom, #efefef 0%,#d2d2d2 100%);
-        background: #e3e3e3;
+        background: $brand-active;
       }
       &.active,
       &.active:hover {
+/*
         background: #a6c9dd;
-        background: -moz-linear-gradient(top, #a6c9dd 0%, #d8f1ff 100%);
-        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a6c9dd), color-stop(100%,#d8f1ff));
-        background: -webkit-linear-gradient(top, #a6c9dd 0%,#d8f1ff 100%);
-        background: -o-linear-gradient(top, #a6c9dd 0%,#d8f1ff 100%);
-        background: -ms-linear-gradient(top, #a6c9dd 0%,#d8f1ff 100%);
-        background: linear-gradient(to bottom, #a6c9dd 0%,#d8f1ff 100%);
+*/
       }
       &.chaptertr:active {
         color: $white;
-        -webkit-text-shadow: 0px 0px 3px #111111;
-        -moz-text-shadow: 0px 0px 3px #111111;
-        text-shadow: 0px 0px 3px #111111;
-        background: $white;
-        background: -moz-linear-gradient(top, #ffffff 0%, #f6f6f6 47%, #ededed 100%);
-        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(47%,#f6f6f6), color-stop(100%,#ededed));
-        background: -webkit-linear-gradient(top, #ffffff 0%,#f6f6f6 47%,#ededed 100%);
-        background: -o-linear-gradient(top, #ffffff 0%,#f6f6f6 47%,#ededed 100%);
-        background: -ms-linear-gradient(top, #ffffff 0%,#f6f6f6 47%,#ededed 100%);
-        background: linear-gradient(to bottom, #ffffff 0%,#f6f6f6 47%,#ededed 100%);
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 );
+        background: $brand-active;
       }
       td {
-        padding: 8px 5px 6px 5px !important;
+        padding: 20px 5px 20px 5px !important;
         vertical-align: middle;
-        border-bottom: 1px solid #e9e9e9;
         cursor: pointer !important;
-        font-weight: bolder;
-        b {
-          color: $black;
-          font-weight: bolder;
-        }
         a {
-          color:#3297ff;
+          color: $default-link-color;
           text-decoration: none;
-          font-weight: 500;
         }
+        span {
+          text-align: right;
+          font-weight: normal;
+        }
+      }
+      .chaptername span {
+        font-weight: 500;
       }
       .title {
         padding-top: 7px;
@@ -323,10 +176,6 @@
         white-space: nowrap;
         padding-right: 10px !important;
         text-align: right;
-      }
-      span {
-        text-align: right;
-        font-weight: normal;
       }
     }
     .chapterplay {
@@ -388,24 +237,6 @@
     text-align: right;
   }
 }
-
-.container .podlovewebplayer_tableend {
-  position: initial;
-  display: block;
-  height: 11px;
-  left: 0px;
-  background: #0f0f0f;
-  -webkit-box-shadow: 0px 1px #0f0f0f;
-  -moz-box-shadow: 0px 1px #0f0f0f;
-  box-shadow: 0px 1px #0f0f0f;
-  -webkit-border-bottom-left-radius: 10px;
-  -webkit-border-bottom-right-radius: 10px;
-  -moz-border-radius-bottomleft: 10px;
-  -moz-border-radius-bottomright: 10px;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-}
-
 
 // Smaller Resolutions
 @media only screen and (max-width : 500px) {

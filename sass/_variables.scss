@@ -24,6 +24,7 @@ $gray-lighter:            lighten(#000, 93.5%) !default; // #eee
 $brand-primary:           #3e5634 !default;
 $brand-info:              #506680 !default;
 $brand-success:           #5cb85c !default;
+$brand-active:            #edede6 !default;
 $brand-warning:           #f0ad4e !default;
 $brand-danger:            #d9534f !default;
 
@@ -42,6 +43,7 @@ $contrasted-light-default:  $gray-lighter;
 $default-link-color:      $brand-primary !default;
 $link-color:              $white !default;
 $link-hover-color:        lighten($link-color, 15%) !default;
+$highlight-color:         $brand-active;
 
 // Typography
 // -------------------------

@@ -5,15 +5,13 @@
 .button {
   @include iconfont-button($white);
   padding-right: 0.5em;
-  &:last-child {
-    padding-right: 0;
-  }
 }
 
 .button-toggle {
   display: inline;
-  position: relative;
+  //position: relative;
   z-index: 78;
+  font-size: 25px;
 }
 
 .icon-link,
