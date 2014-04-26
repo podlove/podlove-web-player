@@ -26,6 +26,35 @@ if (typeof String.prototype.trim !== 'function') {
   };
 }
 
+var create = require('./player').create;
+
+var _playerDefaults = {
+  chapterlinks: 'all',
+  width: '100%',
+  duration: false,
+  chaptersVisible: false,
+  timecontrolsVisible: false,
+  sharebuttonsVisible: false,
+  downloadbuttonsVisible: false,
+  summaryVisible: false,
+  hidetimebutton: false,
+  hidedownloadbutton: false,
+  hidesharebutton: false,
+  sharewholeepisode: false,
+  sources: []
+};
+
+$.fn.podlovewebplayer = function webPlayer (options) {
+  // MEJS options default values
+  // Additional parameters default values
+  var params = $.extend({}, _playerDefaults, options);
+  // turn each player in the current set into a Podlove Web Player
+  return this.each(function (i, player) {
+    create(player, params);
+  });
+};
+
+
 var pwp = {
   tc: require('./timecode'),
   players: require('./player').players,
