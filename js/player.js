@@ -357,10 +357,6 @@ $.fn.podlovewebplayer = function (options) {
       chapters.addEventhandlers(player);
       controls.createTimeControls(chapters);
 
-      if (richplayer || hasChapters) {
-        wrapper.append('<div class="podlovewebplayer_tableend"></div>');
-      }
-
       // parse deeplink
       deepLink = parseTimecode(window.location.href);
       if (deepLink !== false && players.length === 1) {
