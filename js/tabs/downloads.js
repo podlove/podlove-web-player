@@ -63,7 +63,8 @@ function createDownloadTab(params) {
   var openFileButton = downloadTab.createToggleButton("pwp-icon-link-ext", "Open");
   openFileButton.click(function () {
     $(this).parent().find(".fileselect option:selected").each(function () {
-      window.open($(this).data('url'), 'Podlove Popup', 'width=550,height=420,resizable=yes');
+      //window.open($(this).data('url'), 'Podlove Popup', 'width=550,height=420,resizable=yes');
+      //downloadTab.box.append('<p>' + $(this).data("url") + '</p>' );
     });
     return false;
   });
@@ -72,7 +73,8 @@ function createDownloadTab(params) {
   var fileInfoButton = downloadTab.createToggleButton("pwp-icon-info-circle", "Info");
   fileInfoButton.click(function () {
     $(this).parent().find(".fileselect option:selected").each(function () {
-      window.prompt('file URL:', $(this).val());
+      //window.prompt('file URL:', $(this).val());
+        downloadTab.box.append('<p>Filename: "' + $(this).data("url") + '"</p>' );
     });
     return false;
   });
