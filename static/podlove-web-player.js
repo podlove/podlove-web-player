@@ -1,4 +1,364 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+/*
+ * ===========================================
+ * Podlove Web Player v2.1.0-alpha
+ * Licensed under The BSD 2-Clause License
+ * http://opensource.org/licenses/BSD-2-Clause
+ * ===========================================
+ * Copyright (c) 2013, Gerrit van Aaken (https://github.com/gerritvanaaken/), Simon Waldherr (https://github.com/simonwaldherr/), Frank Hase (https://github.com/Kambfhase/), Eric Teubert (https://github.com/eteubert/) and others (https://github.com/podlove/podlove-web-player/contributors)
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+ *
+ * - Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+ * - Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+'use strict';
+
+require('./../libs/mediaelement/build/mediaelement-and-player.js');
+
+// FIXME put in compat mode module
+if (typeof String.prototype.trim !== 'function') {
+  String.prototype.trim = function () {
+    "use strict";
+    return this.replace(/^\s+|\s+$/g, '');
+  };
+}
+
+/**
+ * Render HTML title area
+ * @param params
+ * @returns {string}
+ */
+function renderTitleArea(params) {
+  return '<header>' +
+    renderShowTitle(params.show.title, params.show.url) +
+    renderTitle(params.title, params.permalink) +
+    renderSubTitle(params.subtitle) +
+    '</header>';
+}
+
+/**
+ * The most missing feature regarding embedded players
+ * @param {string} title
+ * @param {string} url
+ * @returns {string}
+ */
+function renderShowTitle(title, url) {
+  if (!title) {
+    return '';
+  }
+  if (url) {
+    title = '<a href="' + url + '">' + title + '</a>';
+  }
+  return '<h4 class="showtitle">' + title + '</h4>';
+}
+
+/**
+ * Render episode title HTML
+ * @param {string} text
+ * @param {string} link
+ * @returns {string}
+ */
+function renderTitle(text, link) {
+  var titleBegin = '<h2 class="episodetitle">',
+    titleEnd = '</h2>';
+  if (text !== undefined && link !== undefined) {
+    text = '<a href="' + link + '">' + text + '</a>';
+  }
+  return titleBegin + text + titleEnd;
+}
+
+/**
+ * Render HTML subtitle
+ * @param {string} text
+ * @returns {string}
+ */
+function renderSubTitle(text) {
+  return '<p class="subtitle">' + text + '</p>';
+}
+
+/**
+ * Render HTML playbutton
+ * @returns {string}
+ */
+function renderPlaybutton() {
+  return '<a class="bigplay" title="Play Episode" href="#"></a>';
+}
+
+/**
+ * Render the poster image in HTML
+ * returns an empty string if posterUrl is empty
+ * @param {string} posterUrl
+ * @returns {string} rendered HTML
+ */
+function renderPoster(posterUrl) {
+  if (!posterUrl) { return ''; }
+  return '<div class="coverart"><img class="coverimg" src="' + posterUrl + '" data-img="' + posterUrl + '" alt="Poster Image"></div>';
+}
+
+/**
+ *
+ * @param {object} params
+ * @returns {boolean} true if at least one chapter is present
+ */
+function checkForChapters(params) {
+  return !!params.chapters && (
+    (typeof params.chapters === 'string' && params.chapters.length > 10) ||
+      (typeof params.chapters === 'object' && params.chapters.length > 1)
+    );
+}
+
+var create = require('./player').create;
+
+/**
+ * player error handling function
+ * will remove the topmost mediafile from src or source list
+ * possible fix for Firefox AAC issues
+ */
+function removeUnplayableMedia() {
+  var $this = $(this);
+  if ($this.attr('src')) {
+    $this.removeAttr('src');
+    return;
+  }
+  var sourceList = $this.children('source');
+  if (sourceList.length) {
+    sourceList.first().remove();
+  }
+}
+
+var _playerDefaults = {
+  chapterlinks: 'all',
+  width: '100%',
+  duration: false,
+  chaptersVisible: false,
+  timecontrolsVisible: false,
+  sharebuttonsVisible: false,
+  downloadbuttonsVisible: false,
+  summaryVisible: false,
+  hidetimebutton: false,
+  hidedownloadbutton: false,
+  hidesharebutton: false,
+  sharewholeepisode: false,
+  sources: []
+};
+
+var startAtTime;
+var stopAtTime;
+var checkCurrentURL = function () {
+  var deepLink = require('./url').checkCurrent ();
+  if (!deepLink) { return; }
+  startAtTime = deepLink[0];
+  stopAtTime = deepLink[1];
+};
+
+/**
+ * add chapter behavior and deeplinking: skip to referenced
+ * time position & write current time into address
+ * @param {object} player
+ * @param {object} params
+ * @param {object} wrapper
+ */
+var addBehavior = function (player, params, wrapper) {
+  var jqPlayer = $(player),
+    layoutedPlayer = jqPlayer,
+    canplay = false,
+    TabRegistry = require('./tabregistry'),
+    tabs = new TabRegistry(),
+    Controls = require('./controls'),
+    infoTab = require('./tabs/info'),
+    shareTab = require('./tabs/share'),
+    downloadsTab = require('./tabs/downloads'),
+    chapterTab = require('./modules/chapter'),
+    richplayer = false,
+    hasChapters = checkForChapters(params),
+    metaElement = $('<div class="titlebar"></div>'),
+    playerType = params.type,
+    controls,
+    controlBox;
+
+  //build rich player with meta data
+  if (params.chapters !== undefined || params.title !== undefined || params.subtitle !== undefined || params.summary !== undefined || params.poster !== undefined || jqPlayer.attr('poster') !== undefined) {
+    //set status variable
+    richplayer = true;
+    wrapper.addClass('podlovewebplayer_' + playerType);
+
+    if (playerType === "audio") {
+      // Render playbutton
+      metaElement.prepend(renderPlaybutton());
+      var poster = params.poster || jqPlayer.attr('poster');
+      metaElement.append(renderPoster(poster));
+      wrapper.prepend(metaElement);
+    }
+
+    if (playerType === "video") {
+      wrapper.prepend('<div class="podlovewebplayer_top"></div>');
+      wrapper.append(metaElement);
+    }
+
+    // Render title area with title h2 and subtitle h3
+    metaElement.append(renderTitleArea(params));
+
+    if (params.subtitle && params.title && params.title.length < 42 && !params.poster) {
+      wrapper.addClass('podlovewebplayer_smallplayer');
+    }
+
+    /**
+     * Timecontrols
+     */
+    controls = new Controls(player);
+    controlBox = controls.box;
+    //always render toggler buttons wrapper
+    wrapper.append(controlBox);
+  }
+
+  /**
+   * -- TABS --
+   * FIXME enable chapter tab
+   */
+  controlBox.append(tabs.togglebar);
+  wrapper.append(tabs.container);
+
+  tabs.add(infoTab(params));
+  tabs.add(shareTab(params));
+  tabs.add(downloadsTab(params));
+  var chapters;
+  if (hasChapters) {
+    chapters = new chapterTab(player, params);
+    tabs.addModule(chapters);
+    if ((params.chaptersVisible === 'true') || (params.chaptersVisible === true)) {
+      tabs.open(chapters.tab);
+    }
+  }
+  chapters.addEventhandlers(player);
+  controls.createTimeControls(chapters);
+
+  // expose the player interface
+  wrapper.data('podlovewebplayer', {
+    player: jqPlayer
+  });
+
+  /**
+   * The `player` is an interface. It provides the play and pause functionality. The
+   * `layoutedPlayer` on the other hand is a DOM element. In native mode, these two
+   * are one and the same object. In Flash though the interface is a plain JS object.
+   */
+  if (pwp.players.length === 1) {
+    // check if deeplink is set
+    checkCurrentURL();
+  }
+  // get things straight for flash fallback
+  if (player.pluginType === 'flash') {
+    layoutedPlayer = $('#mep_' + player.id.substring(9));
+    console.log(layoutedPlayer);
+  }
+  // cache some jQ objects
+  //metaElement = wrapper.find('.titlebar');
+  var playButton = metaElement.find('.bigplay');
+  playButton.on('click', function () {
+    var playButton = $(this);
+    console.log(playButton);
+    if ((typeof player.currentTime === 'number') && (player.currentTime > 0)) {
+      if (player.paused) {
+        playButton.addClass('playing');
+        player.play();
+      } else {
+        playButton.removeClass('playing');
+        player.pause();
+      }
+    } else {
+      if (!playButton.hasClass('playing')) {
+        playButton.addClass('playing');
+        playButton.parent().parent().find('.mejs-time-buffering').show();
+      }
+      // flash fallback needs additional pause
+      if (player.pluginType === 'flash') {
+        player.pause();
+      }
+      player.play();
+    }
+  });
+
+  // wait for the player or you'll get DOM EXCEPTIONS
+  // And just listen once because of a special behaviour in firefox
+  // --> https://bugzilla.mozilla.org/show_bug.cgi?id=664842
+  jqPlayer.one('canplay', function () {
+    canplay = true;
+    // add duration of final chapter
+    if (player.duration) {
+    }
+    // add Deeplink Behavior if there is only one player on the site
+    /*
+     if (players.length === 1) {
+     jqPlayer
+     .bind('play timeupdate', { player: player }, checkTime)
+     .bind('pause', { player: player }, addressCurrentTime);
+     // disabled 'cause it overrides chapter clicks
+     // bind seeked to addressCurrentTime
+     checkCurrentURL();
+     // handle browser history navigation
+     jQuery(window).bind('hashchange onpopstate', function (e) {
+     if (!ignoreHashChange) {
+     checkCurrentURL();
+     }
+     ignoreHashChange = false;
+     });
+     }
+     */
+  });
+
+  jqPlayer
+    .on('error', removeUnplayableMedia)    // This might be a fix to some Firefox AAC issues.
+    .on('timeupdate', function (event) {
+      tabs.update(event);
+    })
+    // update play/pause status
+    .on('play', function (event) {
+      //console.log('Player.play fired', event);
+      //player.setCurrentTime(0);
+    })
+    .on('playing', function () {
+      //console.log('Player.playing fired', event);
+      playButton.addClass('playing');
+      pwp.embed.postToOpener({ action: 'play', arg: player.currentTime });
+    })
+    .on('pause', function () {
+      //console.log('Player.pause playButton', playButton);
+      playButton.removeClass('playing');
+      pwp.embed.postToOpener({ action: 'pause', arg: player.currentTime });
+    })
+    .on('ended', function () {
+      pwp.embed.postToOpener({ action: 'stop', arg: player.currentTime });
+      player.setCurrentTime(0);
+    });
+};
+
+$.fn.podlovewebplayer = function webPlayer (options) {
+  // MEJS options default values
+  // Additional parameters default values
+  var params = $.extend({}, _playerDefaults, options);
+  // turn each player in the current set into a Podlove Web Player
+  return this.each(function (i, player) {
+    create(player, params, addBehavior);
+  });
+};
+
+
+var pwp = {
+  tc: require('./timecode'),
+  players: require('./player').players,
+  embed: require('./embed')
+};
+
+//FIXME without embed animations are fluent
+//pwp.embed.init($, pwp.players);
+
+module.exports = pwp;
+
+},{"./../libs/mediaelement/build/mediaelement-and-player.js":14,"./controls":2,"./embed":4,"./modules/chapter":5,"./player":6,"./tabregistry":8,"./tabs/downloads":9,"./tabs/info":10,"./tabs/share":11,"./timecode":12,"./url":13}],2:[function(require,module,exports){
 /**
  * @type {Tab}
  */
@@ -94,7 +454,7 @@ function playerStarted(player) {
   return ((typeof player.currentTime === 'number') && (player.currentTime > 0));
 }
 
-},{"./modules/chapter":5,"./tab":7}],2:[function(require,module,exports){
+},{"./modules/chapter":5,"./tab":7}],3:[function(require,module,exports){
 /**
  * Saving the playtime
  */
@@ -116,7 +476,7 @@ module.exports = {
 };
 
 
-},{}],3:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 // everything for an embedded player
 var
   players = [],
@@ -168,47 +528,7 @@ module.exports = {
   init: init
 };
 
-},{}],4:[function(require,module,exports){
-/*
- * ===========================================
- * Podlove Web Player v2.1.0-alpha
- * Licensed under The BSD 2-Clause License
- * http://opensource.org/licenses/BSD-2-Clause
- * ===========================================
- * Copyright (c) 2013, Gerrit van Aaken (https://github.com/gerritvanaaken/), Simon Waldherr (https://github.com/simonwaldherr/), Frank Hase (https://github.com/Kambfhase/), Eric Teubert (https://github.com/eteubert/) and others (https://github.com/podlove/podlove-web-player/contributors)
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
- *
- * - Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
- * - Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- */
-'use strict';
-
-require('./../libs/mediaelement/build/mediaelement-and-player.js');
-
-// FIXME put in compat mode module
-if (typeof String.prototype.trim !== 'function') {
-  String.prototype.trim = function () {
-    "use strict";
-    return this.replace(/^\s+|\s+$/g, '');
-  };
-}
-
-var pwp = {
-  tc: require('./timecode'),
-  players: require('./player').players,
-  embed: require('./embed')
-};
-
-//FIXME without embed animations are fluent
-//pwp.embed.init($, pwp.players);
-
-module.exports = pwp;
-
-},{"./../libs/mediaelement/build/mediaelement-and-player.js":14,"./embed":3,"./player":6,"./timecode":12}],5:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 var tc = require('../timecode')
   , url = require('../url')
   , Tab = require('../tab')
@@ -239,6 +559,7 @@ function Chapters (player, params) {
   this.tab = new Tab({
     icon: "pwp-icon-list-bullet",
     title: "Show/hide chapters",
+    headline: 'Chapters',
     name: "podlovewebplayer_chapterbox showonplay" // FIXME clean way to add 2 classnames
   })
   ;
@@ -552,41 +873,12 @@ var startAtTime = false,
   players = [],
 // all used functions
   embed = require('./embed'),
-  TabRegistry = require('./tabregistry'),
-  tabs = new TabRegistry(),
   generateTimecode = require('./timecode').generate,
   parseTimecode = require('./timecode').parse,
   handleCookies = require('./cookie'),
-  Controls = require('./controls'),
-  checkCurrentURL = function () {
-    var deepLink = require('./url').checkCurrent ();
-    if (!deepLink) { return; }
-    startAtTime = deepLink[0];
-    stopAtTime = deepLink[1];
-  },
   setFragmentURL = require('./url').setFragment,
-  infoTab = require('./tabs/info'),
-  shareTab = require('./tabs/share'),
-  downloadsTab = require('./tabs/downloads'),
-  chapterTab = require('./modules/chapter'),
-  _playerDefaults = {
-    chapterlinks: 'all',
-    width: '100%',
-    duration: false,
-    chaptersVisible: false,
-    timecontrolsVisible: false,
-    sharebuttonsVisible: false,
-    downloadbuttonsVisible: false,
-    summaryVisible: false,
-    hidetimebutton: false,
-    hidedownloadbutton: false,
-    hidesharebutton: false,
-    sharewholeepisode: false,
-    sources: []
-  },
   checkTime,
-  addressCurrentTime,
-  addBehavior;
+  addressCurrentTime;
 
   checkTime = function (e) {
     if (players.length > 1) {
@@ -613,333 +905,144 @@ var startAtTime = false,
     }
   };
 
-  /**
-   * add chapter behavior and deeplinking: skip to referenced
-   * time position & write current time into address
-   * @param {object} player
-   * @param {object} params
-   * @param {object} wrapper
-   */
-  addBehavior = function (player, params, wrapper) {
-    var jqPlayer = $(player),
-      layoutedPlayer = jqPlayer,
-      canplay = false,
-      metaElement;
+var mejsoptions = {
+  defaultVideoWidth: 480,
+  defaultVideoHeight: 270,
+  videoWidth: -1,
+  videoHeight: -1,
+  audioWidth: -1,
+  audioHeight: 30,
+  startVolume: 0.8,
+  loop: false,
+  enableAutosize: true,
+  features: ['playpause', 'current', 'progress', 'duration', 'tracks', 'fullscreen'],
+  alwaysShowControls: false,
+  iPadUseNativeControls: false,
+  iPhoneUseNativeControls: false,
+  AndroidUseNativeControls: false,
+  alwaysShowHours: false,
+  showTimecodeFrameCount: false,
+  framesPerSecond: 25,
+  enableKeyboard: true,
+  pauseOtherPlayers: true,
+  duration: false,
+  plugins: ['flash', 'silverlight'],
+  pluginPath: './static/',
+  flashName: 'flashmediaelement.swf',
+  silverlightName: 'silverlightmediaelement.xap'
+};
 
-    // expose the player interface
-    wrapper.data('podlovewebplayer', {
-      player: jqPlayer
-    });
+function create(player, params, callback) {
+  var jqPlayer,
+    playerType = getPlayerType(player),
+    secArray,
+    orig,
+    deepLink,
+    wrapper,
+    storageKey,
+    autoplay;
+  //audio params
 
-    /**
-     * The `player` is an interface. It provides the play and pause functionality. The
-     * `layoutedPlayer` on the other hand is a DOM element. In native mode, these two
-     * are one and the same object. In Flash though the interface is a plain JS object.
-     */
-    if (players.length === 1) {
-      // check if deeplink is set
-      checkCurrentURL();
+  //fine tuning params
+  params.width = normalizeWidth(params.width);
+  if (playerType === 'audio') {
+    if (params.audioWidth !== undefined) {
+      params.width = params.audioWidth;
     }
-    // get things straight for flash fallback
-    if (player.pluginType === 'flash') {
-      layoutedPlayer = $('#mep_' + player.id.substring(9));
-      console.log(layoutedPlayer);
+    mejsoptions.audioWidth = params.width;
+    //kill fullscreen button
+    $.each(mejsoptions.features, function (i) {
+      if (this === 'fullscreen') {
+        mejsoptions.features.splice(i, 1);
+      }
+    });
+    removePlayPause(mejsoptions);
+  }
+  else if (playerType === 'video') {
+    //video params
+    if (params.height !== undefined) {
+      mejsoptions.videoWidth = params.width;
+      mejsoptions.videoHeight = params.height;
     }
-    // cache some jQ objects
-    metaElement = wrapper.find('.titlebar');
-    var playButton = metaElement.find('.bigplay');
-    playButton.on('click', function () {
-      var playButton = $(this);
-      console.log(playButton);
-      if ((typeof player.currentTime === 'number') && (player.currentTime > 0)) {
-        if (player.paused) {
-          playButton.addClass('playing');
-          player.play();
-        } else {
-          playButton.removeClass('playing');
-          player.pause();
-        }
-      } else {
-        if (!playButton.hasClass('playing')) {
-          playButton.addClass('playing');
-          playButton.parent().parent().find('.mejs-time-buffering').show();
-        }
-        // flash fallback needs additional pause
-        if (player.pluginType === 'flash') {
-          player.pause();
-        }
-        player.play();
-      }
-    });
+    // FIXME
+    if ($(player).attr('width') !== undefined) {
+      params.width = $(player).attr('width');
+    }
+  }
 
-    // wait for the player or you'll get DOM EXCEPTIONS
-    // And just listen once because of a special behaviour in firefox
-    // --> https://bugzilla.mozilla.org/show_bug.cgi?id=664842
-    jqPlayer.one('canplay', function () {
-      canplay = true;
-      // add duration of final chapter
-      if (player.duration) {
-        /*
-        marks.find('.timecode code').eq(-1).each(function () {
-          var start, end;
-          start = Math.floor($(this).closest('tr').data('start'));
-          end = Math.floor(player.duration);
-          $(this).text(generateTimecode([end - start]));
-        });
-        */
-      }
-      // add Deeplink Behavior if there is only one player on the site
-      /*
-      if (players.length === 1) {
-        jqPlayer
-          .bind('play timeupdate', { player: player }, checkTime)
-          .bind('pause', { player: player }, addressCurrentTime);
-        // disabled 'cause it overrides chapter clicks
-        // bind seeked to addressCurrentTime
-        checkCurrentURL();
-        // handle browser history navigation
-        jQuery(window).bind('hashchange onpopstate', function (e) {
-          if (!ignoreHashChange) {
-            checkCurrentURL();
-          }
-          ignoreHashChange = false;
-        });
-      }
-      */
-    });
+  //duration can be given in seconds or in NPT format
+  if (params.duration && params.duration !== parseInt(params.duration, 10)) {
+    secArray = parseTimecode(params.duration);
+    params.duration = secArray[0];
+  }
 
-    jqPlayer
-      .on('error', removeUnplayableMedia)    // This might be a fix to some Firefox AAC issues.
-      .on('timeupdate', function (event) {
-        tabs.update(event);
-      })
-      // update play/pause status
-      .on('play', function (event) {
-        //console.log('Player.play fired', event);
-        //player.setCurrentTime(0);
-      })
-      .on('playing', function (event) {
-        //console.log('Player.playing fired', event);
-        playButton.addClass('playing');
-        embed.postToOpener({ action: 'play', arg: player.currentTime });
-      })
-      .on('pause', function () {
-        //console.log('Player.pause playButton', playButton);
-        playButton.removeClass('playing');
-        embed.postToOpener({ action: 'pause', arg: player.currentTime });
-      })
-      .on('ended', function () {
-        embed.postToOpener({ action: 'stop', arg: player.currentTime });
-        player.setCurrentTime(0);
+  //Overwrite MEJS default values with actual data
+  $.each(mejsoptions, function (key) {
+    if (key in params) {
+      mejsoptions[key] = params[key];
+    }
+  });
+
+  //wrapper and init stuff
+  if (params.width.toString().trim() === parseInt(params.width, 10).toString().trim()) {
+    params.width = params.width.toString().trim() + 'px';
+  }
+
+  orig = player;
+  player = $(player).clone().wrap('<div class="container" style="width: ' + params.width + '"></div>')[0];
+  jqPlayer = $(player);
+  wrapper = jqPlayer.parent();
+  players.push(player);
+  //add params from html fallback area and remove them from the DOM-tree
+  jqPlayer.find('[data-pwp]').each(function () {
+    var $this = $(this);
+    params[$this.data('pwp')] = $this.html();
+    $this.remove();
+  });
+  //add params from audio and video elements
+  jqPlayer.find('source').each(function () {
+    if (!params.sources) {
+      params.sources = [];
+    }
+    params.sources.push($(this).attr('src'));
+  });
+
+  // parse deeplink
+  deepLink = parseTimecode(window.location.href);
+  if (deepLink !== false && players.length === 1) {
+    var playerAttributes = {preload: 'auto'};
+    if (!isHidden() && autoplay) {
+      playerAttributes.autoplay = 'autoplay';
+    }
+    jqPlayer.attr(playerAttributes);
+    startAtTime = deepLink[0];
+    stopAtTime = deepLink[1];
+  } else if (params && params.permalink) {
+    //console.debug(params);
+    storageKey = params.permalink;
+    if (handleCookies.getItem(storageKey)) {
+      jqPlayer.one('canplay', function () {
+        var time = handleCookies.getItem(storageKey);
+        //console.debug(time);
+        this.currentTime = time;
       });
+    }
+  }
+
+  params.type = playerType;
+  // init MEJS to player
+  mejsoptions.success = function (player) {
+    callback(player, params, wrapper);
+    if (deepLink !== false && players.length === 1) {
+      $('html, body').delay(150).animate({
+        scrollTop: $('.container:first').offset().top - 25
+      });
+    }
   };
 
-$.fn.podlovewebplayer = function (options) {
-    // MEJS options default values
-    var mejsoptions = {
-        defaultVideoWidth: 480,
-        defaultVideoHeight: 270,
-        videoWidth: -1,
-        videoHeight: -1,
-        audioWidth: -1,
-        audioHeight: 30,
-        startVolume: 0.8,
-        loop: false,
-        enableAutosize: true,
-        features: ['playpause', 'current', 'progress', 'duration', 'tracks', 'fullscreen'],
-        alwaysShowControls: false,
-        iPadUseNativeControls: false,
-        iPhoneUseNativeControls: false,
-        AndroidUseNativeControls: false,
-        alwaysShowHours: false,
-        showTimecodeFrameCount: false,
-        framesPerSecond: 25,
-        enableKeyboard: true,
-        pauseOtherPlayers: true,
-        duration: false,
-        plugins: ['flash', 'silverlight'],
-        pluginPath: './static/',
-        flashName: 'flashmediaelement.swf',
-        silverlightName: 'silverlightmediaelement.xap'
-      },
-    // Additional parameters default values
-      params = $.extend({}, _playerDefaults, options);
-    // turn each player in the current set into a Podlove Web Player
-    return this.each(function (index, player) {
-      var jqPlayer,
-        richplayer = false,
-        hasChapters = checkForChapters(params),
-        metaElement = $('<div class="titlebar"></div>'),
-        playerType = getPlayerType(player),
-        secArray,
-        orig,
-        deepLink,
-        wrapper,
-        controls,
-        controlBox,
-        storageKey,
-        autoplay;
-      //audio params
-
-      //fine tuning params
-      params.width = normalizeWidth(params.width);
-      if (playerType === 'audio') {
-        if (params.audioWidth !== undefined) {
-          params.width = params.audioWidth;
-        }
-        mejsoptions.audioWidth = params.width;
-        //kill fullscreen button
-        $.each(mejsoptions.features, function (i) {
-          if (this === 'fullscreen') {
-            mejsoptions.features.splice(i, 1);
-          }
-        });
-      }
-      else if (playerType === 'video') {
-        //video params
-        if (params.height !== undefined) {
-          mejsoptions.videoWidth = params.width;
-          mejsoptions.videoHeight = params.height;
-        }
-        // FIXME
-        if ($(player).attr('width') !== undefined) {
-          params.width = $(player).attr('width');
-        }
-      }
-
-      //duration can be given in seconds or in NPT format
-      if (params.duration && params.duration !== parseInt(params.duration, 10)) {
-        secArray = parseTimecode(params.duration);
-        params.duration = secArray[0];
-      }
-
-      //Overwrite MEJS default values with actual data
-      $.each(mejsoptions, function (key) {
-        if (key in params) {
-          mejsoptions[key] = params[key];
-        }
-      });
-
-      //wrapper and init stuff
-      if (params.width.toString().trim() === parseInt(params.width, 10).toString().trim()) {
-        params.width = params.width.toString().trim() + 'px';
-      }
-
-      orig = player;
-      player = $(player).clone().wrap('<div class="container" style="width: ' + params.width + '"></div>')[0];
-      jqPlayer = $(player);
-      wrapper = jqPlayer.parent();
-      players.push(player);
-      //add params from html fallback area and remove them from the DOM-tree
-      jqPlayer.find('[data-pwp]').each(function () {
-        var $this = $(this);
-        params[$this.data('pwp')] = $this.html();
-        $this.remove();
-      });
-      //add params from audio and video elements
-      jqPlayer.find('source').each(function () {
-        if (!params.sources) {
-          params.sources = [];
-        }
-        params.sources.push($(this).attr('src'));
-      });
-      //build rich player with meta data
-      if (params.chapters !== undefined || params.title !== undefined || params.subtitle !== undefined || params.summary !== undefined || params.poster !== undefined || jqPlayer.attr('poster') !== undefined) {
-        //set status variable
-        richplayer = true;
-        wrapper.addClass('podlovewebplayer_' + playerType);
-
-        if (playerType === "audio") {
-          removePlayPause(mejsoptions);
-          // Render playbutton
-          metaElement.prepend(renderPlaybutton());
-          var poster = params.poster || jqPlayer.attr('poster');
-          metaElement.append(renderPoster(poster));
-          wrapper.prepend(metaElement);
-        }
-
-        if (playerType === "video") {
-          wrapper.prepend('<div class="podlovewebplayer_top"></div>');
-          wrapper.append(metaElement);
-        }
-
-        // Render title area with title h2 and subtitle h3
-        metaElement.append(renderTitleArea(params));
-
-        if (params.subtitle && params.title && params.title.length < 42 && !params.poster) {
-            wrapper.addClass('podlovewebplayer_smallplayer');
-        }
-
-        /**
-         * Timecontrols
-         */
-        controls = new Controls(player);
-        controlBox = controls.box;
-        //always render toggler buttons wrapper
-        wrapper.append(controlBox);
-      }
-
-      /**
-       * -- TABS --
-       * FIXME enable chapter tab
-       */
-      controlBox.append(tabs.togglebar);
-      wrapper.append(tabs.container);
-
-      tabs.add(infoTab(params));
-      tabs.add(shareTab(params));
-      tabs.add(downloadsTab(params));
-      var chapters;
-      if (hasChapters) {
-        chapters = new chapterTab(player, params);
-        tabs.addModule(chapters);
-        if ((params.chaptersVisible === 'true') || (params.chaptersVisible === true)) {
-          tabs.open(chapters.tab);
-        }
-      }
-      chapters.addEventhandlers(player);
-      controls.createTimeControls(chapters);
-
-      if (richplayer || hasChapters) {
-        wrapper.append('<div class="podlovewebplayer_tableend"></div>');
-      }
-
-      // parse deeplink
-      deepLink = parseTimecode(window.location.href);
-      if (deepLink !== false && players.length === 1) {
-        var playerAttributes = {preload: 'auto'};
-        if (!isHidden() && autoplay) {
-          playerAttributes.autoplay = 'autoplay';
-        }
-        jqPlayer.attr(playerAttributes);
-        startAtTime = deepLink[0];
-        stopAtTime = deepLink[1];
-      } else if (params && params.permalink) {
-        //console.debug(params);
-        storageKey = params.permalink;
-        if (handleCookies.getItem(storageKey)) {
-          jqPlayer.one('canplay', function () {
-            var time = handleCookies.getItem(storageKey);
-            //console.debug(time);
-            this.currentTime = time;
-          });
-        }
-      }
-
-      // init MEJS to player
-      mejsoptions.success = function (player) {
-        addBehavior(player, params, wrapper);
-        if (deepLink !== false && players.length === 1) {
-          $('html, body').delay(150).animate({
-            scrollTop: $('.container:first').offset().top - 25
-          });
-        }
-      };
-
-      $(orig).replaceWith(wrapper);
-      jqPlayer.mediaelementplayer(mejsoptions);
-    });
-  };
+  $(orig).replaceWith(wrapper);
+  jqPlayer.mediaelementplayer(mejsoptions);
+}
 
 /**
  * remove 'px' unit, set witdth to 100% for 'auto'
@@ -954,89 +1057,6 @@ function normalizeWidth(width) {
 }
 
 
-/**
- * Render HTML title area
- * @param params
- * @returns {string}
- */
-function renderTitleArea(params) {
-  return '<header>' +
-    renderShowTitle(params.show.title, params.show.url) +
-    renderTitle(params.title, params.permalink) +
-    renderSubTitle(params.subtitle) +
-    '</header>';
-}
-
-/**
- * The most missing feature regarding embedded players
- * @param {string} title
- * @param {string} url
- * @returns {string}
- */
-function renderShowTitle(title, url) {
-  if (!title) {
-    return '';
-  }
-  if (url) {
-    title = '<a href="' + url + '">' + title + '</a>';
-  }
-  return '<h4 class="showtitle">' + title + '</h4>';
-}
-
-/**
- * Render episode title HTML
- * @param {string} text
- * @param {string} link
- * @returns {string}
- */
-function renderTitle(text, link) {
-  var titleBegin = '<h2 class="episodetitle">',
-    titleEnd = '</h2>';
-  if (text !== undefined && link !== undefined) {
-    text = '<a href="' + link + '">' + text + '</a>';
-  }
-  return titleBegin + text + titleEnd;
-}
-
-/**
- * Render HTML subtitle
- * @param {string} text
- * @returns {string}
- */
-function renderSubTitle(text) {
-  return '<p class="subtitle">' + text + '</p>';
-}
-
-/**
- * Render HTML playbutton
- * @returns {string}
- */
-function renderPlaybutton() {
-  return '<a class="bigplay" title="Play Episode" href="#"></a>';
-}
-
-/**
- * Render the poster image in HTML
- * returns an empty string if posterUrl is empty
- * @param {string} posterUrl
- * @returns {string} rendered HTML
- */
-function renderPoster(posterUrl) {
-  if (!posterUrl) { return ''; }
-  return '<div class="coverart"><img class="coverimg" src="' + posterUrl + '" data-img="' + posterUrl + '" alt="Poster Image"></div>';
-}
-
-/**
- *
- * @param {object} params
- * @returns {boolean} true if at least one chapter is present
- */
-function checkForChapters(params) {
-  return !!params.chapters && (
-    (typeof params.chapters === 'string' && params.chapters.length > 10) ||
-      (typeof params.chapters === 'object' && params.chapters.length > 1)
-    );
-}
 
 /**
  * audio or video tag
@@ -1059,22 +1079,6 @@ function removePlayPause(options) {
   });
 }
 
-/**
- * player error handling function
- * will remove the topmost mediafile from src or source list
- * possible fix for Firefox AAC issues
- */
-function removeUnplayableMedia() {
-  var $this = $(this);
-  if ($this.attr('src')) {
-    $this.removeAttr('src');
-    return;
-  }
-  var sourceList = $this.children('source');
-  if (sourceList.length) {
-    sourceList.first().remove();
-  }
-}
 
 /**
  * checks if the current window is hidden
@@ -1097,30 +1101,34 @@ function isHidden() {
 }
 
 module.exports = {
+  create: create,
   players: players
 };
 
 
-},{"./controls":1,"./cookie":2,"./embed":3,"./modules/chapter":5,"./tabregistry":8,"./tabs/downloads":9,"./tabs/info":10,"./tabs/share":11,"./timecode":12,"./url":13}],7:[function(require,module,exports){
+},{"./cookie":3,"./embed":4,"./timecode":12,"./url":13}],7:[function(require,module,exports){
 /**
  *
  * @param {string} name
  * @param {boolean} active
  * @returns {*|jQuery|HTMLElement}
  */
-function createControlBox(name, active) {
+function createControlBox(options) {
   var classes = ["tab"];
-  classes.push(name);
-  if (active) {
+  classes.push(options.name);
+  if (options.active) {
     classes.push("active");
   }
-  return $('<div class="' + classes.join(' ') + '"></div>');
+  //return $('<section class="' + classes.join(' ') + '"><header><h2>headline</h2></header></section>');
+  return $('<section class="' + classes.join(' ') + '"><header><h2>' + options.headline + '</h2></header></section>');
 }
 
 function Tab(options) {
   this.icon = options.icon;
   this.title = options.title;
-  this.box = createControlBox(options.name, options.active);
+  this.headline = options.headline;
+  console.log(options.headline);
+  this.box = createControlBox(options);
   this.active = false;
   this.close();
 }
@@ -1128,13 +1136,11 @@ function Tab(options) {
 Tab.prototype.open = function () {
   this.active = true;
   this.box.addClass('active');
-  this.box.css('height', 'auto');
 };
 
 Tab.prototype.close = function () {
   this.active = false;
   this.box.removeClass('active');
-  this.box.css('height', 0);
 };
 
 Tab.prototype.createToggleButton = function(icon, title) {
@@ -1155,7 +1161,7 @@ function TabRegistry() {
    * @type {object}
    */
   this.activeTab = null;
-  this.togglebar = $('<div class="togglebar"></div>');
+  this.togglebar = $('<ul class="togglebar"></ul>');
   this.container = $('<div class="tabs"></div>');
   this.listeners = [logCurrentTime];
   this.tabs = [];
@@ -1171,7 +1177,8 @@ TabRegistry.prototype.add = function(tab) {
   this.tabs.push(tab);
   this.container.append(tab.box);
   var toggle = tab.createToggleButton(tab.icon, tab.title);
-  this.togglebar.append(toggle);
+  //this.togglebar.append('<li>' + toggle + '</li>');
+  $('<li></li>').append(toggle).appendTo(this.togglebar);
   toggle.on('click', getToggleClickHandler.bind(this, tab));
 };
 
@@ -1285,6 +1292,7 @@ function createDownloadTab(params) {
       icon: "pwp-icon-link",
       title: "Show/hide download bar",
       name: 'podlovewebplayer_downloadbuttons',
+      headline: 'Download',
       active: !!params.downloadbuttonsVisible
   });
 
@@ -1328,6 +1336,7 @@ function createInfoTab(params) {
   var infoTab = new Tab({
     icon:"pwp-icon-info-circle",
     title:"More information about this",
+    headline: 'Summary',
     name:'summary',
     active: !!params.summaryVisible
   });
@@ -1364,7 +1373,7 @@ function getButtonClickHandler(options) {
 function createShareButton(options) {
   var clickHandler = getButtonClickHandler(options),
     button = $('<a href="#" target="_blank" ' +
-      'class="button button-toggle ' + options.icon + '" title="' + options.title + '"></a>');
+      'class="button-toggle ' + options.icon + '" title="' + options.title + '"></a>');
   button.on('click', clickHandler);
   return button;
 }
@@ -1452,6 +1461,7 @@ function createShareTab(params) {
     icon: "pwp-icon-export",
     title: "Show/hide sharing tabs",
     name: "podlovewebplayer_sharebuttons",
+    headline: 'Share',
     active: !!params.sharebuttonsVisible
   });
 
@@ -6664,4 +6674,4 @@ $.extend(mejs.MepDefaults,
 })(mejs.$);
 
 
-},{}]},{},[4])
+},{}]},{},[1])

@@ -25,6 +25,114 @@
   }
 }
 */
+/*
+@mixin arrow($direction, $bg-color, $border-color, $border-width, $top, $left, $width: 10px) {
+  position: relative;
+  &:before {
+    content: "\00a0";
+    // reduce the damage in FF3.0:
+    display: block;
+    position: absolute;
+    width: 0;
+    height: 0;
+    top: $top;
+    left: $left;
+    bottom: auto;
+    border-width: floor($width / 2);
+    border-style: solid;
+    @if $direction == "south"{
+      border-color: $border-color transparent transparent transparent;
+    }
+    @if $direction == "north" {
+      border-color: transparent transparent $border-color transparent;
+    }
+    @if $direction == "east" {
+      border-color: transparent transparent transparent $border-color;
+    }
+    @if $direction == "west" {
+      border-color: transparent $border-color transparent transparent;
+    }
+  }
+  // creates the smaller  triangle
+  &:after {
+    content: "\00a0";
+    display: block;
+    position: absolute;
+    width: 0;
+    height: 0;
+    @if $direction == "south" {
+      top: $top - $border-width;
+    }
+    @else if $direction == "north" {
+      top: $top + $border-width;
+    }
+    @else {
+      top: $top;
+    }
+    @if $direction == "east" {
+      left: $left - $border-width;
+    }
+    @else if $direction == "west"{
+      left: $left + $border-width;
+    }
+    @else {
+      left: $left;
+      bottom: auto;
+      border-width: floor($width / 2);
+      border-style: solid;
+    }
+    @if $direction == "south" {
+      border-color: $bg-color transparent transparent transparent;
+    }
+    @if $direction == "north" {
+      border-color: transparent transparent $bg-color transparent;
+    }
+    @if $direction == "east" {
+      border-color: transparent transparent transparent $bg-color;
+    }
+    @if $direction == "west" {
+      border-color: transparent $bg-color transparent transparent;
+    }
+  }
+}
+
+*/
+/*
+.arrow {
+  $bg-color: #e7eff4;
+  $border-color: #456eb9;
+  $border-width: 1px;
+  $arrow-width: 50px;
+  border: $border-width solid $border-color;
+  background: $bg-color;
+  height: 100px;
+  width: 500px;
+  padding: 10px;
+  margin-bottom: 10px;
+  &.east {
+    margin-right: $arrow-width;
+    +arrow( 'east', $bg-color, $border-color, $border-width, 0, 520px, $arrow-width );
+  }
+  &.south {
+    margin-bottom: $arrow-width;
+  +arrow( 'south', $bg-color, $border-color, $border-width, 120px, 0, $arrow-width );
+  }
+  &.north {
+    margin-top: (($arrow-width/2) * -1) + 10px;
+  +arrow( 'north', $bg-color, $border-color, $border-width, -50px, 400px, $arrow-width );
+  }
+  &.west {
+    margin-left: $arrow-width;
+    width: 500px - $arrow-width;
+  +arrow( 'west', $bg-color, $border-color, $border-width, 0, -50px, $arrow-width );
+  }
+  &.borderless {
+    $border-width: 0px;
+    border: none;
+    margin-right: $arrow-width;
+  +arrow( 'east', $bg-color, $border-color, $border-width, 0, 520px, $arrow-width );
+  }
+}*/
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -83,6 +191,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 
 p {
   margin: 0 0 11px;
+  font-size: 16px;
 }
 
 h1, h2, h3, h4, h5, h6,
@@ -201,6 +310,37 @@ hr {
   border: 0;
 }
 
+.button, .tabs .podlovewebplayer_sharebuttons .button-toggle {
+  color: white;
+  background: transparent !important;
+  text-decoration: none;
+  speak: none;
+  font-weight: bold;
+  padding-right: 0.5em;
+}
+.button:hover, .tabs .podlovewebplayer_sharebuttons .button-toggle:hover {
+  text-shadow: 0px 0px 4px #FFFFFF;
+  -webkit-filter: dropshadow(color=white, offx=0, offy=0);
+  filter: dropshadow(color=white, offx=0, offy=0);
+  cursor: pointer;
+}
+
+.button-toggle {
+  display: inline;
+  z-index: 78;
+  font-size: 25px;
+}
+
+.icon-link,
+.icon-twitter,
+.icon-facebook {
+  font-weight: normal;
+}
+
+.icon-twitter {
+  font-size: 2.1em;
+}
+
 .container {
   width: 100%;
   clear: both;
@@ -228,348 +368,17 @@ hr {
   min-height: 100px;
   height: auto;
   padding-bottom: 5px;
-  -webkit-border-top-left-radius: 10px;
-  -webkit-border-top-right-radius: 10px;
-  -moz-border-radius-topleft: 10px;
-  -moz-border-radius-topright: 10px;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
   background: url(background.png);
   background: #545454;
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #545454), color-stop(100%, #262626));
-  background: -webkit-linear-gradient(top, #545454 0%, #262626 100%);
   background: -webkit-gradient(linear, left top, left bottom, from(#545454), to(#262626));
+  background: -webkit-linear-gradient(top, #545454 0%, #262626 100%);
   background: linear-gradient(to bottom, #545454 0%, #262626 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#545454',endColorstr='#262626',GradientType=0 );
-}
-
-.container.podlovewebplayer_video .podlovewebplayer_tableend,
-.container.podlovewebplayer_video .tab,
-.container.podlovewebplayer_video .summary {
-  background: #222222;
-}
-
-.container.podlovewebplayer_video .podlovewebplayer_chapterbox,
-.container.podlovewebplayer_video .podlovewebplayer_chapters,
-.container.podlovewebplayer_video .titlebar + .summary,
-.container.podlovewebplayer_video .tab {
-  border-color: #222222;
-}
-
-.container.podlovewebplayer_video .tab {
-  margin-top: 0px;
-}
-
-.titlebar + .summary,
-.container .tab {
-  overflow: hidden;
-  margin-top: -1px;
-  font-size: 12px;
-  line-height: 1.5;
-  color: white;
-  background: #262626;
-  border-left: 3px #262626 solid;
-  border-right: 3px #262626 solid;
-  -webkit-transition: all 0.5s;
-  transition: all 0.5s;
-}
-
-.summary.active {
-  min-height: 35px;
-  height: auto;
-  padding: 25px 10px 35px;
-}
-.summary.active a {
-  text-decoration: none;
-}
-
-.summary a:visited {
-  color: #8AB7E5;
-  font-weight: 700;
-}
-.summary a:hover {
-  text-decoration: underline;
-}
-
-.podlovewebplayer_video .summary,
-.podlovewebplayer_video.container .tab {
-  margin-top: 0px;
-}
-
-.podlovewebplayer_top {
-  min-height: 11px !important;
-  height: 11px !important;
-  margin-bottom: 0px !important;
-  padding-bottom: 0px;
-}
-
-.chaptername a {
-  font-size: 16;
-  padding-left: 0.02em;
-  font-family: "pwpfont" !important;
-  font-style: normal !important;
-  font-weight: normal !important;
-  text-decoration: inherit;
-  -webkit-font-smoothing: antialiased;
-  speak: none;
-  display: inline-block;
-  width: 1em;
-  margin-right: 0.2em;
-  text-align: center;
-  font-variant: normal !important;
-  text-transform: none !important;
-  line-height: 1em;
-}
-
-.container .tab {
-  height: 0px;
-  font-size: 4px;
-  text-align: center;
-}
-.container .tab.active {
-  height: 25px;
-  padding: 3px 10px 28px 10px;
-  font-size: 8px;
-}
-
-.tab .button-toggle,
-.tab .button-toggle a,
-.togglebar .button-toggle,
-.togglebar .button-toggle a {
-  color: white;
-  background: transparent !important;
-  /*
-    -webkit-text-shadow: 0px 0px 1px #000000;
-    -moz-text-shadow: 0px 0px 1px #000000;
-    -o-text-shadow: 0px 0px 1px #000000;
-  */
-  text-shadow: 0px 0px 1px #000000;
-  /*
-    -webkit-font-smoothing: antialiased;
-    -moz-font-smoothing: antialiased;
-    -o-font-smoothing: antialiased;
-  */
-  font-smoothing: antialiased;
-  text-decoration: none;
-  speak: none;
-  display: inline;
-  text-decoration: none;
-}
-.tab .button-toggle:hover,
-.tab .button-toggle a:hover,
-.togglebar .button-toggle:hover,
-.togglebar .button-toggle a:hover {
-  text-decoration: none;
-  text-shadow: 0px 0px 4px #FFFFFF;
-  -webkit-filter: dropshadow(color=white, offx=0, offy=0);
-  filter: dropshadow(color=white, offx=0, offy=0);
-  cursor: pointer;
-}
-
-.tab .button-toggle,
-.tab .button-toggle a {
-  position: relative;
-  margin: 4%;
-  padding: 0px;
-  z-index: 78;
-  font-size: 2.4em;
-  font-weight: bold;
-}
-
-.podlovewebplayer_downloadbuttons .button-toggle {
-  margin: 2%;
-}
-.podlovewebplayer_downloadbuttons select {
-  outline: none;
-  vertical-align: top;
-  height: 22px;
-  font-size: 14px;
-  margin-right: 25px;
-  background: black;
-  color: white;
-  border: #222222 1px solid;
-  -webkit-box-shadow: 0px 0px 5px 1px #4B8CF7;
-  box-shadow: 0px 0px 5px 1px #4B8CF7;
 }
 
 .container.podlovewebplayer_video .titlebar .togglebar {
   top: auto;
   bottom: -10px;
-}
-
-.icon-link,
-.icon-twitter,
-.icon-facebook {
-  font-weight: normal;
-}
-
-.icon-twitter {
-  font-size: 2.1em;
-}
-
-.podlovewebplayer_chapterbox {
-  display: block;
-  height: auto;
-  border: 3px #0f0f0f solid;
-  border-bottom: 0px #0f0f0f solid;
-  border-top: 0px;
-  overflow-y: hidden;
-  -webkit-transition: all 0.5s;
-  transition: all 0.5s;
-}
-.podlovewebplayer_chapterbox .chapterimage {
-  width: 45px;
-  max-width: 45px;
-  text-align: center;
-}
-.podlovewebplayer_chapterbox .chapterimage img {
-  max-width: 40px;
-  max-height: 32px;
-  margin-top: -8px;
-  margin-bottom: -7px;
-  display: block;
-}
-.podlovewebplayer_chapterbox .podlovewebplayer_chapters {
-  margin: 0 !important;
-  width: 100%;
-  border-collapse: collapse;
-}
-.podlovewebplayer_chapterbox .podlovewebplayer_chapters thead,
-.podlovewebplayer_chapterbox .podlovewebplayer_chapters caption {
-  border: 0;
-  clip: rect(0 0 0 0);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
-}
-.podlovewebplayer_chapterbox .podlovewebplayer_chapters tr {
-  color: black;
-  cursor: pointer;
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, #f2f2f2));
-  background: -webkit-linear-gradient(top, white 0%, #f2f2f2 100%);
-  background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#f2f2f2));
-  background: -webkit-linear-gradient(top, #ffffff 0%, #f2f2f2 100%);
-  background: linear-gradient(to bottom, #ffffff 0%, #f2f2f2 100%);
-}
-.podlovewebplayer_chapterbox .podlovewebplayer_chapters tr:hover {
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #efefef), color-stop(100%, #d2d2d2));
-  background: -webkit-linear-gradient(top, #efefef 0%, #d2d2d2 100%);
-  background: -webkit-gradient(linear, left top, left bottom, from(#efefef), to(#d2d2d2));
-  background: linear-gradient(to bottom, #efefef 0%, #d2d2d2 100%);
-  background: #e3e3e3;
-}
-.podlovewebplayer_chapterbox .podlovewebplayer_chapters tr.active, .podlovewebplayer_chapterbox .podlovewebplayer_chapters tr.active:hover {
-  background: #a6c9dd;
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #a6c9dd), color-stop(100%, #d8f1ff));
-  background: -webkit-linear-gradient(top, #a6c9dd 0%, #d8f1ff 100%);
-  background: -webkit-gradient(linear, left top, left bottom, from(#a6c9dd), to(#d8f1ff));
-  background: linear-gradient(to bottom, #a6c9dd 0%, #d8f1ff 100%);
-}
-.podlovewebplayer_chapterbox .podlovewebplayer_chapters tr.chaptertr:active {
-  color: white;
-  -webkit-text-shadow: 0px 0px 3px #111111;
-  -moz-text-shadow: 0px 0px 3px #111111;
-  text-shadow: 0px 0px 3px #111111;
-  background: white;
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(47%, #f6f6f6), color-stop(100%, #ededed));
-  background: -webkit-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
-  background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), color-stop(47%, #f6f6f6), to(#ededed));
-  background: -webkit-linear-gradient(top, #ffffff 0%, #f6f6f6 47%, #ededed 100%);
-  background: linear-gradient(to bottom, #ffffff 0%, #f6f6f6 47%, #ededed 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 );
-}
-.podlovewebplayer_chapterbox .podlovewebplayer_chapters tr td {
-  padding: 8px 5px 6px 5px !important;
-  vertical-align: middle;
-  border-bottom: 1px solid #e9e9e9;
-  cursor: pointer !important;
-  font-weight: bolder;
-}
-.podlovewebplayer_chapterbox .podlovewebplayer_chapters tr td b {
-  color: black;
-  font-weight: bolder;
-}
-.podlovewebplayer_chapterbox .podlovewebplayer_chapters tr td a {
-  color: #3297ff;
-  text-decoration: none;
-  font-weight: 500;
-}
-.podlovewebplayer_chapterbox .podlovewebplayer_chapters tr .title {
-  padding-top: 7px;
-}
-.podlovewebplayer_chapterbox .podlovewebplayer_chapters tr .timecode {
-  white-space: nowrap;
-  padding-right: 10px !important;
-  text-align: right;
-}
-.podlovewebplayer_chapterbox .podlovewebplayer_chapters tr span {
-  text-align: right;
-  font-weight: normal;
-}
-.podlovewebplayer_chapterbox .podlovewebplayer_chapters .chapterplay {
-  width: 25px;
-  padding-right: 0;
-}
-.podlovewebplayer_chapterbox .podlovewebplayer_chapters .chapterplay > a {
-  display: block;
-  border: none;
-  padding: 0;
-  margin: 0;
-  text-align: center;
-  width: 25px;
-  height: 25px;
-  background: #bbb;
-  -o-border-radius: 13px;
-  border-radius: 13px;
-  cursor: pointer;
-  -webkit-transition: all 0.07s;
-  transition: all 0.07s;
-}
-.podlovewebplayer_chapterbox .podlovewebplayer_chapters .chapterplay > a.disabled {
-  cursor: wait;
-}
-.podlovewebplayer_chapterbox .podlovewebplayer_chapters .chapterplay > a.disabled:focus, .podlovewebplayer_chapterbox .podlovewebplayer_chapters .chapterplay > a.disabled:hover, .podlovewebplayer_chapterbox .podlovewebplayer_chapters .chapterplay > a.disabled:active {
-  background: #eeeeee;
-  cursor: wait;
-}
-.podlovewebplayer_chapterbox .podlovewebplayer_chapters .chapterplay > a:focus, .podlovewebplayer_chapterbox .podlovewebplayer_chapters .chapterplay > a:hover, .podlovewebplayer_chapterbox .podlovewebplayer_chapters .chapterplay > a:active {
-  background: #3a859a;
-  cursor: pointer;
-}
-.podlovewebplayer_chapterbox .podlovewebplayer_chapters .loaded .chapterplay > a {
-  background: black;
-}
-.podlovewebplayer_chapterbox .paused .chapterplay a[rel=player] span {
-  background-position: 0 0 !important;
-}
-.podlovewebplayer_chapterbox .chapternr {
-  min-width: 0px;
-  width: 20px;
-  padding-left: 0px;
-  text-align: center;
-}
-.podlovewebplayer_chapterbox .starttime {
-  width: 50px;
-  text-align: right;
-}
-
-.container .podlovewebplayer_tableend {
-  position: initial;
-  display: block;
-  height: 11px;
-  left: 0px;
-  background: #0f0f0f;
-  -webkit-box-shadow: 0px 1px #0f0f0f;
-  box-shadow: 0px 1px #0f0f0f;
-  -webkit-border-bottom-left-radius: 10px;
-  -webkit-border-bottom-right-radius: 10px;
-  -moz-border-radius-bottomleft: 10px;
-  -moz-border-radius-bottomright: 10px;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
 }
 
 @media only screen and (max-width: 500px) {
@@ -578,10 +387,6 @@ hr {
     margin-right: 0px;
   }
   .container .titlebar {
-    -webkit-border-top-left-radius: 0px !important;
-    -webkit-border-top-right-radius: 0px !important;
-    -moz-border-radius-topleft: 0px !important;
-    -moz-border-radius-topright: 0px !important;
     border-top-left-radius: 0px !important;
     border-top-right-radius: 0px !important;
   }
@@ -602,16 +407,8 @@ hr {
   }
   .container .podlovewebplayer_tableend,
   .container .podlovewebplayer_top {
-    -webkit-border-top-left-radius: 0px;
-    -webkit-border-top-right-radius: 0px;
-    -moz-border-radius-topleft: 0px;
-    -moz-border-radius-topright: 0px;
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
-    -webkit-border-bottom-left-radius: 0px;
-    -webkit-border-bottom-right-radius: 0px;
-    -moz-border-radius-bottomleft: 0px;
-    -moz-border-radius-bottomright: 0px;
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
   }
@@ -634,16 +431,6 @@ hr {
   to {
     background-position: 0 0;
   }
-}
-
-.button-toggle {
-  display: inline-block !important;
-  height: 30px;
-  width: 30px;
-}
-
-.pwp-icon-download {
-  display: none !important;
 }
 
 .titlebar {
@@ -730,16 +517,16 @@ hr {
 .bigplay {
   color: white;
   background: transparent !important;
+  text-decoration: none;
+  speak: none;
+  font-weight: bold;
   font-family: "pwpfont" !important;
   font-size: 42px;
-  font-style: normal;
-  font-weight: normal;
   line-height: 1.33em;
   border: 5px solid white !important;
   border-radius: 60px !important;
   -webkit-transition: none;
   transition: none;
-  speak: none;
   -webkit-box-flex: 1 85px;
   -webkit-flex: 1 85px;
   -ms-flex: 1 85px;
@@ -760,14 +547,20 @@ hr {
   flex: 1;
   max-width: 76px;
 }
+.bigplay:hover {
+  text-shadow: 0px 0px 4px #FFFFFF;
+  -webkit-filter: dropshadow(color=white, offx=0, offy=0);
+  filter: dropshadow(color=white, offx=0, offy=0);
+  cursor: pointer;
+}
 .bigplay:before {
   content: "\25b6";
   padding-left: 0.02em;
 }
 .bigplay:focus, .bigplay:hover, .bigplay:active {
-  border: 5px solid white !important;
-  border-radius: 60px !important;
-  text-shadow: 0px 0px 10px #FFFFFF;
+  -webkit-box-shadow: 0px 4px 5px #666666, 2px 6px 10px #999999;
+  box-shadow: 0px 4px 5px #666666, 2px 6px 10px #999999;
+  text-shadow: 0px 0px 10px white;
 }
 
 .bigplay.playing {
@@ -777,9 +570,7 @@ hr {
   content: "\2389";
 }
 .bigplay.playing:focus, .bigplay.playing:hover, .bigplay.playing:active {
-  border: 5px solid white !important;
-  border-radius: 60px !important;
-  text-shadow: 0px 0px 10px #FFFFFF;
+  text-shadow: 0px 0px 10px white;
 }
 
 .podlovewebplayer_smallplayer .mejs-time-float {
@@ -810,8 +601,11 @@ hr {
   font-size: 25px;
   padding: 6px 24px;
 }
-.controlbar a {
-  color: white;
+.controlbar li {
+  display: inline;
+}
+.controlbar li:last-child a {
+  padding-right: 0;
 }
 
 .mejs-container {
@@ -1801,6 +1595,261 @@ hr {
 
 .podlovewebplayer_smallplayer .mejs-controls .mejs-time-rail .mejs-time-float {
   z-index: 100;
+}
+
+.tabs {
+  color: #333333;
+  background-color: white;
+}
+.tabs a {
+  color: #3e5634;
+}
+.tabs a.button-toggle {
+  color: #333333;
+}
+.tabs section {
+  padding: 0 25px;
+}
+.tabs p {
+  margin: 11px 0;
+}
+.tabs .tab {
+  display: none;
+  /*
+      overflow-y: scroll;
+      line-height: 1.5;
+      transition: all 0.5s;
+      border-left: 1px solid $gray-light;
+      border-right: 1px solid $gray-light;
+      border-bottom: 1px solid $gray-light;
+  */
+}
+.tabs .tab.active {
+  display: block;
+  height: 300px;
+  overflow-y: scroll;
+}
+.tabs .tab.active h2 {
+  margin-bottom: 20px;
+}
+
+/*
+.tab .button-toggle,
+.tab .button-toggle a,
+.togglebar .button-toggle,
+.togglebar .button-toggle a {
+  @include iconfont-button;
+  //color: $white;
+  //background: transparent !important;
+  //font-size: 1.75em;
+*/
+/*
+  -webkit-text-shadow: 0px 0px 1px #000000;
+  -moz-text-shadow: 0px 0px 1px #000000;
+  -o-text-shadow: 0px 0px 1px #000000;
+*/
+  /*
+
+  text-shadow: 0px 0px 1px #000000;
+*/
+/*
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -o-font-smoothing: antialiased;
+*/
+  /*
+
+  font-smoothing: antialiased;
+  text-decoration: none;
+  speak: none;
+  display: inline;
+  text-decoration: none;
+  &:hover {
+    text-decoration: none;
+    text-shadow: 0px 0px 4px #FFFFFF;
+    filter: dropshadow(color=#FFFFFF, offx=0, offy=0);
+    cursor: pointer;
+  }
+}
+
+.tab .button-toggle,
+.tab .button-toggle a {
+  position: relative;
+  margin: 4%;
+  padding: 0px;
+  z-index: 78;
+  font-size: 2.4em;
+  font-weight: bold;
+}
+*/
+.podlovewebplayer_tableend {
+  display: none;
+}
+
+.container.podlovewebplayer_video .tab,
+.container.podlovewebplayer_video .summary {
+  background: #222222;
+}
+
+.container.podlovewebplayer_video .podlovewebplayer_chapterbox,
+.container.podlovewebplayer_video .podlovewebplayer_chapters,
+.container.podlovewebplayer_video .titlebar + .summary,
+.container.podlovewebplayer_video .tab {
+  border-color: #222222;
+}
+
+.container.podlovewebplayer_video .tab {
+  margin-top: 0px;
+}
+
+.podlovewebplayer_video .summary,
+.podlovewebplayer_video.container .tab {
+  margin-top: 0px;
+}
+
+.podlovewebplayer_top {
+  min-height: 11px !important;
+  height: 11px !important;
+  margin-bottom: 0px !important;
+  padding-bottom: 0px;
+}
+
+.podlovewebplayer_chapterbox {
+  height: auto;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+.podlovewebplayer_chapterbox .starttime span {
+  color: #333333;
+}
+.podlovewebplayer_chapterbox .chapterimage {
+  width: 45px;
+  max-width: 45px;
+  text-align: center;
+}
+.podlovewebplayer_chapterbox .chapterimage img {
+  max-width: 40px;
+  max-height: 32px;
+  margin-top: -8px;
+  margin-bottom: -7px;
+  display: block;
+}
+.podlovewebplayer_chapterbox .podlovewebplayer_chapters {
+  width: 100%;
+  border-collapse: collapse;
+}
+.podlovewebplayer_chapterbox .podlovewebplayer_chapters thead,
+.podlovewebplayer_chapterbox .podlovewebplayer_chapters caption {
+  display: none;
+}
+.podlovewebplayer_chapterbox .podlovewebplayer_chapters tr {
+  cursor: pointer;
+}
+.podlovewebplayer_chapterbox .podlovewebplayer_chapters tr:hover {
+  background: #f7f9f6;
+}
+.podlovewebplayer_chapterbox .podlovewebplayer_chapters tr.active, .podlovewebplayer_chapterbox .podlovewebplayer_chapters tr.active:hover {
+  background: #ecf2e9;
+}
+.podlovewebplayer_chapterbox .podlovewebplayer_chapters tr.chaptertr:active {
+  background: #ecf2e9;
+}
+.podlovewebplayer_chapterbox .podlovewebplayer_chapters tr td {
+  padding: 20px 5px 20px 5px !important;
+  vertical-align: middle;
+  cursor: pointer !important;
+}
+.podlovewebplayer_chapterbox .podlovewebplayer_chapters tr td a {
+  color: #3e5634;
+  text-decoration: none;
+}
+.podlovewebplayer_chapterbox .podlovewebplayer_chapters tr td span {
+  text-align: right;
+}
+.podlovewebplayer_chapterbox .podlovewebplayer_chapters tr .chaptername span {
+  font-weight: 500;
+}
+.podlovewebplayer_chapterbox .podlovewebplayer_chapters tr .title {
+  padding-top: 7px;
+}
+.podlovewebplayer_chapterbox .podlovewebplayer_chapters tr .timecode {
+  white-space: nowrap;
+  padding-right: 10px !important;
+  text-align: right;
+}
+.podlovewebplayer_chapterbox .podlovewebplayer_chapters .chapterplay {
+  width: 25px;
+  padding-right: 0;
+}
+.podlovewebplayer_chapterbox .podlovewebplayer_chapters .chapterplay > a {
+  display: block;
+  border: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  width: 25px;
+  height: 25px;
+  background: #bbb;
+  -o-border-radius: 13px;
+  border-radius: 13px;
+  cursor: pointer;
+  -webkit-transition: all 0.07s;
+  transition: all 0.07s;
+}
+.podlovewebplayer_chapterbox .podlovewebplayer_chapters .chapterplay > a.disabled {
+  cursor: wait;
+}
+.podlovewebplayer_chapterbox .podlovewebplayer_chapters .chapterplay > a.disabled:focus, .podlovewebplayer_chapterbox .podlovewebplayer_chapters .chapterplay > a.disabled:hover, .podlovewebplayer_chapterbox .podlovewebplayer_chapters .chapterplay > a.disabled:active {
+  background: #eeeeee;
+  cursor: wait;
+}
+.podlovewebplayer_chapterbox .podlovewebplayer_chapters .chapterplay > a:focus, .podlovewebplayer_chapterbox .podlovewebplayer_chapters .chapterplay > a:hover, .podlovewebplayer_chapterbox .podlovewebplayer_chapters .chapterplay > a:active {
+  background: #3a859a;
+  cursor: pointer;
+}
+.podlovewebplayer_chapterbox .podlovewebplayer_chapters .loaded .chapterplay > a {
+  background: black;
+}
+.podlovewebplayer_chapterbox .paused .chapterplay a[rel=player] span {
+  background-position: 0 0 !important;
+}
+.podlovewebplayer_chapterbox .chapternr {
+  min-width: 0px;
+  width: 20px;
+  padding-left: 0px;
+  text-align: center;
+}
+.podlovewebplayer_chapterbox .starttime {
+  width: 50px;
+  text-align: right;
+}
+
+.chaptername a {
+  padding-left: 0.02em;
+  width: 1em;
+  margin-right: 0.2em;
+  text-align: center;
+  font-variant: normal !important;
+  text-transform: none !important;
+}
+
+.podlovewebplayer_downloadbuttons select {
+  outline: none;
+  vertical-align: top;
+  height: 40px;
+  background: #333333;
+  color: white;
+}
+
+.summary a {
+  font-weight: 500;
+}
+.summary a:hover {
+  text-decoration: underline;
+}
+
+.tabs .podlovewebplayer_sharebuttons .button-toggle {
+  color: #49a8dc;
 }
 
 .clearfix {

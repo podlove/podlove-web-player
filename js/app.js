@@ -26,7 +26,108 @@ if (typeof String.prototype.trim !== 'function') {
   };
 }
 
+/**
+ * Render HTML title area
+ * @param params
+ * @returns {string}
+ */
+function renderTitleArea(params) {
+  return '<header>' +
+    renderShowTitle(params.show.title, params.show.url) +
+    renderTitle(params.title, params.permalink) +
+    renderSubTitle(params.subtitle) +
+    '</header>';
+}
+
+/**
+ * The most missing feature regarding embedded players
+ * @param {string} title
+ * @param {string} url
+ * @returns {string}
+ */
+function renderShowTitle(title, url) {
+  if (!title) {
+    return '';
+  }
+  if (url) {
+    title = '<a href="' + url + '">' + title + '</a>';
+  }
+  return '<h4 class="showtitle">' + title + '</h4>';
+}
+
+/**
+ * Render episode title HTML
+ * @param {string} text
+ * @param {string} link
+ * @returns {string}
+ */
+function renderTitle(text, link) {
+  var titleBegin = '<h2 class="episodetitle">',
+    titleEnd = '</h2>';
+  if (text !== undefined && link !== undefined) {
+    text = '<a href="' + link + '">' + text + '</a>';
+  }
+  return titleBegin + text + titleEnd;
+}
+
+/**
+ * Render HTML subtitle
+ * @param {string} text
+ * @returns {string}
+ */
+function renderSubTitle(text) {
+  return '<p class="subtitle">' + text + '</p>';
+}
+
+/**
+ * Render HTML playbutton
+ * @returns {string}
+ */
+function renderPlaybutton() {
+  return '<a class="bigplay" title="Play Episode" href="#"></a>';
+}
+
+/**
+ * Render the poster image in HTML
+ * returns an empty string if posterUrl is empty
+ * @param {string} posterUrl
+ * @returns {string} rendered HTML
+ */
+function renderPoster(posterUrl) {
+  if (!posterUrl) { return ''; }
+  return '<div class="coverart"><img class="coverimg" src="' + posterUrl + '" data-img="' + posterUrl + '" alt="Poster Image"></div>';
+}
+
+/**
+ *
+ * @param {object} params
+ * @returns {boolean} true if at least one chapter is present
+ */
+function checkForChapters(params) {
+  return !!params.chapters && (
+    (typeof params.chapters === 'string' && params.chapters.length > 10) ||
+      (typeof params.chapters === 'object' && params.chapters.length > 1)
+    );
+}
+
 var create = require('./player').create;
+
+/**
+ * player error handling function
+ * will remove the topmost mediafile from src or source list
+ * possible fix for Firefox AAC issues
+ */
+function removeUnplayableMedia() {
+  var $this = $(this);
+  if ($this.attr('src')) {
+    $this.removeAttr('src');
+    return;
+  }
+  var sourceList = $this.children('source');
+  if (sourceList.length) {
+    sourceList.first().remove();
+  }
+}
 
 var _playerDefaults = {
   chapterlinks: 'all',
@@ -44,13 +145,203 @@ var _playerDefaults = {
   sources: []
 };
 
+var startAtTime;
+var stopAtTime;
+var checkCurrentURL = function () {
+  var deepLink = require('./url').checkCurrent ();
+  if (!deepLink) { return; }
+  startAtTime = deepLink[0];
+  stopAtTime = deepLink[1];
+};
+
+/**
+ * add chapter behavior and deeplinking: skip to referenced
+ * time position & write current time into address
+ * @param {object} player
+ * @param {object} params
+ * @param {object} wrapper
+ */
+var addBehavior = function (player, params, wrapper) {
+  var jqPlayer = $(player),
+    layoutedPlayer = jqPlayer,
+    canplay = false,
+    TabRegistry = require('./tabregistry'),
+    tabs = new TabRegistry(),
+    Controls = require('./controls'),
+    infoTab = require('./tabs/info'),
+    shareTab = require('./tabs/share'),
+    downloadsTab = require('./tabs/downloads'),
+    chapterTab = require('./modules/chapter'),
+    richplayer = false,
+    hasChapters = checkForChapters(params),
+    metaElement = $('<div class="titlebar"></div>'),
+    playerType = params.type,
+    controls,
+    controlBox;
+
+  //build rich player with meta data
+  if (params.chapters !== undefined || params.title !== undefined || params.subtitle !== undefined || params.summary !== undefined || params.poster !== undefined || jqPlayer.attr('poster') !== undefined) {
+    //set status variable
+    richplayer = true;
+    wrapper.addClass('podlovewebplayer_' + playerType);
+
+    if (playerType === "audio") {
+      // Render playbutton
+      metaElement.prepend(renderPlaybutton());
+      var poster = params.poster || jqPlayer.attr('poster');
+      metaElement.append(renderPoster(poster));
+      wrapper.prepend(metaElement);
+    }
+
+    if (playerType === "video") {
+      wrapper.prepend('<div class="podlovewebplayer_top"></div>');
+      wrapper.append(metaElement);
+    }
+
+    // Render title area with title h2 and subtitle h3
+    metaElement.append(renderTitleArea(params));
+
+    if (params.subtitle && params.title && params.title.length < 42 && !params.poster) {
+      wrapper.addClass('podlovewebplayer_smallplayer');
+    }
+
+    /**
+     * Timecontrols
+     */
+    controls = new Controls(player);
+    controlBox = controls.box;
+    //always render toggler buttons wrapper
+    wrapper.append(controlBox);
+  }
+
+  /**
+   * -- TABS --
+   * FIXME enable chapter tab
+   */
+  controlBox.append(tabs.togglebar);
+  wrapper.append(tabs.container);
+
+  tabs.add(infoTab(params));
+  tabs.add(shareTab(params));
+  tabs.add(downloadsTab(params));
+  var chapters;
+  if (hasChapters) {
+    chapters = new chapterTab(player, params);
+    tabs.addModule(chapters);
+    if ((params.chaptersVisible === 'true') || (params.chaptersVisible === true)) {
+      tabs.open(chapters.tab);
+    }
+  }
+  chapters.addEventhandlers(player);
+  controls.createTimeControls(chapters);
+
+  // expose the player interface
+  wrapper.data('podlovewebplayer', {
+    player: jqPlayer
+  });
+
+  /**
+   * The `player` is an interface. It provides the play and pause functionality. The
+   * `layoutedPlayer` on the other hand is a DOM element. In native mode, these two
+   * are one and the same object. In Flash though the interface is a plain JS object.
+   */
+  if (pwp.players.length === 1) {
+    // check if deeplink is set
+    checkCurrentURL();
+  }
+  // get things straight for flash fallback
+  if (player.pluginType === 'flash') {
+    layoutedPlayer = $('#mep_' + player.id.substring(9));
+    console.log(layoutedPlayer);
+  }
+  // cache some jQ objects
+  //metaElement = wrapper.find('.titlebar');
+  var playButton = metaElement.find('.bigplay');
+  playButton.on('click', function () {
+    var playButton = $(this);
+    console.log(playButton);
+    if ((typeof player.currentTime === 'number') && (player.currentTime > 0)) {
+      if (player.paused) {
+        playButton.addClass('playing');
+        player.play();
+      } else {
+        playButton.removeClass('playing');
+        player.pause();
+      }
+    } else {
+      if (!playButton.hasClass('playing')) {
+        playButton.addClass('playing');
+        playButton.parent().parent().find('.mejs-time-buffering').show();
+      }
+      // flash fallback needs additional pause
+      if (player.pluginType === 'flash') {
+        player.pause();
+      }
+      player.play();
+    }
+  });
+
+  // wait for the player or you'll get DOM EXCEPTIONS
+  // And just listen once because of a special behaviour in firefox
+  // --> https://bugzilla.mozilla.org/show_bug.cgi?id=664842
+  jqPlayer.one('canplay', function () {
+    canplay = true;
+    // add duration of final chapter
+    if (player.duration) {
+    }
+    // add Deeplink Behavior if there is only one player on the site
+    /*
+     if (players.length === 1) {
+     jqPlayer
+     .bind('play timeupdate', { player: player }, checkTime)
+     .bind('pause', { player: player }, addressCurrentTime);
+     // disabled 'cause it overrides chapter clicks
+     // bind seeked to addressCurrentTime
+     checkCurrentURL();
+     // handle browser history navigation
+     jQuery(window).bind('hashchange onpopstate', function (e) {
+     if (!ignoreHashChange) {
+     checkCurrentURL();
+     }
+     ignoreHashChange = false;
+     });
+     }
+     */
+  });
+
+  jqPlayer
+    .on('error', removeUnplayableMedia)    // This might be a fix to some Firefox AAC issues.
+    .on('timeupdate', function (event) {
+      tabs.update(event);
+    })
+    // update play/pause status
+    .on('play', function (event) {
+      //console.log('Player.play fired', event);
+      //player.setCurrentTime(0);
+    })
+    .on('playing', function () {
+      //console.log('Player.playing fired', event);
+      playButton.addClass('playing');
+      pwp.embed.postToOpener({ action: 'play', arg: player.currentTime });
+    })
+    .on('pause', function () {
+      //console.log('Player.pause playButton', playButton);
+      playButton.removeClass('playing');
+      pwp.embed.postToOpener({ action: 'pause', arg: player.currentTime });
+    })
+    .on('ended', function () {
+      pwp.embed.postToOpener({ action: 'stop', arg: player.currentTime });
+      player.setCurrentTime(0);
+    });
+};
+
 $.fn.podlovewebplayer = function webPlayer (options) {
   // MEJS options default values
   // Additional parameters default values
   var params = $.extend({}, _playerDefaults, options);
   // turn each player in the current set into a Podlove Web Player
   return this.each(function (i, player) {
-    create(player, params);
+    create(player, params, addBehavior);
   });
 };
 
