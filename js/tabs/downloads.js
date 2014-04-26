@@ -56,6 +56,7 @@ function createDownloadTab(params) {
       icon: "pwp-icon-link",
       title: "Show/hide download bar",
       name: 'podlovewebplayer_downloadbuttons',
+      headline: 'Download',
       active: !!params.downloadbuttonsVisible
   });
 

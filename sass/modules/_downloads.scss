@@ -1,3 +1,14 @@
 //
-// Download Module Styles
+// Module 'Download'
 // --------------------------------------------------
+
+.podlovewebplayer_downloadbuttons {
+  select {
+    outline: none;
+    vertical-align: top;
+    height: 40px;
+    background: $gray-dark;
+    color: $white;
+  }
+}
+

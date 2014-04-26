@@ -28,73 +28,10 @@
     min-height: 100px;
     height: auto;
     padding-bottom: 5px;
-    -webkit-border-top-left-radius: 10px;
-    -webkit-border-top-right-radius: 10px;
-    -moz-border-radius-topleft: 10px;
-    -moz-border-radius-topright: 10px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
     background: url(background.png);
     background: #545454;
-    background: -moz-linear-gradient(top,#545454 0%,#262626 100%);
-    background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#545454),color-stop(100%,#262626));
-    background: -webkit-linear-gradient(top,#545454 0%,#262626 100%);
-    background: -o-linear-gradient(top,#545454 0%,#262626 100%);
-    background: -ms-linear-gradient(top,#545454 0%,#262626 100%);
     background: linear-gradient(to bottom,#545454 0%,#262626 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#545454',endColorstr='#262626',GradientType=0 );
-  }
-}
-
-.container.podlovewebplayer_video .podlovewebplayer_tableend,
-.container.podlovewebplayer_video .tab,
-.container.podlovewebplayer_video .summary {
-  background: $gray-darker; //#252525
-}
-
-.container.podlovewebplayer_video .podlovewebplayer_chapterbox,
-.container.podlovewebplayer_video .podlovewebplayer_chapters,
-.container.podlovewebplayer_video .titlebar + .summary,
-.container.podlovewebplayer_video .tab {
-  border-color: $gray-darker; //#252525
-}
-
-.container.podlovewebplayer_video .tab {
-  margin-top: 0px;
-}
-
-
-
-.podlovewebplayer_video .summary,
-.podlovewebplayer_video.container .tab {
-  margin-top: 0px;
-}
-
-
-.podlovewebplayer_top {
-  min-height: 11px !important;
-  height: 11px !important;
-  margin-bottom: 0px !important;
-  padding-bottom: 0px;
-}
-
-.chaptername a {
-  padding-left: 0.02em;
-  width: 1em;
-  margin-right: 0.2em;
-  text-align: center;
-  font-variant: normal !important;
-  text-transform: none !important;
-  //line-height: 1em;
-}
-
-.podlovewebplayer_downloadbuttons {
-  select {
-    outline: none;
-    vertical-align: top;
-    height: 40px;
-    background: $brand-primary;
-    color: $white;
   }
 }
 
@@ -104,140 +41,6 @@
 }
 
 
-// Chapters
-// ----------------------
-.podlovewebplayer_chapterbox {
-  height: auto;
-  transition: all 0.5s;
-
-  .starttime {
-    //@include circle(50px);
-    //color: $highlight-color;
-    span {
-      color: $gray-dark;
-    }
-  }
-  .chapterimage {
-    width: 45px;
-    max-width: 45px;
-    text-align: center;
-    img {
-      max-width: 40px;
-      max-height: 32px;
-      margin-top: -8px;
-      margin-bottom: -7px;
-      display: block;
-    }
-  }
-  .podlovewebplayer_chapters {
-    margin: 0 !important;
-    width: 100%;
-    border-collapse: collapse;
-    thead,
-    caption {
-      display: none
-    }
-    tr {
-      color: black;
-      cursor: pointer;
-      &:hover {
-        background: $brand-active;
-      }
-      &.active,
-      &.active:hover {
-/*
-        background: #a6c9dd;
-*/
-      }
-      &.chaptertr:active {
-        color: $white;
-        background: $brand-active;
-      }
-      td {
-        padding: 20px 5px 20px 5px !important;
-        vertical-align: middle;
-        cursor: pointer !important;
-        a {
-          color: $default-link-color;
-          text-decoration: none;
-        }
-        span {
-          text-align: right;
-          font-weight: normal;
-        }
-      }
-      .chaptername span {
-        font-weight: 500;
-      }
-      .title {
-        padding-top: 7px;
-      }
-      .timecode {
-        white-space: nowrap;
-        padding-right: 10px !important;
-        text-align: right;
-      }
-    }
-    .chapterplay {
-      width: 25px;
-      padding-right: 0;
-    }
-    .chapterplay > a {
-      display: block;
-      border: none;
-      padding: 0;
-      margin: 0;
-      text-align: center;
-      width: 25px;
-      height: 25px;
-      background: #bbb;
-      -webkit-border-radius: 13px;
-      -moz-border-radius: 13px;
-      -o-border-radius: 13px;
-      border-radius: 13px;
-      cursor: pointer;
-      -webkit-transition: all 0.07s;
-      -moz-transition: all 0.07s;
-      -o-transition: all 0.07s;
-      transition: all 0.07s;
-      &.disabled {
-        cursor: wait;
-        &:focus,
-        &:hover,
-        &:active {
-          background: $gray-lighter;
-          cursor: wait;
-        }
-      }
-      &:focus,
-      &:hover,
-      &:active {
-        background: #3a859a;
-        cursor: pointer;
-      }
-    }
-    .loaded .chapterplay > a {
-      background: $black;
-    }
-  }
-
-  .paused .chapterplay a[rel=player] span {
-    background-position: 0 0 !important;
-  }
-
-  .chapternr {
-    min-width: 0px;
-    width: 20px;
-    padding-left: 0px;
-    text-align: center;
-  }
-
-  .starttime {
-    width: 50px;
-    text-align: right;
-  }
-}
-
 // Smaller Resolutions
 @media only screen and (max-width : 500px) {
   .container {
@@ -245,10 +48,6 @@
     margin-right: 0px;
 
     .titlebar {
-      -webkit-border-top-left-radius: 0px !important;
-      -webkit-border-top-right-radius: 0px !important;
-      -moz-border-radius-topleft: 0px !important;
-      -moz-border-radius-topright: 0px !important;
       border-top-left-radius: 0px !important;
       border-top-right-radius: 0px !important;
       .subtitle {
@@ -273,17 +72,8 @@
 
     .podlovewebplayer_tableend,
     .podlovewebplayer_top {
-      -webkit-border-top-left-radius: 0px;
-      -webkit-border-top-right-radius: 0px;
-      -moz-border-radius-topleft: 0px;
-      -moz-border-radius-topright: 0px;
       border-top-left-radius: 0px;
       border-top-right-radius: 0px;
-
-      -webkit-border-bottom-left-radius: 0px;
-      -webkit-border-bottom-right-radius: 0px;
-      -moz-border-radius-bottomleft: 0px;
-      -moz-border-radius-bottomright: 0px;
       border-bottom-left-radius: 0px;
       border-bottom-right-radius: 0px;
     }

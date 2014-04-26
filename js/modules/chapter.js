@@ -28,6 +28,7 @@ function Chapters (player, params) {
   this.tab = new Tab({
     icon: "pwp-icon-list-bullet",
     title: "Show/hide chapters",
+    headline: 'Chapters',
     name: "podlovewebplayer_chapterbox showonplay" // FIXME clean way to add 2 classnames
   })
   ;
