@@ -5,6 +5,7 @@
 .tabs {
   color: $text-color;
   background-color: $white;
+  //transition: all 0.5s;
   a {
     color: $default-link-color;
     &.button-toggle {
@@ -14,6 +15,11 @@
 
   section {
     padding: 0 25px;
+    line-height: 1.5;
+    overflow-y: scroll;
+    border-left: 1px solid $gray-light;
+    border-right: 1px solid $gray-light;
+    border-bottom: 1px solid $gray-light;
   }
 
   p {
@@ -22,18 +28,10 @@
 
   .tab {
     display: none;
-/*
-    overflow-y: scroll;
-    line-height: 1.5;
-    transition: all 0.5s;
-    border-left: 1px solid $gray-light;
-    border-right: 1px solid $gray-light;
-    border-bottom: 1px solid $gray-light;
-*/
+
     &.active {
       display: block;
       height: 300px;
-      overflow-y: scroll;
       h2 {
         margin-bottom: 20px;
       }
@@ -88,11 +86,6 @@
   font-weight: bold;
 }
 */
-.podlovewebplayer_tableend {
-  display: none;
-}
-
-
 
 // Video Player
 .container.podlovewebplayer_video .tab,
