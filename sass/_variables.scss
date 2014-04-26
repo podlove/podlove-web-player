@@ -21,12 +21,13 @@ $gray-lighter:            lighten(#000, 93.5%) !default; // #eee
 // Brand colors
 // -------------------------
 
-$brand-primary:           #3e5634 !default;
-$brand-info:              #506680 !default;
+$brand-primary:           #3e5634 !default; // dark-green
+$brand-info:              #506680 !default; // blue-gray
 $brand-success:           #5cb85c !default;
-$brand-active:            #edede6 !default;
 $brand-warning:           #f0ad4e !default;
 $brand-danger:            #d9534f !default;
+$brand-share:             #49A8DC !default; // "twitter" blue
+$brand-share-light:       lighten($brand-share, 20%) !default;
 
 // Scaffolding
 // -------------------------
@@ -43,7 +44,9 @@ $contrasted-light-default:  $gray-lighter;
 $default-link-color:      $brand-primary !default;
 $link-color:              $white !default;
 $link-hover-color:        lighten($link-color, 15%) !default;
-$highlight-color:         $brand-active;
+$brand-primary-hover:     lighten($brand-primary, 70%) !default;
+$brand-primary-active:    lighten($brand-primary, 66%) !default;
+$highlight-color:         lighten($brand-primary, 70%) !default;
 
 // Typography
 // -------------------------
@@ -70,6 +73,7 @@ $font-size-h6:            ceil($font-size-base * 0.85) !default; // ~13px
 // -------------------------
 
 $font-weight-light:       100;
+$font-weight-lighter:     200;
 $font-weight-normal:      300;
 $font-weight-bold:        400;
 $font-weight-bolder:      500;

@@ -3,41 +3,41 @@
 // --------------------------------------------------
 
 .tabs {
-  color: $black;
+  color: $text-color;
   background-color: $white;
-  //@include iconfont-button($brand-active);
   a {
     color: $default-link-color;
+    &.button-toggle {
+      color: $text-color;
+    }
   }
+
+  section {
+    padding: 0 25px;
+  }
+
+  p {
+    margin: 11px 0;
+  }
+
   .tab {
+    display: none;
+/*
     overflow-y: scroll;
     line-height: 1.5;
     transition: all 0.5s;
     border-left: 1px solid $gray-light;
     border-right: 1px solid $gray-light;
     border-bottom: 1px solid $gray-light;
-  }
-}
-
-
-.summary.active {
-  min-height: 35px;
-  height: auto;
-  padding: 10px;
-}
-
-.summary a {
-  font-weight: 500;
-  &:hover {
-    text-decoration: underline;
-  }
-}
-
-.container .tab {
-  height: 0px;
-  &.active {
-    height: 300px;
-    overflow-y: scroll;
+*/
+    &.active {
+      display: block;
+      height: 300px;
+      overflow-y: scroll;
+      h2 {
+        margin-bottom: 20px;
+      }
+    }
   }
 }
 
@@ -91,4 +91,36 @@
 .podlovewebplayer_tableend {
   display: none;
 }
+
+
+
+// Video Player
+.container.podlovewebplayer_video .tab,
+.container.podlovewebplayer_video .summary {
+  background: $gray-darker; //#252525
+}
+
+.container.podlovewebplayer_video .podlovewebplayer_chapterbox,
+.container.podlovewebplayer_video .podlovewebplayer_chapters,
+.container.podlovewebplayer_video .titlebar + .summary,
+.container.podlovewebplayer_video .tab {
+  border-color: $gray-darker; //#252525
+}
+
+.container.podlovewebplayer_video .tab {
+  margin-top: 0px;
+}
+
+.podlovewebplayer_video .summary,
+.podlovewebplayer_video.container .tab {
+  margin-top: 0px;
+}
+
+.podlovewebplayer_top {
+  min-height: 11px !important;
+  height: 11px !important;
+  margin-bottom: 0px !important;
+  padding-bottom: 0px;
+}
+
 
