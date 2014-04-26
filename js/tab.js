@@ -10,7 +10,6 @@ function createControlBox(options) {
   if (options.active) {
     classes.push("active");
   }
-  //return $('<section class="' + classes.join(' ') + '"><header><h2>headline</h2></header></section>');
   return $('<section class="' + classes.join(' ') + '"><header><h2>' + options.headline + '</h2></header></section>');
 }
 
