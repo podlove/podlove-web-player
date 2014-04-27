@@ -358,11 +358,10 @@ var addBehavior = function (player, params, wrapper) {
 
 /**
  *
- * @param options
- * @returns {*|Array|Object|Array|Object|String}
+ * @param {object} options
+ * @returns {jQuery}
  */
 $.fn.podlovewebplayer = function webPlayer (options) {
-  // MEJS options default values
   // Additional parameters default values
   var params = $.extend({}, player.defaults, options);
   // turn each player in the current set into a Podlove Web Player
@@ -371,10 +370,9 @@ $.fn.podlovewebplayer = function webPlayer (options) {
   });
 };
 
-
 var pwp = {
   tc: require('./timecode'),
-  players: require('./player').players,
+  players: player.players,
   embed: require('./embed')
 };
 
