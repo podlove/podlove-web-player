@@ -19,7 +19,7 @@
 var TabRegistry = require('./tabregistry'),
   infoTab = require('./tabs/info'),
   shareTab = require('./tabs/share'),
-  downloadsTab = require('./tabs/downloads'),
+  downloadsTab = require('./modules/downloads'),
   chapterTab = require('./modules/chapter'),
   Controls = require('./controls'),
   handleCookies = require('./cookie'),
@@ -245,7 +245,10 @@ var addBehavior = function (player, params, wrapper) {
 
   tabs.add(infoTab(params));
   tabs.add(shareTab(params));
-  tabs.add(downloadsTab(params));
+
+  var downloads = new downloadsTab(params);
+  tabs.addModule(downloads);
+
   var chapters;
   if (hasChapters) {
     chapters = new chapterTab(player, params);
