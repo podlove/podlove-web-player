@@ -134,6 +134,7 @@ function create(player, params, callback) {
     params.width = params.width.toString().trim() + 'px';
   }
 
+  // FIXME ....why clone, wrap and replace?!
   orig = player;
   player = $(player).clone().wrap('<div class="container" style="width: ' + params.width + '"></div>')[0];
   jqPlayer = $(player);
