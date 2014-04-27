@@ -16,6 +16,21 @@
  */
 'use strict';
 
+var TabRegistry = require('./tabregistry'),
+  infoTab = require('./tabs/info'),
+  shareTab = require('./tabs/share'),
+  downloadsTab = require('./tabs/downloads'),
+  chapterTab = require('./modules/chapter'),
+  Controls = require('./controls'),
+  handleCookies = require('./cookie'),
+  tc = require('./timecode'),
+  player = require('./player'),
+  autoplay = false;
+
+var startAtTime;
+var stopAtTime;
+
+// will expose/attach itself to the $ global
 require('./../libs/mediaelement/build/mediaelement-and-player.js');
 
 // FIXME put in compat mode module
@@ -25,6 +40,13 @@ if (typeof String.prototype.trim !== 'function') {
     return this.replace(/^\s+|\s+$/g, '');
   };
 }
+
+var checkCurrentURL = function () {
+  var deepLink = require('./url').checkCurrent ();
+  if (!deepLink) { return; }
+  startAtTime = deepLink[0];
+  stopAtTime = deepLink[1];
+};
 
 /**
  * Render HTML title area
@@ -110,49 +132,25 @@ function checkForChapters(params) {
     );
 }
 
-var create = require('./player').create;
-
 /**
- * player error handling function
- * will remove the topmost mediafile from src or source list
- * possible fix for Firefox AAC issues
+ * checks if the current window is hidden
+ * @returns {boolean} true if the window is hidden
  */
-function removeUnplayableMedia() {
-  var $this = $(this);
-  if ($this.attr('src')) {
-    $this.removeAttr('src');
-    return;
+function isHidden() {
+  var props = [
+    'hidden',
+    'mozHidden',
+    'msHidden',
+    'webkitHidden'
+  ];
+
+  for (var index in props) {
+    if (props[index] in document) {
+      return !!document[props[index]];
+    }
   }
-  var sourceList = $this.children('source');
-  if (sourceList.length) {
-    sourceList.first().remove();
-  }
+  return false;
 }
-
-var _playerDefaults = {
-  chapterlinks: 'all',
-  width: '100%',
-  duration: false,
-  chaptersVisible: false,
-  timecontrolsVisible: false,
-  sharebuttonsVisible: false,
-  downloadbuttonsVisible: false,
-  summaryVisible: false,
-  hidetimebutton: false,
-  hidedownloadbutton: false,
-  hidesharebutton: false,
-  sharewholeepisode: false,
-  sources: []
-};
-
-var startAtTime;
-var stopAtTime;
-var checkCurrentURL = function () {
-  var deepLink = require('./url').checkCurrent ();
-  if (!deepLink) { return; }
-  startAtTime = deepLink[0];
-  stopAtTime = deepLink[1];
-};
 
 /**
  * add chapter behavior and deeplinking: skip to referenced
@@ -165,19 +163,43 @@ var addBehavior = function (player, params, wrapper) {
   var jqPlayer = $(player),
     layoutedPlayer = jqPlayer,
     canplay = false,
-    TabRegistry = require('./tabregistry'),
     tabs = new TabRegistry(),
-    Controls = require('./controls'),
-    infoTab = require('./tabs/info'),
-    shareTab = require('./tabs/share'),
-    downloadsTab = require('./tabs/downloads'),
-    chapterTab = require('./modules/chapter'),
     richplayer = false,
     hasChapters = checkForChapters(params),
     metaElement = $('<div class="titlebar"></div>'),
     playerType = params.type,
     controls,
-    controlBox;
+    controlBox,
+    deepLink,
+    storageKey;
+
+  // parse deeplink
+  deepLink = tc.parse(window.location.href);
+  if (deepLink !== false && pwp.players.length === 1) {
+    var playerAttributes = {preload: 'auto'};
+    if (!isHidden() && autoplay) {
+      playerAttributes.autoplay = 'autoplay';
+    }
+    jqPlayer.attr(playerAttributes);
+    startAtTime = deepLink[0];
+    stopAtTime = deepLink[1];
+  } else if (params && params.permalink) {
+    //console.debug(params);
+    storageKey = params.permalink;
+    if (handleCookies.getItem(storageKey)) {
+      jqPlayer.one('canplay', function () {
+        var time = handleCookies.getItem(storageKey);
+        //console.debug(time);
+        this.currentTime = time;
+      });
+    }
+  }
+
+  if (deepLink !== false && pwp.players.length === 1) {
+    $('html, body').delay(150).animate({
+      scrollTop: $('.container:first').offset().top - 25
+    });
+  }
 
   //build rich player with meta data
   if (params.chapters !== undefined || params.title !== undefined || params.subtitle !== undefined || params.summary !== undefined || params.poster !== undefined || jqPlayer.attr('poster') !== undefined) {
@@ -310,7 +332,6 @@ var addBehavior = function (player, params, wrapper) {
   });
 
   jqPlayer
-    .on('error', removeUnplayableMedia)    // This might be a fix to some Firefox AAC issues.
     .on('timeupdate', function (event) {
       tabs.update(event);
     })
@@ -335,13 +356,18 @@ var addBehavior = function (player, params, wrapper) {
     });
 };
 
+/**
+ *
+ * @param options
+ * @returns {*|Array|Object|Array|Object|String}
+ */
 $.fn.podlovewebplayer = function webPlayer (options) {
   // MEJS options default values
   // Additional parameters default values
-  var params = $.extend({}, _playerDefaults, options);
+  var params = $.extend({}, player.defaults, options);
   // turn each player in the current set into a Podlove Web Player
-  return this.each(function (i, player) {
-    create(player, params, addBehavior);
+  return this.each(function (i, playerElement) {
+    player.create(playerElement, params, addBehavior);
   });
 };
 
