@@ -379,4 +379,5 @@ var pwp = {
 //FIXME without embed animations are fluent
 pwp.embed.init($, player.players);
 
-module.exports = pwp;
+window.pwp = pwp;
+//module.exports = pwp;
