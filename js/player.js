@@ -11,8 +11,48 @@ var startAtTime = false,
   embed = require('./embed'),
   generateTimecode = require('./timecode').generate,
   parseTimecode = require('./timecode').parse,
-  handleCookies = require('./cookie'),
   setFragmentURL = require('./url').setFragment,
+  mejsoptions = {
+    defaultVideoWidth: 480,
+    defaultVideoHeight: 270,
+    videoWidth: -1,
+    videoHeight: -1,
+    audioWidth: -1,
+    audioHeight: 30,
+    startVolume: 0.8,
+    loop: false,
+    enableAutosize: true,
+    features: ['playpause', 'current', 'progress', 'duration', 'tracks', 'fullscreen'],
+    alwaysShowControls: false,
+    iPadUseNativeControls: false,
+    iPhoneUseNativeControls: false,
+    AndroidUseNativeControls: false,
+    alwaysShowHours: false,
+    showTimecodeFrameCount: false,
+    framesPerSecond: 25,
+    enableKeyboard: true,
+    pauseOtherPlayers: true,
+    duration: false,
+    plugins: ['flash', 'silverlight'],
+    pluginPath: './static/',
+    flashName: 'flashmediaelement.swf',
+    silverlightName: 'silverlightmediaelement.xap'
+  },
+  defaults = {
+    chapterlinks: 'all',
+    width: '100%',
+    duration: false,
+    chaptersVisible: false,
+    timecontrolsVisible: false,
+    sharebuttonsVisible: false,
+    downloadbuttonsVisible: false,
+    summaryVisible: false,
+    hidetimebutton: false,
+    hidedownloadbutton: false,
+    hidesharebutton: false,
+    sharewholeepisode: false,
+    sources: []
+  },
   checkTime,
   addressCurrentTime;
 
@@ -41,42 +81,12 @@ var startAtTime = false,
     }
   };
 
-var mejsoptions = {
-  defaultVideoWidth: 480,
-  defaultVideoHeight: 270,
-  videoWidth: -1,
-  videoHeight: -1,
-  audioWidth: -1,
-  audioHeight: 30,
-  startVolume: 0.8,
-  loop: false,
-  enableAutosize: true,
-  features: ['playpause', 'current', 'progress', 'duration', 'tracks', 'fullscreen'],
-  alwaysShowControls: false,
-  iPadUseNativeControls: false,
-  iPhoneUseNativeControls: false,
-  AndroidUseNativeControls: false,
-  alwaysShowHours: false,
-  showTimecodeFrameCount: false,
-  framesPerSecond: 25,
-  enableKeyboard: true,
-  pauseOtherPlayers: true,
-  duration: false,
-  plugins: ['flash', 'silverlight'],
-  pluginPath: './static/',
-  flashName: 'flashmediaelement.swf',
-  silverlightName: 'silverlightmediaelement.xap'
-};
-
 function create(player, params, callback) {
   var jqPlayer,
     playerType = getPlayerType(player),
     secArray,
     orig,
-    deepLink,
-    wrapper,
-    storageKey,
-    autoplay;
+    wrapper;
   //audio params
 
   //fine tuning params
@@ -124,6 +134,7 @@ function create(player, params, callback) {
     params.width = params.width.toString().trim() + 'px';
   }
 
+  // FIXME ....why clone, wrap and replace?!
   orig = player;
   player = $(player).clone().wrap('<div class="container" style="width: ' + params.width + '"></div>')[0];
   jqPlayer = $(player);
@@ -143,37 +154,11 @@ function create(player, params, callback) {
     params.sources.push($(this).attr('src'));
   });
 
-  // parse deeplink
-  deepLink = parseTimecode(window.location.href);
-  if (deepLink !== false && players.length === 1) {
-    var playerAttributes = {preload: 'auto'};
-    if (!isHidden() && autoplay) {
-      playerAttributes.autoplay = 'autoplay';
-    }
-    jqPlayer.attr(playerAttributes);
-    startAtTime = deepLink[0];
-    stopAtTime = deepLink[1];
-  } else if (params && params.permalink) {
-    //console.debug(params);
-    storageKey = params.permalink;
-    if (handleCookies.getItem(storageKey)) {
-      jqPlayer.one('canplay', function () {
-        var time = handleCookies.getItem(storageKey);
-        //console.debug(time);
-        this.currentTime = time;
-      });
-    }
-  }
-
   params.type = playerType;
   // init MEJS to player
   mejsoptions.success = function (player) {
+    jqPlayer.on('error', removeUnplayableMedia)    // This might be a fix to some Firefox AAC issues.
     callback(player, params, wrapper);
-    if (deepLink !== false && players.length === 1) {
-      $('html, body').delay(150).animate({
-        scrollTop: $('.container:first').offset().top - 25
-      });
-    }
   };
 
   $(orig).replaceWith(wrapper);
@@ -191,8 +176,6 @@ function normalizeWidth(width) {
   }
   return width.replace('px', '');
 }
-
-
 
 /**
  * audio or video tag
@@ -215,29 +198,26 @@ function removePlayPause(options) {
   });
 }
 
-
 /**
- * checks if the current window is hidden
- * @returns {boolean} true if the window is hidden
+ * player error handling function
+ * will remove the topmost mediafile from src or source list
+ * possible fix for Firefox AAC issues
  */
-function isHidden() {
-  var props = [
-      'hidden',
-      'mozHidden',
-      'msHidden',
-      'webkitHidden'
-    ];
-
-  for (var index in props) {
-    if (props[index] in document) {
-      return !!document[props[index]];
-    }
+function removeUnplayableMedia() {
+  var $this = $(this);
+  if ($this.attr('src')) {
+    $this.removeAttr('src');
+    return;
   }
-  return false;
+  var sourceList = $this.children('source');
+  if (sourceList.length) {
+    sourceList.first().remove();
+  }
 }
 
 module.exports = {
   create: create,
+  defaults: defaults,
   players: players
 };
 

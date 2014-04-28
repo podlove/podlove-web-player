@@ -2,13 +2,14 @@
 // Module 'Download'
 // --------------------------------------------------
 
-.podlovewebplayer_downloadbuttons {
-  select {
-    outline: none;
-    vertical-align: top;
-    height: 40px;
-    background: $gray-dark;
-    color: $white;
+.downloads {
+  dt, dd {
+    display: inline-block;
+    float: left;
+  }
+
+  dt {
+    clear: left;
   }
 }
 
