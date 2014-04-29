@@ -37,6 +37,22 @@
       }
     }
   }
+  dt, dd {
+    @extend .pull-left;
+    display: inline-block;
+    margin-bottom: 15px;
+  }
+
+  dt {
+    clear: both;
+    margin-right: 20px;
+    width: 36%;
+    max-width: 160px;
+  }
+  dd {
+    width: 30%;
+    max-width:70px;
+  }
 }
 
 /*

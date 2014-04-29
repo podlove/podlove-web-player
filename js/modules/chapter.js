@@ -149,7 +149,7 @@ Chapters.prototype.addEventhandlers = function (player) {
     this.element.on('click', function (e) {
       // enable external links to be opened in a new tab or window
       // cancels event to bubble up
-      if (e.target.className === 'pwp-icon-link-ext') {
+      if (e.target.className === 'pwp-icon-link-ext button button-toggle') {
         return true;
       }
       //console.log('chapter#clickHandler: start chapter at', chapterStart);
@@ -316,7 +316,7 @@ function renderExternalLink(href) {
   if (!href || href === "") {
     return '';
   }
-  return '<a class="pwp-icon-link-ext" target="_blank" href="' + href + '"></a>';
+  return '<a class="pwp-icon-link-ext button button-toggle" target="_blank" href="' + href + '"></a>';
 }
 
 function renderChapterImage(imageSrc) {

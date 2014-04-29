@@ -3,13 +3,10 @@
 // --------------------------------------------------
 
 .downloads {
-  dt, dd {
-    display: inline-block;
-    float: left;
-  }
-
-  dt {
-    clear: left;
-  }
+    .file-open,
+    .file-info {
+      line-height: 0px;
+      width: 45px;
+    }
 }
 
