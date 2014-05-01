@@ -292,7 +292,7 @@ hr {
 }
 
 .podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_tableend,
-.podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_controlbox,
+.podlovewebplayer_wrapper.podlovewebplayer_video .tab,
 .podlovewebplayer_wrapper.podlovewebplayer_video .summary {
   background: #222222;
 }
@@ -300,11 +300,11 @@ hr {
 .podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_chapterbox,
 .podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_chapters,
 .podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_meta + .summary,
-.podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_controlbox {
+.podlovewebplayer_wrapper.podlovewebplayer_video .tab {
   border-color: #222222;
 }
 
-.podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_controlbox {
+.podlovewebplayer_wrapper.podlovewebplayer_video .tab {
   margin-top: 0px;
 }
 
@@ -334,7 +334,7 @@ hr {
   clear: none;
   background: transparent !important;
   padding: 7px 10px 0 0;
-  margin: 0 !important;
+  margin-right: 95px;
   text-transform: none;
   letter-spacing: 0;
   text-shadow: none;
@@ -354,7 +354,7 @@ hr {
   speak: none;
   color: white;
   background: transparent !important;
-  float: left;
+  float: right;
   position: relative;
   z-index: 78;
   border: 5px solid white !important;
@@ -424,7 +424,6 @@ hr {
   color: #eeeeee !important;
   text-shadow: none !important;
   background: transparent !important;
-  margin-left: 170px;
   padding-bottom: 35px;
   padding-left: 0px;
 }
@@ -437,7 +436,7 @@ hr {
 }
 
 .podlovewebplayer_meta + .summary,
-.podlovewebplayer_wrapper .podlovewebplayer_controlbox {
+.podlovewebplayer_wrapper .tab {
   overflow: hidden;
   padding: 0px 10px;
   margin-top: -1px;
@@ -471,7 +470,7 @@ hr {
 }
 
 .podlovewebplayer_video .summary,
-.podlovewebplayer_video.podlovewebplayer_wrapper .podlovewebplayer_controlbox {
+.podlovewebplayer_video.podlovewebplayer_wrapper .tab {
   margin-top: 0px;
 }
 
@@ -500,19 +499,19 @@ hr {
   line-height: 1em;
 }
 
-.podlovewebplayer_wrapper .podlovewebplayer_controlbox {
+.podlovewebplayer_wrapper .tab {
   height: 0px;
   font-size: 4px;
   text-align: center;
 }
-.podlovewebplayer_wrapper .podlovewebplayer_controlbox.active {
+.podlovewebplayer_wrapper .tab.active {
   height: 25px;
   padding: 3px 10px 28px 10px;
   font-size: 8px;
 }
 
-.podlovewebplayer_controlbox .infobuttons,
-.podlovewebplayer_controlbox .infobuttons a,
+.tab .infobuttons,
+.tab .infobuttons a,
 .togglers .infobuttons,
 .togglers .infobuttons a {
   color: white;
@@ -531,8 +530,8 @@ hr {
   display: inline;
   text-decoration: none;
 }
-.podlovewebplayer_controlbox .infobuttons:hover,
-.podlovewebplayer_controlbox .infobuttons a:hover,
+.tab .infobuttons:hover,
+.tab .infobuttons a:hover,
 .togglers .infobuttons:hover,
 .togglers .infobuttons a:hover {
   text-shadow: 0px 0px 4px #FFFFFF;
@@ -541,8 +540,8 @@ hr {
   cursor: pointer;
 }
 
-.podlovewebplayer_controlbox .infobuttons,
-.podlovewebplayer_controlbox .infobuttons a {
+.tab .infobuttons,
+.tab .infobuttons a {
   position: relative;
   margin: 4%;
   padding: 0px;
@@ -795,14 +794,14 @@ hr {
     left: 10px;
     right: 10px;
   }
-  .podlovewebplayer_wrapper .podlovewebplayer_controlbox.active {
+  .podlovewebplayer_wrapper .tab.active {
     height: auto !important;
   }
-  .podlovewebplayer_wrapper .podlovewebplayer_controlbox .infobuttons {
+  .podlovewebplayer_wrapper .tab .infobuttons {
     margin: 4%;
     white-space: nowrap;
   }
-  .podlovewebplayer_wrapper .podlovewebplayer_controlbox .infobuttons span {
+  .podlovewebplayer_wrapper .tab .infobuttons span {
     font-size: 13pt;
   }
   .podlovewebplayer_wrapper .podlovewebplayer_tableend,

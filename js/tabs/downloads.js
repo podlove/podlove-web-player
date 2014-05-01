@@ -1,18 +1,12 @@
 'use strict';
-
-var tabs = require('../tabs');
-
-function createFileDownloadToggle() {
-  return tabs.createToggleButton("pwp-icon-link", "Show/hide download bar");
-}
-
-module.exports.createToggle = createFileDownloadToggle;
+var Tab = require('../tab');
 
 function formatSize(size) {
   return (parseInt(size, 10) < 1048704) ?
     Math.round(parseInt(size, 10) / 100) / 10 + 'kB' :
     Math.round(parseInt(size, 10) / 1000 / 100) / 10 + 'MB';
 }
+
 function createFileSelect(params) {
   var i, name, size;
 
@@ -49,30 +43,43 @@ function createFileSelect(params) {
   return $select;
 }
 
+/**
+ *
+ * @param {object} params
+ * @returns {null|Tab} download tab
+ */
 function createDownloadTab(params) {
+  if ((!params.downloads && !params.sources) || params.hidedownloadbutton === true) {
+    return null;
+  }
+  var downloadTab = new Tab({
+      icon: "pwp-icon-link",
+      title: "Show/hide download bar",
+      name: 'podlovewebplayer_downloadbuttons',
+      active: !!params.downloadbuttonsVisible
+  });
 
-  var downloadButtons = tabs.createControlBox('podlovewebplayer_downloadbuttons', !!params.downloadbuttonsVisible);
-
-  var openFileButton = tabs.createToggleButton("pwp-icon-link-ext", "Open");
+  var openFileButton = downloadTab.createToggleButton("pwp-icon-link-ext", "Open");
   openFileButton.click(function () {
     $(this).parent().find(".fileselect option:selected").each(function () {
       window.open($(this).data('url'), 'Podlove Popup', 'width=550,height=420,resizable=yes');
     });
     return false;
   });
-  downloadButtons.append(openFileButton);
+  downloadTab.box.append(openFileButton);
 
-  var fileInfoButton = tabs.createToggleButton("pwp-icon-info-circle", "Info");
+  var fileInfoButton = downloadTab.createToggleButton("pwp-icon-info-circle", "Info");
   fileInfoButton.click(function () {
     $(this).parent().find(".fileselect option:selected").each(function () {
       window.prompt('file URL:', $(this).val());
     });
     return false;
   });
-  downloadButtons.append(fileInfoButton);
+  downloadTab.box.append(fileInfoButton);
 
-  downloadButtons.append(createFileSelect(params));
-  return downloadButtons;
+  downloadTab.box.append(createFileSelect(params));
+
+  return downloadTab;
 }
 
-module.exports.createTab = createDownloadTab;
+module.exports = createDownloadTab;
