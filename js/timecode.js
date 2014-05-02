@@ -94,12 +94,12 @@ module.exports = {
   parse: function (timecode) {
     var parts, startTime, endTime;
     if (!timecode) {
-      return false;
+      return [false, false];
     }
 
     parts = timecode.match(timecodeRegExp);
     if (!parts || parts.length < 10) {
-      return false;
+      return [false, false];
     }
     startTime = extractTime(parts);
 
@@ -111,6 +111,9 @@ module.exports = {
     endTime = extractTime(parts.splice(6));
 
     return (endTime > startTime) ? [startTime, endTime] : [startTime, false];
-  }
+  },
 
+  getStartTimeCode: function getStartTimecode(start) {
+      return this.parse(start)[0];
+  }
 };

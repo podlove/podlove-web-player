@@ -6,7 +6,8 @@
 // -------------------------
 
 p {
-  margin: 0 0 ($line-height-computed / 2);
+  margin:     0 0 ($line-height-computed / 2);
+  font-size:  $font-size-base;
 }
 
 
@@ -18,7 +19,7 @@ h1, h2, h3, h4, h5, h6,
   font-family: $headings-font-family;
   font-weight: $headings-font-weight;
   line-height: $headings-line-height;
-  color: $headings-color;
+  color:       $headings-color;
 }
 
 h1,
@@ -55,5 +56,3 @@ ol {
     margin-bottom: 0;
   }
 }
-
-

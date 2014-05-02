@@ -5,18 +5,20 @@
 // Sass import from an external library folder
 @import "CSS:../libs/mediaelement/build/mediaelementplayer";
 
-.podlovewebplayer_wrapper .mejs-container {
+.container .mejs-container {
   display: block;
   position: relative;
   margin-top: -1px;
   margin-bottom: 0;
   background: #000000;
 }
-.podlovewebplayer_wrapper .mejs-container.mejs-audio {
+.container .mejs-container.mejs-audio {
   min-height: 30px;
 }
 
-.podlovewebplayer_wrapper .mejs-container .mejs-controls {
+.container .mejs-container .mejs-controls {
+  background: $black;
+/*
   background: url(background.png);
   background: rgba(0, 0, 0, 0.7);
   background: -webkit-linear-gradient(top, rgba(50,50,50,0.7), rgba(0,0,0,0.7));
@@ -24,24 +26,25 @@
   background: -o-linear-gradient(top, rgba(50,50,50,0.7), rgba(0,0,0,0.7));
   background: -ms-linear-gradient(top, rgba(50,50,50,0.7), rgba(0,0,0,0.7));
   background: linear-gradient(rgba(50,50,50,0.7), rgba(0,0,0,0.7));
+*/
 }
 
-.podlovewebplayer_wrapper .mejs-container .mejs-controls > div:first-child {
+.container .mejs-container .mejs-controls > div:first-child {
   margin-left: 8px;
 }
 
-.podlovewebplayer_wrapper .mejs-container .mejs-controls > div.mejs-duration-container:last-child {
+.container .mejs-container .mejs-controls > div.mejs-duration-container:last-child {
   margin-right: 5px;
 }
 
 
-.podlovewebplayer_wrapper .mejs-button.mejs-volume-button button {
+.container .mejs-button.mejs-volume-button button {
   font-size: 16px;
   background: transparent;
   color: white;
 }
-.podlovewebplayer_wrapper .mejs-button.mejs-volume-button button::after,
-.podlovewebplayer_wrapper .podlovewebplayer_chapterbox .chaptername a {
+.container .mejs-button.mejs-volume-button button::after,
+.container .podlovewebplayer_chapterbox .chaptername a {
   font-size: 16;
   padding-left: 0.02em;
   font-family: "pwpfont" !important;
@@ -59,11 +62,11 @@
   line-height: 1em;
 }
 
-.podlovewebplayer_wrapper .mejs-button.mejs-volume-button.mejs-unmute button::after {
+.container .mejs-button.mejs-volume-button.mejs-unmute button::after {
   content: "\1f507";
 }
 
-.podlovewebplayer_wrapper .mejs-button.mejs-volume-button.mejs-mute button::after {
+.container .mejs-button.mejs-volume-button.mejs-mute button::after {
   content: "\1f50a";
 }
 
@@ -78,7 +81,7 @@
   height: 100%;
 }
 
-.podlovewebplayer_wrapper.podlovewebplayer_video .mejs-container div.mejs-poster.mejs-layer {
+.container.podlovewebplayer_video .mejs-container div.mejs-poster.mejs-layer {
   display: none !important;
 }
 
@@ -96,18 +99,18 @@
   background-image: url(bigplay.png);
 }
 
-.podlovewebplayer_wrapper .mejs-overlay:hover .mejs-overlay-button {
+.container .mejs-overlay:hover .mejs-overlay-button {
   background-position: 0 -100px ;
 }
 
-.podlovewebplayer_wrapper .mejs-overlay-loading span {
+.container .mejs-overlay-loading span {
   display: block;
   width: 80px;
   height: 80px;
   background: transparent url(loading.gif) 50% 50% no-repeat;
 }
 
-.podlovewebplayer_wrapper .mejs-container .mejs-inner .mejs-controls .mejs-time-rail .mejs-time-total .mejs-time-loaded {
+.container .mejs-container .mejs-inner .mejs-controls .mejs-time-rail .mejs-time-total .mejs-time-loaded {
   background: #11B5DB;
   background: -moz-linear-gradient(top, #11B5DB 0%, #589CEF 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#11B5DB), color-stop(100%,#589CEF));
@@ -118,15 +121,15 @@
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc4383db', endColorstr='#cc589cef',GradientType=0 );
 }
 
-.podlovewebplayer_wrapper .mejs-container .mejs-controls .mejs-time-rail span,
-.podlovewebplayer_wrapper .mejs-container .mejs-controls .mejs-horizontal-volume-slider .mejs-horizontal-volume-total,
-.podlovewebplayer_wrapper .mejs-container .mejs-controls .mejs-horizontal-volume-slider .mejs-horizontal-volume-current,
-.podlovewebplayer_wrapper .mejs-container .mejs-inner .mejs-controls .mejs-volume-button .mejs-volume-slider .mejs-volume-handle {
+.container .mejs-container .mejs-controls .mejs-time-rail span,
+.container .mejs-container .mejs-controls .mejs-horizontal-volume-slider .mejs-horizontal-volume-total,
+.container .mejs-container .mejs-controls .mejs-horizontal-volume-slider .mejs-horizontal-volume-current,
+.container .mejs-container .mejs-inner .mejs-controls .mejs-volume-button .mejs-volume-slider .mejs-volume-handle {
   cursor: move;
   border-radius: 2px;
 }
 
-.podlovewebplayer_wrapper .mejs-container .mejs-inner .mejs-container .mejs-controls .mejs-time span {
+.container .mejs-container .mejs-inner .mejs-container .mejs-controls .mejs-time span {
   -webkit-text-shadow: 0px 0px 2px #000000;
   -moz-text-shadow: 0px 0px 2px #000000;
   -o-text-shadow: 0px 0px 2px #000000;

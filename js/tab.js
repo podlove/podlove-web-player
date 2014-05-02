@@ -4,19 +4,21 @@
  * @param {boolean} active
  * @returns {*|jQuery|HTMLElement}
  */
-function createControlBox(name, active) {
+function createControlBox(options) {
   var classes = ["tab"];
-  classes.push(name);
-  if (active) {
+  classes.push(options.name);
+  if (options.active) {
     classes.push("active");
   }
-  return $('<div class="' + classes.join(' ') + '"></div>');
+  return $('<section class="' + classes.join(' ') + '"><header><h2>' + options.headline + '</h2></header></section>');
 }
 
 function Tab(options) {
   this.icon = options.icon;
   this.title = options.title;
-  this.box = createControlBox(options.name, options.active);
+  this.headline = options.headline;
+  console.log(options.headline);
+  this.box = createControlBox(options);
   this.active = false;
   this.close();
 }
@@ -24,17 +26,15 @@ function Tab(options) {
 Tab.prototype.open = function () {
   this.active = true;
   this.box.addClass('active');
-  this.box.css('height', 'auto');
 };
 
 Tab.prototype.close = function () {
   this.active = false;
   this.box.removeClass('active');
-  this.box.css('height', 0);
 };
 
 Tab.prototype.createToggleButton = function(icon, title) {
-  return $('<a href="#" class="infobuttons ' + icon + '" title="' + title + '"></a>');
+  return $('<a href="#" class="button button-toggle ' + icon + '" title="' + title + '"></a>');
 }
 
 module.exports = Tab;

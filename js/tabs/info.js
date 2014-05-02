@@ -12,6 +12,7 @@ function createInfoTab(params) {
   var infoTab = new Tab({
     icon:"pwp-icon-info-circle",
     title:"More information about this",
+    headline: 'Summary',
     name:'summary',
     active: !!params.summaryVisible
   });

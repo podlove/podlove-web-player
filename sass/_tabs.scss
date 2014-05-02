@@ -1,0 +1,135 @@
+//
+// Metadata Tabs
+// --------------------------------------------------
+
+.tabs {
+  color: $text-color;
+  background-color: $white;
+  //transition: all 0.5s;
+  a {
+    color: $default-link-color;
+    &.button-toggle {
+      color: $text-color;
+    }
+  }
+
+  section {
+    padding: 0 25px;
+    line-height: 1.5;
+    overflow-y: scroll;
+    border-left: 1px solid $gray-light;
+    border-right: 1px solid $gray-light;
+    border-bottom: 1px solid $gray-light;
+  }
+
+  p {
+    margin: 11px 0;
+  }
+
+  .tab {
+    display: none;
+
+    &.active {
+      display: block;
+      height: 300px;
+      h2 {
+        margin-bottom: 20px;
+      }
+    }
+  }
+  dt, dd {
+    @extend .pull-left;
+    display: inline-block;
+    margin-bottom: 15px;
+  }
+
+  dt {
+    clear: both;
+    margin-right: 20px;
+    width: 36%;
+    max-width: 160px;
+  }
+  dd {
+    width: 30%;
+    max-width:70px;
+  }
+}
+
+/*
+.tab .button-toggle,
+.tab .button-toggle a,
+.togglebar .button-toggle,
+.togglebar .button-toggle a {
+  @include iconfont-button;
+  //color: $white;
+  //background: transparent !important;
+  //font-size: 1.75em;
+*/
+/*
+  -webkit-text-shadow: 0px 0px 1px #000000;
+  -moz-text-shadow: 0px 0px 1px #000000;
+  -o-text-shadow: 0px 0px 1px #000000;
+*//*
+
+  text-shadow: 0px 0px 1px #000000;
+*/
+/*
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -o-font-smoothing: antialiased;
+*//*
+
+  font-smoothing: antialiased;
+  text-decoration: none;
+  speak: none;
+  display: inline;
+  text-decoration: none;
+  &:hover {
+    text-decoration: none;
+    text-shadow: 0px 0px 4px #FFFFFF;
+    filter: dropshadow(color=#FFFFFF, offx=0, offy=0);
+    cursor: pointer;
+  }
+}
+
+.tab .button-toggle,
+.tab .button-toggle a {
+  position: relative;
+  margin: 4%;
+  padding: 0px;
+  z-index: 78;
+  font-size: 2.4em;
+  font-weight: bold;
+}
+*/
+
+// Video Player
+.container.podlovewebplayer_video .tab,
+.container.podlovewebplayer_video .summary {
+  background: $gray-darker; //#252525
+}
+
+.container.podlovewebplayer_video .podlovewebplayer_chapterbox,
+.container.podlovewebplayer_video .podlovewebplayer_chapters,
+.container.podlovewebplayer_video .titlebar + .summary,
+.container.podlovewebplayer_video .tab {
+  border-color: $gray-darker; //#252525
+}
+
+.container.podlovewebplayer_video .tab {
+  margin-top: 0px;
+}
+
+.podlovewebplayer_video .summary,
+.podlovewebplayer_video.container .tab {
+  margin-top: 0px;
+}
+
+.podlovewebplayer_top {
+  min-height: 11px !important;
+  height: 11px !important;
+  margin-bottom: 0px !important;
+  padding-bottom: 0px;
+}
+
+

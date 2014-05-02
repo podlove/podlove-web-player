@@ -105,6 +105,26 @@
   animation: $animation;
 }
 
+// Color Schemes
+
+// Sets the specified background color and calculates a dark or light
+// contrasted text color. The arguments are passed through to the contrast-color function.
+/*
+.example {
+  p.dark {
+    @include contrasted(#5f1210);
+  }
+  p.light {
+    @include contrasted(#c82523);
+  }
+}
+*/
+@mixin contrasted($background-color, $dark: $contrasted-dark-default, $light: $contrasted-light-default, $threshold: $contrasted-lightness-threshold) {
+  background-color: $background-color;
+  color: contrast-color($background-color, $dark, $light, $threshold);
+}
+
+
 
 // Background Size
 
@@ -114,3 +134,208 @@
        -o-background-size: $bg-width $bg-height;
           background-size: $bg-width $bg-height;
 }
+
+
+// Flexbox Layout
+// --------------------------------------------------
+
+@mixin flexbox() {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+@mixin flex($values) {
+  -webkit-box-flex: $values;
+  -moz-box-flex:  $values;
+  -webkit-flex:  $values;
+  -ms-flex:  $values;
+  flex:  $values;
+}
+
+@mixin order($val) {
+  -webkit-box-ordinal-group: $val;
+  -moz-box-ordinal-group: $val;
+  -ms-flex-order: $val;
+  -webkit-order: $val;
+  order: $val;
+}
+
+
+// Buttons and Icons
+// --------------------------------------------------
+
+// Controlbuttons, Infobuttons and -Icons
+@mixin iconfont-button($color) {
+  color: $color;
+  background: transparent !important;
+  text-decoration: none;
+  speak: none;
+  font-weight: bold;
+
+  &:hover {
+    text-shadow: 0px 0px 4px #FFFFFF;
+    filter: dropshadow(color=#FFFFFF, offx=0, offy=0);
+    cursor: pointer;
+  }
+}
+
+// Playbutton
+@mixin playbutton() {
+  font-family: $font-family-icons !important;
+  font-size: 42px;
+  line-height: 1.33em;
+  border: 5px solid $white !important;
+  border-radius: 60px !important;
+  transition: none;
+  &:before {
+    content: "\25b6";
+    padding-left: 0.02em;
+  }
+  &:focus,
+  &:hover,
+  &:active {
+    @include box-shadow(0px 4px 5px #666, 2px 6px 10px #999);
+    @include textshadows(0px 0px 10px #FFFFFF);
+    }
+}
+
+// Shadows
+
+@mixin textshadows($shadows...) {
+  text-shadow: $shadows;
+}
+
+@mixin box-shadow($shadows...) {
+  box-shadow: $shadows;
+}
+// Circles
+@mixin circle($radius) {
+  border-radius: 50%;
+  width: $radius;
+  height: $radius;
+}
+
+// Arrows
+
+// Based on [Nicolas Gallagher's Pure CSS speech bubbles][1]
+// I've only implemented a simple triangle with border that you can mix in and position.
+// Definitely can do with some optimization.
+// Works only on elements with relative positioning and overflow not hidden.
+//
+// [1]: http://nicolasgallagher.com/demo/pure-css-speech-bubbles/bubbles.html
+//
+//
+
+/*
+@mixin arrow($direction, $bg-color, $border-color, $border-width, $top, $left, $width: 10px) {
+  position: relative;
+  &:before {
+    content: "\00a0";
+    // reduce the damage in FF3.0:
+    display: block;
+    position: absolute;
+    width: 0;
+    height: 0;
+    top: $top;
+    left: $left;
+    bottom: auto;
+    border-width: floor($width / 2);
+    border-style: solid;
+    @if $direction == "south"{
+      border-color: $border-color transparent transparent transparent;
+    }
+    @if $direction == "north" {
+      border-color: transparent transparent $border-color transparent;
+    }
+    @if $direction == "east" {
+      border-color: transparent transparent transparent $border-color;
+    }
+    @if $direction == "west" {
+      border-color: transparent $border-color transparent transparent;
+    }
+  }
+  // creates the smaller  triangle
+  &:after {
+    content: "\00a0";
+    display: block;
+    position: absolute;
+    width: 0;
+    height: 0;
+    @if $direction == "south" {
+      top: $top - $border-width;
+    }
+    @else if $direction == "north" {
+      top: $top + $border-width;
+    }
+    @else {
+      top: $top;
+    }
+    @if $direction == "east" {
+      left: $left - $border-width;
+    }
+    @else if $direction == "west"{
+      left: $left + $border-width;
+    }
+    @else {
+      left: $left;
+      bottom: auto;
+      border-width: floor($width / 2);
+      border-style: solid;
+    }
+    @if $direction == "south" {
+      border-color: $bg-color transparent transparent transparent;
+    }
+    @if $direction == "north" {
+      border-color: transparent transparent $bg-color transparent;
+    }
+    @if $direction == "east" {
+      border-color: transparent transparent transparent $bg-color;
+    }
+    @if $direction == "west" {
+      border-color: transparent $bg-color transparent transparent;
+    }
+  }
+}
+
+*/
+// Arrows for Tabs
+
+/*
+.arrow {
+  $bg-color: #e7eff4;
+  $border-color: #456eb9;
+  $border-width: 1px;
+  $arrow-width: 50px;
+  border: $border-width solid $border-color;
+  background: $bg-color;
+  height: 100px;
+  width: 500px;
+  padding: 10px;
+  margin-bottom: 10px;
+  &.east {
+    margin-right: $arrow-width;
+    +arrow( 'east', $bg-color, $border-color, $border-width, 0, 520px, $arrow-width );
+  }
+  &.south {
+    margin-bottom: $arrow-width;
+  +arrow( 'south', $bg-color, $border-color, $border-width, 120px, 0, $arrow-width );
+  }
+  &.north {
+    margin-top: (($arrow-width/2) * -1) + 10px;
+  +arrow( 'north', $bg-color, $border-color, $border-width, -50px, 400px, $arrow-width );
+  }
+  &.west {
+    margin-left: $arrow-width;
+    width: 500px - $arrow-width;
+  +arrow( 'west', $bg-color, $border-color, $border-width, 0, -50px, $arrow-width );
+  }
+  &.borderless {
+    $border-width: 0px;
+    border: none;
+    margin-right: $arrow-width;
+  +arrow( 'east', $bg-color, $border-color, $border-width, 0, 520px, $arrow-width );
+  }
+}*/

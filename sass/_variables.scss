@@ -13,30 +13,40 @@ $black:                   #000;
 
 $gray-darker:             lighten(#000, 13.5%) !default; // #222
 $gray-dark:               lighten(#000, 20%) !default;   // #333
-$gray:                    lighten(#000, 33.5%) !default; // #555
+$gray:                    #3a3a3a !default;
+$gray-default:            lighten(#000, 33.5%) !default; // #555
 $gray-light:              lighten(#000, 60%) !default;   // #999
 $gray-lighter:            lighten(#000, 93.5%) !default; // #eee
 
 // Brand colors
 // -------------------------
 
-$brand-primary:           #3e5634 !default;
-$brand-info:              #506680 !default;
+$brand-primary:           #3e5634 !default; // dark-green
+$brand-info:              #506680 !default; // blue-gray
 $brand-success:           #5cb85c !default;
 $brand-warning:           #f0ad4e !default;
 $brand-danger:            #d9534f !default;
+$brand-share:             #49A8DC !default; // "twitter" blue
+$brand-share-light:       lighten($brand-share, 20%) !default;
 
 // Scaffolding
 // -------------------------
 
-$body-bg:                 $white !default;
-$text-color:              $gray-dark !default;
+$body-bg:                   $gray-lighter !default;
+$text-color:                $gray-dark !default;
+$contrasted-dark-default:   $gray-dark;
+$contrasted-light-default:  $gray-lighter;
+
 
 // Links
 // -------------------------
 
-$link-color:              $brand-primary !default;
+$default-link-color:      $brand-primary !default;
+$link-color:              $white !default;
 $link-hover-color:        lighten($link-color, 15%) !default;
+$brand-primary-hover:     lighten($brand-primary, 69%) !default;
+$brand-primary-active:    lighten($brand-primary, 66%) !default;
+$highlight-color:         lighten($brand-primary, 70%) !default;
 
 // Typography
 // -------------------------
@@ -47,22 +57,32 @@ $font-family-monospace:   Monaco, Menlo, Consolas, "Courier New", monospace !def
 $font-family-base:        $font-family-sans-serif !default;
 $font-family-icons:       "pwpfont";
 
-$font-size-base:          13px !default;
-$font-size-large:         ceil($font-size-base * 1.25) !default; // ~18px
-$font-size-small:         ceil($font-size-base * 0.85) !default; // ~12px
+$font-size-icons:         25px !default;
+$font-size-base:          16px !default;
+$font-size-large:         ceil($font-size-base * 1.25) !default; // ~20px
+$font-size-small:         ceil($font-size-base * 0.85) !default; // ~13px
 
-$font-size-h1:            floor($font-size-base * 2.6) !default; // ~36px
-$font-size-h2:            floor($font-size-base * 2.15) !default;
-$font-size-h3:            ceil($font-size-base * 1.25) !default; // ~16px
-$font-size-h4:            ceil($font-size-base * 1.25) !default; // ~18px
+$font-size-h1:            floor($font-size-base * 2.5) !default; // ~40px
+$font-size-h2:            floor($font-size-base * 2.0) !default; // 32px
+$font-size-h3:            ceil($font-size-base * 1.25) !default; // ~20px
+$font-size-h4:            ceil($font-size-base * 1.125) !default; // ~18px
 $font-size-h5:            $font-size-base !default;
-$font-size-h6:            ceil($font-size-base * 0.85) !default; // ~12px
+$font-size-h6:            ceil($font-size-base * 0.85) !default; // ~13px
+
+// Typography Variables
+// -------------------------
+
+$font-weight-light:       100;
+$font-weight-lighter:     200;
+$font-weight-normal:      300;
+$font-weight-bold:        400;
+$font-weight-bolder:      500;
 
 $line-height-base:        1.428571429 !default; // 20/14
 $line-height-computed:    floor($font-size-base * $line-height-base) !default; // ~20px
 
 $headings-font-family:    $font-family-base !default;
-$headings-font-weight:    500 !default;
+$headings-font-weight:    300 !default;
 $headings-line-height:    1.1 !default;
 $headings-color:          inherit !default;
 
@@ -70,7 +90,7 @@ $headings-color:          inherit !default;
 
 // Components
 // -------------------------
-// Based on 13px font-size and 1.428 line-height (~20px to start)
+// Based on 16px font-size and 1.428 line-height (~20px to start)
 
 $padding-base-vertical:          6px !default;
 $padding-base-horizontal:        12px !default;
@@ -126,6 +146,10 @@ $screen-md-max:              ($screen-lg-min - 1) !default;
 
 // Hr border color
 $hr-border:                   $gray-lighter !default;
+
+// Image size in titlebar
+$image-height:                140px;
+$image-width:                 $image-height;
 
 // Background-Size
 $bg-width:                    15px;

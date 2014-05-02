@@ -1,3 +1,24 @@
 //
 // Buttons
 // --------------------------------------------------
+
+.button {
+  @include iconfont-button($white);
+  padding-right: 0.5em;
+}
+
+.button-toggle {
+  display: inline;
+  //position: relative;
+  z-index: 78;
+  font-size: 25px;
+}
+
+.icon-link,
+.icon-twitter,
+.icon-facebook {
+  font-weight: normal;
+}
+.icon-twitter {
+  font-size: 2.1em;
+}

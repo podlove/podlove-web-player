@@ -1,0 +1,13 @@
+//
+// Module 'Share'
+// --------------------------------------------------
+
+.tabs {
+  .podlovewebplayer_sharebuttons {
+    .button-toggle {
+      @extend .button;
+      color: $brand-share;
+      //padding-right: 10px;
+    }
+  }
+}

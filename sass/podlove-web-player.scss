@@ -21,23 +21,31 @@
 @import "mixins";
 
 // Reset
-//@import "normalize";
 @import "compass";
 @import "compass/reset";
 
 // Core CSS
 @import "type";
 @import "base";
-//@import "buttons";
+@import "buttons";
 
 // Components
+@import "theme";
 @import "progressbar";
 //@import "controls";
-@import "theme";
+@import "titlebar";
+@import "controlbar";
 @import "mediaelement";
+@import "tabs";
+@import "modules/chapters";
+@import "modules/downloads";
+@import "modules/info";
+@import "modules/share";
 
 // Utility classes
 @import "utilities";
+//@import "compass/utilities/color/contrast";
+
 
 // Icons (Sass import from an external library folder)
 @import "CSS:../libs/podlove-font/css/podlovefont";
