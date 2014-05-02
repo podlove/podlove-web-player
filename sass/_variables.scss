@@ -32,7 +32,7 @@ $brand-share-light:       lighten($brand-share, 20%) !default;
 // Scaffolding
 // -------------------------
 
-$body-bg:                   $white !default;
+$body-bg:                   $gray-lighter !default;
 $text-color:                $gray-dark !default;
 $contrasted-dark-default:   $gray-dark;
 $contrasted-light-default:  $gray-lighter;
@@ -44,7 +44,7 @@ $contrasted-light-default:  $gray-lighter;
 $default-link-color:      $brand-primary !default;
 $link-color:              $white !default;
 $link-hover-color:        lighten($link-color, 15%) !default;
-$brand-primary-hover:     lighten($brand-primary, 70%) !default;
+$brand-primary-hover:     lighten($brand-primary, 69%) !default;
 $brand-primary-active:    lighten($brand-primary, 66%) !default;
 $highlight-color:         lighten($brand-primary, 70%) !default;
 
