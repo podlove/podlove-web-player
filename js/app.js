@@ -98,7 +98,7 @@ function renderTitle(text, link) {
  * @returns {string}
  */
 function renderSubTitle(text) {
-  return '<p class="subtitle">' + text + '</p>';
+  return '<h3 class="subtitle">' + text + '</h3>';
 }
 
 /**

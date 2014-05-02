@@ -197,7 +197,6 @@
   &:focus,
   &:hover,
   &:active {
-    @include box-shadow(0px 4px 5px #666, 2px 6px 10px #999);
     @include textshadows(0px 0px 10px #FFFFFF);
     }
 }

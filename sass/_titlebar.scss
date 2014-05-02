@@ -18,22 +18,6 @@
     @include order(2);
     margin: auto auto;
     padding: 0 16px;
-    h2 {
-      margin: 5px 0;
-
-    }
-    h3 {
-      background: transparent !important;
-      padding: 7px 10px 0 0;
-      margin: 0;
-
-      a {
-        line-height: 20px !important;
-      }
-    }
-    h4 {
-      margin-bottom: 0;
-    }
   }
 }
 
@@ -48,19 +32,29 @@
   }
 }
 
-// Title of the Show
 .showtitle {
+  margin: 0;
   a {
     color: $link-color;
+  }
+}
+
+.episodetitle {
+  margin: 10px 0;
+  a {
+    line-height: 20px !important;
   }
 }
 
 // Description text of the episode
 .subtitle {
   @include ellipsis;
-  color: $gray-light !important;
+  margin: 0;
   text-shadow: none !important;
   background: transparent !important;
+  font-weight: $font-weight-lighter;
+  font-size: $font-size-large;
+  opacity: 0.6;
   .summary .summarydiv {
     margin: 0px 5px;
   }

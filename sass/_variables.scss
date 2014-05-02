@@ -59,7 +59,7 @@ $font-family-icons:       "pwpfont";
 
 $font-size-icons:         25px !default;
 $font-size-base:          16px !default;
-$font-size-large:         ceil($font-size-base * 1.25) !default; // ~20px
+$font-size-large:         ceil($font-size-base * 1.125) !default; // ~18px
 $font-size-small:         ceil($font-size-base * 0.85) !default; // ~13px
 
 $font-size-h1:            floor($font-size-base * 2.5) !default; // ~40px
