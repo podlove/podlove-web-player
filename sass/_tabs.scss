@@ -14,7 +14,7 @@
   }
 
   section {
-    padding: 0 25px;
+    padding: 0;
     line-height: 1.5;
     overflow-y: scroll;
     border-left: 1px solid $gray-light;
@@ -23,7 +23,7 @@
   }
 
   p {
-    margin: 11px 0;
+    margin: 11px 25px;
   }
 
   .tab {
@@ -33,14 +33,14 @@
       display: block;
       height: 300px;
       h2 {
-        margin-bottom: 20px;
+        margin: 20px 25px;
       }
     }
   }
   dt, dd {
     @extend .pull-left;
     display: inline-block;
-    margin-bottom: 15px;
+    margin: 0 25px 15px;
   }
 
   dt {

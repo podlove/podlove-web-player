@@ -8,13 +8,6 @@
   height: auto;
   transition: all 0.5s;
 
-  .starttime {
-    //@include circle(50px);
-    //color: $highlight-color;
-    span {
-      color: $text-color;
-    }
-  }
   .chapterimage {
     width: 45px;
     max-width: 45px;
@@ -37,6 +30,16 @@
     }
     tr {
       cursor: pointer;
+
+      .starttime {
+        //@include circle(50px);
+        //color: $highlight-color;
+        padding-left: 25px;
+        span {
+          color: $text-color;
+        }
+      }
+
       &:hover {
         background: $brand-primary-hover;
       }
@@ -50,7 +53,7 @@
         background: $brand-primary-active;
       }
       td {
-        padding: 20px 5px 20px 5px !important;
+        padding: 20px 5px;
         vertical-align: middle;
         cursor: pointer !important;
         a {
@@ -70,7 +73,7 @@
       }
       .timecode {
         white-space: nowrap;
-        padding-right: 10px !important;
+        padding-right: 25px;
         text-align: right;
       }
     }

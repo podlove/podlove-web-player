@@ -36,7 +36,9 @@ function createShareButton(options) {
  */
 function createShareButtons(shareTab, episode) {
 
-  var shareButtonsControlBox = shareTab.box;
+  var shareButtonsControlBox = shareTab.box,
+    container = $('<p></p>').appendTo(shareButtonsControlBox)
+    ;
   var currentButton = createShareButton({
     icon: "pwp-icon-link",
     title: "Get URL for this",
@@ -45,7 +47,7 @@ function createShareButtons(shareTab, episode) {
       return false;
     }
   });
-  shareButtonsControlBox.append(currentButton);
+  container.append(currentButton);
 
   var tweetButton = createShareButton({
     icon: "pwp-icon-twitter",
@@ -53,7 +55,7 @@ function createShareButtons(shareTab, episode) {
     windowTitle: "tweet it",
     link: 'https://twitter.com/share?text=' + episode.titleEncoded + '&url=' + episode.urlEncoded
   });
-  shareButtonsControlBox.append(tweetButton);
+  container.append(tweetButton);
 
   var fbButton = createShareButton({
     icon: "pwp-icon-facebook",
@@ -61,7 +63,7 @@ function createShareButtons(shareTab, episode) {
     windowTitle: 'share it',
     link: 'http://www.facebook.com/share.php?t=' + episode.titleEncoded + '&u=' + episode.urlEncoded
   });
-  shareButtonsControlBox.append(fbButton);
+  container.append(fbButton);
 
   var gPlusButton = createShareButton({
     icon: "pwp-icon-gplus",
@@ -69,7 +71,7 @@ function createShareButtons(shareTab, episode) {
     link: 'https://plus.google.com/share?title=' + episode.titleEncoded + '&url=' + episode.urlEncoded,
     windowTitle: 'plus it'
   });
-  shareButtonsControlBox.append(gPlusButton);
+  container.append(gPlusButton);
 
   var adnButton = createShareButton({
     icon: "pwp-icon-appnet",
@@ -77,7 +79,7 @@ function createShareButtons(shareTab, episode) {
     link: 'https://alpha.app.net/intent/post?text=' + episode.titleEncoded + '%20' + episode.urlEncoded,
     windowTitle: 'post it'
   });
-  shareButtonsControlBox.append(adnButton);
+  container.append(adnButton);
 
   var mailButton = createShareButton({
     icon: "pwp-icon-mail",
@@ -89,7 +91,7 @@ function createShareButtons(shareTab, episode) {
       return false;
     }
   });
-  shareButtonsControlBox.append(mailButton);
+  container.append(mailButton);
 }
 
 /**
