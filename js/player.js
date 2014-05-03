@@ -85,7 +85,6 @@ function create(player, params, callback) {
   var jqPlayer,
     playerType = getPlayerType(player),
     secArray,
-    orig,
     wrapper;
   //audio params
 
@@ -134,11 +133,10 @@ function create(player, params, callback) {
     params.width = params.width.toString().trim() + 'px';
   }
 
-  // FIXME ....why clone, wrap and replace?!
-  orig = player;
-  player = $(player).clone().wrap('<div class="container" style="width: ' + params.width + '"></div>')[0];
-  jqPlayer = $(player);
+  jqPlayer = $(player)
+    .wrap('<div class="container" style="width: ' + params.width + '"></div>');
   wrapper = jqPlayer.parent();
+  player = jqPlayer.get(0);
   players.push(player);
   //add params from html fallback area and remove them from the DOM-tree
   jqPlayer.find('[data-pwp]').each(function () {
@@ -160,9 +158,8 @@ function create(player, params, callback) {
     jqPlayer.on('error', removeUnplayableMedia)    // This might be a fix to some Firefox AAC issues.
     callback(player, params, wrapper);
   };
-
-  $(orig).replaceWith(wrapper);
-  jqPlayer.mediaelementplayer(mejsoptions);
+  new MediaElement(player, mejsoptions);
+  //jqPlayer.mediaelementplayer(mejsoptions);
 }
 
 /**
