@@ -31,7 +31,7 @@ TabRegistry.prototype.add = function(tab) {
 };
 
 /**
- * 
+ *
  * @param {Tab} tab
  */
 TabRegistry.prototype.open = function(tab) {
@@ -49,7 +49,9 @@ TabRegistry.prototype.open = function(tab) {
  */
 TabRegistry.prototype.addModule = function(module) {
   this.add(module.tab);
-  this.listeners.push(module.update);
+  if (module.update) {
+    this.listeners.push(module.update);
+  }
 };
 
 TabRegistry.prototype.update = function(event) {
