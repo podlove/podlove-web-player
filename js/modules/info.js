@@ -1,5 +1,9 @@
 var Tab = require('../tab');
 
+function Info(params) {
+  this.tab = createInfoTab(params);
+}
+
 /**
  *
  * @param {object} params
@@ -20,4 +24,4 @@ function createInfoTab(params) {
   return infoTab;
 }
 
-module.exports = createInfoTab;
+module.exports = Info;

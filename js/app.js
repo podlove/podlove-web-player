@@ -17,10 +17,10 @@
 'use strict';
 
 var TabRegistry = require('./tabregistry'),
-  infoTab = require('./tabs/info'),
-  shareTab = require('./tabs/share'),
-  downloadsTab = require('./modules/downloads'),
-  chapterTab = require('./modules/chapter'),
+  Info = require('./modules/info'),
+  Share = require('./modules/share'),
+  Downloads = require('./modules/downloads'),
+  Chapters = require('./modules/chapter'),
   Controls = require('./controls'),
   handleCookies = require('./cookie'),
   tc = require('./timecode'),
@@ -243,15 +243,15 @@ var addBehavior = function (player, params, wrapper) {
   controlBox.append(tabs.togglebar);
   wrapper.append(tabs.container);
 
-  tabs.add(infoTab(params));
-  tabs.add(shareTab(params));
+  tabs.addModule(new Info(params));
+  tabs.addModule(new Share(params));
 
-  var downloads = new downloadsTab(params);
+  var downloads = new Downloads(params);
   tabs.addModule(downloads);
 
   var chapters;
   if (hasChapters) {
-    chapters = new chapterTab(player, params);
+    chapters = new Chapters(player, params);
     tabs.addModule(chapters);
     if ((params.chaptersVisible === 'true') || (params.chaptersVisible === true)) {
       tabs.open(chapters.tab);

@@ -122,4 +122,8 @@ function createShareTab(params) {
   return shareTab;
 }
 
-module.exports = createShareTab;
+function Share(params) {
+  this.tab = createShareTab(params);
+}
+
+module.exports = Share;
