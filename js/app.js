@@ -98,6 +98,9 @@ function renderTitle(text, link) {
  * @returns {string}
  */
 function renderSubTitle(text) {
+  if (!text) {
+    return '';
+  }
   return '<h3 class="subtitle">' + text + '</h3>';
 }
 
@@ -170,38 +173,38 @@ var addBehavior = function (player, params, wrapper) {
     deepLink,
     storageKey;
 
-  //build rich player with meta data
-  if (params.chapters !== undefined || params.title !== undefined || params.subtitle !== undefined || params.summary !== undefined || params.poster !== undefined || jqPlayer.attr('poster') !== undefined) {
-    wrapper.addClass('podlovewebplayer_' + playerType);
+  /**
+   * Build rich player with meta data
+   */
+  wrapper.addClass('podlovewebplayer_' + playerType);
 
-    if (playerType === "audio") {
-      // Render playbutton
-      metaElement.prepend(renderPlaybutton());
-      var poster = params.poster || jqPlayer.attr('poster');
-      metaElement.append(renderPoster(poster));
-      wrapper.prepend(metaElement);
-    }
-
-    if (playerType === "video") {
-      wrapper.prepend('<div class="podlovewebplayer_top"></div>');
-      wrapper.append(metaElement);
-    }
-
-    // Render title area with title h2 and subtitle h3
-    metaElement.append(renderTitleArea(params));
-
-    if (params.subtitle && params.title && params.title.length < 42 && !params.poster) {
-      wrapper.addClass('podlovewebplayer_smallplayer');
-    }
-
-    /**
-     * Timecontrols
-     */
-    controls = new Controls(player);
-    controlBox = controls.box;
-    //always render toggler buttons wrapper
-    wrapper.append(controlBox);
+  if (playerType === "audio") {
+    // Render playbutton
+    metaElement.prepend(renderPlaybutton());
+    var poster = params.poster || jqPlayer.attr('poster');
+    metaElement.append(renderPoster(poster));
+    wrapper.prepend(metaElement);
   }
+
+  if (playerType === "video") {
+    wrapper.prepend('<div class="podlovewebplayer_top"></div>');
+    wrapper.append(metaElement);
+  }
+
+  // Render title area with title h2 and subtitle h3
+  metaElement.append(renderTitleArea(params));
+
+  if (params.subtitle && params.title && params.title.length < 42 && !params.poster) {
+    wrapper.addClass('podlovewebplayer_smallplayer');
+  }
+
+  /**
+   * Timecontrols
+   */
+  controls = new Controls(player);
+  controlBox = controls.box;
+  //always render toggler buttons wrapper
+  wrapper.append(controlBox);
 
   /**
    * -- TABS --
