@@ -194,10 +194,6 @@ var addBehavior = function (player, params, wrapper) {
   // Render title area with title h2 and subtitle h3
   metaElement.append(renderTitleArea(params));
 
-  if (params.subtitle && params.title && params.title.length < 42 && !params.poster) {
-    wrapper.addClass('podlovewebplayer_smallplayer');
-  }
-
   /**
    * Timecontrols
    */
