@@ -91,6 +91,19 @@
   }
 
   /**
+   * strip hash from location
+   * @param {string} location
+   * @returns {string}
+   */
+  function getIdFromLocation(location) {
+    var href = location.href,
+      hashPosition = href.indexOf('#'),
+      to = (hashPosition === -1) ? href.length : hashPosition
+      ;
+    return href.substring(0, to);
+  }
+
+  /**
    * decide what to do with a received message
    * @param {jQuery.Event} event
    */
@@ -100,10 +113,7 @@
       data = originalEvent.data,
       action = data.action,
       argumentObject = data.arg,
-      eventLocation = originalEvent.source.location,
-      href = eventLocation.href,
-      hash = eventLocation.hash,
-      id = href.substr(0, href.length - hash.length),
+      id = getIdFromLocation(originalEvent.source.location),
       player = players[id];
 
     console.debug('received message', action, argumentObject);
@@ -144,6 +154,10 @@
    */
   $.fn.podlovewebplayer = function () {
     return this.replaceWith(getIframeReplacement);
+  };
+
+  window.pwp = {
+    players: players
   };
 }(jQuery));
 
