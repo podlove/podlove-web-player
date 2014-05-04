@@ -106,19 +106,20 @@
       id = href.substr(0, href.length - hash.length),
       player = players[id];
 
-    //console.debug('received message', action, argumentObject);
+    console.debug('received message', action, argumentObject);
 
-    if (player === null) {
-      //console.debug('no player found with src=', id);
+    if (!player) {
+      console.log('no player found with src=', id);
       return;
     }
 
+//    console.log('player', player);
     if (action === null || argumentObject === null) {
-      //console.debug('no action or data was given');
+      console.warn('no action or data was given');
       return;
     }
 
-    //console.debug('received', event.data.action, 'from', id, 'with', event.data.arg);
+    console.debug('received', action, 'from', id, 'with', argumentObject);
 
     if (action === 'ready' || action === 'pause') {
       player.state = 0;
