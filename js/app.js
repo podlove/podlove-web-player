@@ -161,10 +161,7 @@ function isHidden() {
  */
 var addBehavior = function (player, params, wrapper) {
   var jqPlayer = $(player),
-    layoutedPlayer = jqPlayer,
-    canplay = false,
     tabs = new TabRegistry(),
-    richplayer = false,
     hasChapters = checkForChapters(params),
     metaElement = $('<div class="titlebar"></div>'),
     playerType = params.type,
@@ -173,12 +170,8 @@ var addBehavior = function (player, params, wrapper) {
     deepLink,
     storageKey;
 
-
-
   //build rich player with meta data
   if (params.chapters !== undefined || params.title !== undefined || params.subtitle !== undefined || params.summary !== undefined || params.poster !== undefined || jqPlayer.attr('poster') !== undefined) {
-    //set status variable
-    richplayer = true;
     wrapper.addClass('podlovewebplayer_' + playerType);
 
     if (playerType === "audio") {
@@ -269,19 +262,9 @@ var addBehavior = function (player, params, wrapper) {
     });
   }
 
-  /**
-   * The `player` is an interface. It provides the play and pause functionality. The
-   * `layoutedPlayer` on the other hand is a DOM element. In native mode, these two
-   * are one and the same object. In Flash though the interface is a plain JS object.
-   */
   if (pwp.players.length === 1) {
     // check if deeplink is set
     checkCurrentURL();
-  }
-  // get things straight for flash fallback
-  if (player.pluginType === 'flash') {
-    layoutedPlayer = $('#mep_' + player.id.substring(9));
-    console.log(layoutedPlayer);
   }
   // cache some jQ objects
   //metaElement = wrapper.find('.titlebar');
@@ -314,7 +297,6 @@ var addBehavior = function (player, params, wrapper) {
   // And just listen once because of a special behaviour in firefox
   // --> https://bugzilla.mozilla.org/show_bug.cgi?id=664842
   jqPlayer.one('canplay', function () {
-    canplay = true;
     // add duration of final chapter
     if (player.duration) {
     }
