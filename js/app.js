@@ -98,6 +98,9 @@ function renderTitle(text, link) {
  * @returns {string}
  */
 function renderSubTitle(text) {
+  if (!text) {
+    return '';
+  }
   return '<h3 class="subtitle">' + text + '</h3>';
 }
 
@@ -161,10 +164,7 @@ function isHidden() {
  */
 var addBehavior = function (player, params, wrapper) {
   var jqPlayer = $(player),
-    layoutedPlayer = jqPlayer,
-    canplay = false,
     tabs = new TabRegistry(),
-    richplayer = false,
     hasChapters = checkForChapters(params),
     metaElement = $('<div class="titlebar"></div>'),
     playerType = params.type,
@@ -173,42 +173,34 @@ var addBehavior = function (player, params, wrapper) {
     deepLink,
     storageKey;
 
+  /**
+   * Build rich player with meta data
+   */
+  wrapper.addClass('podlovewebplayer_' + playerType);
 
-
-  //build rich player with meta data
-  if (params.chapters !== undefined || params.title !== undefined || params.subtitle !== undefined || params.summary !== undefined || params.poster !== undefined || jqPlayer.attr('poster') !== undefined) {
-    //set status variable
-    richplayer = true;
-    wrapper.addClass('podlovewebplayer_' + playerType);
-
-    if (playerType === "audio") {
-      // Render playbutton
-      metaElement.prepend(renderPlaybutton());
-      var poster = params.poster || jqPlayer.attr('poster');
-      metaElement.append(renderPoster(poster));
-      wrapper.prepend(metaElement);
-    }
-
-    if (playerType === "video") {
-      wrapper.prepend('<div class="podlovewebplayer_top"></div>');
-      wrapper.append(metaElement);
-    }
-
-    // Render title area with title h2 and subtitle h3
-    metaElement.append(renderTitleArea(params));
-
-    if (params.subtitle && params.title && params.title.length < 42 && !params.poster) {
-      wrapper.addClass('podlovewebplayer_smallplayer');
-    }
-
-    /**
-     * Timecontrols
-     */
-    controls = new Controls(player);
-    controlBox = controls.box;
-    //always render toggler buttons wrapper
-    wrapper.append(controlBox);
+  if (playerType === "audio") {
+    // Render playbutton
+    metaElement.prepend(renderPlaybutton());
+    var poster = params.poster || jqPlayer.attr('poster');
+    metaElement.append(renderPoster(poster));
+    wrapper.prepend(metaElement);
   }
+
+  if (playerType === "video") {
+    wrapper.prepend('<div class="podlovewebplayer_top"></div>');
+    wrapper.append(metaElement);
+  }
+
+  // Render title area with title h2 and subtitle h3
+  metaElement.append(renderTitleArea(params));
+
+  /**
+   * Timecontrols
+   */
+  controls = new Controls(player);
+  controlBox = controls.box;
+  //always render toggler buttons wrapper
+  wrapper.append(controlBox);
 
   /**
    * -- TABS --
@@ -269,19 +261,9 @@ var addBehavior = function (player, params, wrapper) {
     });
   }
 
-  /**
-   * The `player` is an interface. It provides the play and pause functionality. The
-   * `layoutedPlayer` on the other hand is a DOM element. In native mode, these two
-   * are one and the same object. In Flash though the interface is a plain JS object.
-   */
   if (pwp.players.length === 1) {
     // check if deeplink is set
     checkCurrentURL();
-  }
-  // get things straight for flash fallback
-  if (player.pluginType === 'flash') {
-    layoutedPlayer = $('#mep_' + player.id.substring(9));
-    console.log(layoutedPlayer);
   }
   // cache some jQ objects
   //metaElement = wrapper.find('.titlebar');
@@ -314,7 +296,6 @@ var addBehavior = function (player, params, wrapper) {
   // And just listen once because of a special behaviour in firefox
   // --> https://bugzilla.mozilla.org/show_bug.cgi?id=664842
   jqPlayer.one('canplay', function () {
-    canplay = true;
     // add duration of final chapter
     if (player.duration) {
     }
