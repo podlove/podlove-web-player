@@ -23,7 +23,20 @@ Install prerequisites for building:
 
 Create podlove-web-player/static/podlove-web-player.js with
 
-    browserify js/app.js -o static/podlove-web-player.js
+    browserify -d js/app.js -o static/podlove-web-player.js
+
+### For production 
+
+
+npm install -g uglifyify minifyify
+
+smallest possible code (>50kB)
+
+    browserify -g uglifyify js/app.js > static/podlove-web-player.js
+
+with sourcemaps (~250kB)
+
+    browserify -d js/app.js | minifyify > static/podlove-web-player.js
 
 ## Build CSS
 
