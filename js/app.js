@@ -22,7 +22,7 @@ var TabRegistry = require('./tabregistry'),
   Downloads = require('./modules/downloads'),
   Chapters = require('./modules/chapter'),
   Controls = require('./controls'),
-  handleCookies = require('./cookie'),
+  SaveTime = require('./modules/savetime'),
   tc = require('./timecode'),
   player = require('./player'),
   autoplay = false;
@@ -173,33 +173,7 @@ var addBehavior = function (player, params, wrapper) {
     deepLink,
     storageKey;
 
-  // parse deeplink
-  deepLink = tc.parse(window.location.href);
-  if (deepLink !== false && pwp.players.length === 1) {
-    var playerAttributes = {preload: 'auto'};
-    if (!isHidden() && autoplay) {
-      playerAttributes.autoplay = 'autoplay';
-    }
-    jqPlayer.attr(playerAttributes);
-    startAtTime = deepLink[0];
-    stopAtTime = deepLink[1];
-  } else if (params && params.permalink) {
-    //console.debug(params);
-    storageKey = params.permalink;
-    if (handleCookies.getItem(storageKey)) {
-      jqPlayer.one('canplay', function () {
-        var time = handleCookies.getItem(storageKey);
-        //console.debug(time);
-        this.currentTime = time;
-      });
-    }
-  }
 
-  if (deepLink !== false && pwp.players.length === 1) {
-    $('html, body').delay(150).animate({
-      scrollTop: $('.container:first').offset().top - 25
-    });
-  }
 
   //build rich player with meta data
   if (params.chapters !== undefined || params.title !== undefined || params.subtitle !== undefined || params.summary !== undefined || params.poster !== undefined || jqPlayer.attr('poster') !== undefined) {
@@ -245,6 +219,8 @@ var addBehavior = function (player, params, wrapper) {
 
   tabs.addModule(new Info(params));
   tabs.addModule(new Share(params));
+  var saveTime = new SaveTime(player, params);
+  tabs.addModule(saveTime);
 
   var downloads = new Downloads(params);
   tabs.addModule(downloads);
@@ -264,6 +240,34 @@ var addBehavior = function (player, params, wrapper) {
   wrapper.data('podlovewebplayer', {
     player: jqPlayer
   });
+
+  // parse deeplink
+  deepLink = tc.parse(window.location.href);
+  if (deepLink !== false && pwp.players.length === 1) {
+    var playerAttributes = {preload: 'auto'};
+    if (!isHidden() && autoplay) {
+      playerAttributes.autoplay = 'autoplay';
+    }
+    jqPlayer.attr(playerAttributes);
+    startAtTime = deepLink[0];
+    stopAtTime = deepLink[1];
+  } else if (params && params.permalink) {
+    //console.debug(params);
+    storageKey = params.permalink;
+    if (saveTime.getItem(storageKey)) {
+      jqPlayer.one('canplay', function () {
+        var time = saveTime.getItem(storageKey);
+        //console.debug(time);
+        this.currentTime = time;
+      });
+    }
+  }
+
+  if (deepLink !== false && pwp.players.length === 1) {
+    $('html, body').delay(150).animate({
+      scrollTop: $('.container:first').offset().top - 25
+    });
+  }
 
   /**
    * The `player` is an interface. It provides the play and pause functionality. The
