@@ -1,0 +1,35 @@
+//
+// Labels and Badges
+// --------------------------------------------------
+
+// Badges
+// ----------------------
+
+.badge {
+  height: 43px;
+  min-width: 43px;
+  padding: 3px 7px;
+  font-size: 12px;
+  font-weight: $font-weight-bolder;
+  line-height: 37px;
+  text-align: center;
+  color: black;
+  //color: $text-color;
+  //background-color: $highlight-color;
+  background-color: rgba(0, 135, 0, 0.27);
+  white-space: nowrap;
+  display: inline-block;
+  @include border-radius(50%);
+
+  &:hover {
+    color: $white;
+    //background-color: green;
+    background-color: $brand-primary;
+    //background-color: $brand-primary;
+  }
+  &:active,
+  &:focus {
+    background-color: green;
+    //background-color: $brand-primary;
+  }
+}
