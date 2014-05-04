@@ -8,7 +8,7 @@
   height: auto;
   transition: all 0.5s;
 
-  .chapterimage {
+  .chapter-image {
     width: 45px;
     max-width: 45px;
     text-align: center;
@@ -31,7 +31,7 @@
     tr {
       cursor: pointer;
 
-      .starttime {
+      .chapter-number {
         //@include circle(50px);
         //color: $highlight-color;
         padding-left: 25px;
@@ -49,7 +49,7 @@
         background: $brand-primary-active;
       }
 
-      &.chaptertr:active {
+      &.chapter:active {
         background: $brand-primary-active;
       }
       td {
@@ -65,13 +65,13 @@
           //font-weight: normal;
         }
       }
-      .chaptername span {
+      .chapter-name span {
         font-weight: 500;
       }
       .title {
         padding-top: 7px;
       }
-      .timecode {
+      .chapter-duration {
         white-space: nowrap;
         padding-right: 25px;
         text-align: right;
@@ -131,13 +131,13 @@
     text-align: center;
   }
 
-  .starttime {
+  .chapter-number {
     width: 50px;
     text-align: right;
   }
 }
 
-.chaptername a {
+.chapter-name a {
   padding-left: 0.02em;
   width: 1em;
   margin-right: 0.2em;

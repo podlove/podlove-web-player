@@ -125,7 +125,7 @@ Chapters.prototype.generateTable = function () {
     //insert the chapter data
     this.startTime = tc.generate([Math.round(this.start)], true, forceHours);
 
-    row = renderRow(this);
+    row = renderRow(this, i);
     if (i % 2) {
       row.addClass('oddchapter');
     }
@@ -301,14 +301,14 @@ function renderChapterTable() {
  * @param {object} chapter
  * @returns {jQuery|HTMLElement}
  */
-function renderRow (chapter) {
+function renderRow (chapter, index) {
   //console.log('chapter to render row from ', chapter);
-  return render('<tr class="chaptertr">' +
-    '<td class="starttime"><span>' + chapter.startTime + '</span></td>' +
-    '<td class="chapterimage">' + renderChapterImage(chapter.image) + '</td>' +
-    '<td class="chaptername"><span>' + chapter.code + '</span> ' +
+  return render('<tr class="chapter">' +
+    '<td class="chapter-number"><span>' + (index+1) + '</span></td>' +
+    '<td class="chapter-image">' + renderChapterImage(chapter.image) + '</td>' +
+    '<td class="chapter-name"><span>' + chapter.code + '</span> ' +
     renderExternalLink(chapter.href) + '</td>' +
-    '<td class="timecode"><span>' + chapter.duration + '</span></td>' +
+    '<td class="chapter-duration"><span>' + chapter.duration + '</span></td>' +
     '</tr>');
 }
 
