@@ -31,7 +31,7 @@ var startAtTime;
 var stopAtTime;
 
 // will expose/attach itself to the $ global
-require('./../libs/mediaelement/build/mediaelement-and-player.js');
+require('./../libs/mediaelement/build/mediaelement.js');
 
 // FIXME put in compat mode module
 if (typeof String.prototype.trim !== 'function') {
