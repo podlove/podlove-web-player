@@ -48,7 +48,9 @@ TabRegistry.prototype.open = function(tab) {
  * @param {object} module
  */
 TabRegistry.prototype.addModule = function(module) {
-  this.add(module.tab);
+  if (module.tab) {
+    this.add(module.tab);
+  }
   if (module.update) {
     this.listeners.push(module.update);
   }
