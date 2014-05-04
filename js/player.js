@@ -159,7 +159,6 @@ function create(player, params, callback) {
     callback(player, params, wrapper);
   };
   new MediaElement(player, mejsoptions);
-  //jqPlayer.mediaelementplayer(mejsoptions);
 }
 
 /**
