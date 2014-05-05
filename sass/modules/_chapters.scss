@@ -32,25 +32,31 @@
       cursor: pointer;
 
       .chapter-number {
-        //@include circle(50px);
-        //color: $highlight-color;
         padding-left: 25px;
-        span {
-          color: $text-color;
-        }
       }
 
       &:hover {
         background: $brand-primary-hover;
+        .badge  {
+          color: $white;
+          background-color: $brand-primary;
+        }
       }
 
       &.active,
       &.active:hover {
         background: $brand-primary-active;
+        .badge {
+          background-color: $brand-primary;
+        }
       }
 
       &.chapter:active {
         background: $brand-primary-active;
+        .badge  {
+          background-color: $highlight-color;
+        }
+
       }
       td {
         padding: 20px 5px;
@@ -59,10 +65,6 @@
         a {
           color: $default-link-color;
           text-decoration: none;
-        }
-        span {
-          text-align: right;
-          //font-weight: normal;
         }
       }
       .chapter-name span {

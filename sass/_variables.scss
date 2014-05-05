@@ -28,6 +28,7 @@ $brand-warning:           #f0ad4e !default;
 $brand-danger:            #d9534f !default;
 $brand-share:             #49A8DC !default; // "twitter" blue
 $brand-share-light:       lighten($brand-share, 20%) !default;
+$badge-light:             lighten($brand-primary, 60%) !default;
 
 // Scaffolding
 // -------------------------
