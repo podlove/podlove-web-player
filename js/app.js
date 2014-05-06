@@ -345,7 +345,7 @@ var addBehavior = function (player, params, wrapper) {
     })
     .on('ended', function () {
       pwp.embed.postToOpener({ action: 'stop', arg: player.currentTime });
-      player.setCurrentTime(0);
+      timeline.rewind();
     });
 };
 

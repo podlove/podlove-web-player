@@ -12,6 +12,9 @@ var tc = require('../timecode')
  * @returns {boolean}
  */
 function isActiveChapter (chapter, currentTime) {
+  if (!chapter) {
+    return false;
+  }
   return (currentTime > chapter.start - ACTIVE_CHAPTER_THRESHHOLD && currentTime <= chapter.end);
 }
 
@@ -23,7 +26,7 @@ function isActiveChapter (chapter, currentTime) {
 function Chapters (timeline) {
 
   // FIXME
-  this.player = timeline.player;
+  this.timeline = timeline;
   if (timeline.duration === 0) {
     console.warn('Chapters', 'constructor', 'Zero length media?', timeline);
   }
@@ -38,7 +41,7 @@ function Chapters (timeline) {
 
   //build chapter table
   this.chapters = timeline.getDataByType('chapter');
-  this.currentChapter = 0;
+  this.currentChapter = -1;
 
   this.chapterlinks = (timeline.chapterlinks !== 'false');
   this.tab.box.append(this.generateTable());
@@ -47,17 +50,20 @@ function Chapters (timeline) {
 
 /**
  * update the chapter list when the data is loaded
- * @param {object} player
+ * @param {Timeline} timeline
  */
-function update (player) {
+function update (timeline) {
   //var coverImg = marks.closest('.container').find('.coverimg');
-  var chapters = this;
-  var chapter = this.getActiveChapter();
-  if (isActiveChapter(chapter, player.currentTime)) {
+  var chapters = this,
+    chapter = this.getActiveChapter(),
+    currentTime = timeline.getTime();
+
+  console.debug('Chapters', 'update', chapters, chapter, currentTime);
+  if (isActiveChapter(chapter, currentTime)) {
     console.log('Chapters', 'update', 'already set', this.currentChapter);
     return;
   }
-  console.log('Chapters', 'update', 'set new', player.currentTime);
+  console.log('Chapters', 'update', 'set new', currentTime);
   $.each(this.chapters, function (i, chapter) {
     //console.log('Chapters#update', chapter);
     var isBuffered,
@@ -66,11 +72,11 @@ function update (player) {
       startTime = chapter.start,
       endTime = chapter.end,
       //isEnabled = mark.data('enabled'),
-      isActive = isActiveChapter(chapter, player.currentTime);
+      isActive = isActiveChapter(chapter, currentTime);
     // prevent timing errors
-    if (player.buffered.length > 0) {
-      isBuffered = player.buffered.end(0) > startTime;
-    }
+    //if (player.buffered.length > 0) {
+    //  isBuffered = player.buffered.end(0) > startTime;
+    //}
     if (isActive) {
       /*
       chapterimg = url.validate(mark.data('img'));
@@ -85,7 +91,7 @@ function update (player) {
       }
       */
       chapters.setCurrentChapter(i);
-      console.log('set current chapter to', i, '>I>F', chapters.currentChapter);
+      console.log('Chapters', 'update', 'set current chapter to', chapters.currentChapter);
     }
     /*
     if (!isEnabled && isBuffered) {
@@ -226,9 +232,8 @@ Chapters.prototype.previous = function () {
 Chapters.prototype.playCurrentChapter = function () {
   var start = this.getActiveChapter().start;
   console.log('Chapters', '#playCurrentChapter', 'start', start);
-  this.player.setCurrentTime(start);
-  //this.player.play();
-  console.log('Chapters', '#playCurrentChapter', 'currentTime', this.player.currentTime);
+  var time = this.timeline.setTime(start);
+  console.log('Chapters', '#playCurrentChapter', 'currentTime', time);
 };
 
 module.exports = Chapters;

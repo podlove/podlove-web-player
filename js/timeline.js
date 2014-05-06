@@ -57,14 +57,15 @@ Timeline.prototype.addModule = function (module) {
 };
 
 Timeline.prototype.update = function(event) {
-  function call (i, listener) {
-    listener(player);
-  }
   console.log('Timeline', 'update', event);
   var player = event.currentTarget,
     rewind = (this.currentTime > player.currentTime),
     start = this.currentTime,
     end = player.currentTime;
+
+  var call = function call (i, listener) {
+    listener(this);
+  }.bind(this);
 
   if (rewind) {
     start = end;
@@ -92,10 +93,31 @@ Timeline.prototype.emitEventsBetween = function (start, end) {
   });
 };
 
+Timeline.prototype.setTime = function (time) {
+  if (time < 0 && time > this.duration) {
+    console.warn('Timeline', 'setTime', 'time out of bounds', time);
+    return this.player.currentTime;
+  }
+  this.player.currentTime = time;
+  return this.player.currentTime;
+};
+
+Timeline.prototype.getTime = function () {
+  return this.player.currentTime;
+};
+
+Timeline.prototype.rewind = function () {
+  this.player.currentTime = 0;
+  var call = function call (i, listener) {
+    listener(this);
+  }.bind(this);
+  $.each(this.listeners, call);
+};
+
 function _filterByType (type) {
   return function (record) {
     return (record.type === type);
-  }
+  };
 }
 
 /**
