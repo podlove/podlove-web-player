@@ -232,9 +232,7 @@ module.exports = Chapters;
 
 
 function prepareChapterData(chapterData) {
-  var chapters = typeof chapterData === 'string'
-    ? chapterData.split("\n").map(chapterFromString)
-    : chapterData.map(transformChapter);
+  var chapters = chapterData.map(transformChapter);
 
   // order is not guaranteed: http://podlove.org/simple-chapters/
   return chapters.sort(function (a, b) {
@@ -248,19 +246,6 @@ function transformChapter (chapter) {
     chapter.start = tc.getStartTimeCode(chapter.start);
   }
   return chapter;
-}
-
-function chapterFromString (chapter) {
-  var line = $.trim(chapter);
-  //exit early if this line contains nothing but whitespace
-  if (line === '') {
-    return {};
-  }
-  //extract the timestamp
-  var parts = line.split(' ', 2);
-  var tc = tc.getStartTimeCode(parts[0]);
-  var title = $.trim(parts[1]);
-  return { start: tc, code: title, title: title };
 }
 
 /**
