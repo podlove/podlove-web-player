@@ -17,12 +17,13 @@
 'use strict';
 
 var TabRegistry = require('./tabregistry'),
+  Timeline = require('./timeline'),
   Info = require('./modules/info'),
   Share = require('./modules/share'),
   Downloads = require('./modules/downloads'),
   Chapters = require('./modules/chapter'),
-  Controls = require('./controls'),
   SaveTime = require('./modules/savetime'),
+  Controls = require('./controls'),
   tc = require('./timecode'),
   player = require('./player'),
   autoplay = false;
@@ -124,18 +125,6 @@ function renderPoster(posterUrl) {
 }
 
 /**
- *
- * @param {object} params
- * @returns {boolean} true if at least one chapter is present
- */
-function checkForChapters(params) {
-  return !!params.chapters && (
-    (typeof params.chapters === 'string' && params.chapters.length > 10) ||
-      (typeof params.chapters === 'object' && params.chapters.length > 1)
-    );
-}
-
-/**
  * checks if the current window is hidden
  * @returns {boolean} true if the window is hidden
  */
@@ -164,14 +153,21 @@ function isHidden() {
  */
 var addBehavior = function (player, params, wrapper) {
   var jqPlayer = $(player),
+
+    timeline = new Timeline(player, params),
+    controls = new Controls(player),
     tabs = new TabRegistry(),
-    hasChapters = checkForChapters(params),
+
+    hasChapters = timeline.hasChapters,
     metaElement = $('<div class="titlebar"></div>'),
     playerType = params.type,
-    controls,
-    controlBox,
+    controlBox = controls.box,
+
     deepLink,
     storageKey;
+
+
+  console.debug('webplayer', 'metadata', timeline.getData());
 
   /**
    * Build rich player with meta data
@@ -197,8 +193,6 @@ var addBehavior = function (player, params, wrapper) {
   /**
    * Timecontrols
    */
-  controls = new Controls(player);
-  controlBox = controls.box;
   //always render toggler buttons wrapper
   wrapper.append(controlBox);
 
@@ -209,22 +203,30 @@ var addBehavior = function (player, params, wrapper) {
   controlBox.append(tabs.togglebar);
   wrapper.append(tabs.container);
 
-  tabs.addModule(new Info(params));
-  tabs.addModule(new Share(params));
-  var saveTime = new SaveTime(player, params);
-  tabs.addModule(saveTime);
+  var infos = new Info(params);
+  tabs.add(infos.tab);
+
+  var sharing = new Share(params);
+  tabs.add(sharing.tab);
 
   var downloads = new Downloads(params);
-  tabs.addModule(downloads);
+  tabs.add(downloads.tab);
+
+  var saveTime = new SaveTime(player, params);
+  timeline.addModule(saveTime);
+
 
   var chapters;
   if (hasChapters) {
-    chapters = new Chapters(player, params);
-    tabs.addModule(chapters);
+    chapters = new Chapters(timeline);
+    tabs.add(chapters.tab);
+    timeline.addModule(chapters);
     if ((params.chaptersVisible === 'true') || (params.chaptersVisible === true)) {
       tabs.open(chapters.tab);
     }
   }
+
+
   chapters.addEventhandlers(player);
   controls.createTimeControls(chapters);
 
@@ -320,8 +322,11 @@ var addBehavior = function (player, params, wrapper) {
   });
 
   jqPlayer
+    .on('timelineElement', function (event) {
+      console.log(event.currentTarget.id, event);
+    })
     .on('timeupdate', function (event) {
-      tabs.update(event);
+      timeline.update(event);
     })
     // update play/pause status
     .on('play', function (event) {
@@ -352,6 +357,7 @@ var addBehavior = function (player, params, wrapper) {
 $.fn.podlovewebplayer = function webPlayer (options) {
   // Additional parameters default values
   var params = $.extend({}, player.defaults, options);
+
   // turn each player in the current set into a Podlove Web Player
   return this.each(function (i, playerElement) {
     player.create(playerElement, params, addBehavior);

@@ -1,6 +1,8 @@
 var tc = require('../timecode')
   , url = require('../url')
   , Tab = require('../tab')
+  , Timeline = require('../timeline')
+  , ACTIVE_CHAPTER_THRESHHOLD = 0.3
   ;
 
 /**
@@ -10,21 +12,22 @@ var tc = require('../timecode')
  * @returns {boolean}
  */
 function isActiveChapter (chapter, currentTime) {
-  return (currentTime > chapter.start - 0.05 && currentTime <= chapter.end);
+  return (currentTime > chapter.start - ACTIVE_CHAPTER_THRESHHOLD && currentTime <= chapter.end);
 }
 
 /**
  * chapter handling
- * @params {object} params
+ * @params {Timeline} params
  * @return {Chapters} chapter module
  */
-function Chapters (player, params) {
+function Chapters (timeline) {
 
-  this.player = player;
-  if (params.duration === 0) {
-    console.warn('Chapters.constructor: Zero length media?', params);
+  // FIXME
+  this.player = timeline.player;
+  if (timeline.duration === 0) {
+    console.warn('Chapters', 'constructor', 'Zero length media?', timeline);
   }
-  this.duration = params.duration;
+  this.duration = timeline.duration;
   this.tab = new Tab({
     icon: "pwp-icon-list-bullet",
     title: "Show/hide chapters",
@@ -34,11 +37,11 @@ function Chapters (player, params) {
   ;
 
   //build chapter table
-  this.chapters = prepareChapterData(params.chapters);
+  this.chapters = timeline.getDataByType('chapter');
   this.currentChapter = 0;
 
-  this.chapterlinks = (params.chapterlinks !== 'false');
-  this.tab.box.append(this.generateTable(params));
+  this.chapterlinks = (timeline.chapterlinks !== 'false');
+  this.tab.box.append(this.generateTable());
   this.update = update.bind(this);
 }
 
@@ -230,56 +233,6 @@ Chapters.prototype.playCurrentChapter = function () {
 
 module.exports = Chapters;
 
-
-function prepareChapterData(chapterData) {
-  var chapters = typeof chapterData === 'string'
-    ? chapterData.split("\n").map(chapterFromString)
-    : chapterData.map(transformChapter);
-
-  // order is not guaranteed: http://podlove.org/simple-chapters/
-  return chapters.sort(function (a, b) {
-    return a.start - b.start;
-  });
-}
-
-function transformChapter (chapter) {
-  chapter.code = chapter.title;
-  if (typeof chapter.start === 'string') {
-    chapter.start = tc.getStartTimeCode(chapter.start);
-  }
-  return chapter;
-}
-
-function chapterFromString (chapter) {
-  var line = $.trim(chapter);
-  //exit early if this line contains nothing but whitespace
-  if (line === '') {
-    return {};
-  }
-  //extract the timestamp
-  var parts = line.split(' ', 2);
-  var tc = tc.getStartTimeCode(parts[0]);
-  var title = $.trim(parts[1]);
-  return { start: tc, code: title, title: title };
-}
-
-/**
- *
- * @param {Array} chapters
- * @param {number} duration
- * @returns {number}
- */
-function getMaxChapterStart(chapters, duration) {
-  var mappedChapters = $.map(chapters, function (chapter, i) {
-    var next = chapters[i + 1];
-    // we use `this.end` to quickly calculate the duration in the next round
-    chapter.end = next ? next.start : duration;
-    // we need this data for proper formatting
-    return chapter.start;
-  });
-  return Math.max.apply(Math, mappedChapters);
-}
-
 /**
  * render HTMLTableElement for chapters
  * @returns {jQuery|HTMLElement}
@@ -328,4 +281,17 @@ function renderChapterImage(imageSrc) {
 
 function render(html) {
   return $(html);
+}
+
+/**
+ *
+ * @param {Array} chapters
+ * @param {number} duration
+ * @returns {number}
+ */
+function getMaxChapterStart(chapters) {
+  function getStartTime (chapter) {
+    return chapter.start;
+  }
+  return Math.max.apply(Math, $.map(chapters, getStartTime));
 }
