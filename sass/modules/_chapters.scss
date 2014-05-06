@@ -44,7 +44,8 @@
       }
 
       &.active,
-      &.active:hover {
+      &.active:hover
+      &.active:focus {
         background: $brand-primary-active;
         .badge {
           background-color: $brand-primary;
@@ -54,10 +55,6 @@
 
       &.chapter:active {
         background: $brand-primary-active;
-        .badge  {
-          background-color: $highlight-color;
-        }
-
       }
       td {
         padding: 20px 5px;
