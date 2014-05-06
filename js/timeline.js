@@ -113,8 +113,7 @@ function logCurrentTime (event) {
  */
 function checkForChapters(params) {
   return !!params.chapters && (
-    (typeof params.chapters === 'string' && params.chapters.length > 10) ||
-      (typeof params.chapters === 'object' && params.chapters.length > 1)
+      typeof params.chapters === 'object' && params.chapters.length > 1
     );
 }
 
@@ -127,9 +126,7 @@ function _merge (a, b) {
 }
 
 Timeline.prototype.parseSimpleChapter = function (data) {
-  var chapters = typeof data.chapters === 'string'
-    ? data.chapters.split("\n").map(chapterFromString)
-    : data.chapters.map(transformChapter);
+  var chapters = data.chapters.map(transformChapter);
 
   // order is not guaranteed: http://podlove.org/simple-chapters/
   return chapters
@@ -146,19 +143,6 @@ function transformChapter (chapter) {
     chapter.start = tc.getStartTimeCode(chapter.start);
   }
   return chapter;
-}
-
-function chapterFromString (chapter) {
-  var line = $.trim(chapter);
-  //exit early if this line contains nothing but whitespace
-  if (line === '') {
-    return {};
-  }
-  //extract the timestamp
-  var parts = line.split(' ', 2);
-  var tc = tc.getStartTimeCode(parts[0]);
-  var title = $.trim(parts[1]);
-  return { start: tc, code: title, title: title };
 }
 
 /**
