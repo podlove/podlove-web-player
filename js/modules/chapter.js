@@ -2,7 +2,7 @@ var tc = require('../timecode')
   , url = require('../url')
   , Tab = require('../tab')
   , Timeline = require('../timeline')
-  , ACTIVE_CHAPTER_THRESHHOLD = 0.3
+  , ACTIVE_CHAPTER_THRESHHOLD = 0.1
   ;
 
 /**
