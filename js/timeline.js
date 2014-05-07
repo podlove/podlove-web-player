@@ -78,8 +78,8 @@ Timeline.prototype.update = function(event) {
 Timeline.prototype.emitEventsBetween = function (start, end) {
   var emitStarted = false,
     emit = function (event) {
-      var customEvent = new CustomEvent("timelineElement", event);
-      this.player.dispatchEvent(customEvent);
+      var customEvent = new CustomEvent(event.type, event);
+      $(this).trigger(customEvent);
     }.bind(this);
   this.data.map(function (event) {
     var later = (event.start > start),
