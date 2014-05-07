@@ -122,10 +122,10 @@ function _filterByType (type) {
 
 /**
  *
- * @param {HTMLElement} player
+ * @param {Timeline} timeline
  */
-function logCurrentTime (event) {
-  console.log('Timeline', 'currentTime', event.currentTime);
+function logCurrentTime (timeline) {
+  console.log('Timeline', 'currentTime', timeline.getTime());
 }
 
 /**
