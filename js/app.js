@@ -212,7 +212,7 @@ var addBehavior = function (player, params, wrapper) {
   var downloads = new Downloads(params);
   tabs.add(downloads.tab);
 
-  var saveTime = new SaveTime(player, params);
+  var saveTime = new SaveTime(timeline, params);
   timeline.addModule(saveTime);
 
 
