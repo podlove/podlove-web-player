@@ -98,8 +98,14 @@ Timeline.prototype.setTime = function (time) {
     console.warn('Timeline', 'setTime', 'time out of bounds', time);
     return this.player.currentTime;
   }
-  this.player.currentTime = time;
-  return this.player.currentTime;
+  if( player.readyState == player.HAVE_ENOUGH_DATA ){
+    this.player.setCurrentTime(time);
+    return this.player.currentTime;
+  } else {
+    $(this.player).one('canplay', function(){
+      this.setCurrentTime(time);
+    });
+  }
 };
 
 Timeline.prototype.getTime = function () {
