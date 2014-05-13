@@ -98,7 +98,7 @@ Timeline.prototype.setTime = function (time) {
     console.warn('Timeline', 'setTime', 'time out of bounds', time);
     return this.player.currentTime;
   }
-  if( player.readyState == player.HAVE_ENOUGH_DATA ){
+  if( this.player.readyState == this.player.HAVE_ENOUGH_DATA ){
     this.player.setCurrentTime(time);
     return this.player.currentTime;
   } else {
