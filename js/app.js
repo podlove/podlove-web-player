@@ -42,13 +42,6 @@ if (typeof String.prototype.trim !== 'function') {
   };
 }
 
-var checkCurrentURL = function () {
-  var deepLink = require('./url').checkCurrent ();
-  if (!deepLink) { return; }
-  startAtTime = deepLink[0];
-  stopAtTime = deepLink[1];
-};
-
 /**
  * Render HTML title area
  * @param params
@@ -236,37 +229,22 @@ var addBehavior = function (player, params, wrapper) {
   });
 
   // parse deeplink
-  deepLink = tc.parse(window.location.href);
-  if (deepLink !== false && pwp.players.length === 1) {
+  deepLink = require('./url').checkCurrent();
+  if ( deepLink[0] && pwp.players.length === 1) {
     var playerAttributes = {preload: 'auto'};
     if (!isHidden() && autoplay) {
       playerAttributes.autoplay = 'autoplay';
     }
     jqPlayer.attr(playerAttributes);
-    startAtTime = deepLink[0];
-    stopAtTime = deepLink[1];
-  } else if (params && params.permalink) {
-    //console.debug(params);
-    storageKey = params.permalink;
-    if (saveTime.getItem(storageKey)) {
-      jqPlayer.one('canplay', function () {
-        var time = saveTime.getItem(storageKey);
-        //console.debug(time);
-        this.currentTime = time;
-      });
-    }
-  }
+    //stopAtTime = deepLink[1];
+    console.log('DeepLink', 'start time', deepLink[0]);
+    timeline.setTime(deepLink[0]);
 
-  if (deepLink !== false && pwp.players.length === 1) {
     $('html, body').delay(150).animate({
       scrollTop: $('.container:first').offset().top - 25
     });
   }
 
-  if (pwp.players.length === 1) {
-    // check if deeplink is set
-    checkCurrentURL();
-  }
   // cache some jQ objects
   //metaElement = wrapper.find('.titlebar');
   var playButton = metaElement.find('.bigplay');
