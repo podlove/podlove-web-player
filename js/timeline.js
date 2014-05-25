@@ -71,7 +71,11 @@ Timeline.prototype.update = function(event) {
     start = end;
     end = this.currentTime;
   }
-  this.emitEventsBetween(start, end);
+
+  //FIXME: Next line throws an error, from inside jQuery
+  //this.emitEventsBetween(start, end);
+  this.currentTime = player.currentTime;
+  console.log('Listeners', this.listeners);
   $.each(this.listeners, call);
 };
 

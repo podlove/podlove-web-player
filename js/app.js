@@ -155,7 +155,7 @@ var addBehavior = function (player, params, wrapper) {
   var jqPlayer = $(player),
 
     timeline = new Timeline(player, params),
-    controls = new Controls(player),
+    controls = new Controls(player, timeline),
     tabs = new TabRegistry(),
 
     hasChapters = timeline.hasChapters,
