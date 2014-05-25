@@ -116,7 +116,7 @@ Timeline.prototype.getTime = function () {
 };
 
 Timeline.prototype.rewind = function () {
-  this.player.currentTime = 0;
+  this.setTime(0);
   var call = function call (i, listener) {
     listener(this);
   }.bind(this);

@@ -324,6 +324,8 @@ var addBehavior = function (player, params, wrapper) {
     .on('ended', function () {
       pwp.embed.postToOpener({ action: 'stop', arg: player.currentTime });
       timeline.rewind();
+      // delete the cached play time
+      saveTime.removeItem();
     });
 };
 
