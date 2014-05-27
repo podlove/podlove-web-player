@@ -52,33 +52,6 @@ var startAtTime = false,
     hidesharebutton: false,
     sharewholeepisode: false,
     sources: []
-  },
-  checkTime,
-  addressCurrentTime;
-
-  checkTime = function (e) {
-    if (players.length > 1) {
-      return;
-    }
-    var player = e.data.player;
-    //Kinda hackish: Make sure that the timejump is at least 1 second (fix for OGG/Firefox)
-    if (startAtTime !== false && (player.lastCheck === undefined || Math.abs(startAtTime - player.lastCheck) > 1)) {
-      player.setCurrentTime(startAtTime);
-      player.lastCheck = startAtTime;
-      startAtTime = false;
-    }
-    if (stopAtTime !== false && player.currentTime >= stopAtTime) {
-      player.pause();
-      stopAtTime = false;
-    }
-  };
-
-  addressCurrentTime = function (e) {
-    var fragment;
-    if (players.length === 1) {
-      fragment = 't=' + generateTimecode([e.data.player.currentTime]);
-      setFragmentURL(fragment);
-    }
   };
 
 function create(player, params, callback) {
