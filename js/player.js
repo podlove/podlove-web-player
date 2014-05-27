@@ -91,6 +91,7 @@ function create(player, params, callback) {
   //fine tuning params
   params.width = normalizeWidth(params.width);
   if (playerType === 'audio') {
+    // FIXME: Since the player is no longer visible it has no width
     if (params.audioWidth !== undefined) {
       params.width = params.audioWidth;
     }
@@ -133,17 +134,18 @@ function create(player, params, callback) {
     params.width = params.width.toString().trim() + 'px';
   }
 
-  jqPlayer = $(player)
-    .wrap('<div class="container" style="width: ' + params.width + '"></div>');
-  wrapper = jqPlayer.parent();
-  player = jqPlayer.get(0);
+  jqPlayer = $(player),
+  wrapper = $('<div class="container" style="width: ' + params.width + '"><div id="progressBarWrapper"></div></div>');
+  jqPlayer.replaceWith(wrapper);
   players.push(player);
   //add params from html fallback area and remove them from the DOM-tree
-  jqPlayer.find('[data-pwp]').each(function () {
+
+  // FIXME: delete the following lines. There is no such thing.
+  /* jqPlayer.find('[data-pwp]').each(function () {
     var $this = $(this);
     params[$this.data('pwp')] = $this.html();
     $this.remove();
-  });
+  }); */
   //add params from audio and video elements
   jqPlayer.find('source').each(function () {
     if (!params.sources) {

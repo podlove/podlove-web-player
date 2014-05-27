@@ -26,6 +26,7 @@ var TabRegistry = require('./tabregistry'),
   Controls = require('./controls'),
   tc = require('./timecode'),
   player = require('./player'),
+  ProgressBar = require('./modules/progressbar'),
   autoplay = false;
 
 var startAtTime;
@@ -208,6 +209,10 @@ var addBehavior = function (player, params, wrapper) {
   var saveTime = new SaveTime(timeline, params);
   timeline.addModule(saveTime);
 
+  var progressBar = new ProgressBar(timeline, params);
+  timeline.addModule(progressBar);
+
+  wrapper.find('#progressBarWrapper').append(progressBar.render());
 
   var chapters;
   if (hasChapters) {
