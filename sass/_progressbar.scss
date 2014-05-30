@@ -1,31 +1,31 @@
 //
-// Progressbar to display a buffering state
+// Progressbar
 // --------------------------------------------------
 
 
-// Bar animations
+// Bar itself
 // -------------------------
 
-// WebKit
-@-webkit-keyframes progress-bar-stripes {
-  from  { background-position: 30px 0; }
-  to    { background-position: 30px 0; }
+// Outer container
+.progress {
+  overflow: hidden;
+  height: $line-height-computed;
+  //margin-bottom: $line-height-computed;
+  background-color: $progress-bg;
+  background-repeat: repeat-x;
 }
 
-// Firefox
-@-moz-keyframes progress-bar-stripes {
-  from  { background-position: 30px 0; }
-  to    { background-position: 0 0; }
-}
-
-// Opera
-@-o-keyframes progress-bar-stripes {
-  from  { background-position: 0 0; }
-  to    { background-position: 30px 0; }
-}
-
-// Spec and IE10+
-@keyframes progress-bar-stripes {
-  from  { background-position: 30px 0; }
-  to    { background-position: 0 0; }
+// Bar of progress
+.meter {
+  float: left;
+  width: 0%;
+  height: 100%;
+  font-size: $font-size-small;
+  text-align: center;
+  line-height: $line-height-computed;
+  color: $progress-bar-color;
+  background-color: $progress-bar-bg;
+  background-repeat: repeat-x;
+  box-sizing: border-box;
+  transition: width 0.6s ease;
 }

@@ -38,6 +38,18 @@ $text-color:                $gray-dark !default;
 $contrasted-dark-default:   $gray-dark;
 $contrasted-light-default:  $gray-lighter;
 
+//Progress bars
+// -------------------------
+
+//Background color of the whole progress component
+$progress-bg:               $gray;
+
+//** Progress bar text color
+$progress-bar-color:        #fff;
+
+//** Default progress bar color
+$progress-bar-bg:           $brand-primary;
+
 
 // Links
 // -------------------------
@@ -151,7 +163,3 @@ $hr-border:                   $gray-lighter !default;
 // Image size in titlebar
 $image-height:                140px;
 $image-width:                 $image-height;
-
-// Background-Size
-$bg-width:                    15px;
-$bg-height:                   15px;
