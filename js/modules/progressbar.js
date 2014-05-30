@@ -37,11 +37,11 @@ ProgressBar.prototype.render = function () {
 
 	var cache = this.cache = $(
 		'<span id="currentTime">--:--</span>' +
-		'<progress></progress>' +
+		'<progress class="progress"><div class="meter"></div></progress>' +
 		'<span id="duration">--:--</span>'
 	);
 
-	cache.filter('progress').css('width', this.params.width).attr({
+	cache.filter('.meter').css('width', this.params.width).attr({
 		min: 0,
 		max: this.params.duration
 	});

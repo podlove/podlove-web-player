@@ -108,7 +108,8 @@ function create(player, params, callback) {
   }
 
   jqPlayer = $(player),
-  wrapper = $('<div class="container" style="width: ' + params.width + '"><div id="progressBarWrapper"></div></div>');
+  wrapper = $('<div class="container"><div id="progressBarWrapper"></div></div>');
+  //wrapper = $('<div class="container" style="width: ' + params.width + '"><div class="container" id="progressBarWrapper"></div></div>');
   jqPlayer.replaceWith(wrapper);
   players.push(player);
   //add params from html fallback area and remove them from the DOM-tree
