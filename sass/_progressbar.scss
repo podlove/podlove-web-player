@@ -2,6 +2,12 @@
 // Progressbar
 // --------------------------------------------------
 
+#progressBarWrapper {
+  background-color: $progress-bg;
+  span {
+    color: $contrasted-light-default;
+  }
+}
 
 // Bar itself
 // -------------------------
