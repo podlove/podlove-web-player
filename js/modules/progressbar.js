@@ -41,7 +41,8 @@ ProgressBar.prototype.render = function () {
 		'<span id="duration">--:--</span>'
 	);
 
-	cache.filter('.meter').css('width', this.params.width).attr({
+	cache.find('.meter').css('width', this.params.width);
+	cache.filter('.progress').attr({
 		min: 0,
 		max: this.params.duration
 	});
