@@ -8,25 +8,25 @@ var tc = require('../timecode');
  */
 function ProgressBar (timeline, params){
 	if( !timeline){
-		console.error('no timline?', arguments);
+		console.error('no timeline?', arguments);
 		return;
 	}
 	this.params = params;
 	this.cache;
 	this.timeline = timeline;
 
-	this.update = this.update.bind(this);
+	this.update = _update.bind(this);
 }
 
 /**
  * This update method is to be called when a players `currentTime` changes.
  */
-ProgressBar.prototype.update = function(timeline) {
+var _update = function(timeline) {
 	var time = timeline.getTime();
-	console.log('ProgressBar','update', time);
+	console.debug('ProgressBar','update', time);
 
 	this.cache.filter('progress').val(time);
-	this.cache.filter('#currentTime').html(tc.generate([time], true));
+	this.cache.filter('#currentTime').html(tc.fromTimeStamp(time));
 };
 
 /**
@@ -47,7 +47,7 @@ ProgressBar.prototype.render = function () {
 		max: this.params.duration
 	});
 
-	cache.filter('#duration').html(tc.generate([this.params.duration], false));
+	cache.filter('#duration').html(tc.fromTimeStamp(this.params.duration));
 
 	return cache;
 };
