@@ -1,8 +1,10 @@
+@import "variables";
+
 //
 // Progressbar
 // --------------------------------------------------
 
-#progressBarWrapper {
+.progressbar {
   background-color: $progress-bg;
   span {
     color: $contrasted-light-default;

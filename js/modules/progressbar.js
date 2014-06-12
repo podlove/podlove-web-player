@@ -2,54 +2,67 @@ var tc = require('../timecode');
 
 /**
  * @constructor
- * Creates a new pgrogress bar object.
- * @param timeline - The players timeline to attach to.
- * @param params - Various parameters
+ * Creates a new progress bar object.
+ * @param {Timeline} timeline - The players timeline to attach to.
+ * @param {Object} params - Various parameters
  */
-function ProgressBar (timeline, params){
-	if( !timeline){
-		console.error('no timline?', arguments);
-		return;
-	}
-	this.params = params;
-	this.cache;
-	this.timeline = timeline;
+function ProgressBar(timeline, params) {
+  if (!timeline) {
+    console.error('Timeline missing', arguments);
+    return;
+  }
+  this.params = params;
+  this.timeline = timeline;
 
-	this.update = this.update.bind(this);
+  this.bar = null;
+  this.currentTime = null;
+  this.progress = null;
+
+  this.update = _update.bind(this);
 }
 
 /**
  * This update method is to be called when a players `currentTime` changes.
  */
-ProgressBar.prototype.update = function(timeline) {
-	var time = timeline.getTime();
-	console.log('ProgressBar','update', time);
+var _update = function (timeline) {
+  var time = timeline.getTime();
+  console.log('ProgressBar', 'update', time);
 
-	this.cache.filter('progress').val(time);
-	this.cache.filter('#currentTime').html(tc.generate([time], true));
+  this.progress.val(time);
+  this.currentTime.html(tc.fromTimeStamp(time));
 };
 
 /**
  * Renders a new progress bar jQuery object.
  */
 ProgressBar.prototype.render = function () {
-	console.log('params', this.params);
+  console.debug('params', this.params);
 
-	var cache = this.cache = $(
-		'<span id="currentTime">--:--</span>' +
-		'<progress class="progress"><div class="meter"></div></progress>' +
-		'<span id="duration">--:--</span>'
-	);
+  var formattedDuration = tc.fromTimeStamp(this.params.duration),
+    bar = $('<div class="progressbar"></div>'),
+    currentTimeElement = renderTimeElement('current', '--:--'),
+    durationTimeElement = renderTimeElement('duration', formattedDuration),
+    meter = $('<div class="meter"></div>').css('width', this.params.width),
+    progress = $('<progress class="progress"></progress>').attr({
+      min: 0,
+      max: this.params.duration
+    });
 
-	cache.find('.meter').css('width', this.params.width);
-	cache.filter('.progress').attr({
-		min: 0,
-		max: this.params.duration
-	});
+  progress.append(meter);
+  bar
+    .append(currentTimeElement)
+    .append(progress)
+    .append(durationTimeElement)
+  ;
 
-	cache.filter('#duration').html(tc.generate([this.params.duration], false));
-
-	return cache;
+  this.bar = bar;
+  this.progress = progress;
+  this.currentTime = currentTimeElement;
+  return bar;
 };
+
+function renderTimeElement(className, time) {
+  return $('<span class="time time-' + className + '">' + time + '</span>');
+}
 
 module.exports = ProgressBar;

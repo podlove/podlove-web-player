@@ -185,6 +185,14 @@ var addBehavior = function (player, params, wrapper) {
   metaElement.append(renderTitleArea(params));
 
   /**
+   *
+   * @type {ProgressBar}
+   */
+  var progressBar = new ProgressBar(timeline, params);
+  timeline.addModule(progressBar);
+  wrapper.append(progressBar.render());
+
+  /**
    * Timecontrols
    */
   //always render toggler buttons wrapper
@@ -208,11 +216,6 @@ var addBehavior = function (player, params, wrapper) {
 
   var saveTime = new SaveTime(timeline, params);
   timeline.addModule(saveTime);
-
-  var progressBar = new ProgressBar(timeline, params);
-  timeline.addModule(progressBar);
-
-  wrapper.find('#progressBarWrapper').append(progressBar.render());
 
   var chapters;
   if (hasChapters) {
