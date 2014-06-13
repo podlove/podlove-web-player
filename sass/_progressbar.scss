@@ -1,26 +1,74 @@
-@import "variables";
-
 //
 // Progressbar
 // --------------------------------------------------
 
+
+// All HTML5 progress enabled browsers polyfill
+// ----------------------------
+progress,
+progress[role] {
+
+  /* Turns off styling - not usually needed, but good to know. */
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+
+  /* gets rid of default border in Firefox and Opera. */
+  border: none;
+
+  /* Needs to be in here for Safari polyfill so background images work as expected. */
+  background-size: auto;
+
+  /* Dimensions */
+  width: 400px;
+  height: 60px;
+
+}
+
+/* Polyfill */
+progress[role]:after {
+  background-image: none; /* removes default background from polyfill */
+}
+
+/* Ensure fallback text doesn't appear in polyfill */
+progress[role] strong {
+  display: none;
+}
+
+progress,                               /* Firefox  */
+progress[role][aria-valuenow] {         /* Polyfill */
+  background: $progress-bg !important;  /* !important is needed by the polyfill */
+}
+
+/* Chrome */
+progress::-webkit-progress-bar {
+  background: $gray;
+}
+
+// --------------------------------------------------
+
 .progressbar {
   background-color: $progress-bg;
-  span {
+  width: 100%;
+  height: 30px;
+  .time {
     color: $contrasted-light-default;
+    width: 20%;
+    margin: 5px 15px;
   }
 }
+
 
 // Bar itself
 // -------------------------
 
-// Outer container
+// Inner container for progress-meter
 .progress {
   overflow: hidden;
-  height: $line-height-computed;
-  //margin-bottom: $line-height-computed;
+  height: $progress-bar-height;
   background-color: $progress-bg;
   background-repeat: repeat-x;
+  width: 70%;
 }
 
 // Bar of progress

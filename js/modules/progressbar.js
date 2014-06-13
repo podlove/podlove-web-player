@@ -40,9 +40,10 @@ ProgressBar.prototype.render = function () {
 
   var formattedDuration = tc.fromTimeStamp(this.params.duration),
     bar = $('<div class="progressbar"></div>'),
-    currentTimeElement = renderTimeElement('current', '--:--'),
+    currentTimeElement = renderTimeElement('current', '00:00'),
     durationTimeElement = renderTimeElement('duration', formattedDuration),
-    meter = $('<div class="meter"></div>').css('width', this.params.width),
+   // meter = $('<div class="meter"></div>').css('width', this.params.width),
+    meter = $('<div class="meter"></div>')  ,
     progress = $('<progress class="progress"></progress>').attr({
       min: 0,
       max: this.params.duration
