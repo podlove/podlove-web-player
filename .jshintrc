@@ -1,6 +1,10 @@
 {
     "browser": true,
+    "node": true,
     "plusplus": true,
     "white": true,
-    "laxcomma": true
+    "laxcomma": true,
+    "globals": {
+      "$": true
+    }
 }
