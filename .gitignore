@@ -5,4 +5,4 @@ bower_components/
 !.gitignore
 !.jshintrc
 !.editorconfig
-static/podlove-web-*
+dist

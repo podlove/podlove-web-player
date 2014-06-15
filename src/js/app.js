@@ -1,10 +1,10 @@
-/*
+/**!
  * ===========================================
  * Podlove Web Player v2.1.0-alpha
  * Licensed under The BSD 2-Clause License
  * http://opensource.org/licenses/BSD-2-Clause
  * ===========================================
- * Copyright (c) 2013, Gerrit van Aaken (https://github.com/gerritvanaaken/), Simon Waldherr (https://github.com/simonwaldherr/), Frank Hase (https://github.com/Kambfhase/), Eric Teubert (https://github.com/eteubert/) and others (https://github.com/podlove/podlove-web-player/contributors)
+ * Copyright (c) 2014, Gerrit van Aaken (https://github.com/gerritvanaaken/), Simon Waldherr (https://github.com/simonwaldherr/), Frank Hase (https://github.com/Kambfhase/), Eric Teubert (https://github.com/eteubert/) and others (https://github.com/podlove/podlove-web-player/contributors)
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -31,7 +31,7 @@ var startAtTime;
 var stopAtTime;
 
 // will expose/attach itself to the $ global
-require('./../libs/mediaelement/build/mediaelement.js');
+require('../libs/mediaelement/build/mediaelement.js');
 
 // FIXME put in compat mode module
 if (typeof String.prototype.trim !== 'function') {

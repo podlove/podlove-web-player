@@ -3,10 +3,10 @@ require 'sass-css-importer'
 
 # Set this to the root of your project when deployed:
 http_path = "/"
-css_dir = "static"
-sass_dir = "sass"
-images_dir = "images"
-javascripts_dir = "javascripts"
+css_dir = "dist/css"
+sass_dir = "src/sass"
+images_dir = "src/img"
+javascripts_dir = "dist/js"
 
 # You can select your preferred output style here (can be overridden via the command line):
 # output_style = :expanded or :nested or :compact or :compressed
