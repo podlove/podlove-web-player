@@ -3,12 +3,10 @@
   var IFRAME_HEIGHT_DEFAULT = 300,
     IFRAME_HEIGHT_MIN = 100,
     IFRAME_HEIGHT_MAX = 3000,
-    IFRAME_WIDTH_DEFAULT = 800,
-    IFRAME_WIDTH_MIN = 400,
-    IFRAME_WIDTH_MAX = 2000,
     players = {};
 
   function getIframeReplacement() {
+    /*jshint validthis:true */
     var $element = $(this),
       $frame = $('<iframe>', {
         src: $element.data('podlove-web-player-source'),
@@ -16,8 +14,8 @@
         width: getPlayerWidth($element.data('podlove-web-player-width')),
         className: 'podlove-webplayer-frame',
         css: {
-          border: "none",
-          overflow: "hidden"
+          border: 'none',
+          overflow: 'hidden'
         }
       }),
       frame = $frame.get(0);
@@ -82,10 +80,10 @@
 
   /**
    * Sanitize player width
-   * @param {Number} width
-   * @returns {Number}
+   * @param {number} width
+   * @returns {string}
    */
-  function getPlayerWidth(width) {
+  function getPlayerWidth() {
     return '100%';
     //return getDimension(width, IFRAME_WIDTH_MIN, IFRAME_WIDTH_MAX, IFRAME_WIDTH_DEFAULT);
   }
@@ -159,5 +157,5 @@
   window.pwp = {
     players: players
   };
-}(jQuery));
+}($));
 

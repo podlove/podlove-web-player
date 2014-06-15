@@ -29,37 +29,26 @@ var TabRegistry = require('./tabregistry'),
 
 var startAtTime;
 var stopAtTime;
+var pwp;
 
 // will expose/attach itself to the $ global
-require('../libs/mediaelement/build/mediaelement.js');
+require('../../bower_components/mediaelement/build/mediaelement.js');
 
 // FIXME put in compat mode module
 if (typeof String.prototype.trim !== 'function') {
   String.prototype.trim = function () {
-    "use strict";
     return this.replace(/^\s+|\s+$/g, '');
   };
 }
 
 var checkCurrentURL = function () {
-  var deepLink = require('./url').checkCurrent ();
-  if (!deepLink) { return; }
+  var deepLink = require('./url').checkCurrent();
+  if (!deepLink) {
+    return;
+  }
   startAtTime = deepLink[0];
   stopAtTime = deepLink[1];
 };
-
-/**
- * Render HTML title area
- * @param params
- * @returns {string}
- */
-function renderTitleArea(params) {
-  return '<header>' +
-    renderShowTitle(params.show.title, params.show.url) +
-    renderTitle(params.title, params.permalink) +
-    renderSubTitle(params.subtitle) +
-    '</header>';
-}
 
 /**
  * The most missing feature regarding embedded players
@@ -105,6 +94,20 @@ function renderSubTitle(text) {
 }
 
 /**
+ * Render HTML title area
+ * @param params
+ * @returns {string}
+ */
+function renderTitleArea(params) {
+  return '<header>' +
+    renderShowTitle(params.show.title, params.show.url) +
+    renderTitle(params.title, params.permalink) +
+    renderSubTitle(params.subtitle) +
+    '</header>';
+}
+
+
+/**
  * Render HTML playbutton
  * @returns {string}
  */
@@ -119,7 +122,9 @@ function renderPlaybutton() {
  * @returns {string} rendered HTML
  */
 function renderPoster(posterUrl) {
-  if (!posterUrl) { return ''; }
+  if (!posterUrl) {
+    return '';
+  }
   return '<div class="coverart"><img class="coverimg" src="' + posterUrl + '" data-img="' + posterUrl + '" alt="Poster Image"></div>';
 }
 
@@ -178,7 +183,7 @@ var addBehavior = function (player, params, wrapper) {
    */
   wrapper.addClass('podlovewebplayer_' + playerType);
 
-  if (playerType === "audio") {
+  if (playerType === 'audio') {
     // Render playbutton
     metaElement.prepend(renderPlaybutton());
     var poster = params.poster || jqPlayer.attr('poster');
@@ -186,7 +191,7 @@ var addBehavior = function (player, params, wrapper) {
     wrapper.prepend(metaElement);
   }
 
-  if (playerType === "video") {
+  if (playerType === 'video') {
     wrapper.prepend('<div class="podlovewebplayer_top"></div>');
     wrapper.append(metaElement);
   }
@@ -324,7 +329,7 @@ var addBehavior = function (player, params, wrapper) {
       tabs.update(event);
     })
     // update play/pause status
-    .on('play', function (event) {
+    .on('play', function () {
       //console.log('Player.play fired', event);
       //player.setCurrentTime(0);
     })
@@ -349,7 +354,7 @@ var addBehavior = function (player, params, wrapper) {
  * @param {object} options
  * @returns {jQuery}
  */
-$.fn.podlovewebplayer = function webPlayer (options) {
+$.fn.podlovewebplayer = function webPlayer(options) {
   // Additional parameters default values
   var params = $.extend({}, player.defaults, options);
   // turn each player in the current set into a Podlove Web Player
@@ -358,7 +363,7 @@ $.fn.podlovewebplayer = function webPlayer (options) {
   });
 };
 
-var pwp = {
+pwp = {
   tc: require('./timecode'),
   players: player.players,
   embed: require('./embed')
