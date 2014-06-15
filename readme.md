@@ -25,6 +25,7 @@ Either directly as in `embed.html` or as an iframe/ embedded player as in `index
 Clone the repository and install all dependencies with
 
     bower install
+    npm install
 
 ## Set up CSS pre-processing
 
@@ -72,13 +73,13 @@ Install autoprefixer to parse CSS and add vendor prefixes to rules fetched from 
 
 ### Build the CSS file
 
-There is a grunt task for that, processing a version with line comments as well as a minified one
+There is a gulp task for that, processing a version with line comments as well as a minified one
 
     gulp styles
 
 ## Build Distribution Package
 
-Make is now replaced by [gulp]()
+Make is now replaced by [gulp](https://github.com/gulpjs/gulp/blob/master/docs/README.md)
 
 Just run the default task to build the distribution package to *dist* folder.
 
