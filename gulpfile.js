@@ -15,6 +15,7 @@ var gulp = require('gulp')
   , connect = require('gulp-connect')
 
 // set paths
+  , bower = 'bower_components/'
   , source = 'src/'
   , dest = 'dist/'
   , external = 'vendor/'
@@ -79,15 +80,15 @@ gulp.task('images', function() {
 // copy lib files
 gulp.task('copy', function() {
   // Copy MediaElement fallbacks
-  gulp.src(source + 'libs/mediaelement/build/flashmediaelement.swf')
+  gulp.src(bower + 'mediaelement/build/flashmediaelement.swf')
     .pipe(gulp.dest(dest + 'bin'));
-  gulp.src(source + 'libs/mediaelement/build/silverlightmediaelement.xap')
+  gulp.src(bower + 'mediaelement/build/silverlightmediaelement.xap')
     .pipe(gulp.dest(dest + 'bin'));
 
   // Copy external JS-libs
-  gulp.src(source + 'libs/html5shiv.js')
+  gulp.src(bower + 'html5shiv/dist/*')
     .pipe(gulp.dest(dest + 'js/' + external));
-  gulp.src(source + 'libs/jquery-1.9.1.min.js')
+  gulp.src(bower + 'jquery/dist/*')
     .pipe(gulp.dest(dest + 'js/' + external));
 
   // Copy Podlove Font
