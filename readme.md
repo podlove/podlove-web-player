@@ -4,14 +4,27 @@
 
 HTML5 Goodness for Podcasting
 
-Podlove Web Player is a Podcast-optimized, HTML5-based video and audio player with Flash fallback.
+**Podlove** Web Player is a Podcast-optimized, HTML5-based video and audio player with Flash fallback.
 It can be used as a WordPress plugin or within a static HTML/JavaScript context.
 
-The Podlove Web Player supports almost every modern browser and also does captions, chapters and much more.
+The **Podlove** Web Player supports almost every modern browser and also does captions, chapters and much more.
 Thanks to MediaElement.js for providing the foundation.
 
 * [Official Site on podlove.org](http://podlove.org/podlove-web-player/)
 * [WordPress Plugin Page](http://wordpress.org/plugins/podlove-web-player/)
+
+## Usage
+
+The release version should have the application, the moderator their dependencies and necessary styles and fonts
+ready in the `dist` folder.
+Along with them there is a running example that shows you how to integrate the player in any webpage.
+Either directly as in `embed.html` or as an iframe/ embedded player as in `index.html`.
+
+## Installation
+
+Clone the repository and install all dependencies with
+
+    bower install
 
 ## Set up CSS pre-processing
 
