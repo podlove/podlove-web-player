@@ -21,7 +21,7 @@ $gray-lighter:            lighten(#000, 93.5%) !default; // #eee
 // Brand colors
 // -------------------------
 
-$brand-primary:           #3e5634 !default; // dark-green
+$brand-primary:           #425634 !default; // dark-green
 $brand-info:              #506680 !default; // blue-gray
 $brand-success:           #5cb85c !default;
 $brand-warning:           #f0ad4e !default;
@@ -45,10 +45,12 @@ $contrasted-light-default:  $gray-lighter;
 $progress-bg:               $gray-darker;
 
 //** Progress bar text color
-$progress-bar-color:        #fff;
+$progress-bar-time-current:  #fefdff;
+$progress-bar-time-duration: #c6c5c7;
 
 //** Default progress bar color
 $progress-bar-bg:           $brand-primary;
+$progress-bar-color:        $gray;
 
 $progress-bar-height:       16px;
 
