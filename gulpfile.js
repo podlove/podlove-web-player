@@ -35,7 +35,8 @@ gulp.task('styles', function() {
     .pipe(rename({ suffix: '.min' }))
     .pipe(minifycss())
     .pipe(gulp.dest(dest + 'css'))
-    .pipe(notify({ message: 'Styles task complete' }));
+    .pipe(notify({ message: 'Styles task complete' }))
+    .pipe(connect.reload())
 });
 
 gulp.task('moderator', function() {
@@ -48,7 +49,7 @@ gulp.task('moderator', function() {
     .pipe(rename({ suffix: '.min' }))
     .pipe(uglify())
     .pipe(gulp.dest(dest + 'js'))
-    .pipe(notify({ message: 'Moderator built.' }));
+    .pipe(notify({ message: 'Moderator built.' }))
 });
 
 gulp.task('player', function() {
@@ -61,12 +62,13 @@ gulp.task('player', function() {
     .pipe(rename({ suffix: '.min' }))
     .pipe(uglify())
     .pipe(gulp.dest(dest + 'js'))
-    .pipe(notify({ message: 'Player built.' }));
+    .pipe(notify({ message: 'Player built.' }))
 });
 
 // Scripts
 gulp.task('scripts', function() {
-  gulp.start('player', 'moderator');
+  gulp.start('player', 'moderator')
+    .pipe(connect.reload())
 });
 
 // Images
@@ -74,7 +76,8 @@ gulp.task('images', function() {
   return gulp.src(source + 'img/**/*')
     .pipe(cache(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true })))
     .pipe(gulp.dest(dest + 'img'))
-    .pipe(notify({ message: 'Images task complete' }));
+    .pipe(notify({ message: 'Images task complete' }))
+    .pipe(connect.reload())
 });
 
 // copy lib files
@@ -100,13 +103,14 @@ gulp.task('copy', function() {
 gulp.task('example', function() {
   // Copy MediaElement fallbacks
   gulp.src(source + 'example/**/*')
-    .pipe(gulp.dest(dest + 'example'));
+    .pipe(gulp.dest(dest + 'example'))
+    .pipe(connect.reload())
 });
 
 // Clean
 gulp.task('clean', function() {
   return gulp.src(dest, {read: false})
-    .pipe(clean());
+    .pipe(clean())
 });
 
 // Default task
