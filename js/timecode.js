@@ -99,7 +99,7 @@ module.exports = {
    * @returns {String} timecode
    */
   fromTimeStamp: function (timestamp) {
-    return ts2tc(timestamp, true);
+    return ts2tc(timestamp, true, true);
   },
 
   /**

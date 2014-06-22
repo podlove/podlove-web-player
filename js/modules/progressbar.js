@@ -40,7 +40,7 @@ ProgressBar.prototype.render = function () {
 
   var formattedDuration = tc.fromTimeStamp(this.params.duration),
     bar = $('<div class="progressbar"></div>'),
-    currentTimeElement = renderTimeElement('current', '00:00'),
+    currentTimeElement = renderTimeElement('current', '00:00:00'),
     durationTimeElement = renderTimeElement('duration', formattedDuration),
     progress = $('<progress class="progress"></progress>').attr({
       min: 0,
