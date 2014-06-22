@@ -17,14 +17,16 @@
 'use strict';
 
 var TabRegistry = require('./tabregistry'),
+  Timeline = require('./timeline'),
   Info = require('./modules/info'),
   Share = require('./modules/share'),
   Downloads = require('./modules/downloads'),
   Chapters = require('./modules/chapter'),
-  Controls = require('./controls'),
   SaveTime = require('./modules/savetime'),
+  Controls = require('./controls'),
   tc = require('./timecode'),
   player = require('./player'),
+  ProgressBar = require('./modules/progressbar'),
   autoplay = false;
 
 var startAtTime;
@@ -129,18 +131,6 @@ function renderPoster(posterUrl) {
 }
 
 /**
- *
- * @param {object} params
- * @returns {boolean} true if at least one chapter is present
- */
-function checkForChapters(params) {
-  return !!params.chapters && (
-    (typeof params.chapters === 'string' && params.chapters.length > 10) ||
-      (typeof params.chapters === 'object' && params.chapters.length > 1)
-    );
-}
-
-/**
  * checks if the current window is hidden
  * @returns {boolean} true if the window is hidden
  */
@@ -169,14 +159,21 @@ function isHidden() {
  */
 var addBehavior = function (player, params, wrapper) {
   var jqPlayer = $(player),
+
+    timeline = new Timeline(player, params),
+    controls = new Controls(player, timeline),
     tabs = new TabRegistry(),
-    hasChapters = checkForChapters(params),
+
+    hasChapters = timeline.hasChapters,
     metaElement = $('<div class="titlebar"></div>'),
     playerType = params.type,
-    controls,
-    controlBox,
+    controlBox = controls.box,
+
     deepLink,
     storageKey;
+
+
+  console.debug('webplayer', 'metadata', timeline.getData());
 
   /**
    * Build rich player with meta data
@@ -200,10 +197,18 @@ var addBehavior = function (player, params, wrapper) {
   metaElement.append(renderTitleArea(params));
 
   /**
+   *
+   * @type {ProgressBar}
+   */
+  var progressBar = new ProgressBar(timeline, params);
+  timeline.addModule(progressBar);
+  wrapper.append(progressBar.render());
+
+  progressBar.addEvents();
+
+  /**
    * Timecontrols
    */
-  controls = new Controls(player);
-  controlBox = controls.box;
   //always render toggler buttons wrapper
   wrapper.append(controlBox);
 
@@ -214,22 +219,29 @@ var addBehavior = function (player, params, wrapper) {
   controlBox.append(tabs.togglebar);
   wrapper.append(tabs.container);
 
-  tabs.addModule(new Info(params));
-  tabs.addModule(new Share(params));
-  var saveTime = new SaveTime(player, params);
-  tabs.addModule(saveTime);
+  var infos = new Info(params);
+  tabs.add(infos.tab);
+
+  var sharing = new Share(params);
+  tabs.add(sharing.tab);
 
   var downloads = new Downloads(params);
-  tabs.addModule(downloads);
+  tabs.add(downloads.tab);
+
+  var saveTime = new SaveTime(timeline, params);
+  timeline.addModule(saveTime);
 
   var chapters;
   if (hasChapters) {
-    chapters = new Chapters(player, params);
-    tabs.addModule(chapters);
+    chapters = new Chapters(timeline);
+    tabs.add(chapters.tab);
+    timeline.addModule(chapters);
     if ((params.chaptersVisible === 'true') || (params.chaptersVisible === true)) {
       tabs.open(chapters.tab);
     }
   }
+
+
   chapters.addEventhandlers(player);
   controls.createTimeControls(chapters);
 
@@ -239,37 +251,22 @@ var addBehavior = function (player, params, wrapper) {
   });
 
   // parse deeplink
-  deepLink = tc.parse(window.location.href);
-  if (deepLink !== false && pwp.players.length === 1) {
+  deepLink = require('./url').checkCurrent();
+  if ( deepLink[0] && pwp.players.length === 1) {
     var playerAttributes = {preload: 'auto'};
     if (!isHidden() && autoplay) {
       playerAttributes.autoplay = 'autoplay';
     }
     jqPlayer.attr(playerAttributes);
-    startAtTime = deepLink[0];
-    stopAtTime = deepLink[1];
-  } else if (params && params.permalink) {
-    //console.debug(params);
-    storageKey = params.permalink;
-    if (saveTime.getItem(storageKey)) {
-      jqPlayer.one('canplay', function () {
-        var time = saveTime.getItem(storageKey);
-        //console.debug(time);
-        this.currentTime = time;
-      });
-    }
-  }
+    //stopAtTime = deepLink[1];
+    console.log('DeepLink', 'start time', deepLink[0]);
+    timeline.setTime(deepLink[0]);
 
-  if (deepLink !== false && pwp.players.length === 1) {
     $('html, body').delay(150).animate({
       scrollTop: $('.container:first').offset().top - 25
     });
   }
 
-  if (pwp.players.length === 1) {
-    // check if deeplink is set
-    checkCurrentURL();
-  }
   // cache some jQ objects
   //metaElement = wrapper.find('.titlebar');
   var playButton = metaElement.find('.bigplay');
@@ -325,8 +322,16 @@ var addBehavior = function (player, params, wrapper) {
   });
 
   jqPlayer
+    .on('timelineElement', function (event) {
+      console.log(event.currentTarget.id, event);
+    })
     .on('timeupdate', function (event) {
-      tabs.update(event);
+      timeline.update(event);
+      timeline.setBufferedTime(event);
+    })
+    .on('progress', function (e) {
+      console.log('progress', e.currentTarget.id, e);
+      timeline.setBufferedTime(e);
     })
     // update play/pause status
     .on('play', function () {
@@ -345,7 +350,9 @@ var addBehavior = function (player, params, wrapper) {
     })
     .on('ended', function () {
       pwp.embed.postToOpener({ action: 'stop', arg: player.currentTime });
-      player.setCurrentTime(0);
+      timeline.rewind();
+      // delete the cached play time
+      saveTime.removeItem();
     });
 };
 
@@ -357,6 +364,7 @@ var addBehavior = function (player, params, wrapper) {
 $.fn.podlovewebplayer = function webPlayer(options) {
   // Additional parameters default values
   var params = $.extend({}, player.defaults, options);
+
   // turn each player in the current set into a Podlove Web Player
   return this.each(function (i, playerElement) {
     player.create(playerElement, params, addBehavior);

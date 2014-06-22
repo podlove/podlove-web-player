@@ -94,6 +94,12 @@ gulp.task('copy', function() {
   gulp.src(bower + 'jquery/dist/*')
     .pipe(gulp.dest(dest + 'js/' + external));
 
+  // Copy progress polyfill JS and CSS
+  gulp.src(bower + 'progress-polyfill/*.css')
+    .pipe(gulp.dest(dest + 'css/' + external));
+  gulp.src(bower + 'progress-polyfill/*.js')
+    .pipe(gulp.dest(dest + 'js/' + external));
+
   // Copy Podlove Font
   gulp.src(source + 'libs/podlove-font/font/*')
     .pipe(gulp.dest(dest + 'font'));

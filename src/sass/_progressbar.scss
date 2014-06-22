@@ -1,31 +1,142 @@
 //
-// Progressbar to display a buffering state
+// Progressbar
 // --------------------------------------------------
 
+$progress-bar-height: 24px;
 
-// Bar animations
+// All HTML5 progress enabled browsers polyfill
+// ----------------------------
+
+/********** 1. Turn off default styling ***************/
+progress,
+progress[role] {
+
+  /* Turns off styling - not usually needed, but good to know. */
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+
+  /* gets rid of default border in Firefox and Opera. */
+  border: none;
+
+  /* Needs to be in here for Safari polyfill so background images work as expected. */
+  background-size: auto;
+
+  width: 400px;
+  height: 16px;
+
+}
+
+/* Polyfill */
+progress[role]:after {
+  background-image: none; /* removes default background from polyfill */
+}
+
+/* Ensure fallback text doesn't appear in polyfill */
+progress[role] strong {
+  display: none;
+}
+
+/********** 2. The Progress Bar Background ***************/
+
+progress,                               /* Firefox  */
+progress[role][aria-valuenow] {         /* Polyfill */
+  background: $brand-primary !important;  /* !important is needed by the polyfill */
+}
+
+/* Chrome */
+progress::-webkit-progress-bar {
+  background: $brand-primary;
+}
+
+/********** 3. The Progress Bar Value ***************/
+
+/* IE10 */
+progress {
+  color: $progress-bar-color;
+}
+
+/* Firefox */
+progress::-moz-progress-bar {
+  background: $progress-bar-color;
+}
+
+/* Chrome */
+progress::-webkit-progress-value {
+  background: $progress-bar-color;
+}
+
+/* Polyfill */
+progress[aria-valuenow]:before  {
+  background: $progress-bar-color;
+}
+
+
+// Metrics of Bar Container and Text
+// ---------------------------------
+
+.progressbar {
+  @include flexbox();
+  flex-direction: row;
+  -webkit-flex-flow: row wrap;
+  background-color: $progress-bg;
+  width: 100%;
+  height: 50px;
+  font-weight: $font-weight-lighter;
+  .time {
+    margin: auto 15px;
+    &:first-of-type {
+      @include flex(1 40px);
+      @include order(1);
+      text-align: right;
+      color: $progress-bar-time-current;
+    }
+    &:last-of-type {
+      @include flex(1 40px);
+      @include order(3);
+      color: $progress-bar-time-duration;
+    }
+  }
+}
+
+
+// Metrics of the Bar itself
 // -------------------------
 
-// WebKit
-@-webkit-keyframes progress-bar-stripes {
-  from  { background-position: 30px 0; }
-  to    { background-position: 30px 0; }
+.progress {
+  @include flex(14 145px);
+  @include order(2);
+  overflow: hidden;
+  margin: 0 auto;
+  position: relative;
 }
 
-// Firefox
-@-moz-keyframes progress-bar-stripes {
-  from  { background-position: 30px 0; }
-  to    { background-position: 0 0; }
+.progress .current {
+  width: 100%;
+  height: $progress-bar-height;
+  background-repeat: repeat-x;
+  margin: 0 auto;
+  position: absolute;
+  top: 8px;
+  left: 0;
 }
 
-// Opera
-@-o-keyframes progress-bar-stripes {
-  from  { background-position: 0 0; }
-  to    { background-position: 30px 0; }
+.buffer {
+  top: $progress-bar-height + 14px;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-repeat: repeat-x;
+  margin: 0 auto;
 }
 
-// Spec and IE10+
-@keyframes progress-bar-stripes {
-  from  { background-position: 30px 0; }
-  to    { background-position: 0 0; }
+.handle {
+  display: block;
+  background: white;
+  height: $progress-bar-height;
+  width: 4px;
+  position: absolute;
+  top: 8px;
+  left: 0;
 }
