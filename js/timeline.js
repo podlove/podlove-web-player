@@ -32,6 +32,7 @@ function Timeline(player, data) {
   this.listeners = [logCurrentTime];
   this.currentTime = -1;
   this.duration = data.duration;
+  this.bufferedTime = 0;
 }
 
 module.exports = Timeline;
@@ -115,6 +116,46 @@ Timeline.prototype.getTime = function () {
   return this.player.currentTime;
 };
 
+Timeline.prototype.getBuffered = function () {
+  return this.bufferedTime;
+};
+
+Timeline.prototype.setBufferedTime = function (e) {
+  var
+    t = this,
+    target = (e != undefined) ? e.target : t.player,
+    percent = null;
+
+  // newest HTML5 spec has buffered array (FF4, Webkit)
+  if (target && target.buffered && target.buffered.length > 0 && target.buffered.end && target.duration) {
+    // TODO: account for a real array with multiple values (only Firefox 4 has this so far)
+    percent = target.buffered.end(0) / target.duration;
+  }
+  // Some browsers (e.g., FF3.6 and Safari 5) cannot calculate target.bufferered.end()
+  // to be anything other than 0. If the byte count is available we use this instead.
+  // Browsers that support the else if do not seem to have the bufferedBytes value and
+  // should skip to there. Tested in Safari 5, Webkit head, FF3.6, Chrome 6, IE 7/8.
+  else if (target && target.bytesTotal != undefined && target.bytesTotal > 0 && target.bufferedBytes != undefined) {
+    percent = target.bufferedBytes / target.bytesTotal;
+  }
+  // Firefox 3 with an Ogg file seems to go this way
+  else if (e && e.lengthComputable && e.total != 0) {
+    percent = e.loaded/e.total;
+  }
+
+  // finally update the progress bar
+  if (percent !== null) {
+    percent = Math.min(1, Math.max(0, percent));
+    // update loaded bar
+    if (t.loaded && t.total) {
+      t.loaded.width(t.total.width() * percent);
+    }
+  }
+
+  t.bufferedTime = percent;
+  console.log('Timeline', 'setBufferedTime', percent);
+};
+
 Timeline.prototype.rewind = function () {
   this.setTime(0);
   var call = function call (i, listener) {
@@ -166,7 +207,7 @@ Timeline.prototype.parseSimpleChapter = function (data) {
     .sort(function (a, b) {
     return a.start - b.start;
   });
-}
+};
 
 function transformChapter (chapter) {
   chapter.code = chapter.title;
@@ -193,7 +234,7 @@ function addEndTime(duration) {
 
 function addType(type) {
   return function(element) {
-    element.type = type
+    element.type = type;
     return element;
   };
 }

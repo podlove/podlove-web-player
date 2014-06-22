@@ -17,6 +17,7 @@ function ProgressBar(timeline, params) {
   this.bar = null;
   this.currentTime = null;
   this.progress = null;
+  this.buffer = null;
 
   this.update = _update.bind(this);
 }
@@ -26,9 +27,17 @@ function ProgressBar(timeline, params) {
  */
 var _update = function (timeline) {
   var time = timeline.getTime();
+  var buffer = timeline.getBuffered();
   console.log('ProgressBar', 'update', time);
 
+  var
+    newWidth = Math.round(this.progress.width() * time / timeline.duration),
+    handlePos = newWidth - Math.round(this.handle.outerWidth(true) / 2);
+
   this.progress.val(time);
+  this.buffer.val(buffer);
+  this.handle.css('left', handlePos);
+
   this.currentTime.html(tc.fromTimeStamp(time));
 };
 
@@ -42,10 +51,20 @@ ProgressBar.prototype.render = function () {
     bar = $('<div class="progressbar"></div>'),
     currentTimeElement = renderTimeElement('current', '00:00:00'),
     durationTimeElement = renderTimeElement('duration', formattedDuration),
-    progress = $('<progress class="progress"></progress>').attr({
-      min: 0,
-      max: this.params.duration
-    });
+    progress = $('<div class="progress"></div>'),
+    current = $('<progress class="current"></progress>')
+      .attr({ min: 0, max: this.params.duration }),
+    handle = $('<div class="handle"></div>')
+      .css({left: this.timeline.currentTime}),
+    buffer = $('<progress class="buffer"></progress>')
+      .attr({min: 0, max: 1})
+      .css({height:"1px;"});
+
+  progress
+    .append(current)
+    .append(buffer)
+    .append(handle)
+  ;
 
   bar
     .append(currentTimeElement)
@@ -54,9 +73,80 @@ ProgressBar.prototype.render = function () {
   ;
 
   this.bar = bar;
-  this.progress = progress;
+  this.progress = current;
+  this.buffer = buffer;
+  this.handle = handle;
   this.currentTime = currentTimeElement;
   return bar;
+};
+
+ProgressBar.prototype.addEvents = function() {
+
+  var t = this,
+    total = this.progress,
+    handleMouseMove = function (e) {
+      // mouse position relative to the object
+      var x = e.pageX,
+        offset = total.offset(),
+        width = total.outerWidth(true),
+        percentage = 0,
+        newTime = 0,
+        pos = 0;
+
+
+      if (t.timeline.duration) {
+        if (x < offset.left) {
+          x = offset.left;
+        } else if (x > width + offset.left) {
+          x = width + offset.left;
+        }
+
+        pos = x - offset.left;
+        percentage = (pos / width);
+        newTime = (percentage <= 0.02) ? 0 : percentage * t.timeline.duration;
+
+        // seek to where the mouse is
+        if (mouseIsDown && newTime !== t.timeline.currentTime) {
+          t.timeline.setTime(newTime);
+        }
+      }
+    },
+    mouseIsDown = false,
+    mouseIsOver = false;
+
+  // handle clicks
+  this.progress.bind('mousedown', function (e) {
+      // only handle left clicks
+      if (e.which === 1) {
+        mouseIsDown = true;
+        handleMouseMove(e);
+        $(document).bind('mousemove.dur', function(e) {
+          handleMouseMove(e);
+        });
+        $(document).bind('mouseup.dur', function (e) {
+          mouseIsDown = false;
+          $(document)
+            .unbind('mousup.dur')
+            .unbind('mousemove.dur');
+        });
+        return false;
+      }
+    })
+    .bind('mouseenter', function() {
+      mouseIsOver = true;
+      $(document).bind('mousemove.dur', function(e) {
+        handleMouseMove(e);
+      });
+    })
+    .bind('mouseleave', function() {
+      mouseIsOver = false;
+      if (!mouseIsDown) {
+        $(document)
+          .unbind('mousup.dur')
+          .unbind('mousemove.dur');
+      }
+    });
+
 };
 
 function renderTimeElement(className, time) {
@@ -64,3 +154,4 @@ function renderTimeElement(className, time) {
 }
 
 module.exports = ProgressBar;
+

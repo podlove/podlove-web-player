@@ -192,6 +192,8 @@ var addBehavior = function (player, params, wrapper) {
   timeline.addModule(progressBar);
   wrapper.append(progressBar.render());
 
+  progressBar.addEvents();
+
   /**
    * Timecontrols
    */
@@ -313,6 +315,11 @@ var addBehavior = function (player, params, wrapper) {
     })
     .on('timeupdate', function (event) {
       timeline.update(event);
+      timeline.setBufferedTime(event);
+    })
+    .on('progress', function (e) {
+      console.log('progress', e.currentTarget.id, e);
+      timeline.setBufferedTime(e);
     })
     // update play/pause status
     .on('play', function (event) {
