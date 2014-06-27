@@ -50,6 +50,7 @@ gulp.task('moderator', function() {
     .pipe(uglify())
     .pipe(gulp.dest(dest + 'js'))
     .pipe(notify({ message: 'Moderator built.' }))
+    .pipe(connect.reload())
 });
 
 gulp.task('player', function() {
@@ -63,13 +64,11 @@ gulp.task('player', function() {
     .pipe(uglify())
     .pipe(gulp.dest(dest + 'js'))
     .pipe(notify({ message: 'Player built.' }))
+    .pipe(connect.reload())
 });
 
 // Scripts
-gulp.task('scripts', function() {
-  gulp.start('player', 'moderator')
-    .pipe(connect.reload())
-});
+gulp.task('scripts', ['player', 'moderator']);
 
 // Images
 gulp.task('images', function() {
@@ -108,9 +107,12 @@ gulp.task('copy', function() {
 // copy example files
 gulp.task('example', function() {
   // Copy MediaElement fallbacks
-  gulp.src(source + 'example/**/*')
-    .pipe(gulp.dest(dest + 'example'))
-    .pipe(connect.reload())
+    gulp.src(source + 'example/**/*')
+        .pipe(gulp.dest(dest + 'example'))
+        .pipe(connect.reload())
+    gulp.src(source + 'index.html')
+        .pipe(gulp.dest(dest))
+        .pipe(connect.reload())
 });
 
 // Clean
