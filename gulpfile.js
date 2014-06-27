@@ -107,9 +107,12 @@ gulp.task('copy', function() {
 // copy example files
 gulp.task('example', function() {
   // Copy MediaElement fallbacks
-  gulp.src(source + 'example/**/*')
-    .pipe(gulp.dest(dest + 'example'))
-    .pipe(connect.reload())
+    gulp.src(source + 'example/**/*')
+        .pipe(gulp.dest(dest + 'example'))
+        .pipe(connect.reload())
+    gulp.src(source + 'index.html')
+        .pipe(gulp.dest(dest))
+        .pipe(connect.reload())
 });
 
 // Clean
