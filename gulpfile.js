@@ -50,6 +50,7 @@ gulp.task('moderator', function() {
     .pipe(uglify())
     .pipe(gulp.dest(dest + 'js'))
     .pipe(notify({ message: 'Moderator built.' }))
+    .pipe(connect.reload())
 });
 
 gulp.task('player', function() {
@@ -63,13 +64,11 @@ gulp.task('player', function() {
     .pipe(uglify())
     .pipe(gulp.dest(dest + 'js'))
     .pipe(notify({ message: 'Player built.' }))
+    .pipe(connect.reload())
 });
 
 // Scripts
-gulp.task('scripts', function() {
-  gulp.start('player', 'moderator')
-    .pipe(connect.reload())
-});
+gulp.task('scripts', ['player', 'moderator']);
 
 // Images
 gulp.task('images', function() {
