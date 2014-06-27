@@ -26,6 +26,7 @@ Clone the repository and install all dependencies with
 
     bower install
     npm install
+    npm install -g gulp
 
 ## Set up CSS pre-processing
 
@@ -81,7 +82,7 @@ There is a gulp task for that, processing a version with line comments as well a
 
 Make is now replaced by [gulp](https://github.com/gulpjs/gulp/blob/master/docs/README.md)
 
-Just run the default task to build the distribution package to *dist* folder.
+Just run the default task to build the distribution package to `dist` folder.
 
     gulp
 
