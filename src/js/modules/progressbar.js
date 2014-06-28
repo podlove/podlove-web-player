@@ -22,22 +22,27 @@ function ProgressBar(timeline, params) {
   this.update = _update.bind(this);
 }
 
+ProgressBar.prototype.setHandlePosition = function (timeline) {
+  var time = timeline.getTime(),
+    newWidth = Math.round(this.progress.width() * time / timeline.duration),
+    handlePos = newWidth - Math.round(this.handle.outerWidth(true) / 2);
+  console.debug('ProgressBar', 'setHandlePosition', handlePos);
+  this.handle.css('left', handlePos);
+};
+
 /**
  * This update method is to be called when a players `currentTime` changes.
  */
 var _update = function (timeline) {
   var time = timeline.getTime();
-  var buffer = timeline.getBuffered();
+  this.progress.val(time);
+
   console.log('ProgressBar', 'update', time);
 
-  var
-    newWidth = Math.round(this.progress.width() * time / timeline.duration),
-    handlePos = newWidth - Math.round(this.handle.outerWidth(true) / 2);
-
-  this.progress.val(time);
+  var buffer = timeline.getBuffered();
   this.buffer.val(buffer);
-  this.handle.css('left', handlePos);
 
+  this.setHandlePosition(timeline);
   this.currentTime.html(tc.fromTimeStamp(time));
 };
 
@@ -54,8 +59,7 @@ ProgressBar.prototype.render = function () {
     progress = $('<div class="progress"></div>'),
     current = $('<progress class="current"></progress>')
       .attr({ min: 0, max: this.params.duration }),
-    handle = $('<div class="handle"></div>')
-      .css({left: this.timeline.currentTime}),
+    handle = $('<div class="handle"></div>'),
     buffer = $('<progress class="buffer"></progress>')
       .attr({min: 0, max: 1})
       .css({height:"1px;"});
@@ -77,6 +81,7 @@ ProgressBar.prototype.render = function () {
   this.buffer = buffer;
   this.handle = handle;
   this.currentTime = currentTimeElement;
+
   return bar;
 };
 
@@ -145,6 +150,8 @@ ProgressBar.prototype.addEvents = function() {
       }
     }
     ;
+
+  this.setHandlePosition(this.timeline);
 
   // handle clicks and drag in progressbar and on handle
   this.progress
