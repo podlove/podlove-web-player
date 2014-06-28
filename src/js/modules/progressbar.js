@@ -84,6 +84,8 @@ ProgressBar.prototype.addEvents = function() {
 
   var t = this,
     total = this.progress,
+    mouseIsDown = false,
+    mouseIsOver = false,
     handleMouseMove = function (e) {
       // mouse position relative to the object
       var x = e.pageX,
@@ -111,11 +113,7 @@ ProgressBar.prototype.addEvents = function() {
         }
       }
     },
-    mouseIsDown = false,
-    mouseIsOver = false;
-
-  // handle clicks
-  this.progress.bind('mousedown', function (e) {
+    mouseDownHandler = function (e) {
       // only handle left clicks
       if (e.which === 1) {
         mouseIsDown = true;
@@ -131,21 +129,33 @@ ProgressBar.prototype.addEvents = function() {
         });
         return false;
       }
-    })
-    .bind('mouseenter', function() {
+    },
+    mouseEnterHandler = function() {
       mouseIsOver = true;
       $(document).bind('mousemove.dur', function(e) {
         handleMouseMove(e);
       });
-    })
-    .bind('mouseleave', function() {
+    },
+    mouseLeaveHandler = function() {
       mouseIsOver = false;
       if (!mouseIsDown) {
         $(document)
           .unbind('mousup.dur')
           .unbind('mousemove.dur');
       }
-    });
+    }
+    ;
+
+  // handle clicks and drag in progressbar and on handle
+  this.progress
+    .bind('mousedown', mouseDownHandler)
+    .bind('mouseenter', mouseEnterHandler)
+    .bind('mouseleave', mouseLeaveHandler);
+
+  this.handle
+    .bind('mousedown', mouseDownHandler)
+    .bind('mouseenter', mouseEnterHandler)
+    .bind('mouseleave', mouseLeaveHandler)
 
 };
 
