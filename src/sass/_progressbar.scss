@@ -2,7 +2,6 @@
 // Progressbar
 // --------------------------------------------------
 
-$progress-bar-height: 24px;
 
 // All HTML5 progress enabled browsers polyfill
 // ----------------------------
@@ -10,7 +9,6 @@ $progress-bar-height: 24px;
 /********** 1. Turn off default styling ***************/
 progress,
 progress[role] {
-
   /* Turns off styling - not usually needed, but good to know. */
   appearance: none;
   -moz-appearance: none;
@@ -81,10 +79,11 @@ progress[aria-valuenow]:before  {
   -webkit-flex-flow: row wrap;
   background-color: $progress-bg;
   width: 100%;
-  height: 50px;
+  height: $progress-height;
   font-weight: $font-weight-lighter;
   .time {
     margin: auto 15px;
+    letter-spacing: 1px;
     &:first-of-type {
       @include flex(1 40px);
       @include order(1);
@@ -109,24 +108,23 @@ progress[aria-valuenow]:before  {
   overflow: hidden;
   margin: 0 auto;
   position: relative;
-}
-
-.progress .current {
-  width: 100%;
-  height: $progress-bar-height;
-  background-repeat: repeat-x;
-  margin: 0 auto;
-  position: absolute;
-  top: 8px;
-  left: 0;
+  .current {
+    width: 100%;
+    height: $progress-bar-height;
+    background-repeat: repeat-x;
+    margin: 0 auto;
+    position: absolute;
+    top: 12px;
+    left: 0;
+  }
 }
 
 .buffer {
-  top: $progress-bar-height + 14px;
+  top: $progress-bar-height + 16px;
   left: 0;
   position: absolute;
   width: 100%;
-  height: 2px;
+  height: $buffer-height;
   background-repeat: repeat-x;
   margin: 0 auto;
 }
@@ -135,8 +133,8 @@ progress[aria-valuenow]:before  {
   display: block;
   background: white;
   height: $progress-bar-height;
-  width: 4px;
+  width: $progress-bar-height;
   position: absolute;
-  top: 8px;
+  top: 12px;
   left: 0;
 }

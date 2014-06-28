@@ -42,7 +42,7 @@ $contrasted-light-default:  $gray-lighter;
 // -------------------------
 
 //Background color of the whole progress component
-$progress-bg:               $gray-darker;
+$progress-bg:               $black;
 
 //** Progress bar text color
 $progress-bar-time-current:  #fefdff;
@@ -52,8 +52,11 @@ $progress-bar-time-duration: #c6c5c7;
 $progress-bar-bg:           $brand-primary;
 $progress-bar-color:        $gray;
 
-$progress-bar-height:       16px;
+$progress-height:           50px;
+$progress-bar-height:       18px;
 
+// Buffer
+$buffer-height:             4px;
 
 // Links
 // -------------------------
