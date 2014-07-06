@@ -8,7 +8,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 
-    <title>Audio Tag Decoration Test Page</title>
+    <title>Podlove Web Player Documentation</title>
 
     <meta name="keywords" content=""/>
     <meta name="description" content="" />
@@ -20,35 +20,37 @@
     <link rel="apple-touch-icon" href="appletouch.png"/>
 
     <style>
-        iframe { max-width: 95%; }
+        iframe {
+            width: 85%;
+            margin: 0 auto 3em;
+        }
     </style>
 </head>
 <body>
+    <header>
+        <h1>Podlove Webplayer</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="examples/">Multiple embedded players on one page</a></li>
+            <li><a href="examples/which-format/">format test track</a></li>
+            <li><a href="examples/cre-206/">Real long podcast (CRE-206)</a></li>
+            <li><a href="examples/video/">(experimental) video</a></li>
+            <li><a href="examples/picture-stream/">(experimental) picture stream in audio file</a></li>
+        </ul>
+    </nav>
     <article>
-        <h1>1st embedded player</h1>
+        <h2>This is an embedded player</h2>
         <noscript>First Player Info.</noscript>
-        <audio data-podlove-web-player-source="example/embed.html">
-            <source src="podlove-test-track.mp4" type="audio/mp4" />
-            <source src="podlove-test-track.mp3" type="audio/mpeg" />
-            <source src="podlove-test-track.ogg" type="audio/ogg; codecs=vorbis" />
-            <source src="podlove-test-track.opus" type="audio/ogg; codecs=opus" />
+        <audio data-podlove-web-player-source="examples/which-format/index.html">
+            <source src="examples/which-format/podlove-test-track.mp4" type="audio/mp4" />
+            <source src="examples/which-format/podlove-test-track.mp3" type="audio/mpeg" />
+            <source src="examples/which-format/podlove-test-track.ogg" type="audio/ogg; codecs=vorbis" />
+            <source src="examples/which-format/podlove-test-track.opus" type="audio/ogg; codecs=opus" />
         </audio>
     </article>
-    <article>
-        <h1>2nd embedded player</h1>
-        <noscript>Second Player Info.</noscript>
-        <audio data-podlove-web-player-source="example/embed2.html" data-podlove-web-player-height="400"
-                data-podlove-web-player-width="900">
-            <source src="podlove-test-track.mp4" type="audio/mp4" />
-            <source src="podlove-test-track.mp3" type="audio/mpeg" />
-            <source src="podlove-test-track.ogg" type="audio/ogg; codecs=vorbis" />
-            <source src="podlove-test-track.opus" type="audio/ogg; codecs=opus" />
-        </audio>
-    </article>
-    <script src="js/vendor/jquery.min.js"></script>
-    <script src="js/podlove-web-moderator.js"></script>
-    <script>
-        $('audio').podlovewebplayer();
-    </script>
+    <script src="/js/vendor/jquery.min.js"></script>
+    <script src="/js/podlove-web-moderator.js"></script>
+    <script>$('audio').podlovewebplayer();</script>
 </body>
 </html>
