@@ -4,13 +4,13 @@
  * @param {boolean} active
  * @returns {*|jQuery|HTMLElement}
  */
-function createControlBox(options) {
+function createContentBox(options) {
   var classes = ["tab"];
   classes.push(options.name);
   if (options.active) {
     classes.push("active");
   }
-  return $('<section class="' + classes.join(' ') + '"><header><h2>' + options.headline + '</h2></header></section>');
+  return $('<section class="' + classes.join(' ') + '"></section>');
 }
 
 function Tab(options) {
@@ -18,7 +18,8 @@ function Tab(options) {
   this.title = options.title;
   this.headline = options.headline;
   console.log(options.headline);
-  this.box = createControlBox(options);
+  this.box = createContentBox(options);
+  this.box.append(this.createHeader());
   this.active = false;
   this.close();
 }
@@ -35,6 +36,22 @@ Tab.prototype.close = function () {
 
 Tab.prototype.createToggleButton = function(icon, title) {
   return $('<a href="#" class="button button-toggle ' + icon + '" title="' + title + '"></a>');
+}
+
+Tab.prototype.createHeader = function() {
+  return $('<header><h2>' + this.headline + '</h2></header>');
+}
+
+Tab.prototype.createSection = function(content) {
+  this.box.append('<section>' + content + '</section>');
+}
+
+Tab.prototype.createAside = function(content) {
+  this.box.append('<aside>' + content + '</aside>');
+}
+
+Tab.prototype.createFooter = function(content) {
+  this.box.append('<footer>' + content + '</footer>');
 }
 
 module.exports = Tab;
