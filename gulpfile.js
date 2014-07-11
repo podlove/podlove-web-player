@@ -13,6 +13,10 @@ var gulp = require('gulp')
   , cache = require('gulp-cache')
   , browserify = require('gulp-browserify')
   , connect = require('gulp-connect')
+  , karma = require('karma').server
+  , _ = require('lodash')
+
+  , karmaConf = require('./karma.conf.json')
 
 // set paths
   , bower = 'bower_components/'
@@ -20,6 +24,21 @@ var gulp = require('gulp')
   , dest = 'dist/'
   , external = 'vendor/'
   ;
+
+/**
+ * Run test once and exit
+ */
+gulp.task('test', function (done) {
+  var singleRunConf = _.assign({}, karmaConf, {singleRun: true});
+  karma.start(singleRunConf, done);
+});
+
+/**
+ * Watch for file changes and re-run tests on each change
+ */
+gulp.task('tdd', function (done) {
+  karma.start(karmaConf, done);
+});
 
 // Styles
 gulp.task('styles', function() {
@@ -124,17 +143,17 @@ gulp.task('clean', function() {
 });
 
 // Default task
-gulp.task('default', ['clean'], function() {
+gulp.task('default', ['clean', 'test'], function() {
   gulp.start('styles', 'scripts', 'images', 'copy', 'examples');
 });
 
 // Watch
-gulp.task('watch', function() {
+gulp.task('watch', ['tdd'],  function() {
 
-  // Watch .scss files
+  // Watch Sass source files
   gulp.watch(source + 'sass/**/*.scss', ['styles']);
 
-  // Watch .js files
+  // Watch Javascript source files
   gulp.watch(source + 'js/**/*.js', ['scripts']);
 
   // Watch image files
