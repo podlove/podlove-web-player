@@ -5,7 +5,6 @@
 .tabs {
   color: $text-color;
   background-color: $white;
-  //transition: all 0.5s;
   a {
     color: $default-link-color;
     &.button-toggle {
@@ -13,13 +12,10 @@
     }
   }
 
-  section {
+  > section {
     padding: 0;
     line-height: 1.5;
     overflow-y: scroll;
-    border-left: 1px solid $gray-light;
-    border-right: 1px solid $gray-light;
-    border-bottom: 1px solid $gray-light;
   }
 
   p {
@@ -30,9 +26,19 @@
     display: none;
 
     &.active {
-      display: block;
-      height: 300px;
+      @include flexbox();
+      height: 600px;
+      header {
+        margin: 20px 0 10px;
+      }
       h2 {
+        margin: 0 25px;
+        padding: 5px 0;
+      }
+      h2::before {
+        margin: 0 16px 0 0;
+      }
+      h4 {
         margin: 20px 25px;
       }
     }
@@ -54,54 +60,6 @@
     max-width:70px;
   }
 }
-
-/*
-.tab .button-toggle,
-.tab .button-toggle a,
-.togglebar .button-toggle,
-.togglebar .button-toggle a {
-  @include iconfont-button;
-  //color: $white;
-  //background: transparent !important;
-  //font-size: 1.75em;
-*/
-/*
-  -webkit-text-shadow: 0px 0px 1px #000000;
-  -moz-text-shadow: 0px 0px 1px #000000;
-  -o-text-shadow: 0px 0px 1px #000000;
-*//*
-
-  text-shadow: 0px 0px 1px #000000;
-*/
-/*
-  -webkit-font-smoothing: antialiased;
-  -moz-font-smoothing: antialiased;
-  -o-font-smoothing: antialiased;
-*//*
-
-  font-smoothing: antialiased;
-  text-decoration: none;
-  speak: none;
-  display: inline;
-  text-decoration: none;
-  &:hover {
-    text-decoration: none;
-    text-shadow: 0px 0px 4px #FFFFFF;
-    filter: dropshadow(color=#FFFFFF, offx=0, offy=0);
-    cursor: pointer;
-  }
-}
-
-.tab .button-toggle,
-.tab .button-toggle a {
-  position: relative;
-  margin: 4%;
-  padding: 0px;
-  z-index: 78;
-  font-size: 2.4em;
-  font-weight: bold;
-}
-*/
 
 // Video Player
 .container.podlovewebplayer_video .tab,

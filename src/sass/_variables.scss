@@ -61,7 +61,7 @@ $buffer-height:             4px;
 // Links
 // -------------------------
 
-$default-link-color:      $brand-primary !default;
+$default-link-color:      lighten($brand-primary, 15%) !default;
 $link-color:              $white !default;
 $link-hover-color:        lighten($link-color, 15%) !default;
 $brand-primary-hover:     lighten($brand-primary, 69%) !default;
@@ -106,7 +106,8 @@ $headings-font-weight:    300 !default;
 $headings-line-height:    1.1 !default;
 $headings-color:          inherit !default;
 
-
+$font-size-button-label:        floor($font-size-base * 2.0) !default;  // 32px
+$font-size-button-small-label:  floor($font-size-base * 1.25) !default; // 20px
 
 // Components
 // -------------------------
@@ -168,5 +169,35 @@ $screen-md-max:              ($screen-lg-min - 1) !default;
 $hr-border:                   $gray-lighter !default;
 
 // Image size in titlebar
-$image-height:                140px;
-$image-width:                 $image-height;
+$title-image-height:          140px;
+$title-image-width:           $title-image-height;
+
+// Image in Info Tab
+$info-image-width:            400px;
+
+// Compass Breakpoints
+// --------------------------
+// https://github.com/Team-Sass/breakpoint
+// http://breakpoint-sass.com/
+
+// assume min-width (by default) if only a number
+$breakpoint-medium-width:         500px;
+$breakpoint-medium-width-em:      30em;
+
+// set min-width/max-width if both values are numbers
+$breakpoint-medium-not-wide:      500px 700px;
+
+// set min/max of feature if there are two numbers
+$breakpoint-medium-height:        height 300px 700px;
+
+// if one value is a string, assume a feature/value pair
+$breakpoint-kind-of-wide:         min-width 700px;
+$breakpoint-not-too-wide:         max-width 700px;
+
+// for multidimensional lists, assume each item is a feature value pair
+$breakpoint-wide-portrait:        (max-width 700px) (orientation portrait);
+
+// handle one-sided features (ie. monochrome)
+$breakpoint-wide-portrait-mono:   (max-width 700px) (orientation portrait) (monochrome);
+$breakpoint-mono:                 monochrome;
+$breakpoint-hi-rez:               min-resolution 1.5dppx;

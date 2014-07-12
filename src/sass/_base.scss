@@ -42,6 +42,7 @@ a {
   color: $default-link-color;
   text-decoration: none;
   background: transparent !important;
+  font-weight: $font-weight-bolder;
 
   &:hover,
   &:focus {
@@ -49,6 +50,14 @@ a {
     text-decoration: none;
     outline: none;
   }
+}
+
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a {
+  font-weight: $font-weight-normal;
 }
 
 // Horizontal rules
@@ -60,6 +69,10 @@ hr {
   border-top: 1px solid $hr-border;
 }
 
+em {
+  font-weight: $font-weight-bolder;
+  font-size: $font-size-base;
+}
 
 // Only display content to screen readers
 //

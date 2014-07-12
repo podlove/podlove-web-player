@@ -5,8 +5,6 @@
 .titlebar {
   @include clearfix();
   @include flexbox();
-  flex-direction: row;
-  -webkit-flex-flow: row wrap;
   width: 100%;
   background: $gray;
   min-height: 100px;
@@ -22,12 +20,12 @@
 }
 
 .coverart {
-  @include flex(0 $image-height);
+  @include flex(0 $title-image-height);
   @include order(1);
-  min-width: $image-width;
-  height: $image-height;
+  min-width: $title-image-width;
+  height: $title-image-height;
   img {
-    height: $image-height !important;
+    height: $title-image-height;
     width: auto !important;
   }
 }
