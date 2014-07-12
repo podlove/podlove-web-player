@@ -68,7 +68,7 @@ Tab.prototype.createHeader = function() {
  * @param content
  */
 Tab.prototype.createSection = function(content) {
-  this.box.append('<section>' + content + '</section>');
+  this.box.append('<section class="main">' + content + '</section>');
 }
 
 /**
@@ -76,7 +76,7 @@ Tab.prototype.createSection = function(content) {
  * @param content
  */
 Tab.prototype.createAside = function(content) {
-  this.box.append('<aside>' + content + '</aside>');
+  this.box.append('<aside class="aside">' + content + '</aside>');
 }
 
 /**
