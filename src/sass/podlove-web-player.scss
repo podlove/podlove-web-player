@@ -17,6 +17,7 @@
  */
 
 // Core variables and mixins
+//@import "breakpoint";
 @import "variables";
 @import "mixins";
 
@@ -33,7 +34,6 @@
 // Components
 @import "theme";
 @import "progressbar";
-//@import "controls";
 @import "titlebar";
 @import "controlbar";
 @import "mediaelement";
@@ -45,8 +45,9 @@
 
 // Utility classes
 @import "utilities";
-//@import "compass/utilities/color/contrast";
-
+@import "compass/utilities";
+@import "compass/css3";
+@import "compass/css3/columns";
 
 // Icons (Sass import from an external library folder)
 @import "CSS:../libs/podlove-font/css/podlovefont";
