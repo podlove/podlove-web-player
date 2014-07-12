@@ -75,8 +75,6 @@ progress[aria-valuenow]:before  {
 
 .progressbar {
   @include flexbox();
-  flex-direction: row;
-  -webkit-flex-flow: row wrap;
   background-color: $progress-bg;
   width: 100%;
   height: $progress-height;
