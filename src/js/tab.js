@@ -59,7 +59,9 @@ Tab.prototype.createToggleButton = function(icon, title) {
  * Return an html header element with a headline
  */
 Tab.prototype.createHeader = function() {
-  this.box.append('<header><h2 class="' + this.icon + '">' + this.headline + '</h2></header>');
+  var header = $('<header><h2 class="' + this.icon + '">' + this.headline + '</h2></header>');
+  this.box.append(header);
+  return header;
 };
 
 /**
@@ -67,7 +69,9 @@ Tab.prototype.createHeader = function() {
  * @param content
  */
 Tab.prototype.createSection = function(content) {
-  this.box.append('<section class="main">' + content + '</section>');
+  var section = $('<div class="main">' + content + '</div');
+  this.box.append(section);
+  return section;
 };
 
 /**
@@ -75,7 +79,9 @@ Tab.prototype.createSection = function(content) {
  * @param content
  */
 Tab.prototype.createAside = function(content) {
-  this.box.append('<aside class="aside">' + content + '</aside>');
+  var aside = $('<aside class="aside">' + content + '</aside>');
+  this.box.append(aside);
+  return aside;
 };
 
 /**
@@ -83,7 +89,9 @@ Tab.prototype.createAside = function(content) {
  * @param content
  */
 Tab.prototype.createFooter = function(content) {
-  this.box.append('<footer>' + content + '</footer>');
+  var footer = $('<footer>' + content + '</footer>');
+  this.box.append(footer);
+  return footer;
 };
 
 module.exports = Tab;
