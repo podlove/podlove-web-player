@@ -6,6 +6,75 @@ var tc = require('../timecode')
   ;
 
 /**
+ * render HTMLTableElement for chapters
+ * @returns {jQuery|HTMLElement}
+ */
+function renderChapterTable() {
+  return render(
+    '<table class="podlovewebplayer_chapters"><caption>Podcast Chapters</caption>' +
+      '<thead>' +
+        '<tr>' +
+          '<th scope="col">Chapter Number</th>' +
+          '<th scope="col">Start time</th>' +
+          '<th scope="col">Title</th>' +
+          '<th scope="col">Duration</th>' +
+        '</tr>' +
+      '</thead>' +
+      '<tbody></tbody>' +
+    '</table>'
+  );
+}
+
+/**
+ *
+ * @param {object} chapter
+ * @returns {jQuery|HTMLElement}
+ */
+function renderRow (chapter, index) {
+  //console.log('chapter to render row from ', chapter);
+  return render(
+    '<tr class="chapter">' +
+      '<td class="chapter-number"><span class="badge">' + (index+1) + '</span></td>' +
+      '<td class="chapter-image">' + renderChapterImage(chapter.image) + '</td>' +
+      '<td class="chapter-name"><span>' + chapter.code + '</span> ' +
+      renderExternalLink(chapter.href) + '</td>' +
+      '<td class="chapter-duration"><span>' + chapter.duration + '</span></td>' +
+    '</tr>'
+  );
+}
+
+function renderExternalLink(href) {
+  if (!href || href === "") {
+    return '';
+  }
+  return '<a class="pwp-icon-link-ext button button-toggle" target="_blank" href="' + href + '"></a>';
+}
+
+function renderChapterImage(imageSrc) {
+  if (!imageSrc || imageSrc === "") {
+    return '';
+  }
+  return '<img src="' + imageSrc + '"/>';
+}
+
+function render(html) {
+  return $(html);
+}
+
+/**
+ *
+ * @param {Array} chapters
+ * @param {number} duration
+ * @returns {number}
+ */
+function getMaxChapterStart(chapters) {
+  function getStartTime (chapter) {
+    return chapter.start;
+  }
+  return Math.max.apply(Math, $.map(chapters, getStartTime));
+}
+
+/**
  *
  * @param {{end:{number}, start:{number}}} chapter
  * @param {number} currentTime
@@ -16,36 +85,6 @@ function isActiveChapter (chapter, currentTime) {
     return false;
   }
   return (currentTime > chapter.start - ACTIVE_CHAPTER_THRESHHOLD && currentTime <= chapter.end);
-}
-
-/**
- * chapter handling
- * @params {Timeline} params
- * @return {Chapters} chapter module
- */
-function Chapters (timeline) {
-
-  // FIXME
-  this.timeline = timeline;
-  if (timeline.duration === 0) {
-    console.warn('Chapters', 'constructor', 'Zero length media?', timeline);
-  }
-  this.duration = timeline.duration;
-  this.tab = new Tab({
-    icon: "pwp-icon-list-bullet",
-    title: "Show/hide chapters",
-    headline: 'Chapters',
-    name: "podlovewebplayer_chapterbox showonplay" // FIXME clean way to add 2 classnames
-  })
-  ;
-
-  //build chapter table
-  this.chapters = timeline.getDataByType('chapter');
-  this.currentChapter = -1;
-
-  this.chapterlinks = (timeline.chapterlinks !== 'false');
-  this.tab.box.append(this.generateTable());
-  this.update = update.bind(this);
 }
 
 /**
@@ -101,11 +140,36 @@ function update (timeline) {
   });
 }
 
-/*
-Chapters.prototype.update = function () {
-  return update.bind(this);
-};
-*/
+/**
+ * chapter handling
+ * @params {Timeline} params
+ * @return {Chapters} chapter module
+ */
+function Chapters (timeline) {
+
+  // FIXME
+  this.timeline = timeline;
+  if (timeline.duration === 0) {
+    console.warn('Chapters', 'constructor', 'Zero length media?', timeline);
+  }
+  this.duration = timeline.duration;
+  this.tab = new Tab({
+    icon: "pwp-icon-list-bullet",
+    title: "Show/hide chapters",
+    headline: 'Chapters',
+    name: "podlovewebplayer_chapterbox showonplay" // FIXME clean way to add 2 classnames
+  })
+  ;
+
+  //build chapter table
+  this.chapters = timeline.getDataByType('chapter');
+  this.currentChapter = -1;
+
+  this.chapterlinks = (timeline.chapterlinks !== 'false');
+  var main = this.tab.createSection('');
+  main.append(this.generateTable());
+  this.update = update.bind(this);
+}
 
 /**
  * Given a list of chapters, this function creates the chapter table for the player.
@@ -237,66 +301,3 @@ Chapters.prototype.playCurrentChapter = function () {
 };
 
 module.exports = Chapters;
-
-/**
- * render HTMLTableElement for chapters
- * @returns {jQuery|HTMLElement}
- */
-function renderChapterTable() {
-  return render('<table class="podlovewebplayer_chapters"><caption>Podcast Chapters</caption>' +
-    '<thead><tr>' +
-    '<th scope="col">Chapter Number</th>' +
-    '<th scope="col">Start time</th>' +
-    '<th scope="col">Title</th>' +
-    '<th scope="col">Duration</th>' +
-    '</tr></thead>' +
-    '<tbody></tbody>' +
-    '</table>');
-}
-
-/**
- *
- * @param {object} chapter
- * @returns {jQuery|HTMLElement}
- */
-function renderRow (chapter, index) {
-  //console.log('chapter to render row from ', chapter);
-  return render('<tr class="chapter">' +
-    '<td class="chapter-number"><span class="badge">' + (index+1) + '</span></td>' +
-    '<td class="chapter-image">' + renderChapterImage(chapter.image) + '</td>' +
-    '<td class="chapter-name"><span>' + chapter.code + '</span> ' +
-    renderExternalLink(chapter.href) + '</td>' +
-    '<td class="chapter-duration"><span>' + chapter.duration + '</span></td>' +
-    '</tr>');
-}
-
-function renderExternalLink(href) {
-  if (!href || href === "") {
-    return '';
-  }
-  return '<a class="pwp-icon-link-ext button button-toggle" target="_blank" href="' + href + '"></a>';
-}
-
-function renderChapterImage(imageSrc) {
-  if (!imageSrc || imageSrc === "") {
-    return '';
-  }
-  return '<img src="' + imageSrc + '"/>';
-}
-
-function render(html) {
-  return $(html);
-}
-
-/**
- *
- * @param {Array} chapters
- * @param {number} duration
- * @returns {number}
- */
-function getMaxChapterStart(chapters) {
-  function getStartTime (chapter) {
-    return chapter.start;
-  }
-  return Math.max.apply(Math, $.map(chapters, getStartTime));
-}
