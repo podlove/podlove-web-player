@@ -22,9 +22,9 @@ function Tab(options) {
   this.icon = options.icon;
   this.title = options.title;
   this.headline = options.headline;
-  //console.log(options.headline);
+
   this.box = createContentBox(options);
-  this.box.append(this.createHeader());
+  this.createHeader();
   this.active = false;
   this.close();
 }
@@ -57,11 +57,10 @@ Tab.prototype.createToggleButton = function(icon, title) {
 
 /**
  * Return an html header element with a headline
- * @returns {*|jQuery|HTMLElement}
  */
 Tab.prototype.createHeader = function() {
-  return $('<header><h2 class="' + this.icon + '">' + this.headline + '</h2></header>');
-}
+  this.box.append('<header><h2 class="' + this.icon + '">' + this.headline + '</h2></header>');
+};
 
 /**
  * Append an html section element to the tab's content box
@@ -69,7 +68,7 @@ Tab.prototype.createHeader = function() {
  */
 Tab.prototype.createSection = function(content) {
   this.box.append('<section class="main">' + content + '</section>');
-}
+};
 
 /**
  * Append an html aside element to the tab's content box
@@ -77,7 +76,7 @@ Tab.prototype.createSection = function(content) {
  */
 Tab.prototype.createAside = function(content) {
   this.box.append('<aside class="aside">' + content + '</aside>');
-}
+};
 
 /**
  * Append an html footer element to the tab's content box
@@ -85,6 +84,6 @@ Tab.prototype.createAside = function(content) {
  */
 Tab.prototype.createFooter = function(content) {
   this.box.append('<footer>' + content + '</footer>');
-}
+};
 
 module.exports = Tab;
