@@ -36,19 +36,17 @@ function createShareButton(options) {
  */
 function createShareButtons(shareTab, episode) {
 
-  var shareButtonsControlBox = shareTab.box,
-    container = $('<p></p>').appendTo(shareButtonsControlBox)
+  var container = $('<p></p>')
+    , currentButton = createShareButton({
+      icon: "pwp-icon-link",
+      title: "Get URL for this",
+      clickHandler: function () {
+        window.prompt('This URL directly points to this episode', episode.url);
+        return false;
+      }
+    })
     ;
-  var currentButton = createShareButton({
-    icon: "pwp-icon-link",
-    title: "Get URL for this",
-    clickHandler: function () {
-      window.prompt('This URL directly points to this episode', episode.url);
-      return false;
-    }
-  });
   container.append(currentButton);
-
   var tweetButton = createShareButton({
     icon: "pwp-icon-twitter",
     title: "Share this on Twitter",
@@ -92,6 +90,7 @@ function createShareButtons(shareTab, episode) {
     }
   });
   container.append(mailButton);
+  shareTab.createSection().append(container);
 }
 
 /**
