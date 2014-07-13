@@ -1,6 +1,8 @@
 //
 // Metadata Tabs
 // --------------------------------------------------
+$tab-height: 400px;
+$tab-header-height: 45px;
 
 .tabs {
   color: $text-color;
@@ -25,22 +27,13 @@
   .tab {
     display: none;
 
+    & > * {
+      padding: 1px;
+    }
+
     &.active {
       @include flexbox();
-      height: 600px;
-      header {
-        margin: 20px 0 10px;
-      }
-      h2 {
-        margin: 0 25px;
-        padding: 5px 0;
-      }
-      h2::before {
-        margin: 0 16px 0 0;
-      }
-      h4 {
-        margin: 20px 25px;
-      }
+      height: $tab-height;
     }
   }
   dt, dd {
@@ -59,7 +52,35 @@
     width: 30%;
     max-width:70px;
   }
+  header {
+    @include flex(1 100%);
+    @include order(1);
+    margin: 0;
+    width: 100%;
+    height: $tab-header-height;
+  }
+  h2 {
+    margin: 0 25px;
+    padding: 5px 0;
+  }
+  h2::before {
+    margin: 0 16px 0 0;
+  }
+  h4 {
+    margin: 20px 25px;
+  }
+  .main {
+    width: 100%;
+    min-height: $tab-height - $tab-header-height - 4;
+    @include flex(1 100%);
+    @include order(2);
+  }
+  footer {
+    @include flex(1 100%);
+    @include order(3);
+  }
 }
+
 
 // Video Player
 .container.podlovewebplayer_video .tab,

@@ -3,15 +3,7 @@
 // --------------------------------------------------
 
 .info {
-  // Flexible layout
-  @include flexbox();
-  > * {
-    padding: 2px;
-  }
-  header {
-    @include flex(1 100%);
-  }
-  section {
+  .main {
     width: 60%;
     @include flex(1 100%);
     @include order(1);
@@ -25,10 +17,6 @@
     @include order(2);
     width: 40%;
   }
-  footer {
-    @include flex(1 100%);
-    @include order(3);
-  }
   // The aside element will move under the section (.main) element
   @media all and (min-width: 600px) {
     .aside {
@@ -39,8 +27,6 @@
   @media all and (min-width: 800px) {
     .main   {
       @include flex(2 0px);
-    }
-    section {
       @include order(1);
     }
     aside   {
@@ -60,7 +46,6 @@
     }
   }
   footer {
-    @include flex(1 100%);
     padding: 25px 0;
     text-align: center;
     background-color: $gray-lighter;
