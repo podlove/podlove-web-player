@@ -7,13 +7,10 @@
 </head>
 <body>
     <audio controls="controls" preload="none">
-        <source src="http://cre.fm/podlove/file/3235/s/webplayer/c/home/cre206-das-ohr.m4a" type="audio/mp4"/>
-        <source src="http://cre.fm/podlove/file/3236/s/webplayer/c/home/cre206-das-ohr.opus" type="audio/opus"/>
-        <source src="http://cre.fm/podlove/file/3238/s/webplayer/c/home/cre206-das-ohr.oga" type="audio/ogg"/>
-        <source src="http://cre.fm/podlove/file/3239/s/webplayer/c/home/cre206-das-ohr.mp3" type="audio/mpeg"/>
+        <source src="Kapitel-Demo.m4a" type="audio/mp4"/>
         <object type="application/x-shockwave-flash" data="flashmediaelement.swf">
             <param name="movie" value="flashmediaelement.swf"/>
-            <param name="flashvars" value="controls=true&amp;file=http://meta.metaebene.me/media/cre/cre206-das-ohr.mp3"/>
+            <param name="flashvars" value="controls=true&amp;file=Kapitel-Demo.m4a"/>
         </object>
     </audio>
     <script src="/js/vendor/html5shiv.js"></script>
@@ -22,57 +19,43 @@
     <script src="/js/podlove-web-player.js"></script>
     <script>
         $('audio').podlovewebplayer({
-            "pluginPath": "http:\/\/cre.fm\/wp-content\/plugins\/podlove-podcasting-plugin-for-wordpress\/lib\/modules\/podlove_web_player\/player\/podlove-web-player\/static\/",
-            "alwaysShowHours": true,
-            "alwaysShowControls": true,
-            "timecontrolsVisible": false,
-            "summaryVisible": false,
-            "hidetimebutton": false,
-            "hidedownloadbutton": false,
-            "hidesharebutton": false,
-            "sharewholeepisode": false,
-            "loop": false,
+            "pluginPath": "/bin",
             "chapterlinks": "all",
-            "permalink": "http:\/\/cre.fm\/cre206-das-ohr",
-            "title": "CRE206 Das Ohr",
-            "subtitle": "\u00dcber das H\u00f6rsystem des Menschen und Cochlea-Implantate",
-            "summary": "Das akustische Wahrnehmungssystem ist eines dieser unfassbaren Wunder der Evolution, das vom Menschen noch lange nicht vollst\u00e4ndig verstanden ist. Trotzdem hat die Forschung in der Medizin, Biologie und Hirnforschung bereits eine so umfangreiche Vorstellung der Mechanismen erarbeitet, dass mittlerweile auch schwere Sch\u00e4digungen des H\u00f6rsystems behoben oder zumindest teilweise umgangen werden k\u00f6nnen. Das Cochlea-Implantat stellt in diesem Zusammenhang die weitesten reichende Entwicklung dar, da hier akustische Signale direkt in der H\u00f6rschnecke elektrisch abgebildet werden k\u00f6nnen.<br \/>\r\n<br \/>\r\nAudiologe und Softwareentwickler Stefan Brill entwickelt entsprechende Algorithmen f\u00fcr die Signalverarbeitung und -erzeugung f\u00fcr solche Implantate und berichtet im Gespr\u00e4ch mit Tim Pritlove von der Funktionsweise des Geh\u00f6rsystems vom Au\u00dfenohr bis zum H\u00f6rnerv und mit welchen technischen Ma\u00dfnahmen auch taube Menschen wieder zum H\u00f6ren gebracht werden k\u00f6nnen.", "poster": "http:\/\/meta.metaebene.me\/media\/cre\/cre206-das-ohr.jpg", "showTitle": "CRE: Technik, Kultur, Gesellschaft", "showSubtitle": "Der Interview-Podcast mit Tim Pritlove", "showSummary": "Intensive und ausf\u00fchrliche Gespr\u00e4che \u00fcber Themen aus Technik, Kultur und Gesellschaft, das ist CRE. Interessante Gespr\u00e4chspartner stehen Rede und Antwort zu Fragen, die man normalerweise selten gestellt bekommt. CRE m\u00f6chte  aufkl\u00e4ren, weiterbilden und unterhalten.", "showPoster": "http:\/\/meta.metaebene.me\/media\/cre\/cre-logo-1400x1400.jpg",
+            "permalink": "/examples/picture-stream/",
+            "title": "Schöne Ecken - Kapiteltest",
+            "subtitle": "Kapitel; mit allen Kombination aus Titel, URL und Bild",
+            "summary": "Hier muss was stehen sonst kommt nix.",
+            "poster": "",
+            "showTitle": "Schöne Ecken",
+            "showSubtitle": "",
+            "showSummary": "",
+            "showPoster": "",
             "show": {
-                "title": "CRE: Technik, Kultur, Gesellschaft",
-                "subtitle": "Der Interview-Podcast mit Tim Pritlove",
-                "summary": "Intensive und ausf\u00fchrliche Gespr\u00e4che \u00fcber Themen aus Technik, Kultur und Gesellschaft, das ist CRE. Interessante Gespr\u00e4chspartner stehen Rede und Antwort zu Fragen, die man normalerweise selten gestellt bekommt. CRE m\u00f6chte  aufkl\u00e4ren, weiterbilden und unterhalten.",
-                "poster": "http:\/\/meta.metaebene.me\/media\/cre\/cre-logo-1400x1400.jpg"
+                "title": "Schöne Ecken",
+                "subtitle": "",
+                "summary": "",
+                "poster": ""
             },
             "license": {
                 "name": "Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Germany License",
                 "url": "http:\/\/creativecommons.org\/licenses\/by-nc-sa\/3.0\/de\/deed.en"
             },
             "downloads": [
-                {"assetTitle": "MPEG-4 AAC Audio (m4a)", "downloadUrl": "http:\/\/cre.fm\/podlove\/file\/3235\/s\/webplayer\/c\/home\/cre206-das-ohr.m4a", "directAccess": "http:\/\/meta.metaebene.me\/media\/cre\/cre206-das-ohr.m4a", "url": "http:\/\/meta.metaebene.me\/media\/cre\/cre206-das-ohr.m4a"},
-                {"assetTitle": "Opus Audio (opus)", "downloadUrl": "http:\/\/cre.fm\/podlove\/file\/3236\/s\/webplayer\/c\/home\/cre206-das-ohr.opus", "directAccess": "http:\/\/meta.metaebene.me\/media\/cre\/cre206-das-ohr.opus", "url": "http:\/\/meta.metaebene.me\/media\/cre\/cre206-das-ohr.opus"},
-                {"assetTitle": "Ogg Vorbis Audio (oga)", "downloadUrl": "http:\/\/cre.fm\/podlove\/file\/3238\/s\/webplayer\/c\/home\/cre206-das-ohr.oga", "directAccess": "http:\/\/meta.metaebene.me\/media\/cre\/cre206-das-ohr.oga", "url": "http:\/\/meta.metaebene.me\/media\/cre\/cre206-das-ohr.oga"},
-                {"assetTitle": "MP3 Audio (mp3)", "downloadUrl": "http:\/\/cre.fm\/podlove\/file\/3239\/s\/webplayer\/c\/home\/cre206-das-ohr.mp3", "directAccess": "http:\/\/meta.metaebene.me\/media\/cre\/cre206-das-ohr.mp3", "url": "http:\/\/meta.metaebene.me\/media\/cre\/cre206-das-ohr.mp3"}
+                {
+                    "assetTitle": "MPEG-4 AAC Audio (m4a)",
+                    "downloadUrl": "Kapitel-Demo.m4a",
+                    "directAccess": "Kapitel-Demo.m4a",
+                    "url": "Kapitel-Demo.m4a"
+                }
             ],
-            "duration": "04:09:15",
-            "chaptersVisible": false,
+            "duration": "00:00:43",
             "features": ["current", "progress", "duration", "tracks", "fullscreen", "volume"],
             "chapters": [
                 {"start": "00:00:00.000", "title": "Intro", "href": "", "image": ""},
-                {"start": "00:00:56.455", "title": "Vorstellung Stefan Brill", "href": "", "image": ""},
-                {"start": "00:07:30.989", "title": "Elektrochemie und das Ohr", "href": "", "image": ""},
-                {"start": "00:12:25.605", "title": "Das Au\u00dfenohr", "href": "", "image": ""},
-                {"start": "00:36:57.598", "title": "Der Geh\u00f6rgang", "href": "", "image": ""},
-                {"start": "00:40:40.893", "title": "Trommelfell und das Mittelohr", "href": "", "image": ""},
-                {"start": "01:04:46.841", "title": "Der Gleichgewichtssinn", "href": "", "image": ""},
-                {"start": "01:28:38.788", "title": "Die H\u00f6rschnecke", "href": "", "image": ""},
-                {"start": "01:59:22.493", "title": "Kommunikation in der H\u00f6rschnecke", "href": "", "image": ""},
-                {"start": "02:27:11.527", "title": "H\u00f6rdefekte", "href": "", "image": ""},
-                {"start": "02:33:59.132", "title": "H\u00f6rger\u00e4te", "href": "", "image": ""},
-                {"start": "02:42:17.909", "title": "Das Cochlea-Implantat", "href": "", "image": ""},
-                {"start": "03:23:50.790", "title": "Einbau und Inbetrienahme", "href": "", "image": ""},
-                {"start": "03:57:30.292", "title": "Weitergehende Implantate", "href": "", "image": ""},
-                {"start": "04:03:40.642", "title": "Ausblick", "href": "", "image": ""}
-            ]});
+                {"start": "00:00:12.000", "title": "Ohne Bild", "href": "", "image": ""},
+                {"start": "00:00:04.000", "title": "", "href": "", "image": "http://lorempixel.com/200/200"}
+            ]
+        });
     </script>
 </body>
 </html>
