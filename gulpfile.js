@@ -105,14 +105,16 @@ gulp.task('copy', function() {
 });
 
 // copy example files
-gulp.task('example', function() {
-  // Copy MediaElement fallbacks
-    gulp.src(source + 'example/**/*')
-        .pipe(gulp.dest(dest + 'example'))
-        .pipe(connect.reload())
-    gulp.src(source + 'index.html')
-        .pipe(gulp.dest(dest))
-        .pipe(connect.reload())
+gulp.task('examples', function() {
+  // main documentation index html
+  gulp.src(source + 'index.html')
+    .pipe(gulp.dest(dest))
+    .pipe(connect.reload())
+
+  // all media examples
+  gulp.src(source + 'examples/**/*')
+      .pipe(gulp.dest(dest + 'examples'))
+      .pipe(connect.reload())
 });
 
 // Clean
@@ -123,7 +125,7 @@ gulp.task('clean', function() {
 
 // Default task
 gulp.task('default', ['clean'], function() {
-  gulp.start('styles', 'scripts', 'images', 'copy', 'example');
+  gulp.start('styles', 'scripts', 'images', 'copy', 'examples');
 });
 
 // Watch
@@ -139,7 +141,8 @@ gulp.task('watch', function() {
   gulp.watch(source + 'img/**/*', ['images']);
 
   // Watch example files
-  gulp.watch(source + 'example/**/*', ['example']);
+  gulp.watch(source + 'index.html', ['examples']);
+  gulp.watch(source + 'examples/**/*', ['examples']);
 
 });
 
