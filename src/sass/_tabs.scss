@@ -55,7 +55,7 @@ $tab-header-height: 45px;
   header {
     @include flex(1 100%);
     @include order(1);
-    margin: 0;
+    margin: 24px 0 16px 0;
     width: 100%;
     height: $tab-header-height;
   }
