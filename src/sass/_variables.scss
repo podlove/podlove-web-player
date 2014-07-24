@@ -136,6 +136,9 @@ $border-radius-small:            3px !default;
 // Media queries breakpoints
 // --------------------------------------------------
 
+// Extra small and very old phone sceen
+$screen-xxs:                 360px !default;
+
 // Extra small screen / phone
 $screen-xs:                  480px !default;
 $screen-xs-min:              $screen-xs !default;

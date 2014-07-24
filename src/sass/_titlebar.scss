@@ -12,18 +12,56 @@
   color: $white;
 
   header {
-    @include flex(1 145px);
+    //@include flex(1 145px);
+    //@include flex(1 100%);
     @include order(2);
     margin: auto auto;
     padding: 0 16px;
+
+    @media all and (min-width: $screen-xxs) {
+      @include flex(1 100%);
+      @include order(3);
+    }
+    @media all and (min-width: $screen-xs) {
+      @include flex(1 100%);
+      @include order(3);
+    }
+    @media all and (min-width: $screen-xs) {
+      //@include flex(1 100%);
+      @include order(3);
+    }
+    @media all and (min-width: $screen-md) {
+      @include flex(2 0px);
+      @include order(2);
+    }
   }
 }
 
 .coverart {
-  @include flex(0 $title-image-height);
+  //@include flex(0 $title-image-height);
+  @include flex(1 100%);
   @include order(1);
   min-width: $title-image-width;
   height: $title-image-height;
+
+  @media all and (min-width: 100px){
+    @include flex(1 0px);
+    @include order(1);
+  }
+  @media all and (min-width: $screen-xxs){
+    @include flex(1 0px);
+    @include order(1);
+  }
+  @media all and (min-width: $screen-xs) {
+    //@include flex(1 100%);
+    @include order(1);
+  }
+  @media all and (min-width: $screen-sm) {
+    @include order(1);
+  }
+  @media all and (min-width: $screen-md) {
+    @include order(1);
+  }
   img {
     height: $title-image-height;
     width: auto !important;
@@ -62,7 +100,8 @@
 .bigplay {
   @include iconfont-button($white);
   @include playbutton;
-  @include flex(1 85px);
+  //@include flex(1 85px);
+  @include flex(1 100%);
   @include order(3);
   min-width: 75px;
   position: relative;
@@ -72,6 +111,20 @@
   height: 74px;
   flex: 1;
   max-width: 76px;
+  @media all and (min-width: $screen-xxs) {
+    @include flex(1 0px);
+    @include order(2);
+  }
+  @media all and (min-width: $screen-xs) {
+    //@include flex(1 100%);
+    @include order(2);
+  }
+  @media all and (min-width: $screen-sm) {
+    @include order(2);
+  }
+  @media all and (min-width: $screen-md) {
+    @include order(3);
+  }
 }
 
 .bigplay.playing {
