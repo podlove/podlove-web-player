@@ -83,18 +83,6 @@ $tab-header-height: 45px;
 
 
 // Video Player
-.container.podlovewebplayer_video .tab,
-.container.podlovewebplayer_video .summary {
-  background: $gray-darker; //#252525
-}
-
-.container.podlovewebplayer_video .podlovewebplayer_chapterbox,
-.container.podlovewebplayer_video .podlovewebplayer_chapters,
-.container.podlovewebplayer_video .titlebar + .summary,
-.container.podlovewebplayer_video .tab {
-  border-color: $gray-darker; //#252525
-}
-
 .container.podlovewebplayer_video .tab {
   margin-top: 0px;
 }
