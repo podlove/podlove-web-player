@@ -1,6 +1,6 @@
 /**
  * Timecode as described in http://podlove.org/deep-link/
- *  and http://www.w3.org/TR/media-frags/#fragment-dimensions
+ * and http://www.w3.org/TR/media-frags/#fragment-dimensions
  */
 var timecodeRegExp = /(?:(\d+):)?(\d+):(\d+)(\.\d+)?([,\-](?:(\d+):)?(\d+):(\d+)(\.\d+)?)?/;
 
@@ -9,7 +9,7 @@ var timecodeRegExp = /(?:(\d+):)?(\d+):(\d+)(\.\d+)?([,\-](?:(\d+):)?(\d+):(\d+)
  * @param number number
  * @param width number
  * @return string
- **/
+ */
 var zeroFill = function (number, width) {
   var s = number.toString();
   while (s.length < width) {
@@ -45,7 +45,7 @@ function extractTime(parts) {
  * @param {Boolean} [forceHours] force output of hours, defaults to false
  * @param {Boolean} [showMillis] output milliseconds separated with a dot from the seconds - defaults to false
  * @return {string}
- **/
+ */
 function ts2tc(time, leadingZeros, forceHours, showMillis) {
   var timecode = '',
     hours, minutes, seconds, milliseconds;
@@ -109,7 +109,7 @@ module.exports = {
    * @param {Boolean} leadingZeros
    * @param {Boolean} [forceHours]
    * @return {string}
-   **/
+   */
   generate: function (times, leadingZeros, forceHours) {
     if (times[1] > 0 && times[1] < 9999999 && times[0] < times[1]) {
       return ts2tc(times[0], leadingZeros, forceHours) + ',' + ts2tc(times[1], leadingZeros, forceHours);
@@ -122,7 +122,7 @@ module.exports = {
    * parses time code into seconds
    * @param {String} timecode
    * @return {Array}
-   **/
+   */
   parse: function (timecode) {
     var parts, startTime, endTime;
     if (!timecode) {
