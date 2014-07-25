@@ -241,7 +241,6 @@ var addBehavior = function (player, params, wrapper) {
     }
   }
 
-
   chapters.addEventhandlers(player);
   controls.createTimeControls(chapters);
 
@@ -284,7 +283,6 @@ var addBehavior = function (player, params, wrapper) {
     } else {
       if (!playButton.hasClass('playing')) {
         playButton.addClass('playing');
-        playButton.parent().parent().find('.mejs-time-buffering').show();
       }
       // flash fallback needs additional pause
       if (player.pluginType === 'flash') {
@@ -297,28 +295,8 @@ var addBehavior = function (player, params, wrapper) {
   // wait for the player or you'll get DOM EXCEPTIONS
   // And just listen once because of a special behaviour in firefox
   // --> https://bugzilla.mozilla.org/show_bug.cgi?id=664842
-  jqPlayer.one('canplay', function () {
-    // add duration of final chapter
-    if (player.duration) {
-    }
-    // add Deeplink Behavior if there is only one player on the site
-    /*
-     if (players.length === 1) {
-     jqPlayer
-     .bind('play timeupdate', { player: player }, checkTime)
-     .bind('pause', { player: player }, addressCurrentTime);
-     // disabled 'cause it overrides chapter clicks
-     // bind seeked to addressCurrentTime
-     checkCurrentURL();
-     // handle browser history navigation
-     jQuery(window).bind('hashchange onpopstate', function (e) {
-     if (!ignoreHashChange) {
-     checkCurrentURL();
-     }
-     ignoreHashChange = false;
-     });
-     }
-     */
+  jqPlayer.one('canplay', function (evt) {
+    console.debug('canplay', evt);
   });
 
   jqPlayer
