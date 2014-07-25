@@ -142,9 +142,14 @@ gulp.task('clean', function() {
     .pipe(clean())
 });
 
-// Default task
-gulp.task('default', ['clean', 'test'], function() {
+// build distribution package
+gulp.task('build', ['clean'], function() {
   gulp.start('styles', 'scripts', 'images', 'copy', 'examples');
+});
+
+// Default task
+gulp.task('default', ['test'], function() {
+  gulp.start('build');
 });
 
 // Watch
@@ -173,5 +178,5 @@ gulp.task('connect', function() {
 });
 
 // Serve
-gulp.task('serve', ['default', 'connect', 'watch']);
+gulp.task('serve', ['build', 'connect', 'watch']);
 
