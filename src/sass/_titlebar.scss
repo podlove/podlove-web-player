@@ -93,7 +93,7 @@
 // x ≤ 360px
 @media all and (max-width: $screen-tiny-phone) {
   header {
-    margin: 20px 0;
+    margin: 20px 0 !important;
     h2 {
       font-size: 1.5em;
     }
@@ -127,9 +127,9 @@
   .coverart {
     @include flex(1 100%);
     @include order(1);
-    height: 400px;
+    height: $title-image-full-height;
     img {
-      height: 400px;
+      height: $title-image-full-height;
       width: auto !important;
     }
   }
@@ -156,6 +156,30 @@
 
   .bigplay {
     @include flex(1 100%);
+  }
+}
+
+// [Image-width + playbutton]px ≤ x 768px
+@media all and (min-width: $title-image-full-width + 142px) and (max-width: $screen-tablet) {
+  .coverart {
+    @include flex(3 0px);
+    width: $title-image-full-width;
+    min-height: $title-image-full-height;
+    height: auto;
+    img {
+      height: auto !important;
+      min-width: 100%;
+      min-height: 100%;
+    }
+  }
+  .bigplay {
+    @include flex(1 0px);
+    @include order(2);
+  }
+  header {
+    @include flex(1 100%);
+    @include order(3);
+    margin: 20px 0 !important;
   }
 }
 
