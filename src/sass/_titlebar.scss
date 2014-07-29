@@ -17,41 +17,6 @@
     margin: auto auto;
     padding: 0 16px;
 
-    @media all and (max-width: $screen-tiny-phone) {
-      margin: 20px 0;
-      h2 {
-        font-size: 1.5em;
-      }
-      .subtitle {
-        font-size: $font-size-base;
-      }
-    }
-
-    @media all and (min-width: $screen-tiny-phone) and (max-width: $screen-phone) {
-      margin: 20px 0;
-    }
-
-    @media all and (min-width: $screen-tiny-phone) and (max-width: $screen-tablet) {
-      @include flex(1 0px);
-      @include order(2);
-      h2 {
-        font-size: 1.5em;
-      }
-      .subtitle,
-      h4 {
-        font-size: $font-size-base;
-      }
-    }
-
-    @media all and (min-width: $screen-phone) {
-      @include flex(1 0px);
-      @include order(2);
-    }
-
-    @media all and (min-width: $screen-desktop) {
-      @include flex(2 0px);
-      @include order(2);
-    }
   }
 }
 
@@ -62,25 +27,6 @@
   height: $title-image-height;
   img {
     height: $title-image-height;
-  }
-
-  @media all and (min-width: $screen-tiny-phone) and (max-width: $screen-tablet) {
-    @include flex(1 100%);
-    @include order(1);
-    height: 400px;
-    img {
-      height: 400px;
-      width: auto !important;
-    }
-  }
-
-  @media all and (min-width: $screen-tablet) and (max-width: $screen-desktop) {
-    @include flex(0 0px);
-    @include order(1);
-    img {
-      height: $title-image-height;
-      width: auto !important;
-    }
   }
 }
 
@@ -126,16 +72,6 @@
   height: 74px;
   flex: 1;
   max-width: 76px;
-  @media all and (max-width: $screen-tiny-phone) {
-    @include order(2);
-  }
-  @media all and (min-width: $screen-tiny-phone) {
-    @include flex(1 0px);
-    @include order(3);
-  }
-  @media all and (min-width: $screen-phone) {
-    @include flex(1 100%);
-  }
 }
 
 .bigplay.playing {
@@ -147,5 +83,98 @@
   &:hover,
   &:active {
     @include textshadows(0px 0px 10px $icon-font-color);
+  }
+}
+
+
+// Breakpoints
+// --------------------------------------------------
+
+// x ≤ 360px
+@media all and (max-width: $screen-tiny-phone) {
+  header {
+    margin: 20px 0;
+    h2 {
+      font-size: 1.5em;
+    }
+    .subtitle {
+      font-size: $font-size-base;
+    }
+  }
+
+  .bigplay {
+    @include order(2);
+  }
+}
+
+// 360px ≤ x
+@media all and (min-width: $screen-tiny-phone) {
+  .bigplay {
+    @include flex(1 0px);
+    @include order(3);
+  }
+}
+
+// 360px ≤ x ≥ 480px
+@media all and (min-width: $screen-tiny-phone) and (max-width: $screen-phone) {
+  header {
+    margin: 20px 0 !important;
+  }
+}
+
+// 360px ≤ x ≥ 768px
+@media all and (min-width: $screen-tiny-phone) and (max-width: $screen-tablet) {
+  .coverart {
+    @include flex(1 100%);
+    @include order(1);
+    height: 400px;
+    img {
+      height: 400px;
+      width: auto !important;
+    }
+  }
+
+  header {
+    @include flex(1 0px);
+    @include order(2);
+    h2 {
+      font-size: 1.5em;
+    }
+    .subtitle,
+    h4 {
+      font-size: $font-size-base;
+    }
+  }
+}
+
+// 480px ≤ x
+@media all and (min-width: $screen-phone) {
+  header {
+    @include flex(1 0px);
+    @include order(2);
+  }
+
+  .bigplay {
+    @include flex(1 100%);
+  }
+}
+
+// 768px ≤ x ≥ 992px
+@media all and (min-width: $screen-tablet) and (max-width: $screen-desktop) {
+  .coverart {
+    @include flex(0 0px);
+    @include order(1);
+    img {
+      height: $title-image-height;
+      width: auto !important;
+    }
+  }
+}
+
+// 992px ≤ x
+@media all and (min-width: $screen-desktop) {
+  header {
+    @include flex(2 0px);
+    @include order(2);
   }
 }
