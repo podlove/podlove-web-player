@@ -159,6 +159,8 @@
   }
 }
 
+// Flexible breakpoint depending on image size to fill a gap in tablet portrait view
+// The image will scale within this breakpoint, the playbutton floats right next to it.
 // [Image-width + playbutton]px ≤ x 768px
 @media all and (min-width: $title-image-full-width + 142px) and (max-width: $screen-tablet) {
   .coverart {
