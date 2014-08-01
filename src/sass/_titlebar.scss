@@ -107,11 +107,20 @@
   }
 }
 
-// 360px ≤ x
-@media all and (min-width: $screen-tiny-phone) {
+// 550px ≤ x ≥ 768px
+@media all and (min-width: $screen-tablet-portrait) and (max-width: $screen-tablet) {
   .bigplay {
     @include flex(1 0px);
     @include order(3);
+  }
+  header {
+    h2 {
+      font-size: 1.5em;
+    }
+    .subtitle,
+    h4 {
+      font-size: $font-size-base;
+    }
   }
 }
 
@@ -122,8 +131,8 @@
   }
 }
 
-// 360px ≤ x ≥ 768px
-@media all and (min-width: $screen-tiny-phone) and (max-width: $screen-tablet) {
+// 360px ≤ x ≥ 550px
+@media all and (min-width: $screen-tiny-phone) and (max-width: $screen-tablet-portrait) {
   .coverart {
     @include flex(1 100%);
     @include order(1);
@@ -159,12 +168,12 @@
   }
 }
 
-// Flexible breakpoint depending on image size to fill a gap in tablet portrait view
-// The image will scale within this breakpoint, the playbutton floats right next to it.
-// [Image-width + playbutton]px ≤ x 768px
-@media all and (min-width: $title-image-full-width + 142px) and (max-width: $screen-tablet) {
+
+// Flexible breakpoint depending on image size.
+// The image will scale up to full-width within this breakpoint.
+@media all and (min-width: $title-image-full-width) and (max-width: $screen-tablet-portrait) {
   .coverart {
-    @include flex(3 0px);
+    @include flex(1 100%);
     width: $title-image-full-width;
     min-height: $title-image-full-height;
     height: auto;
@@ -175,17 +184,17 @@
   }
   .bigplay {
     @include flex(1 0px);
-    @include order(2);
+    @include order(3);
   }
   header {
-    @include flex(1 100%);
-    @include order(3);
+    @include flex(1 0px);
+    @include order(2);
     margin: 20px 0 !important;
   }
 }
 
-// 768px ≤ x ≥ 992px
-@media all and (min-width: $screen-tablet) and (max-width: $screen-desktop) {
+// 551px ≤ x ≥ 992px
+@media all and (min-width: $screen-tablet-portrait +1px) and (max-width: $screen-desktop) {
   .coverart {
     @include flex(0 0px);
     @include order(1);
