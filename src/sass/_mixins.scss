@@ -133,7 +133,7 @@
 // Flexbox Layout
 // --------------------------------------------------
 
-@mixin flexbox() {
+@mixin pwp-flexbox() {
   display: flex;
   flex-direction: row;
   flex-flow: row wrap;

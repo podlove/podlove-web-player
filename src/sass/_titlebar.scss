@@ -4,7 +4,7 @@
 
 .titlebar {
   @include clearfix();
-  @include flexbox();
+  @include pwp-flexbox();
   width: 100%;
   background: $gray;
   min-height: 100px;
