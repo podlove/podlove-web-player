@@ -1,3 +1,5 @@
+'use strict';
+
 describe('Module: url', function () {
   var url;
 
