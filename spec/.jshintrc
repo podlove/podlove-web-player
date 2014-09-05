@@ -19,6 +19,14 @@
   "trailing": true,
   "smarttabs": true,
   "globals": {
-    "$": false
+    "$": false,
+    "describe": false,
+    "ddescribe": false,
+    "xdescribe": false,
+    "it": false,
+    "iit": false,
+    "xit": false,
+    "beforeEach": false,
+    "afterEach": false
   }
 }
