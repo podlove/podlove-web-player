@@ -53,7 +53,7 @@
     "gulp": "^3.8.2",
     "gulp-autoprefixer": "0.0.7",
     "gulp-browserify": "^0.5.0",
-    "gulp-cache": "^0.1.11",
+    "gulp-cache": "^0.2.2",
     "gulp-clean": "^0.3.0",
     "gulp-compass": "^1.1.9",
     "gulp-concat": "^2.2.0",
