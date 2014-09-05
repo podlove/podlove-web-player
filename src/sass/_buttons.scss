@@ -9,7 +9,6 @@
 
 .button-toggle {
   display: inline;
-  //position: relative;
   z-index: 78;
   font-size: 25px;
 }
@@ -21,4 +20,17 @@
 }
 .icon-twitter {
   font-size: 2.1em;
+}
+
+// Flat subscribe button with rounded corners
+.button-subscribe {
+  @include button-flat($white, $brand-primary);
+  @include border-radius($border-radius-base);
+  font-size: $font-size-button-label;
+  font-weight: $font-weight-normal;
+  padding: 11px;
+  @include transition(ease);
+  @include transition-delay(0s);
+  @include transition-duration(0.3s);
+  @include transition-property(all);
 }

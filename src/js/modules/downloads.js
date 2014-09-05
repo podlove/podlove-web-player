@@ -63,7 +63,7 @@ Downloads.prototype.createDownloadTab = function (params) {
       headline: 'Download',
       active: !!params.downloadbuttonsVisible
     }),
-    $listElement = $('<dl></dl>');
+    $listElement = downloadTab.createSection('<dl></dl>');
 
   this.list.forEach(createRow, $listElement);
   downloadTab.box.append($listElement);
