@@ -32,7 +32,7 @@ $tab-header-height: 45px;
     }
 
     &.active {
-      @include flexbox();
+      @include pwp-flexbox();
       height: $tab-height;
     }
   }
