@@ -4,7 +4,7 @@
 
 .titlebar {
   @include clearfix();
-  @include flexbox();
+  @include pwp-flexbox();
   flex-direction: row;
   -webkit-flex-flow: row wrap;
   width: 100%;
