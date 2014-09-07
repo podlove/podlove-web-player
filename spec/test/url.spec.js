@@ -68,12 +68,21 @@ describe('Module: url', function () {
 
   describe('Method: checkCurrent', function () {
 
+    var timecode;
+
     beforeEach(function () {
-      window.location.hash = '#t=1:23.456'
+      timecode = require('../../src/js/timecode');
+      spyOn(timecode, 'parse').andCallThrough();
+      window.location.hash = '#t=0:00-1:23:45.678';
     });
 
-    it('return', function () {
-      expect(url.checkCurrent()).toEqual([83.456, false]);
+    it('calls timecode.parse', function () {
+      url.checkCurrent();
+      expect(timecode.parse).toHaveBeenCalled();
+    });
+
+    it('returns the correct start time', function () {
+      expect(url.checkCurrent()).toEqual([0, 298845.678]);
     });
 
   });
