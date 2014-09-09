@@ -215,21 +215,10 @@ var addBehavior = function (player, params, wrapper) {
   /**
    * -- TABS --
    * FIXME enable chapter tab
+   * The tabs in controlbar will appear in following order:
    */
   controlBox.append(tabs.togglebar);
   wrapper.append(tabs.container);
-
-  var infos = new Info(params);
-  tabs.add(infos.tab);
-
-  var sharing = new Share(params);
-  tabs.add(sharing.tab);
-
-  var downloads = new Downloads(params);
-  tabs.add(downloads.tab);
-
-  var saveTime = new SaveTime(timeline, params);
-  timeline.addModule(saveTime);
 
   var chapters;
   if (hasChapters) {
@@ -240,6 +229,18 @@ var addBehavior = function (player, params, wrapper) {
       tabs.open(chapters.tab);
     }
   }
+
+  var sharing = new Share(params);
+  tabs.add(sharing.tab);
+
+  var downloads = new Downloads(params);
+  tabs.add(downloads.tab);
+
+  var infos = new Info(params);
+  tabs.add(infos.tab);
+
+  var saveTime = new SaveTime(timeline, params);
+  timeline.addModule(saveTime);
 
 
   chapters.addEventhandlers(player);
