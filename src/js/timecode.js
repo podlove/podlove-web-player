@@ -2,7 +2,7 @@
  * Timecode as described in http://podlove.org/deep-link/
  * and http://www.w3.org/TR/media-frags/#fragment-dimensions
  */
-var timecodeRegExp = /(?:(\d+):)?(\d+):(\d+)(\.\d+)?([,\-](?:(\d+):)?(\d+):(\d+)(\.\d+)?)?/;
+var timeCodeMatcher = /(?:(\d+):)?(\d{1,2}):(\d\d)(\.\d{1,3})?/;
 
 /**
  * return number as string lefthand filled with zeros
@@ -20,10 +20,18 @@ var zeroFill = function (number, width) {
 
 /**
  * convert an array of string to timecode
- * @param {Array} parts
- * @returns {number}
+ * @param {string} tc
+ * @returns {number|boolean}
  */
-function extractTime(parts) {
+function extractTime(tc) {
+  if (!tc) {
+    return false;
+  }
+  var parts = timeCodeMatcher.exec(tc);
+  if (!parts) {
+    console.warn('Could not extract time from', tc);
+    return false;
+  }
   var time = 0;
   // hours
   time += parts[1] ? parseInt(parts[1], 10) * 60 * 60 : 0;
@@ -124,23 +132,19 @@ module.exports = {
    * @return {Array}
    */
   parse: function (timecode) {
-    var parts, startTime, endTime;
     if (!timecode) {
       return [false, false];
     }
 
-    parts = timecode.match(timecodeRegExp);
-    if (!parts || parts.length < 10) {
+    var timeparts = timecode.split('-');
+
+    if (!timeparts.length) {
+      console.warn('no timeparts:', timecode);
       return [false, false];
     }
-    startTime = extractTime(parts);
 
-    // if there only a startTime but no endTime
-    if (parts[5] === undefined) {
-      return [startTime, false];
-    }
-
-    endTime = extractTime(parts.splice(6));
+    var startTime = extractTime(timeparts.shift());
+    var endTime = extractTime(timeparts.shift());
 
     return (endTime > startTime) ? [startTime, endTime] : [startTime, false];
   },
