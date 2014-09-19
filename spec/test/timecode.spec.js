@@ -13,23 +13,23 @@ describe('Module: url', function () {
     }
 
     it('returns the correct start time', function () {
-      testParse('#t=1:23.456', [83.456, false]);
+      testParse('1:23.456', [83.456, false]);
     });
 
     it('returns the correct start time with hours', function () {
-      testParse('#t=1:01:23.456', [3683.456, false]);
+      testParse('1:01:23.456', [3683.456, false]);
     });
 
     it('returns the correct start and end time', function () {
-      testParse('#t=0:00.000-1:23.456', [0, 83.456]);
+      testParse('0:00.000-1:23.456', [0, 83.456]);
     });
 
     it('returns the correct start time and end time with hours', function () {
-      testParse('#t=0:00.000-1:01:23.456', [0, 3683.456]);
+      testParse('0:00.000-1:01:23.456', [0, 3683.456]);
     });
 
     it('returns the correct start time for t=0', function () {
-      testParse('#t=0:00', [0, false]);
+      testParse('0:00', [0, false]);
     });
 
   });

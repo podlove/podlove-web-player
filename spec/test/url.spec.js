@@ -82,7 +82,7 @@ describe('Module: url', function () {
     });
 
     it('returns the correct start time', function () {
-      expect(url.checkCurrent()).toEqual([0, 298845.678]);
+      expect(url.checkCurrent()).toEqual([0, 5025.678]);
     });
 
   });
