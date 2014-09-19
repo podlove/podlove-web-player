@@ -3,7 +3,17 @@
   "version": "2.1.0-beta",
   "homepage": "http://podlove.org/",
   "description": "Next generation media player for the web. Special features for podcast and other metadata rich productions.",
-  "main": "dist/js/podlove-web-player.js",
+  "main": "dist/*",
+  "ignore": [
+    "**/.*",
+    "karma.*",
+    "config.rb",
+    "package.json",
+    "AUTHORS.txt",
+    "Gruntfile.js",
+    "spec",
+    "src"
+  ],
   "moduleType": [
     "globals"
   ],
