@@ -209,7 +209,7 @@ var addBehavior = function (player, params, wrapper) {
   /**
    * Timecontrols
    */
-  //always render toggler buttons wrapper
+    //always render toggler buttons wrapper
   wrapper.append(controlBox);
 
   /**
@@ -251,15 +251,14 @@ var addBehavior = function (player, params, wrapper) {
 
   // parse deeplink
   deepLink = require('./url').checkCurrent();
-  if ( deepLink[0] && pwp.players.length === 1) {
+  if (deepLink[0] && pwp.players.length === 1) {
     var playerAttributes = {preload: 'auto'};
     if (!isHidden() && autoplay) {
       playerAttributes.autoplay = 'autoplay';
     }
     jqPlayer.attr(playerAttributes);
     //stopAtTime = deepLink[1];
-    console.log('DeepLink', 'start time', deepLink[0]);
-    timeline.setTime(deepLink[0]);
+    timeline.playRange(deepLink);
 
     $('html, body').delay(150).animate({
       scrollTop: $('.container:first').offset().top - 25
