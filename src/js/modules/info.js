@@ -1,4 +1,5 @@
 var Tab = require('../tab')
+  , timeCode = require('../timecode')
   , types = {
     'twitter': {
       'className': 'twitter',
@@ -41,7 +42,7 @@ function createEpisodeInfo(tab, params) {
     '<p>Published: ' + date.getDate() + '.' + date.getMonth() + '.' + date.getFullYear() + '</p>' +
     '<em>' + params.subtitle + '</em>' +
     '<p>' + params.summary + '</p>' +
-    '<p>Duration: ' + params.duration + '</p>' +
+    '<p>Duration: ' + timeCode.fromTimeStamp(params.duration) + '</p>' +
     '<p>' +
       'Permalink for this episode:<br>' +
       '<a href="' + params.permalink + '">' + params.permalink + '</a>' +
