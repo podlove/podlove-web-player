@@ -1,5 +1,6 @@
 .*
 *Thumbs.db
+atlassian-ide-plugin.xml
 node_modules/
 bower_components/
 !.gitignore

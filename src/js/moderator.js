@@ -1,24 +1,37 @@
 (function ($) {
   'use strict';
-  var IFRAME_HEIGHT_DEFAULT = 300,
+  var
+    url = require('./url'),
+    IFRAME_HEIGHT_DEFAULT = 300,
     IFRAME_HEIGHT_MIN = 100,
     IFRAME_HEIGHT_MAX = 3000,
-    players = {};
+    players = {},
+    firstPlayer = true,
+    autoplay = url.getFragment('autoplay'),
+    timerange = url.checkCurrent(); // timecode
 
   function getIframeReplacement() {
     /*jshint validthis:true */
     var $element = $(this),
-      $frame = $('<iframe>', {
-        src: $element.data('podlove-web-player-source'),
-        height: getPlayerHeight($element.data('podlove-web-player-height')),
-        width: getPlayerWidth($element.data('podlove-web-player-width')),
-        className: 'podlove-webplayer-frame',
-        css: {
-          border: 'none',
-          overflow: 'hidden'
-        }
-      }),
-      frame = $frame.get(0);
+      $frame, frame, source;
+
+    source = $element.data('podlove-web-player-source');
+    if (firstPlayer && timerange[0]) {
+      firstPlayer = false;
+      source += '#t=' + url.getFragment('t');
+    }
+    $frame = $('<iframe>', {
+      src: source,
+      height: getPlayerHeight($element.data('podlove-web-player-height')),
+      width: getPlayerWidth($element.data('podlove-web-player-width')),
+      className: 'podlove-webplayer-frame',
+      css: {
+        border: 'none',
+        overflow: 'hidden'
+      }
+    });
+
+    frame = $frame.get(0);
 
     // register player frame
     players[frame.src] = {
