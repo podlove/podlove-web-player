@@ -10,7 +10,8 @@ var gulp = require('gulp')
   , clean = require('gulp-clean')
   , concat = require('gulp-concat')
   , notify = require('gulp-notify')
-  , cache = require('gulp-cache')
+// deactivate caching until issue is resolved
+//  , cache = require('gulp-cache')
   , browserify = require('gulp-browserify')
   , connect = require('gulp-connect')
   , karma = require('karma').server
@@ -92,7 +93,7 @@ gulp.task('scripts', ['player', 'moderator']);
 // Images
 gulp.task('images', function() {
   return gulp.src(source + 'img/**/*')
-    .pipe(cache(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true })))
+    .pipe(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true }))
     .pipe(gulp.dest(dest + 'img'))
     .pipe(notify({ message: 'Images task complete' }))
     .pipe(connect.reload())
@@ -128,12 +129,12 @@ gulp.task('examples', function() {
   // main documentation index html
   gulp.src(source + 'index.html')
     .pipe(gulp.dest(dest))
-    .pipe(connect.reload())
+    .pipe(connect.reload());
 
   // all media examples
   gulp.src(source + 'examples/**/*')
       .pipe(gulp.dest(dest + 'examples'))
-      .pipe(connect.reload())
+      .pipe(connect.reload());
 });
 
 // Clean
