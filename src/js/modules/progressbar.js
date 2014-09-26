@@ -87,7 +87,7 @@ ProgressBar.prototype.render = function () {
 
 ProgressBar.prototype.addEvents = function() {
 
-  var update = this.update,
+  var progress = this.progress,
     timeline = this.timeline,
     total = this.progress,
     mouseIsDown = false,
@@ -115,7 +115,7 @@ ProgressBar.prototype.addEvents = function() {
 
         // seek to where the mouse is
         if (mouseIsDown && newTime !== timeline.currentTime) {
-          update(newTime);
+          progress.val(newTime);
           timeline.setTime(newTime);
         }
       }
