@@ -87,7 +87,8 @@ ProgressBar.prototype.render = function () {
 
 ProgressBar.prototype.addEvents = function() {
 
-  var t = this,
+  var update = this.update,
+    timeline = this.timeline,
     total = this.progress,
     mouseIsDown = false,
     mouseIsOver = false,
@@ -101,7 +102,7 @@ ProgressBar.prototype.addEvents = function() {
         pos = 0;
 
 
-      if (t.timeline.duration) {
+      if (timeline.duration) {
         if (x < offset.left) {
           x = offset.left;
         } else if (x > width + offset.left) {
@@ -110,11 +111,12 @@ ProgressBar.prototype.addEvents = function() {
 
         pos = x - offset.left;
         percentage = (pos / width);
-        newTime = (percentage <= 0.02) ? 0 : percentage * t.timeline.duration;
+        newTime = (percentage <= 0.02) ? 0 : percentage * timeline.duration;
 
         // seek to where the mouse is
-        if (mouseIsDown && newTime !== t.timeline.currentTime) {
-          t.timeline.setTime(newTime);
+        if (mouseIsDown && newTime !== timeline.currentTime) {
+          update(newTime);
+          timeline.setTime(newTime);
         }
       }
     },
