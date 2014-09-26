@@ -142,8 +142,7 @@ Timeline.prototype.getBuffered = function () {
 
 Timeline.prototype.setBufferedTime = function (e) {
   var
-    t = this,
-    target = (e != undefined) ? e.target : t.player,
+    target = (e != undefined) ? e.target : this.player,
     percent = null;
 
   // newest HTML5 spec has buffered array (FF4, Webkit)
@@ -166,13 +165,9 @@ Timeline.prototype.setBufferedTime = function (e) {
   // finally update the progress bar
   if (percent !== null) {
     percent = Math.min(1, Math.max(0, percent));
-    // update loaded bar
-    if (t.loaded && t.total) {
-      t.loaded.width(t.total.width() * percent);
-    }
   }
 
-  t.bufferedTime = percent;
+  this.bufferedTime = percent;
   console.log('Timeline', 'setBufferedTime', percent);
 };
 
