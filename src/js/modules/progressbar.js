@@ -13,6 +13,7 @@ function ProgressBar(timeline, params) {
   }
   this.params = params;
   this.timeline = timeline;
+  this.duration = timeline.duration;
 
   this.bar = null;
   this.currentTime = null;
@@ -22,12 +23,21 @@ function ProgressBar(timeline, params) {
   this.update = _update.bind(this);
 }
 
-ProgressBar.prototype.setHandlePosition = function (timeline) {
-  var time = timeline.getTime(),
-    newWidth = Math.round(this.progress.width() * time / timeline.duration),
+ProgressBar.prototype.setHandlePosition = function (time) {
+  var newWidth = Math.round(this.progress.width() * time / this.duration),
     handlePos = newWidth - Math.round(this.handle.outerWidth(true) / 2);
   console.debug('ProgressBar', 'setHandlePosition', handlePos);
   this.handle.css('left', handlePos);
+};
+
+/**
+ * set progress bar value, slider position and current time
+ * @param {number} time
+ */
+ProgressBar.prototype.setProgress = function (time) {
+  this.progress.val(time);
+  this.setHandlePosition(time);
+  this.currentTime.html(tc.fromTimeStamp(time));
 };
 
 /**
@@ -35,15 +45,10 @@ ProgressBar.prototype.setHandlePosition = function (timeline) {
  */
 var _update = function (timeline) {
   var time = timeline.getTime();
-  this.progress.val(time);
-
-  console.log('ProgressBar', 'update', time);
+  this.setProgress(time);
 
   var buffer = timeline.getBuffered();
   this.buffer.val(buffer);
-
-  this.setHandlePosition(timeline);
-  this.currentTime.html(tc.fromTimeStamp(time));
 };
 
 /**
@@ -86,8 +91,7 @@ ProgressBar.prototype.render = function () {
 };
 
 ProgressBar.prototype.addEvents = function() {
-
-  var progress = this.progress,
+  var setProgress = this.setProgress.bind(this),
     timeline = this.timeline,
     total = this.progress,
     mouseIsDown = false,
@@ -111,11 +115,11 @@ ProgressBar.prototype.addEvents = function() {
 
         pos = x - offset.left;
         percentage = (pos / width);
-        newTime = (percentage <= 0.02) ? 0 : percentage * timeline.duration;
+        newTime = (percentage <= 0) ? 0 : percentage * timeline.duration;
 
         // seek to where the mouse is
         if (mouseIsDown && newTime !== timeline.currentTime) {
-          progress.val(newTime);
+          setProgress(newTime);
           timeline.setTime(newTime);
         }
       }
