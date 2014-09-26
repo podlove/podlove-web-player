@@ -24,13 +24,10 @@ var TabRegistry = require('./tabregistry'),
   Chapters = require('./modules/chapter'),
   SaveTime = require('./modules/savetime'),
   Controls = require('./controls'),
-  tc = require('./timecode'),
   player = require('./player'),
   ProgressBar = require('./modules/progressbar'),
   autoplay = false;
 
-var startAtTime;
-var stopAtTime;
 var pwp;
 
 // will expose/attach itself to the $ global
@@ -42,15 +39,6 @@ if (typeof String.prototype.trim !== 'function') {
     return this.replace(/^\s+|\s+$/g, '');
   };
 }
-
-var checkCurrentURL = function () {
-  var deepLink = require('./url').checkCurrent();
-  if (!deepLink) {
-    return;
-  }
-  startAtTime = deepLink[0];
-  stopAtTime = deepLink[1];
-};
 
 /**
  * The most missing feature regarding embedded players
@@ -169,8 +157,7 @@ var addBehavior = function (player, params, wrapper) {
     playerType = params.type,
     controlBox = controls.box,
 
-    deepLink,
-    storageKey;
+    deepLink;
 
 
   console.debug('webplayer', 'metadata', timeline.getData());
