@@ -109,8 +109,17 @@ Timeline.prototype.emitEventsBetween = function (start, end) {
   });
 };
 
+/**
+ * returns if time is a valid timestamp in current timeline
+ * @param {*} time
+ * @returns {boolean}
+ */
+Timeline.prototype.isValidTime = function (time) {
+  return (typeof time === 'number' && !isNaN(time) && time >= 0 && time <= this.duration);
+};
+
 Timeline.prototype.setTime = function (time) {
-  if (!time || time < 0 || time > this.duration) {
+  if (!this.isValidTime(time)) {
     console.warn('Timeline', 'setTime', 'time out of bounds', time);
     return this.player.currentTime;
   }

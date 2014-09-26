@@ -13,6 +13,45 @@ describe('Module: timeline', function () {
     timeline = new Timeline(mockPlayer, options);
   });
 
+  describe('Method: isValidTime()', function () {
+    it('validates the starttime', function () {
+      expect(timeline.isValidTime(0)).toBe(true);
+    });
+
+    it('validates the endtime', function () {
+      expect(timeline.isValidTime(timeline.duration)).toBe(true);
+    });
+
+    it('validates any time between start and end', function () {
+      expect(timeline.isValidTime(12.12)).toBe(true);
+    });
+
+    it('validates something very close to the end', function () {
+      expect(timeline.isValidTime(99.999999999)).toBe(true);
+    });
+
+    it('rejects an object', function () {
+      expect(timeline.isValidTime({})).toBe(false);
+    });
+
+    it('rejects false', function () {
+      expect(timeline.isValidTime(false)).toBe(false);
+    });
+
+    it('rejects null', function () {
+      expect(timeline.isValidTime(false)).toBe(false);
+    });
+
+    it('rejects a negative value', function () {
+      expect(timeline.isValidTime(-1)).toBe(false);
+    });
+
+    it('rejects a time after the end', function () {
+      expect(timeline.isValidTime(timeline.duration + 1)).toBe(false);
+    });
+
+  });
+
   describe('Method: playRange()', function () {
     describe('with start time only', function () {
 
