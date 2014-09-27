@@ -24,13 +24,10 @@ var TabRegistry = require('./tabregistry'),
   Chapters = require('./modules/chapter'),
   SaveTime = require('./modules/savetime'),
   Controls = require('./controls'),
-  tc = require('./timecode'),
   player = require('./player'),
   ProgressBar = require('./modules/progressbar'),
   autoplay = false;
 
-var startAtTime;
-var stopAtTime;
 var pwp;
 
 // will expose/attach itself to the $ global
@@ -42,15 +39,6 @@ if (typeof String.prototype.trim !== 'function') {
     return this.replace(/^\s+|\s+$/g, '');
   };
 }
-
-var checkCurrentURL = function () {
-  var deepLink = require('./url').checkCurrent();
-  if (!deepLink) {
-    return;
-  }
-  startAtTime = deepLink[0];
-  stopAtTime = deepLink[1];
-};
 
 /**
  * The most missing feature regarding embedded players
@@ -169,8 +157,7 @@ var addBehavior = function (player, params, wrapper) {
     playerType = params.type,
     controlBox = controls.box,
 
-    deepLink,
-    storageKey;
+    deepLink;
 
 
   console.debug('webplayer', 'metadata', timeline.getData());
@@ -209,7 +196,7 @@ var addBehavior = function (player, params, wrapper) {
   /**
    * Timecontrols
    */
-  //always render toggler buttons wrapper
+    //always render toggler buttons wrapper
   wrapper.append(controlBox);
 
   /**
@@ -253,15 +240,14 @@ var addBehavior = function (player, params, wrapper) {
 
   // parse deeplink
   deepLink = require('./url').checkCurrent();
-  if ( deepLink[0] && pwp.players.length === 1) {
+  if (deepLink[0] && pwp.players.length === 1) {
     var playerAttributes = {preload: 'auto'};
     if (!isHidden() && autoplay) {
       playerAttributes.autoplay = 'autoplay';
     }
     jqPlayer.attr(playerAttributes);
     //stopAtTime = deepLink[1];
-    console.log('DeepLink', 'start time', deepLink[0]);
-    timeline.setTime(deepLink[0]);
+    timeline.playRange(deepLink);
 
     $('html, body').delay(150).animate({
       scrollTop: $('.container:first').offset().top - 25
@@ -285,7 +271,6 @@ var addBehavior = function (player, params, wrapper) {
     } else {
       if (!playButton.hasClass('playing')) {
         playButton.addClass('playing');
-        playButton.parent().parent().find('.mejs-time-buffering').show();
       }
       // flash fallback needs additional pause
       if (player.pluginType === 'flash') {
@@ -298,28 +283,8 @@ var addBehavior = function (player, params, wrapper) {
   // wait for the player or you'll get DOM EXCEPTIONS
   // And just listen once because of a special behaviour in firefox
   // --> https://bugzilla.mozilla.org/show_bug.cgi?id=664842
-  jqPlayer.one('canplay', function () {
-    // add duration of final chapter
-    if (player.duration) {
-    }
-    // add Deeplink Behavior if there is only one player on the site
-    /*
-     if (players.length === 1) {
-     jqPlayer
-     .bind('play timeupdate', { player: player }, checkTime)
-     .bind('pause', { player: player }, addressCurrentTime);
-     // disabled 'cause it overrides chapter clicks
-     // bind seeked to addressCurrentTime
-     checkCurrentURL();
-     // handle browser history navigation
-     jQuery(window).bind('hashchange onpopstate', function (e) {
-     if (!ignoreHashChange) {
-     checkCurrentURL();
-     }
-     ignoreHashChange = false;
-     });
-     }
-     */
+  jqPlayer.one('canplay', function (evt) {
+    console.debug('canplay', evt);
   });
 
   jqPlayer

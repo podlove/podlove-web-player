@@ -1,4 +1,5 @@
 var Tab = require('../tab')
+  , timeCode = require('../timecode')
   , types = {
     'twitter': {
       'className': 'twitter',
@@ -38,10 +39,10 @@ function createEpisodeInfo(tab, params) {
 
   tab.createSection(
     '<h2>' + params.title + '</h2>' +
-    '<p>Published: ' + date.getDate() + '.' + date.getMonth() + '.' + date.getFullYear() + '</p>' +
     '<em>' + params.subtitle + '</em>' +
     '<p>' + params.summary + '</p>' +
-    '<p>Duration: ' + params.duration + '</p>' +
+    '<p>Duration: ' + timeCode.fromTimeStamp(params.duration) + '</p>' +
+    '<p>Published: ' + date.getDate() + '.' + date.getMonth() + '.' + date.getFullYear() + '</p>' +
     '<p>' +
       'Permalink for this episode:<br>' +
       '<a href="' + params.permalink + '">' + params.permalink + '</a>' +
@@ -71,9 +72,9 @@ function createSubscribeButton(params) {
 function createShowInfo (tab, params) {
   tab.createAside(
     '<h2>'+ params.show.title+ '</h2>' +
-    createPosterImage(params.poster) +
-    createSubscribeButton(params) +
     '<p>' + params.show.subtitle + '</p>' +
+    createPosterImage(params.show.poster) +
+    createSubscribeButton(params) +
     '<p>Link to the show:<br>' +
       '<a href="' + params.show.url + '">' + params.show.url + '</a></p>'
   );

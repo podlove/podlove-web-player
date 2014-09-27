@@ -32,6 +32,7 @@ function Timeline(player, data) {
   this.listeners = [logCurrentTime];
   this.currentTime = -1;
   this.duration = data.duration;
+  this.endTime = data.duration;
   this.bufferedTime = 0;
 }
 
@@ -57,6 +58,14 @@ Timeline.prototype.addModule = function (module) {
   this.modules.push(module);
 };
 
+Timeline.prototype.playRange = function (range) {
+  if (!range || !range.length || !range.shift) {
+    throw TypeError('Timeline.playRange called without a range');
+  }
+  this.setTime(range.shift());
+  this.stopAt(range.shift());
+};
+
 Timeline.prototype.update = function(event) {
   console.log('Timeline', 'update', event);
   var player = event.currentTarget,
@@ -77,6 +86,9 @@ Timeline.prototype.update = function(event) {
   this.currentTime = player.currentTime;
   console.log('Listeners', this.listeners);
   $.each(this.listeners, call);
+  if (this.currentTime >= this.endTime) {
+    this.player.stop();
+  }
 };
 
 Timeline.prototype.emitEventsBetween = function (start, end) {
@@ -97,19 +109,36 @@ Timeline.prototype.emitEventsBetween = function (start, end) {
   });
 };
 
+/**
+ * returns if time is a valid timestamp in current timeline
+ * @param {*} time
+ * @returns {boolean}
+ */
+Timeline.prototype.isValidTime = function (time) {
+  return (typeof time === 'number' && !isNaN(time) && time >= 0 && time <= this.duration);
+};
+
 Timeline.prototype.setTime = function (time) {
-  if (time < 0 && time > this.duration) {
+  if (!this.isValidTime(time)) {
     console.warn('Timeline', 'setTime', 'time out of bounds', time);
     return this.player.currentTime;
   }
-  if( this.player.readyState == this.player.HAVE_ENOUGH_DATA ){
+  if (this.player.readyState == this.player.HAVE_ENOUGH_DATA ){
     this.player.setCurrentTime(time);
+    this.currentTime = time;
     return this.player.currentTime;
   } else {
     $(this.player).one('canplay', function(){
       this.setCurrentTime(time);
     });
   }
+};
+
+Timeline.prototype.stopAt = function (time) {
+  if (!time || time <= 0 || time > this.duration) {
+    return console.warn('Timeline', 'stopAt', 'time out of bounds', time);
+  }
+  this.endTime = time;
 };
 
 Timeline.prototype.getTime = function () {
@@ -122,8 +151,7 @@ Timeline.prototype.getBuffered = function () {
 
 Timeline.prototype.setBufferedTime = function (e) {
   var
-    t = this,
-    target = (e != undefined) ? e.target : t.player,
+    target = (e != undefined) ? e.target : this.player,
     percent = null;
 
   // newest HTML5 spec has buffered array (FF4, Webkit)
@@ -146,13 +174,9 @@ Timeline.prototype.setBufferedTime = function (e) {
   // finally update the progress bar
   if (percent !== null) {
     percent = Math.min(1, Math.max(0, percent));
-    // update loaded bar
-    if (t.loaded && t.total) {
-      t.loaded.width(t.total.width() * percent);
-    }
   }
 
-  t.bufferedTime = percent;
+  this.bufferedTime = percent;
   console.log('Timeline', 'setBufferedTime', percent);
 };
 
