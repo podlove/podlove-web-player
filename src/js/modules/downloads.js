@@ -1,17 +1,29 @@
 'use strict';
 var Tab = require('../tab');
 
+/**
+ * Calculate the filesize into KB and MB
+ * @param size
+ * @returns {string}
+ */
 function formatSize(size) {
+  var oneMb = 1048576;
+  var fileSize = parseInt(size, 10);
+  var kBFileSize = Math.round(fileSize / 1024);
+  var mBFileSIze = Math.round(fileSize / 1024 / 1024);
   if (!size) {
     return ' -- ';
   }
-  return (parseInt(size, 10) < 1048704) ?
-    Math.round(parseInt(size, 10) / 100) / 10 + 'kB' :
-    Math.round(parseInt(size, 10) / 1000 / 100) / 10 + 'MB';
+  // in case, the filesize is smaller than 1MB,
+  // the format will be rendered in KB
+  // otherwise in MB
+  return (fileSize < oneMb) ?
+    kBFileSize  + ' KB' :
+    mBFileSIze + ' MB';
 }
 
 var createRow = function (element) {
-  var row = $('<dt class="filename">' + element.assetTitle+ '</dt>' +
+  var row = $('<dt class="filename">' + element.name+ '</dt>' +
     '<dd class="size">' + formatSize(element.size) + '</dd>');
   //render and append
   this.append(row);
@@ -25,7 +37,7 @@ var createRow = function (element) {
   var fileInfoButton = createListButton("file-info", "pwp-icon-info-circle", "Info");
   this.append(fileInfoButton);
   fileInfoButton.click(function () {
-    window.prompt('file URL:', element.downloadUrl);
+    window.prompt('file URL:', element.dlurl);
     return false;
   });
 
@@ -72,18 +84,8 @@ Downloads.prototype.createDownloadTab = function (params) {
 };
 
 Downloads.prototype.createList = function (params) {
-  if (params.downloads && params.downloads[0].assetTitle) {
-    return params.downloads
-  }
-
   if (params.downloads) {
-      return params.downloads.map(function (element) {
-          return {
-            "assetTitle": element.name,
-            "downloadUrl": element.dlurl,
-            "url": element.url
-          };
-      });
+    return params.downloads;
   }
   // build from source elements
   return params.sources.map(function (element) {
