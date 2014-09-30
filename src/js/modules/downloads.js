@@ -23,7 +23,7 @@ function formatSize(size) {
 }
 
 var createRow = function (element) {
-  var row = $('<dt class="filename">' + element.name+ '</dt>' +
+  var row = $('<dt class="filename">' + element.assetTitle+ '</dt>' +
     '<dd class="size">' + formatSize(element.size) + '</dd>');
   //render and append
   this.append(row);
@@ -37,7 +37,7 @@ var createRow = function (element) {
   var fileInfoButton = createListButton("file-info", "pwp-icon-info-circle", "Info");
   this.append(fileInfoButton);
   fileInfoButton.click(function () {
-    window.prompt('file URL:', element.dlurl);
+    window.prompt('file URL:', element.downloadUrl);
     return false;
   });
 
@@ -84,8 +84,18 @@ Downloads.prototype.createDownloadTab = function (params) {
 };
 
 Downloads.prototype.createList = function (params) {
+  if (params.downloads && params.downloads[0].assetTitle) {
+    return params.downloads
+  }
+
   if (params.downloads) {
-    return params.downloads;
+    return params.downloads.map(function (element) {
+      return {
+        "assetTitle": element.name,
+        "downloadUrl": element.dlurl,
+        "url": element.url
+      };
+    });
   }
   // build from source elements
   return params.sources.map(function (element) {
