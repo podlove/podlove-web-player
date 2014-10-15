@@ -15,14 +15,14 @@ var createRow = function (element) {
     '<dd class="size">' + formatSize(element.size) + '</dd>');
   //render and append
   this.append(row);
-  var openFileButton = createListButton("file-open", "pwp-icon-link-ext", "Open");
+  var openFileButton = createListButton("file-open", "pwp-outgoing", "Open");
   this.append(openFileButton);
   openFileButton.click(function () {
     window.open(element.url, 'Podlove Popup', 'width=550,height=420,resizable=yes');
     return false;
   });
 
-  var fileInfoButton = createListButton("file-info", "pwp-icon-info-circle", "Info");
+  var fileInfoButton = createListButton("file-info", "pwp-info-circled", "Info");
   this.append(fileInfoButton);
   fileInfoButton.click(function () {
     window.prompt('file URL:', element.downloadUrl);
@@ -57,7 +57,7 @@ Downloads.prototype.createDownloadTab = function (params) {
     return null;
   }
   var downloadTab = new Tab({
-      icon: "pwp-icon-link",
+      icon: "pwp-download",
       title: "Show/hide download bar",
       name: 'downloads',
       headline: 'Download',

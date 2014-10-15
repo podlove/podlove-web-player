@@ -121,7 +121,7 @@ function createInfoTab(params) {
     return null;
   }
   var infoTab = new Tab({
-    icon: 'pwp-icon-info-circle',
+    icon: 'pwp-info-circled',
     title: 'More information about this',
     headline: 'Info',
     name: 'info',
