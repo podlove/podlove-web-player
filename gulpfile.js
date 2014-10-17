@@ -133,8 +133,8 @@ gulp.task('examples', function() {
 
   // all media examples
   gulp.src(source + 'examples/**/*')
-      .pipe(gulp.dest(dest + 'examples'))
-      .pipe(connect.reload());
+    .pipe(gulp.dest(dest + 'examples'))
+    .pipe(connect.reload());
 });
 
 // Clean
@@ -154,7 +154,7 @@ gulp.task('default', ['test'], function() {
 });
 
 // Watch
-gulp.task('watch', ['tdd'],  function() {
+gulp.task('watch', function() {
 
   // Watch Sass source files
   gulp.watch(source + 'sass/**/*.scss', ['styles']);
@@ -166,8 +166,7 @@ gulp.task('watch', ['tdd'],  function() {
   gulp.watch(source + 'img/**/*', ['images']);
 
   // Watch example files
-  gulp.watch(source + 'index.html', ['examples']);
-  gulp.watch(source + 'examples/**/*', ['examples']);
+  gulp.watch(source + '*.html', ['examples']);
 
 });
 
