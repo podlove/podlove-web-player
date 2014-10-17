@@ -25,7 +25,8 @@ function ProgressBar(timeline, params) {
 
 ProgressBar.prototype.setHandlePosition = function (time) {
   var newWidth = Math.round(this.progress.width() * time / this.duration),
-    handlePos = newWidth - Math.round(this.handle.outerWidth(true) / 2);
+    handleCenter = Math.round(this.handle.outerWidth(true) / 2),
+    handlePos = isNaN(newWidth) ? -1 * handleCenter : newWidth - handleCenter;
   console.debug('ProgressBar', 'setHandlePosition', handlePos);
   this.handle.css('left', handlePos);
 };
