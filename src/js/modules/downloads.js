@@ -1,13 +1,25 @@
 'use strict';
 var Tab = require('../tab');
 
+/**
+ * Calculate the filesize into KB and MB
+ * @param size
+ * @returns {string}
+ */
 function formatSize(size) {
+  var oneMb = 1048576;
+  var fileSize = parseInt(size, 10);
+  var kBFileSize = Math.round(fileSize / 1024);
+  var mBFileSIze = Math.round(fileSize / 1024 / 1024);
   if (!size) {
     return ' -- ';
   }
-  return (parseInt(size, 10) < 1048704) ?
-    Math.round(parseInt(size, 10) / 100) / 10 + 'kB' :
-    Math.round(parseInt(size, 10) / 1000 / 100) / 10 + 'MB';
+  // in case, the filesize is smaller than 1MB,
+  // the format will be rendered in KB
+  // otherwise in MB
+  return (fileSize < oneMb) ?
+    kBFileSize  + ' KB' :
+    mBFileSIze + ' MB';
 }
 
 var createRow = function (element) {
@@ -77,13 +89,13 @@ Downloads.prototype.createList = function (params) {
   }
 
   if (params.downloads) {
-      return params.downloads.map(function (element) {
-          return {
-            "assetTitle": element.name,
-            "downloadUrl": element.dlurl,
-            "url": element.url
-          };
-      });
+    return params.downloads.map(function (element) {
+      return {
+        "assetTitle": element.name,
+        "downloadUrl": element.dlurl,
+        "url": element.url
+      };
+    });
   }
   // build from source elements
   return params.sources.map(function (element) {
