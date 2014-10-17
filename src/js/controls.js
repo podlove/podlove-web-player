@@ -32,7 +32,7 @@ Controls.prototype.createTimeControls = function (chapterModule) {
     console.info('Controls#createTimeControls: no chapterTab found');
   }
   if (hasChapters) {
-    this.createButton("pwp-icon-to-start", "Jump backward to previous chapter", function () {
+    this.createButton("pwp-previous-chapter", "Jump backward to previous chapter", function () {
       var activeChapter = chapterModule.getActiveChapter();
       if (this.timeline.getTime() > activeChapter.start + 10) {
         console.log('back to chapter', chapterModule.currentChapter, 'start', this.timeline.getTime());
@@ -43,20 +43,20 @@ Controls.prototype.createTimeControls = function (chapterModule) {
     });
   }
 
-  this.createButton("pwp-icon-fast-bw", "Rewind 30 seconds", function () {
+  this.createButton("pwp-back-30", "Rewind 30 seconds", function () {
     console.log('Controls >> rewind before', this.timeline.getTime());
     this.timeline.setTime(this.timeline.getTime() - 30);
     console.log('Controls >> rewind after', this.timeline.getTime());
   });
 
-  this.createButton("pwp-icon-fast-fw", "Fast forward 30 seconds", function () {
+  this.createButton("pwp-forward-30", "Fast forward 30 seconds", function () {
     console.log('Controls >> ffwd before', this.timeline.getTime());
     this.timeline.setTime(this.timeline.getTime() + 30);
     console.log('Controls >> ffwd after', this.timeline.getTime());
   });
 
   if (hasChapters) {
-    this.createButton("pwp-icon-to-end", "Jump to next chapter", function () {
+    this.createButton("pwp-next-chapter", "Jump to next chapter", function () {
       console.log('Controls >> next Chapter before', this.timeline.getTime());
       chapterModule.next();
       console.log('Controls >> next Chapter after', this.timeline.getTime());

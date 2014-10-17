@@ -47,7 +47,7 @@ function renderExternalLink(href) {
   if (!href || href === "") {
     return '';
   }
-  return '<a class="pwp-icon-link-ext button button-toggle" target="_blank" href="' + href + '"></a>';
+  return '<a class="pwp-outgoing button button-toggle" target="_blank" href="' + href + '"></a>';
 }
 
 function renderChapterImage(imageSrc) {
@@ -154,7 +154,7 @@ function Chapters (timeline) {
   }
   this.duration = timeline.duration;
   this.tab = new Tab({
-    icon: "pwp-icon-list-bullet",
+    icon: "pwp-chapters",
     title: "Show/hide chapters",
     headline: 'Chapters',
     name: "podlovewebplayer_chapterbox showonplay" // FIXME clean way to add 2 classnames
@@ -222,7 +222,7 @@ Chapters.prototype.addEventhandlers = function (player) {
     this.element.on('click', function (e) {
       // enable external links to be opened in a new tab or window
       // cancels event to bubble up
-      if (e.target.className === 'pwp-icon-link-ext button button-toggle') {
+      if (e.target.className === 'pwp-outgoing button button-toggle') {
         return true;
       }
       //console.log('chapter#clickHandler: start chapter at', chapterStart);

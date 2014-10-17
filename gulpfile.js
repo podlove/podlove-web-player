@@ -120,7 +120,7 @@ gulp.task('copy', function() {
     .pipe(gulp.dest(dest + 'js/' + external));
 
   // Copy Podlove Font
-  gulp.src(source + 'libs/podlove-font/font/*')
+  gulp.src(bower + 'podlove-font/font/*')
     .pipe(gulp.dest(dest + 'font'));
 });
 

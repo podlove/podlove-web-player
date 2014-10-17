@@ -38,7 +38,7 @@ function createShareButtons(shareTab, episode) {
 
   var container = $('<p></p>')
     , currentButton = createShareButton({
-      icon: "pwp-icon-link",
+      icon: "pwp-share2",
       title: "Get URL for this",
       clickHandler: function () {
         window.prompt('This URL directly points to this episode', episode.url);
@@ -48,15 +48,16 @@ function createShareButtons(shareTab, episode) {
     ;
   container.append(currentButton);
   var tweetButton = createShareButton({
-    icon: "pwp-icon-twitter",
+    icon: "pwp-twitter",
     title: "Share this on Twitter",
     windowTitle: "tweet it",
     link: 'https://twitter.com/share?text=' + episode.titleEncoded + '&url=' + episode.urlEncoded
   });
   container.append(tweetButton);
 
+/*
   var fbButton = createShareButton({
-    icon: "pwp-icon-facebook",
+    icon: "pwp-facebook",
     title:"Share this on Facebook",
     windowTitle: 'share it',
     link: 'http://www.facebook.com/share.php?t=' + episode.titleEncoded + '&u=' + episode.urlEncoded
@@ -64,15 +65,16 @@ function createShareButtons(shareTab, episode) {
   container.append(fbButton);
 
   var gPlusButton = createShareButton({
-    icon: "pwp-icon-gplus",
+    icon: "pwp-gplus",
     title: "Share this on Google+",
     link: 'https://plus.google.com/share?title=' + episode.titleEncoded + '&url=' + episode.urlEncoded,
     windowTitle: 'plus it'
   });
   container.append(gPlusButton);
+*/
 
   var adnButton = createShareButton({
-    icon: "pwp-icon-appnet",
+    icon: "pwp-adn-alpha",
     title: "Share this on App.net",
     link: 'https://alpha.app.net/intent/post?text=' + episode.titleEncoded + '%20' + episode.urlEncoded,
     windowTitle: 'post it'
@@ -80,7 +82,7 @@ function createShareButtons(shareTab, episode) {
   container.append(adnButton);
 
   var mailButton = createShareButton({
-    icon: "pwp-icon-mail",
+    icon: "pwp-mail",
     title: "Share this via e-mail",
     windowTitle: "",
     clickHandler: function () {
@@ -110,7 +112,7 @@ function createShareTab(params) {
     urlEncoded: encodeURIComponent(params.permalink)
   };
   var shareTab = new Tab({
-    icon: "pwp-icon-export",
+    icon: "pwp-share2",
     title: "Show/hide sharing tabs",
     name: "podlovewebplayer_sharebuttons",
     headline: 'Share',
