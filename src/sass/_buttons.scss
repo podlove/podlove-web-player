@@ -23,7 +23,7 @@
 }
 
 // Flat subscribe button with rounded corners
-.button-subscribe {
+.button-submit {
   @include button-flat($white, $brand-primary);
   @include border-radius($border-radius-base);
   font-size: $font-size-button-label;
