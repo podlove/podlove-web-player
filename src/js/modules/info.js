@@ -63,7 +63,7 @@ function createSubscribeButton(params) {
   if (!params.subscribeButton) {
     return '';
   }
-  return '<button class="button-subscribe">' +
+  return '<button class="button-submit">' +
       '<span class="showtitle-label">' + params.show.title + '</span>' +
       '<span class="submit-label">' + params.subscribeButton + '</span>' +
     '</button>';
