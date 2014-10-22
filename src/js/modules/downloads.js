@@ -50,22 +50,23 @@ Downloads.prototype.createDownloadTab = function (params) {
       name: 'downloads',
       headline: 'Download',
       active: !!params.downloadbuttonsVisible
-    }),
-    $listElement = downloadTab.createSection('<div class="download image-container">' +
-      '<img src="' + params.poster + '" data-img="' + params.poster + '" alt="Poster Image">' +
-      '</div>' +
-      '<div><h2>' + params.title + '</h2>' +
-      '<p>Published: ' + date.getDate() + '.' + date.getMonth() + '.' + date.getFullYear() + '</p>' +
-      '<p>Duration: ' + timeCode.fromTimeStamp(params.duration) + '</p></div>' +
-      '<footer>' +
-      '<button class="download button-submit">' +
-      '<span class="download label">Download Episode</span>' +
-      '</button>' +
-      '<select>' + this.list.map(createOption) + '</select>' +
-      '</footer>'
-    );
+    });
 
+  var $listElement = downloadTab.createSection('<div class="download"><div class="poster-wrapper"><div class="download download-overlay"></div>' +
+      '<img class="poster-image" src="' + params.poster + '" data-img="' + params.poster + '" alt="Poster Image">' +
+      '</div></div>' +
+      '<div class="download"><h2>' + params.title + '</h2>' +
+      '<p>Published: ' + date.getDate() + '.' + date.getMonth() + '.' + date.getFullYear() + '</p>' +
+      '<p>Duration: ' + timeCode.fromTimeStamp(params.duration) + '</p></div>'
+    );
   downloadTab.box.append($listElement);
+
+  downloadTab.createFooter('<form action="" method="">' +
+    '<button class="download button-submit pwp-download" name="download-file">' +
+    '<span class="download label">Download Episode</span>' +
+    '</button>' +
+    '<select class="select" name="select-file">' + this.list.map(createOption) + '</select></form>'
+ );
 
   return downloadTab;
 };
