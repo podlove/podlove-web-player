@@ -54,7 +54,7 @@ function createPosterImage(poster) {
   if (!poster) {
     return '';
   }
-  return '<div class="image-container">' +
+  return '<div class="poster-image">' +
     '<img src="' + poster + '" data-img="' + poster + '" alt="Poster Image">' +
     '</div>';
 }
