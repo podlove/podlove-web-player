@@ -27,8 +27,11 @@ $tab-header-height: 45px;
   .tab {
     display: none;
 
-    & > * {
-      padding: 1px;
+    // A hack for flexbox-layout:
+    // without 'padding:1px' for flexing elements ("@include flex"),
+    // those elements won't be displayed!
+    & > header, > div, > aside, > footer {
+      //padding: 1px;
     }
 
     &.active {
