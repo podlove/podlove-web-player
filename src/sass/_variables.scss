@@ -16,7 +16,8 @@ $gray-dark:               lighten(#000, 20%) !default;   // #333
 $gray:                    #3a3a3a !default;
 $gray-default:            lighten(#000, 33.5%) !default; // #555
 $gray-light:              lighten(#000, 60%) !default;   // #999
-$gray-lighter:            lighten(#000, 93.5%) !default; // #eee
+$gray-lighter:            lighten(#000, 80%) !default;   // #ccc
+$gray-lightest:           lighten(#000, 93.5%) !default; // #eee
 
 // Brand colors
 // -------------------------
@@ -33,11 +34,11 @@ $badge-light:             lighten($brand-primary, 60%) !default;
 // Scaffolding
 // -------------------------
 
-$body-bg:                   $gray-lighter !default;
+$body-bg:                   $gray-lightest !default;
 $text-color:                $gray-dark !default;
 $icon-font-color:           $white;
 $contrasted-dark-default:   $gray-dark;
-$contrasted-light-default:  $gray-lighter;
+$contrasted-light-default:  $gray-lightest;
 
 //Progress bars
 // -------------------------
@@ -72,15 +73,16 @@ $highlight-color:         lighten($brand-primary, 70%) !default;
 // Typography
 // -------------------------
 
-$font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$font-family-sans-serif:  'Roboto', 'Helvetica Neue', 'Helvetica', sans-serif !default;
 $font-family-serif:       Georgia, "Times New Roman", Times, serif !default;
-$font-family-monospace:   Monaco, Menlo, Consolas, "Courier New", monospace !default;
+$font-family-monospace:   'Droid Sans Mono', Monaco, Menlo, Consolas, "Courier New", monospace !default;
 $font-family-base:        $font-family-sans-serif !default;
 $font-family-icons:       "pwpfont";
 
 $font-size-base:          16px !default;
 $font-size-small:         ceil($font-size-base * 0.8) !default; // ~13px
 $font-size-large:         ceil($font-size-base * 1.125) !default; // ~18px
+$font-size-xlarge:        ceil($font-size-base * 1.5) !default; // ~24px
 $font-size-icons:         25px !default;
 
 $font-size-h1:            floor($font-size-base * 2.5) !default; // ~40px
@@ -102,10 +104,12 @@ $font-weight-bolder:      500;
 $line-height-base:        1.428571429 !default; // 20/14
 $line-height-computed:    floor($font-size-base * $line-height-base) !default; // ~20px
 
-$headings-font-family:    $font-family-base !default;
-$headings-font-weight:    300 !default;
-$headings-line-height:    1.1 !default;
-$headings-color:          inherit !default;
+$headings-font-family:          $font-family-base !default;
+$headings-font-weight-default:  500 !default;
+$headings-font-weight-light:    300 !default;
+$headings-font-weight-normal:   400 !default;
+$headings-line-height:          1.1 !default;
+$headings-color:                inherit !default;
 
 $font-size-button-label:        floor($font-size-base * 2.0) !default;  // 32px
 $font-size-button-small-label:  floor($font-size-base * 1.25) !default; // 20px
@@ -174,7 +178,7 @@ $screen-md-max:              ($screen-lg-min - 1) !default;
 // -------------------------
 
 // Hr border color
-$hr-border:                   $gray-lighter !default;
+$hr-border:                   $gray-lightest !default;
 
 // Image size in titlebar
 $title-image-height:          140px;
