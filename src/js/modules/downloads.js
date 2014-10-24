@@ -52,12 +52,17 @@ Downloads.prototype.createDownloadTab = function (params) {
       active: !!params.downloadbuttonsVisible
     });
 
-  var $listElement = downloadTab.createSection('<div class="download"><div class="poster-wrapper"><div class="download download-overlay"></div>' +
-      '<img class="poster-image" src="' + params.poster + '" data-img="' + params.poster + '" alt="Poster Image">' +
-      '</div></div>' +
-      '<div class="download"><h2>' + params.title + '</h2>' +
+  var $listElement = downloadTab.createSection('<div class="download">' +
+      '<div class="poster-wrapper">' +
+        '<div class="download download-overlay"></div>' +
+        '<img class="poster-image" src="' + params.poster + '" data-img="' + params.poster + '" alt="Poster Image">' +
+      '</div>' +
+    '</div>' +
+    '<div class="download">' +
+      '<h2>' + params.title + '</h2>' +
       '<p>Published: ' + date.getDate() + '.' + date.getMonth() + '.' + date.getFullYear() + '</p>' +
-      '<p>Duration: ' + timeCode.fromTimeStamp(params.duration) + '</p></div>'
+      '<p>Duration: ' + timeCode.fromTimeStamp(params.duration) + '</p>' +
+    '</div>'
     );
   downloadTab.box.append($listElement);
 
@@ -74,21 +79,21 @@ Downloads.prototype.createDownloadTab = function (params) {
 /**
  *
  * @param element
- * @returns {{assetTitle: (element.name|*), downloadUrl: (dlurl|*), url: (*|url|req.url|exports.handler.url|request.url|.license.url), size: (*|size|Function|.__defineGetter__.size|testSets.size|exports.size)}}
+ * @returns {{assetTitle: String, downloadUrl: String, url: String, size: Number}}
  */
 function normalizeDownload (element) {
   return {
-    "assetTitle": element.name,
-    "downloadUrl": element.dlurl,
-    "url": element.url,
-    "size": element.size
+    assetTitle: element.name,
+    downloadUrl: element.dlurl,
+    url: element.url,
+    size: element.size
   };
 }
 
 /**
  *
  * @param element
- * @returns {{assetTitle: *, downloadUrl: *, url: *, size: (*|size|Function|.__defineGetter__.size|testSets.size|exports.size)}}
+ * @returns {{assetTitle: String, downloadUrl: String, url: String, size: Number}}
  */
 function normalizeSource(element) {
   var parts = element.split('.');
