@@ -38,7 +38,7 @@
   }
   //*** Image of the show
   // Container for image
-  .image-container {
+  .poster-image {
     margin: 5px 25px 16px;
     img {
       width: 100%;
@@ -46,16 +46,14 @@
     }
   }
   footer {
-    padding: 25px 0;
     text-align: center;
-    background-color: $gray-lighter;
+    background-color: $gray-lightest;
     border: 1px solid white !important;
     h3 {
       margin-top: 5px;
     }
     p {
-      //margin-top: 25px;
-      //padding-top: 5px;
+      padding: 25px 0;
     }
     .social-links {
       border-bottom: 16px solid $white;
@@ -82,8 +80,8 @@
   }
 }
 
-//*** Button to subcribe to the show
-.button-subscribe {
+// Button to subcribe to the show
+.button-submit {
   height: auto;
   margin: 5px 25px;
   max-width: $info-image-width;

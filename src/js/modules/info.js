@@ -54,7 +54,7 @@ function createPosterImage(poster) {
   if (!poster) {
     return '';
   }
-  return '<div class="image-container">' +
+  return '<div class="poster-image">' +
     '<img src="' + poster + '" data-img="' + poster + '" alt="Poster Image">' +
     '</div>';
 }
@@ -63,7 +63,7 @@ function createSubscribeButton(params) {
   if (!params.subscribeButton) {
     return '';
   }
-  return '<button class="button-subscribe">' +
+  return '<button class="button-submit">' +
       '<span class="showtitle-label">' + params.show.title + '</span>' +
       '<span class="submit-label">' + params.subscribeButton + '</span>' +
     '</button>';

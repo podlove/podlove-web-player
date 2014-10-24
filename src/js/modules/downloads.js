@@ -1,5 +1,7 @@
 'use strict';
-var Tab = require('../tab');
+var Tab = require('../tab')
+  , timeCode = require('../timecode')
+  ;
 
 /**
  * Calculate the filesize into KB and MB
@@ -22,41 +24,14 @@ function formatSize(size) {
     mBFileSIze + ' MB';
 }
 
-var createRow = function (element) {
-  var row = $('<dt class="filename">' + element.assetTitle+ '</dt>' +
-    '<dd class="size">' + formatSize(element.size) + '</dd>');
-  //render and append
-  this.append(row);
-  var openFileButton = createListButton("file-open", "pwp-outgoing", "Open");
-  this.append(openFileButton);
-  openFileButton.click(function () {
-    window.open(element.url, 'Podlove Popup', 'width=550,height=420,resizable=yes');
-    return false;
-  });
-
-  var fileInfoButton = createListButton("file-info", "pwp-info-circled", "Info");
-  this.append(fileInfoButton);
-  fileInfoButton.click(function () {
-    window.prompt('file URL:', element.downloadUrl);
-    return false;
-  });
-
-};
-
-var createListButton = function(className, icon, title) {
-  return $('<dd class="' + className + '">' +
-      '<a href="#" class="button button-toggle ' + icon + '" title="' + title + '"></a>' +
-    '</dd>');
-};
-
 /**
  *
- * @param {object} params
- * @constructor
+ * @param listElement
+ * @returns {string}
  */
-function Downloads (params) {
-  this.list = this.createList(params);
-  this.tab = this.createDownloadTab(params);
+function createOption(listElement) {
+  console.log(listElement);
+  return '<option>' + listElement.assetTitle + ' ' + formatSize(listElement.size) + '</option>'
 }
 
 /**
@@ -68,45 +43,94 @@ Downloads.prototype.createDownloadTab = function (params) {
   if ((!params.downloads && !params.sources) || params.hidedownloadbutton === true) {
     return null;
   }
+  var date = new Date(params.publicationDate);
   var downloadTab = new Tab({
       icon: "pwp-download",
       title: "Show/hide download bar",
       name: 'downloads',
       headline: 'Download',
       active: !!params.downloadbuttonsVisible
-    }),
-    $listElement = downloadTab.createSection('<dl></dl>');
+    });
 
-  this.list.forEach(createRow, $listElement);
-  downloadTab.box.append($listElement);
+  var $tabContent = downloadTab.createSection('<div class="download">' +
+      '<div class="poster-wrapper">' +
+        '<div class="download download-overlay"></div>' +
+        '<img class="poster-image" src="' + params.poster + '" data-img="' + params.poster + '" alt="Poster Image">' +
+      '</div>' +
+    '</div>' +
+    '<div class="download">' +
+      '<h2>' + params.title + '</h2>' +
+      '<p>Published: ' + date.getDate() + '.' + date.getMonth() + '.' + date.getFullYear() + '</p>' +
+      '<p>Duration: ' + timeCode.fromTimeStamp(params.duration) + '</p>' +
+    '</div>'
+    );
+  downloadTab.box.append($tabContent);
+
+  downloadTab.createFooter('<form action="" method="">' +
+    '<button class="download button-submit pwp-download" name="download-file">' +
+    '<span class="download label">Download Episode</span>' +
+    '</button>' +
+    '<select class="select" name="select-file">' + this.list.map(createOption) + '</select></form>'
+ );
 
   return downloadTab;
 };
 
-Downloads.prototype.createList = function (params) {
+/**
+ *
+ * @param element
+ * @returns {{assetTitle: String, downloadUrl: String, url: String, size: Number}}
+ */
+function normalizeDownload (element) {
+  return {
+    assetTitle: element.name,
+    downloadUrl: element.dlurl,
+    url: element.url,
+    size: element.size
+  };
+}
+
+/**
+ *
+ * @param element
+ * @returns {{assetTitle: String, downloadUrl: String, url: String, size: Number}}
+ */
+function normalizeSource(element) {
+  var parts = element.split('.');
+  return {
+    assetTitle: parts[parts.length - 1],
+    downloadUrl: element,
+    url: element,
+    size: element.size
+  };
+}
+
+/**
+ *
+ * @param {Object} params
+ * @returns {Array}
+ */
+var createList = function (params) {
   if (params.downloads && params.downloads[0].assetTitle) {
     return params.downloads
   }
 
   if (params.downloads) {
-    return params.downloads.map(function (element) {
-      return {
-        "assetTitle": element.name,
-        "downloadUrl": element.dlurl,
-        "url": element.url
-      };
-    });
+    return params.downloads.map(normalizeDownload);
   }
   // build from source elements
-  return params.sources.map(function (element) {
-    var parts = element.split('.');
-    return {
-      url: element,
-      dlurl: element,
-      name: parts[parts.length - 1]
-    };
-  });
+  return params.sources.map(normalizeSource);
 };
+
+/**
+ *
+ * @param {object} params
+ * @constructor
+ */
+function Downloads (params) {
+  this.list = createList(params);
+  this.tab = this.createDownloadTab(params);
+}
 
 module.exports = Downloads;
 

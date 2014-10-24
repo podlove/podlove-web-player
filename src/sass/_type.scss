@@ -2,12 +2,17 @@
 // Typography
 // --------------------------------------------------
 
+// Google Fonts
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,300,500);
+@import url(http://fonts.googleapis.com/css?family=Droid+Sans+Mono);
+
 // Body text
 // -------------------------
 
 p {
-  margin:     0 0 ($line-height-computed / 2);
-  font-size:  $font-size-base;
+  margin:      0 0 ($line-height-computed / 2);
+  font-size:   $font-size-base;
+  font-weight: $font-weight-bold;
 }
 
 
@@ -17,9 +22,16 @@ p {
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
   font-family: $headings-font-family;
-  font-weight: $headings-font-weight;
   line-height: $headings-line-height;
   color:       $headings-color;
+}
+
+h1, h2 {
+  font-weight: $headings-font-weight-default;
+}
+
+h3, h4, h5, h6 {
+  font-weight: $headings-font-weight-normal;
 }
 
 h1,
@@ -56,3 +68,8 @@ ol {
     margin-bottom: 0;
   }
 }
+
+a {
+  font-weight: $font-weight-bolder;
+}
+
