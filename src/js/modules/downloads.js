@@ -52,7 +52,7 @@ Downloads.prototype.createDownloadTab = function (params) {
       active: !!params.downloadbuttonsVisible
     });
 
-  var $listElement = downloadTab.createSection('<div class="download">' +
+  var $tabContent = downloadTab.createSection('<div class="download">' +
       '<div class="poster-wrapper">' +
         '<div class="download download-overlay"></div>' +
         '<img class="poster-image" src="' + params.poster + '" data-img="' + params.poster + '" alt="Poster Image">' +
@@ -64,7 +64,7 @@ Downloads.prototype.createDownloadTab = function (params) {
       '<p>Duration: ' + timeCode.fromTimeStamp(params.duration) + '</p>' +
     '</div>'
     );
-  downloadTab.box.append($listElement);
+  downloadTab.box.append($tabContent);
 
   downloadTab.createFooter('<form action="" method="">' +
     '<button class="download button-submit pwp-download" name="download-file">' +
