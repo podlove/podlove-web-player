@@ -52,7 +52,7 @@ Downloads.prototype.createDownloadTab = function (params) {
       active: !!params.downloadbuttonsVisible
     });
 
-  var $tabContent = downloadTab.createSection('<div class="download">' +
+  var $tabContent = downloadTab.createMainContent('<div class="download">' +
       '<div class="poster-wrapper">' +
         '<div class="download download-overlay"></div>' +
         '<img class="poster-image" src="' + params.poster + '" data-img="' + params.poster + '" alt="Poster Image">' +

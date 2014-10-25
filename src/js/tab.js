@@ -65,13 +65,13 @@ Tab.prototype.createHeader = function() {
 };
 
 /**
- * Append an html section element to the tab's content box
+ * Append an html div element with class main to the tab's content box
  * @param content
  */
-Tab.prototype.createSection = function(content) {
-  var section = $('<div class="main">' + content + '</div');
-  this.box.append(section);
-  return section;
+Tab.prototype.createMainContent = function(content) {
+  var mainDiv = $('<div class="main">' + content + '</div');
+  this.box.append(mainDiv);
+  return mainDiv;
 };
 
 /**

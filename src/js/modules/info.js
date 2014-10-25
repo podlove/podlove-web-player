@@ -37,7 +37,7 @@ var Tab = require('../tab')
 function createEpisodeInfo(tab, params) {
   var date = new Date(params.publicationDate);
 
-  tab.createSection(
+  tab.createMainContent(
     '<h2>' + params.title + '</h2>' +
     '<em>' + params.subtitle + '</em>' +
     '<p>' + params.summary + '</p>' +

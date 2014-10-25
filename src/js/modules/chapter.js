@@ -166,7 +166,7 @@ function Chapters (timeline) {
   this.currentChapter = -1;
 
   this.chapterlinks = (timeline.chapterlinks !== 'false');
-  var main = this.tab.createSection('');
+  var main = this.tab.createMainContent('');
   main.append(this.generateTable());
   this.update = update.bind(this);
 }
