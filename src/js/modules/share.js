@@ -1,5 +1,55 @@
 var Tab = require('../tab');
 
+var shareOptions = [
+  {name: "Show", value: "show"},
+  {name: "Episode", value: "episode"},
+  {name: "Chapter", value: "chapter"},
+  {name: "Exactly this part here", value: "timed"}
+];
+
+/**
+ * Creates the main content
+ * @param shareTab
+ * @param params
+ */
+function createContentContainer(shareTab, params) {
+  shareTab.createMainContent(
+    createShareOptions() +
+    createPoster(params.poster) +
+    createPoster(params.show.poster)
+  );
+}
+
+/**
+ * Creates an html div element containing an image
+ * @param poster
+ * @returns {string}
+ */
+function createPoster(poster) {
+  if (!poster) {
+    return '';
+  }
+  return '<div class="poster-image">' +
+    '<img src="' + poster + '" data-img="' + poster + '" alt="Poster Image">' +
+    '</div>';
+}
+
+/**
+ *
+ * @returns {string}
+ */
+function createShareOptions() {
+  return'<form method="post">' +
+    '<fieldset>' +
+    '<legend>What would you like to share?</legend>' +
+    '<input type="radio" name="share" value="Show" />Show<br />' +
+    '<input type="radio" name="share" value="Episode" />Episode<br />' +
+    '<input type="radio" name="share" value="Chapter" />Chapter<br />' +
+    '<input type="radio" name="share" value="Exactly this part here" />Exactly this part here<br />' +
+    '</fieldset>' +
+    '</form>';
+}
+
 /**
  *
  * @param options
@@ -23,9 +73,9 @@ function getButtonClickHandler(options) {
  */
 function createShareButton(options) {
   var clickHandler = getButtonClickHandler(options),
-    button = $('<a href="#" target="_blank" ' +
-      'class="button-toggle ' + options.icon + '" title="' + options.title + '"></a>');
-  button.on('click', clickHandler);
+    button = $('<li><a target="_blank" href="' + options.link + '"' +
+      'class="button-toggle ' + options.icon + '" title="' + options.title + '"></a></li>');
+  //button.on('click', clickHandler);
   return button;
 }
 
@@ -35,8 +85,7 @@ function createShareButton(options) {
  * @param {object} episode
  */
 function createShareButtons(shareTab, episode) {
-
-  var container = $('<p></p>')
+  var list = $('<ul></ul>')
     , currentButton = createShareButton({
       icon: "pwp-share2",
       title: "Get URL for this",
@@ -46,32 +95,32 @@ function createShareButtons(shareTab, episode) {
       }
     })
     ;
-  container.append(currentButton);
+  list.append(currentButton);
   var tweetButton = createShareButton({
     icon: "pwp-twitter",
     title: "Share this on Twitter",
     windowTitle: "tweet it",
     link: 'https://twitter.com/share?text=' + episode.titleEncoded + '&url=' + episode.urlEncoded
   });
-  container.append(tweetButton);
+  list.append(tweetButton);
 
-/*
-  var fbButton = createShareButton({
-    icon: "pwp-facebook",
-    title:"Share this on Facebook",
-    windowTitle: 'share it',
-    link: 'http://www.facebook.com/share.php?t=' + episode.titleEncoded + '&u=' + episode.urlEncoded
-  });
-  container.append(fbButton);
+  /*
+   var fbButton = createShareButton({
+   icon: "pwp-facebook",
+   title:"Share this on Facebook",
+   windowTitle: 'share it',
+   link: 'http://www.facebook.com/share.php?t=' + episode.titleEncoded + '&u=' + episode.urlEncoded
+   });
+   list.append(fbButton);
 
-  var gPlusButton = createShareButton({
-    icon: "pwp-gplus",
-    title: "Share this on Google+",
-    link: 'https://plus.google.com/share?title=' + episode.titleEncoded + '&url=' + episode.urlEncoded,
-    windowTitle: 'plus it'
-  });
-  container.append(gPlusButton);
-*/
+   var gPlusButton = createShareButton({
+   icon: "pwp-gplus",
+   title: "Share this on Google+",
+   link: 'https://plus.google.com/share?title=' + episode.titleEncoded + '&url=' + episode.urlEncoded,
+   windowTitle: 'plus it'
+   });
+   list.append(gPlusButton);
+   */
 
   var adnButton = createShareButton({
     icon: "pwp-adn-alpha",
@@ -79,7 +128,7 @@ function createShareButtons(shareTab, episode) {
     link: 'https://alpha.app.net/intent/post?text=' + episode.titleEncoded + '%20' + episode.urlEncoded,
     windowTitle: 'post it'
   });
-  container.append(adnButton);
+  list.append(adnButton);
 
   var mailButton = createShareButton({
     icon: "pwp-mail",
@@ -91,8 +140,8 @@ function createShareButtons(shareTab, episode) {
       return false;
     }
   });
-  container.append(mailButton);
-  shareTab.createSection().append(container);
+  list.append(mailButton);
+  shareTab.createFooter('').append(list);
 }
 
 /**
@@ -125,6 +174,9 @@ function createShareTab(params) {
 
 function Share(params) {
   this.tab = createShareTab(params);
+  createContentContainer(this.tab, params);
+  //this.shareOption = params.;
+  this.sharelink = params.url;
 }
 
 module.exports = Share;
