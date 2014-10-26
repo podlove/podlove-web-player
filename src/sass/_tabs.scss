@@ -65,13 +65,9 @@ $tab-header-height: 45px;
   h2 {
     margin: 0 25px;
     padding: 5px 0;
-    span {
-      font-family: $font-family-sans-serif;
-      font-weight: $headings-font-weight-light;
+    i {
+      padding-right: 10px;
     }
-  }
-  h2::before {
-    margin: 0 16px 0 0;
   }
   h4 {
     margin: 20px 25px;

@@ -53,13 +53,13 @@ Tab.prototype.close = function () {
  */
 Tab.prototype.createToggleButton = function(icon, title) {
   return $('<a href="#" class="button button-toggle ' + icon + '" title="' + title + '"></a>');
-}
+};
 
 /**
  * Return an html header element with a headline
  */
 Tab.prototype.createHeader = function() {
-  var header = $('<header><h2 class="' + this.icon + '"><span>' + this.headline + '</span></h2></header>');
+  var header = $('<header><h2><i class="' + this.icon + '"></i>' + this.headline + '</h2></header>');
   this.box.append(header);
   return header;
 };
