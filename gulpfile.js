@@ -9,7 +9,6 @@ var gulp = require('gulp')
   , rename = require('gulp-rename')
   , clean = require('gulp-clean')
   , concat = require('gulp-concat')
-  , notify = require('gulp-notify')
 // deactivate caching until issue is resolved
 //  , cache = require('gulp-cache')
   , browserify = require('gulp-browserify')
@@ -55,7 +54,6 @@ gulp.task('styles', function() {
     .pipe(rename({ suffix: '.min' }))
     .pipe(minifycss())
     .pipe(gulp.dest(dest + 'css'))
-    .pipe(notify({ message: 'Styles task complete' }))
     .pipe(connect.reload())
 });
 
@@ -69,7 +67,6 @@ gulp.task('moderator', function() {
     .pipe(rename({ suffix: '.min' }))
     .pipe(uglify())
     .pipe(gulp.dest(dest + 'js'))
-    .pipe(notify({ message: 'Moderator built.' }))
     .pipe(connect.reload())
 });
 
@@ -83,7 +80,6 @@ gulp.task('player', function() {
     .pipe(rename({ suffix: '.min' }))
     .pipe(uglify())
     .pipe(gulp.dest(dest + 'js'))
-    .pipe(notify({ message: 'Player built.' }))
     .pipe(connect.reload())
 });
 
@@ -95,7 +91,6 @@ gulp.task('images', function() {
   return gulp.src(source + 'img/**/*')
     .pipe(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true }))
     .pipe(gulp.dest(dest + 'img'))
-    .pipe(notify({ message: 'Images task complete' }))
     .pipe(connect.reload())
 });
 
