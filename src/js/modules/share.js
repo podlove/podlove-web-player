@@ -1,24 +1,15 @@
-var Tab = require('../tab');
+var Tab = require('../tab')
+  , SocialButtonList = require('../social-button-list')
+  , services = ['twitter', 'adn', 'email']
+  , shareOptions = [
+    {name: "Show", value: "show"},
+    {name: "Episode", value: "episode"},
+    {name: "Chapter", value: "chapter"},
+    {name: "Exactly this part here", value: "timed"}
+  ];
 
-var shareOptions = [
-  {name: "Show", value: "show"},
-  {name: "Episode", value: "episode"},
-  {name: "Chapter", value: "chapter"},
-  {name: "Exactly this part here", value: "timed"}
-];
-
-/**
- * Creates the main content
- * @param shareTab
- * @param params
- */
-function createContentContainer(shareTab, params) {
-  shareTab.createMainContent(
-    createShareOptions() +
-    createPoster(params.poster) +
-    createPoster(params.show.poster)
-  );
-}
+// module globals
+var shareTab, selectedOption, shareButtons, episodeData;
 
 /**
  * Creates an html div element containing an image
@@ -34,114 +25,27 @@ function createPoster(poster) {
     '</div>';
 }
 
+function createOption(option) {
+  return '<label><input type="radio" name="share" value="' + option.value + '" />' + option.name + '</label>';
+}
+
 /**
  *
  * @returns {string}
  */
 function createShareOptions() {
-  return'<form method="post">' +
+  var form = $('<form>' +
     '<fieldset>' +
     '<legend>What would you like to share?</legend>' +
-    '<input type="radio" name="share" value="Show" />Show<br />' +
-    '<input type="radio" name="share" value="Episode" />Episode<br />' +
-    '<input type="radio" name="share" value="Chapter" />Chapter<br />' +
-    '<input type="radio" name="share" value="Exactly this part here" />Exactly this part here<br />' +
+      shareOptions.map(createOption).join('') +
     '</fieldset>' +
-    '</form>';
-}
-
-/**
- *
- * @param options
- * @returns {*}
- */
-function getButtonClickHandler(options) {
-  if ('clickHandler' in options && typeof options.clickHandler === 'function') {
-    return options.clickHandler;
-  }
-  var windowFeatures = 'width=550,height=420,resizable=yes';
-  return function () {
-    window.open(options.link, options.windowTitle, windowFeatures);
-    return false;
-  };
-}
-
-/**
- *
- * @param options
- * @returns {*|jQuery|HTMLElement}
- */
-function createShareButton(options) {
-  var clickHandler = getButtonClickHandler(options),
-    button = $('<li><a target="_blank" href="' + options.link + '"' +
-      'class="button-toggle ' + options.icon + '" title="' + options.title + '"></a></li>');
-  //button.on('click', clickHandler);
-  return button;
-}
-
-/**
- * pass episode url and name
- * @param {Tab} shareTab
- * @param {object} episode
- */
-function createShareButtons(shareTab, episode) {
-  var list = $('<ul></ul>')
-    , currentButton = createShareButton({
-      icon: "pwp-share2",
-      title: "Get URL for this",
-      clickHandler: function () {
-        window.prompt('This URL directly points to this episode', episode.url);
-        return false;
-      }
-    })
-    ;
-  list.append(currentButton);
-  var tweetButton = createShareButton({
-    icon: "pwp-twitter",
-    title: "Share this on Twitter",
-    windowTitle: "tweet it",
-    link: 'https://twitter.com/share?text=' + episode.titleEncoded + '&url=' + episode.urlEncoded
+    '</form>');
+  form.on('change', function (event) {
+    console.log('sharing options changed', event);
+    episodeData.text = 'changed';
+    shareButtons.update(episodeData);
   });
-  list.append(tweetButton);
-
-  /*
-   var fbButton = createShareButton({
-   icon: "pwp-facebook",
-   title:"Share this on Facebook",
-   windowTitle: 'share it',
-   link: 'http://www.facebook.com/share.php?t=' + episode.titleEncoded + '&u=' + episode.urlEncoded
-   });
-   list.append(fbButton);
-
-   var gPlusButton = createShareButton({
-   icon: "pwp-gplus",
-   title: "Share this on Google+",
-   link: 'https://plus.google.com/share?title=' + episode.titleEncoded + '&url=' + episode.urlEncoded,
-   windowTitle: 'plus it'
-   });
-   list.append(gPlusButton);
-   */
-
-  var adnButton = createShareButton({
-    icon: "pwp-adn-alpha",
-    title: "Share this on App.net",
-    link: 'https://alpha.app.net/intent/post?text=' + episode.titleEncoded + '%20' + episode.urlEncoded,
-    windowTitle: 'post it'
-  });
-  list.append(adnButton);
-
-  var mailButton = createShareButton({
-    icon: "pwp-mail",
-    title: "Share this via e-mail",
-    windowTitle: "",
-    clickHandler: function () {
-      window.location = 'mailto:?subject=' + episode.titleEncoded + '&body=' + episode.titleEncoded + '%20%3C' +
-        episode.urlEncoded + '%3E';
-      return false;
-    }
-  });
-  list.append(mailButton);
-  shareTab.createFooter('').append(list);
+  return form;
 }
 
 /**
@@ -154,12 +58,6 @@ function createShareTab(params) {
     return null;
   }
 
-  var episode = {
-    title: params.title,
-    titleEncoded: encodeURIComponent(params.title),
-    url: params.permalink,
-    urlEncoded: encodeURIComponent(params.permalink)
-  };
   var shareTab = new Tab({
     icon: "pwp-share2",
     title: "Show/hide sharing tabs",
@@ -168,15 +66,24 @@ function createShareTab(params) {
     active: !!params.sharebuttonsVisible
   });
 
-  createShareButtons(shareTab, episode);
+  shareTab.createMainContent(
+    createPoster(params.poster) +
+    createPoster(params.show.poster)
+  ).append(createShareOptions());
+
+  shareButtons = new SocialButtonList(services, episodeData);
+  shareTab.createFooter('').append(shareButtons.list);
+
   return shareTab;
 }
 
-function Share(params) {
-  this.tab = createShareTab(params);
-  createContentContainer(this.tab, params);
-  //this.shareOption = params.;
-  this.sharelink = params.url;
-}
+module.exports = function Share(params) {
+  episodeData = {
+    title: encodeURIComponent(params.title),
+    url: encodeURIComponent(params.permalink)
+  };
+  selectedOption = 'episode';
+  shareTab = createShareTab(params);
+  this.tab = shareTab;
+};
 
-module.exports = Share;
