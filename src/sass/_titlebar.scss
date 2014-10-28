@@ -70,17 +70,18 @@
 // x ≤ 360px
 @media all and (max-width: $screen-tiny-phone) {
   header {
-    margin: 20px 0 !important;
+    margin: 1.25em 0 !important;
     h2 {
-      font-size: 1.5em;
+      font-size: 1.3em;
     }
-    .subtitle {
-      font-size: $font-size-base;
+    .subtitle,
+    h4 {
+      font-size: 1em;
     }
   }
-
   .play {
-    @include order(2);
+    @include flex(1 0px);
+    @include order(3);
   }
 }
 
@@ -114,10 +115,6 @@
     @include flex(1 100%);
     @include order(1);
     height: $title-image-full-height;
-    img {
-      height: $title-image-full-height;
-      width: auto !important;
-    }
   }
 
   header {
@@ -131,6 +128,11 @@
       font-size: $font-size-base;
     }
   }
+  .play {
+    @include flex(1 0px);
+    @include order(3);
+  }
+
 }
 
 // 480px ≤ x
@@ -148,25 +150,21 @@
 
 // Flexible breakpoint depending on image size.
 // The image will scale up to full-width within this breakpoint.
-@media all and (min-width: $title-image-full-width) and (max-width: $screen-tablet-portrait) {
+//@media all and (min-width: $title-image-full-width) and (max-width: $screen-tablet-portrait) {
+@media all and (min-width: 200px) and (max-width: $screen-tablet-portrait) {
   .coverart {
     @include flex(1 100%);
     width: $title-image-full-width;
-    min-height: $title-image-full-height;
     height: auto;
     img {
       height: auto !important;
-      min-width: 100%;
+      width: 100%;
     }
-  }
-  .play {
-    @include flex(1 0px);
-    @include order(3);
   }
   header {
     @include flex(1 0px);
     @include order(2);
-    margin: 20px 0 !important;
+    margin: 1.25em 0 !important;
   }
 }
 
