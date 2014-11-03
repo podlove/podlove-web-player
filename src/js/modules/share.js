@@ -4,29 +4,60 @@ var Tab = require('../tab')
   , shareOptions = [
     {name: "Show", value: "show"},
     {name: "Episode", value: "episode"},
-    {name: "Chapter", value: "chapter"},
-    {name: "Exactly this part here", value: "timed"}
+    {name: "Chapter", value: "chapter", disabled:true},
+    {name: "Exactly this part here", value: "timed", disabled:true}
   ];
 
 // module globals
-var shareTab, selectedOption, shareButtons, episodeData;
+var shareTab, selectedOption, shareButtons, shareData;
+
+function getShareData(value) {
+  var type = value === 'show' ? 'show' : 'episode';
+  var data = shareData[type];
+  if (value === 'chapter') {
+    // todo add chapter start and end time to url
+  }
+  if (value === 'timed') {
+    // todo add selected start and end time to url
+  }
+  return data;
+}
+
+function onShareOptionChangeTo (value) {
+  var data = getShareData(value);
+  return function (event) {
+    console.log('sharing options changed', value);
+    event.preventDefault();
+    shareButtons.update(data);
+  };
+}
 
 /**
  * Creates an html div element containing an image
- * @param poster
+ * @param {string} type
  * @returns {string}
  */
-function createPoster(poster) {
-  if (!poster) {
+function createPosterFor(type) {
+  var data = shareData[type];
+  if (!type || !data || !data.poster) {
+    console.warn('cannot create poster for', type);
     return '';
   }
-  return '<div class="poster-image">' +
-    '<img src="' + poster + '" data-img="' + poster + '" alt="Poster Image">' +
-    '</div>';
+  console.log('create poster for', type, ' > url', data.poster);
+  return '<img src="' + data.poster + '" data-img="' + data.poster + '" alt="Poster Image">';
 }
 
 function createOption(option) {
-  return '<label><input type="radio" name="share" value="' + option.value + '" />' + option.name + '</label>';
+  if (option.disabled) {
+    return null;
+  }
+  var element = $('<button class="share-select-option" style="max-width: 200px;">' +
+    createPosterFor(option.value) +
+    '<span>' + option.name + '</span>' +
+    '</button>');
+
+  element.on('click', onShareOptionChangeTo(option.value));
+  return element;
 }
 
 /**
@@ -35,16 +66,10 @@ function createOption(option) {
  */
 function createShareOptions() {
   var form = $('<form>' +
-    '<fieldset>' +
     '<legend>What would you like to share?</legend>' +
-      shareOptions.map(createOption).join('') +
-    '</fieldset>' +
-    '</form>');
-  form.on('change', function (event) {
-    console.log('sharing options changed', event);
-    episodeData.text = 'changed';
-    shareButtons.update(episodeData);
-  });
+  '</form>');
+
+  form.append(shareOptions.map(createOption));
   return form;
 }
 
@@ -66,21 +91,29 @@ function createShareTab(params) {
     active: !!params.sharebuttonsVisible
   });
 
-  shareTab.createMainContent(
-    createPoster(params.poster) +
-    createPoster(params.show.poster)
-  ).append(createShareOptions());
+  shareTab.createMainContent('').append(createShareOptions());
 
-  shareButtons = new SocialButtonList(services, episodeData);
+  shareButtons = new SocialButtonList(services, getShareData('episode'));
   shareTab.createFooter('').append(shareButtons.list);
 
   return shareTab;
 }
 
 module.exports = function Share(params) {
-  episodeData = {
-    title: encodeURIComponent(params.title),
-    url: encodeURIComponent(params.permalink)
+  shareData = {
+    episode: {
+      poster: params.poster,
+      title: encodeURIComponent(params.title),
+      url: encodeURIComponent(params.permalink),
+      text: encodeURIComponent(params.title + ' ' + params.permalink)
+    },
+    show: {
+      poster: params.show.poster,
+      title: encodeURIComponent(params.show.title),
+      url: encodeURIComponent(params.show.url),
+      text: encodeURIComponent(params.show.title + ' ' + params.show.url)
+    },
+    chapters: params.chapters
   };
   selectedOption = 'episode';
   shareTab = createShareTab(params);
