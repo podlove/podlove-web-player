@@ -47,17 +47,33 @@ function createPosterFor(type) {
   return '<img src="' + data.poster + '" data-img="' + data.poster + '" alt="Poster Image">';
 }
 
+/**
+ *
+ * @param option
+ * @returns {*}
+ */
 function createOption(option) {
   if (option.disabled) {
     return null;
   }
-  var element = $('<button class="share-select-option" style="max-width: 200px;">' +
+  var element = $('<div class="button-container"><button class="share-select-option">' +
     createPosterFor(option.value) +
-    '<span>' + option.name + '</span>' +
-    '</button>');
+    '<span>Share this ' + option.name + '</span>' +
+    '</button></div>');
 
   element.on('click', onShareOptionChangeTo(option.value));
   return element;
+}
+
+/**
+ * Creates an html div element to wrap all share buttons
+ * @returns {jQuery|HTMLElement}
+ */
+function createShareButtonWrapper() {
+  var div = $('<div class="share-button-wrapper"></div>');
+  console.log('hier ist der div');
+  div.append(shareOptions.map(createOption));
+  return div;
 }
 
 /**
@@ -68,8 +84,7 @@ function createShareOptions() {
   var form = $('<form>' +
     '<legend>What would you like to share?</legend>' +
   '</form>');
-
-  form.append(shareOptions.map(createOption));
+  form.append(createShareButtonWrapper);
   return form;
 }
 
@@ -86,7 +101,7 @@ function createShareTab(params) {
   var shareTab = new Tab({
     icon: "pwp-share2",
     title: "Show/hide sharing tabs",
-    name: "podlovewebplayer_sharebuttons",
+    name: "podlovewebplayer_share",
     headline: 'Share',
     active: !!params.sharebuttonsVisible
   });
