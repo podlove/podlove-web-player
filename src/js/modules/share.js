@@ -71,7 +71,6 @@ function createOption(option) {
  */
 function createShareButtonWrapper() {
   var div = $('<div class="share-button-wrapper"></div>');
-  console.log('hier ist der div');
   div.append(shareOptions.map(createOption));
   return div;
 }
@@ -109,7 +108,9 @@ function createShareTab(params) {
   shareTab.createMainContent('').append(createShareOptions());
 
   shareButtons = new SocialButtonList(services, getShareData('episode'));
-  shareTab.createFooter('').append(shareButtons.list);
+  shareTab.createFooter('<h3>Share via ...</h3>' +
+    '<label>Link</label>' +
+    '<input type="url" name="share-link-url" readonly>').append(shareButtons.list);
 
   return shareTab;
 }
