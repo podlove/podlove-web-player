@@ -85,7 +85,8 @@ $button-width: $share-image-width + ($share-image-border-width * 2);
   }
   &:hover,
   &:active,
-  &:focus {
+  &:focus,
+  &.selected {
     color: $contrast-link-color;
   }
   img {
