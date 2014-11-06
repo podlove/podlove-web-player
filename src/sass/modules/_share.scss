@@ -16,9 +16,6 @@ $button-width: $share-image-width + ($share-image-border-width * 2);
       margin: 0 auto;
       width: $button-width * 2;
     }
-    .button-container {
-      display: inline;
-    }
     @media screen and (max-width: $button-width * 2 + ($margin-base-horizontal * 2)) {
       .share-button-wrapper {
         width: $button-width;
@@ -27,24 +24,36 @@ $button-width: $share-image-width + ($share-image-border-width * 2);
         display: block;
       }
     }
+
     footer {
-      padding: $padding-large-vertical 0;
+      padding: $padding-large-vertical $padding-large-horizontal;
+      > div {
+        width: 70%;
+        margin: 0 auto;
+      }
       h3 {
-        margin: 0 $margin-base-vertical $margin-base-horizontal $margin-base-vertical;
+        margin: 0 $margin-base-vertical 15px $margin-base-vertical;
       }
       label {
         display: block;
       }
       input {
         @include border-radius(5px);
-        margin: 8px auto 20px;
-        height: 32px;
+        height: 40px;
         border: 1px solid $gray-lighter;
+        width: 100%;
+        padding: 8px;
+        text-align: center;
+        color: $gray-default;
       }
     }
+    ul {
+      margin: 0 0 32px 0;
+    }
     ul > li {
-      display: inline;
+      display: inline-block;
       margin: 0 20px 0 0;
+      width: 90px;
       &.last-of-type {
         margin-right: 0;
       }
@@ -53,6 +62,7 @@ $button-width: $share-image-width + ($share-image-border-width * 2);
 }
 
 .share-select-option {
+  display: inline-block;
   @include border-radius(3px);
   width: $button-width;
   background-image: none;
@@ -68,7 +78,8 @@ $button-width: $share-image-width + ($share-image-border-width * 2);
     background-color: $brand-primary-active;
     border: solid $share-image-border-width $brand-primary-active;
   }
-  &:focus {
+  &:focus,
+  &.selected {
     background-color: $brand-primary;
     border: solid $share-image-border-width $brand-primary;
   }

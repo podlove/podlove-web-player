@@ -3,13 +3,13 @@ var Tab = require('../tab')
   , services = ['twitter', 'adn', 'email']
   , shareOptions = [
     {name: "Show", value: "show"},
-    {name: "Episode", value: "episode"},
+    {name: "Episode", value: "episode", default: true},
     {name: "Chapter", value: "chapter", disabled:true},
     {name: "Exactly this part here", value: "timed", disabled:true}
   ];
 
 // module globals
-var shareTab, selectedOption, shareButtons, shareData;
+var shareTab, selectedOption, shareButtons, shareData, linkInput;
 
 function getShareData(value) {
   var type = value === 'show' ? 'show' : 'episode';
@@ -23,12 +23,21 @@ function getShareData(value) {
   return data;
 }
 
-function onShareOptionChangeTo (value) {
+function updateUrls(data) {
+  shareButtons.update(data);
+  linkInput.update(data);
+}
+
+function onShareOptionChangeTo (element, value) {
   var data = getShareData(value);
+
   return function (event) {
     console.log('sharing options changed', value);
+    selectedOption.removeClass('selected');
+    element.addClass('selected');
+    selectedOption = element;
     event.preventDefault();
-    shareButtons.update(data);
+    updateUrls(data);
   };
 }
 
@@ -56,12 +65,18 @@ function createOption(option) {
   if (option.disabled) {
     return null;
   }
-  var element = $('<div class="button-container"><button class="share-select-option">' +
+
+  var element = $('<div class="share-select-option">' +
     createPosterFor(option.value) +
     '<span>Share this ' + option.name + '</span>' +
-    '</button></div>');
-
-  element.on('click', onShareOptionChangeTo(option.value));
+    '</div>');
+  if (option.default) {
+    selectedOption = element;
+    element.addClass('selected');
+    var data = getShareData(option.value);
+    updateUrls(data);
+  }
+  element.on('click', onShareOptionChangeTo(element, option.value));
   return element;
 }
 
@@ -72,6 +87,7 @@ function createOption(option) {
 function createShareButtonWrapper() {
   var div = $('<div class="share-button-wrapper"></div>');
   div.append(shareOptions.map(createOption));
+
   return div;
 }
 
@@ -105,12 +121,15 @@ function createShareTab(params) {
     active: !!params.sharebuttonsVisible
   });
 
-  shareTab.createMainContent('').append(createShareOptions());
-
   shareButtons = new SocialButtonList(services, getShareData('episode'));
-  shareTab.createFooter('<h3>Share via ...</h3>' +
-    '<label>Link</label>' +
-    '<input type="url" name="share-link-url" readonly>').append(shareButtons.list);
+  linkInput = $('<h3>Link</h3>' +
+    '<input type="url" name="share-link-url" readonly>');
+  linkInput.update = function(data) {
+    this.val(data.rawUrl);
+  };
+
+  shareTab.createMainContent('').append(createShareOptions());
+  shareTab.createFooter('<h3>Share via ...</h3>').append(shareButtons.list).append(linkInput);
 
   return shareTab;
 }
@@ -121,12 +140,14 @@ module.exports = function Share(params) {
       poster: params.poster,
       title: encodeURIComponent(params.title),
       url: encodeURIComponent(params.permalink),
+      rawUrl: params.permalink,
       text: encodeURIComponent(params.title + ' ' + params.permalink)
     },
     show: {
       poster: params.show.poster,
       title: encodeURIComponent(params.show.title),
       url: encodeURIComponent(params.show.url),
+      rawUrl: params.show.url,
       text: encodeURIComponent(params.show.title + ' ' + params.show.url)
     },
     chapters: params.chapters

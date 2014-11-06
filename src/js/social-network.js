@@ -91,6 +91,6 @@ SocialNetwork.prototype.getButton = function (options) {
 module.exports = SocialNetwork;
 
 function createButton (options) {
-  return $('<a target="_blank" href="' + options.url + '" title="' + options.title + '">' +
-    '<i class="pwp-' + options.icon + '"></i></a>');
+  return $('<a class="pwp-contrast-' + options.icon + '" target="_blank" href="' + options.url + '" title="' + options.title + '">' +
+    '<i class="pwp-' + options.icon + '"></i></a><span>' + options.title + '</span>');
 }
