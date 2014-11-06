@@ -6,35 +6,56 @@ var SocialNetwork = require('./social-network')
     profileUrl: 'https://twitter.com/',
     shareUrl: 'share?text=$text$&url=$url$'
   }),
+
   flattr: new SocialNetwork({
     icon: 'flattr',
     title: 'Flattr',
-    profileUrl: 'https://flattr.com/'
+    profileUrl: 'https://flattr.com/',
+    shareUrl: 'share?text=$text$&url=$url$'
   }),
+
   facebook: new SocialNetwork({
     icon: 'facebook',
     title: 'Facebook',
     profileUrl: 'https://facebook.com/',
     shareUrl: 'share.php?t=$text$&u=$url$'
   }),
+
   adn: new SocialNetwork({
     icon: 'adn-alpha',
-    title: 'Twitter',
+    title: 'App.net',
     profileUrl: 'https://alpha.app.net/',
     shareUrl: 'intent/post?text=$text$'
   }),
+
+  soundcloud: new SocialNetwork({
+    icon: 'soundcloud',
+    title: 'SoundCloud',
+    profileUrl: 'https://soundcloud.com/',
+    shareUrl: 'share?title=$title$&url=$url$'
+  }),
+
+  instagram: new SocialNetwork({
+    icon: 'instagram',
+    title: 'Instagram',
+    profileUrl: 'http://instagram.com/',
+    shareUrl: 'share?title=$title$&url=$url$'
+  }),
+
   email: new SocialNetwork({
-    icon: 'email',
+    icon: 'mail',
     title: 'E-Mail',
     profileUrl: 'mailto:',
     shareUrl: '?subject=$title$&body=$text$'
-  }),
-  googleplus: new SocialNetwork({
+  })
+/*
+  ,googleplus: new SocialNetwork({
     icon: 'google',
     title: 'Google+',
     profileUrl: 'https://plus.google.com/',
     shareUrl: 'share?title=$title$&url=$url$'
-  })
+  }),
+*/
 };
 
 /**
