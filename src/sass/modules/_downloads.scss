@@ -4,11 +4,8 @@
 
 .downloads {
   footer {
-    text-align: center;
-    background-color: $gray-lightest;
-    border: 1px solid white !important;
     > form {
-      padding: 25px 0;
+      padding: $padding-large-vertical 0;
     }
   }
 }
@@ -44,7 +41,7 @@
   // Download button
   &.button-submit {
     display: block;
-    margin: 0 auto 25px auto;
+    margin: 0 auto $margin-base-vertical auto;
     font-size: $font-size-xlarge;
     padding: 18px;
   }

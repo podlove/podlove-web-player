@@ -99,6 +99,7 @@ $font-size-small:         ceil($font-size-base * 0.8) !default; // ~13px
 $font-size-large:         ceil($font-size-base * 1.125) !default; // ~18px
 $font-size-xlarge:        ceil($font-size-base * 1.5) !default; // ~24px
 $font-size-icons:         25px !default;
+$font-size-social-icons:  70px !default;
 
 $font-size-h1:            floor($font-size-base * 2.5) !default; // ~40px
 $font-size-h2:            floor($font-size-base * 2.0) !default; // 32px
@@ -133,11 +134,14 @@ $font-size-button-small-label:  floor($font-size-base * 1.25) !default; // 20px
 // -------------------------
 // Based on 16px font-size and 1.428 line-height (~20px to start)
 
+$margin-base-vertical:           25px !default;
+$margin-base-horizontal:         25px !default;
+
 $padding-base-vertical:          6px !default;
 $padding-base-horizontal:        12px !default;
 
-$padding-large-vertical:         10px !default;
-$padding-large-horizontal:       16px !default;
+$padding-large-vertical:         25px !default;
+$padding-large-horizontal:       25px !default;
 
 $padding-small-vertical:         5px !default;
 $padding-small-horizontal:       10px !default;
@@ -191,9 +195,6 @@ $screen-md-max:              ($screen-lg-min - 1) !default;
 
 // Miscellaneous
 // -------------------------
-
-// Hr border color
-$hr-border:                   $gray-lightest !default;
 
 // Image size in titlebar
 $title-image-height:          140px;
