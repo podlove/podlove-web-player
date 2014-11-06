@@ -21,7 +21,7 @@ $profiles: (
     lanyrd:       #152e51,
     lastfm:       #d51007,
     linkedin:     #007bb6,
-    mail:         #ccc,
+    mail:         #999,
     paypal:       #223473,
     photodrop:    #cdb6e3,
     pinterest:    #cb2027,
@@ -43,5 +43,15 @@ $profiles: (
   .pwp-#{$profile}:before {
     color: $color;
     font-size: $font-size-social-icons;
+  }
+  .pwp-contrast-#{$profile} {
+    display: inline-block;
+    background: $color;
+    border-radius: 6px;
+    padding: 10px;
+    .pwp-#{$profile}:before {
+      color: $contrast-icon-font-color;
+      font-size: $font-size-contrast-social-icons;
+    }
   }
 }

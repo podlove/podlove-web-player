@@ -41,7 +41,7 @@ textarea {
 a {
   color: $default-link-color;
   text-decoration: none;
-  background: transparent !important;
+  background: transparent;
   font-weight: $font-weight-bolder;
 
   &:hover,
