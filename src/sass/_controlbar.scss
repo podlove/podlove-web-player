@@ -10,8 +10,10 @@
   padding: $padding-base-vertical $padding-base-horizontal*2;
   .timecontrolbar {
     @extend .pull-right;
+    @extend .contrast;
   }
   li {
+    @extend .contrast;
     display: inline;
     &:last-child {
       a {

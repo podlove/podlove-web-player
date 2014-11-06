@@ -3,7 +3,7 @@
 // --------------------------------------------------
 
 .button {
-  @include iconfont-button($white);
+  @include iconfont-button($contrast-icon-font-color);
   padding-right: 0.5em;
 }
 
@@ -33,4 +33,10 @@
   @include transition-delay(0s);
   @include transition-duration(0.3s);
   @include transition-property(all);
+}
+
+button {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  border: none;
 }

@@ -108,7 +108,6 @@
 }
 
 
-
 // Background Size
 
 @mixin background-size($bg-width, $bg-height) {
@@ -153,11 +152,12 @@
 }
 
 // Playbutton
-@mixin playbutton() {
+@mixin playbutton($color) {
+  color: $color;
   font-family: $font-family-icons !important;
   font-size: 42px;
   line-height: 1.33em;
-  border: 5px solid $white !important;
+  border: 5px solid $color !important;
   border-radius: 60px !important;
   transition: none;
   &:before {

@@ -19,8 +19,10 @@
     clear: both;
   }
   a {
-    color: $link-color;
+    color: $default-link-color;
   }
+
+
   .podlovewebplayer_top {
     position: relative;
     display: block;
@@ -32,6 +34,13 @@
     background: #545454;
     background: linear-gradient(to bottom,#545454 0%,#262626 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#545454',endColorstr='#262626',GradientType=0 );
+  }
+}
+
+// Contrast color scheme
+.contrast {
+  a {
+    color: $contrast-link-color;
   }
 }
 

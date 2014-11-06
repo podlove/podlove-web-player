@@ -6,11 +6,12 @@
 .titlebar {
   @include clearfix();
   @include pwp-flexbox();
+  @extend .contrast;
   width: 100%;
   background: $gray;
   min-height: 100px;
   height: auto;
-  color: $icon-font-color;
+  color: $contrast-icon-font-color;
 
   // Headlines in titlebar
   header {
@@ -34,7 +35,10 @@
 .showtitle {
   margin: 0;
   a {
-    color: $link-color;
+    color: $contrast-link-color;
+    &:hover {
+      opacity: 0.8;
+    }
   }
 }
 
@@ -42,6 +46,9 @@
   margin: 10px 0;
   a {
     line-height: 20px !important;
+    &:hover {
+      opacity: 0.8;
+    }
   }
 }
 
@@ -60,8 +67,8 @@
 
 // Playbutton
 .bigplay {
-  @include iconfont-button($icon-font-color);
-  @include playbutton;
+  @include iconfont-button($contrast-icon-font-color);
+  @include playbutton($contrast-default-color);
   @include flex(1 100%);
   @include order(3);
   min-width: 75px;
@@ -82,7 +89,7 @@
   &:focus,
   &:hover,
   &:active {
-    @include textshadows(0px 0px 10px $icon-font-color);
+    @include textshadows(0px 0px 10px $contrast-icon-font-color);
   }
 }
 

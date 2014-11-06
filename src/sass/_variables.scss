@@ -36,9 +36,18 @@ $badge-light:             lighten($brand-primary, 60%) !default;
 
 $body-bg:                   $gray-lightest !default;
 $text-color:                $gray-dark !default;
-$icon-font-color:           $white;
+
+$contrast-default-color:    $white;
 $contrasted-dark-default:   $gray-dark;
 $contrasted-light-default:  $gray-lightest;
+
+//$icon-font-default-color:   $white;
+$contrast-icon-font-color:  $white;
+
+// Tab Colors
+// -------------------------
+
+$tab-background-color:      $white;
 
 //Progress bars
 // -------------------------
@@ -63,12 +72,18 @@ $buffer-height:             4px;
 // Links
 // -------------------------
 
-$default-link-color:      lighten($brand-primary, 15%) !default;
-$link-color:              $white !default;
-$link-hover-color:        lighten($link-color, 15%) !default;
-$brand-primary-hover:     lighten($brand-primary, 69%) !default;
-$brand-primary-active:    lighten($brand-primary, 66%) !default;
-$highlight-color:         lighten($brand-primary, 70%) !default;
+$link-color:                      $white !default;
+$link-hover-color:                lighten($link-color, 15%) !default;
+
+$contrast-link-color:             $white !default;
+
+$default-link-color:              lighten($brand-primary, 15%) !default;
+$brand-primary-hover:             darken($brand-primary, 10%) !default;
+$brand-primary-active:            lighten($brand-primary, 16%) !default;
+
+$brand-primary-chapter-hover:     lighten($brand-primary, 69%) !default;
+$brand-primary-chapter-active:    lighten($brand-primary, 66%) !default;
+$highlight-color:                 lighten($brand-primary, 70%) !default;
 
 // Typography
 // -------------------------

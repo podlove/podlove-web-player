@@ -6,9 +6,16 @@ $tab-header-height: 45px;
 
 .tabs {
   color: $text-color;
-  background-color: $white;
+  background-color: $tab-background-color;
   a {
     color: $default-link-color;
+    &:hover,
+    &:focus {
+      color: $brand-primary-hover;
+    }
+    &:active {
+      color: $brand-primary-active;
+    }
     &.button-toggle {
       color: $text-color;
     }
@@ -81,6 +88,9 @@ $tab-header-height: 45px;
   footer {
     @include flex(1 100%);
     @include order(3);
+    text-align: center;
+    background-color: $gray-lightest;
+    border: 1px solid white !important;
   }
 }
 
