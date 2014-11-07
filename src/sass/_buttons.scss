@@ -44,7 +44,7 @@ $play-button-margin: 0.375em;
   font-size: $play-button-size;
   max-width: $play-button-size;
   line-height: $play-button-size;
-  margin: $play-button-margin;
+  margin: $play-button-margin $play-button-margin $play-button-margin 0;
 
   &:hover {
     @include textshadows(0px 0px 3px $icon-font-color);

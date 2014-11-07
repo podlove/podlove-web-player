@@ -82,6 +82,7 @@
   .play {
     @include flex(1 0px);
     @include order(3);
+    margin: auto 13px auto 0;
   }
 }
 
@@ -131,6 +132,7 @@
   .play {
     @include flex(1 0px);
     @include order(3);
+    margin: auto 15px auto 0;
   }
 
 }
