@@ -152,7 +152,6 @@
 
 // Flexible breakpoint depending on image size.
 // The image will scale up to full-width within this breakpoint.
-//@media all and (min-width: $title-image-full-width) and (max-width: $screen-tablet-portrait) {
 @media all and (min-width: 200px) and (max-width: $screen-tablet-portrait) {
   .coverart {
     @include flex(1 100%);
