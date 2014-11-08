@@ -53,25 +53,25 @@ Tab.prototype.close = function () {
  */
 Tab.prototype.createToggleButton = function(icon, title) {
   return $('<a href="#" class="button button-toggle ' + icon + '" title="' + title + '"></a>');
-}
+};
 
 /**
  * Return an html header element with a headline
  */
 Tab.prototype.createHeader = function() {
-  var header = $('<header><h2 class="' + this.icon + '"><span>' + this.headline + '</span></h2></header>');
+  var header = $('<header><h2><i class="' + this.icon + '"></i>' + this.headline + '</h2></header>');
   this.box.append(header);
   return header;
 };
 
 /**
- * Append an html section element to the tab's content box
+ * Append an html div element with class main to the tab's content box
  * @param content
  */
-Tab.prototype.createSection = function(content) {
-  var section = $('<div class="main">' + content + '</div');
-  this.box.append(section);
-  return section;
+Tab.prototype.createMainContent = function(content) {
+  var mainDiv = $('<div class="main">' + content + '</div');
+  this.box.append(mainDiv);
+  return mainDiv;
 };
 
 /**

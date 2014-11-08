@@ -41,7 +41,7 @@ textarea {
 a {
   color: $default-link-color;
   text-decoration: none;
-  background: transparent !important;
+  background: transparent;
   font-weight: $font-weight-bolder;
 
   &:hover,
@@ -58,14 +58,6 @@ h3 a,
 h4 a,
 h5 a {
   font-weight: $font-weight-normal;
-}
-
-// Horizontal rules
-hr {
-  margin-top:    $line-height-computed;
-  margin-bottom: $line-height-computed;
-  border: 0;
-  border-top: 1px solid $hr-border;
 }
 
 em {

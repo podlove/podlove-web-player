@@ -1,43 +1,12 @@
 var Tab = require('../tab')
   , timeCode = require('../timecode')
-  , types = {
-    'twitter': {
-      'className': 'twitter',
-      'title': 'Twitter',
-      'image': 'img/twitter-128.png'
-    },
-    'flattr': {
-      'className': 'flattr',
-      'title': 'Flattr',
-      'image': 'img/flattr-128.png'
-    },
-    'facebook': {
-      'className': 'facebook',
-      'title': 'Facebook',
-      'image': 'img/facebook-128.png'
-    },
-    'adn': {
-      'className': 'adn',
-      'title': 'Twitter',
-      'image': 'img/twitter-128.png'
-    },
-    'email': {
-      'className': 'email',
-      'title': 'E-Mail',
-      'image': 'img/email-128.png'
-    },
-    'googleplus': {
-      'className': 'google',
-      'title': 'Google+',
-      'image': 'img/googleplus-128.png'
-    }
-  }
+  , services = require('../social-networks')
   ;
 
 function createEpisodeInfo(tab, params) {
   var date = new Date(params.publicationDate);
 
-  tab.createSection(
+  tab.createMainContent(
     '<h2>' + params.title + '</h2>' +
     '<em>' + params.subtitle + '</em>' +
     '<p>' + params.summary + '</p>' +
@@ -80,31 +49,27 @@ function createShowInfo (tab, params) {
   );
 }
 
-function createSocialLink(type, url) {
-  if (!(type in types)) {
-    console.warn('createSocialLink called with unknown type', type);
-    return '';
-  }
-  return '<li><a class="' + types[type].className + '" title="' + types[type].title + '" href="' + url + '">' +
-      '<img src="' + types[type].image + '"><span>' + types[type].title + '</span></a></li>';
+function createSocialLink(options) {
+  var service = services.get(options.serviceName);
+  return '<li>' + service.getButton(options) + '</li>';
 }
 
-function createSocialInfo(social) {
-  if (!social) {
+function createSocialInfo(profiles) {
+  if (!profiles) {
     return '';
   }
   return '<div class="social-links">' +
       '<h3>Stay in touch</h3>' +
-      '<ul>' + social.links.map(createSocialLink).join('') + '</ul>' +
+      '<ul>' + profiles.map(createSocialLink) + '</ul>' +
     '</div>';
 }
 
 function createSocialAndLicenseInfo (tab, params) {
-  if (!params.license && !params.social) {
+  if (!params.license && !params.profiles) {
     return;
   }
   tab.createFooter(
-    createSocialInfo(params.social) +
+    createSocialInfo(params.profiles) +
     '<p>The show "' + params.show.title + '" is licenced under<br>' +
       '<a href="' + params.license.url + '">' + params.license.name + '</a>' +
     '</p>'

@@ -9,7 +9,7 @@
     @include order(1);
     em {
       display: inline-block;
-      margin-left: 25px;
+      margin-left: $margin-base-horizontal;
     }
   }
   aside {
@@ -39,26 +39,23 @@
   //*** Image of the show
   // Container for image
   .poster-image {
-    margin: 5px 25px 16px;
+    margin: 5px $margin-base-horizontal 16px;
     img {
       width: 100%;
       max-width: $info-image-width;
     }
   }
   footer {
-    text-align: center;
-    background-color: $gray-lightest;
-    border: 1px solid white !important;
     h3 {
       margin-top: 5px;
     }
     p {
-      padding: 25px 0;
+      padding: $padding-large-vertical 0;
     }
     .social-links {
       border-bottom: 16px solid $white;
       ul {
-        margin: 18px 0 25px 0;
+        margin: 18px 0 $margin-base-vertical 0;
       }
       ul li {
         display: inline;
@@ -83,7 +80,7 @@
 // Button to subcribe to the show
 .button-submit {
   height: auto;
-  margin: 5px 25px;
+  margin: 5px $margin-base-horizontal;
   max-width: $info-image-width;
 }
 

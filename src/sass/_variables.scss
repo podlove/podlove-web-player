@@ -36,9 +36,18 @@ $badge-light:             lighten($brand-primary, 60%) !default;
 
 $body-bg:                   $gray-lightest !default;
 $text-color:                $gray-dark !default;
-$icon-font-color:           $white;
+
+$contrast-default-color:    $white;
 $contrasted-dark-default:   $gray-dark;
 $contrasted-light-default:  $gray-lightest;
+
+//$icon-font-default-color:   $white;
+$contrast-icon-font-color:  $white;
+
+// Tab Colors
+// -------------------------
+
+$tab-background-color:      $white;
 
 //Progress bars
 // -------------------------
@@ -63,12 +72,18 @@ $buffer-height:             4px;
 // Links
 // -------------------------
 
-$default-link-color:      lighten($brand-primary, 15%) !default;
-$link-color:              $white !default;
-$link-hover-color:        lighten($link-color, 15%) !default;
-$brand-primary-hover:     lighten($brand-primary, 69%) !default;
-$brand-primary-active:    lighten($brand-primary, 66%) !default;
-$highlight-color:         lighten($brand-primary, 70%) !default;
+$link-color:                      $white !default;
+$link-hover-color:                lighten($link-color, 15%) !default;
+
+$contrast-link-color:             $white !default;
+
+$default-link-color:              lighten($brand-primary, 15%) !default;
+$brand-primary-hover:             darken($brand-primary, 10%) !default;
+$brand-primary-active:            lighten($brand-primary, 16%) !default;
+
+$brand-primary-chapter-hover:     lighten($brand-primary, 69%) !default;
+$brand-primary-chapter-active:    lighten($brand-primary, 66%) !default;
+$highlight-color:                 lighten($brand-primary, 70%) !default;
 
 // Typography
 // -------------------------
@@ -84,6 +99,8 @@ $font-size-small:         ceil($font-size-base * 0.8) !default; // ~13px
 $font-size-large:         ceil($font-size-base * 1.125) !default; // ~18px
 $font-size-xlarge:        ceil($font-size-base * 1.5) !default; // ~24px
 $font-size-icons:         25px !default;
+$font-size-social-icons:  70px !default;
+$font-size-contrast-social-icons:  70px !default;
 
 $font-size-h1:            floor($font-size-base * 2.5) !default; // ~40px
 $font-size-h2:            floor($font-size-base * 2.0) !default; // 32px
@@ -118,11 +135,14 @@ $font-size-button-small-label:  floor($font-size-base * 1.25) !default; // 20px
 // -------------------------
 // Based on 16px font-size and 1.428 line-height (~20px to start)
 
+$margin-base-vertical:           25px !default;
+$margin-base-horizontal:         25px !default;
+
 $padding-base-vertical:          6px !default;
 $padding-base-horizontal:        12px !default;
 
-$padding-large-vertical:         10px !default;
-$padding-large-horizontal:       16px !default;
+$padding-large-vertical:         25px !default;
+$padding-large-horizontal:       25px !default;
 
 $padding-small-vertical:         5px !default;
 $padding-small-horizontal:       10px !default;
@@ -177,9 +197,6 @@ $screen-md-max:              ($screen-lg-min - 1) !default;
 // Miscellaneous
 // -------------------------
 
-// Hr border color
-$hr-border:                   $gray-lightest !default;
-
 // Image size in titlebar
 $title-image-height:          140px;
 $title-image-width:           $title-image-height;
@@ -188,3 +205,10 @@ $title-image-full-height:     $title-image-full-width;
 
 // Image in Info Tab
 $info-image-width:            400px;
+
+
+// Share Tab: Button Image
+$share-image-border-width:    10px;
+$share-image-width:           200px;
+$share-image-height:          200px;
+

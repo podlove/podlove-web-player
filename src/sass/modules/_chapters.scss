@@ -23,7 +23,6 @@
   .podlovewebplayer_chapters {
     width: 100%;
     border-collapse: collapse;
-    //margin: 0 25px;
     thead,
     caption {
       display: none
@@ -32,11 +31,11 @@
       cursor: pointer;
 
       .chapter-number {
-        padding-left: 25px;
+        padding-left: $padding-large-horizontal;
       }
 
       &:hover {
-        background: $brand-primary-hover;
+        background: $brand-primary-chapter-hover;
         .badge  {
           color: $white;
           background-color: $brand-primary;
@@ -46,7 +45,7 @@
       &.active,
       &.active:hover
       &.active:focus {
-        background: $brand-primary-active;
+        background: $brand-primary-chapter-active;
         .badge {
           background-color: $brand-primary;
           color: $white;
@@ -54,7 +53,7 @@
       }
 
       &.chapter:active {
-        background: $brand-primary-active;
+        background: $brand-primary-chapter-active;
       }
       td {
         padding: 20px 5px;
@@ -73,7 +72,7 @@
       }
       .chapter-duration {
         white-space: nowrap;
-        padding-right: 25px;
+        padding-right: $padding-large-horizontal;
         text-align: right;
       }
     }
@@ -90,14 +89,8 @@
       width: 25px;
       height: 25px;
       background: #bbb;
-      -webkit-border-radius: 13px;
-      -moz-border-radius: 13px;
-      -o-border-radius: 13px;
       border-radius: 13px;
       cursor: pointer;
-      -webkit-transition: all 0.07s;
-      -moz-transition: all 0.07s;
-      -o-transition: all 0.07s;
       transition: all 0.07s;
       &.disabled {
         cursor: wait;
