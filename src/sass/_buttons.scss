@@ -1,6 +1,8 @@
 //
 // Buttons
 // --------------------------------------------------
+$play-button-size: 80px;
+$play-button-margin: 0.375em;
 
 .button {
   @include iconfont-button($contrast-icon-font-color);
@@ -33,6 +35,32 @@
   @include transition-delay(0s);
   @include transition-duration(0.3s);
   @include transition-property(all);
+}
+
+// Big Play/Pause-Button
+.play {
+  @extend .pwp-play-circled;
+  font-family: $font-family-icons;
+  font-size: $play-button-size;
+  max-width: $play-button-size;
+  line-height: $play-button-size;
+  margin: $play-button-margin;
+
+  &:hover {
+    @include textshadows(0px 0px 3px $icon-font-color);
+  }
+  &:active {
+    @include textshadows(0px 0px 8px $icon-font-color);
+  }
+  &.playing {
+    @extend .pwp-pause-circled;
+/*
+    &:hover,
+    &:active {
+      @include textshadows(0px 0px 5px $icon-font-color);
+    }
+*/
+  }
 }
 
 button {

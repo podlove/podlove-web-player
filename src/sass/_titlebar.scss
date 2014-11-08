@@ -66,33 +66,10 @@
 }
 
 // Playbutton
-.bigplay {
-  @include iconfont-button($contrast-icon-font-color);
-  @include playbutton($contrast-default-color);
+.play {
   @include flex(1 100%);
   @include order(3);
-  min-width: 75px;
-  position: relative;
-  z-index: 78;
-  padding: 5px 6px 10px 20px;
-  margin: 33px;
-  height: 74px;
-  flex: 1;
-  max-width: 76px;
 }
-
-.bigplay.playing {
-  padding: 5px 11px 20px 15px;
-  &:before {
-    content: "\2389";
-  }
-  &:focus,
-  &:hover,
-  &:active {
-    @include textshadows(0px 0px 10px $contrast-icon-font-color);
-  }
-}
-
 
 // Breakpoints
 // --------------------------------------------------
@@ -109,14 +86,14 @@
     }
   }
 
-  .bigplay {
+  .play {
     @include order(2);
   }
 }
 
 // 550px ≤ x ≥ 768px
 @media all and (min-width: $screen-tablet-portrait) and (max-width: $screen-tablet) {
-  .bigplay {
+  .play {
     @include flex(1 0px);
     @include order(3);
   }
@@ -170,7 +147,7 @@
     @include order(2);
   }
 
-  .bigplay {
+  .play {
     @include flex(1 0px);
   }
 }
@@ -189,7 +166,7 @@
       min-width: 100%;
     }
   }
-  .bigplay {
+  .play {
     @include flex(1 0px);
     @include order(3);
   }

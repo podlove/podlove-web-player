@@ -102,7 +102,7 @@ function renderTitleArea(params) {
  * @returns {string}
  */
 function renderPlaybutton() {
-  return '<a class="bigplay" title="Play Episode" href="#"></a>';
+  return '<a class="play" title="Play Episode" href="#"></a>';
 }
 
 /**
@@ -255,8 +255,7 @@ var addBehavior = function (player, params, wrapper) {
   }
 
   // cache some jQ objects
-  //metaElement = wrapper.find('.titlebar');
-  var playButton = metaElement.find('.bigplay');
+  var playButton = metaElement.find('.play');
   playButton.on('click', function () {
     var playButton = $(this);
     console.log(playButton);

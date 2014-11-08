@@ -139,36 +139,16 @@
 // Controlbuttons, Infobuttons and -Icons
 @mixin iconfont-button($color) {
   color: $color;
+  font-family: $font-family-icons !important;
   background: transparent !important;
   text-decoration: none;
   speak: none;
-  font-weight: bold;
-
   &:hover {
-    text-shadow: 0px 0px 4px #FFFFFF;
-    filter: dropshadow(color=#FFFFFF, offx=0, offy=0);
-    cursor: pointer;
+    @include textshadows(0px 0px 2px $icon-font-color);
   }
-}
-
-// Playbutton
-@mixin playbutton($color) {
-  color: $color;
-  font-family: $font-family-icons !important;
-  font-size: 42px;
-  line-height: 1.33em;
-  border: 5px solid $color !important;
-  border-radius: 60px !important;
-  transition: none;
-  &:before {
-    content: "\25b6";
-    padding-left: 0.02em;
-  }
-  &:focus,
-  &:hover,
   &:active {
-    @include textshadows(0px 0px 10px #FFFFFF);
-    }
+    @include textshadows(0px 0px 8px $icon-font-color);
+  }
 }
 
 // Flat buttons
