@@ -42,6 +42,13 @@ var SocialNetwork = require('./social-network')
     shareUrl: 'share?title=$title$&url=$url$'
   }),
 
+  tumblr: new SocialNetwork({
+    icon: 'tumblr',
+    title: 'Tumblr',
+    profileUrl: 'https://www.tumblr.com/',
+    shareUrl: 'share?title=$title$&url=$url$'
+  }),
+
   email: new SocialNetwork({
     icon: 'mail',
     title: 'E-Mail',

@@ -1,6 +1,6 @@
 var Tab = require('../tab')
   , SocialButtonList = require('../social-button-list')
-  , services = ['twitter', 'adn', 'email']
+  , services = ['twitter', 'adn', 'tumblr', 'email']
   , shareOptions = [
     {name: "Show", value: "show"},
     {name: "Episode", value: "episode", default: true},
