@@ -39,12 +39,12 @@ progress[role] strong {
 
 progress,                               /* Firefox  */
 progress[role][aria-valuenow] {         /* Polyfill */
-  background: $brand-primary !important;  /* !important is needed by the polyfill */
+  background: $progress-bar-bg !important;  /* !important is needed by the polyfill */
 }
 
 /* Chrome */
 progress::-webkit-progress-bar {
-  background: $brand-primary;
+  background: $progress-bar-bg;
 }
 
 /********** 3. The Progress Bar Value ***************/
