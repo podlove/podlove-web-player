@@ -144,10 +144,10 @@
   text-decoration: none;
   speak: none;
   &:hover {
-    @include textshadows(0px 0px 2px $icon-font-color);
+    @include textshadows(0px 0px 2px $contrast-icon-font-color);
   }
   &:active {
-    @include textshadows(0px 0px 8px $icon-font-color);
+    @include textshadows(0px 0px 8px $contrast-icon-font-color);
   }
 }
 

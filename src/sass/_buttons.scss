@@ -47,10 +47,10 @@ $play-button-margin: 0.375em;
   margin: $play-button-margin $play-button-margin $play-button-margin 0;
 
   &:hover {
-    @include textshadows(0px 0px 3px $icon-font-color);
+    @include textshadows(0px 0px 3px $contrast-icon-font-color);
   }
   &:active {
-    @include textshadows(0px 0px 8px $icon-font-color);
+    @include textshadows(0px 0px 8px $contrast-icon-font-color);
   }
   &.playing {
     @extend .pwp-pause-circled;
