@@ -138,13 +138,13 @@ progress[aria-valuenow]:before  {
 }
 
 .handle {
-    display: block;
-    background: transparent;
-    height: $progress-bar-height;
-    width: $progress-bar-height;
-    position: absolute;
-    top: 12px;
-    z-index: 1000;
+  display: block;
+  background: transparent;
+  height: $progress-bar-height;
+  width: $progress-bar-height;
+  position: absolute;
+  top: 12px;
+  z-index: 1000;
   .inner-handle {
     background: white;
     height: $progress-bar-height;
