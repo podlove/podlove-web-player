@@ -2,7 +2,6 @@
 // Progressbar
 // --------------------------------------------------
 
-
 // All HTML5 progress enabled browsers polyfill
 // ----------------------------
 
@@ -119,6 +118,13 @@ progress[aria-valuenow]:before  {
     top: 12px;
     left: 0;
   }
+  &:hover {
+    .inner-handle {
+      @include transition(width 0.3s, left 0.3s, transform 0.2s, ease);
+      width: $progress-bar-height;
+      left: -2px;
+    }
+  }
 }
 
 .buffer {
@@ -133,10 +139,24 @@ progress[aria-valuenow]:before  {
 
 .handle {
   display: block;
-  background: white;
+  background: transparent;
   height: $progress-bar-height;
   width: $progress-bar-height;
   position: absolute;
   top: 12px;
-  left: $progress-bar-height - ($progress-bar-height/2);
+  z-index: 1000;
+  .inner-handle {
+    background: white;
+    height: $progress-bar-height;
+    width: $handle-width;
+    position: absolute;
+    top: 0;
+    left: ($progress-bar-height/2) - ($handle-width/2);
+    z-index: 1001;
+    transform: scale(1, 1);
+    @include transition(width 0.3s, left 0.3s, transform 0.1s, ease);
+    &:hover {
+      transform: scale(1.2, 1.2);
+    }
+  }
 }

@@ -24,11 +24,19 @@ function ProgressBar(timeline, params) {
 }
 
 ProgressBar.prototype.setHandlePosition = function (time) {
-  var newWidth = Math.round(this.progress.width() * time / this.duration),
-    handleCenter = Math.round(this.handle.outerWidth(true) / 2),
-    handlePos = isNaN(newWidth) ? -1 * handleCenter : newWidth - handleCenter;
-  console.debug('ProgressBar', 'setHandlePosition', handlePos);
-  this.handle.css('left', handlePos);
+  var newLeftCenter = Math.round(this.progress.width() * time / this.duration),
+    handleCenter = 9,
+    newLeftOffset = newLeftCenter - handleCenter;
+  // Offset pixels to position the progressbar handle
+  if (isNaN(newLeftCenter)) {
+    newLeftOffset = -9;
+  }
+  // For visual reasons we add an extra pixel as offset
+  if (time >= this.duration) {
+    newLeftOffset = this.progress.width() - 10;
+  }
+  console.debug('ProgressBar', 'setHandlePosition', newLeftOffset);
+  this.handle.css('left', newLeftOffset);
 };
 
 /**
@@ -65,7 +73,7 @@ ProgressBar.prototype.render = function () {
     progress = $('<div class="progress"></div>'),
     current = $('<progress class="current"></progress>')
       .attr({ min: 0, max: this.params.duration }),
-    handle = $('<div class="handle"></div>'),
+    handle = $('<div class="handle"><div class="inner-handle"></div></div>'),
     buffer = $('<progress class="buffer"></progress>')
       .attr({min: 0, max: 1})
       .css({height:"1px;"});

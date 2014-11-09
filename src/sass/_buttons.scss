@@ -12,7 +12,6 @@ $play-button-margin: 0.375em;
 .button-toggle {
   display: inline;
   z-index: 78;
-  font-size: 25px;
 }
 
 .icon-link,
@@ -54,12 +53,6 @@ $play-button-margin: 0.375em;
   }
   &.playing {
     @extend .pwp-pause-circled;
-/*
-    &:hover,
-    &:active {
-      @include textshadows(0px 0px 5px $icon-font-color);
-    }
-*/
   }
 }
 
