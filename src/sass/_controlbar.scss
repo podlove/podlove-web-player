@@ -7,7 +7,7 @@
   height: 50px;
   background: $gray;
   font-size: $font-size-icons;
-  padding: $padding-base-vertical $padding-base-horizontal*2;
+  padding: 10px $padding-large-horizontal;
   .timecontrolbar {
     @extend .pull-right;
     @extend .contrast;

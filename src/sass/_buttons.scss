@@ -6,7 +6,7 @@ $play-button-margin: 0.375em;
 
 .button {
   @include iconfont-button($contrast-icon-font-color);
-  padding-right: 0.5em;
+  padding-right: 0.9em;
 }
 
 .button-toggle {
