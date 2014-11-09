@@ -17,6 +17,7 @@
 'use strict';
 
 var TabRegistry = require('./tabregistry'),
+  embed = require('./embed'),
   Timeline = require('./timeline'),
   Info = require('./modules/info'),
   Share = require('./modules/share'),
@@ -294,30 +295,24 @@ var addBehavior = function (player, params, wrapper) {
       timeline.update(event);
       timeline.setBufferedTime(event);
     })
-    .on('progress', function (e) {
-      console.log('progress', e.currentTarget.id, e);
-      timeline.setBufferedTime(e);
+    .on('progress', function (event) {
+      timeline.setBufferedTime(event);
     })
     // update play/pause status
-    .on('play', function () {
-      //console.log('Player.play fired', event);
-      //player.setCurrentTime(0);
-    })
+    .on('play', function () {})
     .on('playing', function () {
-      //console.log('Player.playing fired', event);
       playButton.addClass('playing');
-      pwp.embed.postToOpener({ action: 'play', arg: player.currentTime });
+      embed.postToOpener({ action: 'play', arg: player.currentTime });
     })
     .on('pause', function () {
-      //console.log('Player.pause playButton', playButton);
       playButton.removeClass('playing');
-      pwp.embed.postToOpener({ action: 'pause', arg: player.currentTime });
+      embed.postToOpener({ action: 'pause', arg: player.currentTime });
     })
     .on('ended', function () {
-      pwp.embed.postToOpener({ action: 'stop', arg: player.currentTime });
-      timeline.rewind();
+      embed.postToOpener({ action: 'stop', arg: player.currentTime });
       // delete the cached play time
       saveTime.removeItem();
+      timeline.rewind();
     });
 };
 
@@ -336,14 +331,8 @@ $.fn.podlovewebplayer = function webPlayer(options) {
   });
 };
 
-pwp = {
-  tc: require('./timecode'),
-  players: player.players,
-  embed: require('./embed')
-};
+pwp = { players: player.players };
 
-//FIXME without embed animations are fluent
-pwp.embed.init($, player.players);
+embed.init($, player.players);
 
 window.pwp = pwp;
-//module.exports = pwp;
