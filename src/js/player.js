@@ -2,16 +2,13 @@
  * player
  */
 'use strict';
-var startAtTime = false,
-  stopAtTime = false,
+var
 // Keep all Players on site - for inline players
 // embedded players are registered in podlove-webplayer-moderator in the embedding page
   players = [],
 // all used functions
   embed = require('./embed'),
-  generateTimecode = require('./timecode').generate,
   parseTimecode = require('./timecode').parse,
-  setFragmentURL = require('./url').setFragment,
   mejsoptions = {
     defaultVideoWidth: 480,
     defaultVideoHeight: 270,
@@ -59,7 +56,6 @@ function create(player, params, callback) {
     playerType = getPlayerType(player),
     secArray,
     wrapper;
-  //audio params
 
   //fine tuning params
   params.width = normalizeWidth(params.width);
@@ -191,4 +187,3 @@ module.exports = {
   defaults: defaults,
   players: players
 };
-
