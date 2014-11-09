@@ -31,6 +31,16 @@ function messageListener (event) {
   }
 }
 
+function waitForMetadata (callback) {
+  function messageListener (event) {
+    var orig = event.originalEvent;
+    if (orig.data.playerOptions) {
+      callback(orig.data.playerOptions);
+    }
+  }
+  $(window).on('message', messageListener);
+}
+
 function pollHeight() {
   var newHeight = $body.height();
   if (lastHeight != newHeight) {
@@ -46,5 +56,6 @@ function pollHeight() {
 
 module.exports = {
   postToOpener: postToOpener,
+  waitForMetadata: waitForMetadata,
   init: init
 };

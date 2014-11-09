@@ -317,11 +317,34 @@ var addBehavior = function (player, params, wrapper) {
 };
 
 /**
+ * return callback function that will attach source elements to the deferred audio element
+ * @param {object} deferredPlayer
+ * @returns {Function}
+ */
+function getDeferredPlayerCallBack(deferredPlayer) {
+  return function (data) {
+    var params = $.extend({}, player.defaults, data);
+    data.sources.forEach(function (sourceObject) {
+      $('<source>', sourceObject).appendTo(deferredPlayer);
+    });
+    player.create(deferredPlayer, params, addBehavior);
+  }
+}
+
+/**
  *
  * @param {object} options
  * @returns {jQuery}
  */
 $.fn.podlovewebplayer = function webPlayer(options) {
+  if (options.deferred) {
+    var deferredPlayer = this[0];
+    var callback = getDeferredPlayerCallBack(deferredPlayer);
+    embed.waitForMetadata(callback);
+    embed.postToOpener({action: 'waiting'});
+    return this;
+  }
+
   // Additional parameters default values
   var params = $.extend({}, player.defaults, options);
 
