@@ -1,0 +1,70 @@
+//
+// Buttons
+// --------------------------------------------------
+$play-button-size: 80px;
+$play-button-margin: 0.375em;
+
+.button {
+  @include iconfont-button($contrast-icon-font-color);
+  padding-right: 0.5em;
+}
+
+.button-toggle {
+  display: inline;
+  z-index: 78;
+  font-size: 25px;
+}
+
+.icon-link,
+.icon-twitter,
+.icon-facebook {
+  font-weight: normal;
+}
+.icon-twitter {
+  font-size: 2.1em;
+}
+
+// Flat subscribe button with rounded corners
+.button-submit {
+  @include button-flat($white, $brand-primary);
+  @include border-radius($border-radius-base);
+  font-size: $font-size-button-label;
+  font-weight: $font-weight-normal;
+  padding: 11px;
+  @include transition(ease);
+  @include transition-delay(0s);
+  @include transition-duration(0.3s);
+  @include transition-property(all);
+}
+
+// Big Play/Pause-Button
+.play {
+  @extend .pwp-play-circled;
+  font-family: $font-family-icons;
+  font-size: $play-button-size;
+  max-width: $play-button-size;
+  line-height: $play-button-size;
+  margin: $play-button-margin $play-button-margin $play-button-margin 0;
+
+  &:hover {
+    @include textshadows(0px 0px 3px $contrast-icon-font-color);
+  }
+  &:active {
+    @include textshadows(0px 0px 8px $contrast-icon-font-color);
+  }
+  &.playing {
+    @extend .pwp-pause-circled;
+/*
+    &:hover,
+    &:active {
+      @include textshadows(0px 0px 5px $icon-font-color);
+    }
+*/
+  }
+}
+
+button {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  border: none;
+}

@@ -1,0 +1,83 @@
+//
+// Module 'Download'
+// --------------------------------------------------
+
+.downloads {
+  footer {
+    > form {
+      padding: $padding-large-vertical 0;
+    }
+  }
+}
+
+// Wrapper for the image itself and overlay-image
+.poster-wrapper {
+  position: relative;
+  margin: 0 auto;
+  width: 300px;
+  min-width: 265px;
+  @include box-shadow(0 11px 15px -6px black);
+  // Container for overlay image
+  .download-overlay {
+    background:url('../img/download-overlay.png') no-repeat;
+    background-position: center;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 256px;
+    height: 256px;
+    margin: 0 auto;
+  }
+}
+
+.download {
+  margin: 20px auto;
+  // Episode image
+  .poster-image {
+    width: 100%;
+    display: block;
+    margin: 0 auto;
+  }
+  // Download button
+  &.button-submit {
+    display: block;
+    margin: 0 auto $margin-base-vertical auto;
+    font-size: $font-size-xlarge;
+    padding: 18px;
+  }
+  // Label of download button
+  &.label {
+    margin-left: 5px;
+    font-family: $font-family-sans-serif;
+  }
+  > h2 {
+    margin: 20px auto 0 auto;;
+    text-align: center;
+  }
+  // Information about the download
+  p {
+    margin: 10px auto;
+    text-align: center;
+    &:first-of-type {
+      margin-bottom: 0;
+    }
+    &:last-of-type {
+      margin-top: 0;
+    }
+  }
+}
+
+// Dropdown menu with selectable file formats
+.select {
+  background-color: $gray-lighter !important;
+  border: 1px solid $gray-lighter;
+  height: 40px;
+  padding: 6px 12px;
+  font-size: $font-size-base;
+  line-height: 1.4;
+  color: $gray !important;
+  option {
+    background-color: $gray-lighter !important;
+    color: $gray !important;
+  }
+}

@@ -1,0 +1,115 @@
+//
+// Metadata Tabs
+// --------------------------------------------------
+$tab-height: 400px;
+$tab-header-height: 45px;
+
+.tabs {
+  color: $text-color;
+  background-color: $tab-background-color;
+  a {
+    color: $default-link-color;
+    &:hover,
+    &:focus {
+      color: $brand-primary-hover;
+    }
+    &:active {
+      color: $brand-primary-active;
+    }
+    &.button-toggle {
+      color: $text-color;
+    }
+  }
+
+  > section {
+    padding: 0;
+    line-height: 1.5;
+    overflow-y: scroll;
+  }
+
+  p {
+    margin: 11px 25px;
+  }
+
+  .tab {
+    display: none;
+
+    // A hack for flexbox-layout:
+    // without 'padding:1px' for flexing elements ("@include flex"),
+    // those elements won't be displayed!
+    & > header, > div, > aside, > footer {
+      padding: 1px;
+    }
+
+    &.active {
+      @include pwp-flexbox();
+      height: $tab-height;
+    }
+  }
+  dt, dd {
+    @extend .pull-left;
+    display: inline-block;
+    margin: 0 25px 15px;
+  }
+
+  dt {
+    clear: both;
+    margin-right: 20px;
+    width: 36%;
+    max-width: 160px;
+  }
+  dd {
+    width: 30%;
+    max-width:70px;
+  }
+  header {
+    @include flex(1 100%);
+    @include order(1);
+    margin: 24px 0 16px 0;
+    width: 100%;
+    height: $tab-header-height;
+  }
+  h2 {
+    margin: 0 25px;
+    padding: 5px 0;
+    i {
+      padding-right: 10px;
+    }
+  }
+  h4 {
+    margin: 20px 25px;
+  }
+  .main {
+    width: 100%;
+    min-height: $tab-height - $tab-header-height - 4;
+    @include flex(1 100%);
+    @include order(2);
+  }
+  footer {
+    @include flex(1 100%);
+    @include order(3);
+    text-align: center;
+    background-color: $gray-lightest;
+    border: 1px solid white !important;
+  }
+}
+
+
+// Video Player
+.container.podlovewebplayer_video .tab {
+  margin-top: 0px;
+}
+
+.podlovewebplayer_video .summary,
+.podlovewebplayer_video.container .tab {
+  margin-top: 0px;
+}
+
+.podlovewebplayer_top {
+  min-height: 11px !important;
+  height: 11px !important;
+  margin-bottom: 0px !important;
+  padding-bottom: 0px;
+}
+
+

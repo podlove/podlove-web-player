@@ -1,0 +1,54 @@
+@charset "UTF-8";
+/*
+ * ===========================================
+ * Podlove Web Player v2.1.0-alpha
+ * Licensed under The BSD 2-Clause License
+ * http://opensource.org/licenses/BSD-2-Clause
+ * ===========================================
+ * Copyright (c) 2013, Gerrit van Aaken (https://github.com/gerritvanaaken/), Simon Waldherr (https://github.com/simonwaldherr/), Frank Hase (https://github.com/Kambfhase/), Eric Teubert (https://github.com/eteubert/) and others (https://github.com/podlove/podlove-web-player/contributors)
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+ *
+ * - Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+ * - Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+// Core variables and mixins
+//@import "breakpoint";
+@import "variables";
+@import "mixins";
+
+// Reset
+@import "compass";
+@import "compass/reset";
+
+// Core CSS
+@import "type";
+@import "base";
+@import "buttons";
+@import "labels";
+
+// Components
+@import "theme";
+@import "progressbar";
+@import "titlebar";
+@import "controlbar";
+@import "mediaelement";
+@import "tabs";
+@import "social-network";
+@import "modules/chapters";
+@import "modules/downloads";
+@import "modules/info";
+@import "modules/share";
+
+// Utility classes
+@import "utilities";
+@import "compass/utilities";
+@import "compass/css3";
+@import "compass/css3/columns";
+
+// Icons (Sass import from an external library folder)
+@import "CSS:../../bower_components/podlove-font/css/podlove-font";

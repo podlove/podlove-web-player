@@ -1,0 +1,138 @@
+//
+// Mediaelement
+// --------------------------------------------------
+
+// Sass import from an external library folder
+@import "CSS:../../bower_components/mediaelement/build/mediaelementplayer";
+
+.container .mejs-container {
+  display: block;
+  position: relative;
+  margin-top: -1px;
+  margin-bottom: 0;
+  background: #000000;
+}
+.container .mejs-container.mejs-audio {
+  min-height: 30px;
+}
+
+.container .mejs-container .mejs-controls {
+  background: $black;
+/*
+  background: url(background.png);
+  background: rgba(0, 0, 0, 0.7);
+  background: -webkit-linear-gradient(top, rgba(50,50,50,0.7), rgba(0,0,0,0.7));
+  background: -moz-linear-gradient(top, rgba(50,50,50,0.7), rgba(0,0,0,0.7));
+  background: -o-linear-gradient(top, rgba(50,50,50,0.7), rgba(0,0,0,0.7));
+  background: -ms-linear-gradient(top, rgba(50,50,50,0.7), rgba(0,0,0,0.7));
+  background: linear-gradient(rgba(50,50,50,0.7), rgba(0,0,0,0.7));
+*/
+}
+
+.container .mejs-container .mejs-controls > div:first-child {
+  margin-left: 8px;
+}
+
+.container .mejs-container .mejs-controls > div.mejs-duration-container:last-child {
+  margin-right: 5px;
+}
+
+
+.container .mejs-button.mejs-volume-button button {
+  font-size: 16px;
+  background: transparent;
+  color: white;
+}
+.container .mejs-button.mejs-volume-button button::after,
+.container .podlovewebplayer_chapterbox .chaptername a {
+  font-size: 16;
+  padding-left: 0.02em;
+  font-family: "pwpfont" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  text-decoration: inherit;
+  -webkit-font-smoothing: antialiased;
+  speak: none;
+  display: inline-block;
+  width: 1em;
+  margin-right: 0.2em;
+  text-align: center;
+  font-variant: normal !important;
+  text-transform: none !important;
+  line-height: 1em;
+}
+
+.container .mejs-button.mejs-volume-button.mejs-unmute button::after {
+  content: "\1f507";
+}
+
+.container .mejs-button.mejs-volume-button.mejs-mute button::after {
+  content: "\1f50a";
+}
+
+.podlovewebplayer_video .mejs-container .mejs-inner .mejs-controls {
+  bottom: -30px;
+  z-index: 78;
+  background: initial;
+}
+
+.podlovewebplayer_video .mejs-container .mejs-inner .mejs-layers .mejs-poster.mejs-layer img {
+  width: 100%;
+  height: 100%;
+}
+
+.container.podlovewebplayer_video .mejs-container div.mejs-poster.mejs-layer {
+  display: none !important;
+}
+
+.podlovewebplayer_video .mejs-container .mejs-overlay-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+  margin: -50px 0 0 -50px;
+  background: url(bigplay.svg) no-repeat;
+}
+
+.no-svg .mejs-overlay-button {
+  background-image: url(bigplay.png);
+}
+
+.container .mejs-overlay:hover .mejs-overlay-button {
+  background-position: 0 -100px ;
+}
+
+.container .mejs-overlay-loading span {
+  display: block;
+  width: 80px;
+  height: 80px;
+  background: transparent url(loading.gif) 50% 50% no-repeat;
+}
+
+.container .mejs-container .mejs-inner .mejs-controls .mejs-time-rail .mejs-time-total .mejs-time-loaded {
+  background: #11B5DB;
+  background: -moz-linear-gradient(top, #11B5DB 0%, #589CEF 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#11B5DB), color-stop(100%,#589CEF));
+  background: -webkit-linear-gradient(top, #11B5DB 0%,#589CEF 100%);
+  background: -o-linear-gradient(top, #11B5DB 0%,#589CEF 100%);
+  background: -ms-linear-gradient(top, #11B5DB 0%,#589CEF 100%);
+  background: linear-gradient(to bottom, #11B5DB 0%,#589CEF 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc4383db', endColorstr='#cc589cef',GradientType=0 );
+}
+
+.container .mejs-container .mejs-controls .mejs-time-rail span,
+.container .mejs-container .mejs-controls .mejs-horizontal-volume-slider .mejs-horizontal-volume-total,
+.container .mejs-container .mejs-controls .mejs-horizontal-volume-slider .mejs-horizontal-volume-current,
+.container .mejs-container .mejs-inner .mejs-controls .mejs-volume-button .mejs-volume-slider .mejs-volume-handle {
+  cursor: move;
+  border-radius: 2px;
+}
+
+.container .mejs-container .mejs-inner .mejs-container .mejs-controls .mejs-time span {
+  -webkit-text-shadow: 0px 0px 2px #000000;
+  -moz-text-shadow: 0px 0px 2px #000000;
+  -o-text-shadow: 0px 0px 2px #000000;
+  text-shadow: 0px 0px 2px #000000;
+  filter: dropshadow(color=#000000, offx=0, offy=0);
+}

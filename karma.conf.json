@@ -1,0 +1,15 @@
+{
+  "frameworks": ["jasmine", "browserify"],
+  "files": [
+    "bower_components/jquery/dist/jquery.js",
+    "bower_components/raf-polyfill/rAF.js",
+    "bower_components/mediaelement/build/mediaelement.js",
+    "src/js/**/*.js",
+    "spec/test/**/*.js"
+  ],
+  "preprocessors": {
+    "src/**/*.js": ["browserify"],
+    "spec/**/*.js": ["browserify"]
+  },
+  "browsers": ["PhantomJS"]
+}

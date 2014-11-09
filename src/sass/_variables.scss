@@ -1,0 +1,214 @@
+//
+// Variables
+// --------------------------------------------------
+
+// Global values
+// --------------------------------------------------
+
+$white:                   #fff;
+$black:                   #000;
+
+// Grays
+// -------------------------
+
+$gray-darker:             lighten(#000, 13.5%) !default; // #222
+$gray-dark:               lighten(#000, 20%) !default;   // #333
+$gray:                    #3a3a3a !default;
+$gray-default:            lighten(#000, 33.5%) !default; // #555
+$gray-light:              lighten(#000, 60%) !default;   // #999
+$gray-lighter:            lighten(#000, 80%) !default;   // #ccc
+$gray-lightest:           lighten(#000, 93.5%) !default; // #eee
+
+// Brand colors
+// -------------------------
+
+$brand-primary:           #425634 !default; // dark-green
+$brand-info:              #506680 !default; // blue-gray
+$brand-success:           #5cb85c !default;
+$brand-warning:           #f0ad4e !default;
+$brand-danger:            #d9534f !default;
+$brand-share:             #49A8DC !default; // "twitter" blue
+$brand-share-light:       lighten($brand-share, 20%) !default;
+$badge-light:             lighten($brand-primary, 60%) !default;
+
+// Scaffolding
+// -------------------------
+
+$body-bg:                   $gray-lightest !default;
+$text-color:                $gray-dark !default;
+
+$contrast-default-color:    $white;
+$contrasted-dark-default:   $gray-dark;
+$contrasted-light-default:  $gray-lightest;
+
+//$icon-font-default-color:   $white;
+$contrast-icon-font-color:  $white;
+
+// Tab Colors
+// -------------------------
+
+$tab-background-color:      $white;
+
+//Progress bars
+// -------------------------
+
+//Background color of the whole progress component
+$progress-bg:               $black;
+
+//** Progress bar text color
+$progress-bar-time-current:  #fefdff;
+$progress-bar-time-duration: #c6c5c7;
+
+//** Default progress bar color
+$progress-bar-bg:           $brand-primary;
+$progress-bar-color:        $gray;
+
+$progress-height:           50px;
+$progress-bar-height:       18px;
+
+// Buffer
+$buffer-height:             4px;
+
+// Links
+// -------------------------
+
+$link-color:                      $white !default;
+$link-hover-color:                lighten($link-color, 15%) !default;
+
+$contrast-link-color:             $white !default;
+
+$default-link-color:              lighten($brand-primary, 15%) !default;
+$brand-primary-hover:             darken($brand-primary, 10%) !default;
+$brand-primary-active:            lighten($brand-primary, 16%) !default;
+
+$brand-primary-chapter-hover:     lighten($brand-primary, 69%) !default;
+$brand-primary-chapter-active:    lighten($brand-primary, 66%) !default;
+$highlight-color:                 lighten($brand-primary, 70%) !default;
+
+// Typography
+// -------------------------
+
+$font-family-sans-serif:  'Roboto', 'Helvetica Neue', 'Helvetica', sans-serif !default;
+$font-family-serif:       Georgia, "Times New Roman", Times, serif !default;
+$font-family-monospace:   'Droid Sans Mono', Monaco, Menlo, Consolas, "Courier New", monospace !default;
+$font-family-base:        $font-family-sans-serif !default;
+$font-family-icons:       "podlove";
+
+$font-size-base:          16px !default;
+$font-size-small:         ceil($font-size-base * 0.8) !default; // ~13px
+$font-size-large:         ceil($font-size-base * 1.125) !default; // ~18px
+$font-size-xlarge:        ceil($font-size-base * 1.5) !default; // ~24px
+$font-size-icons:         25px !default;
+$font-size-social-icons:  70px !default;
+$font-size-contrast-social-icons:  70px !default;
+
+$font-size-h1:            floor($font-size-base * 2.5) !default; // ~40px
+$font-size-h2:            floor($font-size-base * 2.0) !default; // 32px
+$font-size-h3:            ceil($font-size-base * 1.25) !default; // ~20px
+$font-size-h4:            ceil($font-size-base * 1.125) !default; // ~18px
+$font-size-h5:            $font-size-base !default;
+$font-size-h6:            ceil($font-size-base * 0.85) !default; // ~13px
+
+// Typography Variables
+// -------------------------
+
+$font-weight-light:       100;
+$font-weight-lighter:     200;
+$font-weight-normal:      300;
+$font-weight-bold:        400;
+$font-weight-bolder:      500;
+
+$line-height-base:        1.428571429 !default; // 20/14
+$line-height-computed:    floor($font-size-base * $line-height-base) !default; // ~20px
+
+$headings-font-family:          $font-family-base !default;
+$headings-font-weight-default:  500 !default;
+$headings-font-weight-light:    300 !default;
+$headings-font-weight-normal:   400 !default;
+$headings-line-height:          1.1 !default;
+$headings-color:                inherit !default;
+
+$font-size-button-label:        floor($font-size-base * 2.0) !default;  // 32px
+$font-size-button-small-label:  floor($font-size-base * 1.25) !default; // 20px
+
+// Components
+// -------------------------
+// Based on 16px font-size and 1.428 line-height (~20px to start)
+
+$margin-base-vertical:           25px !default;
+$margin-base-horizontal:         25px !default;
+
+$padding-base-vertical:          6px !default;
+$padding-base-horizontal:        12px !default;
+
+$padding-large-vertical:         25px !default;
+$padding-large-horizontal:       25px !default;
+
+$padding-small-vertical:         5px !default;
+$padding-small-horizontal:       10px !default;
+
+$line-height-large:              1.33 !default;
+$line-height-small:              1.5 !default;
+
+$border-radius-base:             4px !default;
+$border-radius-large:            6px !default;
+$border-radius-small:            3px !default;
+
+
+// COMPONENT VARIABLES
+// --------------------------------------------------
+
+// Media queries breakpoints
+// --------------------------------------------------
+
+// Extra small and very old phone sceen
+$screen-xxs:                 360px !default;
+$screen-tiny-phone:          $screen-xxs !default;
+
+// Extra small screen / phone
+$screen-xs:                  480px !default;
+$screen-xs-min:              $screen-xs !default;
+$screen-phone:               $screen-xs-min !default;
+
+// Small screen / tablet portrait
+$screen-tablet-portrait:     550px !default;
+
+// Small screen / tablet
+$screen-sm:                  768px !default;
+$screen-sm-min:              $screen-sm !default;
+$screen-tablet:              $screen-sm-min !default;
+
+// Medium screen / desktop
+$screen-md:                  992px !default;
+$screen-md-min:              $screen-md !default;
+$screen-desktop:             $screen-md-min !default;
+
+// Large screen / wide desktop
+$screen-lg:                  1200px !default;
+$screen-lg-min:              $screen-lg !default;
+$screen-lg-desktop:          $screen-lg-min !default;
+
+// So media queries don't overlap when required, provide a maximum
+$screen-xs-max:              ($screen-sm-min - 1) !default;
+$screen-sm-max:              ($screen-md-min - 1) !default;
+$screen-md-max:              ($screen-lg-min - 1) !default;
+
+
+// Miscellaneous
+// -------------------------
+
+// Image size in titlebar
+$title-image-height:          140px;
+$title-image-width:           $title-image-height;
+$title-image-full-width:      400px;
+$title-image-full-height:     $title-image-full-width;
+
+// Image in Info Tab
+$info-image-width:            400px;
+
+
+// Share Tab: Button Image
+$share-image-border-width:    10px;
+$share-image-width:           200px;
+$share-image-height:          200px;
+

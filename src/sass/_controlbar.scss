@@ -1,0 +1,24 @@
+//
+// Controlbox
+// --------------------------------------------------
+
+// Wrapper for audio controls and tabs-icons
+.controlbar {
+  height: 50px;
+  background: $gray;
+  font-size: $font-size-icons;
+  padding: $padding-base-vertical $padding-base-horizontal*2;
+  .timecontrolbar {
+    @extend .pull-right;
+    @extend .contrast;
+  }
+  li {
+    @extend .contrast;
+    display: inline;
+    &:last-child {
+      a {
+        padding-right: 0;
+      }
+    }
+  }
+  }

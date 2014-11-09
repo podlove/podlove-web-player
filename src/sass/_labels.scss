@@ -1,0 +1,20 @@
+//
+// Labels and Badges
+// --------------------------------------------------
+
+// Badges
+// ----------------------
+
+.badge {
+  height: 37px;
+  min-width: 37px;
+  padding: 2px 7px;
+  font-weight: $font-weight-bolder;
+  line-height: 31px;
+  text-align: center;
+  color: $text-color;
+  background-color: $badge-light;
+  white-space: nowrap;
+  display: inline-block;
+  @include border-radius(50%);
+}

@@ -1,0 +1,142 @@
+//
+// Progressbar
+// --------------------------------------------------
+
+
+// All HTML5 progress enabled browsers polyfill
+// ----------------------------
+
+/********** 1. Turn off default styling ***************/
+progress,
+progress[role] {
+  /* Turns off styling - not usually needed, but good to know. */
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+
+  /* gets rid of default border in Firefox and Opera. */
+  border: none;
+
+  /* Needs to be in here for Safari polyfill so background images work as expected. */
+  background-size: auto;
+
+  width: 400px;
+  height: 16px;
+
+}
+
+/* Polyfill */
+progress[role]:after {
+  background-image: none; /* removes default background from polyfill */
+}
+
+/* Ensure fallback text doesn't appear in polyfill */
+progress[role] strong {
+  display: none;
+}
+
+/********** 2. The Progress Bar Background ***************/
+
+progress,                               /* Firefox  */
+progress[role][aria-valuenow] {         /* Polyfill */
+  background: $brand-primary !important;  /* !important is needed by the polyfill */
+}
+
+/* Chrome */
+progress::-webkit-progress-bar {
+  background: $brand-primary;
+}
+
+/********** 3. The Progress Bar Value ***************/
+
+/* IE10 */
+progress {
+  color: $progress-bar-color;
+}
+
+/* Firefox */
+progress::-moz-progress-bar {
+  background: $progress-bar-color;
+}
+
+/* Chrome */
+progress::-webkit-progress-value {
+  background: $progress-bar-color;
+}
+
+/* Polyfill */
+progress[aria-valuenow]:before  {
+  background: $progress-bar-color;
+}
+
+
+// Metrics of Bar Container and Text
+// ---------------------------------
+
+.progressbar {
+  @include pwp-flexbox();
+  background-color: $progress-bg;
+  width: 100%;
+  height: $progress-height;
+  font-weight: $font-weight-lighter;
+  .time {
+    margin: auto 15px;
+    letter-spacing: 1px;
+    @media all and (max-width: $screen-tablet) {
+      font-size: $font-size-small;
+    }
+
+    &:first-of-type {
+      @include flex(1 40px);
+      @include order(1);
+      text-align: right;
+      color: $progress-bar-time-current;
+    }
+    &:last-of-type {
+      @include flex(1 40px);
+      @include order(3);
+      color: $progress-bar-time-duration;
+    }
+  }
+}
+
+
+// Metrics of the Bar itself
+// -------------------------
+
+.progress {
+  @include flex(14 145px);
+  @include order(2);
+  overflow: hidden;
+  margin: 0 auto;
+  position: relative;
+  .current {
+    width: 100%;
+    height: $progress-bar-height;
+    background-repeat: repeat-x;
+    margin: 0 auto;
+    position: absolute;
+    top: 12px;
+    left: 0;
+  }
+}
+
+.buffer {
+  top: $progress-bar-height + 16px;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  height: $buffer-height;
+  background-repeat: repeat-x;
+  margin: 0 auto;
+}
+
+.handle {
+  display: block;
+  background: white;
+  height: $progress-bar-height;
+  width: $progress-bar-height;
+  position: absolute;
+  top: 12px;
+  left: $progress-bar-height - ($progress-bar-height/2);
+}

@@ -1,0 +1,99 @@
+//
+// Module 'Info'
+// --------------------------------------------------
+
+.info {
+  .main {
+    width: 60%;
+    @include flex(1 100%);
+    @include order(1);
+    em {
+      display: inline-block;
+      margin-left: $margin-base-horizontal;
+    }
+  }
+  aside {
+    @include flex(1 100%);
+    @include order(2);
+    width: 40%;
+  }
+  // The aside element will move under the section (.main) element
+  @media all and (min-width: 600px) {
+    .aside {
+      @include flex(1 0px);
+    }
+  }
+  // The aside element will move next to the section (.main) element
+  @media all and (min-width: 800px) {
+    .main   {
+      @include flex(2 0px);
+      @include order(1);
+    }
+    aside   {
+      @include order(2);
+    }
+    footer  {
+      @include order(3);
+    }
+  }
+  //*** Image of the show
+  // Container for image
+  .poster-image {
+    margin: 5px $margin-base-horizontal 16px;
+    img {
+      width: 100%;
+      max-width: $info-image-width;
+    }
+  }
+  footer {
+    h3 {
+      margin-top: 5px;
+    }
+    p {
+      padding: $padding-large-vertical 0;
+    }
+    .social-links {
+      border-bottom: 16px solid $white;
+      ul {
+        margin: 18px 0 $margin-base-vertical 0;
+      }
+      ul li {
+        display: inline;
+        margin: 10px;
+        img {
+          display: block;
+          width: 100%;
+          max-width: 100px;
+        }
+        span {
+          display: block;
+          padding-top: 6px;
+        }
+        a {
+          display: inline-block;
+        }
+      }
+    }
+  }
+}
+
+// Button to subcribe to the show
+.button-submit {
+  height: auto;
+  margin: 5px $margin-base-horizontal;
+  max-width: $info-image-width;
+}
+
+// Top labeltext line of subscribe button
+.showtitle-label {
+  display: inline-block;
+  font-size: $font-size-button-small-label;
+  //width: 100%;
+  //min-width: $info-image-width;
+}
+
+// Bottom labeltext line of subscribe button
+.submit-label {
+  vertical-align: super;
+  line-height: 1px;
+}

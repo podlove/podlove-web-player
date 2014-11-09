@@ -1,0 +1,97 @@
+//
+// Module 'Share'
+// --------------------------------------------------
+
+$button-width: $share-image-width + ($share-image-border-width * 2);
+
+.tabs {
+  .podlovewebplayer_share {
+    .main {
+      margin: 0 $margin-base-horizontal;
+    }
+    legend {
+      margin-bottom: $margin-base-vertical;
+    }
+    .share-button-wrapper {
+      margin: 0 auto;
+      width: $button-width * 2;
+    }
+    @media screen and (max-width: $button-width * 2 + ($margin-base-horizontal * 2)) {
+      .share-button-wrapper {
+        width: $button-width;
+      }
+      .button-container {
+        display: block;
+      }
+    }
+
+    footer {
+      padding: $padding-large-vertical $padding-large-horizontal;
+      > div {
+        width: 70%;
+        margin: 0 auto;
+      }
+      h3 {
+        margin: 0 $margin-base-vertical 15px $margin-base-vertical;
+      }
+      label {
+        display: block;
+      }
+      input {
+        @include border-radius(5px);
+        height: 40px;
+        border: 1px solid $gray-lighter;
+        width: 100%;
+        padding: 8px;
+        text-align: center;
+        color: $gray-default;
+      }
+    }
+    ul {
+      margin: 0 0 32px 0;
+    }
+    ul > li {
+      display: inline-block;
+      margin: 0 20px 0 0;
+      width: 90px;
+      &.last-of-type {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+.share-select-option {
+  display: inline-block;
+  @include border-radius(3px);
+  width: $button-width;
+  background-image: none;
+  padding: 0;
+  background-color: $tab-background-color;
+  border: solid $share-image-border-width $tab-background-color;
+  cursor: pointer;
+  &:hover {
+    background-color: $default-link-color;
+    border: solid $share-image-border-width $default-link-color;
+  }
+  &:active {
+    background-color: $brand-primary-active;
+    border: solid $share-image-border-width $brand-primary-active;
+  }
+  &:focus,
+  &.selected {
+    background-color: $brand-primary;
+    border: solid $share-image-border-width $brand-primary;
+  }
+  &:hover,
+  &:active,
+  &:focus,
+  &.selected {
+    color: $contrast-link-color;
+  }
+  img {
+    height: $share-image-height;
+    width: $share-image-width;
+  }
+}
+

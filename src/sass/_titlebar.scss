@@ -1,0 +1,197 @@
+@charset "UTF-8";
+//
+// Titlebar
+// --------------------------------------------------
+
+.titlebar {
+  @include clearfix();
+  @include pwp-flexbox();
+  @extend .contrast;
+  width: 100%;
+  background: $gray;
+  min-height: 100px;
+  height: auto;
+  color: $contrast-icon-font-color;
+
+  // Headlines in titlebar
+  header {
+    @include order(2);
+    margin: auto auto;
+    padding: 0 16px;
+
+  }
+}
+
+// Cover image of the show in titlebar
+.coverart {
+  @include order(1);
+  min-width: $title-image-width;
+  height: $title-image-height;
+  img {
+    height: $title-image-height;
+  }
+}
+
+.showtitle {
+  margin: 0;
+  a {
+    color: $contrast-link-color;
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+.episodetitle {
+  margin: 10px 0;
+  a {
+    line-height: 20px !important;
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+// Description text of the episode
+.subtitle {
+  @include ellipsis;
+  margin: 0;
+  text-shadow: none !important;
+  background: transparent !important;
+  font-size: $font-size-large;
+  opacity: 0.6;
+  .summary .summarydiv {
+    margin: 0px 5px;
+  }
+}
+
+// Playbutton
+.play {
+  @include flex(1 100%);
+  @include order(3);
+}
+
+// Breakpoints
+// --------------------------------------------------
+
+// x ≤ 360px
+@media all and (max-width: $screen-tiny-phone) {
+  header {
+    margin: 1.25em 0 !important;
+    h2 {
+      font-size: 1.3em;
+    }
+    .subtitle,
+    h4 {
+      font-size: 1em;
+    }
+  }
+  .play {
+    @include flex(1 0px);
+    @include order(3);
+    margin: auto 13px auto 0;
+  }
+}
+
+// 550px ≤ x ≥ 768px
+@media all and (min-width: $screen-tablet-portrait) and (max-width: $screen-tablet) {
+  .play {
+    @include flex(1 0px);
+    @include order(3);
+  }
+  header {
+    h2 {
+      font-size: 1.5em;
+    }
+    .subtitle,
+    h4 {
+      font-size: $font-size-base;
+    }
+  }
+}
+
+// 360px ≤ x ≥ 480px
+@media all and (min-width: $screen-tiny-phone) and (max-width: $screen-phone) {
+  header {
+    margin: 20px 0 !important;
+  }
+}
+
+// 360px ≤ x ≥ 550px
+@media all and (min-width: $screen-tiny-phone) and (max-width: $screen-tablet-portrait) {
+  .coverart {
+    @include flex(1 100%);
+    @include order(1);
+    height: $title-image-full-height;
+  }
+
+  header {
+    @include flex(1 0px);
+    @include order(2);
+    h2 {
+      font-size: 1.5em;
+    }
+    .subtitle,
+    h4 {
+      font-size: $font-size-base;
+    }
+  }
+  .play {
+    @include flex(1 0px);
+    @include order(3);
+    margin: auto 15px auto 0;
+  }
+
+}
+
+// 480px ≤ x
+@media all and (min-width: $screen-phone) {
+  header {
+    @include flex(1 0px);
+    @include order(2);
+  }
+
+  .play {
+    @include flex(1 0px);
+  }
+}
+
+
+// Flexible breakpoint depending on image size.
+// The image will scale up to full-width within this breakpoint.
+@media all and (min-width: 200px) and (max-width: $screen-tablet-portrait) {
+  .coverart {
+    @include flex(1 100%);
+    width: $title-image-full-width;
+    height: auto;
+    img {
+      height: auto !important;
+      width: 100%;
+    }
+  }
+  header {
+    @include flex(1 0px);
+    @include order(2);
+    margin: 1.25em 0 !important;
+  }
+}
+
+// 551px ≤ x ≥ 992px
+@media all and (min-width: $screen-tablet-portrait +1px) and (max-width: $screen-desktop) {
+  .coverart {
+    @include flex(0 0px);
+    @include order(1);
+    img {
+      height: $title-image-height;
+      width: auto !important;
+    }
+  }
+}
+
+// 992px ≤ x
+@media all and (min-width: $screen-desktop) {
+  header {
+    @include flex(2 0px);
+    @include order(2);
+  }
+}

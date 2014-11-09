@@ -4,28 +4,33 @@
 
 HTML5 Goodness for Podcasting
 
-Podlove Web Player is a Podcast-optimized, HTML5-based video and audio player with Flash fallback. It can be used as a WordPress plugin or within a static HTML/JavaScript context.
+**Podlove** Web Player is a Podcast-optimized, HTML5-based video and audio player with Flash fallback.
+It can be used as a WordPress plugin or within a static HTML/JavaScript context.
 
-The Podlove Web Player supports almost every browser and also does captions, chapters and much more. Thanks to MediaElement.js for providing the foundation.
+The **Podlove** Web Player supports almost every modern browser and also does captions, chapters and much more.
+Thanks to MediaElement.js for providing the foundation.
 
 * [Official Site on podlove.org](http://podlove.org/podlove-web-player/)
 * [WordPress Plugin Page](http://wordpress.org/plugins/podlove-web-player/)
 
-## Build JavaScript
+## Usage
 
-We will replace *make* with *grunt.js* or *gulp.js* in combination with *browserify*.
+The release version should have the application, the moderator their dependencies and necessary styles and fonts
+ready in the `dist` folder.
+Along with them there is a running example that shows you how to integrate the player in any webpage.
+Either directly as in `embed.html` or as an iframe/ embedded player as in `index.html`.
 
-Install prerequisites for building:
+## Installation
 
-    npm install -g browserify
+Clone the repository and install all dependencies with
 
-Create podlove-web-player/static/podlove-web-player.js with
+    bower install
+    npm install
+    npm install -g gulp
 
-    browserify podlove-web-player/main.js -o podlove-web-player/static/podlove-web-player.js
+## Set up CSS pre-processing
 
-## Build CSS
-
-### Setting up the ruby environment
+### Update ruby environment
 
        $ gem update --system
 
@@ -40,10 +45,9 @@ or
 
     sudo gem install sass
 
-Then check your version
+Then check your version (should be 3.3.x)
 
     sass -v
-
 
 ### Install Compass
 
@@ -53,39 +57,65 @@ Compass runs on any computer that has ruby installed.
 
 Then install compass
 
-    $ gem install compass
+    gem install compass
 
-The Compass settings can be found in this file:
+Your version should be
 
-    podlove-web-player/config.rb
+### Install SASS CSS Importer
 
-To enable the debugging comments that display
-the original location of your selectors, comment-in following line:
+Next you need to install the [SASS CSS Importer](https://github.com/chriseppstein/sass-css-importer) ruby gem.
 
-    line_comments = false
+    gem install --pre sass-css-importer
+
+### Install autoprefixer
+
+Install autoprefixer to parse CSS and add vendor prefixes to rules fetched from 'Can I Use'
+[https://github.com/ai/autoprefixer](https://github.com/ai/autoprefixer)
+
+    sudo npm install --global autoprefixer
 
 ### Build the CSS file
 
-In the command line, navigate to your working directory and compile the output css with
+There is a gulp task for that, processing a version with line comments as well as a minified one
 
-    compass compile
+    gulp styles
 
-For development you should add a watcher with the command
+## Build Distribution Package
 
-    compass watch
+Make is now replaced by [gulp](https://github.com/gulpjs/gulp/blob/master/docs/README.md)
 
-Finally, for a compressed and minified production file, just run the command:
+Just run the default task to build the distribution package to `dist` folder.
 
-    compass compile --output-style compressed
+    gulp
+
+### For production
+
+    npm install -g uglifyify minifyify
+
+smallest possible code (>50kB)
+
+    browserify -g uglifyify js/app.js > static/podlove-web-player.js
+
+with sourcemaps (~250kB)
+
+    browserify -d js/app.js | minifyify > static/podlove-web-player.js
+
+## Development
+
+Build, serve and watch the local repository version. With livereload on top
+
+    gulp serve
 
 ## Test
 
 No automated tests, yet. Sorry.
-But with `http-server` module you can serve the `podlove-web-player` directory statically for manual local frontend testing.
+But with `gulp serve` you can serve the repository root directory statically for manual local frontend
+testing.
+You can then access the examples with your browser via `http://localhost:8080/example/index.html`.
 
 ## Info
 
-**Important!** 
+**Important!**
 The Wordpress-plugin that includes the Podlove-Webplayer alone will be moved to its own repo.
 
 ## Contributing
@@ -106,7 +136,9 @@ Push to the branch
 
 Create new Pull Request
 
-## Contributors
-Contributors: [Gerrit van Aaken](https://github.com/gerritvanaaken/), [Simon Waldherr](https://github.com/simonwaldherr/), [Frank Hase](https://github.com/Kambfhase/), [Eric Teubert](https://github.com/eteubert/) and [others](https://github.com/podlove/podlove-web-player/contributors)  
-Version: 2.0.18 ([Download](http://downloads.wordpress.org/plugin/podlove-web-player.2.0.18.zip))  
-License: [BSD 2-Clause License](http://opensource.org/licenses/BSD-2-Clause)  
+Contributors:
+[Gerrit van Aaken](https://github.com/gerritvanaaken/), [Simon Waldherr](https://github.com/simonwaldherr/),
+[Frank Hase](https://github.com/Kambfhase/), [Eric Teubert](https://github.com/eteubert/),
+[Juri Leino](https://github.com/line-o) and [others](https://github.com/podlove/podlove-web-player/contributors)
+Version: 2.1.0-alpha
+License: [BSD 2-Clause License](http://opensource.org/licenses/BSD-2-Clause)
