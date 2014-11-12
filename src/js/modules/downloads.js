@@ -96,12 +96,13 @@ function normalizeDownload (element) {
  * @returns {{assetTitle: String, downloadUrl: String, url: String, size: Number}}
  */
 function normalizeSource(element) {
-  var parts = element.split('.');
+  var source = (typeof element === 'string') ? element : element.src;
+  var parts = source.split('.');
   return {
     assetTitle: parts[parts.length - 1],
-    downloadUrl: element,
-    url: element,
-    size: element.size
+    downloadUrl: source,
+    url: source,
+    size: -1
   };
 }
 

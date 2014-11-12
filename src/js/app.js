@@ -216,6 +216,7 @@ var addBehavior = function (player, params, wrapper) {
     if ((params.chaptersVisible === 'true') || (params.chaptersVisible === true)) {
       tabs.open(chapters.tab);
     }
+    chapters.addEventhandlers(player);
   }
 
   var sharing = new Share(params);
@@ -231,7 +232,6 @@ var addBehavior = function (player, params, wrapper) {
   timeline.addModule(saveTime);
 
 
-  chapters.addEventhandlers(player);
   controls.createTimeControls(chapters);
 
   // expose the player interface

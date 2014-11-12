@@ -93,6 +93,10 @@ function createInfoTab(params) {
     active: !!params.summaryVisible
   });
 
+  createEpisodeInfo(infoTab, params);
+  createShowInfo(infoTab, params);
+  createSocialAndLicenseInfo(infoTab, params);
+
   return infoTab;
 }
 
@@ -103,9 +107,6 @@ function createInfoTab(params) {
  */
 function Info(params) {
   this.tab = createInfoTab(params);
-  createEpisodeInfo(this.tab, params);
-  createShowInfo(this.tab, params);
-  createSocialAndLicenseInfo(this.tab, params);
 }
 
 module.exports = Info;

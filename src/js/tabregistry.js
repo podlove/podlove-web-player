@@ -22,10 +22,10 @@ module.exports = TabRegistry;
  * @param {Tab} tab
  */
 TabRegistry.prototype.add = function(tab) {
+  if (tab === null) { return; }
   this.tabs.push(tab);
   this.container.append(tab.box);
   var toggle = tab.createToggleButton(tab.icon, tab.title);
-  //this.togglebar.append('<li>' + toggle + '</li>');
   $('<li></li>').append(toggle).appendTo(this.togglebar);
   toggle.on('click', getToggleClickHandler.bind(this, tab));
 };
