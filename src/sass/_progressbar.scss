@@ -104,6 +104,8 @@ progress[aria-valuenow]:before  {
       display: block;
       float: left;
       margin-top: 0.77em;
+      color: $contrast-default-color;
+      background-color: $gray;
 
       // > 768px
       @media all and (max-width: $screen-tablet) {
