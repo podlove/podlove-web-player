@@ -73,28 +73,98 @@ progress[aria-valuenow]:before  {
 // ---------------------------------
 
 .progressbar {
-  @include pwp-flexbox();
+  color: $contrasted-light-default;
   background-color: $progress-bg;
   width: 100%;
   height: $progress-height;
   font-weight: $font-weight-lighter;
+  .progress-info {
+    @include pwp-flexbox();
+    width: 100%;
+    height: $progress-height / 2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    div {
+      display: inline-block;
+    }
+    .chapter {
+      @include flex(1 0px);
+      @include order(2);
+      height: 100%;
+
+      // > 360px
+      @media all and (max-width: $screen-tiny-phone) {
+        @include flex(1 0px);
+        @include order(2);
+      }
+    }
+    .badge {
+      line-height: 33px;
+      display: block;
+      float: left;
+      margin-top: 0.77em;
+
+      // > 768px
+      @media all and (max-width: $screen-tablet) {
+        font-size: $font-size-small;
+        line-height: 32px;
+        min-width: 33px;
+        height: 33px;
+        padding: 0;
+        margin-top: 14px;
+      }
+
+    }
+    .chapter-title {
+      display: block;
+      padding: 19px 20px 0 15px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-weight: $font-weight-bolder;
+    }
+  }
   .time {
-    margin: auto 15px;
-    letter-spacing: 1px;
+    font-family: $font-family-monospace;
+    padding-top: 20px;
+    height: 100%;
+    vertical-align: middle;
+
+    // > 768px
     @media all and (max-width: $screen-tablet) {
       font-size: $font-size-small;
+      padding-top: 22px;
     }
 
     &:first-of-type {
-      @include flex(1 40px);
+      @include flex(0 104px);
       @include order(1);
-      text-align: right;
+      padding-left: 15px;
+      text-align: left;
       color: $progress-bar-time-current;
+
+      // 360px ≤ x ≥ 550px
+      @media all and (min-width: $screen-tiny-phone) and (max-width: $screen-tablet-portrait) {
+        @include flex(0 80px);
+        @include order(1);
+      }
+      // > 768px
+      @media all and (max-width: $screen-tablet) {
+        @include flex(0 91px);
+        @include order(1);
+      }
     }
     &:last-of-type {
-      @include flex(1 40px);
+      @include flex(0 95px);
       @include order(3);
+      padding-right: 20px;
+      text-align: right;
       color: $progress-bar-time-duration;
+      // > 768px
+      @media all and (max-width: $screen-tablet) {
+        @include flex(0 91px);
+      }
     }
   }
 }
@@ -104,9 +174,6 @@ progress[aria-valuenow]:before  {
 // -------------------------
 
 .progress {
-  @include flex(14 145px);
-  @include order(2);
-  overflow: hidden;
   margin: 0 auto;
   position: relative;
   .current {
@@ -126,6 +193,8 @@ progress[aria-valuenow]:before  {
     }
   }
 }
+
+
 
 .buffer {
   top: $progress-bar-height + 16px;
