@@ -19,6 +19,7 @@ function ProgressBar(timeline, params) {
   this.currentTime = null;
   this.progress = null;
   this.buffer = null;
+  //this.currentChapter = params.chapters[0].title;
 
   this.update = _update.bind(this);
 }
@@ -68,8 +69,10 @@ ProgressBar.prototype.render = function () {
 
   var formattedDuration = tc.fromTimeStamp(this.params.duration),
     bar = $('<div class="progressbar"></div>'),
+    progressInfo = $('<div class="progress-info"></div>'),
     currentTimeElement = renderTimeElement('current', '00:00:00'),
     durationTimeElement = renderTimeElement('duration', formattedDuration),
+    currentChapterElement = renderCurrentChapterElement(),
     progress = $('<div class="progress"></div>'),
     current = $('<progress class="current"></progress>')
       .attr({ min: 0, max: this.params.duration }),
@@ -84,10 +87,14 @@ ProgressBar.prototype.render = function () {
     .append(handle)
   ;
 
-  bar
+  progressInfo
     .append(currentTimeElement)
-    .append(progress)
+    .append(currentChapterElement)
     .append(durationTimeElement)
+
+  bar
+    .append(progressInfo)
+    .append(progress)
   ;
 
   this.bar = bar;
@@ -95,6 +102,7 @@ ProgressBar.prototype.render = function () {
   this.buffer = buffer;
   this.handle = handle;
   this.currentTime = currentTimeElement;
+  //this.currentChapter = currentChapterElement;
 
   return bar;
 };
@@ -182,7 +190,15 @@ ProgressBar.prototype.addEvents = function() {
 };
 
 function renderTimeElement(className, time) {
-  return $('<span class="time time-' + className + '">' + time + '</span>');
+  return $('<div class="time time-' + className + '">' + time + '</div>');
+}
+
+/**
+ * Render an HTML Element for the current chapter
+ * @returns {jQuery|HTMLElement}
+ */
+function renderCurrentChapterElement() {
+  return $('<div class="chapter"><span class="badge">01</span><span class="chapter-title">Das ist das erste Kapitel</span></div>');
 }
 
 module.exports = ProgressBar;
