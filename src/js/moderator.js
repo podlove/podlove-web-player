@@ -27,7 +27,6 @@
       var elementId = $element.get(0).id;
       if (!elementId) { throw Error('Element without source set needs an ID'); }
       source = getStaticEmbedPageSource(elementId);
-      console.log('*****', source);
       data = window.pwp_metadata[elementId];
       if (!data) { throw Error('No data found for "' + elementId + '"'); }
     }
@@ -51,7 +50,7 @@
     frame = $frame.get(0);
 
     // register player frame
-    players[source] = {
+    players[frame.src] = {
       data: data,
       frame: $frame,
       state: -1
