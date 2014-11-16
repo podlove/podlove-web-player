@@ -147,7 +147,6 @@ function update (timeline) {
  */
 function Chapters (timeline) {
 
-  // FIXME
   this.timeline = timeline;
   if (timeline.duration === 0) {
     console.warn('Chapters', 'constructor', 'Zero length media?', timeline);
@@ -158,8 +157,7 @@ function Chapters (timeline) {
     title: "Show/hide chapters",
     headline: 'Chapters',
     name: "podlovewebplayer_chapterbox"
-  })
-  ;
+  });
 
   //build chapter table
   this.chapters = timeline.getDataByType('chapter');
