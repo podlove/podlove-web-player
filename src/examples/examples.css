@@ -1,0 +1,13 @@
+body {
+  background: darkgrey;
+  font-family:  'Roboto', 'Helvetica Neue', 'Helvetica', sans-serif;
+}
+article,
+.container {
+  width: 85%;
+  margin: 5% auto;
+}
+h1 {
+  margin: 2%;
+}
+
