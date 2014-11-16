@@ -17,6 +17,15 @@ function TabRegistry() {
 
 module.exports = TabRegistry;
 
+TabRegistry.prototype.createToggleFor = function (tab) {
+  var toggle = $('<li title="' + tab.title + '">' +
+      '<a href="javascript:;" class="button button-toggle ' + tab.icon + '"></a>' +
+    '</li>');
+  toggle.on('click', getToggleClickHandler.bind(this, tab));
+  this.togglebar.append(toggle);
+  return toggle;
+};
+
 /**
  *
  * @param {Tab} tab
@@ -24,23 +33,9 @@ module.exports = TabRegistry;
 TabRegistry.prototype.add = function(tab) {
   this.tabs.push(tab);
   this.container.append(tab.box);
-  var toggle = tab.createToggleButton(tab.icon, tab.title);
   //this.togglebar.append('<li>' + toggle + '</li>');
-  $('<li></li>').append(toggle).appendTo(this.togglebar);
-  toggle.on('click', getToggleClickHandler.bind(this, tab));
-};
 
-/**
- *
- * @param {Tab} tab
- */
-TabRegistry.prototype.open = function(tab) {
-  var open = getToggleClickHandler.bind(this);
-  $.each(this.tabs, function () {
-    if (this.name == tab.name) {
-      open(this);
-    }
-  });
+  tab.toggle = this.createToggleFor(tab);
 };
 
 /**
@@ -68,7 +63,7 @@ TabRegistry.prototype.update = function(event) {
  * @returns {boolean}
  */
 function getToggleClickHandler(tab) {
-  console.log(this.activeTab);
+  console.debug('TabRegistry', 'activeTab', this.activeTab);
   if (this.activeTab) {
     this.activeTab.close();
   }
