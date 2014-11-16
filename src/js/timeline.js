@@ -1,5 +1,5 @@
 /*
-[
+ [
  {type: "image", "title": "The very best Image", "url": "http://domain.com/images/test1.png"},
  {type: "shownote", "text": "PAPAPAPAPAPAGENO"},
  {type: "topic", start: 0, end: 1, q:true, title: "The very first chapter" },
@@ -14,7 +14,7 @@
  {type: "image", "name": "The very best Image", "url": "http://domain.com/images/test1.png"},
  {type: "link", "name": "An interesting link", "url": "http://"},
  {type: "topic", start: 1, end: 2, "name": "The very first chapter", "url": ""},
-]
+ ]
  */
 var tc = require('./timecode');
 
@@ -66,14 +66,14 @@ Timeline.prototype.playRange = function (range) {
   this.stopAt(range.shift());
 };
 
-Timeline.prototype.update = function(event) {
+Timeline.prototype.update = function (event) {
   console.log('Timeline', 'update', event);
   var player = event.currentTarget,
     rewind = (this.currentTime > player.currentTime),
     start = this.currentTime,
     end = player.currentTime;
 
-  var call = function call (i, listener) {
+  var call = function call(i, listener) {
     listener(this);
   }.bind(this);
 
@@ -123,12 +123,12 @@ Timeline.prototype.setTime = function (time) {
     console.warn('Timeline', 'setTime', 'time out of bounds', time);
     return this.player.currentTime;
   }
-  if (this.player.readyState == this.player.HAVE_ENOUGH_DATA ){
+  if (this.player.readyState == this.player.HAVE_ENOUGH_DATA) {
     this.player.setCurrentTime(time);
     this.currentTime = time;
     return this.player.currentTime;
   } else {
-    $(this.player).one('canplay', function(){
+    $(this.player).one('canplay', function () {
       this.setCurrentTime(time);
     });
   }
@@ -168,7 +168,7 @@ Timeline.prototype.setBufferedTime = function (e) {
   }
   // Firefox 3 with an Ogg file seems to go this way
   else if (e && e.lengthComputable && e.total != 0) {
-    percent = e.loaded/e.total;
+    percent = e.loaded / e.total;
   }
 
   // finally update the progress bar
@@ -182,13 +182,13 @@ Timeline.prototype.setBufferedTime = function (e) {
 
 Timeline.prototype.rewind = function () {
   this.setTime(0);
-  var call = function call (i, listener) {
+  var call = function call(i, listener) {
     listener(this);
   }.bind(this);
   $.each(this.listeners, call);
 };
 
-function _filterByType (type) {
+function _filterByType(type) {
   return function (record) {
     return (record.type === type);
   };
@@ -198,7 +198,7 @@ function _filterByType (type) {
  *
  * @param {Timeline} timeline
  */
-function logCurrentTime (timeline) {
+function logCurrentTime(timeline) {
   console.log('Timeline', 'currentTime', timeline.getTime());
 }
 
@@ -209,15 +209,15 @@ function logCurrentTime (timeline) {
  */
 function checkForChapters(params) {
   return !!params.chapters && (
-      typeof params.chapters === 'object' && params.chapters.length > 1
+    typeof params.chapters === 'object' && params.chapters.length > 1
     );
 }
 
-function _parse (data) {
+function _parse(data) {
   return data;
 }
 
-function _merge (a, b) {
+function _merge(a, b) {
 
 }
 
@@ -229,11 +229,11 @@ Timeline.prototype.parseSimpleChapter = function (data) {
     .map(addType('chapter'))
     .map(addEndTime(data.duration))
     .sort(function (a, b) {
-    return a.start - b.start;
-  });
+      return a.start - b.start;
+    });
 };
 
-function transformChapter (chapter) {
+function transformChapter(chapter) {
   chapter.code = chapter.title;
   if (typeof chapter.start === 'string') {
     chapter.start = tc.getStartTimeCode(chapter.start);
@@ -257,7 +257,7 @@ function addEndTime(duration) {
 }
 
 function addType(type) {
-  return function(element) {
+  return function (element) {
     element.type = type;
     return element;
   };
