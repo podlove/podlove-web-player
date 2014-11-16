@@ -185,28 +185,8 @@ var addBehavior = function (player, params, wrapper) {
   metaElement.append(renderTitleArea(params));
 
   /**
-   *
-   * @type {ProgressBar}
+   * -- MODULES --
    */
-  var progressBar = new ProgressBar(timeline, params);
-  timeline.addModule(progressBar);
-  wrapper.append(progressBar.render());
-
-  progressBar.addEvents();
-
-  /**
-   * Timecontrols
-   */
-    //always render toggler buttons wrapper
-  wrapper.append(controlBox);
-
-  /**
-   * -- TABS --
-   * The tabs in controlbar will appear in following order:
-   */
-  controlBox.append(tabs.togglebar);
-  wrapper.append(tabs.container);
-
   var chapters;
   if (hasChapters) {
     chapters = new Chapters(timeline);
@@ -214,21 +194,39 @@ var addBehavior = function (player, params, wrapper) {
     timeline.addModule(chapters);
   }
 
-  var sharing = new Share(params);
-  tabs.add(sharing.tab, !!params.sharebuttonsVisible);
-
-  var downloads = new Downloads(params);
-  tabs.add(downloads.tab, !!params.downloadbuttonsVisible);
-
-  var infos = new Info(params);
-  tabs.add(infos.tab, !!params.summaryVisible);
-
   var saveTime = new SaveTime(timeline, params);
   timeline.addModule(saveTime);
 
+  var progressBar = new ProgressBar(timeline);
+  timeline.addModule(progressBar);
 
-  chapters.addEventhandlers(player);
-  controls.createTimeControls(chapters);
+  /**
+   * -- TABS --
+   * The tabs in controlbar will appear in following order:
+   */
+
+  var sharing = new Share(params);
+  var downloads = new Downloads(params);
+  var infos = new Info(params);
+
+  // render
+
+  wrapper.append(progressBar.render());
+  progressBar.addEvents();
+
+  controlBox.append(tabs.togglebar);
+  wrapper.append(controlBox);
+
+  wrapper.append(tabs.container);
+
+  tabs.add(sharing.tab, !!params.sharebuttonsVisible);
+  tabs.add(downloads.tab, !!params.downloadbuttonsVisible);
+  tabs.add(infos.tab, !!params.summaryVisible);
+
+  if (hasChapters) {
+    chapters.addEventhandlers(player);
+    controls.createTimeControls(chapters);
+  }
 
   // expose the player interface
   wrapper.data('podlovewebplayer', {

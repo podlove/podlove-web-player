@@ -103,6 +103,7 @@ Timeline.prototype.emitEventsBetween = function (start, end) {
       ended = (event.end < end)
       ;
     if (later && earlier && !ended || emitStarted) {
+      console.log('Timeline', 'Emit', event);
       emit(event);
     }
     emitStarted = later;
