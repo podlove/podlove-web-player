@@ -79,7 +79,8 @@ function getCombinedCallback(callback) {
     if (!playerStarted(this.player)) {
       this.player.play();
     }
-    (callback.bind(this))();
+    var boundCallBack = callback.bind(this);
+    boundCallBack();
   };
 }
 
