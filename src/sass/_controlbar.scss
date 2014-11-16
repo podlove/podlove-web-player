@@ -1,13 +1,16 @@
 //
 // Controlbox
 // --------------------------------------------------
+$controlbar-height: 50px;
+$active-triangle-size: 8px;
+$controlbar-padding: 10px;
 
 // Wrapper for audio controls and tabs-icons
 .controlbar {
-  height: 50px;
+  height: $controlbar-height;
   background: $gray;
   font-size: $font-size-icons;
-  padding: 10px $padding-large-horizontal;
+  padding: $controlbar-padding $padding-large-horizontal;
   .timecontrolbar {
     @extend .pull-right;
     @extend .contrast;
@@ -15,10 +18,30 @@
   li {
     @extend .contrast;
     display: inline;
+    position: relative;
+    top: 0;
+    left: 0;
     &:last-child {
       a {
         padding-right: 0;
       }
     }
   }
+  li.active:before {
+    content: '';
+
+    display: block;
+    width: 0;
+    height: 0;
+
+    position: absolute;
+    top: $controlbar-height - $active-triangle-size - $controlbar-padding;
+    left: ($font-size-icons/2) - $active-triangle-size;
+
+    border-left: $active-triangle-size solid transparent;
+    border-right: $active-triangle-size solid transparent;
+    border-bottom: $active-triangle-size solid white;
   }
+}
+
+
