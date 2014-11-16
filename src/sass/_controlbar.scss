@@ -1,10 +1,6 @@
 //
-// Controlbox
+// Controlbar
 // --------------------------------------------------
-$controlbar-height: 50px;
-$active-triangle-size: 8px;
-$controlbar-padding: 10px;
-
 // Wrapper for audio controls and tabs-icons
 .controlbar {
   height: $controlbar-height;
@@ -35,12 +31,12 @@ $controlbar-padding: 10px;
     height: 0;
 
     position: absolute;
-    top: $controlbar-height - $active-triangle-size - $controlbar-padding;
-    left: ($font-size-icons/2) - $active-triangle-size;
+    top: $controlbar-height - $controlbar-active-triangle-size - $controlbar-padding;
+    left: ($font-size-icons/2) - $controlbar-active-triangle-size;
 
-    border-left: $active-triangle-size solid transparent;
-    border-right: $active-triangle-size solid transparent;
-    border-bottom: $active-triangle-size solid white;
+    border-left: $controlbar-active-triangle-size solid transparent;
+    border-right: $controlbar-active-triangle-size solid transparent;
+    border-bottom: $controlbar-active-triangle-size solid white;
   }
 }
 
