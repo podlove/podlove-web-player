@@ -65,7 +65,7 @@ Controls.prototype.createTimeControls = function (chapterModule) {
 };
 
 Controls.prototype.createButton = function createButton(icon, title, callback) {
-  var button = $('<a href="#" class="button button-control ' + icon + '" title="' + title + '"></a>');
+  var button = $('<li><a href="#" class="button button-control ' + icon + '" title="' + title + '"></a></li>');
   this.timeControlElement.append(button);
   var combinedCallback = getCombinedCallback(callback);
   button.on('click', combinedCallback.bind(this));
@@ -84,7 +84,7 @@ function getCombinedCallback(callback) {
 }
 
 function createTimeControls() {
-  return $('<div class="timecontrolbar"></div>');
+  return $('<ul class="timecontrolbar"></ul>');
 }
 
 function createBox() {
