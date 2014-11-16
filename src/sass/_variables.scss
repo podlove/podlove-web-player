@@ -101,7 +101,7 @@ $font-family-monospace:   'Droid Sans Mono', Monaco, Menlo, Consolas, "Courier N
 $font-family-base:        $font-family-sans-serif !default;
 $font-family-icons:       "podlove";
 
-$font-size-base:          16px !default;
+$font-size-base:          13px !default;
 $font-size-small:         ceil($font-size-base * 0.8) !default;   // ~13px
 $font-size-large:         ceil($font-size-base * 1.125) !default; // ~18px
 $font-size-xlarge:        ceil($font-size-base * 1.5) !default;   // ~24px
