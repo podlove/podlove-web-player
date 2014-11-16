@@ -163,7 +163,7 @@ function Chapters (timeline) {
 
   //build chapter table
   this.chapters = timeline.getDataByType('chapter');
-  this.currentChapter = -1;
+  this.currentChapter = 0;
 
   this.chapterlinks = (timeline.chapterlinks !== 'false');
   var main = this.tab.createMainContent('');

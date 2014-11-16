@@ -4,23 +4,26 @@ var tc = require('../timecode');
  * @constructor
  * Creates a new progress bar object.
  * @param {Timeline} timeline - The players timeline to attach to.
- * @param {Object} params - Various parameters
  */
-function ProgressBar(timeline, params) {
+function ProgressBar(timeline) {
   if (!timeline) {
     console.error('Timeline missing', arguments);
     return;
   }
-  this.params = params;
   this.timeline = timeline;
   this.duration = timeline.duration;
 
   this.bar = null;
   this.currentTime = null;
+
+  // FIXME get access to chapterModule reliably
+  // this.timeline.getModule('chapters')
+  this.chapterModule = this.timeline.modules[0];
+  this.chapterBadge = null;
+  this.chapterTitle = null;
+
   this.progress = null;
   this.buffer = null;
-  //this.currentChapter = params.chapters[0].title;
-
   this.update = _update.bind(this);
 }
 
@@ -57,6 +60,11 @@ var _update = function (timeline) {
   var time = timeline.getTime();
   this.setProgress(time);
 
+  var index = this.chapterModule.currentChapter;
+  var chapter = this.chapterModule.chapters[index];
+  this.chapterBadge.text(index + 1);
+  this.chapterTitle.text(chapter.title);
+
   var buffer = timeline.getBuffered();
   this.buffer.val(buffer);
 };
@@ -65,17 +73,21 @@ var _update = function (timeline) {
  * Renders a new progress bar jQuery object.
  */
 ProgressBar.prototype.render = function () {
-  console.debug('params', this.params);
 
-  var formattedDuration = tc.fromTimeStamp(this.params.duration),
+  var chapterIndex = this.chapterModule.currentChapter;
+  var chapterData = this.chapterModule.chapters[chapterIndex];
+
+  console.debug('Progressbar', 'renderCurrentChapterElement', chapterData);
+
+  var formattedDuration = tc.fromTimeStamp(this.duration),
     bar = $('<div class="progressbar"></div>'),
     progressInfo = $('<div class="progress-info"></div>'),
     currentTimeElement = renderTimeElement('current', '00:00:00'),
     durationTimeElement = renderTimeElement('duration', formattedDuration),
-    currentChapterElement = renderCurrentChapterElement(),
+    currentChapterElement = renderCurrentChapterElement.call(this, chapterIndex, chapterData),
     progress = $('<div class="progress"></div>'),
     current = $('<progress class="current"></progress>')
-      .attr({ min: 0, max: this.params.duration }),
+      .attr({ min: 0, max: this.duration }),
     handle = $('<div class="handle"><div class="inner-handle"></div></div>'),
     buffer = $('<progress class="buffer"></progress>')
       .attr({min: 0, max: 1})
@@ -197,8 +209,18 @@ function renderTimeElement(className, time) {
  * Render an HTML Element for the current chapter
  * @returns {jQuery|HTMLElement}
  */
-function renderCurrentChapterElement() {
-  return $('<div class="chapter"><span class="badge">01</span><span class="chapter-title">Das ist das erste Kapitel</span></div>');
+function renderCurrentChapterElement(index, chapter) {
+  console.debug('Progressbar', 'renderCurrentChapterElement', index, chapter);
+  var chapterElement  = $('<div class="chapter"></div>');
+
+  this.chapterBadge = $('<span class="badge">' + (index + 1) + '</span>');
+  this.chapterTitle = $('<span class="chapter-title">' + chapter.title + '</span>');
+
+  chapterElement
+    .append(this.chapterBadge)
+    .append(this.chapterTitle);
+
+  return chapterElement;
 }
 
 module.exports = ProgressBar;
