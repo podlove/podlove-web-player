@@ -89,8 +89,7 @@ function createInfoTab(params) {
     icon: 'pwp-info-circled',
     title: 'More information about this',
     headline: 'Info',
-    name: 'info',
-    active: !!params.summaryVisible
+    name: 'info'
   });
 
   return infoTab;

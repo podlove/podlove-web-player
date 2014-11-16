@@ -48,9 +48,8 @@ Downloads.prototype.createDownloadTab = function (params) {
       icon: "pwp-download",
       title: "Show/hide download bar",
       name: 'downloads',
-      headline: 'Download',
-      active: !!params.downloadbuttonsVisible
-    });
+      headline: 'Download'
+  });
 
   var $tabContent = downloadTab.createMainContent('<div class="download">' +
       '<div class="poster-wrapper">' +

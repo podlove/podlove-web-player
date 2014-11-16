@@ -27,15 +27,20 @@ TabRegistry.prototype.createToggleFor = function (tab) {
 };
 
 /**
- *
+ * Register a tab and open it if it is initially visible
  * @param {Tab} tab
+ * @param {Boolean} visible
  */
-TabRegistry.prototype.add = function(tab) {
+TabRegistry.prototype.add = function(tab, visible) {
   this.tabs.push(tab);
   this.container.append(tab.box);
   //this.togglebar.append('<li>' + toggle + '</li>');
 
   tab.toggle = this.createToggleFor(tab);
+  if (visible) {
+    tab.open();
+    this.activeTab = tab;
+  }
 };
 
 /**
