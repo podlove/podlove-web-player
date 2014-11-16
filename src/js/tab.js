@@ -1,19 +1,4 @@
 /**
- * Return an html section element as a wrapper for the tab
- * @param {string} name
- * @param {boolean} active
- * @returns {*|jQuery|HTMLElement}
- */
-function createContentBox(options) {
-  var classes = ["tab"];
-  classes.push(options.name);
-  if (options.active) {
-    classes.push("active");
-  }
-  return $('<section class="' + classes.join(' ') + '"></section>');
-}
-
-/**
  * Create a tab
  * @param options
  * @constructor
@@ -26,8 +11,10 @@ function Tab(options) {
   this.box = createContentBox(options);
   this.createHeader();
   this.active = false;
-  this.close();
+  this.toggle = null;
 }
+
+module.exports = Tab;
 
 /**
  * Add class 'active' to the active tab
@@ -35,6 +22,7 @@ function Tab(options) {
 Tab.prototype.open = function () {
   this.active = true;
   this.box.addClass('active');
+  this.toggle.addClass('active');
 };
 
 /**
@@ -43,16 +31,7 @@ Tab.prototype.open = function () {
 Tab.prototype.close = function () {
   this.active = false;
   this.box.removeClass('active');
-};
-
-/**
- * Return an html link element
- * @param icon
- * @param title
- * @returns {*|jQuery|HTMLElement}
- */
-Tab.prototype.createToggleButton = function(icon, title) {
-  return $('<a href="#" class="button button-toggle ' + icon + '" title="' + title + '"></a>');
+  this.toggle.removeClass('active');
 };
 
 /**
@@ -94,4 +73,16 @@ Tab.prototype.createFooter = function(content) {
   return footer;
 };
 
-module.exports = Tab;
+/**
+ * Return an html section element as a wrapper for the tab
+ * @param {object} options
+ * @returns {*|jQuery|HTMLElement}
+ */
+function createContentBox(options) {
+  var classes = ["tab"];
+  classes.push(options.name);
+  if (options.active) {
+    classes.push("active");
+  }
+  return $('<section class="' + classes.join(' ') + '"></section>');
+}
