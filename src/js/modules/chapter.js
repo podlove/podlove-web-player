@@ -157,7 +157,7 @@ function Chapters (timeline) {
     icon: "pwp-chapters",
     title: "Show/hide chapters",
     headline: 'Chapters',
-    name: "podlovewebplayer_chapterbox showonplay" // FIXME clean way to add 2 classnames
+    name: "podlovewebplayer_chapterbox"
   })
   ;
 
@@ -185,7 +185,7 @@ Chapters.prototype.generateTable = function () {
     table.addClass('linked linked_' + this.chapterlinks);
   }
 
-  maxchapterstart = getMaxChapterStart(this.chapters, this.duration);
+  maxchapterstart = getMaxChapterStart(this.chapters);
   forceHours = (maxchapterstart >= 3600);
 
   function buildChapter(i) {
