@@ -7,6 +7,9 @@
   background: $gray;
   font-size: $font-size-icons;
   padding: $controlbar-padding $padding-large-horizontal;
+  @media all and (max-width: $screen-tablet-portrait) {
+    padding: $controlbar-padding $padding-small-horizontal;
+  }
   .timecontrolbar {
     @extend .pull-right;
     @extend .contrast;

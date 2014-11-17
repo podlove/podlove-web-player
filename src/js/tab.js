@@ -38,7 +38,7 @@ Tab.prototype.close = function () {
  * Return an html header element with a headline
  */
 Tab.prototype.createHeader = function() {
-  var header = $('<header><h2><i class="' + this.icon + '"></i>' + this.headline + '</h2></header>');
+  var header = $('<header><h2 class="tab-headline"><i class="' + this.icon + '"></i>' + this.headline + '</h2></header>');
   this.box.append(header);
   return header;
 };

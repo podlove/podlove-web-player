@@ -31,7 +31,10 @@
       cursor: pointer;
 
       .chapter-number {
-        padding-left: $padding-large-horizontal;
+        padding-left: $padding-base-horizontal - 2px;
+        @media all and (max-width: $screen-tablet-portrait) {
+          padding-left: $padding-small-horizontal - 2px;
+        }
       }
 
       &:hover {
@@ -73,8 +76,11 @@
       .chapter-duration {
         font-family: $font-family-monospace;
         white-space: nowrap;
-        padding-right: $padding-large-horizontal;
+        padding-right: $padding-base-horizontal - 2px;
         text-align: right;
+        @media all and (max-width: $screen-tablet-portrait) {
+          padding-right: $padding-small-horizontal - 2px;
+        }
       }
     }
     .chapterplay {

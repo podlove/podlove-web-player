@@ -28,7 +28,7 @@ $tab-header-height: 45px;
   }
 
   p {
-    margin: 11px 25px;
+    margin: 11px $margin-base-horizontal;
   }
 
   .tab {
@@ -49,12 +49,12 @@ $tab-header-height: 45px;
   dt, dd {
     @extend .pull-left;
     display: inline-block;
-    margin: 0 25px 15px;
+    margin: 0 $margin-base-horizontal 15px;
   }
 
   dt {
     clear: both;
-    margin-right: 20px;
+    margin-right: $margin-base-horizontal;
     width: 36%;
     max-width: 160px;
   }
@@ -65,19 +65,23 @@ $tab-header-height: 45px;
   header {
     @include flex(1 100%);
     @include order(1);
-    margin: 24px 0 16px 0;
+    margin: $margin-base-vertical 0 $margin-base-vertical/3 0;
     width: 100%;
     height: $tab-header-height;
   }
+  .tab-headline {
+    font-weight: 300;
+  }
   h2 {
-    margin: 0 25px;
+    margin: 0 $margin-base-horizontal;
     padding: 5px 0;
     i {
       padding-right: 10px;
     }
   }
+  h3,
   h4 {
-    margin: 20px 25px;
+    margin: 20px $margin-base-horizontal;
   }
   .main {
     width: 100%;
@@ -91,6 +95,23 @@ $tab-header-height: 45px;
     text-align: center;
     background-color: $gray-lightest;
     border: 1px solid white !important;
+  }
+}
+
+.tab {
+  @media all and (max-width: $screen-tablet-portrait) {
+    header {
+      margin: 0;
+    }
+    h2,
+    h3,
+    h4,
+    p {
+      margin: $margin-small-vertical $margin-small-horizontal;
+    }
+    h2 {
+      font-size: $font-size-small-h2;
+    }
   }
 }
 

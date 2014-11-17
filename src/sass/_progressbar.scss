@@ -143,17 +143,20 @@ progress[aria-valuenow]:before  {
     &:first-of-type {
       @include flex(0 104px);
       @include order(1);
-      padding-left: 15px;
+      padding-left: $padding-base-horizontal;
       text-align: left;
       color: $progress-bar-time-current;
 
+      @media all and (max-width: $screen-tablet-portrait) {
+        padding-left: $padding-small-horizontal !important;
+      }
       // 360px ≤ x ≥ 550px
-      @media all and (min-width: $screen-tiny-phone) and (max-width: $screen-tablet-portrait) {
-        @include flex(0 80px);
+      @media all and (max-width: $screen-tablet-portrait) {
+        @include flex(0 76px);
         @include order(1);
       }
       // > 768px
-      @media all and (max-width: $screen-tablet) {
+      @media all and (min-width: $screen-tablet-portrait) and (max-width: $screen-tablet) {
         @include flex(0 91px);
         @include order(1);
       }
@@ -161,9 +164,12 @@ progress[aria-valuenow]:before  {
     &:last-of-type {
       @include flex(0 95px);
       @include order(3);
-      padding-right: 20px;
+      padding-right: $padding-base-horizontal;
       text-align: right;
       color: $progress-bar-time-duration;
+      @media all and (max-width: $screen-tablet-portrait) {
+        padding-right: $padding-small-horizontal !important;
+      }
       // > 768px
       @media all and (max-width: $screen-tablet) {
         @include flex(0 91px);

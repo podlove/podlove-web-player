@@ -7,10 +7,6 @@
     width: 60%;
     @include flex(1 100%);
     @include order(1);
-    em {
-      display: inline-block;
-      margin-left: $margin-base-horizontal;
-    }
   }
   aside {
     @include flex(1 100%);
@@ -39,7 +35,10 @@
   //*** Image of the show
   // Container for image
   .poster-image {
-    margin: 5px $margin-base-horizontal 16px;
+    margin: $margin-small-vertical $margin-base-horizontal 16px;
+    @media all and (max-width: $screen-tablet-portrait) {
+      margin-left: $margin-small-horizontal;
+    }
     img {
       width: 100%;
       max-width: $info-image-width;
@@ -67,7 +66,7 @@
         }
         span {
           display: block;
-          padding-top: 6px;
+          padding-top: $padding-small-vertical;
         }
         a {
           display: inline-block;
