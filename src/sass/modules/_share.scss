@@ -8,6 +8,9 @@ $button-width: $share-image-width + ($share-image-border-width * 2);
   .podlovewebplayer_share {
     .main {
       margin: 0 $margin-base-horizontal;
+      @media all and (max-width: $screen-tablet-portrait) {
+        margin: 0 $margin-small-horizontal;
+      }
     }
     legend {
       margin-bottom: $margin-base-vertical;
@@ -26,7 +29,7 @@ $button-width: $share-image-width + ($share-image-border-width * 2);
     }
 
     footer {
-      padding: $padding-large-vertical $padding-large-horizontal;
+      padding: $padding-large-vertical $padding-small-horizontal;
       > div {
         width: 70%;
         margin: 0 auto;
@@ -57,6 +60,10 @@ $button-width: $share-image-width + ($share-image-border-width * 2);
       &.last-of-type {
         margin-right: 0;
       }
+    }
+    span {
+      display: block;
+      padding: $padding-small-vertical $padding-small-horizontal;
     }
   }
 }

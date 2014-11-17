@@ -111,6 +111,7 @@ $font-size-contrast-social-icons:  ceil($font-size-base * 4.375) !default;
 
 $font-size-h1:            floor($font-size-base * 2.5) !default;  // ~40px
 $font-size-h2:            floor($font-size-base * 2.0) !default;  // 32px
+$font-size-small-h2:      floor($font-size-base * 1.5) !default;  // 20px
 $font-size-h3:            ceil($font-size-base * 1.25) !default;  // ~20px
 $font-size-h4:            ceil($font-size-base * 1.125) !default; // ~18px
 $font-size-h5:            $font-size-base !default;
@@ -140,18 +141,14 @@ $font-size-button-small-label:  floor($font-size-base * 1.25) !default; // 20px
 
 // Components
 // -------------------------
-// Based on 16px font-size and 1.428 line-height (~20px to start)
 
-$margin-base-vertical:           25px !default;
-$margin-base-horizontal:         25px !default;
-
-$padding-base-vertical:          6px !default;
-$padding-base-horizontal:        12px !default;
+$padding-base-vertical:          10px !default;
+$padding-base-horizontal:        20px !default;
 
 $padding-large-vertical:         25px !default;
-$padding-large-horizontal:       25px !default;
+$padding-large-horizontal:       20px !default;
 
-$padding-small-vertical:         5px !default;
+$padding-small-vertical:         6px !default;
 $padding-small-horizontal:       10px !default;
 
 $line-height-large:              1.33 !default;
@@ -161,12 +158,18 @@ $border-radius-base:             4px !default;
 $border-radius-large:            6px !default;
 $border-radius-small:            3px !default;
 
+$margin-base-vertical:           25px !default;
+$margin-base-horizontal:         20px !default;
+
+$margin-small-vertical:           10px !default;
+$margin-small-horizontal:         10px !default;
+
 
 // COMPONENT VARIABLES
 // --------------------------------------------------
 
 $controlbar-height: 50px !default;
-$controlbar-padding: 10px !default;
+$controlbar-padding: $padding-base-vertical !default;
 $controlbar-active-triangle-size: 8px !default;
 
 // Media queries breakpoints
