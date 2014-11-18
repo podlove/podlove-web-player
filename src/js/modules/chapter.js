@@ -31,13 +31,12 @@ function renderChapterTable() {
  * @returns {jQuery|HTMLElement}
  */
 function renderRow (chapter, index) {
-  //console.log('chapter to render row from ', chapter);
   return render(
     '<tr class="chapter">' +
       '<td class="chapter-number"><span class="badge">' + (index+1) + '</span></td>' +
-      '<td class="chapter-image">' + renderChapterImage(chapter.image) + '</td>' +
+//      '<td class="chapter-image">' + renderChapterImage(chapter.image) + '</td>' +
       '<td class="chapter-name"><span>' + chapter.code + '</span> ' +
-      renderExternalLink(chapter.href) + '</td>' +
+      '</td>' +
       '<td class="chapter-duration"><span>' + chapter.duration + '</span></td>' +
     '</tr>'
   );
