@@ -23,8 +23,8 @@ SocialNetwork.prototype.getShareUrl = function (options) {
  * @param {object} options
  * @returns {string}
  */
-SocialNetwork.prototype.getProfileUrl = function (options) {
-  return this.url + options.profile;
+SocialNetwork.prototype.getProfileUrl = function (profile) {
+  return this.url + profile;
 };
 
 /**
