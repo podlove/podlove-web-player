@@ -177,7 +177,13 @@ var addBehavior = function (player, params, wrapper) {
   }
 
   if (playerType === 'video') {
-    wrapper.prepend('<div class="podlovewebplayer_top"></div>');
+    var top = $('<div class="podlovewebplayer_top"></div>');
+    top.append(jqPlayer);
+    wrapper.prepend(top);
+    jqPlayer.prop({
+      controls: null,
+      preload: 'auto'
+    });
     wrapper.append(metaElement);
   }
 

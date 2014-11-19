@@ -21,20 +21,6 @@
   a {
     color: $default-link-color;
   }
-
-
-  .podlovewebplayer_top {
-    position: relative;
-    display: block;
-    background: $black;
-    min-height: 100px;
-    height: auto;
-    padding-bottom: 5px;
-    background: url(background.png);
-    background: #545454;
-    background: linear-gradient(to bottom,#545454 0%,#262626 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#545454',endColorstr='#262626',GradientType=0 );
-  }
 }
 
 // Contrast color scheme
@@ -44,7 +30,13 @@
   }
 }
 
-.container.podlovewebplayer_video .titlebar .togglebar {
-  top: auto;
-  bottom: -10px;
+.podlovewebplayer_video .podlovewebplayer_top {
+  position: relative;
+  display: block;
+  background: $black;
+  min-height: 100px;
+  height: auto;
+  video {
+    width: 100%;
+  }
 }
