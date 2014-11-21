@@ -9,7 +9,7 @@ function TabRegistry() {
    * @type {object}
    */
   this.activeTab = null;
-  this.togglebar = $('<ul class="togglebar"></ul>');
+  this.togglebar = $('<div class="togglebar"><ul></ul></div>');
   this.container = $('<div class="tabs"></div>');
   this.listeners = [logCurrentTime];
   this.tabs = [];
