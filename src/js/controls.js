@@ -85,11 +85,11 @@ function getCombinedCallback(callback) {
 }
 
 function createTimeControls() {
-  return $('<div class="timecontrolbar"><ul></ul></div>');
+  return $('<ul class="timecontrolbar"></ul>');
 }
 
 function createBox() {
-  return $('<div class="controlbar"></div>');
+  return $('<div class="controlbar bar"></div>');
 }
 
 function playerStarted(player) {

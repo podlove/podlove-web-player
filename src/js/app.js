@@ -211,12 +211,11 @@ var addBehavior = function (player, params, wrapper) {
 
   // render
 
+  wrapper.append(controlBox);
   wrapper.append(progressBar.render());
   progressBar.addEvents();
 
-  controlBox.append(tabs.togglebar);
-  wrapper.append(controlBox);
-
+  wrapper.append(tabs.togglebar);
   wrapper.append(tabs.container);
 
   tabs.add(sharing.tab, !!params.sharebuttonsVisible);
