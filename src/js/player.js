@@ -31,7 +31,7 @@ var
     pauseOtherPlayers: true,
     duration: false,
     plugins: ['flash', 'silverlight'],
-    pluginPath: './static/',
+    pluginPath: './bin/',
     flashName: 'flashmediaelement.swf',
     silverlightName: 'silverlightmediaelement.xap'
   },
@@ -75,12 +75,12 @@ function create(player, params, callback) {
   }
   else if (playerType === 'video') {
     //video params
-    if (params.height !== undefined) {
+    if (false && params.height !== undefined) {
       mejsoptions.videoWidth = params.width;
       mejsoptions.videoHeight = params.height;
     }
     // FIXME
-    if ($(player).attr('width') !== undefined) {
+    if (false && $(player).attr('width') !== undefined) {
       params.width = $(player).attr('width');
     }
   }
@@ -129,7 +129,8 @@ function create(player, params, callback) {
     jqPlayer.on('error', removeUnplayableMedia)    // This might be a fix to some Firefox AAC issues.
     callback(player, params, wrapper);
   };
-  new MediaElement(player, mejsoptions);
+  var me = new MediaElement(player, mejsoptions);
+  console.log(me);
 }
 
 /**

@@ -8,18 +8,6 @@
   height: auto;
   transition: all 0.5s;
 
-  .chapter-image {
-    width: 45px;
-    max-width: 45px;
-    text-align: center;
-    img {
-      max-width: 40px;
-      max-height: 32px;
-      margin-top: -8px;
-      margin-bottom: -7px;
-      display: block;
-    }
-  }
   .podlovewebplayer_chapters {
     width: 100%;
     border-collapse: collapse;
@@ -31,7 +19,10 @@
       cursor: pointer;
 
       .chapter-number {
-        padding-left: $padding-large-horizontal;
+        padding-left: $padding-base-horizontal - 2px;
+        @media all and (max-width: $screen-tablet-portrait) {
+          padding-left: $padding-small-horizontal - 2px;
+        }
       }
 
       &:hover {
@@ -71,9 +62,14 @@
         padding-top: 7px;
       }
       .chapter-duration {
+        font-family: $font-family-monospace;
         white-space: nowrap;
-        padding-right: $padding-large-horizontal;
+        padding-right: $padding-base-horizontal - 2px;
         text-align: right;
+        color: $brand-primary;
+        @media all and (max-width: $screen-tablet-portrait) {
+          padding-right: $padding-small-horizontal - 2px;
+        }
       }
     }
     .chapterplay {
@@ -137,4 +133,10 @@
   text-align: center;
   font-variant: normal !important;
   text-transform: none !important;
+}
+
+.chapter.active {
+  .chapter-duration {
+    color: $text-color !important;
+  }
 }

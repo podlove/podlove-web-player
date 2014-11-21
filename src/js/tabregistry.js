@@ -9,7 +9,9 @@ function TabRegistry() {
    * @type {object}
    */
   this.activeTab = null;
-  this.togglebar = $('<ul class="togglebar"></ul>');
+  this.togglebar = $('<div class="togglebar bar"></div>');
+  this.toggleList = $('<ul class="tablist"></ul>');
+  this.togglebar.append(this.toggleList);
   this.container = $('<div class="tabs"></div>');
   this.listeners = [logCurrentTime];
   this.tabs = [];
@@ -17,30 +19,30 @@ function TabRegistry() {
 
 module.exports = TabRegistry;
 
-/**
- *
- * @param {Tab} tab
- */
-TabRegistry.prototype.add = function(tab) {
-  if (tab === null) { return; }
-  this.tabs.push(tab);
-  this.container.append(tab.box);
-  var toggle = tab.createToggleButton(tab.icon, tab.title);
-  $('<li></li>').append(toggle).appendTo(this.togglebar);
+TabRegistry.prototype.createToggleFor = function (tab) {
+  var toggle = $('<li title="' + tab.title + '">' +
+      '<a href="javascript:;" class="button button-toggle ' + tab.icon + '"></a>' +
+    '</li>');
   toggle.on('click', getToggleClickHandler.bind(this, tab));
+  this.toggleList.append(toggle);
+  return toggle;
 };
 
 /**
- *
+ * Register a tab and open it if it is initially visible
  * @param {Tab} tab
+ * @param {Boolean} visible
  */
-TabRegistry.prototype.open = function(tab) {
-  var open = getToggleClickHandler.bind(this);
-  $.each(this.tabs, function () {
-    if (this.name == tab.name) {
-      open(this);
-    }
-  });
+TabRegistry.prototype.add = function(tab, visible) {
+  if (tab === null) { return; }
+  this.tabs.push(tab);
+  this.container.append(tab.box);
+
+  tab.toggle = this.createToggleFor(tab);
+  if (visible) {
+    tab.open();
+    this.activeTab = tab;
+  }
 };
 
 /**
@@ -68,7 +70,7 @@ TabRegistry.prototype.update = function(event) {
  * @returns {boolean}
  */
 function getToggleClickHandler(tab) {
-  console.log(this.activeTab);
+  console.debug('TabRegistry', 'activeTab', this.activeTab);
   if (this.activeTab) {
     this.activeTab.close();
   }

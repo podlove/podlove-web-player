@@ -31,13 +31,12 @@ function renderChapterTable() {
  * @returns {jQuery|HTMLElement}
  */
 function renderRow (chapter, index) {
-  //console.log('chapter to render row from ', chapter);
   return render(
     '<tr class="chapter">' +
       '<td class="chapter-number"><span class="badge">' + (index+1) + '</span></td>' +
-      '<td class="chapter-image">' + renderChapterImage(chapter.image) + '</td>' +
+//      '<td class="chapter-image">' + renderChapterImage(chapter.image) + '</td>' +
       '<td class="chapter-name"><span>' + chapter.code + '</span> ' +
-      renderExternalLink(chapter.href) + '</td>' +
+      '</td>' +
       '<td class="chapter-duration"><span>' + chapter.duration + '</span></td>' +
     '</tr>'
   );
@@ -147,7 +146,6 @@ function update (timeline) {
  */
 function Chapters (timeline) {
 
-  // FIXME
   this.timeline = timeline;
   if (timeline.duration === 0) {
     console.warn('Chapters', 'constructor', 'Zero length media?', timeline);
@@ -157,13 +155,12 @@ function Chapters (timeline) {
     icon: "pwp-chapters",
     title: "Show/hide chapters",
     headline: 'Chapters',
-    name: "podlovewebplayer_chapterbox showonplay" // FIXME clean way to add 2 classnames
-  })
-  ;
+    name: "podlovewebplayer_chapterbox"
+  });
 
   //build chapter table
   this.chapters = timeline.getDataByType('chapter');
-  this.currentChapter = -1;
+  this.currentChapter = 0;
 
   this.chapterlinks = (timeline.chapterlinks !== 'false');
   var main = this.tab.createMainContent('');
@@ -185,7 +182,7 @@ Chapters.prototype.generateTable = function () {
     table.addClass('linked linked_' + this.chapterlinks);
   }
 
-  maxchapterstart = getMaxChapterStart(this.chapters, this.duration);
+  maxchapterstart = getMaxChapterStart(this.chapters);
   forceHours = (maxchapterstart >= 3600);
 
   function buildChapter(i) {

@@ -1,24 +1,48 @@
 //
-// Controlbox
+// Controlbar
 // --------------------------------------------------
-
 // Wrapper for audio controls and tabs-icons
 .controlbar {
-  height: 50px;
-  background: $gray;
-  font-size: $font-size-icons;
-  padding: 10px $padding-large-horizontal;
-  .timecontrolbar {
-    @extend .pull-right;
-    @extend .contrast;
+  // mobile styling as default,
+  // others are defined in media queries
+  @extend .bar;
+  border-top: 2px solid $black;
+  height: $controlbar-height + $padding-base-vertical;
+
+  @media screen and (min-width: $screen-tablet-portrait) {
+    height: $controlbar-height;
   }
-  li {
-    @extend .contrast;
-    display: inline;
-    &:last-child {
+  // A list with all audio control elements
+  .timecontrolbar {
+    height: 50%;
+    width: 100%;
+    float: none;
+    position: initial;
+    margin: 0;
+    @media screen and (min-width: $screen-phone) {
+      float: right;
+      margin: 0;
+      li {
+      width: 31%;
+        &:last-of-type {
+          width: 6%;
+        }
+      }
       a {
-        padding-right: 0;
+        padding-left: 0;
+        @media screen and (min-width: $screen-phone) {
+          padding-left: 0.9em;
+          padding-right: 0;
+        }
+      }
+    }
+    @media screen and (min-width: $screen-phone) {
+      height: 100%;
+      width: auto;
+      margin: 0;
+      li {
+        width: auto;
       }
     }
   }
-  }
+}

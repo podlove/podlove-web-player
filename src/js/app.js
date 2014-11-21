@@ -103,7 +103,7 @@ function renderTitleArea(params) {
  * @returns {string}
  */
 function renderPlaybutton() {
-  return '<a class="play" title="Play Episode" href="#"></a>';
+  return $('<a class="play" title="Play Episode" href="javascript:;"></a>');
 }
 
 /**
@@ -157,7 +157,8 @@ var addBehavior = function (player, params, wrapper) {
     metaElement = $('<div class="titlebar"></div>'),
     playerType = params.type,
     controlBox = controls.box,
-
+    playButton = renderPlaybutton(),
+    poster = params.poster || jqPlayer.attr('poster'),
     deepLink;
 
 
@@ -168,71 +169,88 @@ var addBehavior = function (player, params, wrapper) {
    */
   wrapper.addClass('podlovewebplayer_' + playerType);
 
+
   if (playerType === 'audio') {
-    // Render playbutton
-    metaElement.prepend(renderPlaybutton());
-    var poster = params.poster || jqPlayer.attr('poster');
+    // Render playbutton in titlebar
+    metaElement.prepend(playButton);
     metaElement.append(renderPoster(poster));
     wrapper.prepend(metaElement);
   }
 
   if (playerType === 'video') {
-    wrapper.prepend('<div class="podlovewebplayer_top"></div>');
-    wrapper.append(metaElement);
+    var videoPane = $('<div class="video-pane"></div>');
+    var overlay = $('<div class="video-overlay"></div>');
+    overlay.append(playButton);
+    overlay.on('click', function () {
+      if (player.paused) {
+        playButton.addClass('playing');
+        player.play();
+        return;
+      }
+      playButton.removeClass('playing');
+      player.pause();
+    });
+
+    videoPane
+      .append(overlay)
+      .append(jqPlayer);
+
+    wrapper
+      .append(metaElement)
+      .append(videoPane);
+
+    jqPlayer.prop({
+      poster: poster,
+      controls: null,
+      preload: 'auto'
+    });
   }
 
   // Render title area with title h2 and subtitle h3
   metaElement.append(renderTitleArea(params));
 
   /**
-   *
-   * @type {ProgressBar}
+   * -- MODULES --
    */
-  var progressBar = new ProgressBar(timeline, params);
-  timeline.addModule(progressBar);
-  wrapper.append(progressBar.render());
-
-  progressBar.addEvents();
-
-  /**
-   * Timecontrols
-   */
-    //always render toggler buttons wrapper
-  wrapper.append(controlBox);
-
-  /**
-   * -- TABS --
-   * FIXME enable chapter tab
-   * The tabs in controlbar will appear in following order:
-   */
-  controlBox.append(tabs.togglebar);
-  wrapper.append(tabs.container);
-
   var chapters;
   if (hasChapters) {
     chapters = new Chapters(timeline);
-    tabs.add(chapters.tab);
+    tabs.add(chapters.tab, !!params.chaptersVisible);
     timeline.addModule(chapters);
-    if ((params.chaptersVisible === 'true') || (params.chaptersVisible === true)) {
-      tabs.open(chapters.tab);
-    }
-    chapters.addEventhandlers(player);
   }
-
-  var sharing = new Share(params);
-  tabs.add(sharing.tab);
-
-  var downloads = new Downloads(params);
-  tabs.add(downloads.tab);
-
-  var infos = new Info(params);
-  tabs.add(infos.tab);
 
   var saveTime = new SaveTime(timeline, params);
   timeline.addModule(saveTime);
 
+  var progressBar = new ProgressBar(timeline);
+  timeline.addModule(progressBar);
 
-  controls.createTimeControls(chapters);
+  /**
+   * -- TABS --
+   * The tabs in controlbar will appear in following order:
+   */
+
+  var sharing = new Share(params);
+  var downloads = new Downloads(params);
+  var infos = new Info(params);
+
+  // render
+
+  wrapper.append(controlBox);
+  wrapper.append(progressBar.render());
+  progressBar.addEvents();
+
+  wrapper.append(tabs.togglebar);
+  wrapper.append(tabs.container);
+
+  tabs.add(sharing.tab, !!params.sharebuttonsVisible);
+  tabs.add(downloads.tab, !!params.downloadbuttonsVisible);
+  tabs.add(infos.tab, !!params.summaryVisible);
+
+  if (hasChapters) {
+    chapters.addEventhandlers(player);
+    controls.createTimeControls(chapters);
+  }
 
   // expose the player interface
   wrapper.data('podlovewebplayer', {
@@ -255,29 +273,23 @@ var addBehavior = function (player, params, wrapper) {
     });
   }
 
-  // cache some jQ objects
-  var playButton = metaElement.find('.play');
-  playButton.on('click', function () {
-    var playButton = $(this);
-    console.log(playButton);
-    if ((typeof player.currentTime === 'number') && (player.currentTime > 0)) {
-      if (player.paused) {
-        playButton.addClass('playing');
-        player.play();
-      } else {
-        playButton.removeClass('playing');
-        player.pause();
-      }
-    } else {
-      if (!playButton.hasClass('playing')) {
-        playButton.addClass('playing');
-      }
-      // flash fallback needs additional pause
+  playButton.on('click', function (evt) {
+    evt.preventDefault();
+    evt.stopPropagation();
+
+    if (player.currentTime && player.currentTime > 0 && !player.paused) {
+      playButton.removeClass('playing');
+      player.pause();
       if (player.pluginType === 'flash') {
-        player.pause();
+        player.pause();    // flash fallback needs additional pause
       }
-      player.play();
+      return;
     }
+
+    if (!playButton.hasClass('playing')) {
+      playButton.addClass('playing');
+    }
+    player.play();
   });
 
   // wait for the player or you'll get DOM EXCEPTIONS
@@ -328,7 +340,7 @@ function getDeferredPlayerCallBack(deferredPlayer) {
       $('<source>', sourceObject).appendTo(deferredPlayer);
     });
     player.create(deferredPlayer, params, addBehavior);
-  }
+  };
 }
 
 /**

@@ -8,7 +8,7 @@ function createEpisodeInfo(tab, params) {
 
   tab.createMainContent(
     '<h2>' + params.title + '</h2>' +
-    '<em>' + params.subtitle + '</em>' +
+    '<h3>' + params.subtitle + '</h3>' +
     '<p>' + params.summary + '</p>' +
     '<p>Duration: ' + timeCode.fromTimeStamp(params.duration) + '</p>' +
     '<p>Published: ' + date.getDate() + '.' + date.getMonth() + '.' + date.getFullYear() + '</p>' +
@@ -41,7 +41,7 @@ function createSubscribeButton(params) {
 function createShowInfo (tab, params) {
   tab.createAside(
     '<h2>'+ params.show.title+ '</h2>' +
-    '<p>' + params.show.subtitle + '</p>' +
+    '<h3>' + params.show.subtitle + '</h3>' +
     createPosterImage(params.show.poster) +
     createSubscribeButton(params) +
     '<p>Link to the show:<br>' +
@@ -86,11 +86,10 @@ function createInfoTab(params) {
     return null;
   }
   var infoTab = new Tab({
-    icon: 'pwp-info-circled',
+    icon: 'pwp-info',
     title: 'More information about this',
     headline: 'Info',
-    name: 'info',
-    active: !!params.summaryVisible
+    name: 'info'
   });
 
   createEpisodeInfo(infoTab, params);

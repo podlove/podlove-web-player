@@ -1,7 +1,7 @@
 //
 // Metadata Tabs
 // --------------------------------------------------
-$tab-height: 400px;
+$tab-max-height: 500px;
 $tab-header-height: 45px;
 
 .tabs {
@@ -28,7 +28,7 @@ $tab-header-height: 45px;
   }
 
   p {
-    margin: 11px 25px;
+    margin: 11px $margin-base-horizontal;
   }
 
   .tab {
@@ -43,18 +43,20 @@ $tab-header-height: 45px;
 
     &.active {
       @include pwp-flexbox();
-      height: $tab-height;
+      height: auto;
+      max-height: $tab-max-height;
+      width: 100%;
     }
   }
   dt, dd {
     @extend .pull-left;
     display: inline-block;
-    margin: 0 25px 15px;
+    margin: 0 $margin-base-horizontal 15px;
   }
 
   dt {
     clear: both;
-    margin-right: 20px;
+    margin-right: $margin-base-horizontal;
     width: 36%;
     max-width: 160px;
   }
@@ -65,23 +67,26 @@ $tab-header-height: 45px;
   header {
     @include flex(1 100%);
     @include order(1);
-    margin: 24px 0 16px 0;
+    margin: $margin-base-vertical 0 $margin-base-vertical/3 0;
     width: 100%;
     height: $tab-header-height;
   }
+  .tab-headline {
+    font-weight: 300;
+  }
   h2 {
-    margin: 0 25px;
+    margin: 0 $margin-base-horizontal;
     padding: 5px 0;
     i {
       padding-right: 10px;
     }
   }
+  h3,
   h4 {
-    margin: 20px 25px;
+    margin: 20px $margin-base-horizontal;
   }
   .main {
     width: 100%;
-    min-height: $tab-height - $tab-header-height - 4;
     @include flex(1 100%);
     @include order(2);
   }
@@ -94,22 +99,19 @@ $tab-header-height: 45px;
   }
 }
 
-
-// Video Player
-.container.podlovewebplayer_video .tab {
-  margin-top: 0px;
+.tab {
+  @media all and (max-width: $screen-tablet-portrait) {
+    header {
+      margin: 0;
+    }
+    h2,
+    h3,
+    h4,
+    p {
+      margin: $margin-small-vertical $margin-small-horizontal;
+    }
+    h2 {
+      font-size: $font-size-small-h2;
+    }
+  }
 }
-
-.podlovewebplayer_video .summary,
-.podlovewebplayer_video.container .tab {
-  margin-top: 0px;
-}
-
-.podlovewebplayer_top {
-  min-height: 11px !important;
-  height: 11px !important;
-  margin-bottom: 0px !important;
-  padding-bottom: 0px;
-}
-
-
