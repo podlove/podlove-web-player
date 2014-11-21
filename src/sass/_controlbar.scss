@@ -7,10 +7,10 @@
   // others are defined in media queries
   height: auto;
   background: $gray;
-  padding: 0 $padding-small-horizontal;
+  padding: $padding-base-vertical $padding-base-horizontal $padding-base-vertical $padding-small-horizontal;
   font-size: $font-size-mobile-icons;
   @media screen and (min-width: $screen-phone) {
-
+    padding: $padding-base-vertical $padding-small-horizontal;
   }
   @media all and (min-width: $screen-tablet-portrait) {
     height: $controlbar-height;
@@ -45,13 +45,18 @@
       padding-right: 0.9em;
     }
     @media screen and (min-width: $screen-phone) {
+      ul {
+        margin-bottom: 0;
+      }
     }
   }
   // A list with all audio control elements
   .timecontrolbar {
     float: none;
     position: initial;
-    margin: 10px 0;
+    ul {
+      margin: 0;
+    }
     a {
       padding-left: 0;
     }
@@ -98,7 +103,7 @@
       border-right: $controlbar-active-triangle-size * 1.5 solid transparent;
       border-bottom: $controlbar-active-triangle-size * 1.5 solid white;
 
-      @media screen and (min-width: $screen-phone) {
+      @media screen and (min-width: $screen-tablet-portrait) {
         top: $controlbar-height - $controlbar-active-triangle-size - $controlbar-padding;
         left: ($font-size-icons/2) - $controlbar-active-triangle-size;
         border-left: $controlbar-active-triangle-size solid transparent;
