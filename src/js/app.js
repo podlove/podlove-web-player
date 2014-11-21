@@ -340,7 +340,7 @@ function getDeferredPlayerCallBack(deferredPlayer) {
       $('<source>', sourceObject).appendTo(deferredPlayer);
     });
     player.create(deferredPlayer, params, addBehavior);
-  }
+  };
 }
 
 /**
