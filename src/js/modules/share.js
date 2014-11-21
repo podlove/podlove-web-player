@@ -1,6 +1,6 @@
 var Tab = require('../tab')
   , SocialButtonList = require('../social-button-list')
-  , services = ['twitter', 'adn', 'tumblr', 'email']
+  , services = ['twitter', 'facebook', 'gplus', 'tumblr', 'email']
   , shareOptions = [
     {name: "Show", value: "show"},
     {name: "Episode", value: "episode", default: true},
@@ -114,7 +114,7 @@ function createShareTab(params) {
   }
 
   var shareTab = new Tab({
-    icon: "pwp-share2",
+    icon: "pwp-share",
     title: "Show/hide sharing tabs",
     name: "podlovewebplayer_share",
     headline: 'Share'

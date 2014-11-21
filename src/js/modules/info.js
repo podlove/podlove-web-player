@@ -86,7 +86,7 @@ function createInfoTab(params) {
     return null;
   }
   var infoTab = new Tab({
-    icon: 'pwp-info-circled',
+    icon: 'pwp-info',
     title: 'More information about this',
     headline: 'Info',
     name: 'info'

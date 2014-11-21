@@ -274,9 +274,9 @@ var addBehavior = function (player, params, wrapper) {
   }
 
   playButton.on('click', function (evt) {
-    console.log('playButon', 'click', evt);
     evt.preventDefault();
-    evt.cancelBubble();
+    evt.stopPropagation();
+
     if (player.currentTime && player.currentTime > 0 && !player.paused) {
       playButton.removeClass('playing');
       player.pause();
