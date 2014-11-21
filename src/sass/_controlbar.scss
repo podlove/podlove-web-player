@@ -3,115 +3,46 @@
 // --------------------------------------------------
 // Wrapper for audio controls and tabs-icons
 .controlbar {
-  // mobile first...mobile styling as default,
+  // mobile styling as default,
   // others are defined in media queries
-  height: auto;
-  background: $gray;
-  padding: $padding-base-vertical $padding-base-horizontal $padding-base-vertical $padding-small-horizontal;
-  font-size: $font-size-mobile-icons;
-  @media screen and (min-width: $screen-phone) {
-    padding: $padding-base-vertical $padding-small-horizontal;
-  }
-  @media all and (min-width: $screen-tablet-portrait) {
+  @extend .bar;
+  border-top: 2px solid $black;
+  height: $controlbar-height + $padding-base-vertical;
+
+  @media screen and (min-width: $screen-tablet-portrait) {
     height: $controlbar-height;
-    font-size: $font-size-icons;
-    padding: $controlbar-padding $padding-large-horizontal;
   }
-  // General styling for both lists
-  .togglebar,
+  // A list with all audio control elements
   .timecontrolbar {
     height: 50%;
     width: 100%;
-    display: inline-block;
-    li {
+    float: none;
+    position: initial;
+    margin: 0;
+    @media screen and (min-width: $screen-phone) {
+      float: right;
+      margin: 0;
+      li {
       width: 31%;
-      &:last-of-type {
-        width: 6%;
+        &:last-of-type {
+          width: 6%;
+        }
+      }
+      a {
+        padding-left: 0;
+        @media screen and (min-width: $screen-phone) {
+          padding-left: 0.9em;
+          padding-right: 0;
+        }
       }
     }
     @media screen and (min-width: $screen-phone) {
       height: 100%;
       width: auto;
       margin: 0;
-
       li {
         width: auto;
       }
     }
   }
-  // Icon list that works as a tab menu
-  .togglebar {
-    a {
-      padding-right: 0.9em;
-    }
-    @media screen and (min-width: $screen-phone) {
-      ul {
-        margin-bottom: 0;
-      }
-    }
-  }
-  // A list with all audio control elements
-  .timecontrolbar {
-    float: none;
-    position: initial;
-    ul {
-      margin: 0;
-    }
-    a {
-      padding-left: 0;
-    }
-    @media screen and (min-width: $screen-phone) {
-      float: right;
-      margin: 0;
-      a {
-        padding-left: 0.9em;
-        padding-right: 0;
-      }
-    }
-  }
-  // General styles for list items in controlbar
-  li {
-    @extend .contrast;
-    display: inline-block;
-    position: relative;
-    top: 0;
-    left: 0;
-    &:last-child {
-      a {
-        padding-right: 0;
-      }
-    }
-  }
-  // Highlight for the active list item (icon 'button' above the active tab)
-  li.active {
-    a {
-      @include textshadows(0px 0px 2px $contrast-icon-font-color);
-      opacity: 1;
-      filter: alpha(opacity=100);
-      zoom: 1;
-    }
-    // Arrow, that indicates the active tab
-    &:before {
-      content: '';
-      display: block;
-      width: 0;
-      height: 0;
-      position: absolute;
-      top: $controlbar-height - $controlbar-active-triangle-size * 1.5;
-      left: ($font-size-mobile-icons/2) - $controlbar-active-triangle-size * 1.5;
-      border-left: $controlbar-active-triangle-size * 1.5 solid transparent;
-      border-right: $controlbar-active-triangle-size * 1.5 solid transparent;
-      border-bottom: $controlbar-active-triangle-size * 1.5 solid white;
-
-      @media screen and (min-width: $screen-tablet-portrait) {
-        top: $controlbar-height - $controlbar-active-triangle-size - $controlbar-padding;
-        left: ($font-size-icons/2) - $controlbar-active-triangle-size;
-        border-left: $controlbar-active-triangle-size solid transparent;
-        border-right: $controlbar-active-triangle-size solid transparent;
-        border-bottom: $controlbar-active-triangle-size solid white;
-      }
-    }
-  }
 }
-
-
