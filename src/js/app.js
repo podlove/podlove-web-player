@@ -103,7 +103,7 @@ function renderTitleArea(params) {
  * @returns {string}
  */
 function renderPlaybutton() {
-  return '<a class="play" title="Play Episode" href="#"></a>';
+  return $('<a class="play" title="Play Episode" href="javascript:;"></a>');
 }
 
 /**
@@ -157,7 +157,8 @@ var addBehavior = function (player, params, wrapper) {
     metaElement = $('<div class="titlebar"></div>'),
     playerType = params.type,
     controlBox = controls.box,
-
+    playButton = renderPlaybutton(),
+    poster = params.poster || jqPlayer.attr('poster'),
     deepLink;
 
 
@@ -168,23 +169,41 @@ var addBehavior = function (player, params, wrapper) {
    */
   wrapper.addClass('podlovewebplayer_' + playerType);
 
+
   if (playerType === 'audio') {
-    // Render playbutton
-    metaElement.prepend(renderPlaybutton());
-    var poster = params.poster || jqPlayer.attr('poster');
+    // Render playbutton in titlebar
+    metaElement.prepend(playButton);
     metaElement.append(renderPoster(poster));
     wrapper.prepend(metaElement);
   }
 
   if (playerType === 'video') {
-    var top = $('<div class="podlovewebplayer_top"></div>');
-    top.append(jqPlayer);
-    wrapper.prepend(top);
+    var videoPane = $('<div class="video-pane"></div>');
+    var overlay = $('<div class="video-overlay"></div>');
+    overlay.append(playButton);
+    overlay.on('click', function () {
+      if (player.paused) {
+        playButton.addClass('playing');
+        player.play();
+        return;
+      }
+      playButton.removeClass('playing');
+      player.pause();
+    });
+
+    videoPane
+      .append(overlay)
+      .append(jqPlayer);
+
+    wrapper
+      .append(metaElement)
+      .append(videoPane);
+
     jqPlayer.prop({
+      poster: poster,
       controls: null,
       preload: 'auto'
     });
-    wrapper.append(metaElement);
   }
 
   // Render title area with title h2 and subtitle h3
@@ -255,29 +274,23 @@ var addBehavior = function (player, params, wrapper) {
     });
   }
 
-  // cache some jQ objects
-  var playButton = metaElement.find('.play');
-  playButton.on('click', function () {
-    var playButton = $(this);
-    console.log(playButton);
-    if ((typeof player.currentTime === 'number') && (player.currentTime > 0)) {
-      if (player.paused) {
-        playButton.addClass('playing');
-        player.play();
-      } else {
-        playButton.removeClass('playing');
-        player.pause();
-      }
-    } else {
-      if (!playButton.hasClass('playing')) {
-        playButton.addClass('playing');
-      }
-      // flash fallback needs additional pause
+  playButton.on('click', function (evt) {
+    console.log('playButon', 'click', evt);
+    evt.preventDefault();
+    evt.cancelBubble();
+    if (player.currentTime && player.currentTime > 0 && !player.paused) {
+      playButton.removeClass('playing');
+      player.pause();
       if (player.pluginType === 'flash') {
-        player.pause();
+        player.pause();    // flash fallback needs additional pause
       }
-      player.play();
+      return;
     }
+
+    if (!playButton.hasClass('playing')) {
+      playButton.addClass('playing');
+    }
+    player.play();
   });
 
   // wait for the player or you'll get DOM EXCEPTIONS

@@ -29,14 +29,3 @@
     color: $contrast-link-color;
   }
 }
-
-.podlovewebplayer_video .podlovewebplayer_top {
-  position: relative;
-  display: block;
-  background: $black;
-  min-height: 100px;
-  height: auto;
-  video {
-    width: 100%;
-  }
-}
