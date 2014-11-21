@@ -35,7 +35,7 @@
     "html5shiv": "~3.7.2",
     "jquery": "~1.11.1",
     "progress-polyfill": "https://github.com/LeaVerou/HTML5-Progress-polyfill.git",
-    "podlove-font": "https://github.com/podlove/podlove-font.git"
+    "podlove-font": "#2.0.0-alpha.4"
   },
   "devDependencies": {
     "raf-polyfill": "https://gist.github.com/1579671.git"
