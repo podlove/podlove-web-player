@@ -85,7 +85,7 @@ function getCombinedCallback(callback) {
 }
 
 function createTimeControls() {
-  return $('<ul class="timecontrolbar"></ul>');
+  return $('<div class="timecontrolbar"><ul></ul></div>');
 }
 
 function createBox() {
