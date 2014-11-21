@@ -3,7 +3,7 @@
 // --------------------------------------------------
 
 $profiles: (
-    adn-alpha:    #4a484d,
+    adn:          #4a484d,
     bandcamp:     #4e9bac,
     blogger:      #ff7600,
     delicious:    #248cff,
@@ -14,7 +14,7 @@ $profiles: (
     flattr:       #83ae3a,
     flickr:       #0063db,
     github:       #4183c4,
-    googleplus:   #dd4b39,
+    google-plus:  #dd4b39,
     instagram:    #517fa4,
     itunes:       #ff4152,
     kickstarter:  #76cc1e,
@@ -46,6 +46,7 @@ $profiles: (
   }
   .pwp-contrast-#{$profile} {
     display: inline-block;
+    width: $font-size-contrast-social-icons + 20px;
     background: $color;
     border-radius: 6px;
     padding: 10px;

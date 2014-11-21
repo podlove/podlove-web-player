@@ -22,7 +22,7 @@ var SocialNetwork = require('./social-network')
   }),
 
   adn: new SocialNetwork({
-    icon: 'adn-alpha',
+    icon: 'adn',
     title: 'App.net',
     profileUrl: 'https://alpha.app.net/',
     shareUrl: 'intent/post?text=$text$'
@@ -54,15 +54,13 @@ var SocialNetwork = require('./social-network')
     title: 'E-Mail',
     profileUrl: 'mailto:',
     shareUrl: '?subject=$title$&body=$text$'
-  })
-/*
-  ,googleplus: new SocialNetwork({
-    icon: 'google',
+  }),
+  gplus: new SocialNetwork({
+    icon: 'google-plus',
     title: 'Google+',
     profileUrl: 'https://plus.google.com/',
     shareUrl: 'share?title=$title$&url=$url$'
-  }),
-*/
+  })
 };
 
 /**
