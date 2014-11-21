@@ -66,7 +66,7 @@ Downloads.prototype.createDownloadTab = function (params) {
   downloadTab.box.append($tabContent);
 
   downloadTab.createFooter('<form action="" method="">' +
-    '<button class="download button-submit pwp-download" name="download-file">' +
+    '<button class="download button-submit icon pwp-download" name="download-file">' +
     '<span class="download label">Download Episode</span>' +
     '</button>' +
     '<select class="select" name="select-file">' + this.list.map(createOption) + '</select></form>'

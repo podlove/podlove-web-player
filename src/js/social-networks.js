@@ -50,7 +50,7 @@ var SocialNetwork = require('./social-network')
   }),
 
   email: new SocialNetwork({
-    icon: 'mail',
+    icon: 'message',
     title: 'E-Mail',
     profileUrl: 'mailto:',
     shareUrl: '?subject=$title$&body=$text$'

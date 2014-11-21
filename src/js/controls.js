@@ -32,7 +32,7 @@ Controls.prototype.createTimeControls = function (chapterModule) {
     console.info('Controls', 'createTimeControls', 'no chapterTab found');
   }
   if (hasChapters) {
-    this.createButton("pwp-previous-chapter", "Jump backward to previous chapter", function () {
+    this.createButton('pwp-controls-previous-chapter', 'Jump backward to previous chapter', function () {
       var activeChapter = chapterModule.getActiveChapter();
       if (this.timeline.getTime() > activeChapter.start + 10) {
         console.debug('Controls', 'back to chapter start', chapterModule.currentChapter, 'from', this.timeline.getTime());
@@ -43,20 +43,20 @@ Controls.prototype.createTimeControls = function (chapterModule) {
     });
   }
 
-  this.createButton("pwp-back-30", "Rewind 30 seconds", function () {
+  this.createButton('pwp-controls-back-30', 'Rewind 30 seconds', function () {
     console.debug('Controls', 'rewind before', this.timeline.getTime());
     this.timeline.setTime(this.timeline.getTime() - 30);
     console.debug('Controls', 'rewind after', this.timeline.getTime());
   });
 
-  this.createButton("pwp-forward-30", "Fast forward 30 seconds", function () {
+  this.createButton('pwp-controls-forward-30', 'Fast forward 30 seconds', function () {
     console.debug('Controls', 'ffwd before', this.timeline.getTime());
     this.timeline.setTime(this.timeline.getTime() + 30);
     console.debug('Controls', 'ffwd after', this.timeline.getTime());
   });
 
   if (hasChapters) {
-    this.createButton("pwp-next-chapter", "Jump to next chapter", function () {
+    this.createButton('pwp-controls-next-chapter', 'Jump to next chapter', function () {
       console.debug('Controls', 'next Chapter before', this.timeline.getTime());
       chapterModule.next();
       console.debug('Controls', 'next Chapter after', this.timeline.getTime());
@@ -65,7 +65,8 @@ Controls.prototype.createTimeControls = function (chapterModule) {
 };
 
 Controls.prototype.createButton = function createButton(icon, title, callback) {
-  var button = $('<li><a href="#" class="button button-control ' + icon + '" title="' + title + '"></a></li>');
+  var button = $('<li><a href="#" class="button button-control" title="' + title + '">' +
+    '<i class="icon ' + icon + '"></i></a></li>');
   this.timeControlElement.append(button);
   var combinedCallback = getCombinedCallback(callback);
   button.on('click', combinedCallback.bind(this));
