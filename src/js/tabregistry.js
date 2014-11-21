@@ -9,7 +9,9 @@ function TabRegistry() {
    * @type {object}
    */
   this.activeTab = null;
-  this.togglebar = $('<ul class="togglebar"></ul>');
+  this.togglebar = $('<div class="togglebar bar"></div>');
+  this.toggleList = $('<ul class="tablist"></ul>');
+  this.togglebar.append(this.toggleList);
   this.container = $('<div class="tabs"></div>');
   this.listeners = [logCurrentTime];
   this.tabs = [];
@@ -22,7 +24,7 @@ TabRegistry.prototype.createToggleFor = function (tab) {
       '<a href="javascript:;" class="button button-toggle ' + tab.icon + '"></a>' +
     '</li>');
   toggle.on('click', getToggleClickHandler.bind(this, tab));
-  this.togglebar.append(toggle);
+  this.toggleList.append(toggle);
   return toggle;
 };
 
@@ -34,7 +36,6 @@ TabRegistry.prototype.createToggleFor = function (tab) {
 TabRegistry.prototype.add = function(tab, visible) {
   this.tabs.push(tab);
   this.container.append(tab.box);
-  //this.togglebar.append('<li>' + toggle + '</li>');
 
   tab.toggle = this.createToggleFor(tab);
   if (visible) {
