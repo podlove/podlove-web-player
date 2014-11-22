@@ -23,8 +23,8 @@ SocialNetwork.prototype.getShareUrl = function (options) {
  * @param {object} options
  * @returns {string}
  */
-SocialNetwork.prototype.getProfileUrl = function (options) {
-  return this.url + options.profile;
+SocialNetwork.prototype.getProfileUrl = function (profile) {
+  return this.url + profile;
 };
 
 /**
@@ -91,6 +91,7 @@ SocialNetwork.prototype.getButton = function (options) {
 module.exports = SocialNetwork;
 
 function createButton (options) {
-  return $('<a class="pwp-contrast-' + options.icon + '" target="_blank" href="' + options.url + '" title="' + options.title + '">' +
-    '<i class="icon pwp-' + options.icon + '"></i></a><span>' + options.title + '</span>');
+  return $('<a class="pwp-contrast-' + options.icon + '" target="_blank" href="' + options.url + '" ' +
+    'title="' + options.title + '"><i class="icon pwp-' + options.icon + '"></i></a>' +
+    '<span>' + options.title + '</span>');
 }

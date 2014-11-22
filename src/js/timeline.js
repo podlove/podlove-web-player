@@ -223,6 +223,10 @@ function _merge(a, b) {
 }
 
 Timeline.prototype.parseSimpleChapter = function (data) {
+  if (!data.chapters) {
+    return [];
+  }
+
   var chapters = data.chapters.map(transformChapter);
 
   // order is not guaranteed: http://podlove.org/simple-chapters/

@@ -10,7 +10,7 @@ var SocialNetwork = require('./social-network')
   flattr: new SocialNetwork({
     icon: 'flattr',
     title: 'Flattr',
-    profileUrl: 'https://flattr.com/',
+    profileUrl: 'https://flattr.com/profile/',
     shareUrl: 'share?text=$text$&url=$url$'
   }),
 

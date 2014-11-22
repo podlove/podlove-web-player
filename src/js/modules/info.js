@@ -51,17 +51,23 @@ function createShowInfo (tab, params) {
 
 function createSocialLink(options) {
   var service = services.get(options.serviceName);
-  return '<li>' + service.getButton(options) + '</li>';
+  var listItem = $('<li></li>');
+  var button = service.getButton(options);
+  listItem.append(button.element);
+  this.append(listItem);
 }
 
 function createSocialInfo(profiles) {
   if (!profiles) {
-    return '';
+    return null;
   }
-  return '<div class="social-links">' +
-      '<h3>Stay in touch</h3>' +
-      '<ul>' + profiles.map(createSocialLink) + '</ul>' +
-    '</div>';
+
+  var profileList = $('<ul></ul>');
+  profiles.forEach(createSocialLink, profileList);
+
+  var container = $('<div class="social-links"><h3>Stay in touch</h3></div>');
+  container.append(profileList);
+  return container;
 }
 
 function createSocialAndLicenseInfo (tab, params) {
@@ -69,11 +75,10 @@ function createSocialAndLicenseInfo (tab, params) {
     return;
   }
   tab.createFooter(
-    createSocialInfo(params.profiles) +
     '<p>The show "' + params.show.title + '" is licenced under<br>' +
       '<a href="' + params.license.url + '">' + params.license.name + '</a>' +
     '</p>'
-  );
+  ).prepend(createSocialInfo(params.profiles));
 }
 
 /**
@@ -92,6 +97,10 @@ function createInfoTab(params) {
     name: 'info'
   });
 
+  createEpisodeInfo(infoTab, params);
+  createShowInfo(infoTab, params);
+  createSocialAndLicenseInfo(infoTab, params);
+
   return infoTab;
 }
 
@@ -102,9 +111,6 @@ function createInfoTab(params) {
  */
 function Info(params) {
   this.tab = createInfoTab(params);
-  createEpisodeInfo(this.tab, params);
-  createShowInfo(this.tab, params);
-  createSocialAndLicenseInfo(this.tab, params);
 }
 
 module.exports = Info;

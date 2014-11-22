@@ -34,6 +34,7 @@ TabRegistry.prototype.createToggleFor = function (tab) {
  * @param {Boolean} visible
  */
 TabRegistry.prototype.add = function(tab, visible) {
+  if (tab === null) { return; }
   this.tabs.push(tab);
   this.container.append(tab.box);
 
