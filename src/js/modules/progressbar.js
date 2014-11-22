@@ -30,18 +30,9 @@ function ProgressBar(timeline) {
 }
 
 ProgressBar.prototype.setHandlePosition = function (time) {
-  var newLeftCenter = Math.round(this.progress.width() * time / this.duration),
-    handleCenter = 9,
-    newLeftOffset = newLeftCenter - handleCenter;
-  // Offset pixels to position the progressbar handle
-  if (isNaN(newLeftCenter)) {
-    newLeftOffset = -9;
-  }
-  // For visual reasons we add an extra pixel as offset
-  if (time >= this.duration) {
-    newLeftOffset = this.progress.width() - 10;
-  }
-  console.debug('ProgressBar', 'setHandlePosition', newLeftOffset);
+  var percent = time / this.duration * 100;
+  var newLeftOffset = percent + '%';
+  console.debug('ProgressBar', 'setHandlePosition', 'time', time, 'newLeftOffset', newLeftOffset);
   this.handle.css('left', newLeftOffset);
 };
 
