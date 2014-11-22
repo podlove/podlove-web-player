@@ -14,8 +14,8 @@
 .poster-wrapper {
   position: relative;
   margin: 0 auto;
-  width: 300px;
-  min-width: 265px;
+  width: 256px;
+  min-width: 256px;
   @include box-shadow(0 11px 15px -6px black);
   // Container for overlay image
   .download-overlay {
@@ -35,8 +35,12 @@
   // Episode image
   .poster-image {
     width: 100%;
+      min-height: 256px;
     display: block;
     margin: 0 auto;
+  }
+  .default-poster {
+    background: $brand-primary;
   }
   // Download button
   &.button-submit {
