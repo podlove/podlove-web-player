@@ -3,6 +3,14 @@ var Tab = require('../tab')
   , services = require('../social-networks')
   ;
 
+function getPublicationDate(rawDate) {
+  if (!rawDate) {
+    return '';
+  }
+  var date = new Date(rawDate);
+  return '<p>Published: ' + date.getDate() + '.' + date.getMonth() + '.' + date.getFullYear() + '</p>';
+}
+
 function createEpisodeInfo(tab, params) {
   var date = new Date(params.publicationDate);
 
@@ -11,7 +19,7 @@ function createEpisodeInfo(tab, params) {
     '<h3>' + params.subtitle + '</h3>' +
     '<p>' + params.summary + '</p>' +
     '<p>Duration: ' + timeCode.fromTimeStamp(params.duration) + '</p>' +
-    '<p>Published: ' + date.getDate() + '.' + date.getMonth() + '.' + date.getFullYear() + '</p>' +
+     getPublicationDate(params.publicationDate) +
     '<p>' +
       'Permalink for this episode:<br>' +
       '<a href="' + params.permalink + '">' + params.permalink + '</a>' +
