@@ -74,6 +74,10 @@ function getToggleClickHandler(tab) {
   if (this.activeTab) {
     this.activeTab.close();
   }
+  if (this.activeTab === tab) {
+    this.activeTab  = null;
+    return false;
+  }
   this.activeTab = tab;
   this.activeTab.open();
   return false;
