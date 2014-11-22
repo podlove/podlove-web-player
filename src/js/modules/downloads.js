@@ -66,7 +66,7 @@ Downloads.prototype.createDownloadTab = function (params) {
   downloadTab.box.append($tabContent);
 
   downloadTab.createFooter('<form action="" method="">' +
-    '<button class="download button-submit pwp-download" name="download-file">' +
+    '<button class="download button-submit icon pwp-download" name="download-file">' +
     '<span class="download label">Download Episode</span>' +
     '</button>' +
     '<select class="select" name="select-file">' + this.list.map(createOption) + '</select></form>'
@@ -95,12 +95,13 @@ function normalizeDownload (element) {
  * @returns {{assetTitle: String, downloadUrl: String, url: String, size: Number}}
  */
 function normalizeSource(element) {
-  var parts = element.split('.');
+  var source = (typeof element === 'string') ? element : element.src;
+  var parts = source.split('.');
   return {
     assetTitle: parts[parts.length - 1],
-    downloadUrl: element,
-    url: element,
-    size: element.size
+    downloadUrl: source,
+    url: source,
+    size: -1
   };
 }
 

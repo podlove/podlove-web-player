@@ -3,44 +3,46 @@
 // --------------------------------------------------
 // Wrapper for audio controls and tabs-icons
 .controlbar {
-  height: $controlbar-height;
-  background: $gray;
-  font-size: $font-size-icons;
-  padding: $controlbar-padding $padding-large-horizontal;
-  @media all and (max-width: $screen-tablet-portrait) {
-    padding: $controlbar-padding $padding-small-horizontal;
+  // mobile styling as default,
+  // others are defined in media queries
+  @extend .bar;
+  border-top: 2px solid $black;
+  height: $controlbar-height + $padding-base-vertical;
+
+  @media screen and (min-width: $screen-tablet-portrait) {
+    height: $controlbar-height;
   }
+  // A list with all audio control elements
   .timecontrolbar {
-    @extend .pull-right;
-    @extend .contrast;
-  }
-  li {
-    @extend .contrast;
-    display: inline;
-    position: relative;
-    top: 0;
-    left: 0;
-    &:last-child {
+    height: 50%;
+    width: 100%;
+    float: none;
+    position: initial;
+    margin: 0;
+    @media screen and (min-width: $screen-phone) {
+      float: right;
+      margin: 0;
+      li {
+      width: 31%;
+        &:last-of-type {
+          width: 6%;
+        }
+      }
       a {
-        padding-right: 0;
+        padding-left: 0;
+        @media screen and (min-width: $screen-phone) {
+          padding-left: 0.9em;
+          padding-right: 0;
+        }
+      }
+    }
+    @media screen and (min-width: $screen-phone) {
+      height: 100%;
+      width: auto;
+      margin: 0;
+      li {
+        width: auto;
       }
     }
   }
-  li.active:before {
-    content: '';
-
-    display: block;
-    width: 0;
-    height: 0;
-
-    position: absolute;
-    top: $controlbar-height - $controlbar-active-triangle-size - $controlbar-padding;
-    left: ($font-size-icons/2) - $controlbar-active-triangle-size;
-
-    border-left: $controlbar-active-triangle-size solid transparent;
-    border-right: $controlbar-active-triangle-size solid transparent;
-    border-bottom: $controlbar-active-triangle-size solid white;
-  }
 }
-
-

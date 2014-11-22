@@ -38,7 +38,7 @@ $play-button-margin: 0.375em;
 
 // Big Play/Pause-Button
 .play {
-  @extend .pwp-play-circled;
+  @extend .pwp-bigcontrol-play;
   font-family: $font-family-icons;
   font-size: $play-button-size;
   max-width: $play-button-size;
@@ -52,7 +52,7 @@ $play-button-margin: 0.375em;
     @include textshadows(0px 0px 8px $contrast-icon-font-color);
   }
   &.playing {
-    @extend .pwp-pause-circled;
+    @extend .pwp-bigcontrol-pause;
   }
 }
 

@@ -31,13 +31,12 @@ function renderChapterTable() {
  * @returns {jQuery|HTMLElement}
  */
 function renderRow (chapter, index) {
-  //console.log('chapter to render row from ', chapter);
   return render(
     '<tr class="chapter">' +
       '<td class="chapter-number"><span class="badge">' + (index+1) + '</span></td>' +
-      '<td class="chapter-image">' + renderChapterImage(chapter.image) + '</td>' +
+//      '<td class="chapter-image">' + renderChapterImage(chapter.image) + '</td>' +
       '<td class="chapter-name"><span>' + chapter.code + '</span> ' +
-      renderExternalLink(chapter.href) + '</td>' +
+      '</td>' +
       '<td class="chapter-duration"><span>' + chapter.duration + '</span></td>' +
     '</tr>'
   );
@@ -147,11 +146,19 @@ function update (timeline) {
  */
 function Chapters (timeline) {
 
-  this.timeline = timeline;
+  if (!timeline || !timeline.hasChapters) {
+    return null;
+  }
   if (timeline.duration === 0) {
     console.warn('Chapters', 'constructor', 'Zero length media?', timeline);
   }
+
+  this.timeline = timeline;
   this.duration = timeline.duration;
+  this.chapters = timeline.getDataByType('chapter');
+  this.chapterlinks = !!timeline.chapterlinks;
+  this.currentChapter = 0;
+
   this.tab = new Tab({
     icon: "pwp-chapters",
     title: "Show/hide chapters",
@@ -159,13 +166,10 @@ function Chapters (timeline) {
     name: "podlovewebplayer_chapterbox"
   });
 
-  //build chapter table
-  this.chapters = timeline.getDataByType('chapter');
-  this.currentChapter = 0;
+  this.tab
+    .createMainContent('')
+    .append(this.generateTable());
 
-  this.chapterlinks = (timeline.chapterlinks !== 'false');
-  var main = this.tab.createMainContent('');
-  main.append(this.generateTable());
   this.update = update.bind(this);
 }
 

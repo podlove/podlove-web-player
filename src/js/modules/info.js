@@ -91,11 +91,15 @@ function createInfoTab(params) {
     return null;
   }
   var infoTab = new Tab({
-    icon: 'pwp-info-circled',
+    icon: 'pwp-info',
     title: 'More information about this',
     headline: 'Info',
     name: 'info'
   });
+
+  createEpisodeInfo(infoTab, params);
+  createShowInfo(infoTab, params);
+  createSocialAndLicenseInfo(infoTab, params);
 
   return infoTab;
 }
@@ -107,9 +111,6 @@ function createInfoTab(params) {
  */
 function Info(params) {
   this.tab = createInfoTab(params);
-  createEpisodeInfo(this.tab, params);
-  createShowInfo(this.tab, params);
-  createSocialAndLicenseInfo(this.tab, params);
 }
 
 module.exports = Info;

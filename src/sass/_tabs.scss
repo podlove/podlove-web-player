@@ -1,7 +1,7 @@
 //
 // Metadata Tabs
 // --------------------------------------------------
-$tab-height: 400px;
+$tab-max-height: 500px;
 $tab-header-height: 45px;
 
 .tabs {
@@ -43,7 +43,9 @@ $tab-header-height: 45px;
 
     &.active {
       @include pwp-flexbox();
-      height: $tab-height;
+      height: auto;
+      max-height: $tab-max-height;
+      width: 100%;
     }
   }
   dt, dd {
@@ -85,7 +87,6 @@ $tab-header-height: 45px;
   }
   .main {
     width: 100%;
-    min-height: $tab-height - $tab-header-height - 4;
     @include flex(1 100%);
     @include order(2);
   }
@@ -114,23 +115,3 @@ $tab-header-height: 45px;
     }
   }
 }
-
-
-// Video Player
-.container.podlovewebplayer_video .tab {
-  margin-top: 0px;
-}
-
-.podlovewebplayer_video .summary,
-.podlovewebplayer_video.container .tab {
-  margin-top: 0px;
-}
-
-.podlovewebplayer_top {
-  min-height: 11px !important;
-  height: 11px !important;
-  margin-bottom: 0px !important;
-  padding-bottom: 0px;
-}
-
-

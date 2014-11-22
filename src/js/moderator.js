@@ -7,7 +7,8 @@
     IFRAME_HEIGHT_MAX = 3000,
     players = {},
     firstPlayer = true,
-    autoplay = url.getFragment('autoplay'),
+    metadataList = 'pwp_metadata',
+//    autoplay = url.getFragment('autoplay'),
     timerange = url.checkCurrent(); // timecode
 
   var options; // global options
@@ -27,7 +28,7 @@
       var elementId = $element.get(0).id;
       if (!elementId) { throw Error('Element without source set needs an ID'); }
       source = getStaticEmbedPageSource(elementId);
-      data = window.pwp_metadata[elementId];
+      data = window[metadataList][elementId];
       if (!data) { throw Error('No data found for "' + elementId + '"'); }
     }
 
