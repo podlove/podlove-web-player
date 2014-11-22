@@ -215,9 +215,10 @@ var addBehavior = function (player, params, wrapper) {
   var chapters;
   if (hasChapters) {
     chapters = new Chapters(timeline);
-    tabs.add(chapters.tab, !!params.chaptersVisible);
     timeline.addModule(chapters);
+    chapters.addEventhandlers(player);
   }
+  controls.createTimeControls(chapters);
 
   var saveTime = new SaveTime(timeline, params);
   timeline.addModule(saveTime);
@@ -225,32 +226,33 @@ var addBehavior = function (player, params, wrapper) {
   var progressBar = new ProgressBar(timeline);
   timeline.addModule(progressBar);
 
+  var sharing = new Share(params);
+  var downloads = new Downloads(params);
+  var infos = new Info(params);
+
   /**
    * -- TABS --
    * The tabs in controlbar will appear in following order:
    */
 
-  var sharing = new Share(params);
-  var downloads = new Downloads(params);
-  var infos = new Info(params);
-
-  // render
-
-  wrapper.append(controlBox);
-  wrapper.append(progressBar.render());
-  progressBar.addEvents();
-
-  wrapper.append(tabs.togglebar);
-  wrapper.append(tabs.container);
+  if (hasChapters) {
+    tabs.add(chapters.tab, !!params.chaptersVisible);
+  }
 
   tabs.add(sharing.tab, !!params.sharebuttonsVisible);
   tabs.add(downloads.tab, !!params.downloadbuttonsVisible);
   tabs.add(infos.tab, !!params.summaryVisible);
 
-  if (hasChapters) {
-    chapters.addEventhandlers(player);
-    controls.createTimeControls(chapters);
-  }
+  // render
+
+  wrapper
+    .append(controlBox)
+    .append(progressBar.render())
+    .append(tabs.togglebar)
+    .append(tabs.container)
+  ;
+
+  progressBar.addEvents();
 
   // expose the player interface
   wrapper.data('podlovewebplayer', {

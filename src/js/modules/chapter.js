@@ -146,11 +146,19 @@ function update (timeline) {
  */
 function Chapters (timeline) {
 
-  this.timeline = timeline;
+  if (!timeline || !timeline.hasChapters) {
+    return null;
+  }
   if (timeline.duration === 0) {
     console.warn('Chapters', 'constructor', 'Zero length media?', timeline);
   }
+
+  this.timeline = timeline;
   this.duration = timeline.duration;
+  this.chapters = timeline.getDataByType('chapter');
+  this.chapterlinks = !!timeline.chapterlinks;
+  this.currentChapter = 0;
+
   this.tab = new Tab({
     icon: "pwp-chapters",
     title: "Show/hide chapters",
@@ -158,13 +166,10 @@ function Chapters (timeline) {
     name: "podlovewebplayer_chapterbox"
   });
 
-  //build chapter table
-  this.chapters = timeline.getDataByType('chapter');
-  this.currentChapter = 0;
+  this.tab
+    .createMainContent('')
+    .append(this.generateTable());
 
-  this.chapterlinks = (timeline.chapterlinks !== 'false');
-  var main = this.tab.createMainContent('');
-  main.append(this.generateTable());
   this.update = update.bind(this);
 }
 
