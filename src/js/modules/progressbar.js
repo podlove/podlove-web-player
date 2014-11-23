@@ -65,6 +65,8 @@ var _update = function (timeline) {
 
   var buffer = timeline.getBuffered();
   this.buffer.val(buffer);
+  var text = tc.fromTimeStamp(Math.abs(time - this.duration));
+  this.durationTimeElement.text('-' + text);
 
   if (this.chapterModule) {
     this.setChapter();
@@ -77,10 +79,13 @@ var _update = function (timeline) {
 ProgressBar.prototype.render = function () {
 
   var formattedDuration = tc.fromTimeStamp(this.duration),
-    bar = $('<div class="progressbar"></div>'),
+    durationTimeElement = renderTimeElement('duration', formattedDuration);
+
+  this.durationTimeElement = durationTimeElement;
+
+  var bar = $('<div class="progressbar"></div>'),
     progressInfo = $('<div class="progress-info"></div>'),
     currentTimeElement = renderTimeElement('current', '00:00:00'),
-    durationTimeElement = renderTimeElement('duration', formattedDuration),
     progress = $('<div class="progress"></div>'),
     current = $('<progress class="current"></progress>')
       .attr({ min: 0, max: this.duration }),
