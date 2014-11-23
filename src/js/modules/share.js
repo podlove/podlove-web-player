@@ -9,7 +9,8 @@ var Tab = require('../tab')
   ];
 
 // module globals
-var shareTab, selectedOption, shareButtons, shareData, linkInput;
+var shareTab, selectedOption, shareButtons, linkInput;
+var shareData = {};
 
 function getShareData(value) {
   var type = value === 'show' ? 'show' : 'episode';
@@ -63,17 +64,24 @@ function createPosterFor(type) {
  */
 function createOption(option) {
   if (option.disabled) {
+    console.log('Share', 'createOption', 'omit disabled option', option.name);
     return null;
   }
 
-  var element = $('<div class="share-select-option">' +
-    createPosterFor(option.value) +
-    '<span>Share this ' + option.name + '</span>' +
+  var data = getShareData(option.value);
+
+  if (!data) {
+    console.log('Share', 'createOption', 'omit option without data', option.name);
+    return null;
+  }
+
+  var element = $('<div class="share-select-option">' + createPosterFor(option.value) +
+      '<span>Share this ' + option.name + '</span>' +
     '</div>');
+
   if (option.default) {
     selectedOption = element;
     element.addClass('selected');
-    var data = getShareData(option.value);
     updateUrls(data);
   }
   element.on('click', onShareOptionChangeTo(element, option.value));
@@ -134,23 +142,25 @@ function createShareTab(params) {
 }
 
 module.exports = function Share(params) {
-  shareData = {
-    episode: {
-      poster: params.poster,
-      title: encodeURIComponent(params.title),
-      url: encodeURIComponent(params.permalink),
-      rawUrl: params.permalink,
-      text: encodeURIComponent(params.title + ' ' + params.permalink)
-    },
-    show: {
+  shareData.episode = {
+    poster: params.poster,
+    title: encodeURIComponent(params.title),
+    url: encodeURIComponent(params.permalink),
+    rawUrl: params.permalink,
+    text: encodeURIComponent(params.title + ' ' + params.permalink)
+  };
+  shareData.chapters = params.chapters;
+
+  if (params.show.url) {
+    shareData.show = {
       poster: params.show.poster,
       title: encodeURIComponent(params.show.title),
       url: encodeURIComponent(params.show.url),
       rawUrl: params.show.url,
       text: encodeURIComponent(params.show.title + ' ' + params.show.url)
-    },
-    chapters: params.chapters
-  };
+    };
+  }
+
   selectedOption = 'episode';
   shareTab = createShareTab(params);
   this.tab = shareTab;
