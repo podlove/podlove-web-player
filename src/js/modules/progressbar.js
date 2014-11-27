@@ -24,6 +24,7 @@ function ProgressBar(timeline) {
     this.chapterTitle = null;
   }
 
+  this.showDuration = false;
   this.progress = null;
   this.buffer = null;
   this.update = _update.bind(this);
@@ -66,6 +67,10 @@ var _update = function (timeline) {
   var buffer = timeline.getBuffered();
   this.buffer.val(buffer);
 
+  if (!this.showDuration) {
+    updateRemainingTime.call(this, time);
+  }
+
   if (this.chapterModule) {
     this.setChapter();
   }
@@ -76,11 +81,28 @@ var _update = function (timeline) {
  */
 ProgressBar.prototype.render = function () {
 
-  var formattedDuration = tc.fromTimeStamp(this.duration),
-    bar = $('<div class="progressbar"></div>'),
+  var formattedDuration = tc.fromTimeStamp(this.duration);
+  var durationTimeElement = renderTimeElement('duration', 0);
+
+  this.durationTimeElement = durationTimeElement;
+  updateRemainingTime.call(this, 0);
+
+  var clickHandler = function () {
+    this.showDuration = !this.showDuration;
+    if (this.showDuration) {
+      this.durationTimeElement.text(formattedDuration);
+      return;
+    }
+    updateRemainingTime.call(this, this.player.currentTime);
+  }.bind(this);
+
+  durationTimeElement.on('click', function () {
+    clickHandler();
+  });
+
+  var bar = $('<div class="progressbar"></div>'),
     progressInfo = $('<div class="progress-info"></div>'),
     currentTimeElement = renderTimeElement('current', '00:00:00'),
-    durationTimeElement = renderTimeElement('duration', formattedDuration),
     progress = $('<div class="progress"></div>'),
     current = $('<progress class="current"></progress>')
       .attr({ min: 0, max: this.duration }),
@@ -224,6 +246,11 @@ function renderCurrentChapterElement() {
     .append(this.chapterTitle);
 
   return chapterElement;
+}
+
+function updateRemainingTime(time) {
+  var text = tc.fromTimeStamp(Math.abs(time - this.duration));
+  this.durationTimeElement.text('-' + text);
 }
 
 module.exports = ProgressBar;
