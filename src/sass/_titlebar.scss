@@ -18,7 +18,7 @@
     @include order(2);
     margin: auto auto;
     padding: 0 16px;
-
+    min-width: 1px;
   }
 }
 
@@ -69,6 +69,7 @@
 .play {
   @include flex(1 100%);
   @include order(3);
+  min-width: 1px;
 }
 
 // Breakpoints
