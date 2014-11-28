@@ -6,8 +6,11 @@
   // mobile styling as default,
   // others are defined in media queries
   @extend .bar;
+  @include order(2);
   height: auto;
+  float: none;
   @media screen and (min-width: $screen-phone) {
+    @include order(1);
     height: auto;
     min-height: $controlbar-height;
     ul {
