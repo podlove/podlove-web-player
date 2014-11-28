@@ -243,12 +243,15 @@ var addBehavior = function (player, params, wrapper) {
   tabs.add(downloads.tab, !!params.downloadbuttonsVisible);
   tabs.add(infos.tab, !!params.summaryVisible);
 
-  // render
+  // Render controlbar with togglebar and timecontrols
+  var controlbarWrapper = $('<div class="controlbar-wrapper"></div>');
+  controlbarWrapper.append(tabs.togglebar);
+  controlbarWrapper.append(controlBox);
 
+  // render progressbar, controlbar and tabs
   wrapper
-    .append(controlBox)
     .append(progressBar.render())
-    .append(tabs.togglebar)
+    .append(controlbarWrapper)
     .append(tabs.container)
   ;
 
