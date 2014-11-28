@@ -8,16 +8,7 @@
   display: block;
   position: relative;
   padding: 0;
-  border: 0px solid black;
-  &:after {
-    content: ".";
-    color: $white;
-    font-size: 1px;
-    height: 1px;
-    display: block;
-    overflow: hidden;
-    clear: both;
-  }
+  border: 0px solid transparent;
   a {
     color: $default-link-color;
   }
