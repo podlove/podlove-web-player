@@ -117,6 +117,12 @@ ProgressBar.prototype.render = function () {
     .append(handle)
   ;
 
+  if (this.chapterModule) {
+    var markers = this.chapterModule.chapters.map(renderChapterMarker, this);
+    markers.shift(); // remove first one
+    progress.append(markers);
+  }
+
   progressInfo
     .append(currentTimeElement)
     .append(renderCurrentChapterElement.call(this))
@@ -251,6 +257,15 @@ function renderCurrentChapterElement() {
 function updateRemainingTime(time) {
   var text = tc.fromTimeStamp(Math.abs(time - this.duration));
   this.durationTimeElement.text('-' + text);
+}
+
+function renderChapterMarker(chapter) {
+  return renderMarkerAt.call(this, chapter.start);
+}
+
+function renderMarkerAt(time) {
+  var percent = 100*time/this.duration;
+  return $('<div class="marker" style="left:' + percent + '%;"></div>');
 }
 
 module.exports = ProgressBar;
