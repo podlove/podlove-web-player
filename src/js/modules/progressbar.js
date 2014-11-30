@@ -108,7 +108,7 @@ ProgressBar.prototype.render = function () {
       .attr({ min: 0, max: this.duration }),
     handle = $('<div class="handle"><div class="inner-handle"></div></div>'),
     buffer = $('<progress class="buffer"></progress>')
-      .attr({min: 0, max: 1})
+      .attr({min: 0, max: this.duration})
       .css({height:"1px;"});
 
   progress
