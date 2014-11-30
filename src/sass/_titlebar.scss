@@ -15,12 +15,14 @@
 
   // Headlines in titlebar
   header {
+    @include flex(1 0px);
     @include order(2);
-    margin: auto auto;
     padding: 0 16px;
     min-width: 1px;
+    margin: 1.25em 0;
+    padding-left: $padding-small-horizontal;
     h2 {
-      font-size: 1.3em;
+      font-size: 1.5em;
     }
     .subtitle,
     h4 {
@@ -74,100 +76,36 @@
 
 // Playbutton
 .play {
-  @include flex(1 100%);
+  @include flex(1 0px);
   @include order(3);
   min-width: 1px;
+  margin: auto $margin-small-horizontal auto 0;
 }
 
 // Breakpoints
 // --------------------------------------------------
 .titlebar {
-  // x ≤ 360px
-  @media all and (max-width: $screen-tiny-phone) {
-    header {
-      margin: 1.25em 0 !important;
-      padding-left: $padding-small-horizontal !important;
-    }
-    .play {
-      @include flex(1 0px);
-      @include order(3);
-      margin: auto 13px auto 0;
-    }
-  }
-
-  // 360px ≤ x ≥ 480px
-  @media all and (min-width: $screen-tiny-phone) and (max-width: $screen-phone) {
-    header {
-      margin: 20px 0 !important;
-    }
-  }
-
-  // 480px ≤ x
-  @media all and (min-width: $screen-phone) {
-    header {
-      @include flex(1 0px);
-      @include order(2);
-      header {
-        h2 {
-          font-size: 1.5em;
-        }
-        .subtitle,
-        h4 {
-          font-size: $font-size-base;
-        }
-      }
-    }
-    .play {
-      @include flex(1 0px);
-    }
-  }
 
   // < 480px
   @media all and (max-width: $screen-phone) {
     .coverart {
       @include flex(1 100%);
       @include order(1);
-      height: $title-image-full-height;
-    }
-
-    header {
-      @include flex(1 0px);
-      @include order(2);
-      padding-left: $padding-small-horizontal !important;
-      h2 {
-        font-size: 1.5em;
-      }
-      .subtitle,
-      h4 {
-        font-size: $font-size-base;
-      }
-    }
-    .play {
-      @include flex(1 0px);
-      @include order(3);
-      margin: auto $padding-small-horizontal auto 0;
-    }
-  }
-
-  // Flexible breakpoint depending on image size.
-  // The image will scale up to full-width within this breakpoint.
-  @media all and (max-width: $screen-phone) {
-    .coverart {
-      @include flex(1 100%);
       width: $title-image-full-width;
       height: auto;
       img {
-        height: auto !important;
+        height: auto;
         width: 100%;
       }
     }
-    header {
-      @include flex(1 0px);
-      @include order(2);
-      margin: 1.25em 0 !important;
-    }
   }
 
+  // 480px ≤ x
+  @media all and (min-width: $screen-phone) {
+    .play {
+      margin: auto $margin-base-horizontal auto 0;
+    }
+  }
 
   // 768px
   @media screen and (min-width: $screen-desktop) {
@@ -195,6 +133,7 @@
     header {
       @include flex(2 0px);
       @include order(2);
+      margin: auto auto;
     }
   }
 }
