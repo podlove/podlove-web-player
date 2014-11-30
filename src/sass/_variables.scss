@@ -208,7 +208,6 @@ $screen-xs-max:              ($screen-sm-min - 1) !default;
 $screen-sm-max:              ($screen-md-min - 1) !default;
 $screen-md-max:              ($screen-lg-min - 1) !default;
 
-
 // Miscellaneous
 // -------------------------
 
@@ -217,7 +216,6 @@ $title-image-height:          100px;
 $title-image-height-big:      140px;
 $title-image-width:           $title-image-height;
 $title-image-full-width:      400px;
-$title-image-full-height:     $title-image-full-width;
 
 // min-width $screen-tablet
 $play-button-size:            64px;
@@ -225,10 +223,8 @@ $play-button-size-big:        80px;
 $play-button-margin:          auto;
 $play-button-margin-big:      0.375em;
 
-
 // Image in Info Tab
 $info-image-width:            400px;
-
 
 // Share Tab: Button Image
 $share-image-border-width:    10px;
