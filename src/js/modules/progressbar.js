@@ -1,4 +1,5 @@
 var tc = require('../timecode');
+var cap = require('../util').cap;
 
 /**
  * @constructor
@@ -118,73 +119,69 @@ ProgressBar.prototype.render = function () {
 };
 
 ProgressBar.prototype.addEvents = function() {
-  var setProgress = this.setProgress.bind(this),
-    timeline = this.timeline,
-    total = this.progress,
-    mouseIsDown = false,
-    mouseIsOver = false,
-    handleMouseMove = function (e) {
-      // mouse position relative to the object
-      var x = e.pageX,
-        offset = total.offset(),
-        width = total.outerWidth(true),
-        percentage = 0,
-        newTime = 0,
-        pos = 0;
+  var mouseIsDown = false, mouseIsOver = false;
+  var newTime = this.timeline.currentTime;
+  var duration = this.timeline.duration;
+  var progress = this.progress;
 
+  var calculateNewTime = function (pageX) {
+    // mouse position relative to the object
+    var width = progress.outerWidth(true);
+    var offset = progress.offset();
+    var pos = cap(pageX - offset.left, 0, width);
+    var percentage = (pos / width);
+    return percentage * duration;
+  };
 
-      if (timeline.duration) {
-        if (x < offset.left) {
-          x = offset.left;
-        } else if (x > width + offset.left) {
-          x = width + offset.left;
-        }
+  var updateTime = function (newTime) {
+    if (newTime === this.timeline.currentTime) { return; }
+    this.setProgress(newTime);
+    this.timeline.seek(newTime);
+  }.bind(this);
 
-        pos = x - offset.left;
-        percentage = (pos / width);
-        newTime = (percentage <= 0) ? 0 : percentage * timeline.duration;
+  var handleMouseMove = function (event) {
+    if (typeof duration !== 'number' || !mouseIsDown ) { return; }
+    newTime = calculateNewTime(event.pageX);
+    updateTime(newTime);
+  };
 
-        // seek to where the mouse is
-        if (mouseIsDown && newTime !== timeline.currentTime) {
-          setProgress(newTime);
-          timeline.setTime(newTime);
-        }
-      }
-    },
-    mouseDownHandler = function (e) {
-      // only handle left clicks
-      if (e.which === 1) {
-        mouseIsDown = true;
-        handleMouseMove(e);
-        $(document).bind('mousemove.dur', function(e) {
-          handleMouseMove(e);
-        });
-        $(document).bind('mouseup.dur', function (e) {
-          mouseIsDown = false;
-          $(document)
-            .unbind('mousup.dur')
-            .unbind('mousemove.dur');
-        });
-        return false;
-      }
-    },
-    mouseEnterHandler = function() {
-      mouseIsOver = true;
-      $(document).bind('mousemove.dur', function(e) {
-        handleMouseMove(e);
-      });
-    },
-    mouseLeaveHandler = function() {
-      mouseIsOver = false;
-      if (!mouseIsDown) {
-        $(document)
-          .unbind('mousup.dur')
-          .unbind('mousemove.dur');
-      }
-    }
-    ;
+  var deRegisterMouseHandlers = function () {
+    console.info('deRegisterMouseHandlers');
+    mouseIsDown = false;
+    this.timeline.seekEnd();
+    $(document)
+      .unbind('mousup.dur')
+      .unbind('mousemove.dur');
+  }.bind(this);
 
-  this.setHandlePosition(this.timeline);
+  var mouseDownHandler = function (event) {
+    // only handle left clicks
+    if (event.which !== 1) { return; }
+
+    mouseIsDown = true;
+    handleMouseMove(event);
+    this.timeline.seekStart();
+
+    $(document)
+      .bind('mousemove.dur', handleMouseMove)
+      .bind('mouseup.dur', deRegisterMouseHandlers);
+
+    return false;
+  }.bind(this);
+
+  var mouseEnterHandler = function() {
+    mouseIsOver = true;
+    $(document).bind('mousemove.dur', handleMouseMove);
+  };
+
+  var mouseLeaveHandler = function() {
+    mouseIsOver = false;
+    if (mouseIsDown) { return; }
+
+    $(document)
+      .unbind('mousup.dur')
+      .unbind('mousemove.dur');
+  };
 
   // handle clicks and drag in progressbar and on handle
   this.progress
