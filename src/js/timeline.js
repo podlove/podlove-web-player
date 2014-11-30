@@ -35,6 +35,7 @@ function Timeline(player, data) {
   this.duration = data.duration;
   this.endTime = data.duration;
   this.bufferedTime = 0;
+  this.isPaused = player.paused;
 }
 
 module.exports = Timeline;
@@ -69,23 +70,14 @@ Timeline.prototype.playRange = function (range) {
 
 Timeline.prototype.update = function (event) {
   console.log('Timeline', 'update', event);
-  var player = event.currentTarget,
-    rewind = (this.currentTime > player.currentTime),
-    start = this.currentTime,
-    end = player.currentTime;
+  if (event) {
+    this.currentTime = this.player.currentTime;
+  }
 
   var call = function call(i, listener) {
     listener(this);
   }.bind(this);
 
-  if (rewind) {
-    start = end;
-    end = this.currentTime;
-  }
-
-  this.emitEventsBetween(start, end);
-  this.currentTime = player.currentTime;
-  console.log('Listeners', this.listeners);
   $.each(this.listeners, call);
   if (this.currentTime >= this.endTime) {
     this.player.stop();
@@ -138,6 +130,25 @@ Timeline.prototype.setTime = function (time) {
   }
 };
 
+Timeline.prototype.seek = function (time) {
+  this.currentTime = cap(time, 0, this.duration);
+  this.setTime(this.currentTime);
+  this.update();
+};
+
+Timeline.prototype.seekStart = function () {
+  this.isPaused = this.player.paused;
+  if (!this.isPaused) {
+    this.player.pause();
+  }
+};
+
+Timeline.prototype.seekEnd = function () {
+  if (!this.isPaused) {
+    this.player.play();
+  }
+};
+
 Timeline.prototype.stopAt = function (time) {
   if (!time || time <= 0 || time > this.duration) {
     return console.warn('Timeline', 'stopAt', 'time out of bounds', time);
@@ -146,7 +157,7 @@ Timeline.prototype.stopAt = function (time) {
 };
 
 Timeline.prototype.getTime = function () {
-  return this.player.currentTime;
+  return this.currentTime;
 };
 
 Timeline.prototype.getBuffered = function () {
