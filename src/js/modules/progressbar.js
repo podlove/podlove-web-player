@@ -79,8 +79,6 @@ ProgressBar.prototype.render = function () {
   this.currentTime = renderTimeElement('current', '00:00:00');
   var progressInfo = renderProgressInfo(this);
 
-  updateTimes(this);
-
   // timeline and buffer bars
   var progress = $('<div class="progress"></div>');
   var timelineBar = $('<progress class="current"></progress>')
@@ -95,8 +93,6 @@ ProgressBar.prototype.render = function () {
     .append(buffer)
     .append(handle);
 
-  this.setHandlePosition(this.timeline);
-
   if (this.chapterModule) {
     var chapterMarkers = this.chapterModule.chapters.map(renderChapterMarker, this);
     chapterMarkers.shift(); // remove first one
@@ -110,10 +106,14 @@ ProgressBar.prototype.render = function () {
     .append(progress)
   ;
 
+
   this.bar = bar;
   this.progress = timelineBar;
   this.buffer = buffer;
   this.handle = handle;
+
+  updateTimes(this);
+  this.setHandlePosition(this.timeline);
 
   return bar;
 };
