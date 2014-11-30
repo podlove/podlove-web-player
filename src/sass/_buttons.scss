@@ -1,8 +1,6 @@
 //
 // Buttons
 // --------------------------------------------------
-$play-button-size: 80px;
-$play-button-margin: 0.375em;
 
 .button {
   @include iconfont-button($contrast-icon-font-color);
@@ -44,6 +42,12 @@ $play-button-margin: 0.375em;
   max-width: $play-button-size;
   line-height: $play-button-size;
   margin: $play-button-margin $margin-base-horizontal $play-button-margin 0;
+  @media screen and (min-width: $screen-desktop) {
+    font-size: $play-button-size-big ;
+    max-width: $play-button-size-big;
+    line-height: $play-button-size-big;
+    margin: $play-button-margin-big $margin-base-horizontal $play-button-margin-big 0;
+  }
 
   &:hover {
     @include textshadows(0px 0px 3px $contrast-icon-font-color);
