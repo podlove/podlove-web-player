@@ -44,13 +44,15 @@ ProgressBar.prototype.setHandlePosition = function (time) {
 ProgressBar.prototype.setProgress = function (time) {
   this.progress.val(time);
   this.setHandlePosition(time);
-  this.currentTime.html(tc.fromTimeStamp(time));
+  updateTimes(this);
 };
 
 /**
  * set chapter title and badge
  */
 ProgressBar.prototype.setChapter = function () {
+  if (!this.chapterModule) { return; }
+
   var index = this.chapterModule.currentChapter;
   var chapter = this.chapterModule.chapters[index];
   this.chapterBadge.text(index + 1);
@@ -61,19 +63,9 @@ ProgressBar.prototype.setChapter = function () {
  * This update method is to be called when a players `currentTime` changes.
  */
 var _update = function (timeline) {
-  var time = timeline.getTime();
-  this.setProgress(time);
-
-  var buffer = timeline.getBuffered();
-  this.buffer.val(buffer);
-
-  if (!this.showDuration) {
-    updateRemainingTime.call(this, time);
-  }
-
-  if (this.chapterModule) {
-    this.setChapter();
-  }
+  this.setProgress(timeline.getTime());
+  this.buffer.val(timeline.getBuffered());
+  this.setChapter();
 };
 
 /**
@@ -81,64 +73,46 @@ var _update = function (timeline) {
  */
 ProgressBar.prototype.render = function () {
 
-  var formattedDuration = tc.fromTimeStamp(this.duration);
-  var durationTimeElement = renderTimeElement('duration', 0);
+  // progress info
+  this.durationTimeElement = renderDurationTimeElement(this);
+  this.currentTime = renderTimeElement('current', '00:00:00');
+  var progressInfo = renderProgressInfo(this);
 
-  this.durationTimeElement = durationTimeElement;
-  updateRemainingTime.call(this, 0);
+  updateTimes(this);
 
-  var clickHandler = function () {
-    this.showDuration = !this.showDuration;
-    if (this.showDuration) {
-      this.durationTimeElement.text(formattedDuration);
-      return;
-    }
-    updateRemainingTime.call(this, this.player.currentTime);
-  }.bind(this);
-
-  durationTimeElement.on('click', function () {
-    clickHandler();
-  });
-
-  var bar = $('<div class="progressbar"></div>'),
-    progressInfo = $('<div class="progress-info"></div>'),
-    currentTimeElement = renderTimeElement('current', '00:00:00'),
-    progress = $('<div class="progress"></div>'),
-    current = $('<progress class="current"></progress>')
-      .attr({ min: 0, max: this.duration }),
-    handle = $('<div class="handle"><div class="inner-handle"></div></div>'),
-    buffer = $('<progress class="buffer"></progress>')
+  // timeline and buffer bars
+  var progress = $('<div class="progress"></div>');
+  var timelineBar = $('<progress class="current"></progress>')
+      .attr({ min: 0, max: this.duration });
+  var handle = $('<div class="handle"><div class="inner-handle"></div></div>');
+  var buffer = $('<progress class="buffer"></progress>')
       .attr({min: 0, max: this.duration})
-      .css({height:"1px;"});
+      .css({height: '1px'});
 
   progress
-    .append(current)
+    .append(timelineBar)
     .append(buffer)
-    .append(handle)
-  ;
+    .append(handle);
+
+  this.setHandlePosition(this.timeline);
 
   if (this.chapterModule) {
-    var markers = this.chapterModule.chapters.map(renderChapterMarker, this);
-    markers.shift(); // remove first one
-    progress.append(markers);
+    var chapterMarkers = this.chapterModule.chapters.map(renderChapterMarker, this);
+    chapterMarkers.shift(); // remove first one
+    progress.append(chapterMarkers);
   }
 
-  progressInfo
-    .append(currentTimeElement)
-    .append(renderCurrentChapterElement.call(this))
-    .append(durationTimeElement)
-  ;
-
+  // progress bar
+  var bar = $('<div class="progressbar"></div>');
   bar
     .append(progressInfo)
     .append(progress)
   ;
 
   this.bar = bar;
-  this.progress = current;
+  this.progress = timelineBar;
   this.buffer = buffer;
   this.handle = handle;
-  this.currentTime = currentTimeElement;
 
   return bar;
 };
@@ -225,6 +199,15 @@ ProgressBar.prototype.addEvents = function() {
 
 };
 
+function renderProgressInfo(progressBar) {
+  var progressInfo = $('<div class="progress-info"></div>');
+
+  return progressInfo
+    .append(progressBar.currentTime)
+    .append(renderCurrentChapterElement.call(progressBar))
+    .append(progressBar.durationTimeElement);
+}
+
 function renderTimeElement(className, time) {
   return $('<div class="time time-' + className + '">' + time + '</div>');
 }
@@ -254,9 +237,30 @@ function renderCurrentChapterElement() {
   return chapterElement;
 }
 
-function updateRemainingTime(time) {
-  var text = tc.fromTimeStamp(Math.abs(time - this.duration));
-  this.durationTimeElement.text('-' + text);
+function renderDurationTimeElement(progressBar) {
+  var formattedDuration = tc.fromTimeStamp(progressBar.duration);
+  var durationTimeElement = renderTimeElement('duration', 0);
+
+  durationTimeElement.on('click', function () {
+    progressBar.showDuration = !progressBar.showDuration;
+    if (progressBar.showDuration) {
+      durationTimeElement.text(formattedDuration);
+      return;
+    }
+    updateTimes(progressBar);
+  }.bind(this));
+
+  return durationTimeElement;
+}
+
+function updateTimes(progressBar) {
+  var time = progressBar.timeline.getTime();
+  progressBar.currentTime.html(tc.fromTimeStamp(time));
+
+  if (this.showDuration) { return; }
+
+  var remainingTime = Math.abs(time - progressBar.duration);
+  progressBar.durationTimeElement.text('-' + tc.fromTimeStamp(remainingTime));
 }
 
 function renderChapterMarker(chapter) {
