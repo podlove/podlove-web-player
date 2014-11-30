@@ -12,6 +12,21 @@ function cap(val, min, max) {
   return val;
 }
 
+/**
+ * return number as string lefthand filled with zeros
+ * @param number number
+ * @param width number
+ * @return string
+ */
+function zeroFill (number, width) {
+  var s = number.toString();
+  while (s.length < width) {
+    s = "0" + s;
+  }
+  return s;
+}
+
 module.exports = {
-  cap: cap
+  cap: cap,
+  zeroFill: zeroFill
 };
