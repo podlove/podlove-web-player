@@ -57,6 +57,10 @@ function create(player, params, callback) {
     secArray,
     wrapper;
 
+  jqPlayer = $(player);
+  wrapper = $('<div class="container"></div>');
+  jqPlayer.replaceWith(wrapper);
+
   //fine tuning params
   params.width = normalizeWidth(params.width);
   if (playerType === 'audio') {
@@ -103,18 +107,8 @@ function create(player, params, callback) {
     params.width = params.width.toString().trim() + 'px';
   }
 
-  jqPlayer = $(player);
-  wrapper = $('<div class="container"></div>');
-  jqPlayer.replaceWith(wrapper);
   players.push(player);
-  //add params from html fallback area and remove them from the DOM-tree
 
-  // FIXME: delete the following lines. There is no such thing.
-  /* jqPlayer.find('[data-pwp]').each(function () {
-    var $this = $(this);
-    params[$this.data('pwp')] = $this.html();
-    $this.remove();
-  }); */
   //add params from audio and video elements
   jqPlayer.find('source').each(function () {
     if (!params.sources) {
@@ -126,7 +120,7 @@ function create(player, params, callback) {
   params.type = playerType;
   // init MEJS to player
   mejsoptions.success = function (player) {
-    jqPlayer.on('error', removeUnplayableMedia)    // This might be a fix to some Firefox AAC issues.
+    jqPlayer.on('error', removeUnplayableMedia);   // This might be a fix to some Firefox AAC issues.
     callback(player, params, wrapper);
   };
   var me = new MediaElement(player, mejsoptions);

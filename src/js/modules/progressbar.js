@@ -1,4 +1,5 @@
 var tc = require('../timecode');
+var cap = require('../util').cap;
 
 /**
  * @constructor
@@ -44,13 +45,15 @@ ProgressBar.prototype.setHandlePosition = function (time) {
 ProgressBar.prototype.setProgress = function (time) {
   this.progress.val(time);
   this.setHandlePosition(time);
-  this.currentTime.html(tc.fromTimeStamp(time));
+  updateTimes(this);
 };
 
 /**
  * set chapter title and badge
  */
 ProgressBar.prototype.setChapter = function () {
+  if (!this.chapterModule) { return; }
+
   var index = this.chapterModule.currentChapter;
   var chapter = this.chapterModule.chapters[index];
   this.chapterBadge.text(index + 1);
@@ -61,19 +64,9 @@ ProgressBar.prototype.setChapter = function () {
  * This update method is to be called when a players `currentTime` changes.
  */
 var _update = function (timeline) {
-  var time = timeline.getTime();
-  this.setProgress(time);
-
-  var buffer = timeline.getBuffered();
-  this.buffer.val(buffer);
-
-  if (!this.showDuration) {
-    updateRemainingTime.call(this, time);
-  }
-
-  if (this.chapterModule) {
-    this.setChapter();
-  }
+  this.setProgress(timeline.getTime());
+  this.buffer.val(timeline.getBuffered());
+  this.setChapter();
 };
 
 /**
@@ -81,130 +74,114 @@ var _update = function (timeline) {
  */
 ProgressBar.prototype.render = function () {
 
-  var formattedDuration = tc.fromTimeStamp(this.duration);
-  var durationTimeElement = renderTimeElement('duration', 0);
+  // progress info
+  this.durationTimeElement = renderDurationTimeElement(this);
+  this.currentTime = renderTimeElement('current', '00:00:00');
+  var progressInfo = renderProgressInfo(this);
 
-  this.durationTimeElement = durationTimeElement;
-  updateRemainingTime.call(this, 0);
-
-  var clickHandler = function () {
-    this.showDuration = !this.showDuration;
-    if (this.showDuration) {
-      this.durationTimeElement.text(formattedDuration);
-      return;
-    }
-    updateRemainingTime.call(this, this.player.currentTime);
-  }.bind(this);
-
-  durationTimeElement.on('click', function () {
-    clickHandler();
-  });
-
-  var bar = $('<div class="progressbar"></div>'),
-    progressInfo = $('<div class="progress-info"></div>'),
-    currentTimeElement = renderTimeElement('current', '00:00:00'),
-    progress = $('<div class="progress"></div>'),
-    current = $('<progress class="current"></progress>')
-      .attr({ min: 0, max: this.duration }),
-    handle = $('<div class="handle"><div class="inner-handle"></div></div>'),
-    buffer = $('<progress class="buffer"></progress>')
-      .attr({min: 0, max: 1})
-      .css({height:"1px;"});
+  // timeline and buffer bars
+  var progress = $('<div class="progress"></div>');
+  var timelineBar = $('<progress class="current"></progress>')
+      .attr({ min: 0, max: this.duration });
+  var handle = $('<div class="handle"><div class="inner-handle"></div></div>');
+  var buffer = $('<progress class="buffer"></progress>')
+      .attr({min: 0, max: this.duration})
+      .css({height: '1px'});
 
   progress
-    .append(current)
+    .append(timelineBar)
     .append(buffer)
-    .append(handle)
-  ;
+    .append(handle);
 
-  progressInfo
-    .append(currentTimeElement)
-    .append(renderCurrentChapterElement.call(this))
-    .append(durationTimeElement)
-  ;
+  if (this.chapterModule) {
+    var chapterMarkers = this.chapterModule.chapters.map(renderChapterMarker, this);
+    chapterMarkers.shift(); // remove first one
+    progress.append(chapterMarkers);
+  }
 
+  // progress bar
+  var bar = $('<div class="progressbar"></div>');
   bar
     .append(progressInfo)
     .append(progress)
   ;
 
+
   this.bar = bar;
-  this.progress = current;
+  this.progress = timelineBar;
   this.buffer = buffer;
   this.handle = handle;
-  this.currentTime = currentTimeElement;
+
+  updateTimes(this);
+  this.setHandlePosition(this.timeline);
 
   return bar;
 };
 
 ProgressBar.prototype.addEvents = function() {
-  var setProgress = this.setProgress.bind(this),
-    timeline = this.timeline,
-    total = this.progress,
-    mouseIsDown = false,
-    mouseIsOver = false,
-    handleMouseMove = function (e) {
-      // mouse position relative to the object
-      var x = e.pageX,
-        offset = total.offset(),
-        width = total.outerWidth(true),
-        percentage = 0,
-        newTime = 0,
-        pos = 0;
+  var mouseIsDown = false, mouseIsOver = false;
+  var newTime = this.timeline.currentTime;
+  var duration = this.timeline.duration;
+  var progress = this.progress;
 
+  var calculateNewTime = function (pageX) {
+    // mouse position relative to the object
+    var width = progress.outerWidth(true);
+    var offset = progress.offset();
+    var pos = cap(pageX - offset.left, 0, width);
+    var percentage = (pos / width);
+    return percentage * duration;
+  };
 
-      if (timeline.duration) {
-        if (x < offset.left) {
-          x = offset.left;
-        } else if (x > width + offset.left) {
-          x = width + offset.left;
-        }
+  var updateTime = function (newTime) {
+    if (newTime === this.timeline.currentTime) { return; }
+    this.setProgress(newTime);
+    this.timeline.seek(newTime);
+  }.bind(this);
 
-        pos = x - offset.left;
-        percentage = (pos / width);
-        newTime = (percentage <= 0) ? 0 : percentage * timeline.duration;
+  var handleMouseMove = function (event) {
+    if (typeof duration !== 'number' || !mouseIsDown ) { return; }
+    newTime = calculateNewTime(event.pageX);
+    updateTime(newTime);
+  };
 
-        // seek to where the mouse is
-        if (mouseIsDown && newTime !== timeline.currentTime) {
-          setProgress(newTime);
-          timeline.setTime(newTime);
-        }
-      }
-    },
-    mouseDownHandler = function (e) {
-      // only handle left clicks
-      if (e.which === 1) {
-        mouseIsDown = true;
-        handleMouseMove(e);
-        $(document).bind('mousemove.dur', function(e) {
-          handleMouseMove(e);
-        });
-        $(document).bind('mouseup.dur', function (e) {
-          mouseIsDown = false;
-          $(document)
-            .unbind('mousup.dur')
-            .unbind('mousemove.dur');
-        });
-        return false;
-      }
-    },
-    mouseEnterHandler = function() {
-      mouseIsOver = true;
-      $(document).bind('mousemove.dur', function(e) {
-        handleMouseMove(e);
-      });
-    },
-    mouseLeaveHandler = function() {
-      mouseIsOver = false;
-      if (!mouseIsDown) {
-        $(document)
-          .unbind('mousup.dur')
-          .unbind('mousemove.dur');
-      }
-    }
-    ;
+  var deRegisterMouseHandlers = function () {
+    console.info('deRegisterMouseHandlers');
+    mouseIsDown = false;
+    this.timeline.seekEnd();
+    $(document)
+      .unbind('mousup.dur')
+      .unbind('mousemove.dur');
+  }.bind(this);
 
-  this.setHandlePosition(this.timeline);
+  var mouseDownHandler = function (event) {
+    // only handle left clicks
+    if (event.which !== 1) { return; }
+
+    mouseIsDown = true;
+    handleMouseMove(event);
+    this.timeline.seekStart();
+
+    $(document)
+      .bind('mousemove.dur', handleMouseMove)
+      .bind('mouseup.dur', deRegisterMouseHandlers);
+
+    return false;
+  }.bind(this);
+
+  var mouseEnterHandler = function() {
+    mouseIsOver = true;
+    $(document).bind('mousemove.dur', handleMouseMove);
+  };
+
+  var mouseLeaveHandler = function() {
+    mouseIsOver = false;
+    if (mouseIsDown) { return; }
+
+    $(document)
+      .unbind('mousup.dur')
+      .unbind('mousemove.dur');
+  };
 
   // handle clicks and drag in progressbar and on handle
   this.progress
@@ -218,6 +195,15 @@ ProgressBar.prototype.addEvents = function() {
     .bind('mouseleave', mouseLeaveHandler)
 
 };
+
+function renderProgressInfo(progressBar) {
+  var progressInfo = $('<div class="progress-info"></div>');
+
+  return progressInfo
+    .append(progressBar.currentTime)
+    .append(renderCurrentChapterElement.call(progressBar))
+    .append(progressBar.durationTimeElement);
+}
 
 function renderTimeElement(className, time) {
   return $('<div class="time time-' + className + '">' + time + '</div>');
@@ -248,9 +234,39 @@ function renderCurrentChapterElement() {
   return chapterElement;
 }
 
-function updateRemainingTime(time) {
-  var text = tc.fromTimeStamp(Math.abs(time - this.duration));
-  this.durationTimeElement.text('-' + text);
+function renderDurationTimeElement(progressBar) {
+  var formattedDuration = tc.fromTimeStamp(progressBar.duration);
+  var durationTimeElement = renderTimeElement('duration', 0);
+
+  durationTimeElement.on('click', function () {
+    progressBar.showDuration = !progressBar.showDuration;
+    if (progressBar.showDuration) {
+      durationTimeElement.text(formattedDuration);
+      return;
+    }
+    updateTimes(progressBar);
+  }.bind(this));
+
+  return durationTimeElement;
+}
+
+function updateTimes(progressBar) {
+  var time = progressBar.timeline.getTime();
+  progressBar.currentTime.html(tc.fromTimeStamp(time));
+
+  if (this.showDuration) { return; }
+
+  var remainingTime = Math.abs(time - progressBar.duration);
+  progressBar.durationTimeElement.text('-' + tc.fromTimeStamp(remainingTime));
+}
+
+function renderChapterMarker(chapter) {
+  return renderMarkerAt.call(this, chapter.start);
+}
+
+function renderMarkerAt(time) {
+  var percent = 100*time/this.duration;
+  return $('<div class="marker" style="left:' + percent + '%;"></div>');
 }
 
 module.exports = ProgressBar;
