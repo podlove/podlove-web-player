@@ -1,22 +1,10 @@
+var zeroFill = require('./util').zeroFill;
+
 /**
  * Timecode as described in http://podlove.org/deep-link/
  * and http://www.w3.org/TR/media-frags/#fragment-dimensions
  */
 var timeCodeMatcher = /(?:(\d+):)?(\d{1,2}):(\d\d)(\.\d{1,3})?/;
-
-/**
- * return number as string lefthand filled with zeros
- * @param number number
- * @param width number
- * @return string
- */
-var zeroFill = function (number, width) {
-  var s = number.toString();
-  while (s.length < width) {
-    s = "0" + s;
-  }
-  return s;
-};
 
 /**
  * convert an array of string to timecode
