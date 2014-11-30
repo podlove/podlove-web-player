@@ -125,11 +125,13 @@ Timeline.prototype.setTime = function (time) {
     console.warn('Timeline', 'setTime', 'time out of bounds', time);
     return this.player.currentTime;
   }
+
   if (this.player.readyState == this.player.HAVE_ENOUGH_DATA) {
     this.player.setCurrentTime(time);
     this.currentTime = time;
     return this.player.currentTime;
-  } else {
+  }
+  else {
     $(this.player).one('canplay', function () {
       this.setCurrentTime(time);
     });
@@ -242,7 +244,6 @@ function transformChapter(chapter) {
 /**
  * add `end` property to each simple chapter,
  * needed for proper formatting
- * @param {Array} chapters
  * @param {number} duration
  * @returns {function}
  */
