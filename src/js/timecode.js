@@ -43,8 +43,8 @@ function extractTime(tc) {
  * @return {string}
  */
 function ts2tc(time, leadingZeros, forceHours, showMillis) {
-  var timecode = '',
-    hours, minutes, seconds, milliseconds;
+  var hours, minutes, seconds, milliseconds;
+  var timecode = '';
 
   if (time === 0) {
     return (forceHours ? '00:00:00' : '00:00');
@@ -55,13 +55,10 @@ function ts2tc(time, leadingZeros, forceHours, showMillis) {
     return (forceHours ? '--:--:--' : '--:--');
   }
 
-
   hours = Math.floor(time / 60 / 60);
   minutes = Math.floor(time / 60) % 60;
   seconds = Math.floor(time % 60) % 60;
   milliseconds = Math.floor(time % 1 * 1000);
-
-  console.log(hours, minutes, seconds, milliseconds);
 
   if (showMillis && milliseconds) {
     timecode = '.' + zeroFill(milliseconds, 3);
