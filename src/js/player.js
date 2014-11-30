@@ -57,6 +57,10 @@ function create(player, params, callback) {
     secArray,
     wrapper;
 
+  jqPlayer = $(player);
+  wrapper = $('<div class="container"></div>');
+  jqPlayer.replaceWith(wrapper);
+
   //fine tuning params
   params.width = normalizeWidth(params.width);
   if (playerType === 'audio') {
@@ -103,9 +107,6 @@ function create(player, params, callback) {
     params.width = params.width.toString().trim() + 'px';
   }
 
-  jqPlayer = $(player);
-  wrapper = $('<div class="container"></div>');
-  jqPlayer.replaceWith(wrapper);
   players.push(player);
 
   //add params from audio and video elements
