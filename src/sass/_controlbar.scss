@@ -9,7 +9,7 @@
   @include order(1);
   border-bottom: 1px solid transparent;
   margin-bottom: 1px;
-  height: $controlbar-height + $padding-base-vertical;
+  height: $controlbar-height;
 
   @media screen and (min-width: $screen-phone) {
     border-bottom: none;

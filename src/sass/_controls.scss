@@ -13,7 +13,7 @@
   // others are defined in media queries
   @include flex(1 100%);
   background: $gray;
-  padding: $padding-base-vertical $padding-small-horizontal;
+  padding: 2px $padding-small-horizontal 4px ;
   font-size: $font-size-mobile-icons;
   display: inline-block;
   @media screen and (min-width: $screen-phone) {
@@ -21,11 +21,12 @@
     height: 100%;
     width: auto;
     margin: 0;
+    padding: 0px $padding-large-horizontal;
   }
   @media all and (min-width: $screen-tablet-portrait) {
     height: $controlbar-height;
     font-size: $font-size-icons;
-    padding: $controlbar-padding $padding-large-horizontal;
+    padding: 3px $padding-large-horizontal;
     border: none;
   }
   ul {
