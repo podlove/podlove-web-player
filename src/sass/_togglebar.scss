@@ -39,7 +39,7 @@
       width: 0;
       height: 0;
       position: absolute;
-      top: $controlbar-height + 3px - $controlbar-active-triangle-size;
+      top: $controlbar-height - $controlbar-active-triangle-size;
       left: ($font-size-mobile-icons/2) - $controlbar-active-triangle-size * 1.5;
       border-left: $controlbar-active-triangle-size * 1.5 solid transparent;
       border-right: $controlbar-active-triangle-size * 1.5 solid transparent;
