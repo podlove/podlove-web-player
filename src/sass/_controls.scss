@@ -22,12 +22,14 @@
     width: auto;
     margin: 0;
     padding: 0px $padding-large-horizontal;
+    @include transition(height 0.3s, font-size 0.3s, ease);
   }
   @media all and (min-width: $screen-tablet-portrait) {
     height: $controlbar-height;
     font-size: $font-size-icons;
     padding: 3px $padding-large-horizontal;
     border: none;
+    @include transition(font-size 0.2s, ease);
   }
   ul {
     display: inline-block;
@@ -41,6 +43,7 @@
   @media screen and (min-width: $screen-phone) {
     li {
       width: auto;
+      @include transition(width 0.2s, ease);
     }
   }
   // General styles for list items in controlbar
