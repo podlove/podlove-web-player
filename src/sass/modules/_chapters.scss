@@ -17,11 +17,20 @@
     }
     tr {
       cursor: pointer;
+      height: 46px;
 
       .chapter-number {
-        padding-left: $padding-base-horizontal - 2px;
-        @media all and (max-width: $screen-tablet-portrait) {
-          padding-left: $padding-small-horizontal - 2px;
+        padding-left: $padding-small-horizontal;
+        text-align: right;
+        width: 20px;
+
+        @media screen and (min-width: $screen-phone) {
+          padding-left: $padding-base-horizontal - 2px;
+          width: 48px;
+        }
+        @media screen and (min-width: $screen-desktop) {
+          padding-left: $padding-base-horizontal;
+          width: 50px;
         }
       }
 
@@ -47,7 +56,7 @@
         background: $brand-primary-chapter-active;
       }
       td {
-        padding: 20px 5px;
+        padding: 0 5px;
         vertical-align: middle;
         cursor: pointer !important;
         a {
@@ -64,11 +73,11 @@
       .chapter-duration {
         font-family: $font-family-monospace;
         white-space: nowrap;
-        padding-right: $padding-base-horizontal - 2px;
         text-align: right;
         color: $brand-primary;
-        @media all and (max-width: $screen-tablet-portrait) {
-          padding-right: $padding-small-horizontal - 2px;
+        padding-right: $padding-small-horizontal;
+        @media all and (min-width: $screen-phone) {
+          padding-right: $padding-base-horizontal - 2px;
         }
       }
     }
@@ -111,18 +120,6 @@
 
   .paused .chapterplay a[rel=player] span {
     background-position: 0 0 !important;
-  }
-
-  .chapternr {
-    min-width: 0px;
-    width: 20px;
-    padding-left: 0px;
-    text-align: center;
-  }
-
-  .chapter-number {
-    width: 50px;
-    text-align: right;
   }
 }
 
