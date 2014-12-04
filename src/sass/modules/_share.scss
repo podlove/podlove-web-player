@@ -7,9 +7,10 @@ $button-width: $share-image-width + ($share-image-border-width * 2);
 .tabs {
   .podlovewebplayer_share {
     .main {
-      margin: 0 $margin-base-horizontal $margin-base-vertical $margin-base-horizontal;
-      @media all and (max-width: $screen-tablet-portrait) {
-        margin: 0 $margin-small-horizontal $margin-small-vertical $margin-small-horizontal;
+      // Top offset for fixed tab-header
+      margin: $tab-header-height $margin-base-horizontal $margin-base-vertical $margin-base-horizontal;
+      @media all and (max-width: $screen-phone) {
+        margin: $tab-header-height $margin-small-horizontal $margin-small-vertical $margin-small-horizontal;
       }
     }
     legend {
