@@ -46,13 +46,28 @@ $profiles: (
   }
   .pwp-contrast-#{$profile} {
     display: inline-block;
-    width: $font-size-contrast-social-icons + 20px;
+    width: $font-size-contrast-social-icons + 8px;
     background: $color;
-    border-radius: 6px;
-    padding: 10px;
+    border-radius: $border-radius-large;
+    padding: 4px;
+    @media screen and (min-width: $screen-tablet-portrait) {
+      width: $font-size-contrast-social-icons + 17px;
+      padding: 7px;
+    }
+    @media screen and (min-width: $screen-desktop) {
+      width: $font-size-contrast-social-icons + 27px;
+      padding: 10px;
+    }
+
     .pwp-#{$profile}:before {
       color: $contrast-icon-font-color;
       font-size: $font-size-contrast-social-icons;
+      @media screen and (min-width: $screen-tablet-portrait) {
+        font-size: $font-size-contrast-social-icons + 3px;
+      }
+      @media screen and (min-width: $screen-desktop) {
+        font-size: $font-size-contrast-social-icons + 7px;
+      }
     }
   }
 }

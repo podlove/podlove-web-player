@@ -56,8 +56,17 @@ $button-width: $share-image-width + ($share-image-border-width * 2);
     }
     ul > li {
       display: inline-block;
-      margin: 0 20px 0 0;
-      width: 90px;
+      width: $font-size-social-icons + 13px;
+      margin: 0 $margin-small-horizontal 0 0;
+      @media screen and (min-width: $screen-tablet-portrait) {
+        width: $font-size-social-icons + 22px;
+        margin: 0 $margin-small-horizontal 0 0;
+      }
+      @media screen and (min-width: $screen-desktop) {
+        width: $font-size-social-icons + 27px;
+        margin: 0 $margin-base-horizontal 0 0;
+      }
+
       &.last-of-type {
         margin-right: 0;
       }

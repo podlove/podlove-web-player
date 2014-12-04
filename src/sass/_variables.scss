@@ -107,8 +107,8 @@ $font-size-large:         ceil($font-size-base * 1.125) !default;
 $font-size-xlarge:        ceil($font-size-base * 1.5) !default;  // ~19.5px
 $font-size-icons:         ceil($font-size-base * 1.63 ) !default;
 $font-size-mobile-icons:  ceil($font-size-base * 2.15) !default;
-$font-size-social-icons:  ceil($font-size-base * 4.375) !default;
-$font-size-contrast-social-icons:  ceil($font-size-base * 4.375) !default;
+$font-size-social-icons:  ceil($font-size-base * 3.46) !default;
+$font-size-contrast-social-icons:  ceil($font-size-base * 3.46) !default; // 45px
 
 $font-size-h1:            floor($font-size-base * 2.5) !default; //  32.5px
 $font-size-h2:            floor($font-size-base * 2.0) !default; //  26px
