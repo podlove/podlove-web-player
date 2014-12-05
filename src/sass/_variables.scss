@@ -102,7 +102,7 @@ $font-family-base:        $font-family-sans-serif !default;
 $font-family-icons:       "podlove";
 
 $font-size-base:          13px !default;
-$font-size-small:         ceil($font-size-base * 0.85) !default; //  11px
+$font-size-small:         floor($font-size-base * 0.847) !default; //  11px
 $font-size-large:         ceil($font-size-base * 1.125) !default;
 $font-size-xlarge:        ceil($font-size-base * 1.5) !default;  // ~19.5px
 $font-size-icons:         ceil($font-size-base * 1.63 ) !default;
@@ -230,4 +230,7 @@ $info-image-width:            400px;
 $share-image-border-width:    10px;
 $share-image-width:           200px;
 $share-image-height:          $share-image-width;
+
+// Download-tab: Image
+$overlay-size:                256px;
 
