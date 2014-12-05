@@ -22,7 +22,7 @@
     width: auto;
     margin: 0;
     padding: 0px $padding-large-horizontal;
-    @include transition(height 0.3s, font-size 0.3s, ease);
+    @include transition(font-size 0.3s, ease);
   }
   @media all and (min-width: $screen-tablet-portrait) {
     height: $controlbar-height;
