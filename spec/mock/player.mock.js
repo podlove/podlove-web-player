@@ -1,7 +1,7 @@
 module.exports = {
   time: 0,
-  HAVE_ENOUGH_DATA: 1,
-  readyState: 1,
+  HAVE_ENOUGH_DATA: 4,
+  readyState: 4,
   setCurrentTime: function (time) {
     this.time = time;
   },
