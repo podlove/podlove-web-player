@@ -66,7 +66,7 @@ describe('Module: url', function () {
     });
   });
 
-  describe('Method: checkCurrent', function () {
+  xdescribe('Method: checkCurrent', function () {
 
     var timecode;
 
