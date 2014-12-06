@@ -7,9 +7,10 @@ $button-width: $share-image-width + ($share-image-border-width * 2);
 .tabs {
   .podlovewebplayer_share {
     .main {
-      margin: 0 $margin-base-horizontal $margin-base-vertical $margin-base-horizontal;
-      @media all and (max-width: $screen-tablet-portrait) {
-        margin: 0 $margin-small-horizontal $margin-small-vertical $margin-small-horizontal;
+      // Top offset for fixed tab-header
+      margin: $tab-header-height $margin-base-horizontal $margin-base-vertical $margin-base-horizontal;
+      @media all and (max-width: $screen-phone) {
+        margin: $tab-header-height $margin-small-horizontal $margin-small-vertical $margin-small-horizontal;
       }
     }
     legend {
@@ -17,11 +18,11 @@ $button-width: $share-image-width + ($share-image-border-width * 2);
     }
     .share-button-wrapper {
       margin: 0 auto;
-      width: $button-width * 2;
+      width: $button-width * 2 + $margin-base-vertical;
     }
     @media screen and (max-width: $button-width * 2 + ($margin-base-horizontal * 2)) {
       .share-button-wrapper {
-        width: $button-width;
+       width: 100%;
       }
       .button-container {
         display: block;
@@ -29,34 +30,58 @@ $button-width: $share-image-width + ($share-image-border-width * 2);
     }
 
     footer {
-      padding: $padding-large-vertical $padding-small-horizontal;
+      padding: 20px $padding-base-horizontal $padding-base-horizontal;
+      @media screen and (min-width: $screen-desktop) {
+        padding: $padding-large-vertical $padding-base-horizontal;
+      }
       > div {
         width: 70%;
         margin: 0 auto;
       }
       h3 {
-        margin: 0 $margin-base-vertical 15px $margin-base-vertical;
+        margin: 0 0 $margin-small-vertical 0;
+        @media screen and (min-width: $screen-desktop) {
+          margin: 0 0 15px 0;
+        }
       }
       label {
         display: block;
       }
       input {
         @include border-radius(5px);
-        height: 40px;
         border: 1px solid $gray-lighter;
         width: 100%;
         padding: 8px;
         text-align: center;
         color: $gray-default;
+        height: 30px;
+        @media screen and (min-width: $screen-desktop) {
+          height: 40px;
+        }
       }
     }
     ul {
-      margin: 0 0 32px 0;
+      margin: 0 0 $margin-small-horizontal 0;
+      @media screen and (min-width: $screen-desktop) {
+        margin: 0 0 32px 0;
+      }
     }
     ul > li {
       display: inline-block;
-      margin: 0 20px 0 0;
-      width: 90px;
+      width: $font-size-social-icons + 13px;
+      margin: 0 $margin-small-horizontal 0 0;
+      &:last-of-type {
+        margin-right: 0;
+      }
+      @media screen and (min-width: $screen-tablet-portrait) {
+        width: $font-size-social-icons + 22px;
+        margin: 0 $margin-small-horizontal 0 0;
+      }
+      @media screen and (min-width: $screen-desktop) {
+        width: $font-size-social-icons + 27px;
+        margin: 0 $margin-base-horizontal 0 0;
+      }
+
       &.last-of-type {
         margin-right: 0;
       }
@@ -71,12 +96,19 @@ $button-width: $share-image-width + ($share-image-border-width * 2);
 .share-select-option {
   display: inline-block;
   @include border-radius(3px);
-  width: $button-width;
+  width: 50%;
   background-image: none;
   padding: 0;
   background-color: $tab-background-color;
   border: solid $share-image-border-width $tab-background-color;
   cursor: pointer;
+  @media screen and (min-width: $screen-phone) {
+  width: $button-width;
+    &:first-of-type {
+      margin-right: $margin-base-vertical;
+    }
+  }
+
   &:hover {
     background-color: $default-link-color;
     border: solid $share-image-border-width $default-link-color;
@@ -97,8 +129,11 @@ $button-width: $share-image-width + ($share-image-border-width * 2);
     color: $contrast-link-color;
   }
   img {
-    height: $share-image-height;
-    width: $share-image-width;
+    height: auto;
+    width: 100%;
+    @media screen and (max-width: 220px) {
+      display: none;
+    }
   }
 }
 

@@ -4,29 +4,30 @@
 
 .info {
   .main {
-    width: 60%;
     @include flex(1 100%);
     @include order(1);
   }
   aside {
     @include flex(1 100%);
     @include order(2);
-    width: 40%;
   }
   // The aside element will move under the section (.main) element
-  @media all and (min-width: 600px) {
+  @media all and (min-width: $screen-phone) {
     .aside {
       @include flex(1 0px);
+      margin-top: $margin-base-vertical;
     }
   }
   // The aside element will move next to the section (.main) element
-  @media all and (min-width: 800px) {
+  @media all and (min-width: $screen-tablet-portrait) {
     .main   {
       @include flex(2 0px);
       @include order(1);
     }
     aside   {
       @include order(2);
+      // Top offset for fixed tab-header
+      margin-top: $tab-header-height !important;
     }
     footer  {
       @include order(3);

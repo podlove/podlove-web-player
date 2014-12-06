@@ -82,7 +82,7 @@ progress[aria-valuenow]:before  {
   .progress-info {
     @include pwp-flexbox();
     width: 100%;
-    height: $progress-height / 2;
+    height: $progress-height / 1.5;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -101,27 +101,24 @@ progress[aria-valuenow]:before  {
       }
     }
     .badge {
-      line-height: 33px;
       display: block;
       float: left;
-      margin-top: 0.77em;
+      margin-top: 8px;
       color: $contrast-default-color;
       background-color: $gray;
 
-      // > 768px
-      @media all and (max-width: $screen-tablet) {
+      @media all and (min-width: $screen-desktop) {
         font-size: $font-size-small;
-        line-height: 32px;
-        min-width: 33px;
-        height: 33px;
+        line-height: 30px;
+        min-width: 30px;
+        height: 30px;
         padding: 0;
-        margin-top: 14px;
+        margin-top: 5px;
       }
-
     }
     .chapter-title {
       display: block;
-      padding: 19px 20px 0 15px;
+      padding: 11px 20px 0 15px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -130,14 +127,14 @@ progress[aria-valuenow]:before  {
   }
   .time {
     font-family: $font-family-monospace;
-    padding-top: 20px;
+    padding-top: 12px;
     height: 100%;
     vertical-align: middle;
 
     // > 768px
     @media all and (max-width: $screen-tablet) {
       font-size: $font-size-small;
-      padding-top: 22px;
+      padding-top: 12px;
     }
 
     &:first-of-type {
@@ -191,7 +188,7 @@ progress[aria-valuenow]:before  {
     background-repeat: repeat-x;
     margin: 0 auto;
     position: absolute;
-    top: 12px;
+    top: 0;
     left: 0;
   }
   &:hover {
@@ -206,7 +203,7 @@ progress[aria-valuenow]:before  {
 
 
 .buffer {
-  top: $progress-bar-height + 16px;
+  top: $progress-bar-height + 3px;
   left: 0;
   position: absolute;
   width: 100%;
@@ -218,7 +215,7 @@ progress[aria-valuenow]:before  {
 .handle {
   display: block;
   position: absolute;
-  top: 12px;
+  top: 0;
   margin-left: - ($progress-bar-height /2);
   background: transparent;
   height: $progress-bar-height;

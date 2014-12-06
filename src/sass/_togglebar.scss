@@ -39,18 +39,23 @@
       width: 0;
       height: 0;
       position: absolute;
-      top: $controlbar-height + 2px - $controlbar-active-triangle-size * 1.5;
-      left: ($font-size-mobile-icons/2) - $controlbar-active-triangle-size * 1.5;
-      border-left: $controlbar-active-triangle-size * 1.5 solid transparent;
-      border-right: $controlbar-active-triangle-size * 1.5 solid transparent;
-      border-bottom: $controlbar-active-triangle-size * 1.5 solid white;
+      top: $controlbar-height + 3px - $controlbar-active-triangle-size;
+      left: ($font-size-mobile-icons/2) - $controlbar-active-triangle-size * 1.3;
+      border-left: $controlbar-active-triangle-size * 1.3 solid transparent;
+      border-right: $controlbar-active-triangle-size * 1.3 solid transparent;
+      border-bottom: $controlbar-active-triangle-size * 1.3 solid white;
 
-      @media screen and (min-width: $screen-tablet-portrait) {
-        top: $controlbar-height + 2px - $controlbar-active-triangle-size - $controlbar-padding;
-        left: ($font-size-icons/2) - $controlbar-active-triangle-size;
+      @media screen and (min-width: $screen-phone)  {
+        top: $controlbar-height + 1px - $controlbar-active-triangle-size;
+        left: ($font-size-mobile-icons/2) - $controlbar-active-triangle-size;
         border-left: $controlbar-active-triangle-size solid transparent;
         border-right: $controlbar-active-triangle-size solid transparent;
         border-bottom: $controlbar-active-triangle-size solid white;
+      }
+
+      @media screen and (min-width: $screen-tablet-portrait) {
+        top: $controlbar-height - 3px - $controlbar-active-triangle-size;
+        left: ($font-size-icons/2) - $controlbar-active-triangle-size;
       }
     }
   }
