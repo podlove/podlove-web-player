@@ -35,7 +35,8 @@ function Timeline(player, data) {
   this.duration = data.duration;
   this.endTime = data.duration;
   this.bufferedTime = 0;
-  this.isPaused = player.paused;
+  this.resume = player.paused;
+  this.seeking = false;
 }
 
 module.exports = Timeline;
@@ -70,7 +71,9 @@ Timeline.prototype.playRange = function (range) {
 
 Timeline.prototype.update = function (event) {
   console.log('Timeline', 'update', event);
-  if (event) {
+  this.setBufferedTime(event);
+
+  if (event && event.type === 'timeupdate') {
     this.currentTime = this.player.currentTime;
   }
 
@@ -115,37 +118,57 @@ Timeline.prototype.isValidTime = function (time) {
 Timeline.prototype.setTime = function (time) {
   if (!this.isValidTime(time)) {
     console.warn('Timeline', 'setTime', 'time out of bounds', time);
-    return this.player.currentTime;
+    return this.currentTime;
   }
 
-  if (this.player.readyState == this.player.HAVE_ENOUGH_DATA) {
+  console.log('Timeline', 'setTime', 'time', time);
+  this.currentTime = time;
+  this.update();
+
+  // avoid event hellfire
+  if (this.seeking) { return this.currentTime; }
+
+  console.log('canplay', 'setTime', 'playerState', this.player.readyState);
+  if (this.player.readyState === this.player.HAVE_ENOUGH_DATA) {
     this.player.setCurrentTime(time);
-    this.currentTime = time;
-    return this.player.currentTime;
+    return this.currentTime;
   }
-  else {
-    $(this.player).one('canplay', function () {
-      this.setCurrentTime(time);
-    });
-  }
+
+  // TODO visualize buffer state
+  // $(document).find('.play').css({color:'red'});
+  $(this.player).one('canplay', function () {
+    // TODO remove buffer state visual
+    // $(document).find('.play').css({color:'white'});
+    console.log('Player', 'canplay', 'buffered', time);
+    this.setCurrentTime(time);
+  });
+
+  return this.currentTime;
 };
 
 Timeline.prototype.seek = function (time) {
+  console.log('seek', 'seek', this.resume);
+  this.seeking = true;
   this.currentTime = cap(time, 0, this.duration);
   this.setTime(this.currentTime);
-  this.update();
 };
 
 Timeline.prototype.seekStart = function () {
-  this.isPaused = this.player.paused;
-  if (!this.isPaused) {
+  console.log('seek', 'start', this.resume);
+  this.resume = !this.player.paused; // setting this to false makes Safari happy
+  if (this.resume) {
     this.player.pause();
   }
 };
 
 Timeline.prototype.seekEnd = function () {
-  if (!this.isPaused) {
+  console.log('seek', 'end', this.resume);
+  this.seeking = false;
+  this.setTime(this.currentTime); //force latest position in track
+  if (this.resume) {
+    console.log('seek', 'end', 'resume', this.currentTime);
     this.player.play();
+    this.resume = this.player.paused;
   }
 };
 
@@ -161,6 +184,10 @@ Timeline.prototype.getTime = function () {
 };
 
 Timeline.prototype.getBuffered = function () {
+  if (isNaN(this.bufferedTime)) {
+    console.warn('Timeline', 'getBuffered', 'bufferedTime is not a number');
+    return 0;
+  }
   return this.bufferedTime;
 };
 
@@ -183,8 +210,9 @@ Timeline.prototype.setBufferedTime = function (e) {
   else if (e && e.lengthComputable && e.total != 0) {
     buffered = e.loaded / e.total * target.duration;
   }
-  console.log('Timeline', 'setBufferedTime', buffered);
-  this.bufferedTime = cap(buffered, 0, target.duration);
+  var cappedTime = cap(buffered, 0, target.duration);
+  console.log('Timeline', 'setBufferedTime', cappedTime);
+  this.bufferedTime = cappedTime;
 };
 
 Timeline.prototype.rewind = function () {
