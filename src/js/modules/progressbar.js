@@ -74,24 +74,33 @@ var _update = function (timeline) {
  */
 ProgressBar.prototype.render = function () {
 
-  // progress info
+  // time elements
+  var initialTime = tc.fromTimeStamp(this.timeline.getTime());
+  this.currentTime = renderTimeElement('current', initialTime);
   this.durationTimeElement = renderDurationTimeElement(this);
-  this.currentTime = renderTimeElement('current', '00:00:00');
+
+  // progress info
   var progressInfo = renderProgressInfo(this);
+  updateTimes(this);
 
   // timeline and buffer bars
   var progress = $('<div class="progress"></div>');
   var timelineBar = $('<progress class="current"></progress>')
-      .attr({ min: 0, max: this.duration });
-  var handle = $('<div class="handle"><div class="inner-handle"></div></div>');
+      .attr({ min: 0, max: this.duration});
   var buffer = $('<progress class="buffer"></progress>')
       .attr({min: 0, max: this.duration})
-      .css({height: '1px'});
+      .css({height: '1px'}); // TODO move height declaration to SASS
+  var handle = $('<div class="handle"><div class="inner-handle"></div></div>');
 
   progress
     .append(timelineBar)
     .append(buffer)
     .append(handle);
+
+  this.progress = timelineBar;
+  this.buffer = buffer;
+  this.handle = handle;
+  this.setProgress(this.timeline.getTime());
 
   if (this.chapterModule) {
     var chapterMarkers = this.chapterModule.chapters.map(renderChapterMarker, this);
@@ -106,22 +115,13 @@ ProgressBar.prototype.render = function () {
     .append(progress)
   ;
 
-
   this.bar = bar;
-  this.progress = timelineBar;
-  this.buffer = buffer;
-  this.handle = handle;
-
-  updateTimes(this);
-  this.setHandlePosition(this.timeline);
-
   return bar;
 };
 
 ProgressBar.prototype.addEvents = function() {
-  var mouseIsDown = false, mouseIsOver = false;
-  var newTime = this.timeline.currentTime;
-  var duration = this.timeline.duration;
+  var mouseIsDown = false;
+  var timeline = this.timeline;
   var progress = this.progress;
 
   var calculateNewTime = function (pageX) {
@@ -130,70 +130,42 @@ ProgressBar.prototype.addEvents = function() {
     var offset = progress.offset();
     var pos = cap(pageX - offset.left, 0, width);
     var percentage = (pos / width);
-    return percentage * duration;
+    return percentage * timeline.duration;
   };
 
-  var updateTime = function (newTime) {
-    if (newTime === this.timeline.currentTime) { return; }
-    this.setProgress(newTime);
-    this.timeline.seek(newTime);
-  }.bind(this);
-
-  var handleMouseMove = function (event) {
-    if (typeof duration !== 'number' || !mouseIsDown ) { return; }
-    newTime = calculateNewTime(event.pageX);
-    updateTime(newTime);
-  };
-
-  var deRegisterMouseHandlers = function () {
-    console.info('deRegisterMouseHandlers');
+  var handleMouseUp = function () {
     mouseIsDown = false;
-    this.timeline.seekEnd();
+    timeline.seekEnd();
     $(document)
-      .unbind('mousup.dur')
+      .unbind('mouseup.dur')
       .unbind('mousemove.dur');
-  }.bind(this);
+  };
 
-  var mouseDownHandler = function (event) {
+  var handleMouseDown = function (event) {
     // only handle left clicks
     if (event.which !== 1) { return; }
 
     mouseIsDown = true;
+    timeline.seekStart(); // TODO prevent call to seekStart when user taps in progressbar
     handleMouseMove(event);
-    this.timeline.seekStart();
 
     $(document)
       .bind('mousemove.dur', handleMouseMove)
-      .bind('mouseup.dur', deRegisterMouseHandlers);
+      .bind('mouseup.dur', handleMouseUp);
 
     return false;
-  }.bind(this);
-
-  var mouseEnterHandler = function() {
-    mouseIsOver = true;
-    $(document).bind('mousemove.dur', handleMouseMove);
   };
 
-  var mouseLeaveHandler = function() {
-    mouseIsOver = false;
-    if (mouseIsDown) { return; }
-
-    $(document)
-      .unbind('mousup.dur')
-      .unbind('mousemove.dur');
+  var handleMouseMove = function (event) {
+    if (typeof timeline.duration !== 'number' || !mouseIsDown ) { return; }
+    var newTime = calculateNewTime(event.pageX);
+    if (newTime === timeline.getTime()) { return; }
+    timeline.seek(newTime);
   };
 
   // handle clicks and drag in progressbar and on handle
-  this.progress
-    .bind('mousedown', mouseDownHandler)
-    .bind('mouseenter', mouseEnterHandler)
-    .bind('mouseleave', mouseLeaveHandler);
-
-  this.handle
-    .bind('mousedown', mouseDownHandler)
-    .bind('mouseenter', mouseEnterHandler)
-    .bind('mouseleave', mouseLeaveHandler)
-
+  this.progress.bind('mousedown', handleMouseDown);
+  this.handle.bind('mousedown', handleMouseDown);
 };
 
 function renderProgressInfo(progressBar) {
