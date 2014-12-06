@@ -5,7 +5,10 @@
 .downloads {
   footer {
     > form {
-      padding: $padding-large-vertical 0;
+      padding: $padding-base-vertical 0;
+      @media screen and (min-width: $screen-phone) {
+        padding: $padding-large-vertical 0;
+      }
     }
   }
 }
@@ -63,10 +66,14 @@
   &.button-submit {
     display: block;
     margin: 0 auto $margin-base-horizontal auto;
-    padding: 18px;
+    padding: 15px;
     font-size: $font-size-large;
+    @media screen and (max-width: $screen-tiny-phone) {
+      width: 95vw;
+    }
     @media screen and (min-width: $screen-tiny-phone) {
       font-size: $font-size-xlarge;
+      padding: 18px;
     }
   }
   // Label of download button
@@ -101,10 +108,13 @@
   font-size: $font-size-small;
   line-height: 1.4;
   color: $gray !important;
+  @media screen and (max-width: $screen-tiny-phone) {
+    width: 95vw;
+  }
   @media screen and (min-width: $screen-phone) {
     font-size: $font-size-base;
     height: 40px;
-    margin: 0 auto $margin-base-horizontal auto;
+    margin: 0 auto $margin-small-vertical auto;
   }
   @media screen and (min-width: $screen-desktop) {
     height: 40px;
