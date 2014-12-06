@@ -279,7 +279,7 @@ Chapters.prototype.next = function () {
   }
   console.log('Chapters', 'next', 'chapter', this.currentChapter);
   this.playCurrentChapter();
-  return this.next;
+  return next;
 };
 
 Chapters.prototype.previous = function () {

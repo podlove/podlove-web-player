@@ -7,7 +7,6 @@ var getItem = function () {
   return +localStorage[this.key];
 };
 
-
 var removeItem = function () {
   return localStorage.removeItem(this.key);
 };
@@ -21,7 +20,7 @@ var update = function () {
   this.setItem(this.timeline.getTime());
 };
 
-function SaveTime (timeline, params) {
+function SaveTime(timeline, params) {
   this.timeline = timeline;
   this.key = prefix + params.permalink;
   this.getItem = getItem.bind(this);
@@ -30,15 +29,14 @@ function SaveTime (timeline, params) {
   this.update = update.bind(this);
 
   // set the time on start
-  if( this.hasItem() ){
-    timeline.setTime( this.getItem());
+  if (this.hasItem()) {
+    timeline.setTime(this.getItem());
   }
 }
 
 SaveTime.prototype.setItem = function (value) {
   return localStorage[this.key] = value;
 };
-
 
 module.exports = SaveTime;
 

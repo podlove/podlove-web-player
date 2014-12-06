@@ -17,6 +17,7 @@
  ]
  */
 var tc = require('./timecode');
+var cap = require('./util').cap;
 
 /**
  *
@@ -34,6 +35,8 @@ function Timeline(player, data) {
   this.duration = data.duration;
   this.endTime = data.duration;
   this.bufferedTime = 0;
+  this.resume = player.paused;
+  this.seeking = false;
 }
 
 module.exports = Timeline;
@@ -68,23 +71,16 @@ Timeline.prototype.playRange = function (range) {
 
 Timeline.prototype.update = function (event) {
   console.log('Timeline', 'update', event);
-  var player = event.currentTarget,
-    rewind = (this.currentTime > player.currentTime),
-    start = this.currentTime,
-    end = player.currentTime;
+  this.setBufferedTime(event);
+
+  if (event && event.type === 'timeupdate') {
+    this.currentTime = this.player.currentTime;
+  }
 
   var call = function call(i, listener) {
     listener(this);
   }.bind(this);
 
-  if (rewind) {
-    start = end;
-    end = this.currentTime;
-  }
-
-  this.emitEventsBetween(start, end);
-  this.currentTime = player.currentTime;
-  console.log('Listeners', this.listeners);
   $.each(this.listeners, call);
   if (this.currentTime >= this.endTime) {
     this.player.stop();
@@ -122,16 +118,57 @@ Timeline.prototype.isValidTime = function (time) {
 Timeline.prototype.setTime = function (time) {
   if (!this.isValidTime(time)) {
     console.warn('Timeline', 'setTime', 'time out of bounds', time);
-    return this.player.currentTime;
+    return this.currentTime;
   }
-  if (this.player.readyState == this.player.HAVE_ENOUGH_DATA) {
+
+  console.log('Timeline', 'setTime', 'time', time);
+  this.currentTime = time;
+  this.update();
+
+  // avoid event hellfire
+  if (this.seeking) { return this.currentTime; }
+
+  console.log('canplay', 'setTime', 'playerState', this.player.readyState);
+  if (this.player.readyState === this.player.HAVE_ENOUGH_DATA) {
     this.player.setCurrentTime(time);
-    this.currentTime = time;
-    return this.player.currentTime;
-  } else {
-    $(this.player).one('canplay', function () {
-      this.setCurrentTime(time);
-    });
+    return this.currentTime;
+  }
+
+  // TODO visualize buffer state
+  // $(document).find('.play').css({color:'red'});
+  $(this.player).one('canplay', function () {
+    // TODO remove buffer state visual
+    // $(document).find('.play').css({color:'white'});
+    console.log('Player', 'canplay', 'buffered', time);
+    this.setCurrentTime(time);
+  });
+
+  return this.currentTime;
+};
+
+Timeline.prototype.seek = function (time) {
+  console.log('seek', 'seek', this.resume);
+  this.seeking = true;
+  this.currentTime = cap(time, 0, this.duration);
+  this.setTime(this.currentTime);
+};
+
+Timeline.prototype.seekStart = function () {
+  console.log('seek', 'start', this.resume);
+  this.resume = !this.player.paused; // setting this to false makes Safari happy
+  if (this.resume) {
+    this.player.pause();
+  }
+};
+
+Timeline.prototype.seekEnd = function () {
+  console.log('seek', 'end', this.resume);
+  this.seeking = false;
+  this.setTime(this.currentTime); //force latest position in track
+  if (this.resume) {
+    console.log('seek', 'end', 'resume', this.currentTime);
+    this.player.play();
+    this.resume = this.player.paused;
   }
 };
 
@@ -143,42 +180,39 @@ Timeline.prototype.stopAt = function (time) {
 };
 
 Timeline.prototype.getTime = function () {
-  return this.player.currentTime;
+  return this.currentTime;
 };
 
 Timeline.prototype.getBuffered = function () {
+  if (isNaN(this.bufferedTime)) {
+    console.warn('Timeline', 'getBuffered', 'bufferedTime is not a number');
+    return 0;
+  }
   return this.bufferedTime;
 };
 
 Timeline.prototype.setBufferedTime = function (e) {
-  var
-    target = (e != undefined) ? e.target : this.player,
-    percent = null;
+  var target = (e != undefined) ? e.target : this.player;
+  var buffered = 0;
 
   // newest HTML5 spec has buffered array (FF4, Webkit)
   if (target && target.buffered && target.buffered.length > 0 && target.buffered.end && target.duration) {
-    // TODO: account for a real array with multiple values (only Firefox 4 has this so far)
-    percent = target.buffered.end(0) / target.duration;
+    buffered = target.buffered.end(target.buffered.length-1);
   }
   // Some browsers (e.g., FF3.6 and Safari 5) cannot calculate target.bufferered.end()
   // to be anything other than 0. If the byte count is available we use this instead.
   // Browsers that support the else if do not seem to have the bufferedBytes value and
   // should skip to there. Tested in Safari 5, Webkit head, FF3.6, Chrome 6, IE 7/8.
   else if (target && target.bytesTotal != undefined && target.bytesTotal > 0 && target.bufferedBytes != undefined) {
-    percent = target.bufferedBytes / target.bytesTotal;
+    buffered = target.bufferedBytes / target.bytesTotal * target.duration;
   }
   // Firefox 3 with an Ogg file seems to go this way
   else if (e && e.lengthComputable && e.total != 0) {
-    percent = e.loaded / e.total;
+    buffered = e.loaded / e.total * target.duration;
   }
-
-  // finally update the progress bar
-  if (percent !== null) {
-    percent = Math.min(1, Math.max(0, percent));
-  }
-
-  this.bufferedTime = percent;
-  console.log('Timeline', 'setBufferedTime', percent);
+  var cappedTime = cap(buffered, 0, target.duration);
+  console.log('Timeline', 'setBufferedTime', cappedTime);
+  this.bufferedTime = cappedTime;
 };
 
 Timeline.prototype.rewind = function () {
@@ -249,7 +283,6 @@ function transformChapter(chapter) {
 /**
  * add `end` property to each simple chapter,
  * needed for proper formatting
- * @param {Array} chapters
  * @param {number} duration
  * @returns {function}
  */

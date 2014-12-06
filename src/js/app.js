@@ -308,12 +308,8 @@ var addBehavior = function (player, params, wrapper) {
     .on('timelineElement', function (event) {
       console.log(event.currentTarget.id, event);
     })
-    .on('timeupdate', function (event) {
+    .on('timeupdate progress', function (event) {
       timeline.update(event);
-      timeline.setBufferedTime(event);
-    })
-    .on('progress', function (event) {
-      timeline.setBufferedTime(event);
     })
     // update play/pause status
     .on('play', function () {})
