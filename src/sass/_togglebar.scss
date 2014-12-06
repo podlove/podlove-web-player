@@ -46,7 +46,7 @@
       border-bottom: $controlbar-active-triangle-size * 1.3 solid white;
 
       @media screen and (min-width: $screen-phone)  {
-        top: $controlbar-height - $controlbar-active-triangle-size;
+        top: $controlbar-height + 1px - $controlbar-active-triangle-size;
         left: ($font-size-mobile-icons/2) - $controlbar-active-triangle-size;
         border-left: $controlbar-active-triangle-size solid transparent;
         border-right: $controlbar-active-triangle-size solid transparent;
