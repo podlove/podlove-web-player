@@ -76,12 +76,7 @@ Timeline.prototype.update = function (event) {
   if (event && event.type === 'timeupdate') {
     this.currentTime = this.player.currentTime;
   }
-
-  var call = function call(i, listener) {
-    listener(this);
-  }.bind(this);
-
-  $.each(this.listeners, call);
+  this.listeners.forEach(call, this);
   if (this.currentTime >= this.endTime) {
     this.player.stop();
   }
@@ -300,3 +295,8 @@ function addType(type) {
     return element;
   };
 }
+
+function call(listener) {
+  listener(this);
+}
+
