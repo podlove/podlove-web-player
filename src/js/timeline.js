@@ -163,8 +163,8 @@ Timeline.prototype.seekEnd = function () {
   if (this.resume) {
     console.log('seek', 'end', 'resume', this.currentTime);
     this.player.play();
-    this.resume = this.player.paused;
   }
+  this.resume = !this.player.paused; // seekstart may not be called
 };
 
 Timeline.prototype.stopAt = function (time) {
