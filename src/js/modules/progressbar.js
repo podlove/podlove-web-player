@@ -137,7 +137,9 @@ ProgressBar.prototype.addEvents = function() {
     mouseIsDown = false;
     timeline.seekEnd();
     $(document)
+      .unbind('touchend.dur')
       .unbind('mouseup.dur')
+      .unbind('touchmove.dur')
       .unbind('mousemove.dur');
   };
 
@@ -146,15 +148,20 @@ ProgressBar.prototype.addEvents = function() {
     if (event.which !== 1) { return; }
 
     mouseIsDown = true;
-    timeline.seekStart(); // TODO prevent call to seekStart when user taps in progressbar
     handleMouseMove(event);
-
+    seekStart();
     $(document)
-      .bind('mousemove.dur', handleMouseMove)
-      .bind('mouseup.dur', handleMouseUp);
-
+      .bind('mouseup.dur', handleMouseUp)
+      .bind('touchend.dur', handleMouseUp);
     return false;
   };
+
+  function seekStart () {
+    timeline.seekStart();
+    $(document)
+      .bind('mousemove.dur', handleMouseMove)
+      .bind('touchmove.dur', handleMouseMove);
+  }
 
   var handleMouseMove = function (event) {
     if (typeof timeline.duration !== 'number' || !mouseIsDown ) { return; }
@@ -163,9 +170,14 @@ ProgressBar.prototype.addEvents = function() {
     timeline.seek(newTime);
   };
 
-  // handle clicks and drag in progressbar and on handle
-  this.progress.bind('mousedown', handleMouseDown);
-  this.handle.bind('mousedown', handleMouseDown);
+  // handle click and drag with mouse or touch in progressbar and on handle
+  this.progress
+    .bind('touchstart', handleMouseDown)
+    .bind('mousedown', handleMouseDown);
+
+  this.handle
+    .bind('touchstart', handleMouseDown)
+    .bind('mousedown', handleMouseDown);
 };
 
 function renderProgressInfo(progressBar) {
