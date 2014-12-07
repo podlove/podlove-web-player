@@ -1,12 +1,13 @@
 .marker {
   $marker-width: 2px;
 
-  display: block;
+  z-index: 99;
   position: absolute;
-  top: 12px;
+  top: 0;
+
+  display: block;
   height: $progress-bar-height;
   width: $marker-width;
   margin-left: - ($marker-width/2);
   background: $black;
-  z-index: 99;
 }
