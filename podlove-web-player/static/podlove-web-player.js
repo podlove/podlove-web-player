@@ -623,28 +623,28 @@ if (typeof String.prototype.trim !== 'function') {
     marks = list.find('tr');
     // fix height of summary for better toggability
     summary.each(function () {
-      $(this).data('height', $(this).height());
+      $(this).data('height', $(this).height() + 10);
       if (!$(this).hasClass('active')) {
-        $(this).height(0);
+        $(this).height('0px');
       } else {
-        $(this).height($(this).find('div.summarydiv').outerHeight());
+        $(this).height($(this).find('div.summarydiv').height() + 10 + 'px');
       }
     });
     chapterdiv.each(function () {
       $(this).data('height', $(this).find('.podlovewebplayer_chapters').height());
       if (!$(this).hasClass('active')) {
-        $(this).height(0);
+        $(this).height('0px');
       } else {
-        $(this).height($(this).find('.podlovewebplayer_chapters').outerHeight());
+        $(this).height($(this).find('.podlovewebplayer_chapters').height() + 'px');
       }
     });
     if (metainfo.length === 1) {
       metainfo.find('a.infowindow').click(function () {
         summary.toggleClass('active');
         if (summary.hasClass('active')) {
-          summary.height(summary.find('div.summarydiv').outerHeight());
+          summary.height(summary.find('div.summarydiv').height() + 10 + 60 + 'px');
         } else {
-          summary.css('height', 0);
+          summary.css('height', '0px');
         }
         return false;
       });
