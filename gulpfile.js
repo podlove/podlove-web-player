@@ -3,7 +3,7 @@ var gulp = require('gulp')
   , compass = require('gulp-compass')
   , autoprefixer = require('gulp-autoprefixer')
   , minifycss = require('gulp-minify-css')
-  , jshint = require('gulp-jshint')
+  , eslint = require('gulp-eslint')
   , uglify = require('gulp-uglify')
   , imagemin = require('gulp-imagemin')
   , rename = require('gulp-rename')
@@ -24,6 +24,15 @@ var gulp = require('gulp')
   , dest = 'dist/'
   , external = 'vendor/'
   ;
+
+gulp.task('lint', function () {
+  // Note: To have the process exit with an error code (1) on
+  //  lint error, return the stream and pipe to failOnError last.
+  return gulp.src([source + 'js/**/*.js'])
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(eslint.failOnError());
+});
 
 /**
  * Run test once and exit
@@ -59,8 +68,6 @@ gulp.task('styles', function() {
 
 gulp.task('moderator', function() {
   return gulp.src(source + 'js/moderator.js')
-    .pipe(jshint('.jshintrc'))
-    .pipe(jshint.reporter('default'))
     .pipe(browserify({ insertGlobals : true, debug : true }))
     .pipe(rename('podlove-web-moderator.js'))
     .pipe(gulp.dest(dest + 'js'))
@@ -72,8 +79,6 @@ gulp.task('moderator', function() {
 
 gulp.task('player', function() {
   return gulp.src(source + 'js/app.js')
-    .pipe(jshint('.jshintrc'))
-    .pipe(jshint.reporter('default'))
     .pipe(browserify({ insertGlobals : true, debug : true }))
     .pipe(rename('podlove-web-player.js'))
     .pipe(gulp.dest(dest + 'js'))
@@ -144,7 +149,7 @@ gulp.task('build', ['clean'], function() {
 });
 
 // Default task
-gulp.task('default', ['test'], function() {
+gulp.task('default', ['lint', 'test'], function() {
   gulp.start('build');
 });
 
