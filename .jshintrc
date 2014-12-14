@@ -13,6 +13,7 @@
   "noarg": true,
   "globalstrict": true,
   "laxcomma": true,
+  "validthis": true,
   "quotmark": "single",
   "regexp": true,
   "undef": true,
