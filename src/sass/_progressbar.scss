@@ -78,7 +78,7 @@ progress[aria-valuenow]:before  {
   background-color: $progress-bg;
   width: 100%;
   height: $progress-height;
-  font-weight: $font-weight-lighter;
+  font-weight: $font-weight-light;
   .progress-info {
     @include pwp-flexbox();
     width: 100%;
@@ -122,11 +122,12 @@ progress[aria-valuenow]:before  {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      font-weight: $font-weight-bolder;
+      font-weight: $font-weight-bold;
     }
   }
   .time {
     font-family: $font-family-monospace;
+    font-weight: $font-weight-normal;
     padding-top: 12px;
     height: 100%;
     vertical-align: middle;

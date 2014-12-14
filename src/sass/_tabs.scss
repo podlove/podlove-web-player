@@ -3,6 +3,7 @@
 // --------------------------------------------------
 $tab-max-height: 500px;
 $tab-header-height: 70px;
+$tab-header-height-mobile: 50px;
 
 .tabs {
   color: $text-color;
@@ -75,14 +76,19 @@ $tab-header-height: 70px;
     height: $tab-header-height;
     @media screen and (max-width: $screen-phone) {
       padding: $padding-base-vertical 0 0 0 !important;
-      height: $tab-header-height / 1.15;
+      height: $tab-header-height-mobile;
     }
   }
   .tab-headline {
-    font-weight: 300;
+    font-weight: $font-weight-light;
+    margin: 0 $margin-base-horizontal;
+    font-size: $font-size-small-h2;
+
+    @media screen and (min-width: $screen-tablet) {
+      font-size: floor($font-size-h2 * 1.14);
+    }
   }
   h2 {
-    margin: 0 $margin-base-horizontal;
     i {
       padding-right: 10px;
     }
@@ -97,6 +103,9 @@ $tab-header-height: 70px;
     @include order(2);
     // Offset for fixed header
     margin-top: $tab-header-height;
+    @media screen and (max-width: $screen-phone) {
+      margin-top: $tab-header-height-mobile;
+    }
   }
   footer {
     @include flex(1 100%);
@@ -117,9 +126,6 @@ $tab-header-height: 70px;
     h4,
     p {
       margin: $margin-small-vertical $margin-small-horizontal;
-    }
-    h2 {
-      font-size: $font-size-small-h2;
     }
   }
 }

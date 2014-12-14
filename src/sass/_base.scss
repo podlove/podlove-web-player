@@ -42,7 +42,6 @@ a {
   color: $default-link-color;
   text-decoration: none;
   background: transparent;
-  font-weight: $font-weight-bolder;
 
   &:hover,
   &:focus {
@@ -52,18 +51,6 @@ a {
   }
 }
 
-h1 a,
-h2 a,
-h3 a,
-h4 a,
-h5 a {
-  font-weight: $font-weight-normal;
-}
-
-em {
-  font-weight: $font-weight-bolder;
-  font-size: $font-size-base;
-}
 
 // Only display content to screen readers
 // See: http://a11yproject.com/posts/how-to-hide-content/

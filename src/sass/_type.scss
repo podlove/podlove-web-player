@@ -12,7 +12,7 @@
 p {
   margin:      0 0 ($line-height-computed / 2);
   font-size:   $font-size-base;
-  font-weight: $font-weight-bold;
+  font-weight: $font-weight-normal;
 }
 
 
@@ -27,10 +27,24 @@ h1, h2, h3, h4, h5, h6,
 }
 
 h1, h2 {
-  font-weight: $headings-font-weight-default;
+  font-weight: $headings-font-weight-bold;
 }
 
-h3, h4, h5, h6 {
+h1 a,
+h2 a {
+  font-weight: $headings-font-weight-bold;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-weight: $headings-font-weight-normal;
+}
+
+h3 a,
+h4 a,
+h5 a {
   font-weight: $headings-font-weight-normal;
 }
 
@@ -38,7 +52,6 @@ h1,
 h2,
 h3 {
   margin-top: $line-height-computed;
-  //margin-bottom: ($line-height-computed / 2);
 }
 h4,
 h5,
@@ -70,6 +83,14 @@ ol {
 }
 
 a {
-  font-weight: $font-weight-bolder;
+  font-weight: $font-weight-bold;
 }
 
+em {
+  font-weight: $font-weight-bold;
+  font-size: $font-size-base;
+}
+
+button {
+  font-weight: $font-weight-bold;
+}
