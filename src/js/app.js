@@ -48,7 +48,7 @@ function renderShowTitle(title, url) {
   if (url) {
     title = '<a href="' + url + '">' + title + '</a>';
   }
-  return '<h4 class="showtitle">' + title + '</h4>';
+  return '<h3 class="showtitle">' + title + '</h3>';
 }
 
 /**
@@ -58,8 +58,8 @@ function renderShowTitle(title, url) {
  * @returns {string}
  */
 function renderTitle(text, link) {
-  var titleBegin = '<h2 class="episodetitle">',
-    titleEnd = '</h2>';
+  var titleBegin = '<h1 class="episodetitle">',
+    titleEnd = '</h1>';
   if (text !== undefined && link !== undefined) {
     text = '<a href="' + link + '">' + text + '</a>';
   }
@@ -75,7 +75,7 @@ function renderSubTitle(text) {
   if (!text) {
     return '';
   }
-  return '<h3 class="subtitle">' + text + '</h3>';
+  return '<h2 class="subtitle">' + text + '</h2>';
 }
 
 /**
