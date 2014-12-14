@@ -2,8 +2,7 @@
 
 var Tab = require('../tab')
   , timeCode = require('../timecode')
-  , services = require('../social-networks')
-  ;
+  , services = require('../social-networks');
 
 function getPublicationDate(rawDate) {
   if (!rawDate) {
@@ -14,8 +13,6 @@ function getPublicationDate(rawDate) {
 }
 
 function createEpisodeInfo(tab, params) {
-  var date = new Date(params.publicationDate);
-
   tab.createMainContent(
     '<h2>' + params.title + '</h2>' +
     '<h3>' + params.subtitle + '</h3>' +
@@ -50,7 +47,7 @@ function createSubscribeButton(params) {
 
 function createShowInfo (tab, params) {
   tab.createAside(
-    '<h2>'+ params.show.title+ '</h2>' +
+    '<h2>' + params.show.title + '</h2>' +
     '<h3>' + params.show.subtitle + '</h3>' +
     createPosterImage(params.show.poster) +
     createSubscribeButton(params) +

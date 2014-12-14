@@ -5,22 +5,22 @@
  */
 var prefix = 'podlove-web-player-playtime-';
 
-var getItem = function () {
+function getItem () {
   return +localStorage[this.key];
-};
+}
 
-var removeItem = function () {
+function removeItem () {
   return localStorage.removeItem(this.key);
-};
+}
 
-var hasItem = function () {
+function hasItem () {
   return (this.key) in localStorage;
-};
+}
 
-var update = function () {
+function update () {
   console.debug('SaveTime', 'update', this.timeline.getTime());
   this.setItem(this.timeline.getTime());
-};
+}
 
 function SaveTime(timeline, params) {
   this.timeline = timeline;
@@ -37,8 +37,7 @@ function SaveTime(timeline, params) {
 }
 
 SaveTime.prototype.setItem = function (value) {
-  return localStorage[this.key] = value;
+  localStorage[this.key] = value;
 };
 
 module.exports = SaveTime;
-

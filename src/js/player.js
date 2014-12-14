@@ -104,8 +104,9 @@ function create(player, params, callback) {
   });
 
   //wrapper and init stuff
-  if (params.width.toString().trim() === parseInt(params.width, 10).toString().trim()) {
-    params.width = params.width.toString().trim() + 'px';
+  // FIXME: better check for numerical value
+  if (params.width.toString().trim() === parseInt(params.width, 10).toString()) {
+    params.width = parseInt(params.width, 10) + 'px';
   }
 
   players.push(player);

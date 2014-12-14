@@ -1,28 +1,29 @@
 'use strict';
 
 var Tab = require('../tab')
-  , SocialButtonList = require('../social-button-list')
-  , services = ['twitter', 'facebook', 'gplus', 'tumblr', 'email']
+  , SocialButtonList = require('../social-button-list');
+
+var services = ['twitter', 'facebook', 'gplus', 'tumblr', 'email']
   , shareOptions = [
-    {name: "Show", value: "show"},
-    {name: "Episode", value: "episode", default: true},
-    {name: "Chapter", value: "chapter", disabled:true},
-    {name: "Exactly this part here", value: "timed", disabled:true}
-  ];
+    {name: 'Show', value: 'show'},
+    {name: 'Episode', value: 'episode', default: true},
+    {name: 'Chapter', value: 'chapter', disabled: true},
+    {name: 'Exactly this part here', value: 'timed', disabled: true}
+  ]
+  , shareData = {};
 
 // module globals
-var shareTab, selectedOption, shareButtons, linkInput;
-var shareData = {};
+var selectedOption, shareButtons, linkInput;
 
 function getShareData(value) {
   var type = value === 'show' ? 'show' : 'episode';
   var data = shareData[type];
-  if (value === 'chapter') {
-    // todo add chapter start and end time to url
-  }
-  if (value === 'timed') {
-    // todo add selected start and end time to url
-  }
+  // todo add chapter start and end time to url
+  //if (value === 'chapter') {
+  //}
+  // todo add selected start and end time to url
+  //if (value === 'timed') {
+  //}
   return data;
 }
 
@@ -115,7 +116,7 @@ function createShareOptions() {
 
 /**
  *
- * @param params
+ * @param {object} params player configuration
  * @returns {*}
  */
 function createShareTab(params) {
@@ -124,9 +125,9 @@ function createShareTab(params) {
   }
 
   var shareTab = new Tab({
-    icon: "pwp-share",
-    title: "Show/hide sharing tabs",
-    name: "podlovewebplayer_share",
+    icon: 'pwp-share',
+    title: 'Show/hide sharing tabs',
+    name: 'podlovewebplayer_share',
     headline: 'Share'
   });
 
@@ -164,7 +165,5 @@ module.exports = function Share(params) {
   }
 
   selectedOption = 'episode';
-  shareTab = createShareTab(params);
-  this.tab = shareTab;
+  this.tab = createShareTab(params);
 };
-

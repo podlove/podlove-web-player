@@ -18,8 +18,8 @@
  {type: "topic", start: 1, end: 2, "name": "The very first chapter", "url": ""},
  ]
  */
-var tc = require('./timecode');
-var cap = require('./util').cap;
+var tc = require('./timecode')
+  , cap = require('./util').cap;
 
 /**
  *
@@ -87,7 +87,7 @@ Timeline.prototype.update = function (event) {
 Timeline.prototype.emitEventsBetween = function (start, end) {
   var emitStarted = false,
     emit = function (event) {
-      var customEvent = new jQuery.Event(event.type, event);
+      var customEvent = new $.Event(event.type, event);
       $(this).trigger(customEvent);
     }.bind(this);
   this.data.map(function (event) {
@@ -189,7 +189,7 @@ Timeline.prototype.getBuffered = function () {
 };
 
 Timeline.prototype.setBufferedTime = function (e) {
-  var target = (e != undefined) ? e.target : this.player;
+  var target = (e !== undefined) ? e.target : this.player;
   var buffered = 0;
 
   // newest HTML5 spec has buffered array (FF4, Webkit)
@@ -200,11 +200,11 @@ Timeline.prototype.setBufferedTime = function (e) {
   // to be anything other than 0. If the byte count is available we use this instead.
   // Browsers that support the else if do not seem to have the bufferedBytes value and
   // should skip to there. Tested in Safari 5, Webkit head, FF3.6, Chrome 6, IE 7/8.
-  else if (target && target.bytesTotal != undefined && target.bytesTotal > 0 && target.bufferedBytes != undefined) {
+  else if (target && target.bytesTotal !== undefined && target.bytesTotal > 0 && target.bufferedBytes !== undefined) {
     buffered = target.bufferedBytes / target.bytesTotal * target.duration;
   }
   // Firefox 3 with an Ogg file seems to go this way
-  else if (e && e.lengthComputable && e.total != 0) {
+  else if (e && e.lengthComputable && e.total !== 0) {
     buffered = e.loaded / e.total * target.duration;
   }
   var cappedTime = cap(buffered, 0, target.duration);
@@ -214,10 +214,10 @@ Timeline.prototype.setBufferedTime = function (e) {
 
 Timeline.prototype.rewind = function () {
   this.setTime(0);
-  var call = function call(i, listener) {
+  var callListenerWithThis = function _callListenerWithThis(i, listener) {
     listener(this);
   }.bind(this);
-  $.each(this.listeners, call);
+  $.each(this.listeners, callListenerWithThis);
 };
 
 function _filterByType(type) {
@@ -301,4 +301,3 @@ function addType(type) {
 function call(listener) {
   listener(this);
 }
-

@@ -26,25 +26,19 @@ var TabRegistry = require('./tabregistry'),
   SaveTime = require('./modules/savetime'),
   Controls = require('./controls'),
   player = require('./player'),
-  ProgressBar = require('./modules/progressbar'),
-  autoplay = false;
+  ProgressBar = require('./modules/progressbar');
+
+var autoplay = false;
 
 var pwp;
 
 // will expose/attach itself to the $ global
 require('../../bower_components/mediaelement/build/mediaelement.js');
 
-// FIXME put in compat mode module
-if (typeof String.prototype.trim !== 'function') {
-  String.prototype.trim = function () {
-    return this.replace(/^\s+|\s+$/g, '');
-  };
-}
-
 /**
  * The most missing feature regarding embedded players
- * @param {string} title
- * @param {string} url
+ * @param {string} title the title of the show
+ * @param {string} url (optional) the link to the show
  * @returns {string}
  */
 function renderShowTitle(title, url) {
@@ -146,7 +140,7 @@ function isHidden() {
  * @param {object} params
  * @param {object} wrapper
  */
-var addBehavior = function (player, params, wrapper) {
+function addBehavior(player, params, wrapper) {
   var jqPlayer = $(player),
 
     timeline = new Timeline(player, params),
@@ -252,8 +246,7 @@ var addBehavior = function (player, params, wrapper) {
   wrapper
     .append(progressBar.render())
     .append(controlbarWrapper)
-    .append(tabs.container)
-  ;
+    .append(tabs.container);
 
   progressBar.addEvents();
 
@@ -327,7 +320,7 @@ var addBehavior = function (player, params, wrapper) {
       saveTime.removeItem();
       timeline.rewind();
     });
-};
+}
 
 /**
  * return callback function that will attach source elements to the deferred audio element

@@ -68,13 +68,13 @@ function ts2tc(time, leadingZeros, forceHours, showMillis) {
 
   timecode = ':' + zeroFill(seconds, 2) + timecode;
 
-  if (hours == 0 && !forceHours && !leadingZeros ) {
+  if (hours === 0 && !forceHours && !leadingZeros ) {
     return minutes.toString() + timecode;
   }
 
   timecode = zeroFill(minutes, 2) + timecode;
 
-  if (hours == 0 && !forceHours) {
+  if (hours === 0 && !forceHours) {
     // required (minutes : seconds)
     return timecode;
   }

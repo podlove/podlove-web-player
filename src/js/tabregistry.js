@@ -72,12 +72,13 @@ TabRegistry.prototype.update = function(event) {
  * @returns {boolean}
  */
 function getToggleClickHandler(tab) {
+  /*jshint validthis:true */
   console.debug('TabRegistry', 'activeTab', this.activeTab);
   if (this.activeTab) {
     this.activeTab.close();
   }
   if (this.activeTab === tab) {
-    this.activeTab  = null;
+    this.activeTab = null;
     return false;
   }
   this.activeTab = tab;

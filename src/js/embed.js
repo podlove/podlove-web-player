@@ -26,7 +26,7 @@ function postToOpener(obj) {
 function messageListener (event) {
   var orig = event.originalEvent;
 
-  if (orig.data.action == 'pause') {
+  if (orig.data.action === 'pause') {
     players.forEach(function (player) {
       player.pause();
     });
@@ -34,18 +34,18 @@ function messageListener (event) {
 }
 
 function waitForMetadata (callback) {
-  function messageListener (event) {
+  function metaDataListener (event) {
     var orig = event.originalEvent;
     if (orig.data.playerOptions) {
       callback(orig.data.playerOptions);
     }
   }
-  $(window).on('message', messageListener);
+  $(window).on('message', metaDataListener);
 }
 
 function pollHeight() {
   var newHeight = $body.height();
-  if (lastHeight != newHeight) {
+  if (lastHeight !== newHeight) {
     postToOpener({
       action: 'resize',
       arg: newHeight

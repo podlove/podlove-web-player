@@ -65,11 +65,11 @@ ProgressBar.prototype.setChapter = function () {
 /**
  * This update method is to be called when a players `currentTime` changes.
  */
-var _update = function (timeline) {
+function _update (timeline) {
   this.setProgress(timeline.getTime());
   this.buffer.val(timeline.getBuffered());
   this.setChapter();
-};
+}
 
 /**
  * Renders a new progress bar jQuery object.
@@ -114,8 +114,7 @@ ProgressBar.prototype.render = function () {
   var bar = $('<div class="progressbar"></div>');
   bar
     .append(progressInfo)
-    .append(progress)
-  ;
+    .append(progress);
 
   this.bar = bar;
   return bar;
@@ -126,16 +125,16 @@ ProgressBar.prototype.addEvents = function() {
   var timeline = this.timeline;
   var progress = this.progress;
 
-  var calculateNewTime = function (pageX) {
+  function calculateNewTime (pageX) {
     // mouse position relative to the object
     var width = progress.outerWidth(true);
     var offset = progress.offset();
     var pos = cap(pageX - offset.left, 0, width);
     var percentage = (pos / width);
     return percentage * timeline.duration;
-  };
+  }
 
-  var handleMouseUp = function () {
+  function handleMouseUp () {
     mouseIsDown = false;
     timeline.seekEnd();
     $(document)
@@ -143,9 +142,9 @@ ProgressBar.prototype.addEvents = function() {
       .unbind('mouseup.dur')
       .unbind('touchmove.dur')
       .unbind('mousemove.dur');
-  };
+  }
 
-  var handleMouseDown = function (event) {
+  function handleMouseDown (event) {
     // only handle left clicks
     if (event.which !== 1) { return; }
 
@@ -155,8 +154,7 @@ ProgressBar.prototype.addEvents = function() {
     $(document)
       .bind('mouseup.dur', handleMouseUp)
       .bind('touchend.dur', handleMouseUp);
-    return false;
-  };
+  }
 
   function seekStart () {
     timeline.seekStart();
@@ -165,12 +163,12 @@ ProgressBar.prototype.addEvents = function() {
       .bind('touchmove.dur', handleMouseMove);
   }
 
-  var handleMouseMove = function (event) {
+  function handleMouseMove (event) {
     if (typeof timeline.duration !== 'number' || !mouseIsDown ) { return; }
     var newTime = calculateNewTime(event.pageX);
     if (newTime === timeline.getTime()) { return; }
     timeline.seek(newTime);
-  };
+  }
 
   // handle click and drag with mouse or touch in progressbar and on handle
   this.progress
@@ -200,7 +198,7 @@ function renderTimeElement(className, time) {
  * @returns {jQuery|HTMLElement}
  */
 function renderCurrentChapterElement() {
-  var chapterElement  = $('<div class="chapter"></div>');
+  var chapterElement = $('<div class="chapter"></div>');
 
   if (!this.chapterModule) {
     return chapterElement;
@@ -231,7 +229,7 @@ function renderDurationTimeElement(progressBar) {
       return;
     }
     updateTimes(progressBar);
-  }.bind(this));
+  });
 
   return durationTimeElement;
 }
@@ -240,7 +238,7 @@ function updateTimes(progressBar) {
   var time = progressBar.timeline.getTime();
   progressBar.currentTime.html(tc.fromTimeStamp(time));
 
-  if (this.showDuration) { return; }
+  if (progressBar.showDuration) { return; }
 
   var remainingTime = Math.abs(time - progressBar.duration);
   progressBar.durationTimeElement.text('-' + tc.fromTimeStamp(remainingTime));
@@ -251,9 +249,8 @@ function renderChapterMarker(chapter) {
 }
 
 function renderMarkerAt(time) {
-  var percent = 100*time/this.duration;
+  var percent = 100 * time / this.duration;
   return $('<div class="marker" style="left:' + percent + '%;"></div>');
 }
 
 module.exports = ProgressBar;
-

@@ -60,7 +60,10 @@ SocialNetwork.prototype.getShareButton = function (options) {
     options.text = options.title + '%20' + options.url;
   }
 
-  var service = this;
+  var updateUrl = function (options) {
+    element.get(0).href = this.getShareUrl(options);
+  }.bind(this);
+
   var element = createButton({
     url: this.getShareUrl(options),
     title: this.title,
@@ -69,9 +72,7 @@ SocialNetwork.prototype.getShareButton = function (options) {
 
   return {
     element: element,
-    updateUrl: function (options) {
-      element.get(0).href = service.getShareUrl(options);
-    }
+    updateUrl: updateUrl
   };
 };
 

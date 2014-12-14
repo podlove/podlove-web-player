@@ -3,9 +3,9 @@
 var tc = require('../timecode')
   , url = require('../url')
   , Tab = require('../tab')
-  , Timeline = require('../timeline')
-  , ACTIVE_CHAPTER_THRESHHOLD = 0.1
-  ;
+  , Timeline = require('../timeline');
+
+var ACTIVE_CHAPTER_THRESHHOLD = 0.1;
 
 /**
  * render HTMLTableElement for chapters
@@ -36,26 +36,11 @@ function renderRow (chapter, index) {
   return render(
     '<tr class="chapter">' +
       '<td class="chapter-number"><span class="badge">' + (index+1) + '</span></td>' +
-//      '<td class="chapter-image">' + renderChapterImage(chapter.image) + '</td>' +
       '<td class="chapter-name"><span>' + chapter.code + '</span> ' +
       '</td>' +
       '<td class="chapter-duration"><span>' + chapter.duration + '</span></td>' +
     '</tr>'
   );
-}
-
-function renderExternalLink(href) {
-  if (!href || href === "") {
-    return '';
-  }
-  return '<a class="pwp-outgoing button button-toggle" target="_blank" href="' + href + '"></a>';
-}
-
-function renderChapterImage(imageSrc) {
-  if (!imageSrc || imageSrc === "") {
-    return '';
-  }
-  return '<img src="' + imageSrc + '"/>';
 }
 
 function render(html) {
@@ -65,7 +50,6 @@ function render(html) {
 /**
  *
  * @param {Array} chapters
- * @param {number} duration
  * @returns {number}
  */
 function getMaxChapterStart(chapters) {
@@ -93,52 +77,21 @@ function isActiveChapter (chapter, currentTime) {
  * @param {Timeline} timeline
  */
 function update (timeline) {
-  //var coverImg = marks.closest('.container').find('.coverimg');
-  var chapters = this,
-    chapter = this.getActiveChapter(),
-    currentTime = timeline.getTime();
+  var chapter = this.getActiveChapter()
+    , currentTime = timeline.getTime();
 
-  console.debug('Chapters', 'update', chapters, chapter, currentTime);
+  console.debug('Chapters', 'update', this, chapter, currentTime);
   if (isActiveChapter(chapter, currentTime)) {
     console.log('Chapters', 'update', 'already set', this.currentChapter);
     return;
   }
-  console.log('Chapters', 'update', 'set new', currentTime);
-  $.each(this.chapters, function (i, chapter) {
-    //console.log('Chapters#update', chapter);
-    var isBuffered,
-      //chapterimg = null,
-      //mark = $(this),
-      startTime = chapter.start,
-      endTime = chapter.end,
-      //isEnabled = mark.data('enabled'),
-      isActive = isActiveChapter(chapter, currentTime);
-    // prevent timing errors
-    //if (player.buffered.length > 0) {
-    //  isBuffered = player.buffered.end(0) > startTime;
-    //}
+  function markChapter (chapter, i) {
+    var isActive = isActiveChapter(chapter, currentTime);
     if (isActive) {
-      /*
-      chapterimg = url.validate(mark.data('img'));
-      if ((chapterimg !== null) && (mark.hasClass('active'))) {
-        if ((coverImg.attr('src') !== chapterimg) && (chapterimg.length > 5)) {
-          coverImg.attr('src', chapterimg);
-        }
-      } else {
-        if (coverImg.attr('src') !== coverImg.data('img')) {
-          coverImg.attr('src', coverImg.data('img'));
-        }
-      }
-      */
-      chapters.setCurrentChapter(i);
-      console.log('Chapters', 'update', 'set current chapter to', chapters.currentChapter);
+      this.setCurrentChapter(i);
     }
-    /*
-    if (!isEnabled && isBuffered) {
-      $(mark).data('enabled', true).addClass('loaded').find('a[rel=player]').removeClass('disabled');
-    }
-    */
-  });
+  }
+  this.chapters.forEach(markChapter, this);
 }
 
 /**
@@ -219,31 +172,30 @@ Chapters.prototype.generateTable = function () {
  * @param {mejs.HtmlMediaElement} player
  */
 Chapters.prototype.addEventhandlers = function (player) {
-  //console.log('Chapters#addEventHandler: Player:', player);
-  var chapters = this;
-
-  function addClickHandler (index) {
-    this.element.on('click', function (e) {
-      // enable external links to be opened in a new tab or window
-      // cancels event to bubble up
-      if (e.target.className === 'pwp-outgoing button button-toggle') {
-        return true;
-      }
-      //console.log('chapter#clickHandler: start chapter at', chapterStart);
-      e.preventDefault();
-      // Basic Chapter Mark function (without deeplinking)
-      console.log('Chapter', 'clickHandler', 'setCurrentChapter to', index);
-      chapters.setCurrentChapter(index);
-      // flash fallback needs additional pause
-      if (player.pluginType === 'flash') {
-        player.pause();
-      }
-      chapters.playCurrentChapter();
-      return false;
-    });
+  function onClick(e) {
+    // enable external links to be opened in a new tab or window
+    // cancels event to bubble up
+    if (e.target.className === 'pwp-outgoing button button-toggle') {
+      return true;
+    }
+    //console.log('chapter#clickHandler: start chapter at', chapterStart);
+    e.preventDefault();
+    // Basic Chapter Mark function (without deeplinking)
+    console.log('Chapter', 'clickHandler', 'setCurrentChapter to', e.data.index);
+    e.data.module.setCurrentChapter(e.data.index);
+    // flash fallback needs additional pause
+    if (player.pluginType === 'flash') {
+      player.pause();
+    }
+    e.data.module.playCurrentChapter();
+    return false;
   }
 
-  $.each(this.chapters, addClickHandler);
+  function addClickHandler (chapter, index) {
+    chapter.element.on('click', {module: this, index: index}, onClick);
+  }
+
+  this.chapters.forEach(addClickHandler, this);
 };
 
 Chapters.prototype.getActiveChapter = function () {
@@ -275,7 +227,7 @@ Chapters.prototype.markActiveChapter = function () {
 Chapters.prototype.next = function () {
   var current = this.currentChapter,
     next = this.setCurrentChapter(current+1);
-  if (current == next) {
+  if (current === next) {
     console.log('Chapters', 'next', 'already in last chapter');
     return current;
   }
@@ -287,7 +239,7 @@ Chapters.prototype.next = function () {
 Chapters.prototype.previous = function () {
   var current = this.currentChapter,
     previous = this.setCurrentChapter(current-1);
-  if (current == previous) {
+  if (current === previous) {
     console.log('Chapters', 'previous', 'already in first chapter');
     this.playCurrentChapter();
     return current;

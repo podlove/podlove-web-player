@@ -20,9 +20,7 @@ function formatSize(size) {
   // in case, the filesize is smaller than 1MB,
   // the format will be rendered in KB
   // otherwise in MB
-  return (fileSize < oneMb) ?
-    kBFileSize  + ' KB' :
-    mBFileSIze + ' MB';
+  return (fileSize < oneMb) ? kBFileSize + ' KB' : mBFileSIze + ' MB';
 }
 
 /**
@@ -32,7 +30,7 @@ function formatSize(size) {
  */
 function createOption(listElement) {
   console.log(listElement);
-  return '<option>' + listElement.assetTitle + ' ' + formatSize(listElement.size) + '</option>'
+  return '<option>' + listElement.assetTitle + ' ' + formatSize(listElement.size) + '</option>';
 }
 
 function getPosterImage(params) {
@@ -136,9 +134,9 @@ function normalizeSource(element) {
  * @param {Object} params
  * @returns {Array}
  */
-var createList = function (params) {
+function createList (params) {
   if (params.downloads && params.downloads[0].assetTitle) {
-    return params.downloads
+    return params.downloads;
   }
 
   if (params.downloads) {
@@ -146,7 +144,7 @@ var createList = function (params) {
   }
   // build from source elements
   return params.sources.map(normalizeSource);
-};
+}
 
 /**
  *
@@ -159,4 +157,3 @@ function Downloads (params) {
 }
 
 module.exports = Downloads;
-
