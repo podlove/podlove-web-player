@@ -1,3 +1,5 @@
+'use strict';
+
 // Load plugins
 var gulp = require('gulp')
   , compass = require('gulp-compass')
