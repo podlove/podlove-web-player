@@ -7,3 +7,8 @@ before_script:
 notifications:
   slack:
     secure: frwYvR/nXTR+dO73WU2dQdXdiMJ/XulVy2q9hbxAv4ONgUtR719JQXmweEObWvd4GpiZU/ZsOYlb5thwt7GHQtWzO5LNlSvIYlzl7s3sofs/ZbhZ9RmNzCfrzbik6GQSLCLh/bibGj1fv1xntpm32WUQ22qESbi1lhxW/B9+hDY=
+addons:
+  code_climate:
+    secure: DjBknUGwz5cKdD7RaAInJZd4HNGuDk8k+u36y8nRLieWgRvTMEa3w4OzXI71y+eSaO3cgUAsPXP3wgzjuOh7CTS/V9RrsrBj/PFufzqA0ro9b78TZUdbyPTHe2CrvohpEUZkv3n9/U50JGZT3V6sf6mzKoJ8kDiro60Ja0eLkws=
+after_script:
+- cat lcov.info | codeclimate
