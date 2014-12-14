@@ -1,5 +1,7 @@
 # Podlove Web Player
 
+[![Code Climate](https://codeclimate.com/github/podlove/podlove-web-player/badges/gpa.svg)](https://codeclimate.com/github/podlove/podlove-web-player)
+
 ## About
 
 HTML5 Goodness for Podcasting
