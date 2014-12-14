@@ -1,6 +1,9 @@
 language: node_js
 node_js:
-  - "0.10"
+- '0.10'
 before_script:
-  - npm install -g bower
-  - bower install
+- npm install -g bower
+- bower install
+notifications:
+  slack:
+    secure: frwYvR/nXTR+dO73WU2dQdXdiMJ/XulVy2q9hbxAv4ONgUtR719JQXmweEObWvd4GpiZU/ZsOYlb5thwt7GHQtWzO5LNlSvIYlzl7s3sofs/ZbhZ9RmNzCfrzbik6GQSLCLh/bibGj1fv1xntpm32WUQ22qESbi1lhxW/B9+hDY=
