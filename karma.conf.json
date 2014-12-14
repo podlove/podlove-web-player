@@ -9,5 +9,5 @@
   "preprocessors": {
     "spec/**/*.js": ["browserify"]
   },
-  "browsers": ["Chrome"]
+  "browsers": ["PhantomJS"]
 }
