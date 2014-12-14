@@ -49,6 +49,7 @@ $button-width: $share-image-width + ($share-image-border-width * 2);
       }
       input {
         @include border-radius(5px);
+        font-family: $font-family-monospace;
         border: 1px solid $gray-lighter;
         width: 100%;
         padding: 8px;
