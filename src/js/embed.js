@@ -1,3 +1,5 @@
+'use strict';
+
 // everything for an embedded player
 var
   players = [],

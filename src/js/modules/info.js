@@ -1,3 +1,5 @@
+'use strict';
+
 var Tab = require('../tab')
   , timeCode = require('../timecode')
   , services = require('../social-networks')

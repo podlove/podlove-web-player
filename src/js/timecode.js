@@ -1,3 +1,5 @@
+'use strict';
+
 var zeroFill = require('./util').zeroFill;
 
 /**

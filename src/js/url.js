@@ -1,3 +1,5 @@
+'use strict';
+
 var tc = require('./timecode');
 
 /*

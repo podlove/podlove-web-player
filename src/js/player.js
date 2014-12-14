@@ -1,7 +1,8 @@
+'use strict';
+
 /**
  * player
  */
-'use strict';
 var
 // Keep all Players on site - for inline players
 // embedded players are registered in podlove-webplayer-moderator in the embedding page

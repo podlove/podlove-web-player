@@ -1,3 +1,5 @@
+'use strict';
+
 var services = require('./social-networks');
 
 function SocialButtonList (services, options) {

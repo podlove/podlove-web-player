@@ -1,3 +1,5 @@
+'use strict';
+
 /*
  [
  {type: "image", "title": "The very best Image", "url": "http://domain.com/images/test1.png"},

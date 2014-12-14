@@ -1,3 +1,5 @@
+'use strict';
+
 var SocialNetwork = require('./social-network')
   , socialNetworks = {
   twitter: new SocialNetwork({

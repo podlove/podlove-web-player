@@ -1,3 +1,5 @@
+'use strict';
+
 var Tab = require('../tab')
   , SocialButtonList = require('../social-button-list')
   , services = ['twitter', 'facebook', 'gplus', 'tumblr', 'email']

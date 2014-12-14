@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * return new value in bounds of min and max
  * @param {number} val

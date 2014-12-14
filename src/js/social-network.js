@@ -1,3 +1,5 @@
+'use strict';
+
 function SocialNetwork (options) {
   this.icon = options.icon;
   this.title = options.title;

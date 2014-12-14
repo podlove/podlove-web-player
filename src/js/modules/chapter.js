@@ -1,3 +1,5 @@
+'use strict';
+
 var tc = require('../timecode')
   , url = require('../url')
   , Tab = require('../tab')
