@@ -74,5 +74,11 @@
     "karma-jasmine": "*",
     "karma-phantomjs-launcher": "*",
     "lodash": "^2.4.1"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "gulp test"
   }
 }
