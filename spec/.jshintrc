@@ -20,6 +20,9 @@
   "smarttabs": true,
   "globals": {
     "$": false,
+    "expect": false,
+    "jasmine": false,
+    "spyOn": false,
     "describe": false,
     "ddescribe": false,
     "xdescribe": false,

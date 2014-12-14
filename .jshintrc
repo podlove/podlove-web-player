@@ -11,6 +11,8 @@
   "latedef": true,
   "newcap": true,
   "noarg": true,
+  "globalstrict": true,
+  "laxcomma": true,
   "quotmark": "single",
   "regexp": true,
   "undef": true,
