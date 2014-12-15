@@ -63,8 +63,10 @@ $progress-bar-time-duration: #c6c5c7;
 $progress-bar-bg:           $gray;
 $progress-bar-color:        $brand-primary;
 
-$progress-height:           60px;
-$progress-bar-height:       10px;
+$progress-height:             60px;
+$progress-height-mobile:      80px;
+$progress-bar-height:         10px;
+$progress-bar-height-mobile:  20px;
 
 //** Area above the progressbar to display the duration and chapter title
 $progress-bar-info-margin: 15px;
