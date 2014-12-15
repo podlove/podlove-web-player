@@ -56,6 +56,7 @@ $button-width: $share-image-width + ($share-image-border-width * 2);
         text-align: center;
         color: $gray-default;
         height: 30px;
+        cursor: text;
         @media screen and (min-width: $screen-desktop) {
           height: 40px;
         }
