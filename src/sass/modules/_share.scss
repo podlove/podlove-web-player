@@ -83,6 +83,9 @@ $button-width: $share-image-width + ($share-image-border-width * 2);
         width: $font-size-social-icons + 27px;
         margin: 0 $margin-base-horizontal 0 0;
       }
+      @media screen and (min-width: $screen-lg-desktop) {
+        margin: 0 40px 0 0;
+      }
 
       &.last-of-type {
         margin-right: 0;

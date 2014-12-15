@@ -36,6 +36,17 @@ textarea {
   line-height: inherit;
 }
 
+// Scale text font up on very wide screens (1200px)
+@media screen and (min-width: $screen-lg-desktop) {
+  span,
+  legend,
+  input,
+  select,
+  button {
+    font-size: 1.15vw;
+  }
+}
+
 // Links
 
 a {
@@ -48,6 +59,13 @@ a {
     color: $link-hover-color;
     text-decoration: none;
     outline: none;
+  }
+}
+
+p {
+  font-size: $font-size-base;
+  @media screen and (min-width: $screen-lg-desktop) {
+    font-size: 1.15vw;
   }
 }
 

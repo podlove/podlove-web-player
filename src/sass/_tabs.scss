@@ -81,7 +81,6 @@ $tab-header-height-mobile: 50px;
   }
   .tab-headline {
     font-weight: $font-weight-light;
-    margin: 0 $margin-base-horizontal;
     font-size: $font-size-small-h2;
 
     @media screen and (min-width: $screen-tablet) {
@@ -89,6 +88,11 @@ $tab-header-height-mobile: 50px;
     }
   }
   h2 {
+    font-size: $font-size-small-h2;
+    margin: 0 $margin-base-horizontal;
+    @media screen and (min-width: $screen-tablet) {
+      font-size: $font-size-h2;
+    }
     i {
       padding-right: 10px;
     }
