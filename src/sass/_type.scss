@@ -25,36 +25,20 @@ h1, h2, h3, h4, h5, h6,
   color:       $headings-color;
 }
 
-h1, h2 {
+h1, h2,
+h1 a, h2 a {
   font-weight: $headings-font-weight-bold;
 }
 
-h1 a,
-h2 a {
-  font-weight: $headings-font-weight-bold;
-}
-
-h3,
-h4,
-h5,
-h6 {
+h3, h4, h5, h6,
+h3 a, h4 a, h5 a {
   font-weight: $headings-font-weight-normal;
 }
 
-h3 a,
-h4 a,
-h5 a {
-  font-weight: $headings-font-weight-normal;
-}
-
-h1,
-h2,
-h3 {
+h1, h2, h3 {
   margin-top: $line-height-computed;
 }
-h4,
-h5,
-h6 {
+h4, h5, h6 {
   margin-top: ($line-height-computed / 2);
   margin-bottom: ($line-height-computed / 2);
 }

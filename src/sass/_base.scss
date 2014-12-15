@@ -43,7 +43,7 @@ textarea {
   input,
   select,
   button {
-    font-size: 1.15vw;
+    font-size: $font-size-wide-screen;
   }
 }
 
@@ -65,7 +65,7 @@ a {
 p {
   font-size: $font-size-base;
   @media screen and (min-width: $screen-lg-desktop) {
-    font-size: 1.15vw;
+    font-size: $font-size-wide-screen;
   }
 }
 

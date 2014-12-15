@@ -77,16 +77,16 @@ progress[aria-valuenow]:before  {
   color: $contrasted-light-default;
   background-color: $progress-bg;
   width: 100%;
-  height: $progress-height;
+  height: $progress-wrapper-height;
   font-weight: $font-weight-light;
   // Height of progress wrapper on small screens
   @media screen and (max-width: $screen-phone) {
-    height: $progress-height-mobile;
+    height: $progress-wrapper-height-mobile;
   }
   .progress-info {
     @include pwp-flexbox();
     width: 100%;
-    height: $progress-height / 1.5;
+    height: $progress-wrapper-height / 1.5;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
