@@ -213,13 +213,13 @@ progress[aria-valuenow]:before  {
   left: 0;
   position: absolute;
   width: 100%;
-  height: $buffer-height !important;
+  height: $buffer-height;
   background-repeat: repeat-x;
   margin: 0 auto;
   // Position of the buffer on small screens
   @media screen and (max-width: $screen-phone) {
     top: $progress-bar-height-mobile + 6px;
-    height: $buffer-height * 2 !important;
+    height: $buffer-height * 2;
   }
 }
 
