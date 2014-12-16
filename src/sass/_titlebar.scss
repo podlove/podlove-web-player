@@ -21,11 +21,11 @@
     min-width: 1px;
     margin: auto 0;
     padding-left: $padding-small-horizontal;
-    h2 {
+    h1 {
       font-size: 1.5em;
     }
     .subtitle,
-    h4 {
+    h3 {
       font-size: 1em;
     }
   }
@@ -111,13 +111,19 @@
   }
 
   // 768px
+  @media all and (min-width: $screen-tablet) {
+    header {
+      h1 {
+        font-size: $font-size-h1;
+      }
+    }
+  }
+
+  // 992px
   @media screen and (min-width: $screen-desktop) {
     header {
-      h2 {
-        font-size: $font-size-h2;
-      }
       .subtitle,
-      h4 {
+      h3 {
         font-size: $font-size-h4;
       }
     }

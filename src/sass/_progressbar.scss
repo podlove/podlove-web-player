@@ -77,12 +77,16 @@ progress[aria-valuenow]:before  {
   color: $contrasted-light-default;
   background-color: $progress-bg;
   width: 100%;
-  height: $progress-height;
-  font-weight: $font-weight-lighter;
+  height: $progress-wrapper-height;
+  font-weight: $font-weight-light;
+  // Height of progress wrapper on small screens
+  @media screen and (max-width: $screen-phone) {
+    height: $progress-wrapper-height-mobile;
+  }
   .progress-info {
     @include pwp-flexbox();
     width: 100%;
-    height: $progress-height / 1.5;
+    height: $progress-wrapper-height / 1.5;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -122,11 +126,12 @@ progress[aria-valuenow]:before  {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      font-weight: $font-weight-bolder;
+      font-weight: $font-weight-bold;
     }
   }
   .time {
     font-family: $font-family-monospace;
+    font-weight: $font-weight-normal;
     padding-top: 12px;
     height: 100%;
     vertical-align: middle;
@@ -144,7 +149,7 @@ progress[aria-valuenow]:before  {
       text-align: left;
       color: $progress-bar-time-current;
 
-      @media all and (max-width: $screen-tablet-portrait) {
+      @media all and (max-width: $screen-phone) {
         padding-left: $padding-small-horizontal !important;
       }
       // 360px ≤ x ≥ 550px
@@ -164,7 +169,7 @@ progress[aria-valuenow]:before  {
       padding-right: $padding-base-horizontal;
       text-align: right;
       color: $progress-bar-time-duration;
-      @media all and (max-width: $screen-tablet-portrait) {
+      @media all and (max-width: $screen-phone) {
         padding-right: $padding-small-horizontal !important;
       }
       // > 768px
@@ -174,7 +179,6 @@ progress[aria-valuenow]:before  {
     }
   }
 }
-
 
 // Metrics of the Bar itself
 // -------------------------
@@ -190,6 +194,10 @@ progress[aria-valuenow]:before  {
     position: absolute;
     top: 0;
     left: 0;
+    // Height of the progressbar on small screens
+    @media screen and (max-width: $screen-phone) {
+      height: $progress-bar-height-mobile;
+    }
   }
   &:hover {
     .inner-handle {
@@ -200,16 +208,19 @@ progress[aria-valuenow]:before  {
   }
 }
 
-
-
 .buffer {
   top: $progress-bar-height + 3px;
   left: 0;
   position: absolute;
   width: 100%;
-  height: $buffer-height;
+  height: $buffer-height !important;
   background-repeat: repeat-x;
   margin: 0 auto;
+  // Position of the buffer on small screens
+  @media screen and (max-width: $screen-phone) {
+    top: $progress-bar-height-mobile + 6px;
+    height: $buffer-height * 2 !important;
+  }
 }
 
 .handle {
@@ -221,6 +232,10 @@ progress[aria-valuenow]:before  {
   height: $progress-bar-height;
   width: $progress-bar-height;
   z-index: 100;
+  // Dimensions of the scrubber/handle on small screens
+  @media screen and (max-width: $screen-phone) {
+    height: $progress-bar-height-mobile;
+  }
   .inner-handle {
     background: white;
     height: $progress-bar-height;
@@ -233,6 +248,13 @@ progress[aria-valuenow]:before  {
     @include transition(width 0.3s, left 0.3s, transform 0.1s, ease);
     &:hover {
       transform: scale(1.2, 1.2);
+    }
+    // Dimensions of the scrubber/handle on small screens
+    @media screen and (max-width: $screen-phone) {
+      height: $progress-bar-height-mobile;
+      &:hover {
+        transform: scaleY(1.3);
+      }
     }
   }
 }

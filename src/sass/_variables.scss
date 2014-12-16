@@ -63,12 +63,17 @@ $progress-bar-time-duration: #c6c5c7;
 $progress-bar-bg:           $gray;
 $progress-bar-color:        $brand-primary;
 
-$progress-height:           60px;
-$progress-bar-height:       10px;
+// Height of the progress wrapper
+$progress-wrapper-height:         60px;
+$progress-wrapper-height-mobile:  80px;
+
+// Height of the progressbar
+$progress-bar-height:         10px;
+$progress-bar-height-mobile:  20px;
 
 //** Area above the progressbar to display the duration and chapter title
 $progress-bar-info-margin: 15px;
-$progress-bar-info-height: $progress-height / 2 - $progress-bar-info-margin * 2;
+$progress-bar-info-height: $progress-wrapper-height / 2 - $progress-bar-info-margin * 2;
 
 // Buffer
 $buffer-height:             2px;
@@ -105,12 +110,13 @@ $font-size-base:          13px !default;
 $font-size-small:         floor($font-size-base * 0.847) !default; //  11px
 $font-size-large:         ceil($font-size-base * 1.125) !default;
 $font-size-xlarge:        ceil($font-size-base * 1.5) !default;  // ~19.5px
+$font-size-wide-screen:   1.15vw; // Adaptive font-size used for wide screens
 $font-size-icons:         ceil($font-size-base * 1.63 ) !default;
 $font-size-mobile-icons:  ceil($font-size-base * 2.15) !default;
 $font-size-social-icons:  ceil($font-size-base * 3.46) !default;
 $font-size-contrast-social-icons:  ceil($font-size-base * 3.46) !default; // 45px
 
-$font-size-h1:            floor($font-size-base * 2.5) !default; //  32.5px
+$font-size-h1:            ceil($font-size-base * 2.23) !default; //  29px
 $font-size-h2:            floor($font-size-base * 2.0) !default; //  26px
 $font-size-small-h2:      floor($font-size-base * 1.5) !default; // ~19.5px
 $font-size-h3:            ceil($font-size-base * 1.25) !default;
@@ -121,19 +127,17 @@ $font-size-h6:            ceil($font-size-base * 0.85) !default;
 // Typography Variables
 // -------------------------
 
-$font-weight-light:       100;
-$font-weight-lighter:     200;
-$font-weight-normal:      300;
-$font-weight-bold:        400;
-$font-weight-bolder:      500;
+$font-weight-light:   300;
+$font-weight-normal:  400;
+$font-weight-bold:    500;
 
 $line-height-base:        1.428571429 !default; // 20/14
 $line-height-computed:    floor($font-size-base * $line-height-base) !default; // ~20px
 
 $headings-font-family:          $font-family-base !default;
-$headings-font-weight-default:  500 !default;
-$headings-font-weight-light:    300 !default;
-$headings-font-weight-normal:   400 !default;
+$headings-font-weight-light:    $font-weight-light !default;
+$headings-font-weight-normal:   $font-weight-normal !default;
+$headings-font-weight-bold:     $font-weight-bold !default;
 $headings-line-height:          1.1 !default;
 $headings-color:                inherit !default;
 

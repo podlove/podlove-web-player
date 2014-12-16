@@ -36,13 +36,23 @@ textarea {
   line-height: inherit;
 }
 
+// Scale text font up on very wide screens (1200px)
+@media screen and (min-width: $screen-lg-desktop) {
+  span,
+  legend,
+  input,
+  select,
+  button {
+    font-size: $font-size-wide-screen;
+  }
+}
+
 // Links
 
 a {
   color: $default-link-color;
   text-decoration: none;
   background: transparent;
-  font-weight: $font-weight-bolder;
 
   &:hover,
   &:focus {
@@ -52,18 +62,13 @@ a {
   }
 }
 
-h1 a,
-h2 a,
-h3 a,
-h4 a,
-h5 a {
-  font-weight: $font-weight-normal;
+p {
+  font-size: $font-size-base;
+  @media screen and (min-width: $screen-lg-desktop) {
+    font-size: $font-size-wide-screen;
+  }
 }
 
-em {
-  font-weight: $font-weight-bolder;
-  font-size: $font-size-base;
-}
 
 // Only display content to screen readers
 // See: http://a11yproject.com/posts/how-to-hide-content/

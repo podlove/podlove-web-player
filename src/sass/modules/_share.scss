@@ -49,12 +49,14 @@ $button-width: $share-image-width + ($share-image-border-width * 2);
       }
       input {
         @include border-radius(5px);
+        font-family: $font-family-monospace;
         border: 1px solid $gray-lighter;
         width: 100%;
         padding: 8px;
         text-align: center;
         color: $gray-default;
         height: 30px;
+        cursor: text;
         @media screen and (min-width: $screen-desktop) {
           height: 40px;
         }
@@ -80,6 +82,9 @@ $button-width: $share-image-width + ($share-image-border-width * 2);
       @media screen and (min-width: $screen-desktop) {
         width: $font-size-social-icons + 27px;
         margin: 0 $margin-base-horizontal 0 0;
+      }
+      @media screen and (min-width: $screen-lg-desktop) {
+        margin: 0 40px 0 0;
       }
 
       &.last-of-type {
