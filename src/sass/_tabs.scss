@@ -9,6 +9,11 @@ $tab-header-height-mobile:  50px;
   color: $text-color;
   background-color: $tab-background-color;
   position: relative;
+  border-top: 0;
+  border-right: 1px solid $gray;
+  border-bottom: 1px solid $gray;
+  border-left: 1px solid $gray;
+
   a {
     color: $default-link-color;
     &:hover,
