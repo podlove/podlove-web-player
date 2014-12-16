@@ -94,6 +94,7 @@ $button-width: $share-image-width + ($share-image-border-width * 2);
     span {
       display: block;
       padding: $padding-small-vertical $padding-small-horizontal;
+      text-align: center;
     }
   }
 }
