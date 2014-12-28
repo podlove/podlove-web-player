@@ -18,6 +18,8 @@
 
 // Core variables and mixins
 //@import "breakpoint";
+@import "themes/dark";
+@import "themes/light";
 @import "variables";
 @import "colors";
 @import "mixins";
@@ -54,7 +56,6 @@
 @import "compass/css3";
 @import "compass/css3/columns";
 
-@import "themes/dark";
 
 // Icons (Sass import from an external library folder)
 @import "CSS:../../bower_components/podlove-font/css/podlove-font";
