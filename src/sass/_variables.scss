@@ -1,3 +1,4 @@
+@import "colors";
 //
 // Variables
 // --------------------------------------------------
@@ -6,6 +7,28 @@
 // --------------------------------------------------
 $white:  #fff;
 $black:  #000;
+
+$player-base:                   get-player-base-color($theme);            // P01 s_player-base-1
+$player-base-contrast-color:    get-player-base-contrast-color($theme);   // P01a c_player-base-2
+$player-base-highlight-color:   get-player-base-highlight-color($theme);  // P02 s_player-text-1
+$player-text-highlight-color:   get-player-text-highlight-color($theme);  // P02a o_player-text-2
+$player-idle-color:             get-player-idle-color($theme);            // P02b o_player-icon-idle
+$player-hover-color:            get-player-hover-color($theme);           // P02c o_player-icon-hover
+$player-active-color:           get-player-active-color($theme);          // P02d o_player-icon-active
+
+$meta-base-color:               get-meta-base-color($theme);              // M01 s_meta-base-1
+$meta-base-highlight-color:     get-meta-base-highlight-color($theme);    // M01a o_meta-base-2
+$meta-contrast-color:           get-meta-contrast-color($theme);          // M02 s_meta-text-1
+$meta-text-highlight-color:     get-meta-text-highlight-color($theme);    // M02a o_meta-text-2
+$meta-idle-color:               get-meta-idle-color($theme);              // M02b o_meta-icon-idle
+$meta-hover-color:              get-meta-hover-color($theme);             // M02c o_meta-icon-hover
+$meta-active-color:             get-meta-active-color($theme);            // M02d o_meta-icon-active
+
+$accent-base-color:             get-accent-base-color($theme);            // A01 s_accent
+$accent-contrast-color:         get-accent-contrast-color($theme);        // A01a c_accent-text
+$accent-highlight-1-color:      get-accent-highlight-1-color($theme);     // A01b o_accent-fade-1
+$accent-highlight-2-color:      get-accent-highlight-2-color($theme);     // A01c o_accent-fade-2
+$accent-link-color:             get-accent-link-color($theme);            // A02 s_accent-links
 
 // Grays
 // -------------------------
@@ -40,7 +63,6 @@ $contrast-default-color:    $white;
 $contrasted-dark-default:   $gray-dark;
 $contrasted-light-default:  $gray-lightest;
 
-//$icon-font-default-color:   $white;
 $contrast-icon-font-color:  $white;
 
 // Tab Colors
