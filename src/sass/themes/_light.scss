@@ -1,6 +1,7 @@
 //
 // Light Theme
 // --------------------------------------------------
+/*
 
 $theme-light: (
     player-base: #fff,
@@ -10,57 +11,4 @@ $theme-light: (
     accent-base: #425634,
     accent-contrast: #70905c
 );
-
-.theme {
-  .player-base-contrasted-color {
-    color: get-player-base-contrasted-color($theme-light);
-  }
-
-  .player-text-highlight-color {
-    color: get-player-text-highlight-color($theme-light);
-  }
-
-  .player-icon-idle-color {
-    color: get-player-icon-idle-color($theme-light);
-  }
-
-  .player-icon-hover-color {
-    color: get-player-icon-hover-color($theme-light);
-  }
-
-  .player-icon-active-color {
-    color: get-player-icon-active-color($theme-light);
-  }
-
-  .meta-base-highlight-color {
-    color: get-meta-base-highlight-color($theme-light);
-  }
-
-  .meta-text-highlight-color {
-    color: get-meta-text-highlight-color($theme-light);
-  }
-
-  .meta-icon-idle-color {
-    color: get-meta-icon-idle-color($theme-light);
-  }
-
-  .meta-icon-hover-color {
-    color: get-meta-icon-hover-color($theme-light);
-  }
-
-  .meta-icon-active-color {
-    color: get-meta-icon-active-color($theme-light);
-  }
-
-  .accent-text-contrast-color {
-    color: get-accent-text-contrast-color($theme-light);
-  }
-
-  .accent-highlight-1-color {
-    color: get-accent-highlight-1-color($theme-light);
-  }
-
-  .accent-highlight-2-color {
-    color: get-accent-highlight-2-color($theme-light);
-  }
-}
+*/
