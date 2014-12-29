@@ -47,7 +47,15 @@
   }
   // General styles for list items in controlbar
   li {
-    @extend .contrast;
+    a {
+      color: $player-idle-color;
+      &:hover {
+        color: $player-hover-color;
+      }
+      &:active {
+        color: $player-active-color;
+      }
+    }
     display: inline-block;
     position: relative;
     top: 0;

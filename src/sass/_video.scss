@@ -28,7 +28,7 @@ $video-play-button-position: -($video-play-button-size/2) - 2;
 
   .play {
     position: relative;
-    color: $contrast-icon-font-color;
+    color: $player-base-highlight-color;
     display: block;
     top: 50%;
     max-width: $video-play-button-size;

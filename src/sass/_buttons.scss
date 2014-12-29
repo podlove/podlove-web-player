@@ -3,7 +3,7 @@
 // --------------------------------------------------
 
 .button {
-  @include iconfont-button($contrast-icon-font-color);
+  @include iconfont-button($player-base-highlight-color);
   padding-right: 0.9em;
 }
 
@@ -50,10 +50,10 @@
   }
 
   &:hover {
-    @include textshadows(0px 0px 3px $contrast-icon-font-color);
+    @include textshadows(0px 0px 3px $player-hover-color);
   }
   &:active {
-    @include textshadows(0px 0px 8px $contrast-icon-font-color);
+    @include textshadows(0px 0px 8px $player-active-color);
   }
   &.playing {
     @extend .pwp-bigcontrol-pause;
