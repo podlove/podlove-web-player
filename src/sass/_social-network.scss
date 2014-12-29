@@ -60,7 +60,7 @@ $profiles: (
     }
 
     .pwp-#{$profile}:before {
-      color: $contrast-icon-font-color;
+      color: $player-base-highlight-color;
       font-size: $font-size-contrast-social-icons;
       @media screen and (min-width: $screen-tablet-portrait) {
         font-size: $font-size-contrast-social-icons + 3px;
