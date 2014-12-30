@@ -30,14 +30,13 @@
     "test",
     "tests"
   ],
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
     "mediaelement": "~2.16.0",
     "html5shiv": "~3.7.2",
     "jquery": "~1.11.1",
-    "progress-polyfill": "https://github.com/LeaVerou/HTML5-Progress-polyfill.git",
     "podlove-font": "#2.0.0-beta.2"
-  },
-  "devDependencies": {
+    "progress-polyfill": "https://github.com/LeaVerou/HTML5-Progress-polyfill.git",
     "raf-polyfill": "https://gist.github.com/1579671.git"
   }
 }
