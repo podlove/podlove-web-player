@@ -3,6 +3,7 @@
 // --------------------------------------------------
 
 // P01 s_player-base-1
+// $player-base-color
 @function get-player-base-color($theme) {
   @return map_get($theme, "player-base");
 }
@@ -13,7 +14,7 @@
   @return mix(
       map_get($theme, "player-base"),
       map_get($theme, "player-contrast"),
-      77
+      95
   );
 }
 
@@ -29,7 +30,7 @@
   @return mix(
       map_get($theme, "player-base"),
       map_get($theme, "player-contrast"),
-      22
+      30
   );
 }
 
@@ -39,7 +40,7 @@
   @return mix(
     map_get($theme, "player-base"),
     map_get($theme, "player-contrast"),
-    28
+    20
   );
 }
 
@@ -88,7 +89,7 @@
 @function get-meta-idle-color($theme) {
   $meta-base: map_get($theme, "meta-base");
   $meta-contrast: map_get($theme, "meta-contrast");
-  @return mix($meta-base, $meta-contrast, 60);
+  @return mix($meta-base, $meta-contrast, 70);
 }
 
 // M02c o_meta-icon-hover
@@ -126,7 +127,7 @@
 @function get-accent-highlight-1-color($theme) {
   $accent-base: map_get($theme, "accent-base");
   $accent-contrast: map_get($theme, "accent-contrast");
-  @return mix($accent-base, $accent-contrast, 40);
+  @return mix($accent-base, $accent-contrast, 50);
 }
 
 // A01c o_accent-fade-2
@@ -134,7 +135,7 @@
 @function get-accent-highlight-2-color($theme) {
   $accent-base: map_get($theme, "accent-base");
   $accent-contrast: map_get($theme, "accent-contrast");
-  @return mix($accent-base, $accent-contrast, 30);
+  @return mix($accent-base, $accent-contrast, 90);
 }
 
 // A02 s_accent-links

@@ -8,7 +8,7 @@
 $white:  #fff;
 $black:  #000;
 
-$player-base:                   get-player-base-color($theme);            // P01 s_player-base-1
+$player-base-color:             get-player-base-color($theme);            // P01 s_player-base-1
 $player-base-contrast-color:    get-player-base-contrast-color($theme);   // P01a c_player-base-2
 $player-base-highlight-color:   get-player-base-highlight-color($theme);  // P02 s_player-text-1
 $player-text-highlight-color:   get-player-text-highlight-color($theme);  // P02a o_player-text-2
@@ -74,15 +74,17 @@ $tab-background-color:      $white;
 // -------------------------
 
 //Background color of the whole progress component
-$progress-bg:               $black;
+$progress-bg:               $player-base-color;
 
 //** Progress bar text color
-$progress-bar-time-current:  #fefdff;
-$progress-bar-time-duration: #c6c5c7;
+$progress-bar-time-current:  $player-base-highlight-color;
+$progress-bar-time-duration: $player-base-highlight-color;
+
+$handle-color:               $player-base-highlight-color;
 
 //** Default progress bar color
-$progress-bar-bg:           $gray;
-$progress-bar-color:        $brand-primary;
+$progress-bar-bg:           $player-base-contrast-color;
+$progress-bar-color:        $accent-base-color;
 
 // Height of the progress wrapper
 $progress-wrapper-height:         60px;

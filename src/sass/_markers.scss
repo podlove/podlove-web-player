@@ -8,7 +8,7 @@
   height: $progress-bar-height;
   width: $marker-width;
   margin-left: - ($marker-width/2);
-  background: $black;
+  background: $player-base-color;
   @media screen and (max-width: $screen-phone) {
     height: $progress-bar-height-mobile;
   }

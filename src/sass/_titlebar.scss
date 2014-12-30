@@ -6,13 +6,14 @@
 .titlebar {
   @include clearfix();
   @include pwp-flexbox();
-  @extend .contrast;
   width: 100%;
   background: $player-base-contrast-color;
   min-height: 100px;
   height: auto;
   color: $player-base-highlight-color;
-
+  a {
+    color: $player-base-highlight-color;
+  }
   // Headlines in titlebar
   header {
     @include flex(1 0px);
@@ -82,6 +83,7 @@
 .play {
   @include flex(1 0px);
   @include order(3);
+  color: $player-idle-color !important;
   min-width: 1px;
   margin: auto $margin-small-horizontal auto 0;
 }

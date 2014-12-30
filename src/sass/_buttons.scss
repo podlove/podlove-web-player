@@ -37,6 +37,7 @@
 // Big Play/Pause-Button
 .play {
   @extend .pwp-bigcontrol-play;
+  color: $player-idle-color;
   font-family: $font-family-icons;
   font-size: $play-button-size;
   max-width: $play-button-size;

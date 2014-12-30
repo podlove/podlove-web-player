@@ -74,7 +74,7 @@ progress[aria-valuenow]:before  {
 // ---------------------------------
 
 .progressbar {
-  color: $contrasted-light-default;
+  color: $player-base-highlight-color;
   background-color: $progress-bg;
   width: 100%;
   height: $progress-wrapper-height;
@@ -237,7 +237,7 @@ progress[aria-valuenow]:before  {
     height: $progress-bar-height-mobile;
   }
   .inner-handle {
-    background: white;
+    background: $handle-color;
     height: $progress-bar-height;
     width: $handle-width;
     position: absolute;
