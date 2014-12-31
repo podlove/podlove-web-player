@@ -12,7 +12,7 @@
   // mobile first...mobile styling as default,
   // others are defined in media queries
   @include flex(1 100%);
-  background: $player-base-contrast-color;
+  background: $player-contrast-color;
   padding: 2px $padding-small-horizontal 4px ;
   font-size: $font-size-mobile-icons;
   display: inline-block;

@@ -35,25 +35,25 @@
       }
 
       &:hover {
-        background: $brand-primary-chapter-hover;
+        background: $chapter-hover-color;
         .badge  {
           color: $white;
-          background-color: $brand-primary;
+          background-color: $accent-base-color;
         }
       }
 
       &.active,
       &.active:hover
       &.active:focus {
-        background: $brand-primary-chapter-active;
+        background: $chapter-hover-color;
         .badge {
-          background-color: $brand-primary;
+          background-color: $accent-base-color;
           color: $white;
         }
       }
 
       &.chapter:active {
-        background: $brand-primary-chapter-active;
+        background: $chapter-active-color;
       }
       td {
         padding: 0 5px;
@@ -74,7 +74,7 @@
         font-family: $font-family-monospace;
         white-space: nowrap;
         text-align: right;
-        color: $brand-primary;
+        color: $accent-base-color;
         padding-right: $padding-small-horizontal;
         @media all and (min-width: $screen-phone) {
           padding-right: $padding-base-horizontal - 2px;
@@ -132,8 +132,3 @@
   text-transform: none !important;
 }
 
-.chapter.active {
-  .chapter-duration {
-    color: $text-color !important;
-  }
-}

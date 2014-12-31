@@ -9,12 +9,12 @@
 }
 
 // P01a c_player-base-2
-// $player-base-contrast-color
-@function get-player-base-contrast-color($theme) {
+// $player-contrast-color
+@function get-player-contrast-color($theme) {
   @return mix(
       map_get($theme, "player-base"),
       map_get($theme, "player-contrast"),
-      95
+      85
   );
 }
 
@@ -119,7 +119,7 @@
 @function get-accent-contrast-color($theme) {
   $accent-base: map_get($theme, "accent-base");
   $accent-contrast: map_get($theme, "accent-contrast");
-  @return mix($accent-base, $accent-contrast, 55);
+  @return mix($accent-base, $accent-contrast, 0);
 }
 
 // A01b o_accent-fade-1

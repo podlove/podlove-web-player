@@ -9,7 +9,7 @@ $white:  #fff;
 $black:  #000;
 
 $player-base-color:             get-player-base-color($theme);            // P01 s_player-base-1
-$player-base-contrast-color:    get-player-base-contrast-color($theme);   // P01a c_player-base-2
+$player-contrast-color:         get-player-contrast-color($theme);        // P01a c_player-base-2
 $player-base-highlight-color:   get-player-base-highlight-color($theme);  // P02 s_player-text-1
 $player-text-highlight-color:   get-player-text-highlight-color($theme);  // P02a o_player-text-2
 $player-idle-color:             get-player-idle-color($theme);            // P02b o_player-icon-idle
@@ -17,7 +17,7 @@ $player-hover-color:            get-player-hover-color($theme);           // P02
 $player-active-color:           get-player-active-color($theme);          // P02d o_player-icon-active
 
 $meta-base-color:               get-meta-base-color($theme);              // M01 s_meta-base-1
-$meta-base-highlight-color:     get-meta-base-highlight-color($theme);    // M01a o_meta-base-2
+$meta-base-highlight-color:     get-meta-contrast-color($theme);          // M01a o_meta-base-2
 $meta-contrast-color:           get-meta-contrast-color($theme);          // M02 s_meta-text-1
 $meta-text-highlight-color:     get-meta-text-highlight-color($theme);    // M02a o_meta-text-2
 $meta-idle-color:               get-meta-idle-color($theme);              // M02b o_meta-icon-idle
@@ -51,7 +51,11 @@ $brand-warning:           #f0ad4e !default;
 $brand-danger:            #d9534f !default;
 $brand-share:             #49A8DC !default; // "twitter" blue
 $brand-share-light:       lighten($brand-share, 20%) !default;
-$badge-light:             lighten($brand-primary, 60%) !default;
+$badge-color:             lighten($accent-base-color, 60%) !default;
+
+// Profile / social buttons colors
+// -------------------------
+$profile-text-color:      $white;
 
 // Scaffolding
 // -------------------------
@@ -83,7 +87,7 @@ $progress-bar-time-duration: $player-base-highlight-color;
 $handle-color:               $player-base-highlight-color;
 
 //** Default progress bar color
-$progress-bar-bg:           $player-base-contrast-color;
+$progress-bar-bg:           $player-contrast-color;
 $progress-bar-color:        $accent-base-color;
 
 // Height of the progress wrapper
@@ -107,18 +111,20 @@ $handle-width:              4px;
 // Links
 // -------------------------
 
+$accent-link-hover:               lighten($accent-link-color, 10%);
+$accent-link-active:              lighten($accent-link-color, 15%);
 $link-color:                      $white !default;
 $link-hover-color:                lighten($link-color, 15%) !default;
 
 $contrast-link-color:             $white !default;
 
-$default-link-color:              lighten($brand-primary, 15%) !default;
-$brand-primary-hover:             darken($brand-primary, 10%) !default;
-$brand-primary-active:            lighten($brand-primary, 16%) !default;
+$default-link-color:              lighten($accent-base-color, 15%) !default;
+$brand-primary-hover:             darken($accent-base-color, 10%) !default;
+$brand-primary-active:            lighten($accent-base-color, 16%) !default;
 
-$brand-primary-chapter-hover:     lighten($brand-primary, 69%) !default;
-$brand-primary-chapter-active:    lighten($brand-primary, 66%) !default;
-$highlight-color:                 lighten($brand-primary, 70%) !default;
+$chapter-hover-color:             mix($accent-base-color, $accent-contrast-color, 38%) !default;
+$chapter-active-color:            mix($accent-base-color, $accent-contrast-color, 36%) !default;
+$highlight-color:                 mix($accent-base-color, $accent-contrast-color, 42%) !default;
 
 // Typography
 // -------------------------

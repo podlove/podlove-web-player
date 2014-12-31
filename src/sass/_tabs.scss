@@ -6,25 +6,21 @@ $tab-header-height:         70px;
 $tab-header-height-mobile:  50px;
 
 .tabs {
-  color: $text-color;
-  background-color: $tab-background-color;
+  color: $meta-contrast-color;
+  background-color: $meta-base-color;
   position: relative;
-  border-top: 0;
-  border-right: 1px solid $gray;
-  border-bottom: 1px solid $gray;
-  border-left: 1px solid $gray;
 
   a {
-    color: $default-link-color;
+    color: $accent-link-color;
     &:hover,
     &:focus {
-      color: $brand-primary-hover;
+      color: $accent-link-hover;
     }
     &:active {
-      color: $brand-primary-active;
+      color: $accent-link-active;
     }
     &.button-toggle {
-      color: $text-color;
+      color: $player-idle-color;
     }
   }
 
@@ -52,6 +48,10 @@ $tab-header-height-mobile:  50px;
       height: auto;
       max-height: $tab-max-height;
       width: 100%;
+      border-top: 0;
+      border-right: 1px solid $player-base-highlight-color;
+      border-bottom: 1px solid $player-base-highlight-color;
+      border-left: 1px solid $player-base-highlight-color;
     }
   }
   dt, dd {

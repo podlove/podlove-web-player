@@ -27,9 +27,9 @@
   // Highlight for the active list item (icon 'button' above the active tab)
   li.active {
     a {
-      @include textshadows(0px 0px 2px $player-active-color);
-      color: $player-active-color;
+      @include textshadows(0px 0px 1px $player-text-highlight-color);
       filter: alpha(opacity=100);
+      color: $player-active-color;
       zoom: 1;
     }
     // Arrow, that indicates the active tab
