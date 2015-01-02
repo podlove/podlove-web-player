@@ -22,8 +22,8 @@ body {
   font-family: $font-family-base;
   font-size: $font-size-base;
   line-height: $line-height-base;
-  color: $text-color;
-  background-color: $body-bg;
+  color: $player-base-highlight-color;
+  background-color: $player-base-color;
 }
 
 // Reset fonts for relevant elements
@@ -48,15 +48,14 @@ textarea {
 }
 
 // Links
-
 a {
-  color: $default-link-color;
+  color: $accent-link-color;
   text-decoration: none;
   background: transparent;
 
   &:hover,
   &:focus {
-    color: $link-hover-color;
+    color: $accent-link-hover;
     text-decoration: none;
     outline: none;
   }

@@ -120,8 +120,8 @@ $button-width: $share-image-width + ($share-image-border-width * 2);
     border: solid $share-image-border-width $accent-link-hover;
   }
   &:active {
-    background-color: $brand-primary-active;
-    border: solid $share-image-border-width $brand-primary-active;
+    background-color: $accent-link-active;
+    border: solid $share-image-border-width $accent-link-active;
   }
   &:focus,
   &.selected {
