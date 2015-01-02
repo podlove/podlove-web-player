@@ -1,11 +1,18 @@
 @charset "UTF-8";
 /*
  * ===========================================
- * Podlove Web Player v2.1.0-alpha
+ * Podlove Web Player v3.0-alpha
  * Licensed under The BSD 2-Clause License
  * http://opensource.org/licenses/BSD-2-Clause
  * ===========================================
- * Copyright (c) 2013, Gerrit van Aaken (https://github.com/gerritvanaaken/), Simon Waldherr (https://github.com/simonwaldherr/), Frank Hase (https://github.com/Kambfhase/), Eric Teubert (https://github.com/eteubert/) and others (https://github.com/podlove/podlove-web-player/contributors)
+ * Copyright (c) 2013, Gerrit van Aaken (https://github.com/gerritvanaaken/),
+ * Simon Waldherr (https://github.com/simonwaldherr/),
+ * Frank Hase (https://github.com/Kambfhase/),
+ * Eric Teubert (https://github.com/eteubert/),
+ * Juri Leino (https://github.com/line-o/),
+ * Alexandra von Criegern (https://github.com/plutonik-a/)
+ * and others (https://github.com/podlove/podlove-web-player/contributors)
+ *
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -23,11 +30,20 @@
  * ===========================================
  */
 
-//@import "themes/dark";
-//@import "themes/light";
-//@import "themes/blue-orange";
+// Default Light Color Themes
 //@import "themes/silver";
-@import "themes/midnight-blue";
+//@import "themes/silver-blaze";
+//@import "themes/light";
+//@import "themes/creamy";
+
+// Default Dark Color Themes
+@import "themes/dark-blaze";
+//@import "themes/dark-gray";
+//@import "themes/dark";
+//@import "themes/dark-green";
+//@import "themes/blue-orange";
+//@import "themes/midnightblue";
+//@import "themes/jungle-green";
 
 // Core variables and mixins
 @import "variables";
