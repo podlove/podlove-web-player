@@ -141,7 +141,7 @@
 // A02 s_accent-links
 // $accent-link-color
 @function get-accent-link-color($theme) {
-  $accent-base: map_get($theme, "accent-base");
-  $accent-contrast: map_get($theme, "accent-contrast");
-  @return mix($accent-base, $accent-contrast, 90);
+  @return map_get($theme, "accent-base");
 }
+
+
