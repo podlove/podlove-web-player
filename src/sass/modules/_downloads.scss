@@ -60,7 +60,7 @@
     }
   }
   .default-poster {
-    background: $accent-base-color;
+    background: $poster-background;
   }
   // Download button
   &.button-submit {
@@ -104,14 +104,14 @@
 
 // Dropdown menu with selectable file formats
 .select {
-  background-color: $gray-lighter !important;
-  border: 1px solid $gray-lighter;
+  background-color: $select-background !important;
+  border: 1px solid $select-border;
   margin: 0 auto $margin-base-vertical auto;
   height: 30px;
   padding: 6px 12px;
   font-size: $font-size-small;
   line-height: 1.4;
-  color: $gray !important;
+  color: $select-color !important;
   @media screen and (max-width: $screen-tiny-phone) {
     width: 95vw;
   }
@@ -128,7 +128,7 @@
     font-size: 1.15vw;
   }
   option {
-    background-color: $gray-lighter !important;
-    color: $gray !important;
+    background-color: $option-background !important;
+    color: $option-color !important;
   }
 }

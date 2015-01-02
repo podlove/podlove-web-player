@@ -28,16 +28,14 @@ $accent-base-color:             get-accent-base-color($theme);            // A01
 $accent-contrast-color:         get-accent-contrast-color($theme);        // A01a c_accent-text
 $accent-highlight-1-color:      get-accent-highlight-1-color($theme);     // A01b o_accent-fade-1
 $accent-highlight-2-color:      get-accent-highlight-2-color($theme);     // A01c o_accent-fade-2
-$accent-link-color:             get-accent-link-color($theme);            // A02 s_accent-links
+$accent-link-color:             get-accent-link-color($theme);            // A02 s_accent-links == $accent-base-color!
 
 // Grays
 // -------------------------
 
-$gray-darker:             lighten(#000, 13.5%) !default; // #222
 $gray-dark:               lighten(#000, 20%) !default;   // #333
 $gray:                    #3a3a3a !default;
 $gray-default:            lighten(#000, 33.5%) !default; // #555
-$gray-light:              lighten(#000, 60%) !default;   // #999
 $gray-lighter:            lighten(#000, 80%) !default;   // #ccc
 $gray-lightest:           lighten(#000, 93.5%) !default; // #eee
 
@@ -45,17 +43,31 @@ $gray-lightest:           lighten(#000, 93.5%) !default; // #eee
 // -------------------------
 
 $brand-primary:           #425634 !default; // dark-green
-$brand-info:              #506680 !default; // blue-gray
-$brand-success:           #5cb85c !default;
-$brand-warning:           #f0ad4e !default;
-$brand-danger:            #d9534f !default;
-$brand-share:             #49A8DC !default; // "twitter" blue
-$brand-share-light:       lighten($brand-share, 20%) !default;
 $badge-color:             lighten($accent-base-color, 60%) !default;
+
+// Links
+// -------------------------
+
+$accent-link-hover:               lighten($accent-base-color, 15%);
+$accent-link-active:              lighten($accent-base-color, 20%);
+$link-color:                      $white !default;
+$link-hover-color:                lighten($link-color, 15%) !default;
+
+$contrast-link-color:             $white !default;
+
+$accent-hover-color:              darken($accent-base-color, 10%) !default;
+$default-link-color:              lighten($accent-base-color, 15%) !default;
+$brand-primary-hover:             darken($accent-base-color, 10%) !default;
+$brand-primary-active:            lighten($accent-base-color, 16%) !default;
+
+$chapter-hover-color:             mix($accent-base-color, $accent-contrast-color, 38%) !default;
+$chapter-active-color:            mix($accent-base-color, $accent-contrast-color, 36%) !default;
+$highlight-color:                 mix($accent-base-color, $accent-contrast-color, 42%) !default;
+
 
 // Profile / social buttons colors
 // -------------------------
-$profile-text-color:      $white;
+$profile-text-color:        $white;
 
 // Scaffolding
 // -------------------------
@@ -72,9 +84,43 @@ $contrast-icon-font-color:  $white;
 // Tab Colors
 // -------------------------
 
-$tab-background-color:      $white;
+$tab-background-color:      $meta-base-color;
+$tab-color:                 $meta-contrast-color;
+$tab-background:            $meta-base-color;
+$tab-link-color:            $accent-link-color;
+$tab-hover-color:           $accent-link-hover;
+$tab-active-color:          $accent-link-active;
+$tab-idle-color:            $player-idle-color;
+$tab-active-border:         $player-contrast-color;
 
-//Progress bars
+// Download Tab
+$poster-background:         $accent-base-color;
+$select-border:             $meta-contrast-color;
+$select-background:         $meta-contrast-color;
+$select-color:              $accent-contrast-color;
+$option-background:         $player-base-highlight-color;
+$option-color:              $player-base-color;
+
+// Share Tab
+$input-color:               $gray-default;
+$input-border:              $gray-lighter;
+
+// Footer
+$footer-color:              $player-base-highlight-color;
+$footer-background:         $player-contrast-color;
+$footer-border:             $footer-background;
+
+// Controlbar
+$controlbar-background:     $player-contrast-color;
+$controlbar-idle:           $player-idle-color;
+$controlbar-hover:          $player-hover-color;
+$controlbar-active:         $player-active-color;
+
+// Togglebar
+$icon-shadow:               $player-text-highlight-color;
+$icon-active-color:         $player-active-color;
+
+// Progress bars
 // -------------------------
 
 //Background color of the whole progress component
@@ -108,23 +154,9 @@ $buffer-height:             2px;
 // Handle to scrub within the progressbar
 $handle-width:              4px;
 
-// Links
-// -------------------------
+// Chapter markers in progressbar
+$marker-background: $player-base-color;
 
-$accent-link-hover:               lighten($accent-link-color, 10%);
-$accent-link-active:              lighten($accent-link-color, 15%);
-$link-color:                      $white !default;
-$link-hover-color:                lighten($link-color, 15%) !default;
-
-$contrast-link-color:             $white !default;
-
-$default-link-color:              lighten($accent-base-color, 15%) !default;
-$brand-primary-hover:             darken($accent-base-color, 10%) !default;
-$brand-primary-active:            lighten($accent-base-color, 16%) !default;
-
-$chapter-hover-color:             mix($accent-base-color, $accent-contrast-color, 38%) !default;
-$chapter-active-color:            mix($accent-base-color, $accent-contrast-color, 36%) !default;
-$highlight-color:                 mix($accent-base-color, $accent-contrast-color, 42%) !default;
 
 // Typography
 // -------------------------
@@ -202,9 +234,11 @@ $margin-small-horizontal:         10px !default;
 // COMPONENT VARIABLES
 // --------------------------------------------------
 
+// Controlbar
 $controlbar-height: 40px !default;
 $controlbar-padding: $padding-base-vertical !default;
 $controlbar-active-triangle-size: 8px !default;
+
 
 // Media queries breakpoints
 // --------------------------------------------------
@@ -250,7 +284,7 @@ $title-image-height-big:      140px;
 $title-image-width:           $title-image-height;
 $title-image-full-width:      400px;
 
-// min-width $screen-tablet
+// Play Button
 $play-button-size:            64px;
 $play-button-size-big:        80px;
 $play-button-margin:          auto;

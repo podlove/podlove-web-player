@@ -44,7 +44,6 @@
   height: $height;
 }
 
-
 // CSS3 PROPERTIES
 // --------------------------------------------------
 
@@ -106,13 +105,11 @@
   color: contrast-color($background-color, $dark, $light, $threshold);
 }
 
-
 // Background Size
 
 @mixin background-size($bg-width, $bg-height) {
   background-size: $bg-width $bg-height;
 }
-
 
 // Flexbox Layout
 // --------------------------------------------------
@@ -161,8 +158,14 @@
   border: 1px solid $bg-color;
 
   &:hover {
-    background-color: $default-link-color;
+    background-color: $accent-link-hover;
+    border: 1px solid $accent-link-hover;
+    color: $accent-contrast-color;
     cursor: pointer;
+  }
+  &:active {
+    background-color: $accent-base-color;
+    border: 1px solid $accent-base-color;
   }
 }
 

@@ -2,8 +2,6 @@
 // Module 'Chapters'
 // --------------------------------------------------
 
-// Chapters
-// ----------------------
 .podlovewebplayer_chapterbox {
   height: auto;
   transition: all 0.5s;
@@ -40,6 +38,10 @@
           color: $white;
           background-color: $accent-base-color;
         }
+        .chapter-duration span {
+          color: $meta-contrast-color;
+          font-weight: $font-weight-bold;
+        }
       }
 
       &.active,
@@ -49,6 +51,10 @@
         .badge {
           background-color: $accent-base-color;
           color: $white;
+        }
+        .chapter-duration span {
+          color: $meta-contrast-color;
+          font-weight: $font-weight-bold;
         }
       }
 
@@ -81,6 +87,7 @@
         }
       }
     }
+/*
     .chapterplay {
       width: 25px;
       padding-right: 0;
@@ -113,14 +120,19 @@
         cursor: pointer;
       }
     }
+*/
+/*
     .loaded .chapterplay > a {
       background: $black;
     }
+*/
   }
 
+/*
   .paused .chapterplay a[rel=player] span {
     background-position: 0 0 !important;
   }
+*/
 }
 
 .chapter-name a {

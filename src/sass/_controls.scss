@@ -4,6 +4,7 @@
 
 // wrappers
 .controlbar-wrapper {
+
   @include pwp-flexbox();
   background-color: $black;
 }
@@ -12,13 +13,12 @@
   // mobile first...mobile styling as default,
   // others are defined in media queries
   @include flex(1 100%);
-  background: $player-contrast-color;
+  background: $controlbar-background;
   padding: 2px $padding-small-horizontal 4px ;
   font-size: $font-size-mobile-icons;
   display: inline-block;
   @media screen and (min-width: $screen-phone) {
     @include flex(1 0%);
-    height: 100%;
     width: auto;
     margin: 0;
     padding: 0px $padding-large-horizontal;
@@ -48,12 +48,12 @@
   // General styles for list items in controlbar
   li {
     a {
-      color: $player-idle-color;
+      color: $controlbar-idle;
       &:hover {
-        color: $player-hover-color;
+        color: $controlbar-hover;
       }
       &:active {
-        color: $player-active-color;
+        color: $controlbar-active;
       }
     }
     display: inline-block;

@@ -7,7 +7,8 @@
 
 $badge-size: 25px;
 $badge-line-height: $badge-size;
-
+$badge-color: $meta-base-highlight-color;
+$badge-background: $meta-idle-color;
 
 .badge {
   font-family: $font-family-monospace;
@@ -16,8 +17,8 @@ $badge-line-height: $badge-size;
   font-weight: $font-weight-normal;
   line-height: $badge-line-height;
   text-align: center;
-  color: $meta-base-highlight-color;
-  background-color: $meta-idle-color;
+  color: $badge-color;
+  background-color: $badge-background;
   white-space: nowrap;
   display: inline-block;
   @include border-radius(50%);

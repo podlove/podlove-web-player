@@ -1,3 +1,7 @@
+//
+// Chapter Markers
+// --------------------------------------------------
+
 .marker {
   $marker-width: 2px;
   z-index: 99;
@@ -8,7 +12,7 @@
   height: $progress-bar-height;
   width: $marker-width;
   margin-left: - ($marker-width/2);
-  background: $player-base-color;
+  background: $marker-background;
   @media screen and (max-width: $screen-phone) {
     height: $progress-bar-height-mobile;
   }

@@ -6,21 +6,21 @@ $tab-header-height:         70px;
 $tab-header-height-mobile:  50px;
 
 .tabs {
-  color: $meta-contrast-color;
-  background-color: $meta-base-color;
+  color: $tab-color;
+  background-color: $tab-background;
   position: relative;
 
   a {
-    color: $accent-link-color;
+    color: $tab-link-color;
     &:hover,
     &:focus {
-      color: $accent-link-hover;
+      color: $tab-hover-color;
     }
     &:active {
-      color: $accent-link-active;
+      color: $tab-active-color;
     }
     &.button-toggle {
-      color: $player-idle-color;
+      color: $tab-idle-color;
     }
   }
 
@@ -42,16 +42,19 @@ $tab-header-height-mobile:  50px;
     & > header, > div, > aside, > footer {
       padding: 1px;
     }
-
     &.active {
       @include pwp-flexbox();
       height: auto;
       max-height: $tab-max-height;
       width: 100%;
       border-top: 0;
-      border-right: 1px solid $player-base-highlight-color;
-      border-bottom: 1px solid $player-base-highlight-color;
-      border-left: 1px solid $player-base-highlight-color;
+      border-right: 1px solid $tab-active-border;
+      border-bottom: 1px solid $tab-active-border;
+      border-left: 1px solid $tab-active-border;
+      header {
+        border-right: 1px solid $tab-active-border;
+        border-left: 1px solid $tab-active-border;
+      }
     }
   }
   dt, dd {
@@ -75,7 +78,7 @@ $tab-header-height-mobile:  50px;
     top: 0;
     left: 0;
     z-index: 1;
-    background-color: $tab-background-color;
+    background-color: $meta-base-color;
     padding: $padding-large-vertical 0 0 0 !important;
     width: 100%;
     height: $tab-header-height;
@@ -120,8 +123,9 @@ $tab-header-height-mobile:  50px;
     @include flex(1 100%);
     @include order(3);
     text-align: center;
-    background-color: $gray-lightest;
-    border: 1px solid white !important;
+    color: $footer-color;
+    background-color: $footer-background;
+    border: 1px solid $footer-border !important;
   }
 }
 
