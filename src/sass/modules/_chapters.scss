@@ -87,52 +87,7 @@
         }
       }
     }
-/*
-    .chapterplay {
-      width: 25px;
-      padding-right: 0;
-    }
-    .chapterplay > a {
-      display: block;
-      border: none;
-      padding: 0;
-      margin: 0;
-      text-align: center;
-      width: 25px;
-      height: 25px;
-      background: #bbb;
-      border-radius: 13px;
-      cursor: pointer;
-      transition: all 0.07s;
-      &.disabled {
-        cursor: wait;
-        &:focus,
-        &:hover,
-        &:active {
-          background: $gray-lightest;
-          cursor: wait;
-        }
-      }
-      &:focus,
-      &:hover,
-      &:active {
-        background: #3a859a;
-        cursor: pointer;
-      }
-    }
-*/
-/*
-    .loaded .chapterplay > a {
-      background: $black;
-    }
-*/
   }
-
-/*
-  .paused .chapterplay a[rel=player] span {
-    background-position: 0 0 !important;
-  }
-*/
 }
 
 .chapter-name a {
