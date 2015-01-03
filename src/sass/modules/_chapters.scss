@@ -47,7 +47,7 @@
       &.active,
       &.active:hover
       &.active:focus {
-        background: $chapter-hover-color;
+        background: $chapter-active-color;
         .badge {
           background-color: $accent-base-color;
           color: $white;

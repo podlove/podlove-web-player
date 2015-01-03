@@ -41,8 +41,8 @@ $accent-highlight-2-color:    get-accent-highlight-2-color($theme);     // A01c 
 $accent-link-color:           get-accent-link-color($theme);            // A02 s_accent-links == $accent-base-color!
 $accent-link-hover:           lighten($accent-base-color, 15%);
 $accent-link-active:          lighten($accent-base-color, 20%);
-$chapter-hover-color:         mix($accent-base-color, $accent-contrast-color, 38%) !default;
-$chapter-active-color:        mix($accent-base-color, $accent-contrast-color, 36%) !default;
+$chapter-hover-color:         mix($accent-base-color, $accent-contrast-color, 30%) !default;
+$chapter-active-color:        mix($accent-base-color, $accent-contrast-color, 38%) !default;
 
 
 // General Tab Colors
