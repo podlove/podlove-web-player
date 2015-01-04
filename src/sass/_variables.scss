@@ -1,67 +1,117 @@
+@import "colors";
 //
 // Variables
 // --------------------------------------------------
 
-// Global values
-// --------------------------------------------------
+// Global Color Values
+// ====================================================================================================
 
-$white:                   #fff;
-$black:                   #000;
+$white:                       #fff;
+$black:                       #000;
+$gray:                        #3a3a3a !default;
+$gray-default:                lighten(#000, 33.5%) !default; // #555
+$gray-lighter:                lighten(#000, 80%) !default;   // #ccc
 
-// Grays
+// Theme Color Variables in Player Elements
+$player-base-color:           get-player-base-color($theme);            // P01 s_player-base-1
+$player-contrast-color:       get-player-contrast-color($theme);        // P01a c_player-base-2
+$player-base-highlight-color: get-player-base-highlight-color($theme);  // P02 s_player-text-1
+$player-text-highlight-color: get-player-text-highlight-color($theme);  // P02a o_player-text-2
+$player-idle-color:           get-player-idle-color($theme);            // P02b o_player-icon-idle
+$player-hover-color:          get-player-hover-color($theme);           // P02c o_player-icon-hover
+$player-active-color:         get-player-active-color($theme);          // P02d o_player-icon-active
+
+// Theme Color Variables in Tab/Meta Elements
+$meta-base-color:             get-meta-base-color($theme);              // M01 s_meta-base-1
+$meta-base-highlight-color:   get-meta-contrast-color($theme);          // M01a o_meta-base-2
+$meta-contrast-color:         get-meta-contrast-color($theme);          // M02 s_meta-text-1
+$meta-text-highlight-color:   get-meta-text-highlight-color($theme);    // M02a o_meta-text-2
+$meta-idle-color:             get-meta-idle-color($theme);              // M02b o_meta-icon-idle
+$meta-hover-color:            get-meta-hover-color($theme);             // M02c o_meta-icon-hover
+$meta-active-color:           get-meta-active-color($theme);            // M02d o_meta-icon-active
+
+// Accent Theme Color Variables
+$accent-base-color:           get-accent-base-color($theme);            // A01 s_accent
+$accent-contrast-color:       get-accent-contrast-color($theme);        // A01a c_accent-text
+$accent-highlight-1-color:    get-accent-highlight-1-color($theme);     // A01b o_accent-fade-1
+$accent-highlight-2-color:    get-accent-highlight-2-color($theme);     // A01c o_accent-fade-2
+
+// Links
+// -------------------------
+$accent-link-color:           get-accent-link-color($theme);            // A02 s_accent-links == $accent-base-color!
+$accent-link-hover:           lighten($accent-base-color, 15%);
+$accent-link-active:          lighten($accent-base-color, 20%);
+$chapter-hover-color:         mix($accent-base-color, $accent-contrast-color, 30%) !default;
+$chapter-active-color:        mix($accent-base-color, $accent-contrast-color, 38%) !default;
+
+
+// General Tab Colors
+$tab-background-color:        $meta-base-color;
+$tab-color:                   $meta-contrast-color;
+$tab-background:              $meta-base-color;
+$tab-link-color:              $accent-link-color;
+$tab-hover-color:             $accent-link-hover;
+$tab-active-color:            $accent-link-active;
+$tab-idle-color:              $player-idle-color;
+$tab-active-border:           $player-contrast-color;
+
+// Download Tab Colors
+$poster-background:           $accent-base-color;
+$select-border:               $meta-contrast-color;
+$select-background:           $meta-contrast-color;
+$select-color:                $accent-contrast-color;
+$option-background:           $player-base-highlight-color;
+$option-color:                $player-base-color;
+
+// Share Tab Colors
+$input-color:                 $gray-default;
+$input-border:                $gray-lighter;
+
+// Footer Colors
+$footer-color:                $player-base-highlight-color;
+$footer-background:           $player-contrast-color;
+$footer-border:               $footer-background;
+
+// Controlbar Colors
+$controlbar-background:       $player-contrast-color;
+$controlbar-idle:             $player-idle-color;
+$controlbar-hover:            $player-hover-color;
+$controlbar-active:           $player-active-color;
+
+// Titlebar Colors
+$badge-color:                 lighten($accent-base-color, 60%) !default;
+
+// Togglebar Colors
+$icon-shadow:                 $player-text-highlight-color;
+$icon-active-color:           $player-active-color;
+
+// Profile / social buttons colors
+$profile-text-color:          $white;
+
+// Progress bar Colors
 // -------------------------
 
-$gray-darker:             lighten(#000, 13.5%) !default; // #222
-$gray-dark:               lighten(#000, 20%) !default;   // #333
-$gray:                    #3a3a3a !default;
-$gray-default:            lighten(#000, 33.5%) !default; // #555
-$gray-light:              lighten(#000, 60%) !default;   // #999
-$gray-lighter:            lighten(#000, 80%) !default;   // #ccc
-$gray-lightest:           lighten(#000, 93.5%) !default; // #eee
+// Background color of the whole progress component
+$progress-bg:                 $player-base-color;
 
-// Brand colors
+// Progress bar text color
+$progress-bar-time-current:   $player-base-highlight-color;
+$progress-bar-time-duration:  $player-base-highlight-color;
+
+// Default progress bar color
+$progress-bar-bg:             $player-contrast-color;
+$progress-bar-color:          $accent-base-color;
+
+// Chapter markers in progressbar
+$marker-background:           $player-base-color;
+
+// Color of the scrubber handle in progressbar
+$handle-color:                $player-base-highlight-color;
+
+// ====================================================================================================
+
+// Progress bar Measurements
 // -------------------------
-
-$brand-primary:           #425634 !default; // dark-green
-$brand-info:              #506680 !default; // blue-gray
-$brand-success:           #5cb85c !default;
-$brand-warning:           #f0ad4e !default;
-$brand-danger:            #d9534f !default;
-$brand-share:             #49A8DC !default; // "twitter" blue
-$brand-share-light:       lighten($brand-share, 20%) !default;
-$badge-light:             lighten($brand-primary, 60%) !default;
-
-// Scaffolding
-// -------------------------
-
-$body-bg:                   $gray-lightest !default;
-$text-color:                $gray-dark !default;
-
-$contrast-default-color:    $white;
-$contrasted-dark-default:   $gray-dark;
-$contrasted-light-default:  $gray-lightest;
-
-//$icon-font-default-color:   $white;
-$contrast-icon-font-color:  $white;
-
-// Tab Colors
-// -------------------------
-
-$tab-background-color:      $white;
-
-//Progress bars
-// -------------------------
-
-//Background color of the whole progress component
-$progress-bg:               $black;
-
-//** Progress bar text color
-$progress-bar-time-current:  #fefdff;
-$progress-bar-time-duration: #c6c5c7;
-
-//** Default progress bar color
-$progress-bar-bg:           $gray;
-$progress-bar-color:        $brand-primary;
 
 // Height of the progress wrapper
 $progress-wrapper-height:         60px;
@@ -72,145 +122,132 @@ $progress-bar-height:         10px;
 $progress-bar-height-mobile:  20px;
 
 //** Area above the progressbar to display the duration and chapter title
-$progress-bar-info-margin: 15px;
-$progress-bar-info-height: $progress-wrapper-height / 2 - $progress-bar-info-margin * 2;
+$progress-bar-info-margin:    15px;
+$progress-bar-info-height:    $progress-wrapper-height / 2 - $progress-bar-info-margin * 2;
 
 // Buffer
-$buffer-height:             2px;
+$buffer-height:               2px;
 
 // Handle to scrub within the progressbar
-$handle-width:              4px;
+$handle-width:                4px;
 
-// Links
-// -------------------------
-
-$link-color:                      $white !default;
-$link-hover-color:                lighten($link-color, 15%) !default;
-
-$contrast-link-color:             $white !default;
-
-$default-link-color:              lighten($brand-primary, 15%) !default;
-$brand-primary-hover:             darken($brand-primary, 10%) !default;
-$brand-primary-active:            lighten($brand-primary, 16%) !default;
-
-$brand-primary-chapter-hover:     lighten($brand-primary, 69%) !default;
-$brand-primary-chapter-active:    lighten($brand-primary, 66%) !default;
-$highlight-color:                 lighten($brand-primary, 70%) !default;
 
 // Typography
 // -------------------------
 
-$font-family-sans-serif:  'Roboto', 'Helvetica Neue', 'Helvetica', sans-serif !default;
-$font-family-serif:       Georgia, "Times New Roman", Times, serif !default;
-$font-family-monospace:   'Droid Sans Mono', Monaco, Menlo, Consolas, "Courier New", monospace !default;
-$font-family-base:        $font-family-sans-serif !default;
-$font-family-icons:       "podlove";
+$font-family-sans-serif:      'Roboto', 'Helvetica Neue', 'Helvetica', sans-serif !default;
+$font-family-serif:           Georgia, "Times New Roman", Times, serif !default;
+$font-family-monospace:       'Droid Sans Mono', Monaco, Menlo, Consolas, "Courier New", monospace !default;
+$font-family-base:            $font-family-sans-serif !default;
+$font-family-icons:           "podlove";
 
-$font-size-base:          13px !default;
-$font-size-small:         floor($font-size-base * 0.847) !default; //  11px
-$font-size-large:         ceil($font-size-base * 1.125) !default;
-$font-size-xlarge:        ceil($font-size-base * 1.5) !default;  // ~19.5px
-$font-size-wide-screen:   1.15vw; // Adaptive font-size used for wide screens
-$font-size-icons:         ceil($font-size-base * 1.63 ) !default;
-$font-size-mobile-icons:  ceil($font-size-base * 2.15) !default;
-$font-size-social-icons:  ceil($font-size-base * 3.46) !default;
+$font-size-base:              13px !default;
+$font-size-small:             floor($font-size-base * 0.847) !default; //  11px
+$font-size-large:             ceil($font-size-base * 1.125) !default;
+$font-size-xlarge:            ceil($font-size-base * 1.5) !default;  // ~19.5px
+$font-size-wide-screen:       1.15vw; // Adaptive font-size used for wide screens
+$font-size-icons:             ceil($font-size-base * 1.63 ) !default;
+$font-size-mobile-icons:      ceil($font-size-base * 2.15) !default;
+$font-size-social-icons:      ceil($font-size-base * 3.46) !default;
 $font-size-contrast-social-icons:  ceil($font-size-base * 3.46) !default; // 45px
 
-$font-size-h1:            ceil($font-size-base * 2.23) !default; //  29px
-$font-size-h2:            floor($font-size-base * 2.0) !default; //  26px
-$font-size-small-h2:      floor($font-size-base * 1.5) !default; // ~19.5px
-$font-size-h3:            ceil($font-size-base * 1.25) !default;
-$font-size-h4:            ceil($font-size-base * 1.125) !default;
-$font-size-h5:            $font-size-base !default;
-$font-size-h6:            ceil($font-size-base * 0.85) !default;
+$font-size-h1:                ceil($font-size-base * 2.23) !default; //  29px
+$font-size-h2:                floor($font-size-base * 2.0) !default; //  26px
+$font-size-small-h2:          floor($font-size-base * 1.5) !default; // ~19.5px
+$font-size-h3:                ceil($font-size-base * 1.25) !default;
+$font-size-h4:                ceil($font-size-base * 1.125) !default;
+$font-size-h5:                $font-size-base !default;
+$font-size-h6:                ceil($font-size-base * 0.85) !default;
 
 // Typography Variables
 // -------------------------
 
-$font-weight-light:   300;
-$font-weight-normal:  400;
-$font-weight-bold:    500;
+$font-weight-light:           300;
+$font-weight-normal:          400;
+$font-weight-bold:            500;
 
-$line-height-base:        1.428571429 !default; // 20/14
-$line-height-computed:    floor($font-size-base * $line-height-base) !default; // ~20px
+$line-height-base:            1.428571429 !default; // 20/14
+$line-height-computed:        floor($font-size-base * $line-height-base) !default; // ~20px
 
-$headings-font-family:          $font-family-base !default;
-$headings-font-weight-light:    $font-weight-light !default;
-$headings-font-weight-normal:   $font-weight-normal !default;
-$headings-font-weight-bold:     $font-weight-bold !default;
-$headings-line-height:          1.1 !default;
-$headings-color:                inherit !default;
+$headings-font-family:        $font-family-base !default;
+$headings-font-weight-light:  $font-weight-light !default;
+$headings-font-weight-normal: $font-weight-normal !default;
+$headings-font-weight-bold:   $font-weight-bold !default;
+$headings-line-height:        1.1 !default;
+$headings-color:              inherit !default;
 
-$font-size-button-label:        floor($font-size-base * 2.0) !default;  // 32px
-$font-size-button-small-label:  floor($font-size-base * 1.25) !default; // 20px
+$font-size-button-label:      floor($font-size-base * 2.0) !default;  // 32px
+$font-size-button-small-label:floor($font-size-base * 1.25) !default; // 20px
 
 // Components
 // -------------------------
 
-$padding-base-vertical:          10px !default;
-$padding-base-horizontal:        20px !default;
+$padding-base-vertical:       10px !default;
+$padding-base-horizontal:     20px !default;
 
-$padding-large-vertical:         25px !default;
-$padding-large-horizontal:       20px !default;
+$padding-large-vertical:      25px !default;
+$padding-large-horizontal:    20px !default;
 
-$padding-small-vertical:         6px !default;
-$padding-small-horizontal:       10px !default;
+$padding-small-vertical:      6px !default;
+$padding-small-horizontal:    10px !default;
 
-$line-height-large:              1.33 !default;
-$line-height-small:              1.5 !default;
+$line-height-large:           1.33 !default;
+$line-height-small:           1.5 !default;
 
-$border-radius-base:             4px !default;
-$border-radius-large:            6px !default;
-$border-radius-small:            3px !default;
+$border-radius-base:          4px !default;
+$border-radius-large:         6px !default;
+$border-radius-small:         3px !default;
 
-$margin-base-vertical:           25px !default;
-$margin-base-horizontal:         20px !default;
+$margin-base-vertical:        25px !default;
+$margin-base-horizontal:      20px !default;
 
-$margin-small-vertical:           10px !default;
-$margin-small-horizontal:         10px !default;
+$margin-small-vertical:       10px !default;
+$margin-small-horizontal:     10px !default;
 
 
 // COMPONENT VARIABLES
 // --------------------------------------------------
 
-$controlbar-height: 40px !default;
-$controlbar-padding: $padding-base-vertical !default;
+// Controlbar
+$controlbar-height:           40px !default;
+$controlbar-padding:          $padding-base-vertical !default;
 $controlbar-active-triangle-size: 8px !default;
+
 
 // Media queries breakpoints
 // --------------------------------------------------
 
 // Extra small and very old phone sceen
-$screen-xxs:                 360px !default;
-$screen-tiny-phone:          $screen-xxs !default;
+$screen-xxs:                  360px !default;
+$screen-tiny-phone:           $screen-xxs !default;
 
 // Extra small screen / phone
-$screen-xs:                  480px !default;
-$screen-xs-min:              $screen-xs !default;
-$screen-phone:               $screen-xs-min !default;
+$screen-xs:                   480px !default;
+$screen-xs-min:               $screen-xs !default;
+$screen-phone:                $screen-xs-min !default;
 
 // Small screen / tablet portrait
-$screen-tablet-portrait:     550px !default;
+$screen-tablet-portrait:      550px !default;
 
 // Small screen / tablet
-$screen-sm:                  768px !default;
-$screen-sm-min:              $screen-sm !default;
-$screen-tablet:              $screen-sm-min !default;
+$screen-sm:                   768px !default;
+$screen-sm-min:               $screen-sm !default;
+$screen-tablet:               $screen-sm-min !default;
 
 // Medium screen / desktop
-$screen-md:                  992px !default;
-$screen-md-min:              $screen-md !default;
-$screen-desktop:             $screen-md-min !default;
+$screen-md:                   992px !default;
+$screen-md-min:               $screen-md !default;
+$screen-desktop:              $screen-md-min !default;
 
 // Large screen / wide desktop
-$screen-lg:                  1200px !default;
-$screen-lg-min:              $screen-lg !default;
-$screen-lg-desktop:          $screen-lg-min !default;
+$screen-lg:                   1200px !default;
+$screen-lg-min:               $screen-lg !default;
+$screen-lg-desktop:           $screen-lg-min !default;
 
 // So media queries don't overlap when required, provide a maximum
-$screen-xs-max:              ($screen-sm-min - 1) !default;
-$screen-sm-max:              ($screen-md-min - 1) !default;
-$screen-md-max:              ($screen-lg-min - 1) !default;
+$screen-xs-max:               ($screen-sm-min - 1) !default;
+$screen-sm-max:               ($screen-md-min - 1) !default;
+$screen-md-max:               ($screen-lg-min - 1) !default;
 
 // Miscellaneous
 // -------------------------
@@ -221,7 +258,7 @@ $title-image-height-big:      140px;
 $title-image-width:           $title-image-height;
 $title-image-full-width:      400px;
 
-// min-width $screen-tablet
+// Play Button
 $play-button-size:            64px;
 $play-button-size-big:        80px;
 $play-button-margin:          auto;

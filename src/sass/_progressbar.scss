@@ -74,7 +74,7 @@ progress[aria-valuenow]:before  {
 // ---------------------------------
 
 .progressbar {
-  color: $contrasted-light-default;
+  color: $player-base-highlight-color;
   background-color: $progress-bg;
   width: 100%;
   height: $progress-wrapper-height;
@@ -108,8 +108,8 @@ progress[aria-valuenow]:before  {
       display: block;
       float: left;
       margin-top: 8px;
-      color: $contrast-default-color;
-      background-color: $gray;
+      color: $player-base-highlight-color;
+      background-color: $player-contrast-color;
 
       @media all and (min-width: $screen-desktop) {
         font-size: $font-size-small;
@@ -237,7 +237,7 @@ progress[aria-valuenow]:before  {
     height: $progress-bar-height-mobile;
   }
   .inner-handle {
-    background: white;
+    background: $handle-color;
     height: $progress-bar-height;
     width: $handle-width;
     position: absolute;
