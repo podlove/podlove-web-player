@@ -13,3 +13,7 @@ h1 {
     font-size: 29px;
     width: 85%;
 }
+
+a {
+    text-decoration: none;
+}
