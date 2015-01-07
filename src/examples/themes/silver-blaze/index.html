@@ -13,31 +13,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="shortcut icon" href="favicon.ico"/>
     <link rel="apple-touch-icon" href="appletouch.png"/>
-    <link href="podlove-web-player-silver-blaze.css" rel="stylesheet" media="screen" type="text/css" />
-    <link href="/examples/examples.css" rel="stylesheet" media="screen" type="text/css" />
+    <link href="/css/pwp-silver-blaze.css" rel="stylesheet" media="screen" type="text/css" />
     <link href="/css/vendor/progress-polyfill.css" rel="stylesheet" media="screen" type="text/css" />
-
 </head>
 <body>
-    <article class="">
-        <h1>Silver Blaze Theme</h1>
-        <noscript>Player Info for clients without Javascript enabled.</noscript>
-        <audio controls="controls">
-            <source src="http://cre.fm/podlove/file/3235/s/webplayer/c/home/cre206-das-ohr.m4a" type="audio/mp4"/>
-            <source src="http://cre.fm/podlove/file/3236/s/webplayer/c/home/cre206-das-ohr.opus" type="audio/opus"/>
-            <source src="http://cre.fm/podlove/file/3238/s/webplayer/c/home/cre206-das-ohr.oga" type="audio/ogg"/>
-            <source src="http://cre.fm/podlove/file/3239/s/webplayer/c/home/cre206-das-ohr.mp3" type="audio/mpeg"/>
-            <object type="application/x-shockwave-flash" data="flashmediaelement.swf">
-                <param name="movie" value="flashmediaelement.swf"/>
-                <param name="flashvars" value="controls=true&amp;file=http://meta.metaebene.me/media/cre/cre206-das-ohr.mp3"/>
-            </object>
-        </audio>
-    </article>
+    <audio controls="controls">
+        <source src="http://cre.fm/podlove/file/3235/s/webplayer/c/home/cre206-das-ohr.m4a" type="audio/mp4"/>
+        <source src="http://cre.fm/podlove/file/3236/s/webplayer/c/home/cre206-das-ohr.opus" type="audio/opus"/>
+        <source src="http://cre.fm/podlove/file/3238/s/webplayer/c/home/cre206-das-ohr.oga" type="audio/ogg"/>
+        <source src="http://cre.fm/podlove/file/3239/s/webplayer/c/home/cre206-das-ohr.mp3" type="audio/mpeg"/>
+        <object type="application/x-shockwave-flash" data="flashmediaelement.swf">
+            <param name="movie" value="flashmediaelement.swf"/>
+            <param name="flashvars" value="controls=true&amp;file=http://meta.metaebene.me/media/cre/cre206-das-ohr.mp3"/>
+        </object>
+    </audio>
     <script src="/js/vendor/html5shiv.js"></script>
     <script src="/js/vendor/progress-polyfill.min.js"></script>
-    <script src="/js/podlove-web-player.js"></script>
     <script src="/js/vendor/jquery.min.js"></script>
-    <script src="/js/podlove-web-moderator.js"></script>
+    <script src="/js/podlove-web-player.js"></script>
     <script>
         $('audio').podlovewebplayer({
             "pluginPath": "/bin/",
