@@ -53,7 +53,7 @@ gulp.task('tdd', function (done) {
 
 // Styles
 gulp.task('styles', function() {
-  return gulp.src(source + 'sass/podlove-web-player.scss')
+  return gulp.src(source + 'sass/pwp-*.scss')
     .pipe(compass({
       config_file: './config.rb',
       style: 'expanded',
