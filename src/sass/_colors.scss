@@ -67,7 +67,7 @@
 @function get-meta-base-highlight-color($theme) {
   $meta-base: map_get($theme, "meta-base");
   $meta-contrast: map_get($theme, "meta-contrast");
-  @return mix($meta-base, $meta-contrast, 80);
+  @return mix($meta-base, $meta-contrast, 85);
 }
 
 // M02 s_meta-text-1
