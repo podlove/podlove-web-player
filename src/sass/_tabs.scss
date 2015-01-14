@@ -144,5 +144,5 @@ $tab-header-height-mobile:  50px;
 }
 
 .scrolled {
-  @include box-shadow(3px 10px 20px -10px $black);
+  @include box-shadow(0px 3px 8px -2px $black);
 }

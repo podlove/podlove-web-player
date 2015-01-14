@@ -15,6 +15,7 @@ $gray-lighter:                lighten(#000, 80%) !default;   // #ccc
 // Theme Color Variables in Player Elements
 $player-base-color:           get-player-base-color($theme);            // P01 s_player-base-1
 $player-contrast-color:       get-player-contrast-color($theme);        // P01a c_player-base-2
+$player-high-contrast-color:  get-player-high-contrast-color($theme);   // P01b c_player-base-3
 $player-base-highlight-color: get-player-base-highlight-color($theme);  // P02 s_player-text-1
 $player-text-highlight-color: get-player-text-highlight-color($theme);  // P02a o_player-text-2
 $player-idle-color:           get-player-idle-color($theme);            // P02b o_player-icon-idle
@@ -23,7 +24,8 @@ $player-active-color:         get-player-active-color($theme);          // P02d 
 
 // Theme Color Variables in Tab/Meta Elements
 $meta-base-color:             get-meta-base-color($theme);              // M01 s_meta-base-1
-$meta-base-highlight-color:   get-meta-contrast-color($theme);          // M01a o_meta-base-2
+$meta-base-highlight-color:   get-meta-base-highlight-color($theme);    // M01a o_meta-base-2
+$meta-base-highlight-2-color: get-meta-base-highlight-2-color($theme);  // M01b o_meta-base-3
 $meta-contrast-color:         get-meta-contrast-color($theme);          // M02 s_meta-text-1
 $meta-text-highlight-color:   get-meta-text-highlight-color($theme);    // M02a o_meta-text-2
 $meta-idle-color:             get-meta-idle-color($theme);              // M02b o_meta-icon-idle
@@ -57,9 +59,9 @@ $tab-active-border:           $player-contrast-color;
 
 // Download Tab Colors
 $poster-background:           $accent-base-color;
-$select-border:               $meta-contrast-color;
-$select-background:           $meta-contrast-color;
-$select-color:                $accent-contrast-color;
+$select-border:               $meta-contrast-color;   // M02
+$select-background:           $meta-contrast-color;   // M02
+$select-color:                $accent-contrast-color; // A01a
 $option-background:           $player-base-highlight-color;
 $option-color:                $player-base-color;
 
@@ -67,10 +69,10 @@ $option-color:                $player-base-color;
 $input-color:                 $gray-default;
 $input-border:                $gray-lighter;
 
-// Footer Colors
-$footer-color:                $player-base-highlight-color;
-$footer-background:           $player-contrast-color;
-$footer-border:               $footer-background;
+// Tab-Footer Colors
+$footer-color:                $meta-contrast-color;           // M02
+$footer-background:           $meta-base-highlight-color;     // M01a
+$footer-border:               $footer-background;             // M01a
 
 // Controlbar Colors
 $controlbar-background:       $player-contrast-color;

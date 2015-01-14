@@ -18,6 +18,16 @@
   );
 }
 
+// P01b c_player-base-3
+// $player-high-contrast-color
+@function get-player-high-contrast-color($theme) {
+  @return mix(
+      map_get($theme, "player-base"),
+      map_get($theme, "player-contrast"),
+      20
+  );
+}
+
 // P02 s_player-text-1
 // $player-base-highlight-color
 @function get-player-base-highlight-color($theme) {
@@ -67,7 +77,15 @@
 @function get-meta-base-highlight-color($theme) {
   $meta-base: map_get($theme, "meta-base");
   $meta-contrast: map_get($theme, "meta-contrast");
-  @return mix($meta-base, $meta-contrast, 80);
+  @return mix($meta-base, $meta-contrast, 85);
+}
+
+// M01b o_meta-base-3, calculated meta-tab highlight color
+// $meta-base-highlight-2-color
+@function get-meta-base-highlight-2-color($theme) {
+  $meta-base: map_get($theme, "meta-base");
+  $meta-contrast: map_get($theme, "meta-contrast");
+  @return mix($meta-base, $meta-contrast, 20);
 }
 
 // M02 s_meta-text-1
