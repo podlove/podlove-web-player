@@ -6,7 +6,6 @@
 .controlbar-wrapper {
 
   @include pwp-flexbox();
-  background-color: $black;
 }
 
 .bar {
@@ -21,11 +20,8 @@
     @include flex(1 0%);
     width: auto;
     margin: 0;
-    padding: 0px $padding-large-horizontal;
-  }
-  @media all and (min-width: $screen-tablet-portrait) {
-    height: $controlbar-height;
     font-size: $font-size-icons;
+    height: $controlbar-height;
     padding: 3px $padding-large-horizontal;
     border: none;
     @include transition(font-size 0.2s, ease);
