@@ -1,7 +1,8 @@
 'use strict';
 
-var
-    url = require('./url'),
+var url = require('./url');
+
+var $ = jQuery,
     IFRAME_HEIGHT_DEFAULT = 300,
     IFRAME_HEIGHT_MIN = 100,
     IFRAME_HEIGHT_MAX = 3000,
