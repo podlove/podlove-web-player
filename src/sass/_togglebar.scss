@@ -46,16 +46,11 @@
       border-bottom: $controlbar-active-triangle-size * 1.3 solid $meta-base-color;
 
       @media screen and (min-width: $screen-phone)  {
-        top: $controlbar-height + 1px - $controlbar-active-triangle-size;
-        left: ($font-size-mobile-icons/2) - $controlbar-active-triangle-size;
+        top: $controlbar-height - 3px - $controlbar-active-triangle-size;
+        left: ($font-size-icons/2) - $controlbar-active-triangle-size;
         border-left: $controlbar-active-triangle-size solid transparent;
         border-right: $controlbar-active-triangle-size solid transparent;
         border-bottom: $controlbar-active-triangle-size solid $meta-base-color;
-      }
-
-      @media screen and (min-width: $screen-tablet-portrait) {
-        top: $controlbar-height - 3px - $controlbar-active-triangle-size;
-        left: ($font-size-icons/2) - $controlbar-active-triangle-size;
       }
     }
   }

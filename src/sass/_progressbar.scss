@@ -247,7 +247,7 @@ progress[aria-valuenow]:before  {
     transform: scale(1, 1);
     @include transition(width 0.3s, left 0.3s, transform 0.1s, ease);
     &:hover {
-      transform: scale(1.2, 1.2);
+      transform: scale(1.0, 1.5);
     }
     // Dimensions of the scrubber/handle on small screens
     @media screen and (max-width: $screen-phone) {
