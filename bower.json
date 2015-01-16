@@ -1,6 +1,6 @@
 {
   "name": "podlove-web-player",
-  "version": "3.0.0-alpha",
+  "version": "3.0.0-alpha.3",
   "homepage": "http://podlove.org/",
   "description": "Next generation media player for the web. Special features for podcast and other metadata rich productions.",
   "main": "dist/*",
@@ -18,9 +18,14 @@
     "globals"
   ],
   "keywords": [
-    "web",
+    "podcast",
+    "podcasting",
+    "podplayer",
+    "player",
+    "webplayer",
     "media",
-    "player"
+    "audio",
+    "web"
   ],
   "license": "BSD",
   "ignore": [
@@ -32,11 +37,11 @@
   ],
   "dependencies": {},
   "devDependencies": {
-    "mediaelement": "~2.16.0",
     "html5shiv": "~3.7.2",
-    "jquery": "~1.11.1",
-    "podlove-font": "#2.0.0-beta.2"
     "progress-polyfill": "https://github.com/LeaVerou/HTML5-Progress-polyfill.git",
+    "jquery": "~1.11.1",
+    "mediaelement": "~2.16.0",
+    "podlove-font": "#2.0.0-beta.2",
     "raf-polyfill": "https://gist.github.com/1579671.git"
   }
 }
