@@ -78,12 +78,16 @@
       }
       .chapter-duration {
         font-family: $font-family-monospace;
+        font-size: $font-size-small;
         white-space: nowrap;
         text-align: right;
         color: $accent-base-color;
         padding-right: $padding-small-horizontal;
         @media all and (min-width: $screen-phone) {
           padding-right: $padding-base-horizontal - 2px;
+        }
+        @media all and (min-width: $screen-tablet) {
+          font-size: $font-size-base;
         }
       }
     }

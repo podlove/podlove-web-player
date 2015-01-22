@@ -36,8 +36,7 @@ function renderRow (chapter, index) {
   return render(
     '<tr class="chapter">' +
       '<td class="chapter-number"><span class="badge">' + (index+1) + '</span></td>' +
-      '<td class="chapter-name"><span>' + chapter.code + '</span> ' +
-      '</td>' +
+      '<td class="chapter-name"><span>' + chapter.code + '</span></td>' +
       '<td class="chapter-duration"><span>' + chapter.duration + '</span></td>' +
     '</tr>'
   );

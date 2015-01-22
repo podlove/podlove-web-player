@@ -150,17 +150,8 @@ progress[aria-valuenow]:before  {
       color: $progress-bar-time-current;
 
       @media all and (max-width: $screen-phone) {
-        padding-left: $padding-small-horizontal !important;
-      }
-      // 360px ≤ x ≥ 550px
-      @media all and (max-width: $screen-tablet-portrait) {
         @include flex(0 76px);
-        @include order(1);
-      }
-      // > 768px
-      @media all and (min-width: $screen-tablet-portrait) and (max-width: $screen-tablet) {
-        @include flex(0 91px);
-        @include order(1);
+        padding-left: $padding-small-horizontal !important;
       }
     }
     &:last-of-type {
