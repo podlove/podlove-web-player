@@ -153,6 +153,9 @@ progress[aria-valuenow]:before  {
         @include flex(0 76px);
         padding-left: $padding-small-horizontal !important;
       }
+      @media all and (min-width: $screen-desktop) {
+        @include flex(0 150px);
+      }
     }
     &:last-of-type {
       @include flex(0 95px);
@@ -166,6 +169,9 @@ progress[aria-valuenow]:before  {
       // > 768px
       @media all and (max-width: $screen-tablet) {
         @include flex(0 91px);
+      }
+      @media all and (min-width: $screen-desktop) {
+        @include flex(0 150px);
       }
     }
   }
