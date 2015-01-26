@@ -26,6 +26,8 @@ $badge-background: $meta-idle-color;
     height: $badge-size * 1.32;
     min-width: $badge-size * 1.32;
     line-height: $badge-line-height * 1.32;
-    font-size: 130%;
+  }
+  @media screen and (min-width: $screen-lg-desktop) {
+    font-size: $font-size-wide-screen;
   }
 }

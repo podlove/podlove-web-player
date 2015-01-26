@@ -110,13 +110,7 @@ progress[aria-valuenow]:before  {
       margin-top: 8px;
       color: $player-base-highlight-color;
       background-color: $player-contrast-color;
-
       @media all and (min-width: $screen-desktop) {
-        font-size: $font-size-small;
-        line-height: 30px;
-        min-width: 30px;
-        height: 30px;
-        padding: 0;
         margin-top: 5px;
       }
     }
