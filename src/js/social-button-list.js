@@ -2,6 +2,13 @@
 
 var services = require('./social-networks');
 
+function createButtonWith(options) {
+  return function (serviceName) {
+    var service = services.get(serviceName);
+    return service.getButton(options);
+  };
+}
+
 function SocialButtonList (services, options) {
   var createButton = createButtonWith(options);
   this.buttons = services.map(createButton);
@@ -11,13 +18,6 @@ function SocialButtonList (services, options) {
     var listElement = $('<li></li>').append(button.element);
     this.list.append(listElement);
   }, this);
-}
-
-function createButtonWith(options) {
-  return function (serviceName) {
-    var service = services.get(serviceName);
-    return service.getButton(options);
-  };
 }
 
 SocialButtonList.prototype.update = function (options) {

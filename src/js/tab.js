@@ -10,6 +10,38 @@ function addShadowOnScroll(event) {
 }
 
 /**
+ * Return an html section element as a wrapper for the tab
+ * @param {object} options
+ * @returns {*|jQuery|HTMLElement}
+ */
+function createContentBox(options) {
+  var classes = ['tab'];
+  classes.push(options.name);
+  if (options.active) {
+    classes.push('active');
+  }
+  return $('<section class="' + classes.join(' ') + '"></section>');
+}
+
+/**
+ * Create a tab
+ * @param options
+ * @constructor
+ */
+function Tab(options) {
+  this.icon = options.icon;
+  this.title = options.title;
+  this.headline = options.headline;
+
+  this.box = createContentBox(options);
+  var header = this.createHeader();
+  this.box.on('scroll', {header: header}, addShadowOnScroll);
+
+  this.active = false;
+  this.toggle = null;
+}
+
+/**
  * Add class 'active' to the active tab
  */
 Tab.prototype.open = function () {
@@ -66,37 +98,5 @@ Tab.prototype.createFooter = function(content) {
   this.box.append(footer);
   return footer;
 };
-
-/**
- * Return an html section element as a wrapper for the tab
- * @param {object} options
- * @returns {*|jQuery|HTMLElement}
- */
-function createContentBox(options) {
-  var classes = ["tab"];
-  classes.push(options.name);
-  if (options.active) {
-    classes.push("active");
-  }
-  return $('<section class="' + classes.join(' ') + '"></section>');
-}
-
-/**
- * Create a tab
- * @param options
- * @constructor
- */
-function Tab(options) {
-  this.icon = options.icon;
-  this.title = options.title;
-  this.headline = options.headline;
-
-  this.box = createContentBox(options);
-  var header = this.createHeader();
-  this.box.on('scroll', {header: header}, addShadowOnScroll);
-
-  this.active = false;
-  this.toggle = null;
-}
 
 module.exports = Tab;

@@ -21,6 +21,68 @@
 var tc = require('./timecode')
   , cap = require('./util').cap;
 
+function transformChapter(chapter) {
+  chapter.code = chapter.title;
+  if (typeof chapter.start === 'string') {
+    chapter.start = tc.getStartTimeCode(chapter.start);
+  }
+  return chapter;
+}
+
+/**
+ * add `end` property to each simple chapter,
+ * needed for proper formatting
+ * @param {number} duration
+ * @returns {function}
+ */
+function addEndTime(duration) {
+  return function (chapter, i, chapters) {
+    var next = chapters[i + 1];
+    chapter.end = next ? next.start : duration;
+    return chapter;
+  };
+}
+
+function addType(type) {
+  return function (element) {
+    element.type = type;
+    return element;
+  };
+}
+
+function call(listener) {
+  listener(this);
+}
+
+function filterByType(type) {
+  return function (record) {
+    return (record.type === type);
+  };
+}
+
+/**
+ *
+ * @param {Timeline} timeline
+ */
+function logCurrentTime(timeline) {
+  console.log('Timeline', 'currentTime', timeline.getTime());
+}
+
+/**
+ *
+ * @param {object} params
+ * @returns {boolean} true if at least one chapter is present
+ */
+function checkForChapters(params) {
+  return !!params.chapters && (
+    typeof params.chapters === 'object' && params.chapters.length > 1
+    );
+}
+
+function parse(data) {
+  return data;
+}
+
 /**
  *
  * @param {HTMLMediaElement} player
@@ -41,8 +103,6 @@ function Timeline(player, data) {
   this.seeking = false;
 }
 
-module.exports = Timeline;
-
 Timeline.prototype.getData = function () {
   return this.data;
 };
@@ -60,7 +120,7 @@ Timeline.prototype.addModule = function (module) {
 
 Timeline.prototype.playRange = function (range) {
   if (!range || !range.length || !range.shift) {
-    throw TypeError('Timeline.playRange called without a range');
+    throw new TypeError('Timeline.playRange called without a range');
   }
   this.setTime(range.shift());
   this.stopAt(range.shift());
@@ -88,8 +148,8 @@ Timeline.prototype.emitEventsBetween = function (start, end) {
   this.data.map(function (event) {
     var later = (event.start > start),
       earlier = (event.end < start),
-      ended = (event.end < end)
-      ;
+      ended = (event.end < end);
+
     if (later && earlier && !ended || emitStarted) {
       console.log('Timeline', 'Emit', event);
       emit(event);
@@ -189,7 +249,7 @@ Timeline.prototype.setBufferedTime = function (e) {
 
   // newest HTML5 spec has buffered array (FF4, Webkit)
   if (target && target.buffered && target.buffered.length > 0 && target.buffered.end && target.duration) {
-    buffered = target.buffered.end(target.buffered.length-1);
+    buffered = target.buffered.end(target.buffered.length - 1);
   }
   // Some browsers (e.g., FF3.6 and Safari 5) cannot calculate target.bufferered.end()
   // to be anything other than 0. If the byte count is available we use this instead.
@@ -215,35 +275,6 @@ Timeline.prototype.rewind = function () {
   $.each(this.listeners, callListenerWithThis);
 };
 
-function filterByType(type) {
-  return function (record) {
-    return (record.type === type);
-  };
-}
-
-/**
- *
- * @param {Timeline} timeline
- */
-function logCurrentTime(timeline) {
-  console.log('Timeline', 'currentTime', timeline.getTime());
-}
-
-/**
- *
- * @param {object} params
- * @returns {boolean} true if at least one chapter is present
- */
-function checkForChapters(params) {
-  return !!params.chapters && (
-    typeof params.chapters === 'object' && params.chapters.length > 1
-    );
-}
-
-function parse(data) {
-  return data;
-}
-
 Timeline.prototype.parseSimpleChapter = function (data) {
   if (!data.chapters) {
     return [];
@@ -260,35 +291,4 @@ Timeline.prototype.parseSimpleChapter = function (data) {
     });
 };
 
-function transformChapter(chapter) {
-  chapter.code = chapter.title;
-  if (typeof chapter.start === 'string') {
-    chapter.start = tc.getStartTimeCode(chapter.start);
-  }
-  return chapter;
-}
-
-/**
- * add `end` property to each simple chapter,
- * needed for proper formatting
- * @param {number} duration
- * @returns {function}
- */
-function addEndTime(duration) {
-  return function (chapter, i, chapters) {
-    var next = chapters[i + 1];
-    chapter.end = next ? next.start : duration;
-    return chapter;
-  };
-}
-
-function addType(type) {
-  return function (element) {
-    element.type = type;
-    return element;
-  };
-}
-
-function call(listener) {
-  listener(this);
-}
+module.exports = Timeline;

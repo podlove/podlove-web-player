@@ -1,8 +1,7 @@
 'use strict';
 
 var Tab = require('../tab')
-  , timeCode = require('../timecode')
-  ;
+  , timeCode = require('../timecode');
 
 /**
  * Calculate the filesize into KB and MB
@@ -61,46 +60,6 @@ function getPublicationDate(rawDate) {
 
 /**
  *
- * @param {object} params
- * @returns {null|Tab} download tab
- */
-Downloads.prototype.createDownloadTab = function (params) {
-  if ((!params.downloads && !params.sources) || params.hidedownloadbutton === true) {
-    return null;
-  }
-  var downloadTab = new Tab({
-      icon: "pwp-download",
-      title: "Show/hide download bar",
-      name: 'downloads',
-      headline: 'Download'
-  });
-
-  var $tabContent = downloadTab.createMainContent('<div class="download">' +
-      '<div class="poster-wrapper">' +
-        '<div class="download download-overlay"></div>' +
-         getPosterImage(params) +
-      '</div>' +
-    '</div>' +
-    '<div class="download">' +
-      '<h2>' + params.title + '</h2>' +
-      getPublicationDate(params.publicationDate) +
-      '<p>Duration: ' + timeCode.fromTimeStamp(params.duration) + '</p>' +
-    '</div>'
-    );
-  downloadTab.box.append($tabContent);
-
-  downloadTab.createFooter('<form action="" method="">' +
-    '<button class="download button-submit icon pwp-download" name="download-file">' +
-    '<span class="download label">Download Episode</span>' +
-    '</button>' +
-    '<select class="select" name="select-file">' + this.list.map(createOption) + '</select></form>'
- );
-
-  return downloadTab;
-};
-
-/**
- *
  * @param element
  * @returns {{assetTitle: String, downloadUrl: String, url: String, size: Number}}
  */
@@ -155,5 +114,45 @@ function Downloads (params) {
   this.list = createList(params);
   this.tab = this.createDownloadTab(params);
 }
+
+/**
+ *
+ * @param {object} params
+ * @returns {null|Tab} download tab
+ */
+Downloads.prototype.createDownloadTab = function (params) {
+  if ((!params.downloads && !params.sources) || params.hidedownloadbutton === true) {
+    return null;
+  }
+  var downloadTab = new Tab({
+    icon: 'pwp-download',
+    title: 'Show/hide download bar',
+    name: 'downloads',
+    headline: 'Download'
+  });
+
+  var $tabContent = downloadTab.createMainContent('<div class="download">' +
+    '<div class="poster-wrapper">' +
+    '<div class="download download-overlay"></div>' +
+    getPosterImage(params) +
+    '</div>' +
+    '</div>' +
+    '<div class="download">' +
+    '<h2>' + params.title + '</h2>' +
+    getPublicationDate(params.publicationDate) +
+    '<p>Duration: ' + timeCode.fromTimeStamp(params.duration) + '</p>' +
+    '</div>'
+  );
+  downloadTab.box.append($tabContent);
+
+  downloadTab.createFooter('<form action="" method="">' +
+    '<button class="download button-submit icon pwp-download" name="download-file">' +
+    '<span class="download label">Download Episode</span>' +
+    '</button>' +
+    '<select class="select" name="select-file">' + this.list.map(createOption) + '</select></form>'
+  );
+
+  return downloadTab;
+};
 
 module.exports = Downloads;

@@ -112,7 +112,6 @@ module.exports = {
     return ts2tc(times[0], leadingZeros, forceHours);
   },
 
-
   /**
    * parses time code into seconds
    * @param {String} timecode

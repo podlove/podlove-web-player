@@ -89,9 +89,9 @@ function createSocialAndLicenseInfo (tab, params) {
 }
 
 /**
- *
- * @param {object} params
- * @returns {null|Tab} infoTab
+ * create info tab if params.summary is defined
+ * @param {object} params parameter object
+ * @returns {null|Tab} info tab instance or null
  */
 function createInfoTab(params) {
   if (!params.summary) {
@@ -112,8 +112,8 @@ function createInfoTab(params) {
 }
 
 /**
- *
- * @param {object} params
+ * Information module to display podcast and episode info
+ * @param {object} params parameter object
  * @constructor
  */
 function Info(params) {

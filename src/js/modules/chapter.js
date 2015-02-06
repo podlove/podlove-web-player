@@ -7,6 +7,10 @@ var tc = require('../timecode')
 
 var ACTIVE_CHAPTER_THRESHHOLD = 0.1;
 
+function render(html) {
+  return $(html);
+}
+
 /**
  * render HTMLTableElement for chapters
  * @returns {jQuery|HTMLElement}
@@ -35,16 +39,12 @@ function renderChapterTable() {
 function renderRow (chapter, index) {
   return render(
     '<tr class="chapter">' +
-      '<td class="chapter-number"><span class="badge">' + (index+1) + '</span></td>' +
+      '<td class="chapter-number"><span class="badge">' + (index + 1) + '</span></td>' +
       '<td class="chapter-name"><span>' + chapter.code + '</span> ' +
       '</td>' +
       '<td class="chapter-duration"><span>' + chapter.duration + '</span></td>' +
     '</tr>'
   );
-}
-
-function render(html) {
-  return $(html);
 }
 
 /**
@@ -115,10 +115,10 @@ function Chapters (timeline) {
   this.currentChapter = 0;
 
   this.tab = new Tab({
-    icon: "pwp-chapters",
-    title: "Show/hide chapters",
+    icon: 'pwp-chapters',
+    title: 'Show/hide chapters',
     headline: 'Chapters',
-    name: "podlovewebplayer_chapterbox"
+    name: 'podlovewebplayer_chapterbox'
   });
 
   this.tab
@@ -226,7 +226,7 @@ Chapters.prototype.markActiveChapter = function () {
 
 Chapters.prototype.next = function () {
   var current = this.currentChapter,
-    next = this.setCurrentChapter(current+1);
+    next = this.setCurrentChapter(current + 1);
   if (current === next) {
     console.log('Chapters', 'next', 'already in last chapter');
     return current;
@@ -238,7 +238,7 @@ Chapters.prototype.next = function () {
 
 Chapters.prototype.previous = function () {
   var current = this.currentChapter,
-    previous = this.setCurrentChapter(current-1);
+    previous = this.setCurrentChapter(current - 1);
   if (current === previous) {
     console.log('Chapters', 'previous', 'already in first chapter');
     this.playCurrentChapter();
