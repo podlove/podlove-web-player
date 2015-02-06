@@ -30,7 +30,7 @@ function ProgressBar(timeline) {
   this.showDuration = false;
   this.progress = null;
   this.buffer = null;
-  this.update = _update.bind(this);
+  this.update = update.bind(this);
 }
 
 ProgressBar.prototype.setHandlePosition = function (time) {
@@ -65,7 +65,7 @@ ProgressBar.prototype.setChapter = function () {
 /**
  * This update method is to be called when a players `currentTime` changes.
  */
-function _update (timeline) {
+function update (timeline) {
   this.setProgress(timeline.getTime());
   this.buffer.val(timeline.getBuffered());
   this.setChapter();
@@ -90,7 +90,7 @@ ProgressBar.prototype.render = function () {
   var timelineBar = $('<progress class="current"></progress>')
       .attr({ min: 0, max: this.duration});
   var buffer = $('<progress class="buffer"></progress>')
-      .attr({min: 0, max: this.duration})
+      .attr({min: 0, max: this.duration});
   var handle = $('<div class="handle"><div class="inner-handle"></div></div>');
 
   progress

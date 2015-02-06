@@ -43,17 +43,12 @@ function Timeline(player, data) {
 
 module.exports = Timeline;
 
-Timeline.prototype.addMetadata = function (data) {
-  var parsed = _parse(data);
-  this.data = _merge(this.data, parsed);
-};
-
 Timeline.prototype.getData = function () {
   return this.data;
 };
 
 Timeline.prototype.getDataByType = function (type) {
-  return this.data.filter(_filterByType(type));
+  return this.data.filter(filterByType(type));
 };
 
 Timeline.prototype.addModule = function (module) {
@@ -220,7 +215,7 @@ Timeline.prototype.rewind = function () {
   $.each(this.listeners, callListenerWithThis);
 };
 
-function _filterByType(type) {
+function filterByType(type) {
   return function (record) {
     return (record.type === type);
   };
@@ -245,12 +240,8 @@ function checkForChapters(params) {
     );
 }
 
-function _parse(data) {
+function parse(data) {
   return data;
-}
-
-function _merge(a, b) {
-
 }
 
 Timeline.prototype.parseSimpleChapter = function (data) {

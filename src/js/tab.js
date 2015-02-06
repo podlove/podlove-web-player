@@ -31,7 +31,6 @@ Tab.prototype.close = function () {
  * Return an html header element with a headline
  */
 Tab.prototype.createHeader = function() {
-  var minScrollHeight = 5;
   var header = $('<header class="tab-header"><h2 class="tab-headline">' +
     '<i class="icon ' + this.icon + '"></i>' + this.headline + '</h2></header>');
   this.box.append(header);
