@@ -1,7 +1,9 @@
 'use strict';
 
-var
-    url = require('./url'),
+var url = require('./url'),
+  cap = require('./util').cap;
+
+var $ = jQuery,
     IFRAME_HEIGHT_DEFAULT = 300,
     IFRAME_HEIGHT_MIN = 100,
     IFRAME_HEIGHT_MAX = 3000,
@@ -13,8 +15,53 @@ var
 
 var options; // global options
 
+function checkBoundaries(value, min, max) {
+  return (value < min || value > max);
+}
+
+/**
+ * Sanitize player height
+ * @param {Number} height Iframe height
+ * @returns {Number} sanitized height
+ */
+function getPlayerHeight(height) {
+  if (!height || isNaN(height)) {
+    console.warn('Set frame height to default');
+    return IFRAME_HEIGHT_DEFAULT;
+  }
+  if (!checkBoundaries(height, IFRAME_HEIGHT_MIN, IFRAME_HEIGHT_MAX)) {
+    console.warn('Frame height', height, 'out of bounds.');
+  }
+  return cap(height, IFRAME_HEIGHT_MIN, IFRAME_HEIGHT_MAX);
+}
+
+/**
+ * Sanitize player width
+ * @returns {string} defaults to '100%'
+ */
+function getPlayerWidth() {
+  return '100%';
+}
+
+/**
+ * strip hash from location
+ * @param {string} location
+ * @returns {string}
+ */
+function getIdFromLocation(location) {
+  var href = location.href,
+    hashPosition = href.indexOf('#'),
+    to = href.length;
+
+  if (hashPosition >= 0) {
+    to = hashPosition;
+  }
+
+  return href.substring(0, to);
+}
+
 function getStaticEmbedPageSource(id) {
-  if (!options.staticEmbedPage) { throw Error('"staticEmbedPage" parameter missing.'); }
+  if (!options.staticEmbedPage) { throw new Error('"staticEmbedPage" parameter missing.'); }
   return window.location.protocol + '//' + window.location.host + options.staticEmbedPage + '?' + id;
 }
 
@@ -26,10 +73,10 @@ function getIframeReplacement() {
 
   if (!source) {
     var elementId = $element.get(0).id;
-    if (!elementId) { throw Error('Element without source set needs an ID'); }
+    if (!elementId) { throw new Error('Element without source set needs an ID'); }
     source = getStaticEmbedPageSource(elementId);
     data = window[metadataList][elementId];
-    if (!data) { throw Error('No data found for "' + elementId + '"'); }
+    if (!data) { throw new Error('No data found for "' + elementId + '"'); }
   }
 
   if (firstPlayer && timerange[0]) {
@@ -78,58 +125,6 @@ function pausePlayersExceptOne(currentPlayerId) {
 
     playerData.frame.get(0).contentWindow.postMessage(message, playerId);
   }
-}
-
-/**
- * Sanitize player dimension
- * @param {Number} value
- * @param {Number} min
- * @param {Number} max
- * @param {Number} defaultValue
- * @returns {Number} new dimension
- */
-function getDimension(value, min, max, defaultValue) {
-  if (isNaN(value)) {
-    console.warn('Dimension', value, 'is not a number.');
-    return defaultValue;
-  }
-  if (value < min || value > max) {
-    console.warn('Dimension', value, 'out of bounds.');
-    return defaultValue;
-  }
-  return value;
-}
-
-/**
- * Sanitize player height
- * @param {Number} height
- * @returns {Number}
- */
-function getPlayerHeight(height) {
-  return getDimension(height, IFRAME_HEIGHT_MIN, IFRAME_HEIGHT_MAX, IFRAME_HEIGHT_DEFAULT);
-}
-
-/**
- * Sanitize player width
- * @param {number} width
- * @returns {string}
- */
-function getPlayerWidth() {
-  return '100%';
-  //return getDimension(width, IFRAME_WIDTH_MIN, IFRAME_WIDTH_MAX, IFRAME_WIDTH_DEFAULT);
-}
-
-/**
- * strip hash from location
- * @param {string} location
- * @returns {string}
- */
-function getIdFromLocation(location) {
-  var href = location.href,
-    hashPosition = href.indexOf('#'),
-    to = (hashPosition === -1) ? href.length : hashPosition
-    ;
-  return href.substring(0, to);
 }
 
 /**

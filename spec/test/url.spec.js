@@ -19,16 +19,8 @@ describe('Module: url', function () {
     expect(url.checkCurrent).toEqual(jasmine.any(Function));
   });
 
-  it('exposes method validate', function () {
-    expect(url.validate).toEqual(jasmine.any(Function));
-  });
-
   it('exposes method getFragment', function () {
     expect(url.getFragment).toEqual(jasmine.any(Function));
-  });
-
-  it('exposes method setFragment', function () {
-    expect(url.setFragment).toEqual(jasmine.any(Function));
   });
 
   describe('Method: getFragment', function () {

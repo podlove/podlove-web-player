@@ -9,10 +9,35 @@ var Tab = require('./tab');
  */
 var Chapters = require('./modules/chapter');
 
+function createTimeControls() {
+  return $('<ul class="timecontrolbar"></ul>');
+}
+
+function createBox() {
+  return $('<div class="controlbar bar"></div>');
+}
+
+function playerStarted(player) {
+  return ((typeof player.currentTime === 'number') && (player.currentTime > 0));
+}
+
+function getCombinedCallback(callback) {
+  return function (evt) {
+    console.debug('Controls', 'controlbutton clicked', evt);
+    evt.preventDefault();
+    console.debug('Controls', 'player started?', playerStarted(this.player));
+    if (!playerStarted(this.player)) {
+      this.player.play();
+    }
+    var boundCallBack = callback.bind(this);
+    boundCallBack();
+  };
+}
+
 /**
  * instantiate new controls element
- * @params {jQuery|HTMLElement} player
- * @params {object} timeline
+ * @param {jQuery|HTMLElement} player Player element reference
+ * @param {Timeline} timeline Timeline object for this player
  * @constructor
  */
 function Controls (player, timeline) {
@@ -22,11 +47,11 @@ function Controls (player, timeline) {
   this.timeControlElement = createTimeControls();
   this.box.append(this.timeControlElement);
 }
-module.exports = Controls;
 
 /**
- *
- * @param {Chapters} chapterModule
+ * create time control buttons and add them to timeControlElement
+ * @param {null|Chapters} chapterModule when present will add next and previous chapter controls
+ * @returns {void}
  */
 Controls.prototype.createTimeControls = function (chapterModule) {
   var hasChapters = (chapterModule instanceof Chapters);
@@ -74,27 +99,4 @@ Controls.prototype.createButton = function createButton(icon, title, callback) {
   button.on('click', combinedCallback.bind(this));
 };
 
-function getCombinedCallback(callback) {
-  return function (evt) {
-    console.debug('Controls', 'controlbutton clicked', evt);
-    evt.preventDefault();
-    console.debug('Controls', 'player started?', playerStarted(this.player));
-    if (!playerStarted(this.player)) {
-      this.player.play();
-    }
-    var boundCallBack = callback.bind(this);
-    boundCallBack();
-  };
-}
-
-function createTimeControls() {
-  return $('<ul class="timecontrolbar"></ul>');
-}
-
-function createBox() {
-  return $('<div class="controlbar bar"></div>');
-}
-
-function playerStarted(player) {
-  return ((typeof player.currentTime === 'number') && (player.currentTime > 0));
-}
+module.exports = Controls;

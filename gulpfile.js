@@ -129,7 +129,7 @@ gulp.task('copy', function() {
 // copy example files
 gulp.task('examples', function() {
   // main documentation index html
-  gulp.src(source + 'index.html')
+  gulp.src(source + '*.html')
     .pipe(gulp.dest(dest))
     .pipe(connect.reload());
 

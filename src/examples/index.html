@@ -46,7 +46,8 @@
     <script src="/js/vendor/jquery.min.js"></script>
     <script src="/js/podlove-web-moderator.js"></script>
     <script>
-        $('audio').podlovewebplayer();
+        jQuery.noConflict();
+        jQuery('audio').podlovewebplayer();
     </script>
 </body>
 </html>
