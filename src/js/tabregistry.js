@@ -5,6 +5,34 @@
  */
 var Tab = require('./tab.js');
 
+/**
+ *
+ * @param {Tab} tab
+ * @returns {boolean}
+ */
+function getToggleClickHandler(tab) {
+  /*jshint validthis:true */
+  console.debug('TabRegistry', 'activeTab', this.activeTab);
+  if (this.activeTab) {
+    this.activeTab.close();
+  }
+  if (this.activeTab === tab) {
+    this.activeTab = null;
+    return false;
+  }
+  this.activeTab = tab;
+  this.activeTab.open();
+  return false;
+}
+
+/**
+ *
+ * @param {HTMLElement} player
+ */
+function logCurrentTime (player) {
+  console.log('player.currentTime', player.currentTime);
+}
+
 function TabRegistry() {
   /**
    * will store a reference to currently active tab instance to close it when another one is opened
@@ -18,8 +46,6 @@ function TabRegistry() {
   this.listeners = [logCurrentTime];
   this.tabs = [];
 }
-
-module.exports = TabRegistry;
 
 TabRegistry.prototype.createToggleFor = function (tab) {
   var toggle = $('<li title="' + tab.title + '">' +
@@ -66,30 +92,4 @@ TabRegistry.prototype.update = function(event) {
   $.each(this.listeners, function (i, listener) { listener(player); });
 };
 
-/**
- *
- * @param {Tab} tab
- * @returns {boolean}
- */
-function getToggleClickHandler(tab) {
-  /*jshint validthis:true */
-  console.debug('TabRegistry', 'activeTab', this.activeTab);
-  if (this.activeTab) {
-    this.activeTab.close();
-  }
-  if (this.activeTab === tab) {
-    this.activeTab = null;
-    return false;
-  }
-  this.activeTab = tab;
-  this.activeTab.open();
-  return false;
-}
-
-/**
- *
- * @param {HTMLElement} player
- */
-function logCurrentTime (player) {
-  console.log('player.currentTime', player.currentTime);
-}
+module.exports = TabRegistry;

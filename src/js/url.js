@@ -13,20 +13,20 @@ var tc = require('./timecode');
  */
 
 /**
- *
- * @param {string} key
- * @returns {string|boolean}
+ * get the value of a specific URL hash fragment
+ * @param {string} key name of the fragment
+ * @returns {string|boolean} value of the fragment or false when not found in URL
  */
 function getFragment(key) {
   var query = window.location.hash.substring(1),
-    pairs = query.split("&");
+    pairs = query.split('&');
 
   if (query.indexOf(key) === -1) {
     return false;
   }
 
   for (var i = 0, l = pairs.length; i < l; i++) {
-    var pair = pairs[i].split("=");
+    var pair = pairs[i].split('=');
     if (pair[0] !== key) {
       continue;
     }
@@ -39,31 +39,12 @@ function getFragment(key) {
 }
 
 /**
- * url handling
+ * URL handling helpers
  */
 module.exports = {
-
   getFragment: getFragment,
-
   checkCurrent: function () {
     var t = getFragment('t');
     return tc.parse(t);
-  },
-
-  validate: function (url) {
-    // uncomment next three lines to validate URLs, if you want use relative paths leave it so.
-    //var urlregex = /(^|\s)((https?:\/\/)?[\w\-]+(\.[\w\-]+)+\.?(:\d+)?(\/\S*)?)/gi;
-    //url = url.match(urlregex);
-    //return (url !== null) ? url[0] : url;
-    return url.trim();
-  },
-
-  /**
-   * add a string as hash in the adressbar
-   * @param {string} fragment
-   **/
-  setFragment: function (fragment) {
-    console.debug('setting url fragment', fragment);
-    window.location.hash = '#' + fragment;
   }
 };

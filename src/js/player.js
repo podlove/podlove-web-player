@@ -1,5 +1,8 @@
 'use strict';
 
+var embed = require('./embed'),
+  parseTimecode = require('./timecode').parse;
+
 /**
  * player
  */
@@ -8,8 +11,6 @@ var
 // embedded players are registered in podlove-webplayer-moderator in the embedding page
   players = [],
 // all used functions
-  embed = require('./embed'),
-  parseTimecode = require('./timecode').parse,
   mejsoptions = {
     defaultVideoWidth: 480,
     defaultVideoHeight: 270,
@@ -51,6 +52,56 @@ var
     sharewholeepisode: false,
     sources: []
   };
+
+/**
+ * remove 'px' unit, set witdth to 100% for 'auto'
+ * @param {string} width
+ * @returns {string}
+ */
+function normalizeWidth(width) {
+  if (width.toLowerCase() === 'auto') {
+    return '100%';
+  }
+  return width.replace('px', '');
+}
+
+/**
+ * audio or video tag
+ * @param {HTMLElement} player
+ * @returns {string} 'audio' | 'video'
+ */
+function getPlayerType (player) {
+  return player.tagName.toLowerCase();
+}
+
+/**
+ * kill play/pause button from miniplayer
+ * @param options
+ */
+function removePlayPause(options) {
+  $.each(options.features, function (i) {
+    if (this === 'playpause') {
+      options.features.splice(i, 1);
+    }
+  });
+}
+
+/**
+ * player error handling function
+ * will remove the topmost mediafile from src or source list
+ * possible fix for Firefox AAC issues
+ */
+function removeUnplayableMedia() {
+  var $this = $(this);
+  if ($this.attr('src')) {
+    $this.removeAttr('src');
+    return;
+  }
+  var sourceList = $this.children('source');
+  if (sourceList.length) {
+    sourceList.first().remove();
+  }
+}
 
 function create(player, params, callback) {
   var jqPlayer,
@@ -127,56 +178,6 @@ function create(player, params, callback) {
   };
   var me = new MediaElement(player, mejsoptions);
   console.log(me);
-}
-
-/**
- * remove 'px' unit, set witdth to 100% for 'auto'
- * @param {string} width
- * @returns {string}
- */
-function normalizeWidth(width) {
-  if (width.toLowerCase() === 'auto') {
-    return '100%';
-  }
-  return width.replace('px', '');
-}
-
-/**
- * audio or video tag
- * @param {HTMLElement} player
- * @returns {string} 'audio' | 'video'
- */
-function getPlayerType (player) {
-  return player.tagName.toLowerCase();
-}
-
-/**
- * kill play/pause button from miniplayer
- * @param options
- */
-function removePlayPause(options) {
-  $.each(options.features, function (i) {
-    if (this === 'playpause') {
-      options.features.splice(i, 1);
-    }
-  });
-}
-
-/**
- * player error handling function
- * will remove the topmost mediafile from src or source list
- * possible fix for Firefox AAC issues
- */
-function removeUnplayableMedia() {
-  var $this = $(this);
-  if ($this.attr('src')) {
-    $this.removeAttr('src');
-    return;
-  }
-  var sourceList = $this.children('source');
-  if (sourceList.length) {
-    sourceList.first().remove();
-  }
 }
 
 module.exports = {

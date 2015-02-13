@@ -6,18 +6,6 @@ var
   lastHeight = 0,
   $body;
 
-/**
- * initialize embed functionality
- * @param {function} $
- * @param {Array} playerList
- */
-function init($, playerList) {
-  players = playerList;
-  $body = $(document.body);
-  $(window).on('message', messageListener);
-  pollHeight();
-}
-
 function postToOpener(obj) {
   console.debug('postToOpener', obj);
   window.parent.postMessage(obj, '*');
@@ -54,6 +42,19 @@ function pollHeight() {
 
   lastHeight = newHeight;
   requestAnimationFrame(pollHeight, document.body);
+}
+
+/**
+ * initialize embed functionality
+ * @param {function} $ jQuery
+ * @param {Array} playerList all playersin this window
+ * @returns {void}
+ */
+function init($, playerList) {
+  players = playerList;
+  $body = $(document.body);
+  $(window).on('message', messageListener);
+  pollHeight();
 }
 
 module.exports = {

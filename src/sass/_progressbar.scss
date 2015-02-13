@@ -74,7 +74,7 @@ progress[aria-valuenow]:before  {
 // ---------------------------------
 
 .progressbar {
-  color: $contrasted-light-default;
+  color: $player-base-highlight-color;
   background-color: $progress-bg;
   width: 100%;
   height: $progress-wrapper-height;
@@ -108,15 +108,9 @@ progress[aria-valuenow]:before  {
       display: block;
       float: left;
       margin-top: 8px;
-      color: $contrast-default-color;
-      background-color: $gray;
-
+      color: $player-base-highlight-color;
+      background-color: $player-contrast-color;
       @media all and (min-width: $screen-desktop) {
-        font-size: $font-size-small;
-        line-height: 30px;
-        min-width: 30px;
-        height: 30px;
-        padding: 0;
         margin-top: 5px;
       }
     }
@@ -150,17 +144,11 @@ progress[aria-valuenow]:before  {
       color: $progress-bar-time-current;
 
       @media all and (max-width: $screen-phone) {
+        @include flex(0 76px);
         padding-left: $padding-small-horizontal !important;
       }
-      // 360px ≤ x ≥ 550px
-      @media all and (max-width: $screen-tablet-portrait) {
-        @include flex(0 76px);
-        @include order(1);
-      }
-      // > 768px
-      @media all and (min-width: $screen-tablet-portrait) and (max-width: $screen-tablet) {
-        @include flex(0 91px);
-        @include order(1);
+      @media all and (min-width: $screen-desktop) {
+        @include flex(0 150px);
       }
     }
     &:last-of-type {
@@ -175,6 +163,9 @@ progress[aria-valuenow]:before  {
       // > 768px
       @media all and (max-width: $screen-tablet) {
         @include flex(0 91px);
+      }
+      @media all and (min-width: $screen-desktop) {
+        @include flex(0 150px);
       }
     }
   }
@@ -237,7 +228,7 @@ progress[aria-valuenow]:before  {
     height: $progress-bar-height-mobile;
   }
   .inner-handle {
-    background: white;
+    background: $handle-color;
     height: $progress-bar-height;
     width: $handle-width;
     position: absolute;
@@ -247,7 +238,7 @@ progress[aria-valuenow]:before  {
     transform: scale(1, 1);
     @include transition(width 0.3s, left 0.3s, transform 0.1s, ease);
     &:hover {
-      transform: scale(1.2, 1.2);
+      transform: scale(1.0, 1.5);
     }
     // Dimensions of the scrubber/handle on small screens
     @media screen and (max-width: $screen-phone) {

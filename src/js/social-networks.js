@@ -1,7 +1,7 @@
 'use strict';
 
-var SocialNetwork = require('./social-network')
-  , socialNetworks = {
+var SocialNetwork = require('./social-network');
+var socialNetworks = {
   twitter: new SocialNetwork({
     icon: 'twitter',
     title: 'Twitter',
@@ -67,8 +67,8 @@ var SocialNetwork = require('./social-network')
 
 /**
  * returns the service registered with the given name
- * @param {string} serviceName
- * @returns {SocialNetwork}
+ * @param {string} serviceName The name of the social network
+ * @returns {SocialNetwork} The network with the given name
  */
 function getService (serviceName) {
   var service = socialNetworks[serviceName];

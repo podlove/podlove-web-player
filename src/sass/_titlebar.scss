@@ -6,13 +6,14 @@
 .titlebar {
   @include clearfix();
   @include pwp-flexbox();
-  @extend .contrast;
   width: 100%;
-  background: $gray;
+  background: $player-contrast-color;
   min-height: 100px;
   height: auto;
-  color: $contrast-icon-font-color;
-
+  color: $player-base-highlight-color;
+  a {
+    color: $player-idle-color;
+  }
   // Headlines in titlebar
   header {
     @include flex(1 0px);
@@ -27,6 +28,15 @@
     .subtitle,
     h3 {
       font-size: 1em;
+    }
+    a {
+      color: $player-idle-color;
+      &:hover {
+        color: $player-hover-color;
+      }
+      &:active {
+        colort: $player-active-color;
+      }
     }
   }
 }
@@ -43,20 +53,15 @@
 
 .showtitle {
   margin: 0;
-  a {
-    color: $contrast-link-color;
-    &:hover {
-      opacity: 0.8;
-    }
-  }
 }
 
 .episodetitle {
   margin: 10px 0;
-  a {
+  > a {
     line-height: 20px !important;
+    color: $player-base-highlight-color !important;
     &:hover {
-      opacity: 0.8;
+      color: $player-hover-color;
     }
   }
 }
@@ -124,7 +129,7 @@
     header {
       .subtitle,
       h3 {
-        font-size: $font-size-h4;
+        font-size: $font-size-h3;
       }
     }
   }

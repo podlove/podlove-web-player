@@ -112,10 +112,14 @@ Build, serve and watch the local repository version. With livereload on top
 
 ## Test
 
-No automated tests, yet. Sorry.
-But with `gulp serve` you can serve the repository root directory statically for manual local frontend
-testing.
-You can then access the examples with your browser via `http://localhost:8080/example/index.html`.
+Some automated tests are written and can be found in the *spec* folder.
+Install [PhantomJS](http://phantomjs.org/) to be able to run themm on your machine.
+
+Run them with
+ 
+    gulp test
+
+Each commit pushed to the repo will automatically run the tests on travisCI.
 
 ## Info
 

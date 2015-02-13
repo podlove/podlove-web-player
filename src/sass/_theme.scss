@@ -10,13 +10,6 @@
   padding: 0;
   border: 0px solid transparent;
   a {
-    color: $default-link-color;
-  }
-}
-
-// Contrast color scheme
-.contrast {
-  a {
-    color: $contrast-link-color;
+    color: $accent-link-color;
   }
 }

@@ -2,10 +2,10 @@
 
 /**
  * return new value in bounds of min and max
- * @param {number} val
- * @param {number} min
- * @param {number} max
- * @returns {number}
+ * @param {number} val any number
+ * @param {number} min lower boundary for val
+ * @param {number} max upper boundary for val
+ * @returns {number} resulting value
  */
 function cap(val, min, max) {
   // cap x values
@@ -16,14 +16,14 @@ function cap(val, min, max) {
 
 /**
  * return number as string lefthand filled with zeros
- * @param number number
- * @param width number
- * @return string
+ * @param {number} number (integer) value to be padded
+ * @param {number} width length of the string that is returned
+ * @returns {string} padded number
  */
 function zeroFill (number, width) {
   var s = number.toString();
   while (s.length < width) {
-    s = "0" + s;
+    s = '0' + s;
   }
   return s;
 }

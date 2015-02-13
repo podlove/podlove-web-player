@@ -13,9 +13,7 @@
   @media screen and (min-width: $screen-phone) {
     border-bottom: none;
     margin-bottom: 0;
-  }
-  @media screen and (min-width: $screen-tablet-portrait) {
-    height: $controlbar-height;
+    height: auto;
   }
   // A list with all audio control elements
   .timecontrolbar {

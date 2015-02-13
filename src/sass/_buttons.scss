@@ -3,7 +3,7 @@
 // --------------------------------------------------
 
 .button {
-  @include iconfont-button($contrast-icon-font-color);
+  @include iconfont-button($player-base-highlight-color);
   padding-right: 0.9em;
 }
 
@@ -23,11 +23,11 @@
 
 // Flat subscribe button with rounded corners
 .button-submit {
-  @include button-flat($white, $brand-primary);
+  @include button-flat($accent-contrast-color, $accent-base-color);
   @include border-radius($border-radius-base);
-  font-size: $font-size-button-label;
-  font-weight: $font-weight-normal;
-  padding: 11px;
+  font-size:      $font-size-button-label;
+  font-weight:    $font-weight-normal;
+  padding:        11px;
   @include transition(ease);
   @include transition-delay(0s);
   @include transition-duration(0.3s);
@@ -37,31 +37,35 @@
 // Big Play/Pause-Button
 .play {
   @extend .pwp-bigcontrol-play;
-  font-family: $font-family-icons;
-  font-size: $play-button-size;
-  max-width: $play-button-size;
-  line-height: $play-button-size;
-  margin: $play-button-margin $margin-base-horizontal $play-button-margin 0;
-  @media screen and (min-width: $screen-desktop) {
-    font-size: $play-button-size-big ;
-    max-width: $play-button-size-big;
-    line-height: $play-button-size-big;
-    margin: $play-button-margin-big $margin-base-horizontal $play-button-margin-big 0;
-  }
+  color:         $player-idle-color;
+  font-family:   $font-family-icons;
+  font-size:     $play-button-size;
+  max-width:     $play-button-size;
+  line-height:   $play-button-size;
+  margin:        $play-button-margin $margin-base-horizontal $play-button-margin 0;
 
+  @media screen and (min-width: $screen-desktop) {
+    font-size:   $play-button-size-big ;
+    max-width:   $play-button-size-big;
+    line-height: $play-button-size-big;
+    margin:      $play-button-margin-big $margin-base-horizontal $play-button-margin-big 0;
+  }
   &:hover {
-    @include textshadows(0px 0px 3px $contrast-icon-font-color);
+    @include textshadows(0px 0px 3px $player-hover-color);
+    color:       $player-hover-color;
   }
   &:active {
-    @include textshadows(0px 0px 8px $contrast-icon-font-color);
+    @include textshadows(0px 0px 8px $player-active-color);
+    color:       $player-active-color;
   }
   &.playing {
     @extend .pwp-bigcontrol-pause;
+    color:       $player-active-color;
   }
 }
 
 button {
-  -moz-appearance: none;
+  -moz-appearance:    none;
   -webkit-appearance: none;
-  border: none;
+  border:             none;
 }

@@ -50,11 +50,11 @@ $button-width: $share-image-width + ($share-image-border-width * 2);
       input {
         @include border-radius(5px);
         font-family: $font-family-monospace;
-        border: 1px solid $gray-lighter;
+        border: 1px solid $input-border;
         width: 100%;
         padding: 8px;
         text-align: center;
-        color: $gray-default;
+        color: $input-color;
         height: 30px;
         cursor: text;
         @media screen and (min-width: $screen-desktop) {
@@ -105,8 +105,8 @@ $button-width: $share-image-width + ($share-image-border-width * 2);
   width: 50%;
   background-image: none;
   padding: 0;
-  background-color: $tab-background-color;
-  border: solid $share-image-border-width $tab-background-color;
+  background-color: $meta-base-color;
+  border: solid $share-image-border-width $meta-base-color;
   cursor: pointer;
   @media screen and (min-width: $screen-phone) {
   width: $button-width;
@@ -116,23 +116,23 @@ $button-width: $share-image-width + ($share-image-border-width * 2);
   }
 
   &:hover {
-    background-color: $default-link-color;
-    border: solid $share-image-border-width $default-link-color;
+    background-color: $accent-link-hover;
+    border: solid $share-image-border-width $accent-link-hover;
   }
   &:active {
-    background-color: $brand-primary-active;
-    border: solid $share-image-border-width $brand-primary-active;
+    background-color: $accent-link-active;
+    border: solid $share-image-border-width $accent-link-active;
   }
   &:focus,
   &.selected {
-    background-color: $brand-primary;
-    border: solid $share-image-border-width $brand-primary;
+    background-color: $accent-base-color;
+    border: solid $share-image-border-width $accent-base-color;
   }
   &:hover,
   &:active,
   &:focus,
   &.selected {
-    color: $contrast-link-color;
+    color: $accent-contrast-color;
   }
   img {
     height: auto;

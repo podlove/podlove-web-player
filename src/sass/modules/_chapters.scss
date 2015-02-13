@@ -2,8 +2,6 @@
 // Module 'Chapters'
 // --------------------------------------------------
 
-// Chapters
-// ----------------------
 .podlovewebplayer_chapterbox {
   height: auto;
   transition: all 0.5s;
@@ -35,32 +33,40 @@
       }
 
       &:hover {
-        background: $brand-primary-chapter-hover;
+        background: $chapter-hover-color;
         .badge  {
           color: $white;
-          background-color: $brand-primary;
+          background-color: $accent-base-color;
+        }
+        .chapter-duration span {
+          color: $meta-contrast-color;
+          font-weight: $font-weight-bold;
         }
       }
 
       &.active,
       &.active:hover
       &.active:focus {
-        background: $brand-primary-chapter-active;
+        background: $chapter-active-color;
         .badge {
-          background-color: $brand-primary;
+          background-color: $accent-base-color;
           color: $white;
+        }
+        .chapter-duration span {
+          color: $meta-contrast-color;
+          font-weight: $font-weight-bold;
         }
       }
 
       &.chapter:active {
-        background: $brand-primary-chapter-active;
+        background: $chapter-active-color;
       }
       td {
         padding: 0 5px;
         vertical-align: middle;
         cursor: pointer !important;
         a {
-          color: $default-link-color;
+          color: $accent-link-color;
           text-decoration: none;
         }
       }
@@ -72,54 +78,19 @@
       }
       .chapter-duration {
         font-family: $font-family-monospace;
+        font-size: $font-size-small;
         white-space: nowrap;
         text-align: right;
-        color: $brand-primary;
+        color: $accent-base-color;
         padding-right: $padding-small-horizontal;
         @media all and (min-width: $screen-phone) {
           padding-right: $padding-base-horizontal - 2px;
         }
-      }
-    }
-    .chapterplay {
-      width: 25px;
-      padding-right: 0;
-    }
-    .chapterplay > a {
-      display: block;
-      border: none;
-      padding: 0;
-      margin: 0;
-      text-align: center;
-      width: 25px;
-      height: 25px;
-      background: #bbb;
-      border-radius: 13px;
-      cursor: pointer;
-      transition: all 0.07s;
-      &.disabled {
-        cursor: wait;
-        &:focus,
-        &:hover,
-        &:active {
-          background: $gray-lightest;
-          cursor: wait;
+        @media all and (min-width: $screen-tablet) {
+          font-size: $font-size-base;
         }
       }
-      &:focus,
-      &:hover,
-      &:active {
-        background: #3a859a;
-        cursor: pointer;
-      }
     }
-    .loaded .chapterplay > a {
-      background: $black;
-    }
-  }
-
-  .paused .chapterplay a[rel=player] span {
-    background-position: 0 0 !important;
   }
 }
 
@@ -132,8 +103,3 @@
   text-transform: none !important;
 }
 
-.chapter.active {
-  .chapter-duration {
-    color: $text-color !important;
-  }
-}

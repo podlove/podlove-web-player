@@ -91,7 +91,6 @@ function renderTitleArea(params) {
     '</header>';
 }
 
-
 /**
  * Render HTML playbutton
  * @returns {string}
@@ -155,14 +154,12 @@ function addBehavior(player, params, wrapper) {
     poster = params.poster || jqPlayer.attr('poster'),
     deepLink;
 
-
   console.debug('webplayer', 'metadata', timeline.getData());
 
   /**
    * Build rich player with meta data
    */
   wrapper.addClass('podlovewebplayer_' + playerType);
-
 
   if (playerType === 'audio') {
     // Render playbutton in titlebar

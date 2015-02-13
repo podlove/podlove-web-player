@@ -1,6 +1,29 @@
 'use strict';
 
 /**
+ * When tab content is scrolled, a boxshadow is added to the header
+ * @param event
+ */
+function addShadowOnScroll(event) {
+  var scroll = event.currentTarget.scrollTop;
+  event.data.header.toggleClass('scrolled', (scroll >= 5 ));
+}
+
+/**
+ * Return an html section element as a wrapper for the tab
+ * @param {object} options
+ * @returns {*|jQuery|HTMLElement}
+ */
+function createContentBox(options) {
+  var classes = ['tab'];
+  classes.push(options.name);
+  if (options.active) {
+    classes.push('active');
+  }
+  return $('<section class="' + classes.join(' ') + '"></section>');
+}
+
+/**
  * Create a tab
  * @param options
  * @constructor
@@ -11,12 +34,12 @@ function Tab(options) {
   this.headline = options.headline;
 
   this.box = createContentBox(options);
-  this.createHeader();
+  var header = this.createHeader();
+  this.box.on('scroll', {header: header}, addShadowOnScroll);
+
   this.active = false;
   this.toggle = null;
 }
-
-module.exports = Tab;
 
 /**
  * Add class 'active' to the active tab
@@ -40,7 +63,8 @@ Tab.prototype.close = function () {
  * Return an html header element with a headline
  */
 Tab.prototype.createHeader = function() {
-  var header = $('<header><h2 class="tab-headline"><i class="icon ' + this.icon + '"></i>' + this.headline + '</h2></header>');
+  var header = $('<header class="tab-header"><h2 class="tab-headline">' +
+    '<i class="icon ' + this.icon + '"></i>' + this.headline + '</h2></header>');
   this.box.append(header);
   return header;
 };
@@ -75,16 +99,4 @@ Tab.prototype.createFooter = function(content) {
   return footer;
 };
 
-/**
- * Return an html section element as a wrapper for the tab
- * @param {object} options
- * @returns {*|jQuery|HTMLElement}
- */
-function createContentBox(options) {
-  var classes = ["tab"];
-  classes.push(options.name);
-  if (options.active) {
-    classes.push("active");
-  }
-  return $('<section class="' + classes.join(' ') + '"></section>');
-}
+module.exports = Tab;

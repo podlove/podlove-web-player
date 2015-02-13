@@ -16,8 +16,10 @@ var services = ['twitter', 'facebook', 'gplus', 'tumblr', 'email']
 var selectedOption, shareButtons, linkInput;
 
 function getShareData(value) {
-  var type = value === 'show' ? 'show' : 'episode';
-  var data = shareData[type];
+  if (value === 'show') {
+    return shareData.show;
+  }
+  var data = shareData.episode;
   // todo add chapter start and end time to url
   //if (value === 'chapter') {
   //}
@@ -46,9 +48,9 @@ function onShareOptionChangeTo (element, value) {
 }
 
 /**
- * Creates an html div element containing an image
- * @param {string} type
- * @returns {string}
+ * Create html for an poster image
+ * @param {string} type 'episode' or 'show'
+ * @returns {string} HTML for the image
  */
 function createPosterFor(type) {
   var data = shareData[type];
@@ -61,9 +63,9 @@ function createPosterFor(type) {
 }
 
 /**
- *
- * @param option
- * @returns {*}
+ * create sharing button
+ * @param {object} option sharing option definition
+ * @returns {jQuery} share button reference
  */
 function createOption(option) {
   if (option.disabled) {
@@ -93,7 +95,7 @@ function createOption(option) {
 
 /**
  * Creates an html div element to wrap all share buttons
- * @returns {jQuery|HTMLElement}
+ * @returns {jQuery|HTMLElement} share button wrapper reference
  */
 function createShareButtonWrapper() {
   var div = $('<div class="share-button-wrapper"></div>');
@@ -103,8 +105,8 @@ function createShareButtonWrapper() {
 }
 
 /**
- *
- * @returns {string}
+ * create sharing buttons in a form
+ * @returns {jQuery} form element reference
  */
 function createShareOptions() {
   var form = $('<form>' +
@@ -115,9 +117,9 @@ function createShareOptions() {
 }
 
 /**
- *
+ * build and return tab instance for sharing
  * @param {object} params player configuration
- * @returns {*}
+ * @returns {null|Tab} sharing tab instance or null if permalink missing or sharing disabled
  */
 function createShareTab(params) {
   if (!params.permalink || params.hidesharebutton === true) {
