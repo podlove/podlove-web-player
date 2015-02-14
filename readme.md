@@ -113,13 +113,13 @@ Build, serve and watch the local repository version. With livereload on top
 ## Test
 
 Some automated tests are written and can be found in the *spec* folder.
-Install [PhantomJS](http://phantomjs.org/) to be able to run themm on your machine.
+Install [PhantomJS](http://phantomjs.org/) to be able to run them on your machine.
 
 Run them with
  
     gulp test
 
-Each commit pushed to the repo will automatically run the tests on travisCI.
+Each commit pushed to the repo will automatically launch the tests on TravisCI.
 
 ## Info
 
@@ -147,6 +147,6 @@ Create new Pull Request
 Contributors:
 [Gerrit van Aaken](https://github.com/gerritvanaaken/), [Simon Waldherr](https://github.com/simonwaldherr/),
 [Frank Hase](https://github.com/Kambfhase/), [Eric Teubert](https://github.com/eteubert/),
-[Juri Leino](https://github.com/line-o) and [others](https://github.com/podlove/podlove-web-player/contributors)
-Version: 2.1.0-alpha
+[Juri Leino](https://github.com/line-o), [Alexandra von Criegern](https://github.com/plutonik-a) and [others](https://github.com/podlove/podlove-web-player/contributors)
+Version: 3.0.0-alpha
 License: [BSD 2-Clause License](http://opensource.org/licenses/BSD-2-Clause)
