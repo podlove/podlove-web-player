@@ -170,7 +170,8 @@ Chapters.prototype.generateTable = function () {
  *
  * @param {mejs.HtmlMediaElement} player
  */
-Chapters.prototype.addEventhandlers = function (player) {
+Chapters.prototype.addEventhandlers = function () {
+  var player = this.timeline.player;
   function onClick(e) {
     // enable external links to be opened in a new tab or window
     // cancels event to bubble up
