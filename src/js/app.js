@@ -206,6 +206,10 @@ function addBehavior(player, params, wrapper) {
   var deepLink;
 
   console.debug('webplayer', 'metadata', timeline.getData());
+  jqPlayer.prop({
+    controls: null,
+    preload: 'metadata'
+  });
 
   /**
    * Build rich player with meta data
@@ -245,11 +249,7 @@ function addBehavior(player, params, wrapper) {
       .append(metaElement)
       .append(videoPane);
 
-    jqPlayer.prop({
-      poster: poster,
-      controls: null,
-      preload: 'auto'
-    });
+    jqPlayer.prop({poster: poster});
   }
 
   // Render title area with title h2 and subtitle h3
