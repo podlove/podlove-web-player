@@ -132,6 +132,61 @@ function isHidden() {
   return false;
 }
 
+function renderModules(timeline, wrapper, params) {
+  var
+    tabs = new TabRegistry(),
+    hasChapters = timeline.hasChapters,
+    controls = new Controls(timeline),
+    controlBox = controls.box;
+
+  /**
+   * -- MODULES --
+   */
+  var chapters;
+  if (hasChapters) {
+    chapters = new Chapters(timeline);
+    timeline.addModule(chapters);
+    chapters.addEventhandlers();
+  }
+  controls.createTimeControls(chapters);
+
+  var saveTime = new SaveTime(timeline, params);
+  timeline.addModule(saveTime);
+
+  var progressBar = new ProgressBar(timeline);
+  timeline.addModule(progressBar);
+
+  var sharing = new Share(params);
+  var downloads = new Downloads(params);
+  var infos = new Info(params);
+
+  /**
+   * -- TABS --
+   * The tabs in controlbar will appear in following order:
+   */
+
+  if (hasChapters) {
+    tabs.add(chapters.tab, !!params.chaptersVisible);
+  }
+
+  tabs.add(sharing.tab, !!params.sharebuttonsVisible);
+  tabs.add(downloads.tab, !!params.downloadbuttonsVisible);
+  tabs.add(infos.tab, !!params.summaryVisible);
+
+  // Render controlbar with togglebar and timecontrols
+  var controlbarWrapper = $('<div class="controlbar-wrapper"></div>');
+  controlbarWrapper.append(tabs.togglebar);
+  controlbarWrapper.append(controlBox);
+
+  // render progressbar, controlbar and tabs
+  wrapper
+    .append(progressBar.render())
+    .append(controlbarWrapper)
+    .append(tabs.container);
+
+  progressBar.addEvents();
+}
+
 /**
  * add chapter behavior and deeplinking: skip to referenced
  * time position & write current time into address
@@ -141,25 +196,25 @@ function isHidden() {
  */
 function addBehavior(player, params, wrapper) {
   var jqPlayer = $(player),
-
     timeline = new Timeline(player, params),
-    controls = new Controls(player, timeline),
-    tabs = new TabRegistry(),
 
-    hasChapters = timeline.hasChapters,
     metaElement = $('<div class="titlebar"></div>'),
     playerType = params.type,
-    controlBox = controls.box,
     playButton = renderPlaybutton(),
-    poster = params.poster || jqPlayer.attr('poster'),
-    deepLink;
+    poster = params.poster || jqPlayer.attr('poster');
+
+  var deepLink;
 
   console.debug('webplayer', 'metadata', timeline.getData());
 
   /**
    * Build rich player with meta data
    */
-  wrapper.addClass('podlovewebplayer_' + playerType);
+  wrapper
+    .addClass('podlovewebplayer_' + playerType)
+    .data('podlovewebplayer', {
+    player: jqPlayer
+  });
 
   if (playerType === 'audio') {
     // Render playbutton in titlebar
@@ -199,58 +254,6 @@ function addBehavior(player, params, wrapper) {
 
   // Render title area with title h2 and subtitle h3
   metaElement.append(renderTitleArea(params));
-
-  /**
-   * -- MODULES --
-   */
-  var chapters;
-  if (hasChapters) {
-    chapters = new Chapters(timeline);
-    timeline.addModule(chapters);
-    chapters.addEventhandlers(player);
-  }
-  controls.createTimeControls(chapters);
-
-  var saveTime = new SaveTime(timeline, params);
-  timeline.addModule(saveTime);
-
-  var progressBar = new ProgressBar(timeline);
-  timeline.addModule(progressBar);
-
-  var sharing = new Share(params);
-  var downloads = new Downloads(params);
-  var infos = new Info(params);
-
-  /**
-   * -- TABS --
-   * The tabs in controlbar will appear in following order:
-   */
-
-  if (hasChapters) {
-    tabs.add(chapters.tab, !!params.chaptersVisible);
-  }
-
-  tabs.add(sharing.tab, !!params.sharebuttonsVisible);
-  tabs.add(downloads.tab, !!params.downloadbuttonsVisible);
-  tabs.add(infos.tab, !!params.summaryVisible);
-
-  // Render controlbar with togglebar and timecontrols
-  var controlbarWrapper = $('<div class="controlbar-wrapper"></div>');
-  controlbarWrapper.append(tabs.togglebar);
-  controlbarWrapper.append(controlBox);
-
-  // render progressbar, controlbar and tabs
-  wrapper
-    .append(progressBar.render())
-    .append(controlbarWrapper)
-    .append(tabs.container);
-
-  progressBar.addEvents();
-
-  // expose the player interface
-  wrapper.data('podlovewebplayer', {
-    player: jqPlayer
-  });
 
   // parse deeplink
   deepLink = require('./url').checkCurrent();
@@ -292,6 +295,9 @@ function addBehavior(player, params, wrapper) {
   // --> https://bugzilla.mozilla.org/show_bug.cgi?id=664842
   jqPlayer.one('canplay', function (evt) {
     console.debug('canplay', evt);
+    timeline.duration = player.duration;
+    // attach and render modules
+    renderModules(timeline, wrapper, params);
   });
 
   jqPlayer
