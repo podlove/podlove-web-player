@@ -259,7 +259,7 @@ function addBehavior(player, params, wrapper) {
   deepLink = require('./url').checkCurrent();
   if (deepLink[0] && pwp.players.length === 1) {
     var playerAttributes = {preload: 'auto'};
-    if (!isHidden() && autoplay) {
+    if (!isHidden()) {
       playerAttributes.autoplay = 'autoplay';
     }
     jqPlayer.attr(playerAttributes);
@@ -320,7 +320,6 @@ function addBehavior(player, params, wrapper) {
     .on('ended', function () {
       embed.postToOpener({ action: 'stop', arg: player.currentTime });
       // delete the cached play time
-      saveTime.removeItem();
       timeline.rewind();
     });
 }
