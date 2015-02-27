@@ -62,7 +62,7 @@ function getIdFromLocation(location) {
 
 function getStaticEmbedPageSource(id) {
   if (!options.staticEmbedPage) { throw new Error('"staticEmbedPage" parameter missing.'); }
-  return window.location.protocol + '//' + window.location.host + options.staticEmbedPage + '?' + id;
+  return options.staticEmbedPage + '?' + id;
 }
 
 function getIframeReplacement() {
