@@ -1,10 +1,10 @@
 'use strict';
 
-var services = require('./social-networks');
+var socialNetworks = require('./social-networks');
 
 function createButtonWith(options) {
   return function (serviceName) {
-    var service = services.get(serviceName);
+    var service = socialNetworks.get(serviceName);
     return service.getButton(options);
   };
 }

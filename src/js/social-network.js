@@ -79,8 +79,8 @@ SocialNetwork.prototype.getShareButton = function (options) {
     icon: this.icon
   });
 
-  var updateUrl = function (options) {
-    element.get(0).href = this.getShareUrl(options);
+  var updateUrl = function (updateOptions) {
+    element.get(0).href = this.getShareUrl(updateOptions);
   }.bind(this);
 
   return {

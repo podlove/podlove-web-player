@@ -172,9 +172,9 @@ function create(player, params, callback) {
 
   params.type = playerType;
   // init MEJS to player
-  mejsoptions.success = function (player) {
+  mejsoptions.success = function (playerElement) {
     jqPlayer.on('error', removeUnplayableMedia);   // This might be a fix to some Firefox AAC issues.
-    callback(player, params, wrapper);
+    callback(playerElement, params, wrapper);
   };
   var me = new MediaElement(player, mejsoptions);
   console.log(me);

@@ -25,7 +25,7 @@ var TabRegistry = require('./tabregistry'),
   Chapters = require('./modules/chapter'),
   SaveTime = require('./modules/savetime'),
   Controls = require('./controls'),
-  player = require('./player'),
+  Player = require('./player'),
   ProgressBar = require('./modules/progressbar');
 
 var autoplay = false;
@@ -326,11 +326,11 @@ function addBehavior(player, params, wrapper) {
  */
 function getDeferredPlayerCallBack(deferredPlayer) {
   return function (data) {
-    var params = $.extend({}, player.defaults, data);
+    var params = $.extend({}, Player.defaults, data);
     data.sources.forEach(function (sourceObject) {
       $('<source>', sourceObject).appendTo(deferredPlayer);
     });
-    player.create(deferredPlayer, params, addBehavior);
+    Player.create(deferredPlayer, params, addBehavior);
   };
 }
 
@@ -349,16 +349,16 @@ $.fn.podlovewebplayer = function webPlayer(options) {
   }
 
   // Additional parameters default values
-  var params = $.extend({}, player.defaults, options);
+  var params = $.extend({}, Player.defaults, options);
 
   // turn each player in the current set into a Podlove Web Player
   return this.each(function (i, playerElement) {
-    player.create(playerElement, params, addBehavior);
+    Player.create(playerElement, params, addBehavior);
   });
 };
 
-pwp = { players: player.players };
+pwp = { players: Player.players };
 
-embed.init($, player.players);
+embed.init($, Player.players);
 
 window.pwp = pwp;
