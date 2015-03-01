@@ -1,6 +1,6 @@
 {
   "name": "podlove-web-player",
-  "version": "3.0.0-alpha.3",
+  "version": "3.0.0-alpha.5",
   "homepage": "http://podlove.org/",
   "description": "Next generation media player for the web. Special features for podcast and other metadata rich productions.",
   "main": "dist/*",
