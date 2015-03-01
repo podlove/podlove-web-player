@@ -76,11 +76,11 @@ function isActiveChapter (chapter, currentTime) {
  * @param {Timeline} timeline
  */
 function update (timeline) {
-  var chapter = this.getActiveChapter()
+  var activeChapter = this.getActiveChapter()
     , currentTime = timeline.getTime();
 
-  console.debug('Chapters', 'update', this, chapter, currentTime);
-  if (isActiveChapter(chapter, currentTime)) {
+  console.debug('Chapters', 'update', this, activeChapter, currentTime);
+  if (isActiveChapter(activeChapter, currentTime)) {
     console.log('Chapters', 'update', 'already set', this.currentChapter);
     return;
   }
