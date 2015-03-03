@@ -1,0 +1,6 @@
+#some servers compress mp3 http 206 partial content and tell the client the uncompressed filesize.
+#this interfere with many browsers and interrupt the play back.
+#the easiest solution for this server misconfiguration is to put these three lines to the dir with your mediafiles.
+<Files *.mp3>
+SetEnv no-gzip 
+</Files>

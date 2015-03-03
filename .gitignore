@@ -1,2 +1,6 @@
 *.DS_Store
 *Thumbs.db
+.idea/
+.sass-cache/
+bower_components/
+node_modules/

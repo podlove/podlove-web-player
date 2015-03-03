@@ -1,0 +1,19 @@
+body {
+    background: #ffffff;
+    font-family:  'Roboto', 'Helvetica Neue', 'Helvetica', sans-serif;
+}
+article,
+.container {
+    width: 85%;
+    margin: 5% auto;
+}
+
+h1 {
+    color: #0E116C;
+    font-size: 29px;
+    width: 85%;
+}
+
+a {
+    text-decoration: none;
+}
