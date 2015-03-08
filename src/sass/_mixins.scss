@@ -134,6 +134,9 @@
   text-decoration: none;
   speak: none;
   zoom: 1; /* Triggers "hasLayout" in IE 7 and lower */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
   &:hover,
   &:active {
     zoom: 1;
