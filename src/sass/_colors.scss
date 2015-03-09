@@ -132,12 +132,10 @@
   @return map_get($theme, "accent-base");
 }
 
-// A01a c_accent-text, calculated accent contrast text-color
+// A01a c_accent-text
 // $accent-text-contrast-color
 @function get-accent-contrast-color($theme) {
-  $accent-base: map_get($theme, "accent-base");
-  $accent-contrast: map_get($theme, "accent-contrast");
-  @return mix($accent-base, $accent-contrast, 0);
+  @return map_get($theme, "accent-contrast");
 }
 
 // A01b o_accent-fade-1

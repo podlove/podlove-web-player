@@ -5,10 +5,10 @@
 // Badges
 // ----------------------
 
-$badge-size: 25px;
+$badge-size:        25px;
 $badge-line-height: $badge-size;
-$badge-color: $meta-base-highlight-color;
-$badge-background: $meta-idle-color;
+$badge-color:       $meta-contrast-color;
+$badge-background:  $meta-base-highlight-color;
 
 .badge {
   font-family: $font-family-monospace;
