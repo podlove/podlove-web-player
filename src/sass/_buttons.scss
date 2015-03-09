@@ -43,8 +43,6 @@
   max-width:     $play-button-size;
   line-height:   $play-button-size;
   margin:        $play-button-margin $margin-base-horizontal $play-button-margin 0;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 
   @media screen and (min-width: $screen-desktop) {
     font-size:   $play-button-size-big ;
