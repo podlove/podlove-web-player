@@ -26,6 +26,7 @@ body {
   background-color: $player-base-color;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizelegibility;
 }
 
 // Reset fonts for relevant elements
