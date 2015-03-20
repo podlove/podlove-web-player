@@ -623,28 +623,28 @@ if (typeof String.prototype.trim !== 'function') {
     marks = list.find('tr');
     // fix height of summary for better toggability
     summary.each(function () {
-      $(this).data('height', $(this).height());
+      $(this).data('height', $(this).height() + 10);
       if (!$(this).hasClass('active')) {
-        $(this).height(0);
+        $(this).height('0px');
       } else {
-        $(this).height($(this).find('div.summarydiv').outerHeight());
+        $(this).height($(this).find('div.summarydiv').height() + 10 + 'px');
       }
     });
     chapterdiv.each(function () {
       $(this).data('height', $(this).find('.podlovewebplayer_chapters').height());
       if (!$(this).hasClass('active')) {
-        $(this).height(0);
+        $(this).height('0px');
       } else {
-        $(this).height($(this).find('.podlovewebplayer_chapters').outerHeight());
+        $(this).height($(this).find('.podlovewebplayer_chapters').height() + 'px');
       }
     });
     if (metainfo.length === 1) {
       metainfo.find('a.infowindow').click(function () {
         summary.toggleClass('active');
         if (summary.hasClass('active')) {
-          summary.height(summary.find('div.summarydiv').outerHeight());
+          summary.height(summary.find('div.summarydiv').height() + 10 + 60 + 'px');
         } else {
-          summary.css('height', 0);
+          summary.css('height', '0px');
         }
         return false;
       });
@@ -1122,10 +1122,8 @@ if (typeof String.prototype.trim !== 'function') {
       }
       wrapper.append('<div class="podlovewebplayer_timecontrol podlovewebplayer_controlbox' + timecontrolsActive + '"></div>');
       if (params.chapters !== undefined) {
-        if (params.chapters.length > 10) {
-          wrapper.find('.podlovewebplayer_timecontrol').append('<a href="#" class="prevbutton infobuttons pwp-icon-to-start" title="Jump backward to previous chapter"></a><a href="#" class="nextbutton infobuttons pwp-icon-to-end" title="next chapter"></a>');
-          wrapper.find('.controlbox').append('<a href="#" class="prevbutton infobuttons pwp-icon-step-backward" title="previous chapter"></a><a href="#" class="nextbutton infobuttons pwp-icon-to-end" title="Jump to next chapter"></a>');
-        }
+        wrapper.find('.podlovewebplayer_timecontrol').append('<a href="#" class="prevbutton infobuttons pwp-icon-to-start" title="Jump backward to previous chapter"></a><a href="#" class="nextbutton infobuttons pwp-icon-to-end" title="next chapter"></a>');
+        wrapper.find('.controlbox').append('<a href="#" class="prevbutton infobuttons pwp-icon-step-backward" title="previous chapter"></a><a href="#" class="nextbutton infobuttons pwp-icon-to-end" title="Jump to next chapter"></a>');
       }
       wrapper.find('.podlovewebplayer_timecontrol').append('<a href="#" class="rewindbutton infobuttons pwp-icon-fast-bw" title="Rewind 30 seconds"></a>');
       wrapper.find('.podlovewebplayer_timecontrol').append('<a href="#" class="forwardbutton infobuttons pwp-icon-fast-fw" title="Fast forward 30 seconds"></a>');
