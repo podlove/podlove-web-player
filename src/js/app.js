@@ -132,82 +132,21 @@ function isHidden() {
   return false;
 }
 
-/**
- * add chapter behavior and deeplinking: skip to referenced
- * time position & write current time into address
- * @param {object} player
- * @param {object} params
- * @param {object} wrapper
- */
-function addBehavior(player, params, wrapper) {
-  var jqPlayer = $(player),
-
-    timeline = new Timeline(player, params),
-    controls = new Controls(player, timeline),
+function renderModules(timeline, wrapper, params) {
+  var
     tabs = new TabRegistry(),
-
     hasChapters = timeline.hasChapters,
-    metaElement = $('<div class="titlebar"></div>'),
-    playerType = params.type,
-    controlBox = controls.box,
-    playButton = renderPlaybutton(),
-    poster = params.poster || jqPlayer.attr('poster'),
-    deepLink;
-
-  console.debug('webplayer', 'metadata', timeline.getData());
-
-  /**
-   * Build rich player with meta data
-   */
-  wrapper.addClass('podlovewebplayer_' + playerType);
-
-  if (playerType === 'audio') {
-    // Render playbutton in titlebar
-    metaElement.prepend(playButton);
-    metaElement.append(renderPoster(poster));
-    wrapper.prepend(metaElement);
-  }
-
-  if (playerType === 'video') {
-    var videoPane = $('<div class="video-pane"></div>');
-    var overlay = $('<div class="video-overlay"></div>');
-    overlay.append(playButton);
-    overlay.on('click', function () {
-      if (player.paused) {
-        playButton.addClass('playing');
-        player.play();
-        return;
-      }
-      playButton.removeClass('playing');
-      player.pause();
-    });
-
-    videoPane
-      .append(overlay)
-      .append(jqPlayer);
-
-    wrapper
-      .append(metaElement)
-      .append(videoPane);
-
-    jqPlayer.prop({
-      poster: poster,
-      controls: null,
-      preload: 'auto'
-    });
-  }
-
-  // Render title area with title h2 and subtitle h3
-  metaElement.append(renderTitleArea(params));
+    controls = new Controls(timeline),
+    controlBox = controls.box;
 
   /**
    * -- MODULES --
    */
   var chapters;
   if (hasChapters) {
-    chapters = new Chapters(timeline);
+    chapters = new Chapters(timeline, params);
     timeline.addModule(chapters);
-    chapters.addEventhandlers(player);
+    chapters.addEventhandlers();
   }
   controls.createTimeControls(chapters);
 
@@ -246,17 +185,81 @@ function addBehavior(player, params, wrapper) {
     .append(tabs.container);
 
   progressBar.addEvents();
+}
 
-  // expose the player interface
-  wrapper.data('podlovewebplayer', {
+/**
+ * add chapter behavior and deeplinking: skip to referenced
+ * time position & write current time into address
+ * @param {object} player
+ * @param {object} params
+ * @param {object} wrapper
+ */
+function addBehavior(player, params, wrapper) {
+  var jqPlayer = $(player),
+    timeline = new Timeline(player, params),
+
+    metaElement = $('<div class="titlebar"></div>'),
+    playerType = params.type,
+    playButton = renderPlaybutton(),
+    poster = params.poster || jqPlayer.attr('poster');
+
+  var deepLink;
+
+  console.debug('webplayer', 'metadata', timeline.getData());
+  jqPlayer.prop({
+    controls: null,
+    preload: 'metadata'
+  });
+
+  /**
+   * Build rich player with meta data
+   */
+  wrapper
+    .addClass('podlovewebplayer_' + playerType)
+    .data('podlovewebplayer', {
     player: jqPlayer
   });
+
+  if (playerType === 'audio') {
+    // Render playbutton in titlebar
+    metaElement.prepend(playButton);
+    metaElement.append(renderPoster(poster));
+    wrapper.prepend(metaElement);
+  }
+
+  if (playerType === 'video') {
+    var videoPane = $('<div class="video-pane"></div>');
+    var overlay = $('<div class="video-overlay"></div>');
+    overlay.append(playButton);
+    overlay.on('click', function () {
+      if (player.paused) {
+        playButton.addClass('playing');
+        player.play();
+        return;
+      }
+      playButton.removeClass('playing');
+      player.pause();
+    });
+
+    videoPane
+      .append(overlay)
+      .append(jqPlayer);
+
+    wrapper
+      .append(metaElement)
+      .append(videoPane);
+
+    jqPlayer.prop({poster: poster});
+  }
+
+  // Render title area with title h2 and subtitle h3
+  metaElement.append(renderTitleArea(params));
 
   // parse deeplink
   deepLink = require('./url').checkCurrent();
   if (deepLink[0] && pwp.players.length === 1) {
     var playerAttributes = {preload: 'auto'};
-    if (!isHidden() && autoplay) {
+    if (!isHidden()) {
       playerAttributes.autoplay = 'autoplay';
     }
     jqPlayer.attr(playerAttributes);
@@ -292,6 +295,9 @@ function addBehavior(player, params, wrapper) {
   // --> https://bugzilla.mozilla.org/show_bug.cgi?id=664842
   jqPlayer.one('canplay', function (evt) {
     console.debug('canplay', evt);
+    timeline.duration = player.duration;
+    // attach and render modules
+    renderModules(timeline, wrapper, params);
   });
 
   jqPlayer
@@ -314,7 +320,6 @@ function addBehavior(player, params, wrapper) {
     .on('ended', function () {
       embed.postToOpener({ action: 'stop', arg: player.currentTime });
       // delete the cached play time
-      saveTime.removeItem();
       timeline.rewind();
     });
 }

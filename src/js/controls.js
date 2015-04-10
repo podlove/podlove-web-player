@@ -40,8 +40,8 @@ function getCombinedCallback(callback) {
  * @param {Timeline} timeline Timeline object for this player
  * @constructor
  */
-function Controls (player, timeline) {
-  this.player = player;
+function Controls (timeline) {
+  this.player = timeline.player;
   this.timeline = timeline;
   this.box = createBox();
   this.timeControlElement = createTimeControls();

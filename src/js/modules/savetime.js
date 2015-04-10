@@ -19,6 +19,9 @@ function hasItem () {
 
 function update () {
   console.debug('SaveTime', 'update', this.timeline.getTime());
+  if (this.timeline.getTime() === 0) {
+    return removeItem.call(this);
+  }
   this.setItem(this.timeline.getTime());
 }
 

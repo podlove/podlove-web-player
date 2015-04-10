@@ -21,28 +21,6 @@
 var tc = require('./timecode')
   , cap = require('./util').cap;
 
-function transformChapter(chapter) {
-  chapter.code = chapter.title;
-  if (typeof chapter.start === 'string') {
-    chapter.start = tc.getStartTimeCode(chapter.start);
-  }
-  return chapter;
-}
-
-/**
- * add `end` property to each simple chapter,
- * needed for proper formatting
- * @param {number} duration
- * @returns {function}
- */
-function addEndTime(duration) {
-  return function (chapter, i, chapters) {
-    var next = chapters[i + 1];
-    chapter.end = next ? next.start : duration;
-    return chapter;
-  };
-}
-
 function addType(type) {
   return function (element) {
     element.type = type;
@@ -83,6 +61,14 @@ function parse(data) {
   return data;
 }
 
+function stopOnEndTime() {
+  if (this.currentTime >= this.endTime) {
+    console.log('ENDTIME REACHED');
+    this.player.stop();
+    delete this.endTime;
+  }
+}
+
 /**
  *
  * @param {HTMLMediaElement} player
@@ -92,12 +78,10 @@ function parse(data) {
 function Timeline(player, data) {
   this.player = player;
   this.hasChapters = checkForChapters(data);
-  this.data = this.parseSimpleChapter(data);
   this.modules = [];
   this.listeners = [logCurrentTime];
   this.currentTime = -1;
   this.duration = data.duration;
-  this.endTime = data.duration;
   this.bufferedTime = 0;
   this.resume = player.paused;
   this.seeking = false;
@@ -114,6 +98,9 @@ Timeline.prototype.getDataByType = function (type) {
 Timeline.prototype.addModule = function (module) {
   if (module.update) {
     this.listeners.push(module.update);
+  }
+  if (module.data) {
+    this.data = module.data;
   }
   this.modules.push(module);
 };
@@ -134,9 +121,6 @@ Timeline.prototype.update = function (event) {
     this.currentTime = this.player.currentTime;
   }
   this.listeners.forEach(call, this);
-  if (this.currentTime >= this.endTime) {
-    this.player.stop();
-  }
 };
 
 Timeline.prototype.emitEventsBetween = function (start, end) {
@@ -228,7 +212,11 @@ Timeline.prototype.stopAt = function (time) {
   if (!time || time <= 0 || time > this.duration) {
     return console.warn('Timeline', 'stopAt', 'time out of bounds', time);
   }
+  var self = this;
   this.endTime = time;
+  this.listeners.push(function () {
+    stopOnEndTime.call(self);
+  })
 };
 
 Timeline.prototype.getTime = function () {
@@ -273,22 +261,6 @@ Timeline.prototype.rewind = function () {
     listener(this);
   }.bind(this);
   $.each(this.listeners, callListenerWithThis);
-};
-
-Timeline.prototype.parseSimpleChapter = function (data) {
-  if (!data.chapters) {
-    return [];
-  }
-
-  var chapters = data.chapters.map(transformChapter);
-
-  // order is not guaranteed: http://podlove.org/simple-chapters/
-  return chapters
-    .map(addType('chapter'))
-    .map(addEndTime(data.duration))
-    .sort(function (a, b) {
-      return a.start - b.start;
-    });
 };
 
 module.exports = Timeline;

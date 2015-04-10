@@ -213,13 +213,6 @@ ProgressBar.prototype.addEvents = function() {
     timeline.seek(newTime);
   }
 
-  function seekStart () {
-    timeline.seekStart();
-    $(document)
-      .bind('mousemove.dur', handleMouseMove)
-      .bind('touchmove.dur', handleMouseMove);
-  }
-
   function handleMouseUp () {
     mouseIsDown = false;
     timeline.seekEnd();
@@ -236,8 +229,10 @@ ProgressBar.prototype.addEvents = function() {
 
     mouseIsDown = true;
     handleMouseMove(event);
-    seekStart();
+    timeline.seekStart();
     $(document)
+      .bind('mousemove.dur', handleMouseMove)
+      .bind('touchmove.dur', handleMouseMove)
       .bind('mouseup.dur', handleMouseUp)
       .bind('touchend.dur', handleMouseUp);
   }

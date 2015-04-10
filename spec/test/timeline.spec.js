@@ -64,7 +64,7 @@ describe('Module: timeline', function () {
       });
 
       it('stops at the end of the timeline', function () {
-        expect(timeline.endTime).toBe(100);
+        expect(timeline.endTime).toBe(undefined);
       });
 
     });
@@ -84,7 +84,7 @@ describe('Module: timeline', function () {
       it('end time after end of timeline ', function () {
         timeline.playRange([1, 101]);
         expect(timeline.currentTime).toBe(1);
-        expect(timeline.endTime).toBe(100);
+        expect(timeline.endTime).toBe(undefined);
       });
 
     });
