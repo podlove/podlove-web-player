@@ -61,6 +61,14 @@ function parse(data) {
   return data;
 }
 
+function stopOnEndTime() {
+  if (this.currentTime >= this.endTime) {
+    console.log('ENDTIME REACHED');
+    this.player.stop();
+    delete this.endTime;
+  }
+}
+
 /**
  *
  * @param {HTMLMediaElement} player
@@ -74,7 +82,6 @@ function Timeline(player, data) {
   this.listeners = [logCurrentTime];
   this.currentTime = -1;
   this.duration = data.duration;
-  this.endTime = data.duration;
   this.bufferedTime = 0;
   this.resume = player.paused;
   this.seeking = false;
@@ -114,9 +121,6 @@ Timeline.prototype.update = function (event) {
     this.currentTime = this.player.currentTime;
   }
   this.listeners.forEach(call, this);
-  if (this.currentTime >= this.endTime) {
-    this.player.stop();
-  }
 };
 
 Timeline.prototype.emitEventsBetween = function (start, end) {
@@ -209,6 +213,7 @@ Timeline.prototype.stopAt = function (time) {
     return console.warn('Timeline', 'stopAt', 'time out of bounds', time);
   }
   this.endTime = time;
+  this.listeners.push(stopOnEndTime.bind(this));
 };
 
 Timeline.prototype.getTime = function () {
