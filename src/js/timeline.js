@@ -212,8 +212,11 @@ Timeline.prototype.stopAt = function (time) {
   if (!time || time <= 0 || time > this.duration) {
     return console.warn('Timeline', 'stopAt', 'time out of bounds', time);
   }
+  var self = this;
   this.endTime = time;
-  this.listeners.push(stopOnEndTime.bind(this));
+  this.listeners.push(function () {
+    stopOnEndTime.call(self);
+  })
 };
 
 Timeline.prototype.getTime = function () {
