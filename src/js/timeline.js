@@ -216,7 +216,7 @@ Timeline.prototype.stopAt = function (time) {
   this.endTime = time;
   this.listeners.push(function () {
     stopOnEndTime.call(self);
-  })
+  });
 };
 
 Timeline.prototype.getTime = function () {
