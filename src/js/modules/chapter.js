@@ -264,11 +264,11 @@ Chapters.prototype.previous = function () {
   var current = this.currentChapter,
     previous = this.setCurrentChapter(current - 1);
   if (current === previous) {
-    console.log('Chapters', 'previous', 'already in first chapter');
+    console.debug('Chapters', 'previous', 'already in first chapter');
     this.playCurrentChapter();
     return current;
   }
-  console.log('Chapters', 'previous', 'chapter', this.currentChapter);
+  console.debug('Chapters', 'previous', 'chapter', this.currentChapter);
   this.playCurrentChapter();
   return previous;
 };
