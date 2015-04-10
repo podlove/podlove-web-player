@@ -144,7 +144,7 @@ function renderModules(timeline, wrapper, params) {
    */
   var chapters;
   if (hasChapters) {
-    chapters = new Chapters(timeline);
+    chapters = new Chapters(timeline, params);
     timeline.addModule(chapters);
     chapters.addEventhandlers();
   }

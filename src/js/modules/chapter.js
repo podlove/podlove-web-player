@@ -7,6 +7,29 @@ var tc = require('../timecode')
 
 var ACTIVE_CHAPTER_THRESHHOLD = 0.1;
 
+function transformChapter(chapter) {
+  chapter.code = chapter.title;
+  if (typeof chapter.start === 'string') {
+    chapter.start = tc.getStartTimeCode(chapter.start);
+  }
+  return chapter;
+}
+
+/**
+ * add `end` property to each simple chapter,
+ * needed for proper formatting
+ * @param {number} duration
+ * @returns {function}
+ */
+function addEndTime(duration) {
+  return function (chapter, i, chapters) {
+    var next = chapters[i + 1];
+    chapter.end = next ? next.start : duration;
+    console.log('duration', duration, chapter.end);
+    return chapter;
+  };
+}
+
 function render(html) {
   return $(html);
 }
@@ -98,7 +121,7 @@ function update (timeline) {
  * @params {Timeline} params
  * @return {Chapters} chapter module
  */
-function Chapters (timeline) {
+function Chapters (timeline, params) {
 
   if (!timeline || !timeline.hasChapters) {
     return null;
@@ -109,9 +132,10 @@ function Chapters (timeline) {
 
   this.timeline = timeline;
   this.duration = timeline.duration;
-  this.chapters = timeline.getDataByType('chapter');
   this.chapterlinks = !!timeline.chapterlinks;
   this.currentChapter = 0;
+  this.chapters = this.parseSimpleChapter(params);
+  this.data = this.chapters;
 
   this.tab = new Tab({
     icon: 'pwp-chapters',
@@ -254,6 +278,20 @@ Chapters.prototype.playCurrentChapter = function () {
   console.log('Chapters', '#playCurrentChapter', 'start', start);
   var time = this.timeline.setTime(start);
   console.log('Chapters', '#playCurrentChapter', 'currentTime', time);
+};
+
+Chapters.prototype.parseSimpleChapter = function (params) {
+  var chapters = params.chapters;
+  if (!chapters) {
+    return [];
+  }
+
+  return chapters
+    .map(transformChapter)
+    .map(addEndTime(this.duration))
+    .sort(function (a, b) { // order is not guaranteed: http://podlove.org/simple-chapters/
+      return a.start - b.start;
+    });
 };
 
 module.exports = Chapters;
