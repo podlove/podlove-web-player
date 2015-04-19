@@ -300,6 +300,64 @@ function addBehavior(player, params, wrapper) {
     renderModules(timeline, wrapper, params);
   });
 
+  $(document)
+    .on('keydown', function (e) {
+      console.log('progress', 'keydown', e);
+      /*
+       if ((new Date() - lastKeyPressTime) >= 1000) {
+       startedPaused = media.paused;
+       }
+       */
+      e.preventDefault();
+      e.stopPropagation();
+
+      var keyCode = e.which,
+        duration = timeline.player.duration,
+        seekTime = timeline.player.currentTime;
+
+      switch (keyCode) {
+        case 37: // left
+          seekTime -= 1;
+          break;
+        case 39: // Right
+          seekTime += 1;
+          break;
+        case 38: // Up
+          if (timeline.hasChapters) {
+            timeline.modules[0].next();
+            return false;
+          }
+          seekTime += Math.floor(duration * 0.1);
+          break;
+        case 40: // Down
+          if (timeline.hasChapters) {
+            timeline.modules[0].previous();
+            return false;
+          }
+          seekTime -= Math.floor(duration * 0.1);
+          break;
+        case 36: // Home
+          seekTime = 0;
+          break;
+        case 35: // end
+          seekTime = duration;
+          break;
+        case 10: // enter
+        case 32: // space
+          if (timeline.player.paused) {
+            timeline.player.play();
+            return false;
+          }
+            timeline.player.pause();
+          return false;
+        default:
+          return false;
+      }
+
+      timeline.setTime(seekTime);
+      return false;
+    });
+
   jqPlayer
     .on('timelineElement', function (event) {
       console.log(event.currentTarget.id, event);
