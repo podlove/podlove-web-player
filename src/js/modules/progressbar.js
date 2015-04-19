@@ -211,6 +211,10 @@ ProgressBar.prototype.addEvents = function() {
     var newTime = calculateNewTime(event.pageX);
     if (newTime === timeline.getTime()) { return; }
     timeline.seek(newTime);
+
+    event.preventDefault();
+    event.stopPropagation();
+    return false;
   }
 
   function handleMouseUp () {
