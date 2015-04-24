@@ -207,44 +207,44 @@ ProgressBar.prototype.addEvents = function() {
   }
 
   function handleMouseMove (event) {
+    var x = event.pageX;
+    if (event.originalEvent.changedTouches) {
+      x = event.originalEvent.changedTouches[0].pageX;
+    }
+
     if (typeof timeline.duration !== 'number' || !mouseIsDown ) { return; }
-    var newTime = calculateNewTime(event.pageX);
+    var newTime = calculateNewTime(x);
     if (newTime === timeline.getTime()) { return; }
     timeline.seek(newTime);
+
+    event.preventDefault();
+    event.stopPropagation();
+    return false;
   }
 
   function handleMouseUp () {
     mouseIsDown = false;
     timeline.seekEnd();
-    $(document)
-      .unbind('touchend.dur')
-      .unbind('mouseup.dur')
-      .unbind('touchmove.dur')
-      .unbind('mousemove.dur');
+    $(document).unbind('touchend.dur mouseup.dur touchmove.dur mousemove.dur');
   }
 
   function handleMouseDown (event) {
-    // only handle left clicks
-    if (event.which !== 1) { return; }
+    if (event.which !== 0 && event.which !== 1) { return; }
 
     mouseIsDown = true;
     handleMouseMove(event);
     timeline.seekStart();
     $(document)
-      .bind('mousemove.dur', handleMouseMove)
-      .bind('touchmove.dur', handleMouseMove)
-      .bind('mouseup.dur', handleMouseUp)
-      .bind('touchend.dur', handleMouseUp);
+      .bind('mousemove.dur touchmove.dur', handleMouseMove)
+      .bind('mouseup.dur touchend.dur', handleMouseUp)
   }
 
   // handle click and drag with mouse or touch in progressbar and on handle
-  this.progress
-    .bind('touchstart', handleMouseDown)
-    .bind('mousedown', handleMouseDown);
+  this.progress.bind('mousedown touchstart', handleMouseDown);
 
   this.handle
     .bind('touchstart', handleMouseDown)
-    .bind('mousedown', handleMouseDown);
+    .bind('mousedown', handleMouseDown)
 };
 
 module.exports = ProgressBar;
