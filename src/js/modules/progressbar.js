@@ -207,6 +207,9 @@ ProgressBar.prototype.addEvents = function() {
   }
 
   function handleMouseMove (event) {
+    event.preventDefault();
+    event.stopPropagation();
+
     var x = event.pageX;
     if (event.originalEvent.changedTouches) {
       x = event.originalEvent.changedTouches[0].pageX;
@@ -216,10 +219,6 @@ ProgressBar.prototype.addEvents = function() {
     var newTime = calculateNewTime(x);
     if (newTime === timeline.getTime()) { return; }
     timeline.seek(newTime);
-
-    event.preventDefault();
-    event.stopPropagation();
-    return false;
   }
 
   function handleMouseUp () {
@@ -236,15 +235,13 @@ ProgressBar.prototype.addEvents = function() {
     timeline.seekStart();
     $(document)
       .bind('mousemove.dur touchmove.dur', handleMouseMove)
-      .bind('mouseup.dur touchend.dur', handleMouseUp)
+      .bind('mouseup.dur touchend.dur', handleMouseUp);
   }
 
   // handle click and drag with mouse or touch in progressbar and on handle
   this.progress.bind('mousedown touchstart', handleMouseDown);
 
-  this.handle
-    .bind('touchstart', handleMouseDown)
-    .bind('mousedown', handleMouseDown)
+  this.handle.bind('touchstart mousedown', handleMouseDown);
 };
 
 module.exports = ProgressBar;
