@@ -32,6 +32,8 @@ code {
     font-size: 0.85em;
     color: #999;
     text-align: center;
+    border-top: 1px solid #eee;
+    padding-top: 10px;
 }
 
 #content > .page-header:first-child {
