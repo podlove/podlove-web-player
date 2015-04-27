@@ -18,16 +18,44 @@ code {
     color: inherit;
 }
 
-#header {
+.pw-docs-brand {
+    float: left;
+}
+
+.pw-docs-brand small {
+    color: #777;
+}
+
+.pw-docs-nav {
     border-bottom: 1px solid #eee;
     margin-bottom: 20px;
 }
 
-#header a:hover {
+.pw-docs-nav .navbar-header {
+    float: none;
+}
+
+.pw-docs-nav a:hover {
     text-decoration: none;
 }
 
-#footer {
+.pw-docs-nav .logo {
+    width: 30px;
+    float:left;
+    margin-top: -5px;
+    margin-right: 8px;
+}
+
+.pw-docs-nav .navbar-toggle .icon-bar {
+    background-color: #000000;
+}
+
+.pw-docs-nav .navbar-toggle {
+    display: block;
+    float: right;
+}
+
+.pw-docs-footer {
     margin: 20px 0;
     font-size: 0.85em;
     color: #999;
@@ -36,39 +64,49 @@ code {
     padding-top: 10px;
 }
 
-#content > .page-header:first-child {
+.pw-docs-content > .page-header:first-child {
     margin-top: 0;
 }
 
-#content > .page-header:first-child h2 {
+.pw-docs-content > .page-header:first-child h2 {
     margin-top: 0;
 }
 
-#navigation {
-    font-size: 0.9em;
+.pw-nav {
 }
 
-#navigation li a {
+.pw-nav li a {
     padding-left: 10px;
     padding-right: 10px;
 }
 
-#navigation .nav-header {
+.pw-nav .nav-header {
     padding-left: 0;
     padding-right: 0;
 }
 
-dt {
+dt,
+.pw-nav li span {
     padding: 3px 0px;
     margin: 9px 15px 0 15px;
     color: #999;
 }
 
-dd {
+dd,
+.pw-nav li a {
     padding: 3px 10px;
     margin: 0px 15px;
 }
 
 .jumbotron small {
     display: block;
+}
+
+.jumbotron h1, .jumbotron .h1 {
+    font-size: 56px;
+}
+
+.jumbotron h2 {
+    font-size: 35px;
+    color: #777;
 }

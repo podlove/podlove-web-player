@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Jekyll Docs Template"
+title: "Documentation"
 ---
 
 <div class="jumbotron">

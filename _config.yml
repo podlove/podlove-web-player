@@ -1,6 +1,6 @@
 # Site title and subtitle. This is used in _includes/header.html
 title: 'Podlove Web Player 3.0'
-subtitle: 'Documentation for Podlove Web Player 3.0'
+subtitle: 'Documentation'
 
 # if you wish to integrate disqus on pages set your shortname here
 disqus_shortname: ''

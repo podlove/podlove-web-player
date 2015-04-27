@@ -11,38 +11,35 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ site.baseurl }}/css/syntax.css">
     <link rel="stylesheet" href="{{ site.baseurl }}/css/main.css">
+
 </head>
 <body>
 
-<div class="container">
-    <div class="row">
-        <div id="header" class="col-md-11">
-            {% include header.html %}
-        </div>
-    </div>
+<header class="navbar navbar-static-top pw-docs-nav">
+    {% include header.html %}
+</header>
 
-    <div class="row">
+<div class="container-fluid">
+    <section class="row-fluid">
         {% assign post_count = site.posts|size %}
         {% if site.navigation != 0 and site.navigation == 1 or post_count > 0 %}
-        <div id="navigation" class="col-md-3">
+        <nav class="pw-nav col-sm-4 col-md-3 col-lg-2 hidden-print">
             {% include navigation.html %}
-        </div>
-
-        <div id="content" class="col-md-8">
+        </nav>
+        <article class="pw-docs-content col-sm-8 col-md-9 col-lg-10">
             {{ content }}
-        </div>
+        </article>
         {% else %}
-        <div id="content" class="col-md-12">
+        <article class="pw-docs-content col-md-12">
             {{ content }}
-        </div>
+        </article>
         {% endif %}
-    </div>
-
-    <div class="row">
-        <div id="footer" class="col-md-12">
-            {% include footer.html %}
-        </div>
-    </div>
+    </section>
 </div>
+<footer class="pw-docs-footer">
+    {% include footer.html %}
+</footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 </body>
 </html>

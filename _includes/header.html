@@ -1,4 +1,13 @@
-<h4><a class=brand href="{{ site.baseurl }}/">{{ site.title }}</a>
-    {% if site.subtitle %}<small>{{ site.subtitle }}</small>{% endif %}
-</h4>
-
+<div class="navbar-header">
+    <button class="navbar-toggle display none" type="button" data-toggle="collapse" data-target=".pw-nav" aria-expanded="true">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+    <a href=" {{ site.baseurl }}/" class="navbar-brand pw-docs-brand">
+        <img id="logo" class="logo img-responsive" src="{{ site.url }}/assets/img/podlove-logo-grey.png">
+        {{ site.title }}
+        {% if site.subtitle %}<small class="hidden-xs">{{ site.subtitle }}</small>{% endif %}
+    </a>
+</div>
