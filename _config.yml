@@ -5,9 +5,6 @@ subtitle: 'Documentation for Podlove Web Player 3.0'
 # if you wish to integrate disqus on pages set your shortname here
 disqus_shortname: ''
 
-# if you use google analytics, add your tracking id here
-google_analytics_id: ''
-
 # Enable/show navigation. There are there options:
 #   0 - always hide
 #   1 - always show
@@ -19,11 +16,11 @@ codeurl: 'https://github.com/podlove/podlove-web-player'
 
 # Default categories (in order) to appear in the navigation
 sections: [
-    ['doc', 'Documentation'],
-    ['tut', 'Tutorial'],
-    ['ref', 'Reference'],
-    ['dev', 'Developers'],
-    ['post', 'Posts']
+    ['documenation', 'Documentation'],
+    ['guides'      , 'Guides'],
+    ['reference'   , 'Reference'],
+    ['developer'   , 'Developers'],
+    ['post'        , 'Posts']
 ]
 
 # Keep as an empty string if served up at the root. If served up at a specific
@@ -31,7 +28,7 @@ sections: [
 baseurl: ''
 
 # Dates are not included in permalinks
-permalink: none
+permalink: /:categories/:title
 
 # Syntax highlighting
 highlighter: pygments
@@ -55,3 +52,6 @@ redcarpet:
         'tables',
         'hardwrap'
     ]
+
+gems:
+  - jekyll-redirect-from
