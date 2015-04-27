@@ -44,7 +44,6 @@ code {
     margin-top: 0;
 }
 
-
 #navigation {
     font-size: 0.9em;
 }
@@ -57,4 +56,19 @@ code {
 #navigation .nav-header {
     padding-left: 0;
     padding-right: 0;
+}
+
+dt {
+    padding: 3px 0px;
+    margin: 9px 15px 0 15px;
+    color: #999;
+}
+
+dd {
+    padding: 3px 10px;
+    margin: 0px 15px;
+}
+
+.jumbotron small {
+    display: block;
 }
