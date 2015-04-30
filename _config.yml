@@ -55,3 +55,6 @@ redcarpet:
 
 gems:
   - jekyll-redirect-from
+
+js:  
+    dist: '/bower_components/podlove-web-player/dist'

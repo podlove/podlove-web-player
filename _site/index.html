@@ -75,15 +75,6 @@
 
     
     
-    <li>
-        <span>Posts</span>
-    </li>
-    
-    <li data-order="">
-        <a href="/post/test">test</a>
-    </li>
-    
-    
 </ul>
 
         </nav>
@@ -97,9 +88,17 @@
         Standalone or embeddable as Worpress Plugin.
     </p>
     <p>
-        <a class="btn btn-primary btn-lg" href="#">
-            Download
-        </a>
+        <audio id="inject">
+            <source src="bower_components/podlove-web-player/dist/examples/which-format/podlove-test-track.mp4" type="audio/mp4"/>
+            <source src="bower_components/podlove-web-player/dist/examples/which-format/podlove-test-track.mp3" type="audio/mpeg"/>
+            <source src="bower_components/podlove-web-player/dist/examples/which-format/podlove-test-track.ogg" type="audio/ogg; codecs=vorbis"/>
+            <source src="bower_components/podlove-web-player/dist/examples/which-format/podlove-test-track.opus" type="audio/ogg; codecs=opus"/>
+        </audio>
+    </p>
+    <p>
+        <a class="btn btn-primary btn-lg" href="">Get Started</a>
+        <a class="btn btn-primary btn-lg" href="">Github</a>
+        <a class="btn btn-primary btn-lg" href="/wordpress">Wordpress</a>
     </p>
 </div>
 
@@ -117,5 +116,9 @@
 </footer>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="/bower_components/podlove-web-player/dist/js/podlove-web-moderator.min.js"></script>
+
+<script src="/js/injected.js"></script>
+
 </body>
 </html>
