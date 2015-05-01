@@ -103,6 +103,7 @@ var self = window.ProgressPolyfill = {
 			},
 			
 			set: function(value) {
+				value = Math.min(value, this.max);
 				this.setAttribute('aria-valuenow', value);
 				
 				if(!attrsAsProps) {

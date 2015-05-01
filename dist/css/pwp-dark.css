@@ -207,9 +207,12 @@ body {
   line-height: 1.42857;
   color: #fff;
   background-color: #000;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizelegibility;
 }
 
-/* line 30, ../../src/sass/_base.scss */
+/* line 33, ../../src/sass/_base.scss */
 input,
 button,
 select,
@@ -220,7 +223,7 @@ textarea {
 }
 
 @media screen and (min-width: 1200px) {
-  /* line 41, ../../src/sass/_base.scss */
+  /* line 44, ../../src/sass/_base.scss */
   span,
   legend,
   input,
@@ -230,31 +233,31 @@ textarea {
     font-size: 1.15vw;
   }
 }
-/* line 52, ../../src/sass/_base.scss */
+/* line 55, ../../src/sass/_base.scss */
 a {
   color: #F94C0D;
   text-decoration: none;
   background: transparent;
 }
-/* line 57, ../../src/sass/_base.scss */
+/* line 60, ../../src/sass/_base.scss */
 a:hover, a:focus {
   color: #fb8358;
   text-decoration: none;
   outline: none;
 }
 
-/* line 65, ../../src/sass/_base.scss */
+/* line 68, ../../src/sass/_base.scss */
 p {
   font-size: 13px;
 }
 @media screen and (min-width: 1200px) {
-  /* line 65, ../../src/sass/_base.scss */
+  /* line 68, ../../src/sass/_base.scss */
   p {
     font-size: 1.15vw;
   }
 }
 
-/* line 76, ../../src/sass/_base.scss */
+/* line 79, ../../src/sass/_base.scss */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -266,7 +269,7 @@ p {
   border: 0;
 }
 
-/* line 87, ../../src/sass/_base.scss */
+/* line 90, ../../src/sass/_base.scss */
 select {
   border-radius: 0px !important;
   background-image: none;
@@ -312,7 +315,7 @@ select {
 
 /* line 25, ../../src/sass/_buttons.scss */
 .button-submit {
-  color: white;
+  color: #fff;
   background: #F94C0D;
   text-decoration: none;
   speak: none;
@@ -334,7 +337,7 @@ select {
 .button-submit:hover {
   background-color: #fb8358;
   border: 1px solid #fb8358;
-  color: white;
+  color: #fff;
   cursor: pointer;
 }
 /* line 160, ../../src/sass/_mixins.scss */
@@ -350,7 +353,13 @@ select {
   font-size: 64px;
   max-width: 64px;
   line-height: 64px;
-  margin: auto 20px auto 0;
+  margin: auto 10px;
+}
+@media screen and (min-width: 480px) {
+  /* line 38, ../../src/sass/_buttons.scss */
+  .play {
+    margin: 18px;
+  }
 }
 @media screen and (min-width: 992px) {
   /* line 38, ../../src/sass/_buttons.scss */
@@ -358,25 +367,25 @@ select {
     font-size: 80px;
     max-width: 80px;
     line-height: 80px;
-    margin: 0.375em 20px 0.375em 0;
+    margin: 30px;
   }
 }
-/* line 53, ../../src/sass/_buttons.scss */
+/* line 57, ../../src/sass/_buttons.scss */
 .play:hover {
   text-shadow: 0px 0px 3px #fff;
   color: #fff;
 }
-/* line 57, ../../src/sass/_buttons.scss */
+/* line 61, ../../src/sass/_buttons.scss */
 .play:active {
   text-shadow: 0px 0px 8px #fff;
   color: #fff;
 }
-/* line 61, ../../src/sass/_buttons.scss */
+/* line 65, ../../src/sass/_buttons.scss */
 .play.playing {
   color: #fff;
 }
 
-/* line 67, ../../src/sass/_buttons.scss */
+/* line 71, ../../src/sass/_buttons.scss */
 button {
   -moz-appearance: none;
   -webkit-appearance: none;
@@ -391,8 +400,8 @@ button {
   font-weight: 400;
   line-height: 25px;
   text-align: center;
-  color: #e2e2e2;
-  background-color: #c9c9c9;
+  color: #535353;
+  background-color: #e2e2e2;
   white-space: nowrap;
   display: inline-block;
   border-radius: 50%;
@@ -816,38 +825,37 @@ progress[aria-valuenow]:before {
   -webkit-box-flex: 1;
   -ms-flex: 1 0px;
   flex: 1 0px;
-  -webkit-order: 2;
-  -webkit-box-ordinal-group: 3;
-  -ms-flex-order: 2;
-  order: 2;
-  padding: 0 16px;
+  -webkit-order: 3;
+  -webkit-box-ordinal-group: 4;
+  -ms-flex-order: 3;
+  order: 3;
   min-width: 1px;
   margin: auto 0;
-  padding-left: 10px;
+  padding: 0 20px 0 0;
 }
-/* line 25, ../../src/sass/_titlebar.scss */
+/* line 24, ../../src/sass/_titlebar.scss */
 .titlebar header h1 {
   font-size: 1.5em;
 }
-/* line 28, ../../src/sass/_titlebar.scss */
+/* line 27, ../../src/sass/_titlebar.scss */
 .titlebar header .subtitle,
 .titlebar header h3 {
   font-size: 1em;
 }
-/* line 32, ../../src/sass/_titlebar.scss */
+/* line 31, ../../src/sass/_titlebar.scss */
 .titlebar header a {
   color: #cccccc;
 }
-/* line 34, ../../src/sass/_titlebar.scss */
+/* line 33, ../../src/sass/_titlebar.scss */
 .titlebar header a:hover {
   color: #fff;
 }
-/* line 37, ../../src/sass/_titlebar.scss */
+/* line 36, ../../src/sass/_titlebar.scss */
 .titlebar header a:active {
   colort: #fff;
 }
 
-/* line 45, ../../src/sass/_titlebar.scss */
+/* line 44, ../../src/sass/_titlebar.scss */
 .coverart {
   -webkit-order: 1;
   -webkit-box-ordinal-group: 2;
@@ -856,31 +864,31 @@ progress[aria-valuenow]:before {
   min-width: 100px;
   height: 100px;
 }
-/* line 49, ../../src/sass/_titlebar.scss */
+/* line 48, ../../src/sass/_titlebar.scss */
 .coverart img {
   height: 100px;
 }
 
-/* line 54, ../../src/sass/_titlebar.scss */
+/* line 53, ../../src/sass/_titlebar.scss */
 .showtitle {
   margin: 0;
 }
 
-/* line 58, ../../src/sass/_titlebar.scss */
+/* line 57, ../../src/sass/_titlebar.scss */
 .episodetitle {
   margin: 10px 0;
 }
-/* line 60, ../../src/sass/_titlebar.scss */
+/* line 59, ../../src/sass/_titlebar.scss */
 .episodetitle > a {
   line-height: 20px !important;
   color: #fff !important;
 }
-/* line 63, ../../src/sass/_titlebar.scss */
+/* line 62, ../../src/sass/_titlebar.scss */
 .episodetitle > a:hover {
   color: #fff;
 }
 
-/* line 70, ../../src/sass/_titlebar.scss */
+/* line 69, ../../src/sass/_titlebar.scss */
 .subtitle {
   white-space: nowrap;
   overflow: hidden;
@@ -893,27 +901,26 @@ progress[aria-valuenow]:before {
   font-size: 15px;
   opacity: 0.6;
 }
-/* line 77, ../../src/sass/_titlebar.scss */
+/* line 76, ../../src/sass/_titlebar.scss */
 .subtitle .summary .summarydiv {
   margin: 0px 5px;
 }
 
-/* line 83, ../../src/sass/_titlebar.scss */
+/* line 82, ../../src/sass/_titlebar.scss */
 .play {
   -webkit-flex: 1 0px;
   -webkit-box-flex: 1;
   -ms-flex: 1 0px;
   flex: 1 0px;
-  -webkit-order: 3;
-  -webkit-box-ordinal-group: 4;
-  -ms-flex-order: 3;
-  order: 3;
+  -webkit-order: 2;
+  -webkit-box-ordinal-group: 3;
+  -ms-flex-order: 2;
+  order: 2;
   min-width: 1px;
-  margin: auto 10px auto 0;
 }
 
 @media all and (max-width: 480px) {
-  /* line 96, ../../src/sass/_titlebar.scss */
+  /* line 94, ../../src/sass/_titlebar.scss */
   .titlebar .coverart {
     -webkit-flex: 1 100%;
     -webkit-box-flex: 1;
@@ -926,46 +933,41 @@ progress[aria-valuenow]:before {
     width: 400px;
     height: auto;
   }
-  /* line 101, ../../src/sass/_titlebar.scss */
+  /* line 99, ../../src/sass/_titlebar.scss */
   .titlebar .coverart img {
     height: auto;
     width: 100%;
   }
-  /* line 106, ../../src/sass/_titlebar.scss */
+  /* line 104, ../../src/sass/_titlebar.scss */
   .titlebar header {
     margin: 1.25em 0;
-  }
-}
-@media all and (min-width: 480px) {
-  /* line 113, ../../src/sass/_titlebar.scss */
-  .titlebar .play {
-    margin: auto 20px auto 0;
+    padding: 0 10px 0 0;
   }
 }
 @media all and (min-width: 768px) {
-  /* line 121, ../../src/sass/_titlebar.scss */
+  /* line 113, ../../src/sass/_titlebar.scss */
   .titlebar header h1 {
     font-size: 29px;
   }
 }
 @media screen and (min-width: 992px) {
-  /* line 130, ../../src/sass/_titlebar.scss */
+  /* line 122, ../../src/sass/_titlebar.scss */
   .titlebar header .subtitle,
   .titlebar header h3 {
     font-size: 17px;
   }
 }
 @media all and (min-width: 992px) {
-  /* line 139, ../../src/sass/_titlebar.scss */
+  /* line 131, ../../src/sass/_titlebar.scss */
   .titlebar .coverart {
     min-width: 140px;
     height: 140px;
   }
-  /* line 142, ../../src/sass/_titlebar.scss */
+  /* line 134, ../../src/sass/_titlebar.scss */
   .titlebar .coverart img {
     height: 140px;
   }
-  /* line 147, ../../src/sass/_titlebar.scss */
+  /* line 139, ../../src/sass/_titlebar.scss */
   .titlebar header {
     -webkit-flex: 2 0px;
     -webkit-box-flex: 2;
@@ -995,7 +997,7 @@ progress[aria-valuenow]:before {
   flex-flow: row wrap;
 }
 
-/* line 11, ../../src/sass/_controls.scss */
+/* line 10, ../../src/sass/_controls.scss */
 .bar, .controlbar, .togglebar {
   -webkit-flex: 1 100%;
   -webkit-box-flex: 1;
@@ -1007,7 +1009,7 @@ progress[aria-valuenow]:before {
   display: inline-block;
 }
 @media screen and (min-width: 480px) {
-  /* line 11, ../../src/sass/_controls.scss */
+  /* line 10, ../../src/sass/_controls.scss */
   .bar, .controlbar, .togglebar {
     -webkit-flex: 1 0%;
     -webkit-box-flex: 1;
@@ -1023,46 +1025,46 @@ progress[aria-valuenow]:before {
     transition: font-size 0.2s, ease;
   }
 }
-/* line 29, ../../src/sass/_controls.scss */
+/* line 28, ../../src/sass/_controls.scss */
 .bar ul, .controlbar ul, .togglebar ul {
   display: inline-block;
 }
-/* line 31, ../../src/sass/_controls.scss */
+/* line 30, ../../src/sass/_controls.scss */
 .bar ul li, .controlbar ul li, .togglebar ul li {
   width: 31%;
 }
-/* line 33, ../../src/sass/_controls.scss */
+/* line 32, ../../src/sass/_controls.scss */
 .bar ul li:last-of-type, .controlbar ul li:last-of-type, .togglebar ul li:last-of-type {
   width: 6%;
 }
 @media screen and (min-width: 480px) {
-  /* line 39, ../../src/sass/_controls.scss */
+  /* line 38, ../../src/sass/_controls.scss */
   .bar li, .controlbar li, .togglebar li {
     width: auto;
     -webkit-transition: width 0.2s, ease;
     transition: width 0.2s, ease;
   }
 }
-/* line 45, ../../src/sass/_controls.scss */
+/* line 44, ../../src/sass/_controls.scss */
 .bar li, .controlbar li, .togglebar li {
   display: inline-block;
   position: relative;
   top: 0;
   left: 0;
 }
-/* line 46, ../../src/sass/_controls.scss */
+/* line 45, ../../src/sass/_controls.scss */
 .bar li a, .controlbar li a, .togglebar li a {
   color: #cccccc;
 }
-/* line 48, ../../src/sass/_controls.scss */
+/* line 47, ../../src/sass/_controls.scss */
 .bar li a:hover, .controlbar li a:hover, .togglebar li a:hover {
   color: #fff;
 }
-/* line 51, ../../src/sass/_controls.scss */
+/* line 50, ../../src/sass/_controls.scss */
 .bar li a:active, .controlbar li a:active, .togglebar li a:active {
   color: #fff;
 }
-/* line 60, ../../src/sass/_controls.scss */
+/* line 59, ../../src/sass/_controls.scss */
 .bar li:last-child a, .controlbar li:last-child a, .togglebar li:last-child a {
   padding-right: 0;
 }
@@ -1183,7 +1185,7 @@ progress[aria-valuenow]:before {
   width: 0;
   height: 0;
   position: absolute;
-  top: 35px;
+  top: 36px;
   left: 3.6px;
   border-left: 10.4px solid transparent;
   border-right: 10.4px solid transparent;
@@ -1384,8 +1386,8 @@ progress[aria-valuenow]:before {
 
 /* line 146, ../../src/sass/_tabs.scss */
 .scrolled {
-  -webkit-box-shadow: 0px 3px 8px -2px #000;
-  box-shadow: 0px 3px 8px -2px #000;
+  -webkit-box-shadow: 0px 6px 7px -4px #000;
+  box-shadow: 0px 6px 7px -4px #000;
 }
 
 /* line 43, ../../src/sass/_social-network.scss */
@@ -3251,7 +3253,7 @@ progress[aria-valuenow]:before {
   padding: 6px 12px;
   font-size: 11px;
   line-height: 1.4;
-  color: white !important;
+  color: #fff !important;
 }
 @media screen and (max-width: 360px) {
   /* line 106, ../../src/sass/modules/_downloads.scss */
@@ -3582,7 +3584,7 @@ progress[aria-valuenow]:before {
 }
 /* line 131, ../../src/sass/modules/_share.scss */
 .share-select-option:hover, .share-select-option:active, .share-select-option:focus, .share-select-option.selected {
-  color: white;
+  color: #fff;
 }
 /* line 137, ../../src/sass/modules/_share.scss */
 .share-select-option img {
