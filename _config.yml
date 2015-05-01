@@ -37,7 +37,8 @@ highlighter: pygments
 future: true
 
 # Exclude non-site files
-exclude: ['bin', 'README.md']
+exclude: ['bin', 'README.md', 'bower_components']
+include: ['bower_components/podlove-web-player/dist']
 
 # Use the redcarpet Markdown renderer
 markdown: redcarpet
@@ -56,5 +57,4 @@ redcarpet:
 gems:
   - jekyll-redirect-from
 
-js:  
-    dist: '/bower_components/podlove-web-player/dist'
+dist: '/bower_components/podlove-web-player/dist'

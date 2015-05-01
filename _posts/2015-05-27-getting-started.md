@@ -19,11 +19,11 @@ redirect_from:
 2. Add an element where the player should appear
 
 ```
-    <audio data-podlove-web-player-source="{{site.js.dist}}/examples/which-format/index.html">
-        <source src="{{site.js.dist}}/examples/which-format/podlove-test-track.mp4" type="audio/mp4"/>
-        <source src="{{site.js.dist}}/examples/which-format/podlove-test-track.mp3" type="audio/mpeg"/>
-        <source src="{{site.js.dist}}/examples/which-format/podlove-test-track.ogg" type="audio/ogg; codecs=vorbis"/>
-        <source src="{{site.js.dist}}/examples/which-format/podlove-test-track.opus" type="audio/ogg; codecs=opus"/>
+    <audio data-podlove-web-player-source="my-player.html">
+        <source src="my-track.mp4" type="audio/mp4"/>
+        <source src="my-track.mp3" type="audio/mpeg"/>
+        <source src="my-track.ogg" type="audio/ogg; codecs=vorbis"/>
+        <source src="my-track.opus" type="audio/ogg; codecs=opus"/>
     </audio>
 ```
 
@@ -34,10 +34,9 @@ redirect_from:
     <script>$('audio').podlovewebplayer({});</script>
 ```
 
-
-<audio data-podlove-web-player-source="{{site.js.dist}}/examples/which-format/index.html">
-    <source src="{{site.js.dist}}/examples/which-format/podlove-test-track.mp4" type="audio/mp4"/>
-    <source src="{{site.js.dist}}/examples/which-format/podlove-test-track.mp3" type="audio/mpeg"/>
-    <source src="{{site.js.dist}}/examples/which-format/podlove-test-track.ogg" type="audio/ogg; codecs=vorbis"/>
-    <source src="{{site.js.dist}}/examples/which-format/podlove-test-track.opus" type="audio/ogg; codecs=opus"/>
+<audio data-podlove-web-player-source="player.html">
+    <source src="{{site.dist}}/examples/which-format/podlove-test-track.mp4" type="audio/mp4"/>
+    <source src="{{site.dist}}/examples/which-format/podlove-test-track.mp3" type="audio/mpeg"/>
+    <source src="{{site.dist}}/examples/which-format/podlove-test-track.ogg" type="audio/ogg; codecs=vorbis"/>
+    <source src="{{site.dist}}/examples/which-format/podlove-test-track.opus" type="audio/ogg; codecs=opus"/>
 </audio>
