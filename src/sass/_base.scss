@@ -24,6 +24,9 @@ body {
   line-height: $line-height-base;
   color: $player-base-highlight-color;
   background-color: $player-base-color;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizelegibility;
 }
 
 // Reset fonts for relevant elements

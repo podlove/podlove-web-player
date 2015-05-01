@@ -11,7 +11,7 @@
   "rules": {
     "valid-jsdoc": 0,
     "brace-style": [2, "stroustrup", { "allowSingleLine": true }],
-    "consistent-this": 2,
+    "consistent-this": [2, "self"],
     "no-space-before-semi": 1,
     "no-constant-condition": 1,
     "no-underscore-dangle": 2,

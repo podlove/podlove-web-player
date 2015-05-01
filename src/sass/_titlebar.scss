@@ -17,11 +17,10 @@
   // Headlines in titlebar
   header {
     @include flex(1 0px);
-    @include order(2);
-    padding: 0 16px;
+    @include order(3);
     min-width: 1px;
     margin: auto 0;
-    padding-left: $padding-small-horizontal;
+    padding: 0 $padding-base-horizontal 0 0;
     h1 {
       font-size: 1.5em;
     }
@@ -82,9 +81,8 @@
 // Playbutton
 .play {
   @include flex(1 0px);
-  @include order(3);
+  @include order(2);
   min-width: 1px;
-  margin: auto $margin-small-horizontal auto 0;
 }
 
 // Breakpoints
@@ -105,13 +103,7 @@
     }
     header {
       margin: 1.25em 0;
-    }
-  }
-
-  // 480px ≤ x
-  @media all and (min-width: $screen-phone) {
-    .play {
-      margin: auto $margin-base-horizontal auto 0;
+      padding: 0 $padding-small-horizontal 0 0;
     }
   }
 

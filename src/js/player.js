@@ -177,7 +177,7 @@ function create(player, params, callback) {
     callback(playerElement, params, wrapper);
   };
   var me = new MediaElement(player, mejsoptions);
-  console.log(me);
+  console.log('MediaElement', me);
 }
 
 module.exports = {
