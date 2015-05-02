@@ -34,7 +34,7 @@ redirect_from:
         <script>$('audio').podlovewebplayer({});</script>
     ```
 
-<audio data-podlove-web-player-source="player.html">
+<audio data-podlove-web-player-source="/player.html">
     <source src="{{site.dist}}/examples/which-format/podlove-test-track.mp4" type="audio/mp4"/>
     <source src="{{site.dist}}/examples/which-format/podlove-test-track.mp3" type="audio/mpeg"/>
     <source src="{{site.dist}}/examples/which-format/podlove-test-track.ogg" type="audio/ogg; codecs=vorbis"/>
