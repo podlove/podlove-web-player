@@ -1,6 +1,7 @@
 ---
 ---
 
+var pwp_metadata = {};
 var data = {
   sources: [
     {
@@ -80,20 +81,30 @@ var data = {
   alwaysShowHours: true,
   width: 'auto'
 };
-
+pwp_metadata['player'] = data;
 var editor = ace.edit("editor");
+editor.$blockScrolling = Infinity;
 editor.setTheme("ace/theme/twilight");
 var session = editor.getSession()
+var wrapper = $('#player');
 session.setMode("ace/mode/json");
 session.on('change', function() {
   try {
-    var v = editor.getSession().getValue();
+    var d = new Date();
+    var ts = d.getTime();
+    var v = session.getValue();
     var j = JSON.parse(v);
-    j.staticEmbedPage = "{{site.dist}}/static.html";
-    $('#player').podlovewebplayer(j);
+    wrapper.empty();
+
+    pwp_metadata['player_' + ts] = j;
+    var e = $('<div id="player_' + ts + '">');
+    wrapper.append(e);
+
+    e.podlovewebplayer({staticEmbedPage:'{{site.dist}}/static.html'});
+    console.log(e);
   }
   catch (e) {
-    throw new Error(e);
+    console.error(e);
   }
 });
 

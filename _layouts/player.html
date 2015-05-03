@@ -11,7 +11,6 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ site.baseurl }}/css/syntax.css">
     <link rel="stylesheet" href="{{ site.baseurl }}/css/main.css">
-
 </head>
 <body>
 
@@ -39,11 +38,9 @@
 <footer class="pw-docs-footer">
     {% include footer.html %}
 </footer>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="{{site.dist}}/js/vendor/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script src="{{site.dist}}/js/vendor/html5shiv.js"></script>
-<script src="{{site.dist}}/js/vendor/progress-polyfill.min.js"></script>
-<script src="{{site.dist}}/js/podlove-web-player.js"></script>
+<script src="{{site.dist}}/js/podlove-web-moderator.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.9/ace.js" type="text/javascript" charset="utf-8"></script>
 {% if page.script %}
 <script src="{{ page.script }}"></script>
