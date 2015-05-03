@@ -18,14 +18,14 @@ redirect_from:
 
 2.  Add an element where the player should appear
 
-```
-    <audio data-podlove-web-player-source="my-player.html">
-        <source src="my-track.mp4" type="audio/mp4"/>
-        <source src="my-track.mp3" type="audio/mpeg"/>
-        <source src="my-track.ogg" type="audio/ogg; codecs=vorbis"/>
-        <source src="my-track.opus" type="audio/ogg; codecs=opus"/>
-    </audio>
-```
+    ```
+        <audio data-podlove-web-player-source="my-player.html">
+            <source src="my-track.mp4" type="audio/mp4"/>
+            <source src="my-track.mp3" type="audio/mpeg"/>
+            <source src="my-track.ogg" type="audio/ogg; codecs=vorbis"/>
+            <source src="my-track.opus" type="audio/ogg; codecs=opus"/>
+        </audio>
+    ```
 
 3.  Add the moderator script in your html file and point the moderator to that element
 
