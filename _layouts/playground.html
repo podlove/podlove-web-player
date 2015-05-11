@@ -20,19 +20,13 @@
 
 <div class="container-fluid">
     <section class="row-fluid">
-        {% assign post_count = site.posts|size %}
-        {% if site.navigation != 0 and site.navigation == 1 or post_count > 0 %}
-        <nav class="pw-nav col-sm-4 col-md-3 col-lg-2 hidden-print">
-            {% include navigation.html %}
-        </nav>
-        <article class="pw-docs-content col-sm-8 col-md-9 col-lg-10">
-            {{ content }}
-        </article>
-        {% else %}
         <article class="pw-docs-content col-md-12">
             {{ content }}
         </article>
-        {% endif %}
+        <div class="editor-container col-xs-12 col-md-6 pull-left">
+            <pre id="editor"> </pre>
+        </div>
+        <div id="player" class="col-xs-12 col-md-6 pull-left"> </div>
     </section>
 </div>
 <footer class="pw-docs-footer">

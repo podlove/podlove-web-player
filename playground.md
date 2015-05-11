@@ -1,19 +1,27 @@
 ---
-layout: player
+layout: playground
 title: "Playground"
 script: "/js/playground.js"
+examples: [
+    ["zfw", "Zeit für Wissenschaft"],
+    ["twi", "ThoughtWorks Interview"]
+]
+show_navigation: 0
 ---
 <style type="text/css" media="screen">
     .editor-container {
-        height: 900px;
+        height: 700px;
     }
     #editor {
         margin: 0;
         height: 100%;
     }
 </style>
-<h1>{{page.title}}</h1>
-<div class="editor-container col-xs-12 col-md-6 pull-left">
-    <pre id="editor"> </pre>
-</div>
-<div id="player" class="col-xs-12 col-md-6 pull-left"> </div>
+
+# {{page.title}}
+
+Here you can play around with different settings 
+
+<!--
+<label>Examples</label><select>{% for ex in page.examples %}<option value="{{ex[0]}}">{{ex[1]}}</option>{% endfor %}</select>
+-->
