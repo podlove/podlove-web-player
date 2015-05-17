@@ -41,12 +41,12 @@
 
 // Core variables and mixins
 @import "variables";
-@import "colors";
+// @import "colors";
 @import "mixins";
 
 // Reset
-@import "compass";
-@import "compass/reset";
+// @import "compass";
+// @import "compass/reset";
 
 // Core CSS
 @import "type";
@@ -72,10 +72,10 @@
 
 // Utility classes
 @import "utilities";
-@import "compass/utilities";
-@import "compass/css3";
-@import "compass/css3/columns";
+// @import "compass/utilities";
+// @import "compass/css3";
+// @import "compass/css3/columns";
 
 
 // Icons (Sass import from an external library folder)
-@import "CSS:../../bower_components/podlove-font/css/podlove-font";
+@import "../../bower_components/podlove-font/css/podlove-font";
