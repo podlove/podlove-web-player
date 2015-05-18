@@ -26,6 +26,13 @@
   }
 }
 
+// Truncate text with ellipsis
+@mixin ellipsis() {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 // Center-align a block level element
 @mixin center-block() {
   display: block;
