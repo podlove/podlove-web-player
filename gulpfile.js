@@ -134,7 +134,7 @@ gulp.task('examples', function() {
     .pipe(reload({stream: true}));
 
   // all media examples
-  gulp.src(source + 'examples/**/*')
+  gulp.src(source + 'examples/**/*.*')
     .pipe(gulp.dest(dest + 'examples'))
     .pipe(reload({stream: true}));
 });
