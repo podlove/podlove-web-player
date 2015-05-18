@@ -140,7 +140,9 @@ gulp.task('examples', function() {
 });
 
 // Clean
-gulp.task('clean', require('del').bind(null, [dest]));
+gulp.task('clean', function (cb) {
+  del([dest], cb);
+});
 
 // build distribution package
 gulp.task('build', ['clean'], function() {
