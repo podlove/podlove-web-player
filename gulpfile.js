@@ -142,11 +142,6 @@ gulp.task('examples', function() {
 // Clean
 gulp.task('clean', require('del').bind(null, [dest]));
 
-//gulp.task('clean', function() {
- // return gulp.src(dest, {read: false})
-  //  .pipe(clean())
-//});
-
 // build distribution package
 gulp.task('build', ['clean'], function() {
   gulp.start('styles', 'scripts', 'images', 'copy', 'examples');
