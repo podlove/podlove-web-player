@@ -9,7 +9,7 @@ var gulp = require('gulp')
   , uglify = require('gulp-uglify')
   , imagemin = require('gulp-imagemin')
   , rename = require('gulp-rename')
-  , clean = require('gulp-clean')
+  , del = require('del')
   , concat = require('gulp-concat')
 // deactivate caching until issue is resolved
 //  , cache = require('gulp-cache')
@@ -140,9 +140,8 @@ gulp.task('examples', function() {
 });
 
 // Clean
-gulp.task('clean', function() {
-  return gulp.src(dest, {read: false})
-    .pipe(clean())
+gulp.task('clean', function (cb) {
+  del([dest], cb);
 });
 
 // build distribution package
