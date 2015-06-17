@@ -114,7 +114,7 @@ redirect_from:
       // (optional) main player image (defaults to show cover) and share and
       poster: '/images/episode-cover.png',
       title: 'My Very First Episode', // (optional)
-      permalink: 'http://my.very.first.podcast/episode/1', // (optional) this link should never change
+      permalink: 'http:\/\/my.very.first.podcast\/?post=23', // (optional) this link should never change
       subtitle: 'This is the episode\'s subtitle one-liner', // (optional)
       // date in UTC format  YYYY-MM-DDThh:mm:ss+hh:mm
       publicationDate: '2015-05-09T10:10:10+00:00',
