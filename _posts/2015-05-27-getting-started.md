@@ -8,7 +8,7 @@ redirect_from:
   - /tut/getting-started.html
 ---
 
-## Example directory structure 
+## Example directory structure
 
 {% highlight sh %}
     - index.html
@@ -18,7 +18,7 @@ redirect_from:
       - show-cover.png
 {% endhighlight %}
 
-## get the latest player release 
+## get the latest player release
 
 {% highlight sh %}
     bower install podlove-web-player
@@ -42,7 +42,7 @@ redirect_from:
     <script>$('audio').podlovewebplayer();</script>
 {% endhighlight %}
 
-## Create `my-player.html` 
+## Create `my-player.html`
 
 1. choose style {% highlight html %}
     <link href="/bower_components/podlove-web-player/dist/css/pwp-dark-green.css" rel="stylesheet" media="screen" type="text/css" />
@@ -69,77 +69,82 @@ redirect_from:
 {% endhighlight %}
 
 3. add metadata {% highlight js %}
+
     $('audio').podlovewebplayer({
-        poster: '/images/coverimage.png',
-        title: 'My very first player',
-        permalink: '/my-player.html',
-        subtitle: 'This is the subtitle',
-        publicationDate: '2015-05-09T10:10:10+00:00',
-        "license": {
-            "name": "Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Germany License",
-            "url": "http:\/\/creativecommons.org\/licenses\/by-nc-sa\/3.0\/de\/deed.en"
+      // -- All show related infos go here
+      show: { // (optional) *
+        title: 'My Very First Podcast', // (optional)
+        subtitle: 'Short one-liner', // (optional)
+        summary: 'Paragraphs of text about your show and its topic. *yada yada*', // (optional)
+        poster: '/images/show-cover.png', // (optional) x by x - will be shown on info and share tab
+        url: 'http:\/\/my.very.first.podcast' // (optional)
+      },
+      // -- Episode related data
+      // (optional) should be correct or not set at all - can seriously mess up progress if wrong
+      duration: '00:02.902',
+      // (optional) assets that will be offered to be downloaded in download tab
+      downloads: [
+        {
+          assetTitle: 'MPEG-4 AAC Audio (m4a)', // this will be displayed in list
+          size: 156237824, // bytes will be shown in MB
+          downloadUrl: 'http:\/\/my.very.first.podcast\/episode1\/?trackMe&type=m4a', // Tracking enhanced URL
+          directAccess: 'http:\/\/my.very.first.podcast\/assets\/episode1.m4a', // unclear
+          url: 'http:\/\/my.very.first.podcast\/episode1\/?type.m4a' // (mandatory)
         },
-        chapters: [
-            {
-                start: '00:00:00.000',
-                title: 'Chapter One'
-            },
-            {
-                start: '00:00:00.500',
-                title: 'Chapter Two'
-            },
-            {
-                start: '00:00:01.500',
-                title: 'Chapter Three'
-            },
-            {
-                start: '00:00:02.000',
-                title: 'Chapter Four'
-            }
-        ],
-        summary: '<p>Summary and even links <a href="https://github.com/podlove/podlove-web-player">Podlove Web Player</a> Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Maecenas sed diam eget risus varius blandit sit amet non magna. Maecenas sed diam eget risus varius blandit sit amet non magna.</p><p>Nullam id dolor id nibh ultricies vehicula ut id elit. Nulla vitae elit libero, a pharetra augue. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Cras mattis consectetur purus sit amet fermentum. Nullam id dolor id nibh ultricies vehicula ut id elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p>',
-        downloads: [{
-            name: 'MP3', size: 58725,
-            url: '/track.mp3',
-            dlurl: '/track.mp3'
-        }, {
-            name: 'ogg', size: 50494,
-            url: '/track.ogg',
-            dlurl: '/track.mp3'
-        }, {
-            name: 'MP4', size: 78328,
-            url: '/track.mp4',
-            dlurl: '/track.mp4'
-        }, {
-            name: 'opus', size: 37314,
-            url: '/track.opus',
-            dlurl: '/track.opus'
-        }],
-        show: {
-            title: 'My very first Player',
-            subtitle: 'Testing the new player',
-            summary: 'Even more text about your show and its topic...',
-            poster: '/images/coverimage.png',
-            url: '#'
+        // ... more assets ...
+        {
+          assetTitle: 'Transcripts (txt)',
+          size: 140509184, //bytes will be shown in MB
+          url: 'http:\/\/my.very.first.podcast\/assets\/episode1_transcript.txt' //
+        }
+      ],
+      // (optional) array of chapter objects - order does not matter
+      chapters: [
+        {
+          start: '00:00:00.000', // (mandatory) Timecode in hh:mm:ss.ms
+          title: 'First chapter' // (mandatory) name of the chapter
+          // ATM image and link properties are not taken into account
         },
-        profiles: [
-            {
-                serviceName: 'twitter',
-                profile: 'podlove_org'
-            },
-            {
-                serviceName: 'email',
-                profile: 'info@podlove.org'
-            }
-        ],
-        duration: '00:02.902',
-        alwaysShowHours: true,
-        width: 'auto',
-        summaryVisible: false,
-        timecontrolsVisible: false,
-        sharebuttonsVisible: false,
-        chaptersVisible: true
+        // ... more chapters ...
+        {
+          start: '12:34:56.789',
+          title: 'Last chapter'
+        }
+      ],
+      // (optional) main player image (defaults to show cover) and share and
+      poster: '/images/episode-cover.png',
+      title: 'My Very First Episode', // (optional)
+      permalink: 'http://my.very.first.podcast/episode/1', // (optional) this link should never change
+      subtitle: 'This is the episode\'s subtitle one-liner', // (optional)
+      // date in UTC format  YYYY-MM-DDThh:mm:ss+hh:mm
+      publicationDate: '2015-05-09T10:10:10+00:00',
+      // choose your license - displayed in info tab
+      license: {
+        name: 'Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Germany License',
+        url: 'http:\/\/creativecommons.org\/licenses\/by-nc-sa\/3.0\/de\/deed.en'
+      },
+      // as long as you wish
+      summary: "&gt;p&lt;Paragraphs of fantastic epsisode description with HTML and even &gt;a href="#"&lt;links&gt;/a&lt;&gt;/p&lt;",
+      // which social profiles to show on info tab footer
+      profiles: [
+        {
+            serviceName: 'twitter',
+            profile: 'podlove_org'
+        },
+        {
+            serviceName: 'email',
+            profile: 'info@podlove.org'
+        }
+      ],
+      // display settings
+      width: 'auto' // (deprecated) defaults to auto / 100%
+      alwaysShowHours: true, // (optional) show hours in timecodes with 00
+      timecontrolsVisible: true, // (optional) hide/show time controls
+      summaryVisible: true, // (optional) hide/show info tab
+      sharebuttonsVisible: true, // (optional) hide/show share tab
+      chaptersVisible: true // (optional) hide/show chapter tab
     });
+
 {% endhighlight %}
 
 ## Result
@@ -153,5 +158,3 @@ redirect_from:
     <source src="{{site.dist}}/examples/which-format/podlove-test-track.ogg" type="audio/ogg; codecs=vorbis"/>
     <source src="{{site.dist}}/examples/which-format/podlove-test-track.opus" type="audio/ogg; codecs=opus"/>
 </audio>
-
-
