@@ -25,13 +25,13 @@ redirect_from:
     └── show-cover.png
 {% endhighlight %}
 
-## get the latest player release
+## Get the Latest Player Release
 
 {% highlight sh %}
     bower install podlove-web-player
 {% endhighlight %}
 
-## Create an `index.html` file
+## Create an `index.html` File
 
 2.  Add an element where the player should appear {% highlight html %}
     <audio data-podlove-web-player-source="my-player.html">
@@ -49,7 +49,7 @@ redirect_from:
     <script>$('audio').podlovewebplayer();</script>
 {% endhighlight %}
 
-## Create `my-player.html`
+## Create `episode/index.html`
 
 1. choose style {% highlight html %}
     <link href="/bower_components/podlove-web-player/dist/css/pwp-dark-green.css" rel="stylesheet" media="screen" type="text/css" />
@@ -102,7 +102,7 @@ redirect_from:
         {
           assetTitle: 'Transcripts (txt)',
           size: 140509184, //bytes will be shown in MB
-          url: 'http:\/\/my.very.first.podcast\/assets\/episode1_transcript.txt' //
+          url: 'http:\/\/my.very.first.podcast\/assets\/episode-1-transcript.txt' //
         }
       ],
       // (optional) array of chapter objects - order does not matter
