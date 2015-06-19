@@ -28,7 +28,7 @@ redirect_from:
 
 2.  Add an element where the player should appear {% highlight html %}
     <audio data-podlove-web-player-source="my-player.html">
-        <source src="my-track.mp4" type="audio/mp4"/>
+        <source src="my-track.m4a" type="audio/mpeg4-aac"/>
         <source src="my-track.mp3" type="audio/mpeg"/>
         <source src="my-track.ogg" type="audio/ogg; codecs=vorbis"/>
         <source src="my-track.opus" type="audio/ogg; codecs=opus"/>
@@ -50,10 +50,10 @@ redirect_from:
 
 2. add element to replace {% highlight html %}
     <audio controls="controls" preload="none">
-        <source src="/track.mp4" type="audio/mp4">
-        <source src="/track.mp3" type="audio/mpeg">
-        <source src="/track.ogg" type="audio/ogg; codecs=vorbis">
-        <source src="/track.opus" type="audio/ogg; codecs=opus">
+        <source src="assets/track.mp4" type="audio/mp4">
+        <source src="assets/track.mp3" type="audio/mpeg">
+        <source src="assets/track.ogg" type="audio/ogg; codecs=vorbis">
+        <source src="assets/track.opus" type="audio/ogg; codecs=opus">
         <object type="application/x-shockwave-flash" data="/bower_components/podlove-web-player/dist/bin/flashmediaelement.swf">
             <param name="movie" value="/bower_components/podlove-web-player/dist/bin/flashmediaelement.swf"/>
             <param name="flashvars" value="controls=true&amp;file=/track.mp4"/>
@@ -87,9 +87,9 @@ redirect_from:
         {
           assetTitle: 'MPEG-4 AAC Audio (m4a)', // this will be displayed in list
           size: 156237824, // bytes will be shown in MB
-          downloadUrl: 'http:\/\/my.very.first.podcast\/episode1\/?trackMe&type=m4a', // Tracking enhanced URL
-          directAccess: 'http:\/\/my.very.first.podcast\/assets\/episode1.m4a', // unclear
-          url: 'http:\/\/my.very.first.podcast\/episode1\/?type.m4a' // (mandatory)
+          downloadUrl: 'http:\/\/my.very.first.podcast\/episode-1\/?trackMe&type=m4a', // Tracking enhanced URL
+          directAccess: 'http:\/\/my.very.first.podcast\/assets\/episode-1.m4a', // unclear
+          url: 'http:\/\/my.very.first.podcast\/episode-1\/?type.m4a' // (mandatory)
         },
         // ... more assets ...
         {
