@@ -11,11 +11,18 @@ redirect_from:
 ## Example directory structure
 
 {% highlight sh %}
-    - index.html
-    - my-player.html
-    - images /
-      - episode-cover.png
-      - show-cover.png
+├── index.html
+├── assets /
+│   ├── episode-1.m4a
+│   ├── episode-1.mp3
+│   ├── episode-1.ogg
+│   ├── episode-1.opus
+│   └── episode-1-transcript.txt
+├── episode /
+│   └── index.html
+└── images /
+    ├── episode-cover.png
+    └── show-cover.png
 {% endhighlight %}
 
 ## get the latest player release
