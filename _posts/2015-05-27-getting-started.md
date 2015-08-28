@@ -14,7 +14,7 @@ redirect_from:
 
 ├── index.html
 ├── audio /
-│   ├── episode-1.m4a
+│   └── episode-1.m4a
 │  
 ├── episode1.html
 │
