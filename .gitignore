@@ -8,3 +8,4 @@ bower_components/
 !.eslintrc
 !.editorconfig
 dist
+_site/
