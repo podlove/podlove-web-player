@@ -72,7 +72,7 @@
     "karma-chrome-launcher": "^0.1.4",
     "karma-jasmine": "^0.3.5",
     "karma-phantomjs-launcher": "^0.1.4",
-    "lodash": "^2.4.1"
+    "lodash": "^3.10.1"
   },
   "engines": {
     "node": ">=0.10.0"
@@ -81,6 +81,13 @@
     "test": "gulp test"
   },
   "dependencies": {
-    "handlebars": "^4.0.3"
+    "browserify-handlebars": "^1.0.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-streamify": "^1.0.2",
+    "gulp-util": "^3.0.6",
+    "handlebars": "^4.0.3",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.4.0"
   }
 }
