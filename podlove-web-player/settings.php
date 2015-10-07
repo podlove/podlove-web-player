@@ -5,16 +5,16 @@ function podlovewebplayer_settings_init() {
     global $blog_id;
     $wp_options = get_option('podlovewebplayer_options');
     wp_enqueue_style( 'podlovewebplayer', plugins_url('static/podlove-web-player.css', __FILE__), array(), '2.0.19' );
-    wp_enqueue_style( 'pwpdesigner', plugins_url('static/libs/pwpdesigner/style.css', __FILE__), array(), '2.0.19' );
-    if(isset($wp_options['style_custom'])) {
-      if($wp_options['style_custom'] !== '') {
-        wp_enqueue_style( 'custom-pwp-style', plugins_url('static/customcss/pwp_custom_id-'.$blog_id.'.css', __FILE__), array(), $wp_options['style_version'] );
-      }
-    } else {
-      wp_dequeue_style( 'custom-pwp-style');
-    }
-    wp_enqueue_script( 'colorconverter', plugins_url('static/libs/pwpdesigner/colorconv.js', __FILE__), array(), '2.0.19' );
-    wp_enqueue_script( 'pwpdesigner', plugins_url('static/libs/pwpdesigner/script.js', __FILE__), array(), '2.0.19' );
+    // wp_enqueue_style( 'pwpdesigner', plugins_url('static/libs/pwpdesigner/style.css', __FILE__), array(), '2.0.19' );
+    // if(isset($wp_options['style_custom'])) {
+    //   if($wp_options['style_custom'] !== '') {
+    //     wp_enqueue_style( 'custom-pwp-style', plugins_url('static/customcss/pwp_custom_id-'.$blog_id.'.css', __FILE__), array(), $wp_options['style_version'] );
+    //   }
+    // } else {
+    //   wp_dequeue_style( 'custom-pwp-style');
+    // }
+    // wp_enqueue_script( 'colorconverter', plugins_url('static/libs/pwpdesigner/colorconv.js', __FILE__), array(), '2.0.19' );
+    // wp_enqueue_script( 'pwpdesigner', plugins_url('static/libs/pwpdesigner/script.js', __FILE__), array(), '2.0.19' );
     add_action( 'admin_menu', 'podlovewebplayer_create_menu' );
     add_action( 'admin_init', 'podlovewebplayer_register_settings' );
   }
@@ -116,14 +116,14 @@ function podlovewebplayer_register_settings() {
         'height' => 'Maximal Chapter height'
       ),
     ),
-    'style' => array(
-    'title'    => 'Player Style',
-    'fields' => array(
-      'custom'  => 'Style your Player:',
-      'values'  => 'Designer Console:',
-      'version' => 'Custon Style Version:'
-      ),
-    ),
+    // 'style' => array(
+    // 'title'    => 'Player Style',
+    // 'fields' => array(
+    //   'custom'  => 'Style your Player:',
+    //   'values'  => 'Designer Console:',
+    //   'version' => 'Custon Style Version:'
+    //   ),
+    // ),
     'buttons' => array(
       'title'    => 'Buttons',
       'function' => true,
