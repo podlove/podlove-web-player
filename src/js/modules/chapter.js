@@ -1,9 +1,10 @@
 'use strict';
 
 var tc = require('../timecode')
-  , url = require('../url')
   , Tab = require('../tab')
-  , Timeline = require('../timeline');
+  , renderChapters = require('../../templates/chapterTab.handlebars')
+  , renderRow = require('../../templates/chapter-row.handlebars')
+  ;
 
 var ACTIVE_CHAPTER_THRESHHOLD = 0.1;
 
@@ -28,45 +29,6 @@ function addEndTime(duration) {
     console.log('duration', duration, chapter.end);
     return chapter;
   };
-}
-
-function render(html) {
-  return $(html);
-}
-
-/**
- * render HTMLTableElement for chapters
- * @returns {jQuery|HTMLElement}
- */
-function renderChapterTable() {
-  return render(
-    '<table class="podlovewebplayer_chapters"><caption>Podcast Chapters</caption>' +
-      '<thead>' +
-        '<tr>' +
-          '<th scope="col">Chapter Number</th>' +
-          '<th scope="col">Start time</th>' +
-          '<th scope="col">Title</th>' +
-          '<th scope="col">Duration</th>' +
-        '</tr>' +
-      '</thead>' +
-      '<tbody></tbody>' +
-    '</table>'
-  );
-}
-
-/**
- *
- * @param {object} chapter
- * @returns {jQuery|HTMLElement}
- */
-function renderRow (chapter, index) {
-  return render(
-    '<tr class="chapter">' +
-      '<td class="chapter-number"><span class="badge">' + (index + 1) + '</span></td>' +
-      '<td class="chapter-name"><span>' + chapter.code + '</span></td>' +
-      '<td class="chapter-duration"><span>' + chapter.duration + '</span></td>' +
-    '</tr>'
-  );
 }
 
 /**
@@ -158,7 +120,7 @@ function Chapters (timeline, params) {
 Chapters.prototype.generateTable = function () {
   var table, tbody, maxchapterstart, forceHours;
 
-  table = renderChapterTable();
+  table = $(renderChapters({chapters: this.chapters}));
   tbody = table.children('tbody');
 
   if (this.chapterlinks !== 'false') {
@@ -171,17 +133,16 @@ Chapters.prototype.generateTable = function () {
   function buildChapter(i) {
     var duration = Math.round(this.end - this.start),
       row;
-    //make sure the duration for all chapters are equally formatted
-    this.duration = tc.generate([duration], false);
 
     //if there is a chapter that starts after an hour, force '00:' on all previous chapters
     //insert the chapter data
     this.startTime = tc.generate([Math.round(this.start)], true, forceHours);
 
-    row = renderRow(this, i);
-    if (i % 2) {
-      row.addClass('oddchapter');
-    }
+    row = $(renderRow({
+      title: this.code,
+      duration: tc.generate([duration], false),
+      number: i + 1
+    }));
     row.appendTo(tbody);
     this.element = row;
   }

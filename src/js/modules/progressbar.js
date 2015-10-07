@@ -2,34 +2,26 @@
 
 var tc = require('../timecode');
 var cap = require('../util').cap;
-
-function renderTimeElement(className, time) {
-  return $('<div class="time time-' + className + '">' + time + '</div>');
-}
+var renderChapter = require('../../templates/chapter.handlebars');
+var renderTimeElement = require('../../templates/time.handlebars');
 
 /**
  * Render an HTML Element for the current chapter
  * @returns {jQuery|HTMLElement}
  */
 function renderCurrentChapterElement() {
-  var chapterElement = $('<div class="chapter"></div>');
-
   if (!this.chapterModule) {
-    return chapterElement;
+    return '';
   }
 
   var index = this.chapterModule.currentChapter;
   var chapter = this.chapterModule.chapters[index];
   console.debug('Progressbar', 'renderCurrentChapterElement', index, chapter);
 
-  this.chapterBadge = $('<span class="badge">' + (index + 1) + '</span>');
-  this.chapterTitle = $('<span class="chapter-title">' + chapter.title + '</span>');
-
-  chapterElement
-    .append(this.chapterBadge)
-    .append(this.chapterTitle);
-
-  return chapterElement;
+  return renderChapter({
+    number: index + 1,
+    title: chapter.title
+  });
 }
 
 function renderProgressInfo(progressBar) {
@@ -53,7 +45,7 @@ function updateTimes(progressBar) {
 
 function renderDurationTimeElement(progressBar) {
   var formattedDuration = tc.fromTimeStamp(progressBar.duration);
-  var durationTimeElement = renderTimeElement('duration', 0);
+  var durationTimeElement = $(renderTimeElement({className: 'duration', time: 0}));
 
   durationTimeElement.on('click', function () {
     progressBar.showDuration = !progressBar.showDuration;
@@ -151,8 +143,8 @@ ProgressBar.prototype.render = function () {
 
   // time elements
   var initialTime = tc.fromTimeStamp(this.timeline.getTime());
-  this.currentTime = renderTimeElement('current', initialTime);
-  this.durationTimeElement = renderDurationTimeElement(this);
+  this.currentTime = $(renderTimeElement({className: 'current', time: initialTime}));
+  this.durationTimeElement = $(renderDurationTimeElement(this));
 
   // progress info
   var progressInfo = renderProgressInfo(this);

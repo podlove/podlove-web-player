@@ -2,6 +2,7 @@
 
 // Load plugins
 var gulp = require('gulp')
+  , gutil = require('gulp-util')
   , sass = require('gulp-sass')
   , autoprefixer = require('gulp-autoprefixer')
   , minifycss = require('gulp-minify-css')
@@ -10,20 +11,27 @@ var gulp = require('gulp')
   , imagemin = require('gulp-imagemin')
   , rename = require('gulp-rename')
   , del = require('del')
-  , concat = require('gulp-concat')
 // deactivate caching until issue is resolved
 //  , cache = require('gulp-cache')
-  , browserify = require('gulp-browserify')
-  , browserSync  = require('browser-sync')
-  , reload = browserSync.reload
+  , browserify = require('browserify')
+  , watchify = require('watchify')
+  , browserifyHandlebars = require('browserify-handlebars')
+  , browserSync = require('browser-sync')
+
   , karma = require('karma').server
-  , _ = require('lodash')
+  , assign = require('lodash/object/assign')
 
   , karmaConf = require('./karma.conf.json')
+  , source = require('vinyl-source-stream')
+  , buffer = require('vinyl-buffer')
+  , streamify = require('gulp-streamify');
+//  , sourcemaps = require('gulp-sourcemaps');
+
+var reload = browserSync.reload
 
 // set paths
   , bower = 'bower_components/'
-  , source = 'src/'
+  , src = 'src/'
   , dest = 'dist/'
   , external = 'vendor/'
   ;
@@ -41,7 +49,7 @@ gulp.task('lint', function () {
  * Run test once and exit
  */
 gulp.task('test', function (done) {
-  var singleRunConf = _.assign({}, karmaConf, {singleRun: true});
+  var singleRunConf = assign({}, karmaConf, {singleRun: true});
   karma.start(singleRunConf, done);
 });
 
@@ -54,51 +62,68 @@ gulp.task('tdd', function (done) {
 
 // Styles
 gulp.task('styles', function() {
-  return gulp.src(source + 'sass/pwp-*.scss')
-
-
+  return gulp.src(src + 'sass/pwp-*.scss')
     .pipe(sass().on('error', sass.logError))
-
-
     .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
     .pipe(gulp.dest(dest + 'css'))
     .pipe(rename({ suffix: '.min' }))
     .pipe(minifycss())
     .pipe(gulp.dest(dest + 'css'))
-    .pipe(reload({stream: true}))
+    .pipe(reload({stream: true}));
 });
 
-gulp.task('moderator', function() {
-  return gulp.src(source + 'js/moderator.js')
-    .pipe(browserify({ insertGlobals : true, debug : true }))
-    .pipe(rename('podlove-web-moderator.js'))
-    .pipe(gulp.dest(dest + 'js'))
-    .pipe(rename({ suffix: '.min' }))
-    .pipe(uglify())
-    .pipe(gulp.dest(dest + 'js'))
-    .pipe(reload({stream: true}))
-});
+function handleBrowserifyError(err) {
+    gutil.log(err.message);
+    browserSync.notify('Browserify Error!');
+    this.emit('end');
+}
 
-gulp.task('player', function() {
-  return gulp.src(source + 'js/app.js')
-    .pipe(browserify({ insertGlobals : true, debug : true }))
-    .pipe(rename('podlove-web-player.js'))
-    .pipe(gulp.dest(dest + 'js'))
-    .pipe(rename({ suffix: '.min' }))
-    .pipe(uglify())
-    .pipe(gulp.dest(dest + 'js'))
-    .pipe(reload({stream: true}))
-});
+function getStreamBundler (entryName, bundleName) {
+  // add custom browserify options here
+  var opts = assign({}, watchify.args, {
+    entries: [src + entryName],
+    debug: true,
+    insertGlobals: true
+  });
+  var bundleStream = watchify(browserify(opts))
+    .transform(browserifyHandlebars)
+    .bundle();
+
+  function bundle () {
+    bundleStream
+      .on('error', handleBrowserifyError)
+      .pipe(source(entryName))
+      .pipe(buffer())
+//      .pipe(sourcemaps.init({loadMaps: true})) // loads map from browserify file
+      .pipe(rename(bundleName))
+      .pipe(gulp.dest(dest + 'js'))   // copy to destination directory
+      .pipe(rename({suffix: '.min'})) // add .min for minified source
+      .pipe(streamify(uglify()))      // pipedream is a pipe full of streams
+      .pipe(gulp.dest(dest + 'js'))   // copy to destination directory
+      // .pipe(sourcemaps.write('./'))   // writes .map file
+      .pipe(browserSync.stream({once: true})); // stream new version to browsersync
+  }
+
+  bundleStream.on('update', bundle);
+
+  return bundle;
+}
+
+var moderatorStreamBundler = getStreamBundler('js/moderator.js', 'podlove-web-moderator.js');
+gulp.task('moderator', moderatorStreamBundler);
+
+var playerStreamBundler = getStreamBundler('js/app.js', 'podlove-web-player.js');
+gulp.task('player', playerStreamBundler);
 
 // Scripts
 gulp.task('scripts', ['player', 'moderator']);
 
 // Images
 gulp.task('images', function() {
-  return gulp.src(source + 'img/**/*')
+  return gulp.src(src + 'img/**/*')
     .pipe(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true }))
     .pipe(gulp.dest(dest + 'img'))
-    .pipe(reload({stream: true}))
+    .pipe(reload({stream: true}));
 });
 
 // copy lib files
@@ -129,12 +154,12 @@ gulp.task('copy', function() {
 // copy example files
 gulp.task('examples', function() {
   // main documentation index html
-  gulp.src(source + '*.html')
+  gulp.src(src + '*.html')
     .pipe(gulp.dest(dest))
     .pipe(reload({stream: true}));
 
   // all media examples
-  gulp.src(source + 'examples/**/*.*')
+  gulp.src(src + 'examples/**/*.*')
     .pipe(gulp.dest(dest + 'examples'))
     .pipe(reload({stream: true}));
 });
@@ -158,24 +183,23 @@ gulp.task('default', ['lint', 'test'], function() {
 gulp.task('watch', function() {
   browserSync({
     server: {
-        baseDir: "./dist/"
+        baseDir: './dist/'
     }
   });
 
   // Watch Sass source files
-  gulp.watch(source + 'sass/**/*.scss', ['styles']);
+  gulp.watch(src + 'sass/**/*.scss', ['styles']);
 
-  // Watch Javascript source files
-  gulp.watch(source + 'js/**/*.js', ['scripts']);
+  // Watch Javascript src files
+  gulp.watch(src + 'js/**/*.js', ['scripts']);
 
   // Watch image files
-  gulp.watch(source + 'img/**/*', ['images']);
+  gulp.watch(src + 'img/**/*', ['images']);
 
   // Watch example files
-  gulp.watch(source + '*.html', ['examples']);
+  gulp.watch(src + '*.html', ['examples']);
 
 });
 
 // Serve
 gulp.task('serve', ['build', 'watch']);
-
