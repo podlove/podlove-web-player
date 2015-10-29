@@ -61,15 +61,19 @@ TabRegistry.prototype.createToggleFor = function (tab) {
  * @param {Tab} tab
  * @param {Boolean} visible
  */
-TabRegistry.prototype.add = function(tab, visible) {
+TabRegistry.prototype.add = function(tab) {
   if (tab === null) { return; }
   this.tabs.push(tab);
   this.container.append(tab.box);
-
   tab.toggle = this.createToggleFor(tab);
-  if (visible) {
-    tab.open();
-    this.activeTab = tab;
+};
+
+TabRegistry.prototype.openInitial = function (tabName) {
+  var matchingTabs = this.tabs.filter(function (tab) {
+    return (tab.headline === tabName);
+  });
+  if (matchingTabs.length > 0) {
+    matchingTabs.pop().open();
   }
 };
 

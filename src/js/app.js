@@ -166,12 +166,14 @@ function renderModules(timeline, wrapper, params) {
    */
 
   if (hasChapters) {
-    tabs.add(chapters.tab, !!params.chaptersVisible);
+    tabs.add(chapters.tab);
   }
 
-  tabs.add(sharing.tab, !!params.sharebuttonsVisible);
-  tabs.add(downloads.tab, !!params.downloadbuttonsVisible);
-  tabs.add(infos.tab, !!params.summaryVisible);
+  tabs.add(sharing.tab);
+  tabs.add(downloads.tab);
+  tabs.add(infos.tab);
+
+  tabs.openInitial(params.activeTab);
 
   // Render controlbar with togglebar and timecontrols
   var controlbarWrapper = $('<div class="controlbar-wrapper"></div>');
