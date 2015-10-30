@@ -107,6 +107,16 @@
     }
   }
 
+  @media all and (min-width: $screen-phone) {
+    .coverart {
+      padding: $coverart-padding;
+      img {
+        width: $title-image-height - (2 * $coverart-padding);
+        height: $title-image-height - (2 * $coverart-padding);
+      }
+    }
+  }
+
   // 768px
   @media all and (min-width: $screen-tablet) {
     header {
@@ -132,7 +142,8 @@
       min-width: $title-image-height-big;
       height: $title-image-height-big;
       img {
-        height: $title-image-height-big;
+        height: $title-image-height-big - (2 * $coverart-padding);
+        width: $title-image-height-big - (2 * $coverart-padding);
       }
     }
 
