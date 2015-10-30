@@ -19,7 +19,12 @@
   }
   // General styling for tab list
   .tablist {
+    display: table;
     margin-bottom: 0;
+    li {
+      display: table-cell;
+      width: 32px !important;
+    }
     a {
       padding-right: 0.9em;
     }
