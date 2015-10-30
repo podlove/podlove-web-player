@@ -29,7 +29,7 @@ function formatSize(size) {
  */
 function createOption(listElement) {
   console.log(listElement);
-  return '<option>' + listElement.assetTitle + ' ' + formatSize(listElement.size) + '</option>';
+  return '<option>' + listElement.assetTitle + ' &#8226; ' + formatSize(listElement.size) + '</option>';
 }
 
 function getPosterImage(params) {
@@ -131,26 +131,20 @@ Downloads.prototype.createDownloadTab = function (params) {
     headline: 'Download'
   });
 
-  var $tabContent = downloadTab.createMainContent('<div class="download">' +
-    '<div class="poster-wrapper">' +
-    '<div class="download download-overlay"></div>' +
-    getPosterImage(params) +
-    '</div>' +
-    '</div>' +
+  var $tabContent = downloadTab.createMainContent(
     '<div class="download">' +
-    '<h2>' + params.title + '</h2>' +
-    getPublicationDate(params.publicationDate) +
-    '<p>Duration: ' + timeCode.fromTimeStamp(params.duration) + '</p>' +
+    '<form action="" method="">' +
+      '<select class="select" name="select-file">' + this.list.map(createOption) + '</select>' +
+      '<button class="download button-submit icon pwp-download" name="download-file">' +
+      '<span class="download label">Download Episode</span>' +
+      '</button>' +
+    '</form>'+
     '</div>'
   );
   downloadTab.box.append($tabContent);
 
-  downloadTab.createFooter('<form action="" method="">' +
-    '<button class="download button-submit icon pwp-download" name="download-file">' +
-    '<span class="download label">Download Episode</span>' +
-    '</button>' +
-    '<select class="select" name="select-file">' + this.list.map(createOption) + '</select></form>'
-  );
+  // downloadTab.createFooter('<h3>Direkter Link</h3>').append(linkInput);
+
 
   return downloadTab;
 };
