@@ -68,28 +68,39 @@ $button-width: $share-image-width + ($share-image-border-width * 2);
         margin: 0 0 32px 0;
       }
     }
-    ul > li {
-      display: inline-block;
-      width: $font-size-social-icons + 13px;
-      margin: 0 $margin-small-horizontal 0 0;
-      &:last-of-type {
-        margin-right: 0;
-      }
-      @media screen and (min-width: $screen-tablet-portrait) {
-        width: $font-size-social-icons + 22px;
-        margin: 0 $margin-small-horizontal 0 0;
-      }
-      @media screen and (min-width: $screen-desktop) {
-        width: $font-size-social-icons + 27px;
-        margin: 0 $margin-base-horizontal 0 0;
-      }
-      @media screen and (min-width: $screen-lg-desktop) {
-        margin: 0 40px 0 0;
-      }
+    span {
+      padding: $padding-small-vertical $padding-small-horizontal;
+    }
+  }
+}
 
-      &.last-of-type {
-        margin-right: 0;
-      }
+.social-network-buttons {
+  text-align: center;
+  padding: 0 $padding-small-horizontal;
+  @media screen and (min-width: $screen-phone){
+    padding: 0 $padding-base-horizontal;
+  }
+  > li {
+    display: inline-block;
+    width: $font-size-social-icons + 13px;
+    margin: 0 $margin-small-horizontal 0 0;
+    &:last-of-type {
+      margin-right: 0;
+    }
+    @media screen and (min-width: $screen-tablet-portrait) {
+      width: $font-size-social-icons + 22px;
+      margin: 0 $margin-small-horizontal 0 0;
+    }
+    @media screen and (min-width: $screen-desktop) {
+      width: $font-size-social-icons + 27px;
+      margin: 0 $margin-base-horizontal 0 0;
+    }
+    @media screen and (min-width: $screen-lg-desktop) {
+      margin: 0 40px 0 0;
+    }
+
+    &.last-of-type {
+      margin-right: 0;
     }
     span {
       display: block;
