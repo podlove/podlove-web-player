@@ -65,9 +65,11 @@ function createOption(option) {
     return null;
   }
 
-  var element = $('<div class="share-select-option">' + createPosterFor(option.value) +
-      '<span>Share this ' + option.name + '</span>' +
-    '</div>');
+  var element = $('<tr class="share-select-option">' +
+  '<td class="share-description">' + option.name + '</td>' +
+  '<td class="share-radio"><input type="radio" id="r1" name="r-group" data-toggle="button"></td>' +
+  '<td class="share-label"><label for="r1">' + option.title + '</label></td>' +
+  '</tr>');
 
   if (option.default) {
     selectedOption = element;
@@ -79,25 +81,26 @@ function createOption(option) {
 }
 
 /**
- * Creates an html div element to wrap all share buttons
+ * Creates an html table element to wrap all share buttons
  * @returns {jQuery|HTMLElement} share button wrapper reference
  */
-function createShareButtonWrapper() {
-  var div = $('<div class="share-button-wrapper"></div>');
-  div.append(shareOptions.map(createOption));
-
-  return div;
+function createShareList(params) {
+  shareOptions[0].title = params.show.title;
+  shareOptions[1].title = params.title;
+  var table = $('<table class="share-button-wrapper"><caption>Podcast teilen</caption><tbody></tbo</table>');
+  table.append(shareOptions.map(createOption));
+  return table;
 }
 
 /**
  * create sharing buttons in a form
  * @returns {jQuery} form element reference
  */
-function createShareOptions() {
+function createShareOptions(params) {
   var form = $('<form>' +
-    '<legend>What would you like to share?</legend>' +
+    '<h3>Was möchtest du teilen?</h3>' +
   '</form>');
-  form.append(createShareButtonWrapper);
+  form.append(createShareList(params));
   return form;
 }
 
@@ -125,8 +128,11 @@ function createShareTab(params) {
     this.val(data.rawUrl);
   };
 
-  shareTab.createMainContent('').append(createShareOptions());
-  shareTab.createFooter('<h3>Share via ...</h3>').append(shareButtons.list).append(linkInput);
+  shareTab.createMainContent('')
+    .append(createShareOptions(params))
+    .append('<h3>Teilen via ...</h3>')
+    .append(shareButtons.list);
+  shareTab.createFooter('').append(linkInput);
 
   return shareTab;
 }

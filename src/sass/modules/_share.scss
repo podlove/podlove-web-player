@@ -8,18 +8,77 @@ $button-width: $share-image-width + ($share-image-border-width * 2);
   .podlovewebplayer_share {
     .main {
       // Top offset for fixed tab-header
-      margin: $tab-header-height $margin-base-horizontal $margin-base-vertical $margin-base-horizontal;
+      margin: $tab-header-height 0 $margin-base-vertical 0;
       @media all and (max-width: $screen-phone) {
-        margin: $tab-header-height $margin-small-horizontal $margin-small-vertical $margin-small-horizontal;
+        margin: $tab-header-height 0 $margin-small-vertical 0;
       }
     }
-    legend {
-      margin-bottom: $margin-base-vertical;
-    }
+
     .share-button-wrapper {
-      margin: 0 auto;
-      width: $button-width * 2 + $margin-base-vertical;
+      width: 100%;
+
+      caption {
+        display: none;
+      }
+
+      .share-select-option {
+        width: 100%;
+        cursor: pointer;
+        height: 46px;
+
+        td {
+          padding: 0 5px;
+          vertical-align: middle;
+        }
+      }
+      .share-description {
+        text-align: right;
+        width: 15vw;
+      }
+      .share-label {
+        width: 80vw;
+        > label {
+          text-align: left;
+          font-weight: 500;
+        }
+      }
+      .share-radio {
+        text-align: center;
+        padding-right: $padding-base-horizontal;
+        width: 5vw;
+      }
+      @media all and (max-width: $screen-phone) {
+        td.share-radio {
+          padding: $padding-small-vertical $padding-small-horizontal !important;
+        }
+      }
+      @media all and (max-width: $screen-tablet) {
+        .share-description {
+          display: none;
+        }
+        .share-label {
+          width: 100vw;
+          > label {
+            text-align: left;
+            font-weight: 500;
+          }
+        }
+        td.share-radio {
+          padding: $padding-small-vertical $padding-base-horizontal;
+        }
+      }
     }
+
+    form {
+      margin-bottom: $margin-base-horizontal;
+      > h3 {
+        margin: 0 $margin-base-horizontal $margin-small-horizontal $margin-base-horizontal;
+        @media all and (max-width: $screen-phone) {
+          margin: 0 $margin-small-horizontal $margin-small-horizontal $margin-small-horizontal;
+        }
+      }
+    }
+
     @media screen and (max-width: $button-width * 2 + ($margin-base-horizontal * 2)) {
       .share-button-wrapper {
        width: 100%;
@@ -40,6 +99,7 @@ $button-width: $share-image-width + ($share-image-border-width * 2);
       }
       h3 {
         margin: 0 0 $margin-small-vertical 0;
+        text-align: left;
         @media screen and (min-width: $screen-desktop) {
           margin: 0 0 15px 0;
         }
@@ -62,6 +122,7 @@ $button-width: $share-image-width + ($share-image-border-width * 2);
         }
       }
     }
+
     ul {
       margin: 0 0 $margin-small-horizontal 0;
       @media screen and (min-width: $screen-desktop) {
