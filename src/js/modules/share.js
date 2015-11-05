@@ -67,8 +67,8 @@ function createOption(option) {
 
   var element = $('<tr class="share-select-option">' +
   '<td class="share-description">' + option.name + '</td>' +
-  '<td class="share-radio"><input type="radio" id="r1" name="r-group" data-toggle="button"></td>' +
-  '<td class="share-label"><label for="r1">' + option.title + '</label></td>' +
+  '<td class="share-radio"><input type="radio" id="' + option.name + '" name="r-group"></td>' +
+  '<td class="share-label"><label for="' + option.name + '">' + option.title + '</label></td>' +
   '</tr>');
 
   if (option.default) {
@@ -87,7 +87,7 @@ function createOption(option) {
 function createShareList(params) {
   shareOptions[0].title = params.show.title;
   shareOptions[1].title = params.title;
-  var table = $('<table class="share-button-wrapper"><caption>Podcast teilen</caption><tbody></tbo</table>');
+  var table = $('<table class="share-button-wrapper" data-toggle="buttons"><caption>Podcast teilen</caption><tbody></tbody</table>');
   table.append(shareOptions.map(createOption));
   return table;
 }
@@ -122,7 +122,7 @@ function createShareTab(params) {
   });
 
   shareButtons = new SocialButtonList(services, getShareData('episode'));
-  linkInput = $('<h3>Link</h3>' +
+  linkInput = $('<h3>Direkter ink</h3>' +
     '<input type="url" name="share-link-url" readonly>');
   linkInput.update = function(data) {
     this.val(data.rawUrl);
