@@ -48,21 +48,6 @@ function onShareOptionChangeTo (element, value) {
 }
 
 /**
- * Create html for an poster image
- * @param {string} type 'episode' or 'show'
- * @returns {string} HTML for the image
- */
-function createPosterFor(type) {
-  var data = shareData[type];
-  if (!type || !data || !data.poster) {
-    console.warn('cannot create poster for', type);
-    return '';
-  }
-  console.log('create poster for', type, ' > url', data.poster);
-  return '<img src="' + data.poster + '" data-img="' + data.poster + '" alt="Poster Image">';
-}
-
-/**
  * create sharing button
  * @param {object} option sharing option definition
  * @returns {jQuery} share button reference
