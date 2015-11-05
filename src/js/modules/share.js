@@ -122,7 +122,7 @@ function createShareTab(params) {
   });
 
   shareButtons = new SocialButtonList(services, getShareData('episode'));
-  linkInput = $('<h3>Direkter ink</h3>' +
+  linkInput = $('<h3>Direkter Link</h3>' +
     '<input type="url" name="share-link-url" readonly>');
   linkInput.update = function(data) {
     this.val(data.rawUrl);
