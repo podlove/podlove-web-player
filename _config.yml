@@ -20,7 +20,7 @@ sections: [
     ['guides'      , 'Guides'],
     ['reference'   , 'Reference'],
     ['developer'   , 'Developers'],
-    ['post'        , 'Posts']
+    ['appendix'    , 'Appendix']
 ]
 
 # Keep as an empty string if served up at the root. If served up at a specific
