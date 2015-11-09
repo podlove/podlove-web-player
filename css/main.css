@@ -116,3 +116,7 @@ dd,
   height: auto;
   max-width: 800px;
 }
+
+.shadow {
+  box-shadow: 0em 0em .7em gray;
+}
