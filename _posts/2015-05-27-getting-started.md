@@ -8,7 +8,8 @@ redirect_from:
   - /tut/getting-started.html
 ---
 
-## Example directory structure
+### Basics
+#### Example directory structure
 
 {% highlight sh %}
 
@@ -23,13 +24,15 @@ redirect_from:
     └── show-cover.png
 {% endhighlight %}
 
-## Get the Latest Player Release
+#### Get the Latest Player Release
 
-{% highlight sh %}
-    bower install podlove-web-player
-{% endhighlight %}
+Having [bower](http://bower.io/) installed on your system, simply run
+`bower install podlove-web-player`
+to get the player package.
 
-## Create an `index.html` File
+### Integrate the web player into a website
+
+#### Create an `index.html` File
 
 2.  Add an element where the player should appear {% highlight html %}
     <audio data-podlove-web-player-source="episode1.html">
@@ -44,26 +47,26 @@ redirect_from:
     <script>$('audio').podlovewebplayer();</script>
 {% endhighlight %}
 
-## Create `episode/index.html`
+#### Create `episode/index.html`
 
-1. choose style {% highlight html %}
+1. Choose style {% highlight html %}
     <link href="/bower_components/podlove-web-player/dist/css/pwp-dark-green.css" rel="stylesheet" media="screen" type="text/css" />
 {% endhighlight %}
 
-2. add element to replace {% highlight html %}
+2. Add element to replace {% highlight html %}
     <audio>
         <source src="episode1.m4a" type="audio/m4a">
     </audio>
 {% endhighlight %}
 
-3. add scripts {% highlight html %}
+3. Add scripts {% highlight html %}
 <script src="/bower_components/podlove-web-player/dist/js/vendor/html5shiv.js"></script>
 <script src="/bower_components/podlove-web-player/dist/js/vendor/jquery.min.js"></script>
 <script src="/bower_components/podlove-web-player/dist/js/vendor/progress-polyfill.min.js"></script>
 <script src="/bower_components/podlove-web-player/dist/js/podlove-web-player.js"></script>
 {% endhighlight %}
 
-3. add metadata {% highlight js %}
+3. Add metadata {% highlight js %}
 
     $('audio').podlovewebplayer({
       show: {
@@ -96,7 +99,7 @@ redirect_from:
 
 {% endhighlight %}
 
-## Result
+#### Result
 
 * [Example player.html](/player.html)
 * [View page source](view-source:/player.html)
