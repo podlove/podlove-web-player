@@ -110,3 +110,9 @@ dd,
     font-size: 35px;
     color: #777;
 }
+
+.fullwidth-img {
+  width: 100%;
+  height: auto;
+  max-width: 800px;
+}
