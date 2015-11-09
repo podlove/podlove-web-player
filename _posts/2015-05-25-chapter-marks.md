@@ -9,7 +9,9 @@ redirect_from:
 
 ### A Player with Chapter Marks
 
-<img src="/assets/examples/chapters.png" alt="Player with chapter marks" class="fullwidth-img shadow" />
+<figure>
+  <img src="/assets/examples/chapters.png" alt="Player with chapter marks" class="fullwidth-img shadow">
+</figure>
 
 Instead of setting chapter marks manually, chapter marks can also be set with tools like [Hindenburg](http://hindenburg.com/) or [Ultraschall](http://ultraschall.fm/).
 
