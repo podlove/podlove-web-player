@@ -1,9 +1,11 @@
 ---
 layout: page
 title: "Injected Metadata JSON Configuration"
-category: guides
+category: appendix
 date: 2015-06-15 00:00:00
 ---
+
+### Static Embed
 
 You want to use the static embed page? Follow the steps below.
 

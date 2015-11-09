@@ -1,7 +1,7 @@
 ---
 layout: page
 title: "Commented JSON Configuration"
-category: guides
+category: appendix
 date: 2015-06-15 00:00:00
 ---
 
