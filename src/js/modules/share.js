@@ -36,13 +36,16 @@ function updateUrls(data) {
 
 function onShareOptionChangeTo (element, value) {
   var data = getShareData(value);
+  var radio = element.find('[type=radio]');
 
-  return function (event) {
-    console.log('sharing options changed', value);
+  return function () {
     selectedOption.removeClass('selected');
+
+    radio.prop('checked', true);
     element.addClass('selected');
     selectedOption = element;
-    event.preventDefault();
+    console.log('sharing options changed', element, value);
+
     updateUrls(data);
   };
 }
@@ -66,17 +69,21 @@ function createOption(option) {
   }
 
   var element = $('<tr class="share-select-option">' +
-  '<td class="share-description">' + option.name + '</td>' +
-  '<td class="share-radio"><input type="radio" id="' + option.name + '" name="r-group" value="' + option.title + '"></td>' +
-  '<td class="share-label"><label for="' + option.name + '">' + option.title + '</label></td>' +
-  '</tr>');
+    '<td class="share-description">' + option.name + '</td>' +
+    '<td class="share-radio"><input type="radio" id="' + option.name + '" name="r-group" value="' + option.title + '"></td>' +
+    '<td class="share-label"><label for="' + option.name + '">' + option.title + '</label></td>' +
+    '</tr>'
+  );
+  var radio = element.find('[type=radio]');
 
   if (option.default) {
     selectedOption = element;
     element.addClass('selected');
+    radio.prop('checked', true);
     updateUrls(data);
   }
-  element.on('click', onShareOptionChangeTo(element, option.value));
+  var changeHandler = onShareOptionChangeTo(element, option.value);
+  element.on('click', changeHandler);
   return element;
 }
 
