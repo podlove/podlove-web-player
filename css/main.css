@@ -1,6 +1,5 @@
 body {
     font-weight: 400;
-    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);
 }
 
 pre, code {
@@ -119,4 +118,31 @@ dd,
 
 .shadow {
   box-shadow: 0em 0em .7em gray;
+}
+
+.mb {
+  margin-bottom: 15px;
+}
+
+.icon {
+  font-size: 40px;
+}
+
+.profile-table {
+  display: table;
+  width: 100%;
+}
+
+.profile-table dl {
+  display: table-row;
+}
+
+.profile-table dt,
+.profile-table dd {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.profile-table dd {
+  padding-top: 0 !important;
 }
