@@ -13,7 +13,7 @@ function SocialButtonList (services, options) {
   var createButton = createButtonWith(options);
   this.buttons = services.map(createButton);
 
-  this.list = $('<ul></ul>');
+  this.list = $('<ul class="social-network-buttons"></ul>');
   this.buttons.forEach(function (button) {
     var listElement = $('<li></li>').append(button.element);
     this.list.append(listElement);

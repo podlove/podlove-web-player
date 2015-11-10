@@ -36,30 +36,18 @@ function updateUrls(data) {
 
 function onShareOptionChangeTo (element, value) {
   var data = getShareData(value);
+  var radio = element.find('[type=radio]');
 
-  return function (event) {
-    console.log('sharing options changed', value);
+  return function () {
     selectedOption.removeClass('selected');
+
+    radio.prop('checked', true);
     element.addClass('selected');
     selectedOption = element;
-    event.preventDefault();
+    console.log('sharing options changed', element, value);
+
     updateUrls(data);
   };
-}
-
-/**
- * Create html for an poster image
- * @param {string} type 'episode' or 'show'
- * @returns {string} HTML for the image
- */
-function createPosterFor(type) {
-  var data = shareData[type];
-  if (!type || !data || !data.poster) {
-    console.warn('cannot create poster for', type);
-    return '';
-  }
-  console.log('create poster for', type, ' > url', data.poster);
-  return '<img src="' + data.poster + '" data-img="' + data.poster + '" alt="Poster Image">';
 }
 
 /**
@@ -80,39 +68,46 @@ function createOption(option) {
     return null;
   }
 
-  var element = $('<div class="share-select-option">' + createPosterFor(option.value) +
-      '<span>Share this ' + option.name + '</span>' +
-    '</div>');
+  var element = $('<tr class="share-select-option">' +
+    '<td class="share-description">' + option.name + '</td>' +
+    '<td class="share-radio"><input type="radio" id="share-option-' + option.name + '" name="r-group" value="' + option.title + '"></td>' +
+    '<td class="share-label"><label for="share-option-' + option.name + '">' + option.title + '</label></td>' +
+    '</tr>'
+  );
+  var radio = element.find('[type=radio]');
 
   if (option.default) {
     selectedOption = element;
     element.addClass('selected');
+    radio.prop('checked', true);
     updateUrls(data);
   }
-  element.on('click', onShareOptionChangeTo(element, option.value));
+  var changeHandler = onShareOptionChangeTo(element, option.value);
+  element.on('click', changeHandler);
   return element;
 }
 
 /**
- * Creates an html div element to wrap all share buttons
+ * Creates an html table element to wrap all share buttons
  * @returns {jQuery|HTMLElement} share button wrapper reference
  */
-function createShareButtonWrapper() {
-  var div = $('<div class="share-button-wrapper"></div>');
-  div.append(shareOptions.map(createOption));
-
-  return div;
+function createShareList(params) {
+  shareOptions[0].title = params.show.title;
+  shareOptions[1].title = params.title;
+  var table = $('<table class="share-button-wrapper" data-toggle="buttons"><caption>Podcast teilen</caption><tbody></tbody</table>');
+  table.append(shareOptions.map(createOption));
+  return table;
 }
 
 /**
  * create sharing buttons in a form
  * @returns {jQuery} form element reference
  */
-function createShareOptions() {
+function createShareOptions(params) {
   var form = $('<form>' +
-    '<legend>What would you like to share?</legend>' +
+    '<h3>Was möchtest du teilen?</h3>' +
   '</form>');
-  form.append(createShareButtonWrapper);
+  form.append(createShareList(params));
   return form;
 }
 
@@ -134,14 +129,17 @@ function createShareTab(params) {
   });
 
   shareButtons = new SocialButtonList(services, getShareData('episode'));
-  linkInput = $('<h3>Link</h3>' +
+  linkInput = $('<h3>Direkter Link</h3>' +
     '<input type="url" name="share-link-url" readonly>');
   linkInput.update = function(data) {
     this.val(data.rawUrl);
   };
 
-  shareTab.createMainContent('').append(createShareOptions());
-  shareTab.createFooter('<h3>Share via ...</h3>').append(shareButtons.list).append(linkInput);
+  shareTab.createMainContent('')
+    .append(createShareOptions(params))
+    .append('<h3>Teilen via ...</h3>')
+    .append(shareButtons.list);
+  shareTab.createFooter('').append(linkInput);
 
   return shareTab;
 }
