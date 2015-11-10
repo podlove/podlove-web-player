@@ -72,7 +72,7 @@ function createSocialInfo(profiles) {
   var profileList = $('<ul></ul>');
   profiles.forEach(createSocialLink, profileList);
 
-  var container = $('<div class="social-links"><h3>Stay in touch</h3></div>');
+  var container = $('<div class="social-links"><h3>Bleib in Verbindung</h3></div>');
   container.append(profileList);
   return container;
 }
