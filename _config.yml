@@ -37,7 +37,7 @@ highlighter: pygments
 future: true
 
 # Exclude non-site files
-include: ['bower_components/podlove-web-player/dist']
+include: ['bower_components/podlove-web-player/dist', 'bower_components/podlove-font/css']
 exclude: ['bin', 'README.md', 'bower_components/mediaelement', 'bower_components/jquery', 'node_modules']
 
 # Use the redcarpet Markdown renderer
