@@ -6,6 +6,6 @@ date: 2015-04-23 16:19:19
 ---
 
 ### Modify Your Social Profiles
-<figure>
-  <img src="" alt="Minimal Player" class="fullwidth-img" />
+<figure class="mb">
+  <img src="/assets/examples/social-profiles.png" alt="Social Profiles" class="fullwidth-img" />
 </figure>

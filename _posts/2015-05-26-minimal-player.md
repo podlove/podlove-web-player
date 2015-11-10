@@ -10,7 +10,7 @@ redirect_from:
 
 ### Simple Player without Chapters
 
-<figure>
+<figure class="mb">
   <img src="/assets/examples/minimal.png" alt="Minimal Player" class="fullwidth-img shadow">
 </figure>
 

@@ -9,7 +9,7 @@ redirect_from:
 
 ### A Player with Chapter Marks
 
-<figure>
+<figure class="mb">
   <img src="/assets/examples/chapters.png" alt="Player with chapter marks" class="fullwidth-img shadow">
 </figure>
 
