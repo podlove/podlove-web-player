@@ -21,14 +21,14 @@ Instead of setting chapter marks manually, chapter marks can also be set with to
 
 {% highlight html %}
 <audio controls="controls">
-    <source src="podlove-test-track.mp4" type="audio/mp4">
-    <source src="podlove-test-track.mp3" type="audio/mpeg">
-    <source src="podlove-test-track.ogg" type="audio/ogg; codecs=vorbis">
-    <source src="podlove-test-track.opus" type="audio/ogg; codecs=opus">
-    <object type="application/x-shockwave-flash" data="/bin/flashmediaelement.swf">
-        <param name="movie" value="/bin/flashmediaelement.swf"/>
-        <param name="flashvars" value="controls=true&amp;file=format-test-track.mp4"/>
-    </object>
+  <source src="podlove-test-track.mp4" type="audio/mp4">
+  <source src="podlove-test-track.mp3" type="audio/mpeg">
+  <source src="podlove-test-track.ogg" type="audio/ogg; codecs=vorbis">
+  <source src="podlove-test-track.opus" type="audio/ogg; codecs=opus">
+  <object type="application/x-shockwave-flash" data="/bin/flashmediaelement.swf">
+    <param name="movie" value="/bin/flashmediaelement.swf"/>
+    <param name="flashvars" value="controls=true&amp;file=format-test-track.mp4"/>
+  </object>
 </audio>{% endhighlight %}
 
 #### Metadata
@@ -38,21 +38,21 @@ The accepted format is `00:00:00.000` (`h:min:sec.ms`).
 {% highlight js %}
 ...
 chapters: [
-     {
-         start: '00:00:00.000',
-         title: 'Chapter One'
-     },
-     {
-         start: '00:00:00.500',
-         title: 'Chapter Two',
-     },
-     {
-         start: '00:00:01.500',
-         title: 'Chapter Three',
-     },
-     {
-         start: '00:00:02.000',
-         title: 'Chapter Four',
-     }
+  {
+    start: '00:00:00.000',
+    title: 'Chapter One'
+  },
+  {
+    start: '00:00:00.500',
+    title: 'Chapter Two',
+  },
+  {
+    start: '00:00:01.500',
+    title: 'Chapter Three',
+  },
+  {
+    start: '00:00:02.000',
+    title: 'Chapter Four',
+  }
  ],...
  {% endhighlight %}

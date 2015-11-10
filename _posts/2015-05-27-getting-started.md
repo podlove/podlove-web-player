@@ -36,14 +36,15 @@ to get the player package.
 
 2.  Add an element where the player should appear {% highlight html %}
     <audio data-podlove-web-player-source="episode1.html">
-        <source src="episode1.m4a" type="audio/m4a">
+      <source src="episode1.m4a" type="audio/m4a">
     </audio>
 {% endhighlight %}
 
     (i) The audio tag is the non-js fallback
 
 3.  Add the moderator script in your html file and point the moderator to that element {% highlight html %}
-    <script src="/bower_components/podlove-web-player/dist/js/moderator.min.js"></script>
+    <script src="/bower_components/podlove-web-player/dist/js/moderator.min.js">
+    </script>
     <script>$('audio').podlovewebplayer();</script>
 {% endhighlight %}
 
@@ -55,7 +56,7 @@ to get the player package.
 
 2. Add element to replace {% highlight html %}
     <audio>
-        <source src="episode1.m4a" type="audio/m4a">
+      <source src="episode1.m4a" type="audio/m4a">
     </audio>
 {% endhighlight %}
 
@@ -105,8 +106,8 @@ to get the player package.
 * [View page source](view-source:/player.html)
 
 <audio data-podlove-web-player-source="/player.html">
-    <source src="{{site.dist}}/examples/which-format/podlove-test-track.mp4" type="audio/mp4"/>
-    <source src="{{site.dist}}/examples/which-format/podlove-test-track.mp3" type="audio/mpeg"/>
-    <source src="{{site.dist}}/examples/which-format/podlove-test-track.ogg" type="audio/ogg; codecs=vorbis"/>
-    <source src="{{site.dist}}/examples/which-format/podlove-test-track.opus" type="audio/ogg; codecs=opus"/>
+  <source src="{{site.dist}}/examples/which-format/podlove-test-track.mp4" type="audio/mp4"/>
+  <source src="{{site.dist}}/examples/which-format/podlove-test-track.mp3" type="audio/mpeg"/>
+  <source src="{{site.dist}}/examples/which-format/podlove-test-track.ogg" type="audio/ogg; codecs=vorbis"/>
+  <source src="{{site.dist}}/examples/which-format/podlove-test-track.opus" type="audio/ogg; codecs=opus"/>
 </audio>

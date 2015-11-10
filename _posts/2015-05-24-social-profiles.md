@@ -17,10 +17,10 @@ The profile twitter for example is defined like this:
 
 {% highlight html %}
 twitter: new SocialNetwork({
-    icon: 'twitter',
-    title: 'Twitter',
-    profileUrl: 'https://twitter.com/',
-    shareUrl: 'share?text=$text$&url=$url$'
+  icon: 'twitter',
+  title: 'Twitter',
+  profileUrl: 'https://twitter.com/',
+  shareUrl: 'share?text=$text$&url=$url$'
 })
 {% endhighlight %}
 
@@ -95,28 +95,28 @@ Finally, the profiles are collected in a list with the keyword `profiles` like t
 {% highlight html %}
 profiles: [
   {
-      serviceName: 'twitter',
-      profile: 'podlove_org'
+    serviceName: 'twitter',
+    profile: 'podlove_org'
   },
   {
-      serviceName: 'flattr',
-      profile: 'timpritlove'
+    serviceName: 'flattr',
+    profile: 'timpritlove'
   },
   {
-      serviceName: 'facebook',
-      profile: 'podlove_org'
+    serviceName: 'facebook',
+    profile: 'podlove_org'
   },
   {
-      serviceName: 'soundcloud',
-      profile: 'podlove_org'
+    serviceName: 'soundcloud',
+    profile: 'podlove_org'
   },
   {
-      serviceName: 'adn',
-      profile: 'podlove'
+    serviceName: 'adn',
+    profile: 'podlove'
   },
-    {
-        serviceName: 'email',
-        profile: 'info@podlove.org'
-    }
+  {
+    serviceName: 'email',
+    profile: 'info@podlove.org'
+  }
 ]
 {% endhighlight %}
