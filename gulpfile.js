@@ -10,23 +10,23 @@ var gulp = require('gulp')
   , imagemin = require('gulp-imagemin')
   , rename = require('gulp-rename')
   , del = require('del')
-  , concat = require('gulp-concat')
 // deactivate caching until issue is resolved
 //  , cache = require('gulp-cache')
   , browserify = require('gulp-browserify')
-  , browserSync  = require('browser-sync')
-  , reload = browserSync.reload
+  , browserSync = require('browser-sync')
   , karma = require('karma').server
   , _ = require('lodash')
-
   , karmaConf = require('./karma.conf.json')
+  ;
 
 // set paths
-  , bower = 'bower_components/'
+var bower = 'bower_components/'
   , source = 'src/'
   , dest = 'dist/'
   , external = 'vendor/'
   ;
+
+var reload = browserSync.reload;
 
 gulp.task('lint', function () {
   // Note: To have the process exit with an error code (1) on
@@ -61,29 +61,29 @@ gulp.task('styles', function() {
     .pipe(rename({ suffix: '.min' }))
     .pipe(minifycss())
     .pipe(gulp.dest(dest + 'css'))
-    .pipe(reload({stream: true}))
+    .pipe(reload({stream: true}));
 });
 
 gulp.task('moderator', function() {
   return gulp.src(source + 'js/moderator.js')
-    .pipe(browserify({ insertGlobals : true, debug : true }))
+    .pipe(browserify({ insertGlobals: true, debug: true }))
     .pipe(rename('podlove-web-moderator.js'))
     .pipe(gulp.dest(dest + 'js'))
     .pipe(rename({ suffix: '.min' }))
     .pipe(uglify())
     .pipe(gulp.dest(dest + 'js'))
-    .pipe(reload({stream: true}))
+    .pipe(reload({stream: true}));
 });
 
 gulp.task('player', function() {
   return gulp.src(source + 'js/app.js')
-    .pipe(browserify({ insertGlobals : true, debug : true }))
+    .pipe(browserify({ insertGlobals: true, debug: true }))
     .pipe(rename('podlove-web-player.js'))
     .pipe(gulp.dest(dest + 'js'))
     .pipe(rename({ suffix: '.min' }))
     .pipe(uglify())
     .pipe(gulp.dest(dest + 'js'))
-    .pipe(reload({stream: true}))
+    .pipe(reload({stream: true}));
 });
 
 // Scripts
@@ -94,7 +94,7 @@ gulp.task('images', function() {
   return gulp.src(source + 'img/**/*')
     .pipe(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true }))
     .pipe(gulp.dest(dest + 'img'))
-    .pipe(reload({stream: true}))
+    .pipe(reload({stream: true}));
 });
 
 // copy lib files
@@ -154,7 +154,7 @@ gulp.task('default', ['lint', 'test'], function() {
 gulp.task('watch', function() {
   browserSync({
     server: {
-        baseDir: "./dist/"
+        baseDir: './dist/'
     }
   });
 
