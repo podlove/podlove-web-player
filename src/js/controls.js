@@ -1,10 +1,6 @@
 'use strict';
 
 /**
- * @type {Tab}
- */
-var Tab = require('./tab');
-/**
  * @type {Chapters}
  */
 var Chapters = require('./modules/chapter');
