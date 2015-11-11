@@ -1,7 +1,6 @@
 'use strict';
 
-var Tab = require('../tab')
-  , timeCode = require('../timecode');
+var Tab = require('../tab');
 
 /**
  * Calculate the filesize into KB and MB
@@ -30,32 +29,6 @@ function formatSize(size) {
 function createOption(listElement) {
   console.log(listElement);
   return '<option>' + listElement.assetTitle + ' &#8226; ' + formatSize(listElement.size) + '</option>';
-}
-
-function getPosterImage(params) {
-  var defaultPoster = '/img/icon-podlove-subscribe-600.png';
-  var defaultClass = 'default-poster';
-
-  var poster = defaultPoster;
-  if (params.show.poster) {
-    poster = params.show.poster;
-    defaultClass = '';
-  }
-  if (params.poster) {
-    poster = params.poster;
-    defaultClass = '';
-  }
-
-  return '<img class="poster-image ' + defaultClass + '" src="' + poster + '" data-img="' + poster + '" ' +
-    'alt="Poster Image">';
-}
-
-function getPublicationDate(rawDate) {
-  if (!rawDate) {
-    return '';
-  }
-  var date = new Date(rawDate);
-  return '<p>Published: ' + date.getDate() + '.' + date.getMonth() + '.' + date.getFullYear() + '</p>';
 }
 
 /**
@@ -138,13 +111,10 @@ Downloads.prototype.createDownloadTab = function (params) {
       '<button class="download button-submit icon pwp-download" name="download-file">' +
       '<span class="download label">Download Episode</span>' +
       '</button>' +
-    '</form>'+
+    '</form>' +
     '</div>'
   );
   downloadTab.box.append($tabContent);
-
-  // downloadTab.createFooter('<h3>Direkter Link</h3>').append(linkInput);
-
 
   return downloadTab;
 };

@@ -1,11 +1,6 @@
 'use strict';
 
 /**
- * @type {Tab}
- */
-var Tab = require('./tab.js');
-
-/**
  *
  * @param {Tab} tab
  * @returns {boolean}

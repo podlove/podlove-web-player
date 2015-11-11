@@ -18,15 +18,7 @@
  {type: "topic", start: 1, end: 2, "name": "The very first chapter", "url": ""},
  ]
  */
-var tc = require('./timecode')
-  , cap = require('./util').cap;
-
-function addType(type) {
-  return function (element) {
-    element.type = type;
-    return element;
-  };
-}
+var cap = require('./util').cap;
 
 function call(listener) {
   listener(this);
@@ -55,10 +47,6 @@ function checkForChapters(params) {
   return !!params.chapters && (
     typeof params.chapters === 'object' && params.chapters.length > 1
     );
-}
-
-function parse(data) {
-  return data;
 }
 
 function stopOnEndTime() {

@@ -1,9 +1,7 @@
 'use strict';
 
 var tc = require('../timecode')
-  , url = require('../url')
-  , Tab = require('../tab')
-  , Timeline = require('../timeline');
+  , Tab = require('../tab');
 
 var ACTIVE_CHAPTER_THRESHHOLD = 0.1;
 

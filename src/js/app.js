@@ -28,8 +28,6 @@ var TabRegistry = require('./tabregistry'),
   Player = require('./player'),
   ProgressBar = require('./modules/progressbar');
 
-var autoplay = false;
-
 var pwp;
 
 // will expose/attach itself to the $ global
