@@ -71,7 +71,7 @@ TabRegistry.prototype.openInitial = function (tabName) {
     return (tab.headline === tabName);
   });
   if (matchingTabs.length === 0) {
-    console.warn('Could not open initial tab', tabName);
+    console.warn('TabRegistry.openInitial: Could not open tab', tabName);
   }
   var initialActiveTab = matchingTabs.pop();
   initialActiveTab.open();
