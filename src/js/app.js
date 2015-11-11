@@ -290,16 +290,6 @@ function addBehavior(player, params, wrapper) {
     player.play();
   });
 
-  // wait for the player or you'll get DOM EXCEPTIONS
-  // And just listen once because of a special behaviour in firefox
-  // --> https://bugzilla.mozilla.org/show_bug.cgi?id=664842
-  jqPlayer.one('canplay', function (evt) {
-    console.debug('canplay', evt);
-    timeline.duration = player.duration;
-    // attach and render modules
-    renderModules(timeline, wrapper, params);
-  });
-
   $(document)
     .on('keydown', function (e) {
       console.log('progress', 'keydown', e);
@@ -380,6 +370,20 @@ function addBehavior(player, params, wrapper) {
       // delete the cached play time
       timeline.rewind();
     });
+
+  var delayModuleRendering = !timeline.duration || isNaN(timeline.duration) || timeline.duration <= 0;
+
+  if (!delayModuleRendering) {
+    renderModules(timeline, wrapper, params);
+  }
+
+  jqPlayer.one('canplay', function () {
+    // correct duration just in case
+    timeline.duration = player.duration;
+    if (delayModuleRendering) {
+      renderModules(timeline, wrapper, params);
+    }
+  });
 }
 
 /**
