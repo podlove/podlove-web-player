@@ -25,6 +25,9 @@ redirect_from:
 {% endhighlight %}
 
 #### Get the Latest Player Release
+<div>
+  <div class="right up-to-top"> <a class="icon pwp-arrow-up" href="#top"></a></div>
+</div>
 
 Having [bower](http://bower.io/) installed on your system, simply run
 `bower install podlove-web-player`
@@ -97,6 +100,9 @@ to get the player package.
       title: 'My Very First Episode',
       subtitle: 'This is the episode\'s subtitle one-liner',
     });
+<div>
+  <div class="right up-to-top"> <a class="icon pwp-arrow-up" href="#top"></a></div>
+</div>
 
 {% endhighlight %}
 
@@ -111,3 +117,7 @@ to get the player package.
   <source src="{{site.dist}}/examples/which-format/podlove-test-track.ogg" type="audio/ogg; codecs=vorbis"/>
   <source src="{{site.dist}}/examples/which-format/podlove-test-track.opus" type="audio/ogg; codecs=opus"/>
 </audio>
+
+<div>
+  <div class="right up-to-top"> <a class="icon pwp-arrow-up" href="#top"></a></div>
+</div>

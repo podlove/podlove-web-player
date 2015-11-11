@@ -83,3 +83,7 @@ Generally speaking, all of the data shown below is optional.
     chaptersVisible: true // (optional) hide/show chapter tab
 });
 {% endhighlight %}
+
+<div>
+  <div class="right up-to-top"> <a class="icon pwp-arrow-up" href="#top"></a></div>
+</div>

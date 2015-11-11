@@ -146,3 +146,15 @@ dd,
 .profile-table dd {
   padding-top: 0 !important;
 }
+
+.up-to-top .icon {
+  font-size: 25px;
+}
+
+.up-to-top a:hover,
+.up-to-top a:active,
+.up-to-top a:focus {
+  text-decoration: none;
+  outline: none;
+}
+

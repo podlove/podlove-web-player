@@ -2,7 +2,7 @@
 layout: page
 title: "Social Profiles"
 category: guides
-date: 2015-04-23 16:19:19
+date: 2015-04-22 16:19:19
 ---
 
 ### Modify Your Social Profiles
@@ -82,6 +82,11 @@ The complete list of currently available social profiles and their icons:
 </dl>
 </dl>
 
+<div>
+  <div class="right up-to-top"> <a class="icon pwp-arrow-up" href="#top"></a></div>
+</div>
+
+
 #### Metadata
 
 Edit your profile data according to following example and make sure to set the values correctly in single quotation marks.
@@ -120,3 +125,7 @@ profiles: [
   }
 ]
 {% endhighlight %}
+
+<div>
+  <div class="right up-to-top"> <a class="icon pwp-arrow-up" href="#top"></a></div>
+</div>

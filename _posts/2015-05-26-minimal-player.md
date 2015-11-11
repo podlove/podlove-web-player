@@ -64,3 +64,7 @@ redirect_from:
   };
 </script>
 {% endhighlight %}
+
+<div>
+  <div class="right up-to-top"> <a class="icon pwp-arrow-up" href="#top"></a></div>
+</div>
