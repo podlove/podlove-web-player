@@ -124,6 +124,14 @@ dd,
   margin-bottom: 15px;
 }
 
+.mb45 {
+  margin-bottom: 45px;
+}
+
+.right {
+  float: right;
+}
+
 .icon {
   font-size: 40px;
 }
@@ -158,3 +166,17 @@ dd,
   outline: none;
 }
 
+.ol {
+  padding-left: 0;
+}
+.o-list li {
+  margin: 10px 0 30px 0;
+}
+
+h3, h4 {
+  margin-bottom: 20px;
+}
+
+figcaption {
+  font-size: 1.2em;
+}
