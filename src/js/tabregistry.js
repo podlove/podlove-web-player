@@ -64,6 +64,9 @@ TabRegistry.prototype.add = function(tab) {
 };
 
 TabRegistry.prototype.openInitial = function (tabName) {
+  if (!tabName) {
+    return;
+  }
   var matchingTabs = this.tabs.filter(function (tab) {
     return (tab.headline === tabName);
   });
