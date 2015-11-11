@@ -149,9 +149,6 @@ Timeline.prototype.setTime = function (time) {
   this.currentTime = time;
   this.update();
 
-  // avoid event hellfire
-  if (this.seeking) { return this.currentTime; }
-
   console.log('canplay', 'setTime', 'playerState', this.player.readyState);
   if (this.player.readyState === this.player.HAVE_ENOUGH_DATA) {
     this.player.setCurrentTime(time);
@@ -171,29 +168,9 @@ Timeline.prototype.setTime = function (time) {
 };
 
 Timeline.prototype.seek = function (time) {
-  console.log('seek', 'seek', this.resume);
-  this.seeking = true;
+  console.debug('Timeline', 'seek', time);
   this.currentTime = cap(time, 0, this.duration);
   this.setTime(this.currentTime);
-};
-
-Timeline.prototype.seekStart = function () {
-  console.log('seek', 'start', this.resume);
-  this.resume = !this.player.paused; // setting this to false makes Safari happy
-  if (this.resume) {
-    this.player.pause();
-  }
-};
-
-Timeline.prototype.seekEnd = function () {
-  console.log('seek', 'end', this.resume);
-  this.seeking = false;
-  this.setTime(this.currentTime); //force latest position in track
-  if (this.resume) {
-    console.log('seek', 'end', 'resume', this.currentTime);
-    this.player.play();
-  }
-  this.resume = !this.player.paused; // seekstart may not be called
 };
 
 Timeline.prototype.stopAt = function (time) {
