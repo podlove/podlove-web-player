@@ -123,9 +123,9 @@ function createShareTab(params) {
 
   var shareTab = new Tab({
     icon: 'pwp-share',
-    title: 'Show/hide sharing tabs',
+    title: 'Teilen anzeigen / verbergen',
     name: 'podlovewebplayer_share',
-    headline: 'Share'
+    headline: 'Teilen'
   });
 
   shareButtons = new SocialButtonList(services, getShareData('episode'));

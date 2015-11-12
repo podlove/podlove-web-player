@@ -9,7 +9,7 @@ function getPublicationDate(rawDate) {
     return '';
   }
   var date = new Date(rawDate);
-  return '<p>Published: ' + date.getDate() + '.' + date.getMonth() + '.' + date.getFullYear() + '</p>';
+  return '<p>Veröffentlicht am: ' + date.getDate() + '.' + date.getMonth() + '.' + date.getFullYear() + '</p>';
 }
 
 function createEpisodeInfo(tab, params) {
@@ -17,11 +17,11 @@ function createEpisodeInfo(tab, params) {
     '<h2>' + params.title + '</h2>' +
     '<h3>' + params.subtitle + '</h3>' +
     '<p>' + params.summary + '</p>' +
-    '<p>Duration: ' + timeCode.fromTimeStamp(params.duration) + '</p>' +
+    '<p>Dauer: ' + timeCode.fromTimeStamp(params.duration) + '</p>' +
      getPublicationDate(params.publicationDate) +
     '<p>' +
-      'Permalink for this episode:<br>' +
-      '<a href="' + params.permalink + '">' + params.permalink + '</a>' +
+      'Permalink:<br>' +
+      '<a href="' + params.permalink + '" title="Permalink für die Episode">' + params.permalink + '</a>' +
     '</p>'
   );
 }
@@ -51,8 +51,8 @@ function createShowInfo (tab, params) {
     '<h3>' + params.show.subtitle + '</h3>' +
     createPosterImage(params.show.poster) +
     createSubscribeButton(params) +
-    '<p>Link to the show:<br>' +
-      '<a href="' + params.show.url + '">' + params.show.url + '</a></p>'
+    '<p>Link zur Show:<br>' +
+      '<a href="' + params.show.url + '" title="Link zur Show">' + params.show.url + '</a></p>'
   );
 }
 
@@ -82,8 +82,8 @@ function createSocialAndLicenseInfo (tab, params) {
     return;
   }
   tab.createFooter(
-    '<p>The show "' + params.show.title + '" is licenced under<br>' +
-      '<a href="' + params.license.url + '">' + params.license.name + '</a>' +
+    '<p>Die Show "' + params.show.title + '" ist lizensiert unter<br>' +
+      '<a href="' + params.license.url + '" title="Lizenz ansehen">' + params.license.name + '</a>' +
     '</p>'
   ).prepend(createSocialInfo(params.profiles));
 }
@@ -99,7 +99,7 @@ function createInfoTab(params) {
   }
   var infoTab = new Tab({
     icon: 'pwp-info',
-    title: 'More information about this',
+    title: 'Infos anzeigen / verbergen',
     headline: 'Info',
     name: 'info'
   });

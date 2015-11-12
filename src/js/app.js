@@ -44,7 +44,7 @@ function renderShowTitle(title, url) {
     return '';
   }
   if (url) {
-    title = '<a href="' + url + '">' + title + '</a>';
+    title = '<a href="' + url + '" title="Link zur Show">' + title + '</a>';
   }
   return '<h3 class="showtitle">' + title + '</h3>';
 }
@@ -59,7 +59,7 @@ function renderTitle(text, link) {
   var titleBegin = '<h1 class="episodetitle">',
     titleEnd = '</h1>';
   if (text !== undefined && link !== undefined) {
-    text = '<a href="' + link + '">' + text + '</a>';
+    text = '<a href="' + link + '" title="Link zur Episode">' + text + '</a>';
   }
   return titleBegin + text + titleEnd;
 }
@@ -94,7 +94,7 @@ function renderTitleArea(params) {
  * @returns {string}
  */
 function renderPlaybutton() {
-  return $('<a class="play" title="Play Episode" href="javascript:;"></a>');
+  return $('<a class="play" title="Abspielen" href="javascript:;"></a>');
 }
 
 /**

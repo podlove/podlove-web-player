@@ -99,7 +99,7 @@ Downloads.prototype.createDownloadTab = function (params) {
   }
   var downloadTab = new Tab({
     icon: 'pwp-download',
-    title: 'Show/hide download bar',
+    title: 'Downloads anzeigen / verbergen',
     name: 'downloads',
     headline: 'Download'
   });
@@ -109,7 +109,7 @@ Downloads.prototype.createDownloadTab = function (params) {
     '<form action="" method="">' +
       '<select class="select" name="select-file">' + this.list.map(createOption) + '</select>' +
       '<button class="download button-submit icon pwp-download" name="download-file">' +
-      '<span class="download label">Download Episode</span>' +
+      '<span class="download label">Download</span>' +
       '</button>' +
     '</form>' +
     '</div>'
