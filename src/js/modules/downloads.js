@@ -26,9 +26,11 @@ function formatSize(size) {
  * @param listElement
  * @returns {string}
  */
-function createOption(listElement) {
-  console.log(listElement);
-  return '<option>' + listElement.assetTitle + ' &#8226; ' + formatSize(listElement.size) + '</option>';
+function createOption(asset) {
+  console.log(asset);
+  return '<option value="' + asset.downloadUrl + '">' +
+      asset.assetTitle + ' &#8226; ' + formatSize(asset.size) +
+    '</option>';
 }
 
 /**
@@ -106,15 +108,21 @@ Downloads.prototype.createDownloadTab = function (params) {
 
   var $tabContent = downloadTab.createMainContent(
     '<div class="download">' +
-    '<form action="" method="">' +
-      '<select class="select" name="select-file">' + this.list.map(createOption) + '</select>' +
-      '<button class="download button-submit icon pwp-download" name="download-file">' +
-      '<span class="download label">Download</span>' +
-      '</button>' +
-    '</form>' +
+      '<form action="?">' +
+        '<select class="select" name="select-file">' + this.list.map(createOption) + '</select>' +
+        '<button class="download button-submit icon pwp-download" name="download-file">' +
+          '<span class="download label">Download</span>' +
+        '</button>' +
+      '</form>' +
     '</div>'
   );
   downloadTab.box.append($tabContent);
+  var $button = $tabContent.find('button.pwp-download');
+  var $select = $tabContent.find('select.select');
+  $button.on('click', function (e) {
+    e.preventDefault();
+    window.open($select.val());
+  });
 
   return downloadTab;
 };
