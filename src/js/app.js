@@ -144,7 +144,6 @@ function renderModules(timeline, wrapper, params) {
   if (hasChapters) {
     chapters = new Chapters(timeline, params);
     timeline.addModule(chapters);
-    chapters.addEventhandlers();
   }
   controls.createTimeControls(chapters);
 

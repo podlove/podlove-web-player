@@ -1,9 +1,20 @@
 'use strict';
 
 var tc = require('../timecode')
-  , Tab = require('../tab');
+  , Tab = require('../tab')
+  ;
 
 var ACTIVE_CHAPTER_THRESHHOLD = 0.1;
+
+function rowClickHandler (e) {
+  e.preventDefault();
+  var chapters = e.data.module;
+  console.log('Chapter', 'clickHandler', 'setCurrentChapter to', e.data.index);
+  chapters.setCurrentChapter(e.data.index);
+  chapters.playCurrentChapter();
+  chapters.timeline.player.play();
+  return false;
+}
 
 function transformChapter(chapter) {
   chapter.code = chapter.title;
@@ -158,65 +169,27 @@ Chapters.prototype.generateTable = function () {
   table = renderChapterTable();
   tbody = table.children('tbody');
 
-  if (this.chapterlinks !== 'false') {
-    table.addClass('linked linked_' + this.chapterlinks);
-  }
-
   maxchapterstart = getMaxChapterStart(this.chapters);
   forceHours = (maxchapterstart >= 3600);
 
-  function buildChapter(i) {
-    var duration = Math.round(this.end - this.start),
-      row;
+  function buildChapter(chapter, index) {
+    var duration = Math.round(chapter.end - chapter.start);
+
     //make sure the duration for all chapters are equally formatted
-    this.duration = tc.generate([duration], false);
+    chapter.duration = tc.generate([duration], false);
 
     //if there is a chapter that starts after an hour, force '00:' on all previous chapters
+    chapter.startTime = tc.generate([Math.round(chapter.start)], true, forceHours);
+
     //insert the chapter data
-    this.startTime = tc.generate([Math.round(this.start)], true, forceHours);
-
-    row = renderRow(this, i);
-    if (i % 2) {
-      row.addClass('oddchapter');
-    }
+    var row = renderRow(chapter, index);
+    row.on('click', {module: this, index: index}, rowClickHandler);
     row.appendTo(tbody);
-    this.element = row;
+    chapter.element = row;
   }
 
-  $.each(this.chapters, buildChapter);
+  this.chapters.forEach(buildChapter, this);
   return table;
-};
-
-/**
- *
- * @param {mejs.HtmlMediaElement} player
- */
-Chapters.prototype.addEventhandlers = function () {
-  var player = this.timeline.player;
-  function onClick(e) {
-    // enable external links to be opened in a new tab or window
-    // cancels event to bubble up
-    if (e.target.className === 'pwp-outgoing button button-toggle') {
-      return true;
-    }
-    //console.log('chapter#clickHandler: start chapter at', chapterStart);
-    e.preventDefault();
-    // Basic Chapter Mark function (without deeplinking)
-    console.log('Chapter', 'clickHandler', 'setCurrentChapter to', e.data.index);
-    e.data.module.setCurrentChapter(e.data.index);
-    // flash fallback needs additional pause
-    if (player.pluginType === 'flash') {
-      player.pause();
-    }
-    e.data.module.playCurrentChapter();
-    return false;
-  }
-
-  function addClickHandler (chapter, index) {
-    chapter.element.on('click', {module: this, index: index}, onClick);
-  }
-
-  this.chapters.forEach(addClickHandler, this);
 };
 
 Chapters.prototype.getActiveChapter = function () {
