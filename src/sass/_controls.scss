@@ -5,6 +5,7 @@
 // wrappers
 .controlbar-wrapper {
   @include pwp-flexbox();
+  background-color: $player-base-color;
 }
 
 .bar {

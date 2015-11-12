@@ -154,3 +154,15 @@
     }
   }
 }
+
+// video title
+.podlovewebplayer_video .titlebar {
+  header {
+    margin: auto $margin-small-horizontal;
+  }
+  @media screen and (min-width: $screen-desktop) {
+    header {
+      margin: auto $margin-base-horizontal;
+    }
+  }
+}
