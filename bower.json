@@ -3,16 +3,20 @@
   "version": "3.0.0-beta.1",
   "homepage": "http://podlove.org/",
   "description": "Next generation media player for the web. Special features for podcast and other metadata rich productions.",
-  "main": "dist/*",
+  "main": [
+    "src/index.html",
+    "src/js/app.js",
+    "src/js/moderator.js",
+    "src/sass/pwp-dark.scss",
+  ],
   "ignore": [
     "**/.*",
     "karma.*",
     "config.rb",
     "package.json",
-    "AUTHORS.txt",
-    "Gruntfile.js",
-    "spec",
-    "src"
+    "node_modules",
+    "bower_components",
+    "spec"
   ],
   "moduleType": [
     "globals"
@@ -28,13 +32,6 @@
     "web"
   ],
   "license": "BSD-2-Clause",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ],
   "dependencies": {},
   "devDependencies": {
     "html5shiv": "~3.7.2",
