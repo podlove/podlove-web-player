@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-- '0.10'
+- '0.12'
 before_script:
 - npm install -g bower
 - bower install
@@ -12,3 +12,4 @@ addons:
     secure: DjBknUGwz5cKdD7RaAInJZd4HNGuDk8k+u36y8nRLieWgRvTMEa3w4OzXI71y+eSaO3cgUAsPXP3wgzjuOh7CTS/V9RrsrBj/PFufzqA0ro9b78TZUdbyPTHe2CrvohpEUZkv3n9/U50JGZT3V6sf6mzKoJ8kDiro60Ja0eLkws=
 after_script:
 - cat lcov.info | codeclimate
+sudo: false
