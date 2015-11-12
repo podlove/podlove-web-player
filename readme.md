@@ -32,53 +32,14 @@ Clone the repository and install all dependencies with
     npm install
     npm install -g gulp
 
-## Set up CSS pre-processing
-
-### Update ruby environment
-
-       $ gem update --system
-
-### Install SASS
-
-* [Official SASS site](http://sass-lang.com/install)
-
-
-    gem install sass
-
-or
-
-    sudo gem install sass
-
-Then check your version (should be 3.3.x)
-
-    sass -v
-
-### Install Compass
-
-* [Official Compass site](http://compass-style.org/install/)
-
-Compass runs on any computer that has ruby installed.
-
-Then install compass
-
-    gem install compass
-
-Your version should be
-
-### Install SASS CSS Importer
-
-Next you need to install the [SASS CSS Importer](https://github.com/chriseppstein/sass-css-importer) ruby gem.
-
-    gem install --pre sass-css-importer
-
-### Install autoprefixer
+## Install autoprefixer
 
 Install autoprefixer to parse CSS and add vendor prefixes to rules fetched from 'Can I Use'
 [https://github.com/ai/autoprefixer](https://github.com/ai/autoprefixer)
 
     sudo npm install --global autoprefixer
 
-### Build the CSS file
+## Build the CSS file
 
 There is a gulp task for that, processing a version with line comments as well as a minified one
 
@@ -116,7 +77,7 @@ Some automated tests are written and can be found in the *spec* folder.
 Install [PhantomJS](http://phantomjs.org/) to be able to run them on your machine.
 
 Run them with
- 
+
     gulp test
 
 Each commit pushed to the repo will automatically launch the tests on TravisCI.
