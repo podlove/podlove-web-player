@@ -23,7 +23,6 @@ function addEndTime(duration) {
   return function (chapter, i, chapters) {
     var next = chapters[i + 1];
     chapter.end = next ? next.start : duration;
-    console.log('duration', duration, chapter.end);
     return chapter;
   };
 }
