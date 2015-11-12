@@ -20,8 +20,8 @@ function createEpisodeInfo(tab, params) {
     '<p>Duration: ' + timeCode.fromTimeStamp(params.duration) + '</p>' +
      getPublicationDate(params.publicationDate) +
     '<p>' +
-      'Permalink for this episode:<br>' +
-      '<a href="' + params.permalink + '">' + params.permalink + '</a>' +
+      'Permalink:<br>' +
+      '<a href="' + params.permalink + '" title="Permalink für die Episode">' + params.permalink + '</a>' +
     '</p>'
   );
 }
