@@ -1,11 +1,6 @@
 'use strict';
 
 /**
- * @type {Tab}
- */
-var Tab = require('./tab.js');
-
-/**
  *
  * @param {Tab} tab
  * @returns {boolean}
@@ -61,16 +56,26 @@ TabRegistry.prototype.createToggleFor = function (tab) {
  * @param {Tab} tab
  * @param {Boolean} visible
  */
-TabRegistry.prototype.add = function(tab, visible) {
+TabRegistry.prototype.add = function(tab) {
   if (tab === null) { return; }
   this.tabs.push(tab);
   this.container.append(tab.box);
-
   tab.toggle = this.createToggleFor(tab);
-  if (visible) {
-    tab.open();
-    this.activeTab = tab;
+};
+
+TabRegistry.prototype.openInitial = function (tabName) {
+  if (!tabName) {
+    return;
   }
+  var matchingTabs = this.tabs.filter(function (tab) {
+    return (tab.headline === tabName);
+  });
+  if (matchingTabs.length === 0) {
+    console.warn('TabRegistry.openInitial: Could not open tab', tabName);
+  }
+  var initialActiveTab = matchingTabs.pop();
+  initialActiveTab.open();
+  this.activeTab = initialActiveTab;
 };
 
 /**

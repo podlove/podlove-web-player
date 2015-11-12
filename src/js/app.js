@@ -28,8 +28,6 @@ var TabRegistry = require('./tabregistry'),
   Player = require('./player'),
   ProgressBar = require('./modules/progressbar');
 
-var autoplay = false;
-
 var pwp;
 
 // will expose/attach itself to the $ global
@@ -46,7 +44,7 @@ function renderShowTitle(title, url) {
     return '';
   }
   if (url) {
-    title = '<a href="' + url + '">' + title + '</a>';
+    title = '<a href="' + url + '" title="Link zur Show">' + title + '</a>';
   }
   return '<h3 class="showtitle">' + title + '</h3>';
 }
@@ -61,7 +59,7 @@ function renderTitle(text, link) {
   var titleBegin = '<h1 class="episodetitle">',
     titleEnd = '</h1>';
   if (text !== undefined && link !== undefined) {
-    text = '<a href="' + link + '">' + text + '</a>';
+    text = '<a href="' + link + '" title="Link zur Episode">' + text + '</a>';
   }
   return titleBegin + text + titleEnd;
 }
@@ -96,7 +94,7 @@ function renderTitleArea(params) {
  * @returns {string}
  */
 function renderPlaybutton() {
-  return $('<a class="play" title="Play Episode" href="javascript:;"></a>');
+  return $('<a class="play" title="Abspielen" href="javascript:;"></a>');
 }
 
 /**
@@ -146,7 +144,6 @@ function renderModules(timeline, wrapper, params) {
   if (hasChapters) {
     chapters = new Chapters(timeline, params);
     timeline.addModule(chapters);
-    chapters.addEventhandlers();
   }
   controls.createTimeControls(chapters);
 
@@ -166,12 +163,14 @@ function renderModules(timeline, wrapper, params) {
    */
 
   if (hasChapters) {
-    tabs.add(chapters.tab, !!params.chaptersVisible);
+    tabs.add(chapters.tab);
   }
 
-  tabs.add(sharing.tab, !!params.sharebuttonsVisible);
-  tabs.add(downloads.tab, !!params.downloadbuttonsVisible);
-  tabs.add(infos.tab, !!params.summaryVisible);
+  tabs.add(sharing.tab);
+  tabs.add(downloads.tab);
+  tabs.add(infos.tab);
+
+  tabs.openInitial(params.activeTab);
 
   // Render controlbar with togglebar and timecontrols
   var controlbarWrapper = $('<div class="controlbar-wrapper"></div>');
@@ -290,15 +289,63 @@ function addBehavior(player, params, wrapper) {
     player.play();
   });
 
-  // wait for the player or you'll get DOM EXCEPTIONS
-  // And just listen once because of a special behaviour in firefox
-  // --> https://bugzilla.mozilla.org/show_bug.cgi?id=664842
-  jqPlayer.one('canplay', function (evt) {
-    console.debug('canplay', evt);
-    timeline.duration = player.duration;
-    // attach and render modules
-    renderModules(timeline, wrapper, params);
-  });
+  $(document)
+    .on('keydown', function (e) {
+      console.log('progress', 'keydown', e);
+      /*
+       if ((new Date() - lastKeyPressTime) >= 1000) {
+       startedPaused = media.paused;
+       }
+       */
+      e.preventDefault();
+      e.stopPropagation();
+
+      var keyCode = e.which,
+        duration = timeline.player.duration,
+        seekTime = timeline.player.currentTime;
+
+      switch (keyCode) {
+        case 37: // left
+          seekTime -= 1;
+          break;
+        case 39: // Right
+          seekTime += 1;
+          break;
+        case 38: // Up
+          if (timeline.hasChapters) {
+            timeline.modules[0].next();
+            return false;
+          }
+          seekTime += Math.floor(duration * 0.1);
+          break;
+        case 40: // Down
+          if (timeline.hasChapters) {
+            timeline.modules[0].previous();
+            return false;
+          }
+          seekTime -= Math.floor(duration * 0.1);
+          break;
+        case 36: // Home
+          seekTime = 0;
+          break;
+        case 35: // end
+          seekTime = duration;
+          break;
+        case 10: // enter
+        case 32: // space
+          if (timeline.player.paused) {
+            timeline.player.play();
+            return false;
+          }
+            timeline.player.pause();
+          return false;
+        default:
+          return false;
+      }
+
+      timeline.setTime(seekTime);
+      return false;
+    });
 
   jqPlayer
     .on('timelineElement', function (event) {
@@ -322,6 +369,20 @@ function addBehavior(player, params, wrapper) {
       // delete the cached play time
       timeline.rewind();
     });
+
+  var delayModuleRendering = !timeline.duration || isNaN(timeline.duration) || timeline.duration <= 0;
+
+  if (!delayModuleRendering) {
+    renderModules(timeline, wrapper, params);
+  }
+
+  jqPlayer.one('canplay', function () {
+    // correct duration just in case
+    timeline.duration = player.duration;
+    if (delayModuleRendering) {
+      renderModules(timeline, wrapper, params);
+    }
+  });
 }
 
 /**

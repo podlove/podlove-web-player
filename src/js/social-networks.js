@@ -57,6 +57,7 @@ var socialNetworks = {
     profileUrl: 'mailto:',
     shareUrl: '?subject=$title$&body=$text$'
   }),
+
   gplus: new SocialNetwork({
     icon: 'google-plus',
     title: 'Google+',

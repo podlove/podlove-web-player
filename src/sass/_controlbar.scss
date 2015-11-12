@@ -17,6 +17,7 @@
   }
   // A list with all audio control elements
   .timecontrolbar {
+    display: table;
     width: 100%;
     position: initial;
     margin: 0;
@@ -27,7 +28,8 @@
       margin: 0;
       padding-right: 0;
       li {
-      width: 31%;
+        display: table-cell;
+        width: 32px !important;
         &:last-of-type {
           width: 6%;
         }

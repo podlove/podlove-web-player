@@ -1,7 +1,6 @@
 'use strict';
 
-var embed = require('./embed'),
-  parseTimecode = require('./timecode').parse;
+var parseTimecode = require('./timecode').parse;
 
 /**
  * player

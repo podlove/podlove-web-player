@@ -37,8 +37,8 @@
   // Container for image
   .poster-image {
     margin: $margin-small-vertical $margin-base-horizontal 16px;
-    @media all and (max-width: $screen-tablet-portrait) {
-      margin-left: $margin-small-horizontal;
+    @media all and (max-width: $screen-phone) {
+      margin: $margin-small-horizontal;
     }
     img {
       width: 100%;
@@ -46,33 +46,8 @@
     }
   }
   footer {
-    h3 {
-      margin-top: 5px;
-    }
     p {
       padding: $padding-large-vertical 0;
-    }
-    .social-links {
-      border-bottom: 16px solid $white;
-      ul {
-        margin: 18px 0 $margin-base-vertical 0;
-      }
-      ul li {
-        display: inline-block;
-        margin: 10px;
-        img {
-          display: block;
-          width: 100%;
-          max-width: 100px;
-        }
-        span {
-          display: block;
-          padding-top: $padding-small-vertical;
-        }
-        a {
-          display: inline-block;
-        }
-      }
     }
   }
 }

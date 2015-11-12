@@ -2,30 +2,31 @@
 
 // Load plugins
 var gulp = require('gulp')
-  , compass = require('gulp-compass')
+  , sass = require('gulp-sass')
   , autoprefixer = require('gulp-autoprefixer')
   , minifycss = require('gulp-minify-css')
   , eslint = require('gulp-eslint')
   , uglify = require('gulp-uglify')
   , imagemin = require('gulp-imagemin')
   , rename = require('gulp-rename')
-  , clean = require('gulp-clean')
-  , concat = require('gulp-concat')
+  , del = require('del')
 // deactivate caching until issue is resolved
 //  , cache = require('gulp-cache')
   , browserify = require('gulp-browserify')
-  , connect = require('gulp-connect')
+  , browserSync = require('browser-sync')
   , karma = require('karma').server
   , _ = require('lodash')
-
   , karmaConf = require('./karma.conf.json')
+  ;
 
 // set paths
-  , bower = 'bower_components/'
+var bower = 'bower_components/'
   , source = 'src/'
   , dest = 'dist/'
   , external = 'vendor/'
   ;
+
+var reload = browserSync.reload;
 
 gulp.task('lint', function () {
   // Note: To have the process exit with an error code (1) on
@@ -54,40 +55,35 @@ gulp.task('tdd', function (done) {
 // Styles
 gulp.task('styles', function() {
   return gulp.src(source + 'sass/pwp-*.scss')
-    .pipe(compass({
-      config_file: './config.rb',
-      style: 'expanded',
-      css: dest + 'css',
-      sass: source + 'sass'
-    }))
+    .pipe(sass({sourceComments: true}).on('error', sass.logError))
     .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
     .pipe(gulp.dest(dest + 'css'))
     .pipe(rename({ suffix: '.min' }))
     .pipe(minifycss())
     .pipe(gulp.dest(dest + 'css'))
-    .pipe(connect.reload())
+    .pipe(reload({stream: true}));
 });
 
 gulp.task('moderator', function() {
   return gulp.src(source + 'js/moderator.js')
-    .pipe(browserify({ insertGlobals : true, debug : true }))
+    .pipe(browserify({ insertGlobals: true, debug: true }))
     .pipe(rename('podlove-web-moderator.js'))
     .pipe(gulp.dest(dest + 'js'))
     .pipe(rename({ suffix: '.min' }))
     .pipe(uglify())
     .pipe(gulp.dest(dest + 'js'))
-    .pipe(connect.reload())
+    .pipe(reload({stream: true}));
 });
 
 gulp.task('player', function() {
   return gulp.src(source + 'js/app.js')
-    .pipe(browserify({ insertGlobals : true, debug : true }))
+    .pipe(browserify({ insertGlobals: true, debug: true }))
     .pipe(rename('podlove-web-player.js'))
     .pipe(gulp.dest(dest + 'js'))
     .pipe(rename({ suffix: '.min' }))
     .pipe(uglify())
     .pipe(gulp.dest(dest + 'js'))
-    .pipe(connect.reload())
+    .pipe(reload({stream: true}));
 });
 
 // Scripts
@@ -98,7 +94,7 @@ gulp.task('images', function() {
   return gulp.src(source + 'img/**/*')
     .pipe(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true }))
     .pipe(gulp.dest(dest + 'img'))
-    .pipe(connect.reload())
+    .pipe(reload({stream: true}));
 });
 
 // copy lib files
@@ -131,18 +127,17 @@ gulp.task('examples', function() {
   // main documentation index html
   gulp.src(source + '*.html')
     .pipe(gulp.dest(dest))
-    .pipe(connect.reload());
+    .pipe(reload({stream: true}));
 
   // all media examples
-  gulp.src(source + 'examples/**/*')
+  gulp.src(source + 'examples/**/*.*')
     .pipe(gulp.dest(dest + 'examples'))
-    .pipe(connect.reload());
+    .pipe(reload({stream: true}));
 });
 
 // Clean
-gulp.task('clean', function() {
-  return gulp.src(dest, {read: false})
-    .pipe(clean())
+gulp.task('clean', function (cb) {
+  del([dest], cb);
 });
 
 // build distribution package
@@ -157,6 +152,11 @@ gulp.task('default', ['lint', 'test'], function() {
 
 // Watch
 gulp.task('watch', function() {
+  browserSync({
+    server: {
+        baseDir: './dist/'
+    }
+  });
 
   // Watch Sass source files
   gulp.watch(source + 'sass/**/*.scss', ['styles']);
@@ -172,13 +172,5 @@ gulp.task('watch', function() {
 
 });
 
-gulp.task('connect', function() {
-  connect.server({
-    root: dest,
-    livereload: true
-  });
-});
-
 // Serve
-gulp.task('serve', ['build', 'connect', 'watch']);
-
+gulp.task('serve', ['build', 'watch']);

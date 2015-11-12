@@ -223,7 +223,6 @@ ProgressBar.prototype.addEvents = function() {
 
   function handleMouseUp () {
     mouseIsDown = false;
-    timeline.seekEnd();
     $(document).unbind('touchend.dur mouseup.dur touchmove.dur mousemove.dur');
   }
 
@@ -232,7 +231,6 @@ ProgressBar.prototype.addEvents = function() {
 
     mouseIsDown = true;
     handleMouseMove(event);
-    timeline.seekStart();
     $(document)
       .bind('mousemove.dur touchmove.dur', handleMouseMove)
       .bind('mouseup.dur touchend.dur', handleMouseUp);

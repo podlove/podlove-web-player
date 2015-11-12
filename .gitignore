@@ -1,10 +1,19 @@
+# dotfiles
 .*
-*Thumbs.db
-atlassian-ide-plugin.xml
-node_modules/
-bower_components/
 !.gitignore
 !.jshintrc
 !.eslintrc
 !.editorconfig
+!.travis.yml
+
+# external dependencies
+node_modules
+bower_components
+
+# OS and editor artefacts
+*Thumbs.db
+atlassian-ide-plugin.xml
+
+# build artefacts
+_site
 dist

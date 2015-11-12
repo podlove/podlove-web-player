@@ -1,0 +1,37 @@
+//
+// Social Profiles and Links
+// --------------------------------------------------
+
+.social-links {
+  border-bottom: 16px solid $white;
+  padding: $padding-large-vertical $padding-base-horizontal 15px;
+  @media screen and (min-width: $screen-desktop) {
+    padding: $padding-large-vertical $padding-base-horizontal;
+  }
+
+  h3 {
+    margin: 0 0 $margin-small-vertical 0;
+    @media screen and (min-width: $screen-desktop) {
+      margin: 0 0 15px 0;
+    }
+  }
+  ul {
+    margin-bottom: 0 !important;
+  }
+  li {
+  display: inline-block;
+  margin: 10px;
+    img {
+      display: block;
+      width: 100%;
+      max-width: 100px;
+    }
+    span {
+      display: block;
+      padding-top: $padding-small-vertical;
+    }
+    a {
+      display: inline-block;
+    }
+  }
+}

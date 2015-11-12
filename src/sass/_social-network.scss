@@ -71,3 +71,56 @@ $profiles: (
     }
   }
 }
+
+// Custom icons, due to individual icon sizes
+
+// Soundcloud
+.pwp-contrast-soundcloud {
+  height: $font-size-contrast-social-icons + 8px;
+  padding: 7px 0;
+
+  @media screen and (min-width: $screen-tablet-portrait) {
+    height: $font-size-contrast-social-icons + 17px;
+    padding: 10px 0;
+  }
+  @media screen and (min-width: $screen-desktop) {
+    height: $font-size-contrast-social-icons + 27px;
+    padding: 13px 0;
+  }
+  .pwp-soundcloud:before {
+   font-size: 35px;
+   @media screen and (min-width: $screen-tablet-portrait) {
+     font-size: 40px;
+   }
+   @media screen and (min-width: $screen-desktop) {
+     font-size: 45px;
+   }
+  }
+}
+
+// ADN
+.pwp-contrast-adn {
+  height: $font-size-contrast-social-icons + 8px;
+  width: $font-size-contrast-social-icons + 8px;
+  padding: 2px 0 0 6px;
+
+  @media screen and (min-width: $screen-tablet-portrait) {
+    height: $font-size-contrast-social-icons + 17px;
+    width: $font-size-contrast-social-icons + 17px;
+    padding: 4px 0 0 9px;
+  }
+  @media screen and (min-width: $screen-desktop) {
+    height: $font-size-contrast-social-icons + 27px;
+    width: $font-size-contrast-social-icons + 27px;
+    padding: 5px 0 0 9px;
+  }
+  .pwp-adn:before {
+   font-size: 48px;
+   @media screen and (min-width: $screen-tablet-portrait) {
+     font-size: 52px;
+   }
+   @media screen and (min-width: $screen-desktop) {
+     font-size: 60px;
+   }
+  }
+}

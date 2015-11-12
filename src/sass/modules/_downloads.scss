@@ -102,26 +102,48 @@
   }
 }
 
+select::-ms-expand { /* for IE 11 */
+    display: none;
+}
+/*target Internet Explorer 9 and Internet Explorer 10:*/
+@media screen and (min-width:0\0) {
+    select {
+        background:none;
+        padding: 5px;
+    }
+}
+
 // Dropdown menu with selectable file formats
 .select {
   background-color: $select-background !important;
   border: 1px solid $select-border;
   margin: 0 auto $margin-base-vertical auto;
-  height: 30px;
+  height: 40px;
   padding: 6px 12px;
   font-size: $font-size-small;
   line-height: 1.4;
   color: $select-color !important;
+  text-align: center !important;
+  display: block;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  overflow:hidden;
+  background: url(/img/arrow-down-white.png) 96% no-repeat #ddd;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
   @media screen and (max-width: $screen-tiny-phone) {
     width: 95vw;
   }
-  @media screen and (min-width: $screen-phone) {
+  @media screen and (min-width: $screen-tiny-phone) {
+    width: 50vw;
     font-size: $font-size-base;
-    height: 40px;
+  }
+  @media screen and (min-width: $screen-phone) {
     margin: 0 auto $margin-small-vertical auto;
   }
   @media screen and (min-width: $screen-desktop) {
-    height: 40px;
     margin: 0 auto $margin-base-horizontal auto;
   }
   @media screen and (min-width: $screen-lg-desktop) {
