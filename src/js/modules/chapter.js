@@ -38,13 +38,13 @@ function render(html) {
  */
 function renderChapterTable() {
   return render(
-    '<table class="podlovewebplayer_chapters"><caption>Podcast Chapters</caption>' +
+    '<table class="podlovewebplayer_chapters"><caption>Kapitel</caption>' +
       '<thead>' +
         '<tr>' +
-          '<th scope="col">Chapter Number</th>' +
-          '<th scope="col">Start time</th>' +
-          '<th scope="col">Title</th>' +
-          '<th scope="col">Duration</th>' +
+          '<th scope="col">Kapitelnummer</th>' +
+          '<th scope="col">Startzeit</th>' +
+          '<th scope="col">Titel</th>' +
+          '<th scope="col">Dauer</th>' +
         '</tr>' +
       '</thead>' +
       '<tbody></tbody>' +
@@ -137,8 +137,8 @@ function Chapters (timeline, params) {
 
   this.tab = new Tab({
     icon: 'pwp-chapters',
-    title: 'Show/hide chapters',
-    headline: 'Chapters',
+    title: 'Kapitel anzeigen / verbergen',
+    headline: 'Kapitel',
     name: 'podlovewebplayer_chapterbox'
   });
 
