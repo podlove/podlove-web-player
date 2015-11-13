@@ -13,6 +13,7 @@ var gulp = require('gulp')
 // deactivate caching until issue is resolved
 //  , cache = require('gulp-cache')
   , browserify = require('gulp-browserify')
+  , browserSync = require('browser-sync')
   , karma = require('karma').server
   , _ = require('lodash')
   , karmaConf = require('./karma.conf.json')
@@ -143,6 +144,13 @@ gulp.task('default', ['lint', 'test'], function() {
 
 // Watch
 gulp.task('watch', function() {
+  // Browsersync configuration
+  browserSync({
+    server: { // serve dist directory as server
+        baseDir: './dist/'
+    },
+    ghostMode: false  // ghost mode (interaction sync) disabled by default -> enable in ui
+  });
 
   // Watch Sass source files
   gulp.watch(source + 'sass/**/*.scss', ['styles']);
