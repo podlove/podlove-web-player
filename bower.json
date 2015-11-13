@@ -7,7 +7,7 @@
     "src/index.html",
     "src/js/app.js",
     "src/js/moderator.js",
-    "src/sass/pwp-dark.scss",
+    "src/sass/pwp-dark.scss"
   ],
   "ignore": [
     "**/.*",
