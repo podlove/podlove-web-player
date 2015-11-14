@@ -20,6 +20,7 @@
     @include order(3);
     min-width: 1px;
     margin: auto 0;
+    width: 1px; // hacky solution
     padding: 0 $padding-base-horizontal 0 0;
     h1 {
       font-size: 1.5em;
@@ -51,10 +52,12 @@
 }
 
 .showtitle {
+  @include ellipsis;
   margin: 0;
 }
 
 .episodetitle {
+  @include ellipsis;
   margin: 10px 0;
   > a {
     line-height: 20px !important;
@@ -94,7 +97,7 @@
     .coverart {
       @include flex(1 100%);
       @include order(1);
-      width: $title-image-full-width;
+      width: 100%;
       height: auto;
       img {
         height: auto;
