@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>   <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>   <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>   <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+
+    <title>MINIMAL</title>
+
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+
+    <!-- Mobile viewport optimized: j.mp/bplateviewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href="/examples/examples.css" rel="stylesheet" media="screen" type="text/css" />
+    <script>var pwp_metadata = {};</script>
+</head>
+<body>
+    <article>
+        <h1>Minimal Example</h1>
+        <p>The absolute minimal data set is handed over</p>
+        <audio id="qwer">
+            <source src="../which-format/podlove-test-track.mp4" type="audio/mp4"/>
+            <source src="../which-format/podlove-test-track.mp3" type="audio/mpeg"/>
+            <source src="../which-format/podlove-test-track.ogg" type="audio/ogg; codecs=vorbis"/>
+            <source src="../which-format/podlove-test-track.opus" type="audio/ogg; codecs=opus"/>
+        </audio>
+        <script>
+            pwp_metadata['qwer'] = {
+                sources: [
+                    {
+                        src: "/examples/which-format/podlove-test-track.mp4",
+                        type: "audio/mp4"
+                    },
+                    {
+                        src:"/examples/which-format/podlove-test-track.mp3",
+                        type:"audio/mpeg"
+                    },
+                    {
+                        src:"/examples/which-format/podlove-test-track.ogg",
+                        type:"audio/ogg; codecs=vorbis"
+                    },
+                    {
+                        src:"/examples/which-format/podlove-test-track.opus",
+                        type:"audio/ogg; codecs=opus"
+                    }
+                ],
+                title: 'PWP001 - Which format plays?',
+                permalink: '/examples/which-format/index.html',
+                subtitle: 'The Format your client chooses to play first will be told when you play this track.',
+                publicationDate: '2004-02-12T15:19:21+00:00',
+                show: {
+                    title: 'PWP - The Podlove Web Player',
+                    subtitle: 'HTML5 Goodness for Podcasts',
+                    summary: 'Even more text about this player and its advantages...',
+                    url: 'http://docs.podlove.org'
+                },
+                profiles: [
+                  {
+                      serviceName: 'twitter',
+                      profile: 'podlove_org'
+                  },
+                  {
+                      serviceName: 'flattr',
+                      profile: 'timpritlove'
+                  },
+                  {
+                      serviceName: 'facebook',
+                      profile: 'podlove_org'
+                  },
+                  {
+                      serviceName: 'soundcloud',
+                      profile: 'podlove_org'
+                  },
+                  {
+                      serviceName: 'adn',
+                      profile: 'podlove'
+                  },
+                    {
+                        serviceName: 'email',
+                        profile: 'info@podlove.org'
+                    }
+                ],
+                duration: '00:02.902'
+            };
+        </script>
+    </article>
+
+    <script src="/js/vendor/jquery.min.js"></script>
+    <script src="/js/podlove-web-moderator.js"></script>
+    <script>$('audio').podlovewebplayer({staticEmbedPage:'/static.html'});</script>
+  </body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Plato - lib/streams/RollingFileStream.js</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <link href="../../assets/css/vendor/morris.css" rel="stylesheet">
+  <link href="../../assets/css/vendor/bootstrap.css" rel="stylesheet">
+  <link href="../../assets/css/vendor/font-awesome.css" rel="stylesheet">
+  <link href="../../assets/css/vendor/codemirror.css" rel="stylesheet">
+  <link href="../../assets/css/plato.css" rel="stylesheet">
+  <link href="../../assets/css/plato-file.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="http://github.com/es-analysis/plato">Plato on Github</a>
+    <ul class="nav navbar-nav">
+      <li>
+        <a href="../../index.html">Report Home</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="jumbotron">
+  <div class="container">
+    <h1>lib/streams/RollingFileStream.js</h1>
+  </div>
+</div>
+
+<div class="container aggregate-stats">
+  <div class="row">
+    <div class="col-md-6">
+      <h2 class="header">Maintainability <a href="http://blogs.msdn.com/b/codeanalysis/archive/2007/11/20/maintainability-index-range-and-meaning.aspx"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="A value between 0 and 100 that represents the relative ease of maintaining the code. A high value means better maintainability." data-original-title="Maintainability Index"  data-container="body"></i></a></h2>
+      <p class="stat">73.14</p>
+    </div>
+    <div class="col-md-6">
+      <h2 class="header">Lines of code <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC" data-container="body"></i></h2>
+      <p class="stat">118</p>
+    </div>
+  </div>
+  <div class="row historical">
+    <div class="col-md-6">
+      <p id="chart_historical_maint" class="chart"></p>
+    </div>
+    <div class="col-md-6">
+      <p id="chart_historical_sloc" class="chart"></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <h2 class="header">Difficulty  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="The difficulty measure is related to the difficulty of the program to write or understand." data-original-title="Difficulty" data-container="body"></i></a></h2>
+      <p class="stat">27.23</p>
+    </div>
+    <div class="col-md-6">
+      <h2 class="header">Estimated Errors  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Halstead's delivered bugs is an estimate for the number of errors in the implementation." data-original-title="Delivered Bugs" data-container="body"></i></a></h2>
+      <p class="stat">1.04</p>
+    </div>
+  </div>
+</div>
+
+<div class="container charts">
+  <div class="row">
+    <h2 class="header">Function weight</h2>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <h3 class="chart-header">By Complexity <a href="http://en.wikipedia.org/wiki/Cyclomatic_complexity"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="This metric counts the number of distinct paths through a block of code. Lower values are better." data-original-title="Cyclomatic Complexity" data-container="body"></i></a></h3>
+      <div id="fn-by-complexity" class="stat"></div>
+    </div>
+    <div class="col-md-6">
+      <h3 class="chart-header">By SLOC  <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC" data-container="body"></i></h3>
+      <div id="fn-by-sloc" class="stat"></div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <textarea id="file-source" class="col-md-12">&quot;use strict&quot;;
+var BaseRollingFileStream = require(&#039;./BaseRollingFileStream&#039;)
+, debug = require(&#039;../debug&#039;)(&#039;RollingFileStream&#039;)
+, util = require(&#039;util&#039;)
+, path = require(&#039;path&#039;)
+, child_process = require(&#039;child_process&#039;)
+, zlib = require(&quot;zlib&quot;)
+, fs = require(&#039;fs&#039;)
+, async = require(&#039;async&#039;);
+
+module.exports = RollingFileStream;
+
+function RollingFileStream (filename, size, backups, options) {
+  this.size = size;
+  this.backups = backups || 1;
+  
+  function throwErrorIfArgumentsAreNotValid() {
+    if (!filename || !size || size &lt;= 0) {
+      throw new Error(&quot;You must specify a filename and file size&quot;);
+    }
+  }
+  
+  throwErrorIfArgumentsAreNotValid();
+  
+  RollingFileStream.super_.call(this, filename, options);
+}
+util.inherits(RollingFileStream, BaseRollingFileStream);
+
+RollingFileStream.prototype.shouldRoll = function() {
+  debug(&quot;should roll with current size &quot; + this.currentSize + &quot; and max size &quot; + this.size);
+  return this.currentSize &gt;= this.size;
+};
+
+RollingFileStream.prototype.roll = function(filename, callback) {
+  var that = this,
+  nameMatcher = new RegExp(&#039;^&#039; + path.basename(filename));
+  
+  function justTheseFiles (item) {
+    return nameMatcher.test(item);
+  }
+  
+  function index(filename_) {
+    debug(&#039;Calculating index of &#039;+filename_);
+    return parseInt(filename_.substring((path.basename(filename) + &#039;.&#039;).length), 10) || 0;
+  }
+  
+  function byIndex(a, b) {
+    if (index(a) &gt; index(b)) {
+      return 1;
+    } else if (index(a) &lt; index(b) ) {
+      return -1;
+    } else {
+      return 0;
+    }
+  }
+
+  function compress (filename, cb) {
+
+    var gzip = zlib.createGzip();
+    var inp = fs.createReadStream(filename);
+    var out = fs.createWriteStream(filename+&quot;.gz&quot;);
+    inp.pipe(gzip).pipe(out);
+    fs.unlink(filename, cb);
+
+  }
+
+  function increaseFileIndex (fileToRename, cb) {
+    var idx = index(fileToRename);
+    debug(&#039;Index of &#039; + fileToRename + &#039; is &#039; + idx);
+    if (idx &lt; that.backups) {
+
+      var ext = path.extname(fileToRename);
+      var destination = filename + &#039;.&#039; + (idx+1);
+      if (that.options.compress &amp;&amp; /^gz$/.test(ext.substring(1))) {
+        destination+=ext;
+      }
+      //on windows, you can get a EEXIST error if you rename a file to an existing file
+      //so, we&#039;ll try to delete the file we&#039;re renaming to first
+      fs.unlink(destination, function (err) {
+        //ignore err: if we could not delete, it&#039;s most likely that it doesn&#039;t exist
+        debug(&#039;Renaming &#039; + fileToRename + &#039; -&gt; &#039; + destination);
+        fs.rename(path.join(path.dirname(filename), fileToRename), destination, function(err) {
+          if (err) {
+            cb(err);
+          } else {
+            if (that.options.compress &amp;&amp; ext!=&quot;.gz&quot;) {
+              compress(destination, cb);
+            } else {
+              cb();
+            }
+          }
+        });
+      });
+    } else {
+      cb();
+    }
+  }
+
+  function renameTheFiles(cb) {
+    //roll the backups (rename file.n to file.n+1, where n &lt;= numBackups)
+    debug(&quot;Renaming the old files&quot;);
+    fs.readdir(path.dirname(filename), function (err, files) {
+      async.eachSeries(
+        files.filter(justTheseFiles).sort(byIndex).reverse(),
+        increaseFileIndex,
+        cb
+      );
+    });
+  }
+
+  debug(&quot;Rolling, rolling, rolling&quot;);
+  async.series([
+    this.closeTheStream.bind(this),
+    renameTheFiles,
+    this.openTheStream.bind(this)
+  ], callback);
+
+};</textarea>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p>.</p>
+  </div>
+</footer>
+
+<script type="text/html" id="complexity-popover-template">
+  <div class="complexity-notice">
+    Complexity : {{ complexity.cyclomatic }} <br>
+    Length : {{ complexity.halstead.length }} <br>
+    Difficulty : {{ complexity.halstead.difficulty.toFixed(2) }} <br>
+    Est # bugs : {{ complexity.halstead.bugs.toFixed(2) }}<br>
+  </div>
+</script>
+
+<script type="text/javascript" src="../../assets/scripts/bundles/core-bundle.js"></script>
+<script type="text/javascript" src="../../assets/scripts/bundles/codemirror.js"></script>
+<script type="text/javascript" src="../../assets/scripts/codemirror.markpopovertext.js"></script>
+<script type="text/javascript" src="report.js"></script>
+<script type="text/javascript" src="report.history.js"></script>
+<script type="text/javascript" src="../../assets/scripts/plato-file.js"></script>
+</body>
+</html>

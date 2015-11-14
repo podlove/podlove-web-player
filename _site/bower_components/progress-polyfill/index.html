@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="utf-8" />
+<title>HTML5 &lt;progress&gt; polyfill by Lea Verou</title>
+<link href="style.css" rel="stylesheet" />
+<link href="progress-polyfill.css" rel="stylesheet" />
+<script>document.createElement('progress');</script>
+</head>
+<body>
+	<hgroup>
+		<h1>HTML5 &lt;progress&gt; polyfill</h1>
+		<h2><a href="http://leaverou.me">by Lea Verou</a> &bull; <a href="http://leaverou.me/2011/07/a-polyfill-for-html5-progress-element">Story</a> &bull; <a href="https://github.com/LeaVerou/HTML5-Progress-polyfill">Github</a></h2>
+	</hgroup>
+	
+	<h2>Demos</h2>
+	<ul>
+		<li>
+			<label>Indeterminate
+				<progress max="100"></progress>
+			</label>
+		</li>
+		<li>
+			<label for="progress1">Progress: 0%</label>
+			<progress max="10" value="0" id="progress1"></progress>
+		</li>
+		<li>
+			<label for="progress2">Progress: .5 of 0</label>
+			<progress max="0" value="0.5" id="progress2"></progress>
+		</li>
+		<li>
+			<label for="progress3">Progress: 100%</label>
+			<progress max="3254" value="3254" id="progress3"></progress>
+		</li>
+		<li>
+			<label>Progress: 75%
+				<progress max="0.8" value="0.6"></progress>
+			</label>
+		</li>
+	</ul>
+	
+	<h2>Dynamic demo</h2>
+	<ul>
+		<li id="dynamicProgress">
+			<label>Progress: <span class="percentage">0</span>%
+				<progress value="0" max="100"></progress>
+			</label>
+		</li>
+	</ul>
+	<p>
+	   <button id="animateFully">Animate to 100%</button>
+	   <button id="animateToUserInput">Animate to...</button>
+	</p>
+	
+	<h2>Features</h2>
+	<ul>
+		<li>Accessible (WAI-ARIA-enabled)</li>
+		<li>Supports getting (and setting, when allowed by the spec) all the IDL attributes defined in the specification (value, max, position, labels), through ES5 getters and setters</li>
+		<li>Supoorts setting both max and value attributes, through mutation events</li>
+		<li>Will fix new progress elements as well, through mutation events</li>
+		<li>No extra HTML elements needed and none added through script</li>
+	</ul>
+	
+	<h2>Browser support</h2>
+	<p>The progress element is natively supported in: Firefox 6+, Opera 11+, Chrome, Safari 5.1</p>
+	<p>This polyfill adds almost full support in: Firefox 3.5-5, Opera 10.5-10.63, IE9-10</p>
+	<p>This polyfill adds partial support in: IE8</p>
+	<p>Supporting Safari 5 was impossible, as it completely drops the progress tags and gives you an error</p>
+	
+	<h2>How to use</h2>
+	<p>Just add <code>progress-polyfill.css</code> in the head section and <code>progress-polyfill.js</code> near the body closing tag.
+	
+	<h2>Unit tests</h2>
+	<p style="display:none">
+		<label><progress max="0.8" value="0.6" id="progress4"></progress></label>
+		<label for="progress4">Test label for progress4</label>
+		<progress max="100" id="progress0"></progress>
+		<progress max="0" id="progress5"></progress>
+	</p>
+	
+	<div id="unit-test-results"></div>
+	
+	<script src="progress-polyfill.js"></script>
+	<script src="tests.js"></script>
+	<script src="user-interaction.js"></script>
+</body>
+</html>

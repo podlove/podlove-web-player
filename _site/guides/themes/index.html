@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+
+    <title>Podlove Web Player 3.0 : Web Player Themes</title>
+    <meta name="description" content="Documentation">
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/bower_components/podlove-font/css/podlove-font.css" media="screen" type="text/css">
+    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="stylesheet" href="/css/main.css">
+
+</head>
+<body id="top">
+
+<header class="navbar navbar-static-top pw-docs-nav">
+    <div class="navbar-header">
+    <button class="navbar-toggle display none" type="button" data-toggle="collapse" data-target=".pw-nav" aria-expanded="true">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+    <a href=" /" class="navbar-brand pw-docs-brand">
+        <img id="logo" class="logo img-responsive" src="/assets/img/podlove-logo-grey.png">
+        Podlove Web Player 3.0
+        <small class="hidden-xs">Documentation</small>
+    </a>
+</div>
+</header>
+
+<div class="container-fluid">
+    <section class="row-fluid">
+        
+        
+        <nav class="pw-nav col-sm-4 col-md-3 col-lg-2 hidden-print">
+            <ul class="nav">
+    <li>
+        <a href="/">Home</a>
+    </li>
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    <li>
+        <span>Guides</span>
+    </li>
+    
+    <li data-order="">
+        <a href="/guides/getting-started">Getting Started</a>
+    </li>
+    
+    
+    <li data-order="">
+        <a href="/guides/minimal-player">Minimal Player</a>
+    </li>
+    
+    
+    <li data-order="">
+        <a href="/guides/chapter-marks">Chapter Marks</a>
+    </li>
+    
+    
+    <li data-order="">
+        <a href="/guides/themes">Web Player Themes</a>
+    </li>
+    
+    
+    <li data-order="">
+        <a href="/guides/previews-of-themes">Previews of Themes</a>
+    </li>
+    
+    
+    <li data-order="">
+        <a href="/guides/social-profiles">Social Profiles</a>
+    </li>
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    <li>
+        <span>Appendix</span>
+    </li>
+    
+    <li data-order="">
+        <a href="/appendix/commented-json-configuration">Commented JSON Configuration</a>
+    </li>
+    
+    
+    <li data-order="">
+        <a href="/appendix/commented-injected-configuration">Injected Metadata JSON Configuration</a>
+    </li>
+    
+    
+</ul>
+
+        </nav>
+        <article class="pw-docs-content col-sm-8 col-md-8 col-lg-8">
+            <div class=page-header>
+    <h2>Web Player Themes
+        
+    </h2>
+</div>
+
+<p>The CSS files are available both in minified or extended version<br>
+For example:<br>
+<code>pwp-dark.css</code><br>
+<code>pwp-dark.min.css</code></p>
+
+<p>CSS theme files can be found here:<br>
+<code>dist/css/pwp-&lt;name-of-theme&gt;.css</code></p>
+
+<h2 id="choose-one-of-the-color-presets">Choose one of the color presets</h2>
+
+<p>See all previews of <a href="/guides/previews-of-themes/">available Themes</a>.</p>
+
+<p><section class="mb45">
+<h4>Theme Silver Blaze</h4></p>
+
+<figure class="mb">
+  <img src="/assets/examples/04-silver-blaze.png" alt="Theme Silver Blaze" class="fullwidth-img shadow mb">
+  <figcaption class="mb"><code>pwp-silver-blaze.min.css</code></figcaption>
+</figure>
+
+<div class="right up-to-top mb"><a class="icon pwp-arrow-up" href="#top"></a></div>
+
+<p></section></p>
+
+<p><section class="mb45"></p>
+
+<h2 id="create-your-own-theme">Create Your Own Theme</h2>
+
+<p>After modifying colors, check resulting color contrasts, they might not fully fit accessibility standards.</p>
+
+<p>Path to theme folder:</p>
+
+<p><code>/src/sass/themes/</code></p>
+
+<p>Open any <code>scss</code> file and modify an existing theme by playing with colors and changing their values:<br>
+For example <code>_light.scss</code></p>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html">//
+// Light Theme
+// --------------------------------------------------
+
+$theme: (
+    player-base:     #fff,
+    player-contrast: #000,
+    meta-base:       #fff,
+    meta-contrast:   #535353,
+    accent-base:     #42478a,
+    accent-contrast: #fff
+);</code></pre></div>
+
+
+After modifying colors, check resulting color contrasts, they might not fully meet accessibility standards.<br><br>
+
+
+<div class="alert alert-danger" role="alert">Advanced Mode:<br>
+If you know what you're doing, you could also modify the color functions.<br>
+
+Open file:<br>
+
+  <code>/src/sass/_colors.scss</code>
+
+</div>
+
+<p></section></p>
+
+
+        </article>
+        
+    </section>
+</div>
+<footer class="pw-docs-footer">
+    <h3>Podlove Project</h3>
+<p>
+    We push the limits of podcasting
+    with new software solutions and open specifications.
+</p>
+<div class="buttons"><a class="btn btn-primary btn-xs twitter" href="https://twitter.com/intent/user?screen_name=podlove_org"><i class="fa fa-twitter left"></i>Follow @podlove_org</a></div>
+</footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="/bower_components/podlove-web-player/dist/js/podlove-web-moderator.js"></script>
+
+</body>
+</html>

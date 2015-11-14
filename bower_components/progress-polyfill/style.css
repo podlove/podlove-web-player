@@ -1,0 +1,72 @@
+@import url(http://fonts.googleapis.com/css?family=Sniglet:800&v2);
+
+body {
+	max-width: 800px;
+	margin: 10px auto;
+	font:16px/1.4 sans-serif;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+h1, h2, h3 {
+	font-family: 'Sniglet', sans-serif;	
+}
+
+h1 {
+	font-size: 340%;
+	margin-bottom: 0;
+}
+
+h2 {
+	font-size: 240%;
+	color: deeppink;
+	margin: 1em 0 0;
+}
+
+h1+h2 {
+	margin-top: 0;
+	color: gray;
+}
+
+hgroup {
+	text-align: center;
+}
+
+h3 {
+	font-size: 150%;
+	color: gray;
+}
+
+ul {
+	margin: 0;
+	padding-left:0;
+}
+
+h2+p, h3+p {
+	margin-top: 0;
+}
+
+/* Unit tests styling */
+.unit-tests {
+	padding: 0;
+	margin: 0;	
+}
+
+.unit-tests > li {
+	margin: 5px 0;
+	padding: 5px 10px;
+	list-style: none;
+	color: white;
+	text-shadow: 1px 1px 2px rgba(0,0,0,.4);
+}
+
+.unit-tests > li.pass {
+	background: green;
+}	
+
+.unit-tests > li.fail {
+	background: red;
+}

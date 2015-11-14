@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Plato - lib/connect-logger.js</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <link href="../../assets/css/vendor/morris.css" rel="stylesheet">
+  <link href="../../assets/css/vendor/bootstrap.css" rel="stylesheet">
+  <link href="../../assets/css/vendor/font-awesome.css" rel="stylesheet">
+  <link href="../../assets/css/vendor/codemirror.css" rel="stylesheet">
+  <link href="../../assets/css/plato.css" rel="stylesheet">
+  <link href="../../assets/css/plato-file.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="http://github.com/es-analysis/plato">Plato on Github</a>
+    <ul class="nav navbar-nav">
+      <li>
+        <a href="../../index.html">Report Home</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="jumbotron">
+  <div class="container">
+    <h1>lib/connect-logger.js</h1>
+  </div>
+</div>
+
+<div class="container aggregate-stats">
+  <div class="row">
+    <div class="col-md-6">
+      <h2 class="header">Maintainability <a href="http://blogs.msdn.com/b/codeanalysis/archive/2007/11/20/maintainability-index-range-and-meaning.aspx"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="A value between 0 and 100 that represents the relative ease of maintaining the code. A high value means better maintainability." data-original-title="Maintainability Index"  data-container="body"></i></a></h2>
+      <p class="stat">62.29</p>
+    </div>
+    <div class="col-md-6">
+      <h2 class="header">Lines of code <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC" data-container="body"></i></h2>
+      <p class="stat">222</p>
+    </div>
+  </div>
+  <div class="row historical">
+    <div class="col-md-6">
+      <p id="chart_historical_maint" class="chart"></p>
+    </div>
+    <div class="col-md-6">
+      <p id="chart_historical_sloc" class="chart"></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <h2 class="header">Difficulty  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="The difficulty measure is related to the difficulty of the program to write or understand." data-original-title="Difficulty" data-container="body"></i></a></h2>
+      <p class="stat">45.93</p>
+    </div>
+    <div class="col-md-6">
+      <h2 class="header">Estimated Errors  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Halstead's delivered bugs is an estimate for the number of errors in the implementation." data-original-title="Delivered Bugs" data-container="body"></i></a></h2>
+      <p class="stat">1.87</p>
+    </div>
+  </div>
+</div>
+
+<div class="container charts">
+  <div class="row">
+    <h2 class="header">Function weight</h2>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <h3 class="chart-header">By Complexity <a href="http://en.wikipedia.org/wiki/Cyclomatic_complexity"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="This metric counts the number of distinct paths through a block of code. Lower values are better." data-original-title="Cyclomatic Complexity" data-container="body"></i></a></h3>
+      <div id="fn-by-complexity" class="stat"></div>
+    </div>
+    <div class="col-md-6">
+      <h3 class="chart-header">By SLOC  <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC" data-container="body"></i></h3>
+      <div id="fn-by-sloc" class="stat"></div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <textarea id="file-source" class="col-md-12">&quot;use strict&quot;;
+var levels = require(&quot;./levels&quot;);
+var _ = require(&#039;underscore&#039;);
+var DEFAULT_FORMAT = &#039;:remote-addr - -&#039; +
+  &#039; &quot;:method :url HTTP/:http-version&quot;&#039; +
+  &#039; :status :content-length &quot;:referrer&quot;&#039; +
+  &#039; &quot;:user-agent&quot;&#039;;
+/**
+ * Log requests with the given `options` or a `format` string.
+ *
+ * Options:
+ *
+ *   - `format`        Format string, see below for tokens
+ *   - `level`         A log4js levels instance. Supports also &#039;auto&#039;
+ *
+ * Tokens:
+ *
+ *   - `:req[header]` ex: `:req[Accept]`
+ *   - `:res[header]` ex: `:res[Content-Length]`
+ *   - `:http-version`
+ *   - `:response-time`
+ *   - `:remote-addr`
+ *   - `:date`
+ *   - `:method`
+ *   - `:url`
+ *   - `:referrer`
+ *   - `:user-agent`
+ *   - `:status`
+ *
+ * @param {String|Function|Object} format or options
+ * @return {Function}
+ * @api public
+ */
+
+function getLogger(logger4js, options) {
+	if (&#039;object&#039; == typeof options) {
+		options = options || {};
+	} else if (options) {
+		options = { format: options };
+	} else {
+		options = {};
+	}
+
+	var thislogger = logger4js
+  , level = levels.toLevel(options.level, levels.INFO)
+  , fmt = options.format || DEFAULT_FORMAT
+  , nolog = options.nolog ? createNoLogCondition(options.nolog) : null;
+
+  return function (req, res, next) {
+    // mount safety
+    if (req._logging) return next();
+
+		// nologs
+		if (nolog &amp;&amp; nolog.test(req.originalUrl)) return next();
+		if (thislogger.isLevelEnabled(level) || options.level === &#039;auto&#039;) {
+
+			var start = new Date()
+			, statusCode
+			, writeHead = res.writeHead
+			, url = req.originalUrl;
+
+			// flag as logging
+			req._logging = true;
+
+			// proxy for statusCode.
+			res.writeHead = function(code, headers){
+				res.writeHead = writeHead;
+				res.writeHead(code, headers);
+				res.__statusCode = statusCode = code;
+				res.__headers = headers || {};
+
+				//status code response level handling
+				if(options.level === &#039;auto&#039;){
+					level = levels.INFO;
+					if(code &gt;= 300) level = levels.WARN;
+					if(code &gt;= 400) level = levels.ERROR;
+				} else {
+					level = levels.toLevel(options.level, levels.INFO);
+				}
+			};
+
+			//hook on end request to emit the log entry of the HTTP request.
+			res.on(&#039;finish&#039;, function() {
+				res.responseTime = new Date() - start;
+				//status code response level handling
+				if(res.statusCode &amp;&amp; options.level === &#039;auto&#039;){
+					level = levels.INFO;
+					if(res.statusCode &gt;= 300) level = levels.WARN;
+					if(res.statusCode &gt;= 400) level = levels.ERROR;
+				}
+				if (thislogger.isLevelEnabled(level)) {
+          var combined_tokens = assemble_tokens(req, res, options.tokens || []);
+					if (typeof fmt === &#039;function&#039;) {
+						var line = fmt(req, res, function(str){ return format(str, combined_tokens); });
+						if (line) thislogger.log(level, line);
+					} else {
+						thislogger.log(level, format(fmt, combined_tokens));
+					}
+				}
+			});
+		}
+
+    //ensure next gets always called
+    next();
+  };
+}
+
+/**
+ * Adds custom {token, replacement} objects to defaults, overwriting the defaults if any tokens clash
+ *
+ * @param  {IncomingMessage} req
+ * @param  {ServerResponse} res
+ * @param  {Array} custom_tokens [{ token: string-or-regexp, replacement: string-or-replace-function }]
+ * @return {Array}
+ */
+function assemble_tokens(req, res, custom_tokens) {
+  var array_unique_tokens = function(array) {
+    var a = array.concat();
+    for(var i=0; i&lt;a.length; ++i) {
+      for(var j=i+1; j&lt;a.length; ++j) {
+        if(a[i].token == a[j].token) { // not === because token can be regexp object
+          a.splice(j--, 1);
+        }
+      }
+    }
+    return a;
+  };
+
+  var default_tokens = [];
+  default_tokens.push({ token: &#039;:url&#039;, replacement: req.originalUrl });
+  default_tokens.push({ token: &#039;:method&#039;, replacement: req.method });
+  default_tokens.push({ token: &#039;:status&#039;, replacement: res.__statusCode || res.statusCode });
+  default_tokens.push({ token: &#039;:response-time&#039;, replacement: res.responseTime });
+  default_tokens.push({ token: &#039;:date&#039;, replacement: new Date().toUTCString() });
+  default_tokens.push({ token: &#039;:referrer&#039;, replacement: req.headers.referer || req.headers.referrer || &#039;&#039; });
+  default_tokens.push({ token: &#039;:http-version&#039;, replacement: req.httpVersionMajor + &#039;.&#039; + req.httpVersionMinor });
+  default_tokens.push({ token: &#039;:remote-addr&#039;, replacement: req.ip || req._remoteAddress ||
+    (req.socket &amp;&amp; (req.socket.remoteAddress || (req.socket.socket &amp;&amp; req.socket.socket.remoteAddress))) });
+  default_tokens.push({ token: &#039;:user-agent&#039;, replacement: req.headers[&#039;user-agent&#039;] });
+  default_tokens.push({ token: &#039;:content-length&#039;, replacement: (res._headers &amp;&amp; res._headers[&#039;content-length&#039;]) ||
+      (res.__headers &amp;&amp; res.__headers[&#039;Content-Length&#039;]) || &#039;-&#039; });
+  default_tokens.push({ token: /:req\[([^\]]+)\]/g, replacement: function(_, field) {
+    return req.headers[field.toLowerCase()];
+  } });
+  default_tokens.push({ token: /:res\[([^\]]+)\]/g, replacement: function(_, field) {
+    return res._headers ?
+      (res._headers[field.toLowerCase()] || res.__headers[field])
+      : (res.__headers &amp;&amp; res.__headers[field]);
+  } });
+
+  return array_unique_tokens(custom_tokens.concat(default_tokens));
+};
+
+/**
+ * Return formatted log line.
+ *
+ * @param  {String} str
+ * @param  {IncomingMessage} req
+ * @param  {ServerResponse} res
+ * @return {String}
+ * @api private
+ */
+
+function format(str, tokens) {
+  return _.reduce(tokens, function(current_string, token) {
+    return current_string.replace(token.token, token.replacement);
+  }, str);
+}
+
+/**
+ * Return RegExp Object about nolog
+ *
+ * @param  {String} nolog
+ * @return {RegExp}
+ * @api private
+ *
+ * syntax
+ *  1. String
+ *   1.1 &quot;\\.gif&quot;
+ *         NOT LOGGING http://example.com/hoge.gif and http://example.com/hoge.gif?fuga
+ *         LOGGING http://example.com/hoge.agif
+ *   1.2 in &quot;\\.gif|\\.jpg$&quot;
+ *         NOT LOGGING http://example.com/hoge.gif and
+ *           http://example.com/hoge.gif?fuga and http://example.com/hoge.jpg?fuga
+ *         LOGGING http://example.com/hoge.agif,
+ *           http://example.com/hoge.ajpg and http://example.com/hoge.jpg?hoge
+ *   1.3 in &quot;\\.(gif|jpe?g|png)$&quot;
+ *         NOT LOGGING http://example.com/hoge.gif and http://example.com/hoge.jpeg
+ *         LOGGING http://example.com/hoge.gif?uid=2 and http://example.com/hoge.jpg?pid=3
+ *  2. RegExp
+ *   2.1 in /\.(gif|jpe?g|png)$/
+ *         SAME AS 1.3
+ *  3. Array
+ *   3.1 [&quot;\\.jpg$&quot;, &quot;\\.png&quot;, &quot;\\.gif&quot;]
+ *         SAME AS &quot;\\.jpg|\\.png|\\.gif&quot;
+ */
+function createNoLogCondition(nolog) {
+  var regexp = null;
+
+	if (nolog) {
+    if (nolog instanceof RegExp) {
+      regexp = nolog;
+    }
+
+    if (typeof nolog === &#039;string&#039;) {
+      regexp = new RegExp(nolog);
+    }
+
+    if (Array.isArray(nolog)) {
+      var regexpsAsStrings = nolog.map(
+        function convertToStrings(o) {
+          return o.source ? o.source : o;
+        }
+      );
+      regexp = new RegExp(regexpsAsStrings.join(&#039;|&#039;));
+    }
+  }
+
+  return regexp;
+}
+
+exports.connectLogger = getLogger;</textarea>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p>.</p>
+  </div>
+</footer>
+
+<script type="text/html" id="complexity-popover-template">
+  <div class="complexity-notice">
+    Complexity : {{ complexity.cyclomatic }} <br>
+    Length : {{ complexity.halstead.length }} <br>
+    Difficulty : {{ complexity.halstead.difficulty.toFixed(2) }} <br>
+    Est # bugs : {{ complexity.halstead.bugs.toFixed(2) }}<br>
+  </div>
+</script>
+
+<script type="text/javascript" src="../../assets/scripts/bundles/core-bundle.js"></script>
+<script type="text/javascript" src="../../assets/scripts/bundles/codemirror.js"></script>
+<script type="text/javascript" src="../../assets/scripts/codemirror.markpopovertext.js"></script>
+<script type="text/javascript" src="report.js"></script>
+<script type="text/javascript" src="report.history.js"></script>
+<script type="text/javascript" src="../../assets/scripts/plato-file.js"></script>
+</body>
+</html>

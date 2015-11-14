@@ -1,0 +1,12 @@
+{
+  "name": "raf-polyfill",
+  "_release": "682e5c880c",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "682e5c880c92b445650c4880a6bf9f3897ec1c5b"
+  },
+  "_source": "https://gist.github.com/1579671.git",
+  "_target": "*",
+  "_originalSource": "https://gist.github.com/1579671.git"
+}

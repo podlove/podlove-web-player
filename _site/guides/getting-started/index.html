@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+
+    <title>Podlove Web Player 3.0 : Getting Started</title>
+    <meta name="description" content="Documentation">
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/bower_components/podlove-font/css/podlove-font.css" media="screen" type="text/css">
+    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="stylesheet" href="/css/main.css">
+
+</head>
+<body id="top">
+
+<header class="navbar navbar-static-top pw-docs-nav">
+    <div class="navbar-header">
+    <button class="navbar-toggle display none" type="button" data-toggle="collapse" data-target=".pw-nav" aria-expanded="true">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+    <a href=" /" class="navbar-brand pw-docs-brand">
+        <img id="logo" class="logo img-responsive" src="/assets/img/podlove-logo-grey.png">
+        Podlove Web Player 3.0
+        <small class="hidden-xs">Documentation</small>
+    </a>
+</div>
+</header>
+
+<div class="container-fluid">
+    <section class="row-fluid">
+        
+        
+        <nav class="pw-nav col-sm-4 col-md-3 col-lg-2 hidden-print">
+            <ul class="nav">
+    <li>
+        <a href="/">Home</a>
+    </li>
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    <li>
+        <span>Guides</span>
+    </li>
+    
+    <li data-order="">
+        <a href="/guides/getting-started">Getting Started</a>
+    </li>
+    
+    
+    <li data-order="">
+        <a href="/guides/minimal-player">Minimal Player</a>
+    </li>
+    
+    
+    <li data-order="">
+        <a href="/guides/chapter-marks">Chapter Marks</a>
+    </li>
+    
+    
+    <li data-order="">
+        <a href="/guides/themes">Web Player Themes</a>
+    </li>
+    
+    
+    <li data-order="">
+        <a href="/guides/previews-of-themes">Previews of Themes</a>
+    </li>
+    
+    
+    <li data-order="">
+        <a href="/guides/social-profiles">Social Profiles</a>
+    </li>
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    <li>
+        <span>Appendix</span>
+    </li>
+    
+    <li data-order="">
+        <a href="/appendix/commented-json-configuration">Commented JSON Configuration</a>
+    </li>
+    
+    
+    <li data-order="">
+        <a href="/appendix/commented-injected-configuration">Injected Metadata JSON Configuration</a>
+    </li>
+    
+    
+</ul>
+
+        </nav>
+        <article class="pw-docs-content col-sm-8 col-md-8 col-lg-8">
+            <div class=page-header>
+    <h2>Getting Started
+        
+    </h2>
+</div>
+
+<h3 id="basics">Basics</h3>
+
+<h4 id="get-the-latest-player-release">Get the Latest Player Release</h4>
+
+<p>Having <a href="http://bower.io/" title="Visit bower.io">bower</a> installed on your system, simply run 
+<div class="highlight"><pre><code class="language-html" data-lang="html">bower install podlove-web-player</code></pre></div></p>
+
+<p>to get the player package.</p>
+
+<h4 id="example-directory-structure">Example directory structure</h4>
+
+<div class="highlight"><pre><code class="language-sh" data-lang="sh">├── index.html
+├── audio /
+│   └── episode-1.m4a
+│  
+├── episode1.html
+│
+└── images /
+    ├── episode-cover.png
+    └── show-cover.png</code></pre></div>
+
+
+<div>
+  <div class="right up-to-top"> <a class="icon pwp-arrow-up" href="#top"></a></div>
+</div>
+
+<h3> Integrate the web player into a website</h3>
+
+<h4>Create an <code>index.html</code> file</h4>
+
+<ol class="o-list">
+  <li>Add an element where the player should appear
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;audio</span> <span class="na">data-podlove-web-player-source=</span><span class="s">&quot;episode1.html&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;source</span> <span class="na">src=</span><span class="s">&quot;episode1.m4a&quot;</span> <span class="na">type=</span><span class="s">&quot;audio/m4a&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/audio&gt;</span></code></pre></div>
+
+    <i>The audio tag is the non-js fallback</i>
+  </li>
+  <li>
+    Add the moderator script in your html file and point the moderator to that element
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;/bower_components/podlove-web-player/dist/js/moderator.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script&gt;</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;audio&#39;</span><span class="p">).</span><span class="nx">podlovewebplayer</span><span class="p">();</span><span class="nt">&lt;/script&gt;</span></code></pre></div>
+
+  </li>
+  <li>
+    Choose a theme css-file and place it in the head of your document.<br>
+    Read further information about <a href="/guides/themes" title="Further information about 'Themes'">themes</a>.
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;/bower_components/podlove-web-player/dist/css/pwp-dark-green.css&quot;</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">media=</span><span class="s">&quot;screen&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="nt">/&gt;</span></code></pre></div>
+
+  </li>
+  <li>
+    Replace <code>episode1.m4a</code> with your own media file(s) and tag it with a suitable MIME type.
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;audio&gt;</span>
+  <span class="nt">&lt;source</span> <span class="na">src=</span><span class="s">&quot;episode1.m4a&quot;</span> <span class="na">type=</span><span class="s">&quot;audio/m4a&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/audio&gt;</span></code></pre></div>
+
+  </li>
+  <li>
+    Add following scripts at the bottom of your document:
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;/bower_components/podlove-web-player/dist/js/vendor/html5shiv.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;/bower_components/podlove-web-player/dist/js/vendor/jquery.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;/bower_components/podlove-web-player/dist/js/vendor/progress-polyfill.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;/bower_components/podlove-web-player/dist/js/podlove-web-player.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span></code></pre></div>
+
+  </li>
+  <li>
+    Add metadata
+
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;audio&#39;</span><span class="p">).</span><span class="nx">podlovewebplayer</span><span class="p">({</span>
+  <span class="nx">show</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;My Very First Podcast&#39;</span><span class="p">,</span>
+    <span class="nx">subtitle</span><span class="o">:</span> <span class="s1">&#39;Short one-liner&#39;</span><span class="p">,</span>
+    <span class="nx">summary</span><span class="o">:</span> <span class="s1">&#39;Paragraphs of text about your show and its topic. *yada yada*&#39;</span><span class="p">,</span> <span class="nx">poster</span><span class="o">:</span> <span class="s1">&#39;/images/show-cover.png&#39;</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="nx">downloads</span><span class="o">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nx">assetTitle</span><span class="o">:</span> <span class="s1">&#39;MPEG-4 AAC Audio (m4a)&#39;</span><span class="p">,</span>
+      <span class="nx">size</span><span class="o">:</span> <span class="mi">156237824</span><span class="p">,</span>
+      <span class="nx">url</span><span class="o">:</span> <span class="s1">&#39;episode1.m4a&#39;</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="nx">chapters</span><span class="o">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nx">start</span><span class="o">:</span> <span class="s1">&#39;00:00:00.000&#39;</span><span class="p">,</span>
+      <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;First chapter&#39;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nx">start</span><span class="o">:</span> <span class="s1">&#39;01:23:45.678&#39;</span><span class="p">,</span>
+      <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Last chapter&#39;</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="nx">poster</span><span class="o">:</span> <span class="s1">&#39;/images/episode-cover.png&#39;</span><span class="p">,</span>
+  <span class="nx">permalink</span><span class="o">:</span> <span class="s1">&#39;/examples/episode1/index.html&#39;</span><span class="p">,</span>
+  <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;My Very First Episode&#39;</span><span class="p">,</span>
+  <span class="nx">subtitle</span><span class="o">:</span> <span class="s1">&#39;This is the episode\&#39;s subtitle one-liner&#39;</span><span class="p">,</span>
+<span class="p">});</span></code></pre></div>
+
+  </li>
+</ol>
+
+<div>
+  <div class="right up-to-top"> <a class="icon pwp-arrow-up" href="#top"></a></div>
+</div>
+
+<h4>Result</h4>
+
+<ul>
+<li><a href="/player.html" title="View example player.html in fullscreen">Example player.html</a></li>
+<li><a href="view-source:/player.html" title="View file player.html">View page source</a></li>
+</ul>
+
+<p><audio data-podlove-web-player-source="/player.html">
+  <source src="/bower_components/podlove-web-player/dist/examples/which-format/podlove-test-track.mp4" type="audio/mp4"/>
+  <source src="/bower_components/podlove-web-player/dist/examples/which-format/podlove-test-track.mp3" type="audio/mpeg"/>
+  <source src="/bower_components/podlove-web-player/dist/examples/which-format/podlove-test-track.ogg" type="audio/ogg; codecs=vorbis"/>
+  <source src="/bower_components/podlove-web-player/dist/examples/which-format/podlove-test-track.opus" type="audio/ogg; codecs=opus"/>
+</audio></p>
+
+<div>
+  <div class="right up-to-top"> <a class="icon pwp-arrow-up" href="#top"></a></div>
+</div>
+
+
+        </article>
+        
+    </section>
+</div>
+<footer class="pw-docs-footer">
+    <h3>Podlove Project</h3>
+<p>
+    We push the limits of podcasting
+    with new software solutions and open specifications.
+</p>
+<div class="buttons"><a class="btn btn-primary btn-xs twitter" href="https://twitter.com/intent/user?screen_name=podlove_org"><i class="fa fa-twitter left"></i>Follow @podlove_org</a></div>
+</footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="/bower_components/podlove-web-player/dist/js/podlove-web-moderator.js"></script>
+
+<script src="/js/getting-started.js"></script>
+
+</body>
+</html>

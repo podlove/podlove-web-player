@@ -1,0 +1,163 @@
+//
+// Color Schemes
+// --------------------------------------------------
+
+// P01 s_player-base-1
+// $player-base-color
+@function get-player-base-color($theme) {
+  @return map_get($theme, "player-base");
+}
+
+// P01a c_player-base-2
+// $player-contrast-color
+@function get-player-contrast-color($theme) {
+  @return mix(
+      map_get($theme, "player-base"),
+      map_get($theme, "player-contrast"),
+      85
+  );
+}
+
+// P01b c_player-base-3
+// $player-high-contrast-color
+@function get-player-high-contrast-color($theme) {
+  @return mix(
+      map_get($theme, "player-base"),
+      map_get($theme, "player-contrast"),
+      20
+  );
+}
+
+// P02 s_player-text-1
+// $player-base-highlight-color
+@function get-player-base-highlight-color($theme) {
+  @return map_get($theme, "player-contrast");
+}
+
+// P02a o_player-text-2
+// $player-text-highlight-color
+@function get-player-text-highlight-color($theme) {
+  @return mix(
+      map_get($theme, "player-base"),
+      map_get($theme, "player-contrast"),
+      30
+  );
+}
+
+// P02b o_player-icon-idle
+// $player-idle-color
+@function get-player-idle-color($theme) {
+  @return mix(
+    map_get($theme, "player-base"),
+    map_get($theme, "player-contrast"),
+    20
+  );
+}
+
+// P02c o_player-icon-hover
+// $player-hover-color
+@function get-player-hover-color($theme) {
+  @return map_get($theme, "player-contrast");
+}
+
+// P02d o_player-icon-active
+// $player-active-color
+@function get-player-active-color($theme) {
+  @return map_get($theme, "player-contrast");
+}
+
+// M01 s_meta-base-1
+// $meta-base-color
+@function get-meta-base-color($theme) {
+  @return map_get($theme, "meta-base");
+}
+
+// M01a o_meta-base-2, calculated meta-tab highlight color
+// $meta-base-highlight-color
+@function get-meta-base-highlight-color($theme) {
+  $meta-base: map_get($theme, "meta-base");
+  $meta-contrast: map_get($theme, "meta-contrast");
+  @return mix($meta-base, $meta-contrast, 85);
+}
+
+// M01b o_meta-base-3, calculated meta-tab highlight color
+// $meta-base-highlight-2-color
+@function get-meta-base-highlight-2-color($theme) {
+  $meta-base: map_get($theme, "meta-base");
+  $meta-contrast: map_get($theme, "meta-contrast");
+  @return mix($meta-base, $meta-contrast, 20);
+}
+
+// M02 s_meta-text-1
+// $meta-contrast-color
+@function get-meta-contrast-color($theme) {
+  @return map_get($theme, "meta-contrast");
+}
+
+// M02a o_meta-text-2
+// $meta-text-highlight-color
+@function get-meta-text-highlight-color($theme) {
+  $meta-base: map_get($theme, "meta-base");
+  $meta-contrast: map_get($theme, "meta-contrast");
+  @return mix($meta-base, $meta-contrast, 28);
+}
+
+// M02b o_meta-icon-idle
+// $meta-idle-color
+@function get-meta-idle-color($theme) {
+  $meta-base: map_get($theme, "meta-base");
+  $meta-contrast: map_get($theme, "meta-contrast");
+  @return mix($meta-base, $meta-contrast, 70);
+}
+
+// M02c o_meta-icon-hover
+// $meta-hover-color
+@function get-meta-hover-color($theme) {
+  $meta-base: map_get($theme, "meta-base");
+  $meta-contrast: map_get($theme, "meta-contrast");
+  @return mix($meta-base, $meta-contrast, 95);
+}
+
+// M02d o_meta-icon-active
+// $meta-active-color
+@function get-meta-active-color($theme) {
+  $meta-base: map_get($theme, "meta-base");
+  $meta-contrast: map_get($theme, "meta-contrast");
+  @return mix($meta-base, $meta-contrast, 100);
+}
+
+// A01 s_accent
+// $accent-base-color
+@function get-accent-base-color($theme) {
+  @return map_get($theme, "accent-base");
+}
+
+// A01a c_accent-text
+// $accent-text-contrast-color
+@function get-accent-contrast-color($theme) {
+  @return map_get($theme, "accent-contrast");
+}
+
+// A01b o_accent-fade-1
+// $accent-highlight-1-color
+@function get-accent-highlight-1-color($theme) {
+  $accent-base: map_get($theme, "accent-base");
+  $accent-contrast: map_get($theme, "accent-contrast");
+  @return mix($accent-base, $accent-contrast, 50);
+}
+
+// A01c o_accent-fade-2
+// $accent-highlight-2-color
+@function get-accent-highlight-2-color($theme) {
+  $accent-base: map_get($theme, "accent-base");
+  $accent-contrast: map_get($theme, "accent-contrast");
+  @return mix($accent-base, $accent-contrast, 90);
+}
+
+// A02 s_accent-links
+// $accent-link-color
+@function get-accent-link-color($theme) {
+  @return map_get($theme, "accent-base");
+}
+
+

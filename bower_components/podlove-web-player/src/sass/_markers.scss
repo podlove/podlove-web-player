@@ -1,0 +1,19 @@
+//
+// Chapter Markers
+// --------------------------------------------------
+
+.marker {
+  $marker-width: 2px;
+  z-index: 99;
+  position: absolute;
+  top: 0;
+
+  display: block;
+  height: $progress-bar-height;
+  width: $marker-width;
+  margin-left: - ($marker-width/2);
+  background: $marker-background;
+  @media screen and (max-width: $screen-phone) {
+    height: $progress-bar-height-mobile;
+  }
+}

@@ -1,0 +1,145 @@
+//
+// Module 'Share'
+// --------------------------------------------------
+
+$button-width: $share-image-width + ($share-image-border-width * 2);
+
+.tabs {
+  .podlovewebplayer_share {
+    .main {
+      // Top offset for fixed tab-header
+      margin: $tab-header-height $margin-base-horizontal $margin-base-vertical $margin-base-horizontal;
+      @media all and (max-width: $screen-phone) {
+        margin: $tab-header-height $margin-small-horizontal $margin-small-vertical $margin-small-horizontal;
+      }
+    }
+    legend {
+      margin-bottom: $margin-base-vertical;
+    }
+    .share-button-wrapper {
+      margin: 0 auto;
+      width: $button-width * 2 + $margin-base-vertical;
+    }
+    @media screen and (max-width: $button-width * 2 + ($margin-base-horizontal * 2)) {
+      .share-button-wrapper {
+       width: 100%;
+      }
+      .button-container {
+        display: block;
+      }
+    }
+
+    footer {
+      padding: 20px $padding-base-horizontal $padding-base-horizontal;
+      @media screen and (min-width: $screen-desktop) {
+        padding: $padding-large-vertical $padding-base-horizontal;
+      }
+      > div {
+        width: 70%;
+        margin: 0 auto;
+      }
+      h3 {
+        margin: 0 0 $margin-small-vertical 0;
+        @media screen and (min-width: $screen-desktop) {
+          margin: 0 0 15px 0;
+        }
+      }
+      label {
+        display: block;
+      }
+      input {
+        @include border-radius(5px);
+        font-family: $font-family-monospace;
+        border: 1px solid $input-border;
+        width: 100%;
+        padding: 8px;
+        text-align: center;
+        color: $input-color;
+        height: 30px;
+        cursor: text;
+        @media screen and (min-width: $screen-desktop) {
+          height: 40px;
+        }
+      }
+    }
+    ul {
+      margin: 0 0 $margin-small-horizontal 0;
+      @media screen and (min-width: $screen-desktop) {
+        margin: 0 0 32px 0;
+      }
+    }
+    ul > li {
+      display: inline-block;
+      width: $font-size-social-icons + 13px;
+      margin: 0 $margin-small-horizontal 0 0;
+      &:last-of-type {
+        margin-right: 0;
+      }
+      @media screen and (min-width: $screen-tablet-portrait) {
+        width: $font-size-social-icons + 22px;
+        margin: 0 $margin-small-horizontal 0 0;
+      }
+      @media screen and (min-width: $screen-desktop) {
+        width: $font-size-social-icons + 27px;
+        margin: 0 $margin-base-horizontal 0 0;
+      }
+      @media screen and (min-width: $screen-lg-desktop) {
+        margin: 0 40px 0 0;
+      }
+
+      &.last-of-type {
+        margin-right: 0;
+      }
+    }
+    span {
+      display: block;
+      padding: $padding-small-vertical $padding-small-horizontal;
+      text-align: center;
+    }
+  }
+}
+
+.share-select-option {
+  display: inline-block;
+  @include border-radius(3px);
+  width: 50%;
+  background-image: none;
+  padding: 0;
+  background-color: $meta-base-color;
+  border: solid $share-image-border-width $meta-base-color;
+  cursor: pointer;
+  @media screen and (min-width: $screen-phone) {
+  width: $button-width;
+    &:first-of-type {
+      margin-right: $margin-base-vertical;
+    }
+  }
+
+  &:hover {
+    background-color: $accent-link-hover;
+    border: solid $share-image-border-width $accent-link-hover;
+  }
+  &:active {
+    background-color: $accent-link-active;
+    border: solid $share-image-border-width $accent-link-active;
+  }
+  &:focus,
+  &.selected {
+    background-color: $accent-base-color;
+    border: solid $share-image-border-width $accent-base-color;
+  }
+  &:hover,
+  &:active,
+  &:focus,
+  &.selected {
+    color: $accent-contrast-color;
+  }
+  img {
+    height: auto;
+    width: 100%;
+    @media screen and (max-width: 220px) {
+      display: none;
+    }
+  }
+}
+

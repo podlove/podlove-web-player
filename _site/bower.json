@@ -1,0 +1,6 @@
+{
+  "name": "pwp-docs",
+  "dependencies": {
+    "podlove-web-player": "~v3.0.0"
+  }
+}

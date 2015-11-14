@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+
+    <title>Podlove Web Player Documentation</title>
+
+    <meta name="keywords" content=""/>
+    <meta name="description" content="" />
+
+    <!-- Mobile viewport optimized: j.mp/bplateviewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <link rel="shortcut icon" href="favicon.ico"/>
+    <link rel="apple-touch-icon" href="appletouch.png"/>
+
+    <link href="/examples/examples.css" rel="stylesheet" media="screen" type="text/css" />
+</head>
+<body>
+    <header>
+        <h1>Podlove Webplayer</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="http://sourcerer.org/blog/">WordPress Blog</a></li>
+            <li><a href="examples/">Multiple Embedded Players on One Page</a></li>
+            <li><a href="examples/which-format/">Format Test Track</a></li>
+            <li><a href="examples/cre-206/">Real Life Podcast (CRE-206)</a></li>
+            <li><a href="examples/cre-206/#t=1:23:45.678">Start from 1:23:45.678</a></li>
+            <li><a href="examples/cre-206/#t=1:23:45.678-1:24:00.000">Play from 1:23:45.678 to 1:24:00.000</a></li>
+            <li><a href="examples/video/">(in progress) Video</a></li>
+            <li><a href="examples/picture-stream/">(experimental) Picture Stream encoded in an Audio File</a></li>
+            <li><a href="examples/deeplinking/">Deeplinking</a></li>
+            <li><a href="examples/injected/">Using Static Embed Page</a></li>
+            <li><a href="examples/themes/">Color Themes</a></li>
+            <ul>
+                <li><a href="/examples/themes/silver-blaze/index.html">Silver Blaze Theme</a></li>
+                <li><a href="/examples/themes/silver/index.html">Silver Theme</a></li>
+                <li><a href="/examples/themes/light/index.html">Light Theme</a></li>
+                <li><a href="/examples/themes/light-gray/index.html">Light Gray Theme</a></li>
+                <li><a href="/examples/themes/creamy/index.html">Creamy Theme</a></li>
+                <li><a href="/examples/themes/dark/index.html">Dark Theme</a></li>
+                <li><a href="/examples/themes/dark-blaze/index.html">Dark Blaze Theme</a></li>
+                <li><a href="/examples/themes/dark-gray/index.html">Dark Gray Theme</a></li>
+                <li><a href="/examples/themes/dark-green/index.html">Dark Green Theme</a></li>
+                <li><a href="/examples/themes/blue-orange/index.html">Orange Blue Theme</a></li>
+                <li><a href="/examples/themes/midnightblue/index.html">Midnight Blue Theme</a></li>
+                <li><a href="/examples/themes/jungle-green/index.html">Jungle Green Theme</a></li>
+            </ul>
+        </ul>
+    </nav>
+    <article>
+        <h2>This is an embedded player</h2>
+        <noscript>Player Info for clients without Javascript enabled.</noscript>
+        <audio data-podlove-web-player-source="examples/which-format/index.html">
+            <source src="examples/which-format/podlove-test-track.mp4" type="audio/mp4" />
+            <source src="examples/which-format/podlove-test-track.mp3" type="audio/mpeg" />
+            <source src="examples/which-format/podlove-test-track.ogg" type="audio/ogg; codecs=vorbis" />
+            <source src="examples/which-format/podlove-test-track.opus" type="audio/ogg; codecs=opus" />
+        </audio>
+    </article>
+    <script src="/js/vendor/jquery.min.js"></script>
+    <script src="/js/podlove-web-moderator.js"></script>
+    <script>$('audio').podlovewebplayer();</script>
+</body>
+</html>

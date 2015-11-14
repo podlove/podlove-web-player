@@ -1,0 +1,31 @@
+{
+  "name": "podlove-font",
+  "version": "2.0.0-beta.2",
+  "homepage": "http://podlove.org/",
+  "description": "Icon font used in podlove projects.",
+  "main": "font/podlove.ttf",
+  "ignore": [
+    "**/.*",
+    "bin",
+    "demo-files",
+    "index.html",
+    "selection.json"
+  ],
+  "keywords": [
+    "podlove",
+    "web",
+    "icon",
+    "font"
+  ],
+  "license": "BSD",
+  "_release": "2.0.0-beta.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "v2.0.0-beta.2",
+    "commit": "fbee7871c8450f9beee1458d19d16354af8be1b2"
+  },
+  "_source": "git://github.com/podlove/podlove-font.git",
+  "_target": "~2.0.0-beta.2",
+  "_originalSource": "podlove-font",
+  "_direct": true
+}

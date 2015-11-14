@@ -1,0 +1,33 @@
+//
+// Labels and Badges
+// --------------------------------------------------
+
+// Badges
+// ----------------------
+
+$badge-size:        25px;
+$badge-line-height: $badge-size;
+$badge-color:       $meta-contrast-color;
+$badge-background:  $meta-base-highlight-color;
+
+.badge {
+  font-family: $font-family-monospace;
+  height: $badge-size;
+  min-width: $badge-size;
+  font-weight: $font-weight-normal;
+  line-height: $badge-line-height;
+  text-align: center;
+  color: $badge-color;
+  background-color: $badge-background;
+  white-space: nowrap;
+  display: inline-block;
+  @include border-radius(50%);
+  @media screen and (min-width: $screen-desktop) {
+    height: $badge-size * 1.32;
+    min-width: $badge-size * 1.32;
+    line-height: $badge-line-height * 1.32;
+  }
+  @media screen and (min-width: $screen-lg-desktop) {
+    font-size: $font-size-wide-screen;
+  }
+}

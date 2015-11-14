@@ -1,0 +1,134 @@
+//
+// Module 'Download'
+// --------------------------------------------------
+
+.downloads {
+  footer {
+    > form {
+      padding: $padding-base-vertical 0;
+      @media screen and (min-width: $screen-phone) {
+        padding: $padding-large-vertical 0;
+      }
+    }
+  }
+}
+
+// Wrapper for the image itself and overlay-image
+.poster-wrapper {
+  position: relative;
+  margin: 0 auto;
+  width: 256px;
+  min-width: 256px;
+  @media screen and (max-width: $screen-tiny-phone) {
+    width: 100%;
+    min-width: 156px;
+    height: auto;
+  }
+
+  // Container for overlay image
+  .download-overlay {
+    background:url('../img/download-overlay.png') no-repeat;
+    background-position: center;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+  }
+}
+
+.download {
+  margin: 20px auto;
+  @media screen and (max-width: $screen-phone) {
+    margin: 0 auto;
+  }
+
+  // Episode image
+  .poster-image {
+    width: 100%;
+    min-height: $overlay-size;
+    display: block;
+    margin: 0 auto;
+    @include box-shadow(0 11px 15px -6px black);
+
+    @media screen and (max-width: $screen-tiny-phone) {
+      width: 100%;
+      max-width: $overlay-size;
+      height: auto;
+      min-height: 0;
+    }
+  }
+  .default-poster {
+    background: $poster-background;
+  }
+  // Download button
+  &.button-submit {
+    display: block;
+    margin: 0 auto $margin-base-horizontal auto;
+    padding: 15px;
+    font-size: $font-size-large;
+    @media screen and (max-width: $screen-tiny-phone) {
+      width: 95vw;
+    }
+    @media screen and (min-width: $screen-tiny-phone) {
+      font-size: $font-size-xlarge;
+      padding: 18px;
+    }
+  }
+  // Label of download button
+  &.label {
+    margin-left: 5px;
+    font-family: $font-family-sans-serif;
+    font-weight: $font-weight-bold;
+    @media screen and (min-width: $screen-lg-desktop) {
+      font-size: 1.5vw;
+    }
+  }
+  > h2 {
+    margin: 20px auto 0 auto;
+    text-align: center;
+  }
+  // Information about the download
+  p {
+    margin: 10px auto;
+    text-align: center;
+    &:first-of-type {
+      margin-bottom: 0;
+    }
+    &:last-of-type {
+      margin-top: 0;
+    }
+  }
+}
+
+// Dropdown menu with selectable file formats
+.select {
+  background-color: $select-background !important;
+  border: 1px solid $select-border;
+  margin: 0 auto $margin-base-vertical auto;
+  height: 30px;
+  padding: 6px 12px;
+  font-size: $font-size-small;
+  line-height: 1.4;
+  color: $select-color !important;
+  @media screen and (max-width: $screen-tiny-phone) {
+    width: 95vw;
+  }
+  @media screen and (min-width: $screen-phone) {
+    font-size: $font-size-base;
+    height: 40px;
+    margin: 0 auto $margin-small-vertical auto;
+  }
+  @media screen and (min-width: $screen-desktop) {
+    height: 40px;
+    margin: 0 auto $margin-base-horizontal auto;
+  }
+  @media screen and (min-width: $screen-lg-desktop) {
+    font-size: 1.15vw;
+  }
+  option {
+    background-color: $option-background !important;
+    color: $option-color !important;
+  }
+}

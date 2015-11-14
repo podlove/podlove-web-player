@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+
+    <title>Audio Tag Decoration Test Page</title>
+
+    <meta name="keywords" content=""/>
+    <meta name="description" content="" />
+
+    <!-- Mobile viewport optimized: j.mp/bplateviewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href="/examples/examples.css" rel="stylesheet" media="screen" type="text/css" />
+</head>
+<body>
+    <article>
+        <h1>Start Player at position 00:01.000</h1>
+        <noscript>Player Info for clients without Javascript enabled.</noscript>
+        <audio data-podlove-web-player-source="../which-format/index.html#t=00:01.000">
+            <source src="../which-format/podlove-test-track.mp4" type="audio/mp4" />
+            <source src="../which-format/podlove-test-track.mp3" type="audio/mpeg" />
+            <source src="../which-format/podlove-test-track.ogg" type="audio/ogg; codecs=vorbis" />
+            <source src="../which-format/podlove-test-track.opus" type="audio/ogg; codecs=opus" />
+        </audio>
+    </article>
+    <article>
+        <h1>Start Player at position 00:01.000 and stop at 00:02.000</h1>
+        <noscript>Player Info for clients without Javascript enabled.</noscript>
+        <audio data-podlove-web-player-source="../which-format/index.html#t=00:01.000-00:02.000">
+            <source src="../which-format/podlove-test-track.mp4" type="audio/mp4" />
+            <source src="../which-format/podlove-test-track.mp3" type="audio/mpeg" />
+            <source src="../which-format/podlove-test-track.ogg" type="audio/ogg; codecs=vorbis" />
+            <source src="../which-format/podlove-test-track.opus" type="audio/ogg; codecs=opus" />
+        </audio>
+    </article>
+    <script src="/js/vendor/jquery.min.js"></script>
+    <script src="/js/podlove-web-moderator.js"></script>
+    <script>
+        $('audio').podlovewebplayer();
+    </script>
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+
+    <title>Podlove Web Player 3.0 : Injected Metadata JSON Configuration</title>
+    <meta name="description" content="Documentation">
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/bower_components/podlove-font/css/podlove-font.css" media="screen" type="text/css">
+    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="stylesheet" href="/css/main.css">
+
+</head>
+<body id="top">
+
+<header class="navbar navbar-static-top pw-docs-nav">
+    <div class="navbar-header">
+    <button class="navbar-toggle display none" type="button" data-toggle="collapse" data-target=".pw-nav" aria-expanded="true">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+    <a href=" /" class="navbar-brand pw-docs-brand">
+        <img id="logo" class="logo img-responsive" src="/assets/img/podlove-logo-grey.png">
+        Podlove Web Player 3.0
+        <small class="hidden-xs">Documentation</small>
+    </a>
+</div>
+</header>
+
+<div class="container-fluid">
+    <section class="row-fluid">
+        
+        
+        <nav class="pw-nav col-sm-4 col-md-3 col-lg-2 hidden-print">
+            <ul class="nav">
+    <li>
+        <a href="/">Home</a>
+    </li>
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    <li>
+        <span>Guides</span>
+    </li>
+    
+    <li data-order="">
+        <a href="/guides/getting-started">Getting Started</a>
+    </li>
+    
+    
+    <li data-order="">
+        <a href="/guides/minimal-player">Minimal Player</a>
+    </li>
+    
+    
+    <li data-order="">
+        <a href="/guides/chapter-marks">Chapter Marks</a>
+    </li>
+    
+    
+    <li data-order="">
+        <a href="/guides/themes">Web Player Themes</a>
+    </li>
+    
+    
+    <li data-order="">
+        <a href="/guides/previews-of-themes">Previews of Themes</a>
+    </li>
+    
+    
+    <li data-order="">
+        <a href="/guides/social-profiles">Social Profiles</a>
+    </li>
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    <li>
+        <span>Appendix</span>
+    </li>
+    
+    <li data-order="">
+        <a href="/appendix/commented-json-configuration">Commented JSON Configuration</a>
+    </li>
+    
+    
+    <li data-order="">
+        <a href="/appendix/commented-injected-configuration">Injected Metadata JSON Configuration</a>
+    </li>
+    
+    
+</ul>
+
+        </nav>
+        <article class="pw-docs-content col-sm-8 col-md-8 col-lg-8">
+            <div class=page-header>
+    <h2>Injected Metadata JSON Configuration
+        
+    </h2>
+</div>
+
+<h3 id="static-embed">Static Embed</h3>
+
+<p>You want to use the static embed page? Follow the steps below.</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="p">{</span>
+    <span class="c1">// (mandatory) list of source files to play - order matters</span>
+    <span class="nx">sources</span><span class="o">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nx">src</span><span class="o">:</span> <span class="s2">&quot;assets/my-track.mp4&quot;</span><span class="p">,</span>
+            <span class="nx">type</span><span class="o">:</span> <span class="s2">&quot;audio/mp4&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nx">src</span><span class="o">:</span><span class="s2">&quot;assets/my-track.mp3&quot;</span><span class="p">,</span>
+            <span class="nx">type</span><span class="o">:</span><span class="s2">&quot;audio/mpeg&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nx">src</span><span class="o">:</span><span class="s2">&quot;assets/my-track.ogg&quot;</span><span class="p">,</span>
+            <span class="nx">type</span><span class="o">:</span><span class="s2">&quot;audio/ogg; codecs=vorbis&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nx">src</span><span class="o">:</span><span class="s2">&quot;assets/my-track.opus&quot;</span><span class="p">,</span>
+            <span class="nx">type</span><span class="o">:</span><span class="s2">&quot;audio/ogg; codecs=opus&quot;</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+<span class="p">}</span></code></pre></div>
+
+
+<div>
+  <div class="right up-to-top"> <a class="icon pwp-arrow-up" href="#top"></a></div>
+</div>
+
+
+        </article>
+        
+    </section>
+</div>
+<footer class="pw-docs-footer">
+    <h3>Podlove Project</h3>
+<p>
+    We push the limits of podcasting
+    with new software solutions and open specifications.
+</p>
+<div class="buttons"><a class="btn btn-primary btn-xs twitter" href="https://twitter.com/intent/user?screen_name=podlove_org"><i class="fa fa-twitter left"></i>Follow @podlove_org</a></div>
+</footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="/bower_components/podlove-web-player/dist/js/podlove-web-moderator.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+
+    <title>Podlove Web Player 3.0 : Social Profiles</title>
+    <meta name="description" content="Documentation">
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/bower_components/podlove-font/css/podlove-font.css" media="screen" type="text/css">
+    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="stylesheet" href="/css/main.css">
+
+</head>
+<body id="top">
+
+<header class="navbar navbar-static-top pw-docs-nav">
+    <div class="navbar-header">
+    <button class="navbar-toggle display none" type="button" data-toggle="collapse" data-target=".pw-nav" aria-expanded="true">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+    <a href=" /" class="navbar-brand pw-docs-brand">
+        <img id="logo" class="logo img-responsive" src="/assets/img/podlove-logo-grey.png">
+        Podlove Web Player 3.0
+        <small class="hidden-xs">Documentation</small>
+    </a>
+</div>
+</header>
+
+<div class="container-fluid">
+    <section class="row-fluid">
+        
+        
+        <nav class="pw-nav col-sm-4 col-md-3 col-lg-2 hidden-print">
+            <ul class="nav">
+    <li>
+        <a href="/">Home</a>
+    </li>
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    <li>
+        <span>Guides</span>
+    </li>
+    
+    <li data-order="">
+        <a href="/guides/getting-started">Getting Started</a>
+    </li>
+    
+    
+    <li data-order="">
+        <a href="/guides/minimal-player">Minimal Player</a>
+    </li>
+    
+    
+    <li data-order="">
+        <a href="/guides/chapter-marks">Chapter Marks</a>
+    </li>
+    
+    
+    <li data-order="">
+        <a href="/guides/themes">Web Player Themes</a>
+    </li>
+    
+    
+    <li data-order="">
+        <a href="/guides/previews-of-themes">Previews of Themes</a>
+    </li>
+    
+    
+    <li data-order="">
+        <a href="/guides/social-profiles">Social Profiles</a>
+    </li>
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    <li>
+        <span>Appendix</span>
+    </li>
+    
+    <li data-order="">
+        <a href="/appendix/commented-json-configuration">Commented JSON Configuration</a>
+    </li>
+    
+    
+    <li data-order="">
+        <a href="/appendix/commented-injected-configuration">Injected Metadata JSON Configuration</a>
+    </li>
+    
+    
+</ul>
+
+        </nav>
+        <article class="pw-docs-content col-sm-8 col-md-8 col-lg-8">
+            <div class=page-header>
+    <h2>Social Profiles
+        
+    </h2>
+</div>
+
+<h3 id="modify-your-social-profiles">Modify Your Social Profiles</h3>
+
+<figure class="mb">
+  <img src="/assets/examples/social-profiles.png" alt="Social Profiles" class="fullwidth-img" />
+</figure>
+
+<p>Provide your or your show&#39;s social profiles in the info tab of the player.<br>
+All social profiles are set in <code>/src/js/social-networks.js</code>.<br></p>
+
+<p>The profile twitter for example is defined like this:</p>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html">twitter: new SocialNetwork({
+  icon: &#39;twitter&#39;,
+  title: &#39;Twitter&#39;,
+  profileUrl: &#39;https://twitter.com/&#39;,
+  shareUrl: &#39;share?text=$text$<span class="err">&amp;</span>url=$url$&#39;
+})</code></pre></div>
+
+
+The complete list of currently available social profiles and their icons:
+
+<dl class="profile-table">
+<dl>
+  <dt><i class="icon pwp-twitter"></i></dt>
+  <dd>twitter</dd>
+  <dd>Twitter</dd>
+</dl>
+
+<dl>
+  <dt><i class="icon pwp-message"></i></dt>
+  <dd>message</dd>
+  <dd>E-mail</dd>
+</dl>
+
+<dl>
+  <dt><i class="icon pwp-adn"></i></dt>
+  <dd>adn</dd>
+  <dd>App.net</dd>
+</dl>
+
+<dl>
+  <dt><i class="icon pwp-facebook"></i></dt>
+  <dd>facebook</dd>
+  <dd>Facebook</dd>
+</dl>
+
+<dl>
+  <dt><i class="icon pwp-google-plus"></i></dt>
+  <dd>gplus</dd>
+  <dd>Google +</dd>
+</dl>
+
+<dl>
+  <dt><i class="icon pwp-tumblr"></i></dt>
+  <dd>tumblr</dd>
+  <dd>Tumblr</dd>
+</dl>
+
+<dl>
+  <dt><i class="icon pwp-instagram2"></i></dt>
+  <dd>instagram</dd>
+  <dd>Instagram</dd>
+</dl>
+
+<dl>
+  <dt><i class="icon pwp-soundcloud"></i></dt>
+  <dd>soundcloud</dd>
+  <dd>Soundcloud</dd>
+</dl>
+
+<dl>
+  <dt><i class="icon pwp-flattr"></i></dt>
+  <dd>flattr</dd>
+  <dd>Flattr</dd>
+</dl>
+</dl>
+
+<div>
+  <div class="right up-to-top"> <a class="icon pwp-arrow-up" href="#top"></a></div>
+</div>
+
+<h4 id="metadata">Metadata</h4>
+
+<p>Edit your profile data according to following example and make sure to set the values correctly in single quotation marks.</p>
+
+<p>You will need to edit these two keypairs:<br>
+<code>profile:     &#39;your profile handle goes here&#39;</code><br>
+<code>serviceName: &#39;profile name chosen from available profiles&#39;</code></p>
+
+<p>Finally, the profiles are collected in a list with the keyword <code>profiles</code> like this:</p>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html">profiles: [
+  {
+    serviceName: &#39;twitter&#39;,
+    profile: &#39;podlove_org&#39;
+  },
+  {
+    serviceName: &#39;flattr&#39;,
+    profile: &#39;timpritlove&#39;
+  },
+  {
+    serviceName: &#39;facebook&#39;,
+    profile: &#39;podlove_org&#39;
+  },
+  {
+    serviceName: &#39;soundcloud&#39;,
+    profile: &#39;podlove_org&#39;
+  },
+  {
+    serviceName: &#39;adn&#39;,
+    profile: &#39;podlove&#39;
+  },
+  {
+    serviceName: &#39;email&#39;,
+    profile: &#39;info@podlove.org&#39;
+  }
+]</code></pre></div>
+
+
+<div>
+  <div class="right up-to-top"> <a class="icon pwp-arrow-up" href="#top"></a></div>
+</div>
+
+
+        </article>
+        
+    </section>
+</div>
+<footer class="pw-docs-footer">
+    <h3>Podlove Project</h3>
+<p>
+    We push the limits of podcasting
+    with new software solutions and open specifications.
+</p>
+<div class="buttons"><a class="btn btn-primary btn-xs twitter" href="https://twitter.com/intent/user?screen_name=podlove_org"><i class="fa fa-twitter left"></i>Follow @podlove_org</a></div>
+</footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="/bower_components/podlove-web-player/dist/js/podlove-web-moderator.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+
+    <title>Podlove Web Player 3.0 : Commented JSON Configuration</title>
+    <meta name="description" content="Documentation">
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/bower_components/podlove-font/css/podlove-font.css" media="screen" type="text/css">
+    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="stylesheet" href="/css/main.css">
+
+</head>
+<body id="top">
+
+<header class="navbar navbar-static-top pw-docs-nav">
+    <div class="navbar-header">
+    <button class="navbar-toggle display none" type="button" data-toggle="collapse" data-target=".pw-nav" aria-expanded="true">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+    <a href=" /" class="navbar-brand pw-docs-brand">
+        <img id="logo" class="logo img-responsive" src="/assets/img/podlove-logo-grey.png">
+        Podlove Web Player 3.0
+        <small class="hidden-xs">Documentation</small>
+    </a>
+</div>
+</header>
+
+<div class="container-fluid">
+    <section class="row-fluid">
+        
+        
+        <nav class="pw-nav col-sm-4 col-md-3 col-lg-2 hidden-print">
+            <ul class="nav">
+    <li>
+        <a href="/">Home</a>
+    </li>
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    <li>
+        <span>Guides</span>
+    </li>
+    
+    <li data-order="">
+        <a href="/guides/getting-started">Getting Started</a>
+    </li>
+    
+    
+    <li data-order="">
+        <a href="/guides/minimal-player">Minimal Player</a>
+    </li>
+    
+    
+    <li data-order="">
+        <a href="/guides/chapter-marks">Chapter Marks</a>
+    </li>
+    
+    
+    <li data-order="">
+        <a href="/guides/themes">Web Player Themes</a>
+    </li>
+    
+    
+    <li data-order="">
+        <a href="/guides/previews-of-themes">Previews of Themes</a>
+    </li>
+    
+    
+    <li data-order="">
+        <a href="/guides/social-profiles">Social Profiles</a>
+    </li>
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    <li>
+        <span>Appendix</span>
+    </li>
+    
+    <li data-order="">
+        <a href="/appendix/commented-json-configuration">Commented JSON Configuration</a>
+    </li>
+    
+    
+    <li data-order="">
+        <a href="/appendix/commented-injected-configuration">Injected Metadata JSON Configuration</a>
+    </li>
+    
+    
+</ul>
+
+        </nav>
+        <article class="pw-docs-content col-sm-8 col-md-8 col-lg-8">
+            <div class=page-header>
+    <h2>Commented JSON Configuration
+        
+    </h2>
+</div>
+
+<p>Generally speaking, all of the data shown below is optional.</p>
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="p">{</span>
+    <span class="c1">// -- All show related infos go here</span>
+    <span class="nx">show</span><span class="o">:</span> <span class="p">{</span> <span class="c1">// (optional) *</span>
+      <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;My Very First Podcast&#39;</span><span class="p">,</span> <span class="c1">// (optional)</span>
+      <span class="nx">subtitle</span><span class="o">:</span> <span class="s1">&#39;Short one-liner&#39;</span><span class="p">,</span> <span class="c1">// (optional)</span>
+      <span class="nx">summary</span><span class="o">:</span> <span class="s1">&#39;Paragraphs of text about your show and its topic. *yada yada*&#39;</span><span class="p">,</span> <span class="c1">// (optional)</span>
+      <span class="nx">poster</span><span class="o">:</span> <span class="s1">&#39;/images/show-cover.png&#39;</span><span class="p">,</span> <span class="c1">// (optional) x by x - will be shown on info and share tab</span>
+      <span class="nx">url</span><span class="o">:</span> <span class="s1">&#39;http:\/\/my.very.first.podcast&#39;</span> <span class="c1">// (optional)</span>
+    <span class="p">},</span>
+    <span class="c1">// -- Episode related data</span>
+    <span class="c1">// (optional) should be correct or not set at all - can seriously mess up progress if wrong</span>
+    <span class="nx">duration</span><span class="o">:</span> <span class="s1">&#39;00:02.902&#39;</span><span class="p">,</span>
+    <span class="c1">// (optional) assets that will be offered to be downloaded in download tab</span>
+    <span class="nx">downloads</span><span class="o">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="nx">assetTitle</span><span class="o">:</span> <span class="s1">&#39;MPEG-4 AAC Audio (m4a)&#39;</span><span class="p">,</span> <span class="c1">// this will be displayed in list</span>
+        <span class="nx">size</span><span class="o">:</span> <span class="mi">156237824</span><span class="p">,</span> <span class="c1">// bytes will be shown in MB</span>
+        <span class="nx">downloadUrl</span><span class="o">:</span> <span class="s1">&#39;http:\/\/my.very.first.podcast\/episode1\/?trackMe&amp;type=m4a&#39;</span><span class="p">,</span> <span class="c1">// Tracking enhanced URL</span>
+        <span class="nx">directAccess</span><span class="o">:</span> <span class="s1">&#39;http:\/\/my.very.first.podcast\/assets\/episode1.m4a&#39;</span><span class="p">,</span> <span class="c1">// unclear</span>
+        <span class="nx">url</span><span class="o">:</span> <span class="s1">&#39;http:\/\/my.very.first.podcast\/episode1\/?type.m4a&#39;</span> <span class="c1">// (mandatory)</span>
+      <span class="p">},</span>
+      <span class="c1">// ... more assets ...</span>
+      <span class="p">{</span>
+        <span class="nx">assetTitle</span><span class="o">:</span> <span class="s1">&#39;Transcripts (txt)&#39;</span><span class="p">,</span>
+        <span class="nx">size</span><span class="o">:</span> <span class="mi">140509184</span><span class="p">,</span> <span class="c1">//bytes will be shown in MB</span>
+        <span class="nx">url</span><span class="o">:</span> <span class="s1">&#39;http:\/\/my.very.first.podcast\/assets\/episode1_transcript.txt&#39;</span> <span class="c1">//</span>
+      <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="c1">// (optional) array of chapter objects - order does not matter</span>
+    <span class="nx">chapters</span><span class="o">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="nx">start</span><span class="o">:</span> <span class="s1">&#39;00:00:00.000&#39;</span><span class="p">,</span> <span class="c1">// (mandatory) Timecode in hh:mm:ss.ms</span>
+        <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;First chapter&#39;</span> <span class="c1">// (mandatory) name of the chapter</span>
+        <span class="c1">// ATM image and link properties are not taken into account</span>
+      <span class="p">},</span>
+      <span class="c1">// ... more chapters ...</span>
+      <span class="p">{</span>
+        <span class="nx">start</span><span class="o">:</span> <span class="s1">&#39;12:34:56.789&#39;</span><span class="p">,</span>
+        <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Last chapter&#39;</span>
+      <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="c1">// (optional) main player image (defaults to show cover) and share and</span>
+    <span class="nx">poster</span><span class="o">:</span> <span class="s1">&#39;/images/episode-cover.png&#39;</span><span class="p">,</span>
+    <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;My Very First Episode&#39;</span><span class="p">,</span> <span class="c1">// (optional)</span>
+    <span class="nx">permalink</span><span class="o">:</span> <span class="s1">&#39;http:\/\/my.very.first.podcast\/?post=23&#39;</span><span class="p">,</span> <span class="c1">// (optional) this link should never change</span>
+    <span class="nx">subtitle</span><span class="o">:</span> <span class="s1">&#39;This is the episode\&#39;s subtitle one-liner&#39;</span><span class="p">,</span> <span class="c1">// (optional)</span>
+    <span class="c1">// date in UTC format  YYYY-MM-DDThh:mm:ss+hh:mm</span>
+    <span class="nx">publicationDate</span><span class="o">:</span> <span class="s1">&#39;2015-05-09T10:10:10+00:00&#39;</span><span class="p">,</span>
+    <span class="c1">// choose your license - displayed in info tab</span>
+    <span class="nx">license</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Germany License&#39;</span><span class="p">,</span>
+      <span class="nx">url</span><span class="o">:</span> <span class="s1">&#39;http:\/\/creativecommons.org\/licenses\/by-nc-sa\/3.0\/de\/deed.en&#39;</span>
+    <span class="p">},</span>
+    <span class="c1">// as long as you wish</span>
+    <span class="nx">summary</span><span class="o">:</span> <span class="s2">&quot;&amp;gt;p&amp;lt;Paragraphs of fantastic epsisode description with HTML and even &amp;gt;a href=&quot;</span><span class="err">#</span><span class="s2">&quot;&amp;lt;links&amp;gt;/a&amp;lt;&amp;gt;/p&amp;lt;&quot;</span><span class="p">,</span>
+    <span class="c1">// which social profiles to show on info tab footer</span>
+    <span class="nx">profiles</span><span class="o">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+          <span class="nx">serviceName</span><span class="o">:</span> <span class="s1">&#39;twitter&#39;</span><span class="p">,</span>
+          <span class="nx">profile</span><span class="o">:</span> <span class="s1">&#39;podlove_org&#39;</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+          <span class="nx">serviceName</span><span class="o">:</span> <span class="s1">&#39;email&#39;</span><span class="p">,</span>
+          <span class="nx">profile</span><span class="o">:</span> <span class="s1">&#39;info@podlove.org&#39;</span>
+      <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="c1">// display settings</span>
+    <span class="nx">width</span><span class="o">:</span> <span class="s1">&#39;auto&#39;</span> <span class="c1">// (deprecated) defaults to auto / 100%</span>
+    <span class="nx">alwaysShowHours</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">// (optional) show hours in timecodes with 00</span>
+    <span class="nx">timecontrolsVisible</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">// (optional) hide/show time controls</span>
+    <span class="nx">summaryVisible</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">// (optional) hide/show info tab</span>
+    <span class="nx">sharebuttonsVisible</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">// (optional) hide/show share tab</span>
+    <span class="nx">chaptersVisible</span><span class="o">:</span> <span class="kc">true</span> <span class="c1">// (optional) hide/show chapter tab</span>
+<span class="p">});</span></code></pre></div>
+
+
+<div>
+  <div class="right up-to-top"> <a class="icon pwp-arrow-up" href="#top"></a></div>
+</div>
+
+
+        </article>
+        
+    </section>
+</div>
+<footer class="pw-docs-footer">
+    <h3>Podlove Project</h3>
+<p>
+    We push the limits of podcasting
+    with new software solutions and open specifications.
+</p>
+<div class="buttons"><a class="btn btn-primary btn-xs twitter" href="https://twitter.com/intent/user?screen_name=podlove_org"><i class="fa fa-twitter left"></i>Follow @podlove_org</a></div>
+</footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="/bower_components/podlove-web-player/dist/js/podlove-web-moderator.js"></script>
+
+</body>
+</html>

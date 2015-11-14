@@ -1,0 +1,44 @@
+$video-play-button-size: 100px;
+$video-play-button-position: -($video-play-button-size/2) - 2;
+
+.video-pane {
+  position: relative;
+  display: block;
+
+  background: $black;
+
+  min-height: 200px;
+  height: auto;
+
+  video {
+    width: 100%;
+    z-index: 9;
+  }
+
+  .video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    background: transparent;
+    text-align: center;
+  }
+
+  .play {
+    position: relative;
+    color: $player-base-highlight-color;
+    display: block;
+    top: 50%;
+    max-width: $video-play-button-size;
+    line-height: $video-play-button-size;
+    height: $video-play-button-size;
+    margin: $video-play-button-position auto 0;
+    font-size: $video-play-button-size;
+    z-index: 11;
+  }
+  .play.playing {
+    display: none;
+  }
+}

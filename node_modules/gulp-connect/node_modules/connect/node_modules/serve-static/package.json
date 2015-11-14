@@ -1,0 +1,70 @@
+{
+  "name": "serve-static",
+  "description": "Serve static files",
+  "version": "1.1.0",
+  "author": {
+    "name": "Douglas Christopher Wilson",
+    "email": "doug@somethingdoug.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/expressjs/serve-static.git"
+  },
+  "bugs": {
+    "url": "https://github.com/expressjs/serve-static/issues"
+  },
+  "dependencies": {
+    "parseurl": "1.0.1",
+    "send": "0.3.0"
+  },
+  "devDependencies": {
+    "connect": "~2.14.1",
+    "mocha": "~1.18.2",
+    "should": "~3.3.0",
+    "supertest": "~0.11.0"
+  },
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "mocha --reporter spec --require should"
+  },
+  "homepage": "https://github.com/expressjs/serve-static",
+  "_id": "serve-static@1.1.0",
+  "dist": {
+    "shasum": "454dfa05bb3ddd4e701a8915b83a278aa91c5643",
+    "tarball": "http://registry.npmjs.org/serve-static/-/serve-static-1.1.0.tgz"
+  },
+  "_from": "serve-static@1.1.0",
+  "_npmVersion": "1.4.3",
+  "_npmUser": {
+    "name": "dougwilson",
+    "email": "doug@somethingdoug.com"
+  },
+  "maintainers": [
+    {
+      "name": "dougwilson",
+      "email": "doug@somethingdoug.com"
+    },
+    {
+      "name": "jongleberry",
+      "email": "jonathanrichardong@gmail.com"
+    },
+    {
+      "name": "shtylman",
+      "email": "shtylman@gmail.com"
+    },
+    {
+      "name": "tjholowaychuk",
+      "email": "tj@vision-media.ca"
+    },
+    {
+      "name": "mscdex",
+      "email": "mscdex@mscdex.net"
+    }
+  ],
+  "directories": {},
+  "_shasum": "454dfa05bb3ddd4e701a8915b83a278aa91c5643",
+  "_resolved": "https://registry.npmjs.org/serve-static/-/serve-static-1.1.0.tgz"
+}

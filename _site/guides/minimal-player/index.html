@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+
+    <title>Podlove Web Player 3.0 : Minimal Player</title>
+    <meta name="description" content="Documentation">
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/bower_components/podlove-font/css/podlove-font.css" media="screen" type="text/css">
+    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="stylesheet" href="/css/main.css">
+
+</head>
+<body id="top">
+
+<header class="navbar navbar-static-top pw-docs-nav">
+    <div class="navbar-header">
+    <button class="navbar-toggle display none" type="button" data-toggle="collapse" data-target=".pw-nav" aria-expanded="true">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+    <a href=" /" class="navbar-brand pw-docs-brand">
+        <img id="logo" class="logo img-responsive" src="/assets/img/podlove-logo-grey.png">
+        Podlove Web Player 3.0
+        <small class="hidden-xs">Documentation</small>
+    </a>
+</div>
+</header>
+
+<div class="container-fluid">
+    <section class="row-fluid">
+        
+        
+        <nav class="pw-nav col-sm-4 col-md-3 col-lg-2 hidden-print">
+            <ul class="nav">
+    <li>
+        <a href="/">Home</a>
+    </li>
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    <li>
+        <span>Guides</span>
+    </li>
+    
+    <li data-order="">
+        <a href="/guides/getting-started">Getting Started</a>
+    </li>
+    
+    
+    <li data-order="">
+        <a href="/guides/minimal-player">Minimal Player</a>
+    </li>
+    
+    
+    <li data-order="">
+        <a href="/guides/chapter-marks">Chapter Marks</a>
+    </li>
+    
+    
+    <li data-order="">
+        <a href="/guides/themes">Web Player Themes</a>
+    </li>
+    
+    
+    <li data-order="">
+        <a href="/guides/previews-of-themes">Previews of Themes</a>
+    </li>
+    
+    
+    <li data-order="">
+        <a href="/guides/social-profiles">Social Profiles</a>
+    </li>
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    <li>
+        <span>Appendix</span>
+    </li>
+    
+    <li data-order="">
+        <a href="/appendix/commented-json-configuration">Commented JSON Configuration</a>
+    </li>
+    
+    
+    <li data-order="">
+        <a href="/appendix/commented-injected-configuration">Injected Metadata JSON Configuration</a>
+    </li>
+    
+    
+</ul>
+
+        </nav>
+        <article class="pw-docs-content col-sm-8 col-md-8 col-lg-8">
+            <div class=page-header>
+    <h2>Minimal Player
+        
+    </h2>
+</div>
+
+<h3 id="simple-player-without-chapters">Simple Player without Chapters</h3>
+
+<figure class="mb">
+  <img src="/assets/examples/minimal.png" alt="Minimal Player" class="fullwidth-img shadow">
+</figure>
+
+<h3 id="source-code">Source Code</h3>
+
+<h4 id="audio-tag">Audio Tag</h4>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;audio</span> <span class="na">id=</span><span class="s">&quot;my-ID&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;source</span> <span class="na">src=</span><span class="s">&quot;../which-format/podlove-test-track.mp4&quot;</span> <span class="na">type=</span><span class="s">&quot;audio/mp4&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;source</span> <span class="na">src=</span><span class="s">&quot;../which-format/podlove-test-track.mp3&quot;</span> <span class="na">type=</span><span class="s">&quot;audio/mpeg&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;source</span> <span class="na">src=</span><span class="s">&quot;../which-format/podlove-test-track.ogg&quot;</span> <span class="na">type=</span><span class="s">&quot;audio/ogg; codecs=vorbis&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;source</span> <span class="na">src=</span><span class="s">&quot;../which-format/podlove-test-track.opus&quot;</span> <span class="na">type=</span><span class="s">&quot;audio/ogg; codecs=opus&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/audio&gt;</span></code></pre></div>
+
+
+#### Metadata
+
+
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
+  <span class="nx">pwp_metadata</span><span class="p">[</span><span class="s1">&#39;my-ID&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">sources</span><span class="o">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="nx">src</span><span class="o">:</span> <span class="s2">&quot;/examples/which-format/podlove-test-track.mp4&quot;</span><span class="p">,</span>
+        <span class="nx">type</span><span class="o">:</span> <span class="s2">&quot;audio/mp4&quot;</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+        <span class="nx">src</span><span class="o">:</span><span class="s2">&quot;/examples/which-format/podlove-test-track.mp3&quot;</span><span class="p">,</span>
+        <span class="nx">type</span><span class="o">:</span><span class="s2">&quot;audio/mpeg&quot;</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+        <span class="nx">src</span><span class="o">:</span><span class="s2">&quot;/examples/which-format/podlove-test-track.ogg&quot;</span><span class="p">,</span>
+        <span class="nx">type</span><span class="o">:</span><span class="s2">&quot;audio/ogg; codecs=vorbis&quot;</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+        <span class="nx">src</span><span class="o">:</span><span class="s2">&quot;/examples/which-format/podlove-test-track.opus&quot;</span><span class="p">,</span>
+        <span class="nx">type</span><span class="o">:</span><span class="s2">&quot;audio/ogg; codecs=opus&quot;</span>
+      <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;PWP001 - Which format plays?&#39;</span><span class="p">,</span>
+    <span class="nx">permalink</span><span class="o">:</span> <span class="s1">&#39;/examples/which-format/index.html&#39;</span><span class="p">,</span>
+    <span class="nx">subtitle</span><span class="o">:</span> <span class="s1">&#39;The Format your client chooses to play first will be told when you play this track.&#39;</span><span class="p">,</span>
+    <span class="nx">publicationDate</span><span class="o">:</span> <span class="s1">&#39;2004-02-12T15:19:21+00:00&#39;</span><span class="p">,</span>
+    <span class="nx">show</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;PWP - The Podlove Web Player&#39;</span><span class="p">,</span>
+      <span class="nx">subtitle</span><span class="o">:</span> <span class="s1">&#39;HTML5 Goodness for Podcasts&#39;</span><span class="p">,</span>
+      <span class="nx">summary</span><span class="o">:</span> <span class="s1">&#39;Even more text about this player and its advantages...&#39;</span><span class="p">,</span>
+      <span class="nx">url</span><span class="o">:</span> <span class="s1">&#39;http://docs.podlove.org&#39;</span>
+    <span class="p">},</span>
+    <span class="nx">duration</span><span class="o">:</span> <span class="s1">&#39;00:02.902&#39;</span>
+  <span class="p">};</span>
+<span class="o">&lt;</span><span class="err">/script&gt;</span></code></pre></div>
+
+
+<div>
+  <div class="right up-to-top"> <a class="icon pwp-arrow-up" href="#top"></a></div>
+</div>
+
+
+        </article>
+        
+    </section>
+</div>
+<footer class="pw-docs-footer">
+    <h3>Podlove Project</h3>
+<p>
+    We push the limits of podcasting
+    with new software solutions and open specifications.
+</p>
+<div class="buttons"><a class="btn btn-primary btn-xs twitter" href="https://twitter.com/intent/user?screen_name=podlove_org"><i class="fa fa-twitter left"></i>Follow @podlove_org</a></div>
+</footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="/bower_components/podlove-web-player/dist/js/podlove-web-moderator.js"></script>
+
+<script src="/js/getting-started.js"></script>
+
+</body>
+</html>

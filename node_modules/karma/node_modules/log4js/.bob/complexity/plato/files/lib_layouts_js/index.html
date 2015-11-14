@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Plato - lib/layouts.js</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <link href="../../assets/css/vendor/morris.css" rel="stylesheet">
+  <link href="../../assets/css/vendor/bootstrap.css" rel="stylesheet">
+  <link href="../../assets/css/vendor/font-awesome.css" rel="stylesheet">
+  <link href="../../assets/css/vendor/codemirror.css" rel="stylesheet">
+  <link href="../../assets/css/plato.css" rel="stylesheet">
+  <link href="../../assets/css/plato-file.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="http://github.com/es-analysis/plato">Plato on Github</a>
+    <ul class="nav navbar-nav">
+      <li>
+        <a href="../../index.html">Report Home</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="jumbotron">
+  <div class="container">
+    <h1>lib/layouts.js</h1>
+  </div>
+</div>
+
+<div class="container aggregate-stats">
+  <div class="row">
+    <div class="col-md-6">
+      <h2 class="header">Maintainability <a href="http://blogs.msdn.com/b/codeanalysis/archive/2007/11/20/maintainability-index-range-and-meaning.aspx"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="A value between 0 and 100 that represents the relative ease of maintaining the code. A high value means better maintainability." data-original-title="Maintainability Index"  data-container="body"></i></a></h2>
+      <p class="stat">73.79</p>
+    </div>
+    <div class="col-md-6">
+      <h2 class="header">Lines of code <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC" data-container="body"></i></h2>
+      <p class="stat">342</p>
+    </div>
+  </div>
+  <div class="row historical">
+    <div class="col-md-6">
+      <p id="chart_historical_maint" class="chart"></p>
+    </div>
+    <div class="col-md-6">
+      <p id="chart_historical_sloc" class="chart"></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <h2 class="header">Difficulty  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="The difficulty measure is related to the difficulty of the program to write or understand." data-original-title="Difficulty" data-container="body"></i></a></h2>
+      <p class="stat">33.75</p>
+    </div>
+    <div class="col-md-6">
+      <h2 class="header">Estimated Errors  <a href="http://en.wikipedia.org/wiki/Halstead_complexity_measures"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Halstead's delivered bugs is an estimate for the number of errors in the implementation." data-original-title="Delivered Bugs" data-container="body"></i></a></h2>
+      <p class="stat">2.55</p>
+    </div>
+  </div>
+</div>
+
+<div class="container charts">
+  <div class="row">
+    <h2 class="header">Function weight</h2>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <h3 class="chart-header">By Complexity <a href="http://en.wikipedia.org/wiki/Cyclomatic_complexity"><i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="This metric counts the number of distinct paths through a block of code. Lower values are better." data-original-title="Cyclomatic Complexity" data-container="body"></i></a></h3>
+      <div id="fn-by-complexity" class="stat"></div>
+    </div>
+    <div class="col-md-6">
+      <h3 class="chart-header">By SLOC  <i class="icon icon-info-sign" rel="popover" data-placement="top" data-trigger="hover" data-content="Source Lines of Code / Logical Lines of Code" data-original-title="SLOC/LSLOC" data-container="body"></i></h3>
+      <div id="fn-by-sloc" class="stat"></div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <textarea id="file-source" class="col-md-12">&quot;use strict&quot;;
+var dateFormat = require(&#039;./date_format&#039;)
+, os = require(&#039;os&#039;)
+, eol = os.EOL || &#039;\n&#039;
+, util = require(&#039;util&#039;)
+, replacementRegExp = /%[sdj]/g
+, layoutMakers = {
+  &quot;messagePassThrough&quot;: function() { return messagePassThroughLayout; }, 
+  &quot;basic&quot;: function() { return basicLayout; }, 
+  &quot;colored&quot;: function() { return colouredLayout; }, 
+  &quot;coloured&quot;: function() { return colouredLayout; }, 
+  &quot;pattern&quot;: function (config) {
+    return patternLayout(config &amp;&amp; config.pattern, config &amp;&amp; config.tokens);
+	}
+}
+, colours = {
+  ALL: &quot;grey&quot;, 
+  TRACE: &quot;blue&quot;, 
+  DEBUG: &quot;cyan&quot;, 
+  INFO: &quot;green&quot;, 
+  WARN: &quot;yellow&quot;, 
+  ERROR: &quot;red&quot;, 
+  FATAL: &quot;magenta&quot;, 
+  OFF: &quot;grey&quot;
+};
+
+function wrapErrorsWithInspect(items) {
+  return items.map(function(item) {
+    if ((item instanceof Error) &amp;&amp; item.stack) {
+      return { inspect: function() { return util.format(item) + &#039;\n&#039; + item.stack; } };
+    } else {
+      return item;
+    }
+  });
+}
+
+function formatLogData(logData) {
+  var data = Array.isArray(logData) ? logData : Array.prototype.slice.call(arguments);
+  return util.format.apply(util, wrapErrorsWithInspect(data));
+}
+
+var styles = {
+    //styles
+  &#039;bold&#039;      : [1,  22],
+  &#039;italic&#039;    : [3,  23],
+  &#039;underline&#039; : [4,  24],
+  &#039;inverse&#039;   : [7,  27],
+  //grayscale
+  &#039;white&#039;     : [37, 39],
+  &#039;grey&#039;      : [90, 39],
+  &#039;black&#039;     : [90, 39],
+  //colors
+  &#039;blue&#039;      : [34, 39],
+  &#039;cyan&#039;      : [36, 39],
+  &#039;green&#039;     : [32, 39],
+  &#039;magenta&#039;   : [35, 39],
+  &#039;red&#039;       : [31, 39],
+  &#039;yellow&#039;    : [33, 39]
+};
+
+function colorizeStart(style) {
+  return style ? &#039;\x1B[&#039; + styles[style][0] + &#039;m&#039; : &#039;&#039;;
+}
+function colorizeEnd(style) {
+  return style ? &#039;\x1B[&#039; + styles[style][1] + &#039;m&#039; : &#039;&#039;;
+}
+/**
+ * Taken from masylum&#039;s fork (https://github.com/masylum/log4js-node)
+ */
+function colorize (str, style) {
+  return colorizeStart(style) + str + colorizeEnd(style);
+}
+
+function timestampLevelAndCategory(loggingEvent, colour, timezoneOffest) {
+  var output = colorize(
+    formatLogData(
+      &#039;[%s] [%s] %s - &#039;
+      , dateFormat.asString(loggingEvent.startTime, timezoneOffest)
+      , loggingEvent.level
+      , loggingEvent.categoryName
+    )
+    , colour
+  );
+  return output;
+}
+
+/**
+ * BasicLayout is a simple layout for storing the logs. The logs are stored
+ * in following format:
+ * &lt;pre&gt;
+ * [startTime] [logLevel] categoryName - message\n
+ * &lt;/pre&gt;
+ *
+ * @author Stephan Strittmatter
+ */
+function basicLayout (loggingEvent, timezoneOffset) {
+  return timestampLevelAndCategory(loggingEvent, undefined, timezoneOffset) + formatLogData(loggingEvent.data);
+}
+
+/**
+ * colouredLayout - taken from masylum&#039;s fork.
+ * same as basicLayout, but with colours.
+ */
+function colouredLayout (loggingEvent, timezoneOffset) {
+  return timestampLevelAndCategory(
+    loggingEvent,
+    colours[loggingEvent.level.toString()],
+    timezoneOffset
+  ) + formatLogData(loggingEvent.data);
+}
+
+function messagePassThroughLayout (loggingEvent) {
+  return formatLogData(loggingEvent.data);
+}
+
+/**
+ * PatternLayout
+ * Format for specifiers is %[padding].[truncation][field]{[format]}
+ * e.g. %5.10p - left pad the log level by 5 characters, up to a max of 10
+ * Fields can be any of:
+ *  - %r time in toLocaleTimeString format
+ *  - %p log level
+ *  - %c log category
+ *  - %h hostname
+ *  - %m log data
+ *  - %d date in various formats
+ *  - %% %
+ *  - %n newline
+ *  - %z pid
+ *  - %x{&lt;tokenname&gt;} add dynamic tokens to your log. Tokens are specified in the tokens parameter
+ * You can use %[ and %] to define a colored block.
+ *
+ * Tokens are specified as simple key:value objects. 
+ * The key represents the token name whereas the value can be a string or function
+ * which is called to extract the value to put in the log message. If token is not
+ * found, it doesn&#039;t replace the field.
+ *
+ * A sample token would be: { &quot;pid&quot; : function() { return process.pid; } }
+ *
+ * Takes a pattern string, array of tokens and returns a layout function.
+ * @param {String} Log format pattern String
+ * @param {object} map object of different tokens
+ * @param {number} timezone offset in minutes
+ * @return {Function}
+ * @author Stephan Strittmatter
+ * @author Jan Schmidle
+ */
+function patternLayout (pattern, tokens, timezoneOffset) {
+  var TTCC_CONVERSION_PATTERN  = &quot;%r %p %c - %m%n&quot;;
+  var regex = /%(-?[0-9]+)?(\.?[0-9]+)?([\[\]cdhmnprzxy%])(\{([^\}]+)\})?|([^%]+)/;
+  
+  pattern = pattern || TTCC_CONVERSION_PATTERN;
+
+  function categoryName(loggingEvent, specifier) {
+    var loggerName = loggingEvent.categoryName;
+    if (specifier) {
+      var precision = parseInt(specifier, 10);
+      var loggerNameBits = loggerName.split(&quot;.&quot;);
+      if (precision &lt; loggerNameBits.length) {
+        loggerName = loggerNameBits.slice(loggerNameBits.length - precision).join(&quot;.&quot;);
+      }
+    }
+    return loggerName;
+  }
+
+  function formatAsDate(loggingEvent, specifier) {
+    var format = dateFormat.ISO8601_FORMAT;
+    if (specifier) {
+      format = specifier;
+      // Pick up special cases
+      if (format == &quot;ISO8601&quot;) {
+        format = dateFormat.ISO8601_FORMAT;
+      } else if (format == &quot;ISO8601_WITH_TZ_OFFSET&quot;) {
+        format = dateFormat.ISO8601_WITH_TZ_OFFSET_FORMAT; 
+      } else if (format == &quot;ABSOLUTE&quot;) {
+        format = dateFormat.ABSOLUTETIME_FORMAT;
+      } else if (format == &quot;DATE&quot;) {
+        format = dateFormat.DATETIME_FORMAT;
+      }
+    }
+    // Format the date
+    return dateFormat.asString(format, loggingEvent.startTime, timezoneOffset);
+  }
+  
+  function hostname() {
+    return os.hostname().toString();
+  }
+
+  function formatMessage(loggingEvent) {
+    return formatLogData(loggingEvent.data);
+  }
+  
+  function endOfLine() {
+    return eol;
+  }
+
+  function logLevel(loggingEvent) {
+    return loggingEvent.level.toString();
+  }
+
+  function startTime(loggingEvent) {
+    return dateFormat.asString(&#039;hh:mm:ss&#039;, loggingEvent.startTime, timezoneOffset);
+  }
+
+  function startColour(loggingEvent) {
+    return colorizeStart(colours[loggingEvent.level.toString()]);
+  }
+
+  function endColour(loggingEvent) {
+    return colorizeEnd(colours[loggingEvent.level.toString()]);
+  }
+
+  function percent() {
+    return &#039;%&#039;;
+  }
+
+  function pid(loggingEvent) {
+    if (loggingEvent &amp;&amp; loggingEvent.pid) {
+      return loggingEvent.pid;
+    } else {
+      return process.pid;
+    }
+  }
+  
+  function clusterInfo(loggingEvent, specifier) {
+    if (loggingEvent.cluster &amp;&amp; specifier) {
+      return specifier
+        .replace(&#039;%m&#039;, loggingEvent.cluster.master)
+        .replace(&#039;%w&#039;, loggingEvent.cluster.worker)
+        .replace(&#039;%i&#039;, loggingEvent.cluster.workerId);
+    } else if (loggingEvent.cluster) {
+      return loggingEvent.cluster.worker+&#039;@&#039;+loggingEvent.cluster.master;
+    } else {
+      return pid();
+    }
+  }
+
+  function userDefined(loggingEvent, specifier) {
+    if (typeof(tokens[specifier]) !== &#039;undefined&#039;) {
+      if (typeof(tokens[specifier]) === &#039;function&#039;) {
+        return tokens[specifier](loggingEvent);
+      } else {
+        return tokens[specifier];
+      }
+    }
+    return null;
+  }
+
+  var replacers = {
+    &#039;c&#039;: categoryName,
+    &#039;d&#039;: formatAsDate,
+    &#039;h&#039;: hostname,
+    &#039;m&#039;: formatMessage,
+    &#039;n&#039;: endOfLine,
+    &#039;p&#039;: logLevel,
+    &#039;r&#039;: startTime,
+    &#039;[&#039;: startColour,
+    &#039;]&#039;: endColour,
+    &#039;y&#039;: clusterInfo,
+    &#039;z&#039;: pid,
+    &#039;%&#039;: percent,
+    &#039;x&#039;: userDefined
+  };
+
+  function replaceToken(conversionCharacter, loggingEvent, specifier) {
+    return replacers[conversionCharacter](loggingEvent, specifier);
+  }
+
+  function truncate(truncation, toTruncate) {
+    var len;
+    if (truncation) {
+      len = parseInt(truncation.substr(1), 10);
+      return toTruncate.substring(0, len);
+    }
+
+    return toTruncate;
+  }
+
+  function pad(padding, toPad) {
+    var len;
+    if (padding) {
+      if (padding.charAt(0) == &quot;-&quot;) {
+        len = parseInt(padding.substr(1), 10);
+        // Right pad with spaces
+        while (toPad.length &lt; len) {
+          toPad += &quot; &quot;;
+        }
+      } else {
+        len = parseInt(padding, 10);
+        // Left pad with spaces
+        while (toPad.length &lt; len) {
+          toPad = &quot; &quot; + toPad;
+        }
+      }
+    }
+    return toPad;
+  }
+  
+  return function(loggingEvent) {
+    var formattedString = &quot;&quot;;
+    var result;
+    var searchString = pattern;
+    
+    while ((result = regex.exec(searchString))) {
+      var matchedString = result[0];
+      var padding = result[1];
+      var truncation = result[2];
+      var conversionCharacter = result[3];
+      var specifier = result[5];
+      var text = result[6];
+      
+      // Check if the pattern matched was just normal text
+      if (text) {
+        formattedString += &quot;&quot; + text;
+      } else {
+        // Create a raw replacement string based on the conversion
+        // character and specifier
+        var replacement = replaceToken(conversionCharacter, loggingEvent, specifier);
+
+        // Format the replacement according to any padding or
+        // truncation specified
+        replacement = truncate(truncation, replacement);
+        replacement = pad(padding, replacement);
+        formattedString += replacement;
+      }
+      searchString = searchString.substr(result.index + result[0].length);
+    }
+    return formattedString;
+  };
+
+}
+
+module.exports = {
+  basicLayout: basicLayout, 
+  messagePassThroughLayout: messagePassThroughLayout, 
+  patternLayout: patternLayout, 
+  colouredLayout: colouredLayout, 
+  coloredLayout: colouredLayout, 
+  layout: function(name, config) {
+    return layoutMakers[name] &amp;&amp; layoutMakers[name](config);
+  }
+};</textarea>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p>.</p>
+  </div>
+</footer>
+
+<script type="text/html" id="complexity-popover-template">
+  <div class="complexity-notice">
+    Complexity : {{ complexity.cyclomatic }} <br>
+    Length : {{ complexity.halstead.length }} <br>
+    Difficulty : {{ complexity.halstead.difficulty.toFixed(2) }} <br>
+    Est # bugs : {{ complexity.halstead.bugs.toFixed(2) }}<br>
+  </div>
+</script>
+
+<script type="text/javascript" src="../../assets/scripts/bundles/core-bundle.js"></script>
+<script type="text/javascript" src="../../assets/scripts/bundles/codemirror.js"></script>
+<script type="text/javascript" src="../../assets/scripts/codemirror.markpopovertext.js"></script>
+<script type="text/javascript" src="report.js"></script>
+<script type="text/javascript" src="report.history.js"></script>
+<script type="text/javascript" src="../../assets/scripts/plato-file.js"></script>
+</body>
+</html>

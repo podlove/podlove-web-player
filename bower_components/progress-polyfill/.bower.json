@@ -1,0 +1,13 @@
+{
+  "name": "progress-polyfill",
+  "homepage": "https://github.com/LeaVerou/HTML5-Progress-polyfill",
+  "_release": "88c53bc938",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "88c53bc9380db48f7f8ab2ddf3c0f26f633a4d82"
+  },
+  "_source": "https://github.com/LeaVerou/HTML5-Progress-polyfill.git",
+  "_target": "*",
+  "_originalSource": "https://github.com/LeaVerou/HTML5-Progress-polyfill.git"
+}
