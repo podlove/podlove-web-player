@@ -107,26 +107,38 @@ Create new Pull Request
 
 ## Release
 
-  git checkout release
+    git fetch
 
-  git merge dev
+    git checkout -b release origin/release
 
-Copy the commit messages from the editor to clipboard for later use.
+    git merge origin/dev
 
-  gulp build
+    gulp build
 
-  git add . -f
+Force add all changes. Otherwise changes to the `dist` folder would not be part
+of the release.
 
-  git commit "release <version>"
+    git add . -f
 
-  git push
+    git commit "release <version-number>"
+
+    git push
+
+Copy the commit messages from the merge commit to clipboard for later use.
+
+    git show HEAD^
 
 Go to https://github.com/podlove/podlove-web-player/releases/new
 
-Use version as the tagname. Versions follow semantic versioning http://semver.org .
+Use <version-number> as the tagname. Be sure to add a "v" to the beginning.
+Versions follow semantic versioning (for details see http://semver.org).
+
+Find a (funny) name that can be easily remembered by humans.
 
 Paste the contents of your clipboard into the description field and edit them
 to be a human readable changelog.
+
+Hit the **save** button.
 
 ## Contributors
 
