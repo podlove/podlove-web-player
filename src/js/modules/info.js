@@ -85,7 +85,7 @@ function createSocialInfo(profiles) {
 }
 
 function createSocialAndLicenseInfo (tab, params) {
-  if (!params.license || !param.show) {
+  if (!params.license || !params.show) {
     return;
   }
   tab.createFooter(
