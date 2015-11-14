@@ -105,9 +105,37 @@ Push to the branch
 
 Create new Pull Request
 
-Contributors:
+## Release
+
+  git checkout release
+
+  git merge dev
+
+Copy the commit messages from the editor to clipboard for later use.
+
+  gulp build
+
+  git add . -f
+
+  git commit "release <version>"
+
+  git push
+
+Go to https://github.com/podlove/podlove-web-player/releases/new
+
+Use version as the tagname. Versions follow semantic versioning http://semver.org .
+
+Paste the contents of your clipboard into the description field and edit them
+to be a human readable changelog.
+
+## Contributors
+
 [Gerrit van Aaken](https://github.com/gerritvanaaken/), [Simon Waldherr](https://github.com/simonwaldherr/),
 [Frank Hase](https://github.com/Kambfhase/), [Eric Teubert](https://github.com/eteubert/),
 [Juri Leino](https://github.com/line-o), [Alexandra von Criegern](https://github.com/plutonik-a) and [others](https://github.com/podlove/podlove-web-player/contributors)
-Version: 3.0.0-alpha
-License: [BSD 2-Clause License](http://opensource.org/licenses/BSD-2-Clause)
+
+## Version
+3.0.0-beta.3
+
+## License
+[BSD 2-Clause License](http://opensource.org/licenses/BSD-2-Clause)

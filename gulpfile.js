@@ -26,8 +26,6 @@ var bower = 'bower_components/'
   , external = 'vendor/'
   ;
 
-var reload = browserSync.reload;
-
 gulp.task('lint', function () {
   // Note: To have the process exit with an error code (1) on
   //  lint error, return the stream and pipe to failOnError last.
@@ -60,8 +58,7 @@ gulp.task('styles', function() {
     .pipe(gulp.dest(dest + 'css'))
     .pipe(rename({ suffix: '.min' }))
     .pipe(minifycss())
-    .pipe(gulp.dest(dest + 'css'))
-    .pipe(reload({stream: true}));
+    .pipe(gulp.dest(dest + 'css'));
 });
 
 gulp.task('moderator', function() {
@@ -71,8 +68,7 @@ gulp.task('moderator', function() {
     .pipe(gulp.dest(dest + 'js'))
     .pipe(rename({ suffix: '.min' }))
     .pipe(uglify())
-    .pipe(gulp.dest(dest + 'js'))
-    .pipe(reload({stream: true}));
+    .pipe(gulp.dest(dest + 'js'));
 });
 
 gulp.task('player', function() {
@@ -82,8 +78,7 @@ gulp.task('player', function() {
     .pipe(gulp.dest(dest + 'js'))
     .pipe(rename({ suffix: '.min' }))
     .pipe(uglify())
-    .pipe(gulp.dest(dest + 'js'))
-    .pipe(reload({stream: true}));
+    .pipe(gulp.dest(dest + 'js'));
 });
 
 // Scripts
@@ -93,8 +88,7 @@ gulp.task('scripts', ['player', 'moderator']);
 gulp.task('images', function() {
   return gulp.src(source + 'img/**/*')
     .pipe(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true }))
-    .pipe(gulp.dest(dest + 'img'))
-    .pipe(reload({stream: true}));
+    .pipe(gulp.dest(dest + 'img'));
 });
 
 // copy lib files
@@ -126,13 +120,11 @@ gulp.task('copy', function() {
 gulp.task('examples', function() {
   // main documentation index html
   gulp.src(source + '*.html')
-    .pipe(gulp.dest(dest))
-    .pipe(reload({stream: true}));
+    .pipe(gulp.dest(dest));
 
   // all media examples
   gulp.src(source + 'examples/**/*.*')
-    .pipe(gulp.dest(dest + 'examples'))
-    .pipe(reload({stream: true}));
+    .pipe(gulp.dest(dest + 'examples'));
 });
 
 // Clean
@@ -152,10 +144,12 @@ gulp.task('default', ['lint', 'test'], function() {
 
 // Watch
 gulp.task('watch', function() {
+  // Browsersync configuration
   browserSync({
-    server: {
+    server: { // serve dist directory as server
         baseDir: './dist/'
-    }
+    },
+    ghostMode: false  // ghost mode (interaction sync) disabled by default -> enable in ui
   });
 
   // Watch Sass source files

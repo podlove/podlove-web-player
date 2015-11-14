@@ -10,11 +10,13 @@
     <link href="css/vendor/progress-polyfill.css" rel="stylesheet" media="screen" type="text/css" />
 </head>
 <body>
-<audio id="podlove-web-player"></audio>
-<script src="js/vendor/html5shiv.js"></script>
-<script src="js/vendor/jquery.min.js"></script>
-<script src="js/vendor/progress-polyfill.min.js"></script>
-<script src="js/podlove-web-player.js"></script>
-<script>$('#podlove-web-player').podlovewebplayer({deferred: true});</script>
+  <div class="podlove-player-wrapper">
+    <audio id="podlove-web-player"></audio>
+  </div>
+  <script src="js/vendor/html5shiv.js"></script>
+  <script src="js/vendor/jquery.min.js"></script>
+  <script src="js/vendor/progress-polyfill.min.js"></script>
+  <script src="js/podlove-web-player.js"></script>
+  <script>$('#podlove-web-player').podlovewebplayer({deferred: true});</script>
 </body>
 </html>

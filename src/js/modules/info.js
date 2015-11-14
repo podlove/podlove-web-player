@@ -21,7 +21,7 @@ function createEpisodeInfo(tab, params) {
      getPublicationDate(params.publicationDate) +
     '<p>' +
       'Permalink:<br>' +
-      '<a href="' + params.permalink + '" title="Permalink für die Episode">' + params.permalink + '</a>' +
+      '<a href="' + params.permalink + '" target="_blank" title="Permalink für die Episode">' + params.permalink + '</a>' +
     '</p>'
   );
 }
@@ -52,7 +52,7 @@ function createShowInfo (tab, params) {
     createPosterImage(params.show.poster) +
     createSubscribeButton(params) +
     '<p>Link zur Show:<br>' +
-      '<a href="' + params.show.url + '" title="Link zur Show">' + params.show.url + '</a></p>'
+      '<a href="' + params.show.url + '" target="_blank" title="Link zur Show">' + params.show.url + '</a></p>'
   );
 }
 
@@ -83,7 +83,7 @@ function createSocialAndLicenseInfo (tab, params) {
   }
   tab.createFooter(
     '<p>Die Show "' + params.show.title + '" ist lizensiert unter<br>' +
-      '<a href="' + params.license.url + '" title="Lizenz ansehen">' + params.license.name + '</a>' +
+      '<a href="' + params.license.url + '" target="_blank" title="Lizenz ansehen">' + params.license.name + '</a>' +
     '</p>'
   ).prepend(createSocialInfo(params.profiles));
 }
