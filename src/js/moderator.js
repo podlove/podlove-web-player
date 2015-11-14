@@ -40,7 +40,7 @@ function getPlayerHeight(height) {
  * @returns {string} defaults to '100%'
  */
 function getPlayerWidth() {
-  return '100%';
+  return 'auto';
 }
 
 /**

@@ -2,10 +2,17 @@ body {
     background: #ffffff;
     font-family:  'Roboto', 'Helvetica Neue', 'Helvetica', sans-serif;
 }
-article,
-.container {
-    width: 85%;
-    margin: 5% auto;
+
+/* player */
+
+.podlove-player-wrapper {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.podlove-player-wrapper iframe {
+  width: 1px;
+  min-width: 100%;
 }
 
 h1 {
