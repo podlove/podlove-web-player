@@ -9,7 +9,7 @@ function getPublicationDate(rawDate) {
     return '';
   }
   var date = new Date(rawDate);
-  return '<p>Veröffentlicht am: ' + date.getDate() + '.' + date.getMonth() + '.' + date.getFullYear() + '</p>';
+  return '<p>' + $.i18n( 'tab_info_title_published' ) + ': ' + date.getDate() + '.' + date.getMonth() + '.' + date.getFullYear() + '</p>';
 }
 
 function createEpisodeInfo(tab, params) {
@@ -17,11 +17,11 @@ function createEpisodeInfo(tab, params) {
     '<h2>' + params.title + '</h2>' +
     '<h3>' + params.subtitle + '</h3>' +
     '<p>' + params.summary + '</p>' +
-    '<p>Dauer: ' + timeCode.fromTimeStamp(params.duration) + '</p>' +
+    '<p>' + $.i18n( 'tab_info_title_duration' ) + ': ' + timeCode.fromTimeStamp(params.duration) + '</p>' +
      getPublicationDate(params.publicationDate) +
     '<p>' +
-      'Permalink:<br>' +
-      '<a href="' + params.permalink + '" target="_blank" title="Permalink für die Episode">' + params.permalink + '</a>' +
+      $.i18n( 'tab_info_title_permalink' ) + ':<br>' +
+      '<a href="' + params.permalink + '" target="_blank" title="' + $.i18n( 'tab_info_title_link_permalink' ) + '">' + params.permalink + '</a>' +
     '</p>'
   );
 }
@@ -31,7 +31,7 @@ function createPosterImage(poster) {
     return '';
   }
   return '<div class="poster-image">' +
-    '<img src="' + poster + '" data-img="' + poster + '" alt="Poster Image">' +
+    '<img src="' + poster + '" data-img="' + poster + '" alt="' + $.i18n( 'alt_coverart' ) + '">' +
     '</div>';
 }
 
@@ -51,8 +51,8 @@ function createShowInfo (tab, params) {
     '<h3>' + params.show.subtitle + '</h3>' +
     createPosterImage(params.show.poster) +
     createSubscribeButton(params) +
-    '<p>Link zur Show:<br>' +
-      '<a href="' + params.show.url + '" target="_blank" title="Link zur Show">' + params.show.url + '</a></p>'
+    '<p>' + $.i18n( 'tab_info_title_link_show' ) + ':<br>' +
+      '<a href="' + params.show.url + '" target="_blank" title="' + $.i18n( 'tab_info_title_link_show' ) + '">' + params.show.url + '</a></p>'
   );
 }
 
@@ -72,7 +72,7 @@ function createSocialInfo(profiles) {
   var profileList = $('<ul></ul>');
   profiles.forEach(createSocialLink, profileList);
 
-  var container = $('<div class="social-links"><h3>Bleib in Verbindung</h3></div>');
+  var container = $('<div class="social-links"><h3>' + $.i18n( 'tab_info_title_social' ) + '</h3></div>');
   container.append(profileList);
   return container;
 }
@@ -82,8 +82,8 @@ function createSocialAndLicenseInfo (tab, params) {
     return;
   }
   tab.createFooter(
-    '<p>Die Show "' + params.show.title + '" ist lizensiert unter<br>' +
-      '<a href="' + params.license.url + '" target="_blank" title="Lizenz ansehen">' + params.license.name + '</a>' +
+    '<p>' + $.i18n( 'tab_info_text_license', params.show.title ) + '<br>' +
+      '<a href="' + params.license.url + '" target="_blank" title="' + $.i18n( 'tab_info_link_license_title' ) + '">' + params.license.name + '</a>' +
     '</p>'
   ).prepend(createSocialInfo(params.profiles));
 }
@@ -99,8 +99,8 @@ function createInfoTab(params) {
   }
   var infoTab = new Tab({
     icon: 'pwp-info',
-    title: 'Infos anzeigen / verbergen',
-    headline: 'Info',
+    title: $.i18n( 'tab_title_message', $.i18n( 'tab_info_name' ), $.i18n( 'tab_title_actions' ) ),
+    headline: $.i18n( 'tab_info_name' ),
     name: 'info'
   });
 
