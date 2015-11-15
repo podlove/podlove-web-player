@@ -55,7 +55,7 @@ Controls.prototype.createTimeControls = function (chapterModule) {
     console.info('Controls', 'createTimeControls', 'no chapterTab found');
   }
   if (hasChapters) {
-    this.createButton('pwp-controls-previous-chapter', 'Zurück zum vorigen Kapitel', function () {
+    this.createButton('pwp-controls-previous-chapter', $.i18n( 'btn_chapter_prev' ), function () {
       var activeChapter = chapterModule.getActiveChapter();
       if (this.timeline.getTime() > activeChapter.start + 10) {
         console.debug('Controls', 'Zurück zum Kapitelanfang', chapterModule.currentChapter, 'from', this.timeline.getTime());
@@ -66,20 +66,20 @@ Controls.prototype.createTimeControls = function (chapterModule) {
     });
   }
 
-  this.createButton('pwp-controls-back-30', '30 Sekunden zurück', function () {
+  this.createButton('pwp-controls-back-30', $.i18n( 'btn_back_30' ), function () {
     console.debug('Controls', 'rewind before', this.timeline.getTime());
     this.timeline.setTime(this.timeline.getTime() - 30);
     console.debug('Controls', 'rewind after', this.timeline.getTime());
   });
 
-  this.createButton('pwp-controls-forward-30', '30 Sekunden vor', function () {
+  this.createButton('pwp-controls-forward-30', $.i18n( 'btn_forw_30' ), function () {
     console.debug('Controls', 'ffwd before', this.timeline.getTime());
     this.timeline.setTime(this.timeline.getTime() + 30);
     console.debug('Controls', 'ffwd after', this.timeline.getTime());
   });
 
   if (hasChapters) {
-    this.createButton('pwp-controls-next-chapter', 'Zum nächsten Kapitel springen', function () {
+    this.createButton('pwp-controls-next-chapter', $.i18n( 'btn_chapter_next' ), function () {
       console.debug('Controls', 'next Chapter before', this.timeline.getTime());
       chapterModule.next();
       console.debug('Controls', 'next Chapter after', this.timeline.getTime());
