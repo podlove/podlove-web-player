@@ -33,6 +33,12 @@ var pwp;
 // will expose/attach itself to the $ global
 require('../../bower_components/mediaelement/build/mediaelement.js');
 
+// include i18n plugin
+require("../../jquery.i18n/src/jquery.i18n.js");
+require("../../jquery.i18n/src/jquery.i18n.messagestore.js");
+// load translations
+loadTranslations();
+
 /**
  * The most missing feature regarding embedded players
  * @param {string} title the title of the show
@@ -44,7 +50,7 @@ function renderShowTitle(title, url) {
     return '';
   }
   if (url) {
-    title = '<a href="' + url + '" target="_blank" title="Link zur Show">' + title + '</a>';
+    title = '<a href="' + url + '" target="_blank" title="' + $.i18n( 'link_show' ) + '">' + title + '</a>';
   }
   return '<h3 class="showtitle">' + title + '</h3>';
 }
@@ -59,7 +65,7 @@ function renderTitle(text, link) {
   var titleBegin = '<h1 class="episodetitle">',
     titleEnd = '</h1>';
   if (text !== undefined && link !== undefined) {
-    text = '<a href="' + link + '"  target="_blank" title="Link zur Episode">' + text + '</a>';
+    text = '<a href="' + link + '"  target="_blank" title="' + $.i18n( 'link_episode' ) + '">' + text + '</a>';
   }
   return titleBegin + text + titleEnd;
 }
@@ -94,7 +100,7 @@ function renderTitleArea(params) {
  * @returns {string}
  */
 function renderPlaybutton() {
-  return $('<a class="play" title="Abspielen" href="javascript:;"></a>');
+  return $('<a class="play" title="' + $.i18n( 'btn_play' ) + '" href="javascript:;"></a>');
 }
 
 /**
@@ -107,7 +113,7 @@ function renderPoster(posterUrl) {
   if (!posterUrl) {
     return '';
   }
-  return '<div class="coverart"><img class="coverimg" src="' + posterUrl + '" data-img="' + posterUrl + '" alt="Poster Image"></div>';
+  return '<div class="coverart"><img class="coverimg" src="' + posterUrl + '" data-img="' + posterUrl + '" alt="' + $.i18n( 'alt_coverart' ) + '"></div>';
 }
 
 /**
@@ -422,6 +428,84 @@ $.fn.podlovewebplayer = function webPlayer(options) {
     Player.create(playerElement, params, addBehavior);
   });
 };
+
+/**
+ * Load all the string translations (en + de)
+ */
+function loadTranslations() {
+  // define translations
+  $.i18n().load({ // {fallbackLocale: 'de'} -> set different default locale for fallbacks
+    'en': {
+      'link_show': 'Link to Show',
+      'link_episode': 'Link to Episode',
+      'btn_play': 'Play',
+      'btn_chapter_prev': 'Back to previous chapter',
+      'btn_chapter_next': 'Forward to next chapter',
+      'btn_back_30': '30 seconds back',
+      'btn_forw_30': '30 seconds forward',
+      'alt_coverart': 'Poster Image',
+      'title_chapter_table': 'Chapter',
+      'title_chapter_table_col_number': 'Chapter number',
+      'title_chapter_table_col_time': 'Start time',
+      'title_chapter_table_col_title': 'Title',
+      'title_chapter_table_col_dur': 'Duration',
+      'tab_title_actions': 'Toggle',
+      'tab_title_message': '$2 $1',
+      'tab_chapter_name': 'Chapter',
+      'tab_downloads_name': 'Downloads',
+      'tab_downloads_btn_download': 'Download',
+      'tab_info_name': 'Info',
+      'tab_info_title_published': 'Published on',
+      'tab_info_title_duration': 'Duration',
+      'tab_info_title_permalink': 'Permalink',
+      'tab_info_title_link_permalink': 'Permalink to this episode',
+      'tab_info_title_link_show': 'Link to show',
+      'tab_info_title_social': 'Keep in touch',
+      'tab_info_text_license': 'The show "$1" ist licensed under',
+      'tab_info_link_license_title': 'See license',
+      'tab_share_name': 'Share',
+      'tab_share_table_caption_share': 'Share podcast',
+      'tab_share_title_what_share': 'What would you like to share?',
+      'tab_share_title_direct_link': 'Direct link',
+      'tab_share_title_share_via': 'Share via ...'
+    },
+    'de': {
+      'link_show': 'Link zur Show',
+      'link_episode': 'Link zur Episode',
+      'btn_play': 'Abspielen',
+      'btn_chapter_prev': 'Zurück zum vorigen Kapitel',
+      'btn_chapter_next': 'Zum nächsten Kapitel springen',
+      'btn_back_30': '30 Sekunden zurück',
+      'btn_forw_30': '30 Sekunden vor',
+      'alt_coverart': 'Poster Image',
+      'title_chapter_table': 'Kapitel',
+      'title_chapter_table_col_number': 'Kapitelnummer',
+      'title_chapter_table_col_time': 'Startzeit',
+      'title_chapter_table_col_title': 'Titel',
+      'title_chapter_table_col_dur': 'Dauer',
+      'tab_title_actions': 'anzeigen / verbergen',
+      'tab_title_message': '$1 $2',
+      'tab_chapter_name': 'Kapitel',
+      'tab_downloads_name': 'Downloads',
+      'tab_downloads_btn_download': 'Download',
+      'tab_info_name': 'Info',
+      'tab_info_title_published': 'Veröffentlicht am',
+      'tab_info_title_duration': 'Dauer',
+      'tab_info_title_permalink': 'Permalink',
+      'tab_info_title_link_permalink': 'Permalink für die Episode',
+      'tab_info_title_link_show': 'Link zur Show',
+      'tab_info_title_social': 'Bleib in Verbindung',
+      'tab_info_text_license': 'Die Show "$1" ist lizensiert unter',
+      'tab_info_link_license_title': 'Lizenz ansehen',
+      'tab_share_name': 'Teilen',
+      'tab_share_table_caption_share': 'Podcast teilen',
+      'tab_share_title_what_share': 'Was möchtest du teilen?',
+      'tab_share_title_direct_link': 'Direkter Link',
+      'tab_share_title_share_via': 'Teilen via ...'
+    }
+  });
+  // $.i18n().locale = 'de'; -> possibility of manually overriding the language, en is fallback
+}
 
 pwp = { players: Player.players };
 
