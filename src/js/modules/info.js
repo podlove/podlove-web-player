@@ -9,7 +9,7 @@ function getPublicationDate(rawDate) {
     return '';
   }
   var date = new Date(rawDate);
-  return '<p>Veröffentlicht am: ' + date.getDate() + '.' + date.getMonth() + '.' + date.getFullYear() + '</p>';
+  return '<p>Veröffentlicht am: ' + date.getDate() + '.' + (date.getMonth() + 1) + '.' + date.getFullYear() + '</p>';
 }
 
 function createEpisodeInfo(tab, params) {
