@@ -38,6 +38,7 @@
     "jquery": "~1.11.1",
     "mediaelement": "~2.16.0",
     "podlove-font": "#2.0.0-beta.2",
-    "raf-polyfill": "https://gist.github.com/1579671.git"
+    "raf-polyfill": "https://gist.github.com/1579671.git",
+    "jquery.i18n": "https://github.com/wikimedia/jquery.i18n.git"
   }
 }
