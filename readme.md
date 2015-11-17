@@ -118,7 +118,7 @@ Create new Pull Request
 Force add all changes. Otherwise changes to the `dist` folder would not be part
 of the release.
 
-    git add . -f
+    git add dist -f
 
     git commit "release <version-number>"
 
