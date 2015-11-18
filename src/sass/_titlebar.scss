@@ -14,6 +14,9 @@
   a {
     color: $player-idle-color;
   }
+  h1, h2, h3 {
+    line-height: 1.1;
+  }
   // Headlines in titlebar
   header {
     @include flex(1 0px);
@@ -149,7 +152,6 @@
         width: $title-image-height-big - (2 * $coverart-padding);
       }
     }
-
     header {
       @include flex(2 0px);
       @include order(2);
