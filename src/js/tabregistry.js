@@ -68,10 +68,11 @@ TabRegistry.prototype.openInitial = function (tabName) {
     return;
   }
   var matchingTabs = this.tabs.filter(function (tab) {
-    return (tab.headline === tabName);
+    return (tab.name === tabName);
   });
   if (matchingTabs.length === 0) {
     console.warn('TabRegistry.openInitial: Could not open tab', tabName);
+    return;
   }
   var initialActiveTab = matchingTabs.pop();
   initialActiveTab.open();

@@ -149,7 +149,7 @@ function Chapters (timeline, params) {
     icon: 'pwp-chapters',
     title: 'Kapitel anzeigen / verbergen',
     headline: 'Kapitel',
-    name: 'podlovewebplayer_chapterbox'
+    name: 'chapters'
   });
 
   this.tab

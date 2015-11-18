@@ -32,6 +32,7 @@ function Tab(options) {
   this.icon = options.icon;
   this.title = options.title;
   this.headline = options.headline;
+  this.name = options.name;
 
   this.box = createContentBox(options);
   var header = this.createHeader();
