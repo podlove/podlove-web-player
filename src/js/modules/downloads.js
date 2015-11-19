@@ -1,6 +1,7 @@
 'use strict';
 
 var Tab = require('../tab');
+var linkInput;
 
 /**
  * Calculate the filesize into KB and MB
@@ -123,6 +124,12 @@ Downloads.prototype.createDownloadTab = function (params) {
     e.preventDefault();
     window.open($select.val(), '_self');
   });
+  linkInput = $('<h3>Direkter Link</h3>' +
+    '<input type="url" name="share-link-url" readonly>');
+  linkInput.update = function(data) {
+    this.val(data.rawUrl);
+  };
+  downloadTab.createFooter('').append(linkInput);
 
   return downloadTab;
 };
