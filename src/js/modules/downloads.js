@@ -125,7 +125,7 @@ Downloads.prototype.createDownloadTab = function (params) {
     window.open($select.val(), '_self');
   });
   linkInput = $('<h3>Direkter Link</h3>' +
-    '<input type="url" name="share-link-url" readonly>');
+    '<input type="url" name="download-link-url" readonly>');
   linkInput.update = function(data) {
     this.val(data.rawUrl);
   };
