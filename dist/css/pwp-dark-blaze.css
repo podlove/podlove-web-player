@@ -27,7 +27,7 @@
 */
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,300,500);
 @import url(http://fonts.googleapis.com/css?family=Droid+Sans+Mono);
-/* line 18, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_resets.scss */
+/* line 6, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_resets.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -49,7 +49,7 @@ time, mark, audio, video {
   vertical-align: baseline; }
 
 /* HTML5 display-role reset for older browsers */
-/* line 28, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_resets.scss */
+/* line 27, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_resets.scss */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
   display: block; }
@@ -66,7 +66,7 @@ ol, ul {
 blockquote, q {
   quotes: none; }
 
-/* line 41, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_resets.scss */
+/* line 40, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_resets.scss */
 blockquote:before, blockquote:after,
 q:before, q:after {
   content: '';
@@ -78,9 +78,8 @@ table {
   border-spacing: 0; }
 
 /* line 12, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_type.scss */
-p {
-  margin: 0 0 9px;
-  font-weight: 400;
+.break-all, p, h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
   -webkit-hyphens: auto;
   -moz-hyphens: auto;
   -ms-hyphens: auto;
@@ -89,82 +88,87 @@ p {
   /* Non standard for webkit */
   word-break: break-word; }
 
-/* line 26, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_type.scss */
+/* line 19, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_type.scss */
+p {
+  margin: 0 0 9px;
+  font-weight: 400; }
+
+/* line 29, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_type.scss */
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
   font-family: "Roboto", "Helvetica Neue", "Helvetica", sans-serif;
-  line-height: 1.1;
+  line-height: 1.3;
   color: inherit; }
 
-/* line 33, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_type.scss */
+/* line 37, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_type.scss */
 h1, h2,
 h1 a, h2 a {
   font-weight: 500; }
 
-/* line 38, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_type.scss */
+/* line 42, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_type.scss */
 h3, h4, h5, h6,
 h3 a, h4 a, h5 a {
   font-weight: 400; }
 
-/* line 42, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_type.scss */
+/* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_type.scss */
 h1, h2, h3 {
   margin-top: 18px; }
 
-/* line 45, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_type.scss */
+/* line 50, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_type.scss */
 h4, h5, h6 {
   margin-top: 9px;
   margin-bottom: 9px; }
 
-/* line 50, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_type.scss */
+/* line 55, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_type.scss */
 h1, .h1 {
   font-size: 29px; }
 
-/* line 51, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_type.scss */
+/* line 56, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_type.scss */
 h2, .h2 {
   font-size: 26px; }
 
-/* line 52, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_type.scss */
+/* line 57, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_type.scss */
 h3, .h3 {
   font-size: 17px; }
 
-/* line 53, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_type.scss */
+/* line 58, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_type.scss */
 h4, .h4 {
   font-size: 15px; }
 
-/* line 54, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_type.scss */
+/* line 59, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_type.scss */
 h5, .h5 {
   font-size: 13px; }
 
-/* line 55, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_type.scss */
+/* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_type.scss */
 h6, .h6 {
   font-size: 12px; }
 
-/* line 63, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_type.scss */
+/* line 67, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_type.scss */
 ul,
 ol {
   margin-top: 0;
   margin-bottom: 9px; }
-  /* line 67, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_type.scss */
+  /* line 71, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_type.scss */
   ul ul,
   ul ol,
   ol ul,
   ol ol {
     margin-bottom: 0; }
 
-/* line 72, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_type.scss */
+/* line 77, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_type.scss */
 a {
   font-weight: 500; }
 
-/* line 76, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_type.scss */
+/* line 81, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_type.scss */
 em {
   font-weight: 500;
   font-size: 13px; }
 
-/* line 81, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_type.scss */
+/* line 86, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_type.scss */
 button {
   font-weight: 500; }
 
-/* line 9, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_base.scss */
+/* line 7, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_base.scss */
 *,
 *:before,
 *:after {
@@ -190,7 +194,7 @@ body {
   margin: 0;
   padding: 0; }
 
-/* line 38, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_base.scss */
+/* line 35, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_base.scss */
 input,
 button,
 select,
@@ -200,7 +204,7 @@ textarea {
   line-height: inherit; }
 
 @media screen and (min-width: 1200px) {
-  /* line 51, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_base.scss */
+  /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_base.scss */
   span,
   legend,
   input,
@@ -214,9 +218,8 @@ a {
   color: #ff6600;
   text-decoration: none;
   background: transparent; }
-  /* line 63, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_base.scss */
-  a:hover,
-  a:focus {
+  /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_base.scss */
+  a:hover, a:focus {
     color: #ff944d;
     text-decoration: none;
     outline: none; }
@@ -255,9 +258,8 @@ select {
   zoom: 1;
   /* Triggers "hasLayout" in IE 7 and lower */
   padding-right: 0.9em; }
-  /* line 145, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_mixins.scss */
-  .button:hover,
-  .button:active {
+  /* line 144, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_mixins.scss */
+  .button:hover, .button:active {
     zoom: 1; }
   /* line 148, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_mixins.scss */
   .button:active {
@@ -268,7 +270,7 @@ select {
   display: inline;
   z-index: 78; }
 
-/* line 17, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_buttons.scss */
+/* line 15, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_buttons.scss */
 .icon-link,
 .icon-twitter,
 .icon-facebook {
@@ -387,14 +389,14 @@ button {
   .container a {
     color: #ff6600; }
 
-@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
   /* Retina-specific stuff here */
   /* line 26, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_theme.scss */
   .container {
     width: 100%; } }
 
 /********** 1. Turn off default styling ***************/
-/* line 11, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_progressbar.scss */
+/* line 10, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_progressbar.scss */
 progress,
 progress[role] {
   /* Turns off styling - not usually needed, but good to know. */
@@ -420,8 +422,9 @@ progress[role] strong {
   display: none; }
 
 /********** 2. The Progress Bar Background ***************/
-/* line 41, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_progressbar.scss */
-progress, progress[role][aria-valuenow] {
+/* line 40, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_progressbar.scss */
+progress,
+progress[role][aria-valuenow] {
   /* Polyfill */
   background: #474747 !important;
   /* !important is needed by the polyfill */ }
@@ -714,9 +717,8 @@ progress[aria-valuenow]:before {
   min-height: 100px;
   height: auto;
   color: #fff; }
-  /* line 20, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_mixins.scss */
-  .titlebar:before,
-  .titlebar:after {
+  /* line 19, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_mixins.scss */
+  .titlebar:before, .titlebar:after {
     content: " ";
     /* 1 */
     display: table;
@@ -727,7 +729,10 @@ progress[aria-valuenow]:before {
   /* line 14, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_titlebar.scss */
   .titlebar a {
     color: #d4d4d4; }
-  /* line 18, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_titlebar.scss */
+  /* line 17, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_titlebar.scss */
+  .titlebar h1, .titlebar h2, .titlebar h3 {
+    line-height: 1.1; }
+  /* line 21, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_titlebar.scss */
   .titlebar header {
     -webkit-box-flex: 1;
     -webkit-flex: 1 0px;
@@ -741,24 +746,24 @@ progress[aria-valuenow]:before {
     margin: auto 0;
     width: 1px;
     padding: 0 20px 0 0; }
-    /* line 25, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_titlebar.scss */
+    /* line 28, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_titlebar.scss */
     .titlebar header h1 {
       font-size: 1.5em; }
-    /* line 29, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_titlebar.scss */
+    /* line 31, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_titlebar.scss */
     .titlebar header .subtitle,
     .titlebar header h3 {
       font-size: 1em; }
-    /* line 32, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_titlebar.scss */
+    /* line 35, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_titlebar.scss */
     .titlebar header a {
       color: #d4d4d4; }
-      /* line 34, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_titlebar.scss */
+      /* line 37, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_titlebar.scss */
       .titlebar header a:hover {
         color: #fff; }
-      /* line 37, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_titlebar.scss */
+      /* line 40, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_titlebar.scss */
       .titlebar header a:active {
         color: #fff; }
 
-/* line 45, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_titlebar.scss */
+/* line 48, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_titlebar.scss */
 .coverart {
   -webkit-box-ordinal-group: 2;
   -webkit-order: 1;
@@ -766,32 +771,32 @@ progress[aria-valuenow]:before {
   order: 1;
   min-width: 100px;
   height: 100px; }
-  /* line 49, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_titlebar.scss */
+  /* line 52, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_titlebar.scss */
   .coverart img {
     height: 100px; }
 
-/* line 54, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_titlebar.scss */
+/* line 57, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_titlebar.scss */
 .showtitle {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   margin: 0; }
 
-/* line 59, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_titlebar.scss */
+/* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_titlebar.scss */
 .episodetitle {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   margin: 10px 0; }
-  /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_titlebar.scss */
+  /* line 65, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_titlebar.scss */
   .episodetitle > a {
     line-height: 20px !important;
     color: #fff !important; }
-    /* line 65, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_titlebar.scss */
+    /* line 68, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_titlebar.scss */
     .episodetitle > a:hover {
       color: #fff; }
 
-/* line 72, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_titlebar.scss */
+/* line 75, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_titlebar.scss */
 .subtitle {
   white-space: nowrap;
   overflow: hidden;
@@ -801,11 +806,11 @@ progress[aria-valuenow]:before {
   background: transparent !important;
   font-size: 15px;
   opacity: 0.6; }
-  /* line 79, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_titlebar.scss */
+  /* line 82, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_titlebar.scss */
   .subtitle .summary .summarydiv {
     margin: 0px 5px; }
 
-/* line 85, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_titlebar.scss */
+/* line 88, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_titlebar.scss */
 .play {
   -webkit-box-flex: 1;
   -webkit-flex: 1 0px;
@@ -818,7 +823,7 @@ progress[aria-valuenow]:before {
   min-width: 1px; }
 
 @media all and (max-width: 480px) {
-  /* line 97, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_titlebar.scss */
+  /* line 100, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_titlebar.scss */
   .titlebar .coverart {
     -webkit-box-flex: 1;
     -webkit-flex: 1 100%;
@@ -830,45 +835,45 @@ progress[aria-valuenow]:before {
     order: 1;
     width: 100%;
     height: auto; }
-    /* line 102, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_titlebar.scss */
+    /* line 105, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_titlebar.scss */
     .titlebar .coverart img {
       height: auto;
       width: 100%; }
-  /* line 107, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_titlebar.scss */
+  /* line 110, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_titlebar.scss */
   .titlebar header {
     margin: 1.25em 0;
     padding: 0 10px 0 0; } }
 
 @media all and (min-width: 480px) {
-  /* line 114, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_titlebar.scss */
+  /* line 117, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_titlebar.scss */
   .titlebar .coverart {
     padding: 7px; }
-    /* line 116, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_titlebar.scss */
+    /* line 119, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_titlebar.scss */
     .titlebar .coverart img {
       width: 86px;
       height: 86px; } }
 
 @media all and (min-width: 768px) {
-  /* line 126, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_titlebar.scss */
+  /* line 129, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_titlebar.scss */
   .titlebar header h1 {
     font-size: 29px; } }
 
 @media screen and (min-width: 992px) {
-  /* line 136, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_titlebar.scss */
+  /* line 138, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_titlebar.scss */
   .titlebar header .subtitle,
   .titlebar header h3 {
     font-size: 17px; } }
 
 @media all and (min-width: 992px) {
-  /* line 144, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_titlebar.scss */
+  /* line 147, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_titlebar.scss */
   .titlebar .coverart {
     min-width: 140px;
     height: 140px; }
-    /* line 147, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_titlebar.scss */
+    /* line 150, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_titlebar.scss */
     .titlebar .coverart img {
       height: 126px;
       width: 126px; }
-  /* line 153, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_titlebar.scss */
+  /* line 155, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_titlebar.scss */
   .titlebar header {
     -webkit-box-flex: 2;
     -webkit-flex: 2 0px;
@@ -880,12 +885,12 @@ progress[aria-valuenow]:before {
     order: 2;
     margin: auto auto; } }
 
-/* line 163, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_titlebar.scss */
+/* line 165, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_titlebar.scss */
 .podlovewebplayer_video .titlebar header {
   margin: auto 10px; }
 
 @media screen and (min-width: 992px) {
-  /* line 167, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_titlebar.scss */
+  /* line 169, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_titlebar.scss */
   .podlovewebplayer_video .titlebar header {
     margin: auto 20px; } }
 
@@ -1087,9 +1092,8 @@ progress[aria-valuenow]:before {
   /* line 13, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_tabs.scss */
   .tabs a {
     color: #ff6600; }
-    /* line 16, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_tabs.scss */
-    .tabs a:hover,
-    .tabs a:focus {
+    /* line 15, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_tabs.scss */
+    .tabs a:hover, .tabs a:focus {
       color: #ff944d; }
     /* line 19, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_tabs.scss */
     .tabs a:active {
@@ -1184,7 +1188,7 @@ progress[aria-valuenow]:before {
     /* line 104, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_tabs.scss */
     .tabs h2 i {
       padding-right: 10px; }
-  /* line 109, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_tabs.scss */
+  /* line 108, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_tabs.scss */
   .tabs h3,
   .tabs h4 {
     margin: 20px 20px; }
@@ -1199,12 +1203,16 @@ progress[aria-valuenow]:before {
     -webkit-order: 2;
     -ms-flex-order: 2;
     order: 2;
-    margin-top: 70px; }
+    margin-top: 70px;
+    margin-bottom: 20px; }
     @media screen and (max-width: 480px) {
       /* line 112, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_tabs.scss */
       .tabs .main {
         margin-top: 50px; } }
-  /* line 122, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_tabs.scss */
+  /* line 124, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_tabs.scss */
+  .tabs .aside {
+    margin-bottom: 20px; }
+  /* line 127, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_tabs.scss */
   .tabs footer {
     -webkit-box-flex: 1;
     -webkit-flex: 1 100%;
@@ -1220,27 +1228,27 @@ progress[aria-valuenow]:before {
     border: 1px solid #414141 !important; }
 
 @media all and (max-width: 480px) {
-  /* line 134, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_tabs.scss */
+  /* line 139, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_tabs.scss */
   .tab header {
     margin: 0; }
-  /* line 140, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_tabs.scss */
+  /* line 142, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_tabs.scss */
   .tab h2,
   .tab h3,
   .tab h4,
   .tab p {
     margin: 10px 10px; } }
 
-/* line 146, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_tabs.scss */
+/* line 151, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_tabs.scss */
 .scrolled {
   -webkit-box-shadow: 0px 6px 7px -4px #000;
   box-shadow: 0px 6px 7px -4px #000; }
 
-/* line 42, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 43, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-adn:before {
   color: #4a484d;
   font-size: 45px; }
 
-/* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-contrast-adn {
   display: inline-block;
   width: 53px;
@@ -1248,34 +1256,34 @@ progress[aria-valuenow]:before {
   border-radius: 6px;
   padding: 4px; }
   @media screen and (min-width: 550px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-adn {
       width: 62px;
       padding: 7px; } }
   @media screen and (min-width: 992px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-adn {
       width: 72px;
       padding: 10px; } }
-  /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+  /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
   .pwp-contrast-adn .pwp-adn:before {
     color: #fff;
     font-size: 45px; }
     @media screen and (min-width: 550px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-adn .pwp-adn:before {
         font-size: 48px; } }
     @media screen and (min-width: 992px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-adn .pwp-adn:before {
         font-size: 52px; } }
 
-/* line 42, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 43, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-bandcamp:before {
   color: #4e9bac;
   font-size: 45px; }
 
-/* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-contrast-bandcamp {
   display: inline-block;
   width: 53px;
@@ -1283,34 +1291,34 @@ progress[aria-valuenow]:before {
   border-radius: 6px;
   padding: 4px; }
   @media screen and (min-width: 550px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-bandcamp {
       width: 62px;
       padding: 7px; } }
   @media screen and (min-width: 992px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-bandcamp {
       width: 72px;
       padding: 10px; } }
-  /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+  /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
   .pwp-contrast-bandcamp .pwp-bandcamp:before {
     color: #fff;
     font-size: 45px; }
     @media screen and (min-width: 550px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-bandcamp .pwp-bandcamp:before {
         font-size: 48px; } }
     @media screen and (min-width: 992px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-bandcamp .pwp-bandcamp:before {
         font-size: 52px; } }
 
-/* line 42, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 43, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-blogger:before {
   color: #ff7600;
   font-size: 45px; }
 
-/* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-contrast-blogger {
   display: inline-block;
   width: 53px;
@@ -1318,34 +1326,34 @@ progress[aria-valuenow]:before {
   border-radius: 6px;
   padding: 4px; }
   @media screen and (min-width: 550px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-blogger {
       width: 62px;
       padding: 7px; } }
   @media screen and (min-width: 992px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-blogger {
       width: 72px;
       padding: 10px; } }
-  /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+  /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
   .pwp-contrast-blogger .pwp-blogger:before {
     color: #fff;
     font-size: 45px; }
     @media screen and (min-width: 550px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-blogger .pwp-blogger:before {
         font-size: 48px; } }
     @media screen and (min-width: 992px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-blogger .pwp-blogger:before {
         font-size: 52px; } }
 
-/* line 42, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 43, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-delicious:before {
   color: #248cff;
   font-size: 45px; }
 
-/* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-contrast-delicious {
   display: inline-block;
   width: 53px;
@@ -1353,34 +1361,34 @@ progress[aria-valuenow]:before {
   border-radius: 6px;
   padding: 4px; }
   @media screen and (min-width: 550px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-delicious {
       width: 62px;
       padding: 7px; } }
   @media screen and (min-width: 992px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-delicious {
       width: 72px;
       padding: 10px; } }
-  /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+  /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
   .pwp-contrast-delicious .pwp-delicious:before {
     color: #fff;
     font-size: 45px; }
     @media screen and (min-width: 550px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-delicious .pwp-delicious:before {
         font-size: 48px; } }
     @media screen and (min-width: 992px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-delicious .pwp-delicious:before {
         font-size: 52px; } }
 
-/* line 42, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 43, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-deviantart:before {
   color: #d0dd20;
   font-size: 45px; }
 
-/* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-contrast-deviantart {
   display: inline-block;
   width: 53px;
@@ -1388,34 +1396,34 @@ progress[aria-valuenow]:before {
   border-radius: 6px;
   padding: 4px; }
   @media screen and (min-width: 550px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-deviantart {
       width: 62px;
       padding: 7px; } }
   @media screen and (min-width: 992px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-deviantart {
       width: 72px;
       padding: 10px; } }
-  /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+  /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
   .pwp-contrast-deviantart .pwp-deviantart:before {
     color: #fff;
     font-size: 45px; }
     @media screen and (min-width: 550px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-deviantart .pwp-deviantart:before {
         font-size: 48px; } }
     @media screen and (min-width: 992px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-deviantart .pwp-deviantart:before {
         font-size: 52px; } }
 
-/* line 42, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 43, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-dribble:before {
   color: #f26798;
   font-size: 45px; }
 
-/* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-contrast-dribble {
   display: inline-block;
   width: 53px;
@@ -1423,34 +1431,34 @@ progress[aria-valuenow]:before {
   border-radius: 6px;
   padding: 4px; }
   @media screen and (min-width: 550px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-dribble {
       width: 62px;
       padding: 7px; } }
   @media screen and (min-width: 992px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-dribble {
       width: 72px;
       padding: 10px; } }
-  /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+  /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
   .pwp-contrast-dribble .pwp-dribble:before {
     color: #fff;
     font-size: 45px; }
     @media screen and (min-width: 550px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-dribble .pwp-dribble:before {
         font-size: 48px; } }
     @media screen and (min-width: 992px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-dribble .pwp-dribble:before {
         font-size: 52px; } }
 
-/* line 42, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 43, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-facebook:before {
   color: #3b5998;
   font-size: 45px; }
 
-/* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-contrast-facebook {
   display: inline-block;
   width: 53px;
@@ -1458,34 +1466,34 @@ progress[aria-valuenow]:before {
   border-radius: 6px;
   padding: 4px; }
   @media screen and (min-width: 550px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-facebook {
       width: 62px;
       padding: 7px; } }
   @media screen and (min-width: 992px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-facebook {
       width: 72px;
       padding: 10px; } }
-  /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+  /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
   .pwp-contrast-facebook .pwp-facebook:before {
     color: #fff;
     font-size: 45px; }
     @media screen and (min-width: 550px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-facebook .pwp-facebook:before {
         font-size: 48px; } }
     @media screen and (min-width: 992px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-facebook .pwp-facebook:before {
         font-size: 52px; } }
 
-/* line 42, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 43, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-ficly:before {
   color: #b51c2c;
   font-size: 45px; }
 
-/* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-contrast-ficly {
   display: inline-block;
   width: 53px;
@@ -1493,34 +1501,34 @@ progress[aria-valuenow]:before {
   border-radius: 6px;
   padding: 4px; }
   @media screen and (min-width: 550px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-ficly {
       width: 62px;
       padding: 7px; } }
   @media screen and (min-width: 992px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-ficly {
       width: 72px;
       padding: 10px; } }
-  /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+  /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
   .pwp-contrast-ficly .pwp-ficly:before {
     color: #fff;
     font-size: 45px; }
     @media screen and (min-width: 550px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-ficly .pwp-ficly:before {
         font-size: 48px; } }
     @media screen and (min-width: 992px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-ficly .pwp-ficly:before {
         font-size: 52px; } }
 
-/* line 42, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 43, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-flattr:before {
   color: #83ae3a;
   font-size: 45px; }
 
-/* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-contrast-flattr {
   display: inline-block;
   width: 53px;
@@ -1528,34 +1536,34 @@ progress[aria-valuenow]:before {
   border-radius: 6px;
   padding: 4px; }
   @media screen and (min-width: 550px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-flattr {
       width: 62px;
       padding: 7px; } }
   @media screen and (min-width: 992px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-flattr {
       width: 72px;
       padding: 10px; } }
-  /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+  /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
   .pwp-contrast-flattr .pwp-flattr:before {
     color: #fff;
     font-size: 45px; }
     @media screen and (min-width: 550px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-flattr .pwp-flattr:before {
         font-size: 48px; } }
     @media screen and (min-width: 992px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-flattr .pwp-flattr:before {
         font-size: 52px; } }
 
-/* line 42, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 43, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-flickr:before {
   color: #0063db;
   font-size: 45px; }
 
-/* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-contrast-flickr {
   display: inline-block;
   width: 53px;
@@ -1563,34 +1571,34 @@ progress[aria-valuenow]:before {
   border-radius: 6px;
   padding: 4px; }
   @media screen and (min-width: 550px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-flickr {
       width: 62px;
       padding: 7px; } }
   @media screen and (min-width: 992px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-flickr {
       width: 72px;
       padding: 10px; } }
-  /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+  /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
   .pwp-contrast-flickr .pwp-flickr:before {
     color: #fff;
     font-size: 45px; }
     @media screen and (min-width: 550px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-flickr .pwp-flickr:before {
         font-size: 48px; } }
     @media screen and (min-width: 992px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-flickr .pwp-flickr:before {
         font-size: 52px; } }
 
-/* line 42, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 43, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-github:before {
   color: #4183c4;
   font-size: 45px; }
 
-/* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-contrast-github {
   display: inline-block;
   width: 53px;
@@ -1598,34 +1606,34 @@ progress[aria-valuenow]:before {
   border-radius: 6px;
   padding: 4px; }
   @media screen and (min-width: 550px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-github {
       width: 62px;
       padding: 7px; } }
   @media screen and (min-width: 992px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-github {
       width: 72px;
       padding: 10px; } }
-  /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+  /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
   .pwp-contrast-github .pwp-github:before {
     color: #fff;
     font-size: 45px; }
     @media screen and (min-width: 550px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-github .pwp-github:before {
         font-size: 48px; } }
     @media screen and (min-width: 992px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-github .pwp-github:before {
         font-size: 52px; } }
 
-/* line 42, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 43, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-google-plus:before {
   color: #dd4b39;
   font-size: 45px; }
 
-/* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-contrast-google-plus {
   display: inline-block;
   width: 53px;
@@ -1633,34 +1641,34 @@ progress[aria-valuenow]:before {
   border-radius: 6px;
   padding: 4px; }
   @media screen and (min-width: 550px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-google-plus {
       width: 62px;
       padding: 7px; } }
   @media screen and (min-width: 992px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-google-plus {
       width: 72px;
       padding: 10px; } }
-  /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+  /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
   .pwp-contrast-google-plus .pwp-google-plus:before {
     color: #fff;
     font-size: 45px; }
     @media screen and (min-width: 550px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-google-plus .pwp-google-plus:before {
         font-size: 48px; } }
     @media screen and (min-width: 992px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-google-plus .pwp-google-plus:before {
         font-size: 52px; } }
 
-/* line 42, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 43, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-instagram:before {
   color: #517fa4;
   font-size: 45px; }
 
-/* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-contrast-instagram {
   display: inline-block;
   width: 53px;
@@ -1668,34 +1676,34 @@ progress[aria-valuenow]:before {
   border-radius: 6px;
   padding: 4px; }
   @media screen and (min-width: 550px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-instagram {
       width: 62px;
       padding: 7px; } }
   @media screen and (min-width: 992px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-instagram {
       width: 72px;
       padding: 10px; } }
-  /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+  /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
   .pwp-contrast-instagram .pwp-instagram:before {
     color: #fff;
     font-size: 45px; }
     @media screen and (min-width: 550px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-instagram .pwp-instagram:before {
         font-size: 48px; } }
     @media screen and (min-width: 992px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-instagram .pwp-instagram:before {
         font-size: 52px; } }
 
-/* line 42, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 43, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-itunes:before {
   color: #ff4152;
   font-size: 45px; }
 
-/* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-contrast-itunes {
   display: inline-block;
   width: 53px;
@@ -1703,34 +1711,34 @@ progress[aria-valuenow]:before {
   border-radius: 6px;
   padding: 4px; }
   @media screen and (min-width: 550px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-itunes {
       width: 62px;
       padding: 7px; } }
   @media screen and (min-width: 992px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-itunes {
       width: 72px;
       padding: 10px; } }
-  /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+  /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
   .pwp-contrast-itunes .pwp-itunes:before {
     color: #fff;
     font-size: 45px; }
     @media screen and (min-width: 550px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-itunes .pwp-itunes:before {
         font-size: 48px; } }
     @media screen and (min-width: 992px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-itunes .pwp-itunes:before {
         font-size: 52px; } }
 
-/* line 42, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 43, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-kickstarter:before {
   color: #76cc1e;
   font-size: 45px; }
 
-/* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-contrast-kickstarter {
   display: inline-block;
   width: 53px;
@@ -1738,34 +1746,34 @@ progress[aria-valuenow]:before {
   border-radius: 6px;
   padding: 4px; }
   @media screen and (min-width: 550px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-kickstarter {
       width: 62px;
       padding: 7px; } }
   @media screen and (min-width: 992px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-kickstarter {
       width: 72px;
       padding: 10px; } }
-  /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+  /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
   .pwp-contrast-kickstarter .pwp-kickstarter:before {
     color: #fff;
     font-size: 45px; }
     @media screen and (min-width: 550px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-kickstarter .pwp-kickstarter:before {
         font-size: 48px; } }
     @media screen and (min-width: 992px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-kickstarter .pwp-kickstarter:before {
         font-size: 52px; } }
 
-/* line 42, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 43, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-lanyrd:before {
   color: #152e51;
   font-size: 45px; }
 
-/* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-contrast-lanyrd {
   display: inline-block;
   width: 53px;
@@ -1773,34 +1781,34 @@ progress[aria-valuenow]:before {
   border-radius: 6px;
   padding: 4px; }
   @media screen and (min-width: 550px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-lanyrd {
       width: 62px;
       padding: 7px; } }
   @media screen and (min-width: 992px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-lanyrd {
       width: 72px;
       padding: 10px; } }
-  /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+  /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
   .pwp-contrast-lanyrd .pwp-lanyrd:before {
     color: #fff;
     font-size: 45px; }
     @media screen and (min-width: 550px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-lanyrd .pwp-lanyrd:before {
         font-size: 48px; } }
     @media screen and (min-width: 992px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-lanyrd .pwp-lanyrd:before {
         font-size: 52px; } }
 
-/* line 42, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 43, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-lastfm:before {
   color: #d51007;
   font-size: 45px; }
 
-/* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-contrast-lastfm {
   display: inline-block;
   width: 53px;
@@ -1808,34 +1816,34 @@ progress[aria-valuenow]:before {
   border-radius: 6px;
   padding: 4px; }
   @media screen and (min-width: 550px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-lastfm {
       width: 62px;
       padding: 7px; } }
   @media screen and (min-width: 992px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-lastfm {
       width: 72px;
       padding: 10px; } }
-  /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+  /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
   .pwp-contrast-lastfm .pwp-lastfm:before {
     color: #fff;
     font-size: 45px; }
     @media screen and (min-width: 550px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-lastfm .pwp-lastfm:before {
         font-size: 48px; } }
     @media screen and (min-width: 992px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-lastfm .pwp-lastfm:before {
         font-size: 52px; } }
 
-/* line 42, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 43, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-linkedin:before {
   color: #007bb6;
   font-size: 45px; }
 
-/* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-contrast-linkedin {
   display: inline-block;
   width: 53px;
@@ -1843,34 +1851,34 @@ progress[aria-valuenow]:before {
   border-radius: 6px;
   padding: 4px; }
   @media screen and (min-width: 550px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-linkedin {
       width: 62px;
       padding: 7px; } }
   @media screen and (min-width: 992px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-linkedin {
       width: 72px;
       padding: 10px; } }
-  /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+  /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
   .pwp-contrast-linkedin .pwp-linkedin:before {
     color: #fff;
     font-size: 45px; }
     @media screen and (min-width: 550px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-linkedin .pwp-linkedin:before {
         font-size: 48px; } }
     @media screen and (min-width: 992px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-linkedin .pwp-linkedin:before {
         font-size: 52px; } }
 
-/* line 42, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 43, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-message:before {
   color: #999;
   font-size: 45px; }
 
-/* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-contrast-message {
   display: inline-block;
   width: 53px;
@@ -1878,34 +1886,34 @@ progress[aria-valuenow]:before {
   border-radius: 6px;
   padding: 4px; }
   @media screen and (min-width: 550px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-message {
       width: 62px;
       padding: 7px; } }
   @media screen and (min-width: 992px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-message {
       width: 72px;
       padding: 10px; } }
-  /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+  /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
   .pwp-contrast-message .pwp-message:before {
     color: #fff;
     font-size: 45px; }
     @media screen and (min-width: 550px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-message .pwp-message:before {
         font-size: 48px; } }
     @media screen and (min-width: 992px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-message .pwp-message:before {
         font-size: 52px; } }
 
-/* line 42, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 43, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-paypal:before {
   color: #223473;
   font-size: 45px; }
 
-/* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-contrast-paypal {
   display: inline-block;
   width: 53px;
@@ -1913,34 +1921,34 @@ progress[aria-valuenow]:before {
   border-radius: 6px;
   padding: 4px; }
   @media screen and (min-width: 550px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-paypal {
       width: 62px;
       padding: 7px; } }
   @media screen and (min-width: 992px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-paypal {
       width: 72px;
       padding: 10px; } }
-  /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+  /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
   .pwp-contrast-paypal .pwp-paypal:before {
     color: #fff;
     font-size: 45px; }
     @media screen and (min-width: 550px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-paypal .pwp-paypal:before {
         font-size: 48px; } }
     @media screen and (min-width: 992px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-paypal .pwp-paypal:before {
         font-size: 52px; } }
 
-/* line 42, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 43, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-photodrop:before {
   color: #cdb6e3;
   font-size: 45px; }
 
-/* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-contrast-photodrop {
   display: inline-block;
   width: 53px;
@@ -1948,34 +1956,34 @@ progress[aria-valuenow]:before {
   border-radius: 6px;
   padding: 4px; }
   @media screen and (min-width: 550px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-photodrop {
       width: 62px;
       padding: 7px; } }
   @media screen and (min-width: 992px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-photodrop {
       width: 72px;
       padding: 10px; } }
-  /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+  /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
   .pwp-contrast-photodrop .pwp-photodrop:before {
     color: #fff;
     font-size: 45px; }
     @media screen and (min-width: 550px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-photodrop .pwp-photodrop:before {
         font-size: 48px; } }
     @media screen and (min-width: 992px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-photodrop .pwp-photodrop:before {
         font-size: 52px; } }
 
-/* line 42, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 43, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-pinterest:before {
   color: #cb2027;
   font-size: 45px; }
 
-/* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-contrast-pinterest {
   display: inline-block;
   width: 53px;
@@ -1983,34 +1991,34 @@ progress[aria-valuenow]:before {
   border-radius: 6px;
   padding: 4px; }
   @media screen and (min-width: 550px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-pinterest {
       width: 62px;
       padding: 7px; } }
   @media screen and (min-width: 992px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-pinterest {
       width: 72px;
       padding: 10px; } }
-  /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+  /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
   .pwp-contrast-pinterest .pwp-pinterest:before {
     color: #fff;
     font-size: 45px; }
     @media screen and (min-width: 550px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-pinterest .pwp-pinterest:before {
         font-size: 48px; } }
     @media screen and (min-width: 992px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-pinterest .pwp-pinterest:before {
         font-size: 52px; } }
 
-/* line 42, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 43, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-rdio:before {
   color: #0088da;
   font-size: 45px; }
 
-/* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-contrast-rdio {
   display: inline-block;
   width: 53px;
@@ -2018,34 +2026,34 @@ progress[aria-valuenow]:before {
   border-radius: 6px;
   padding: 4px; }
   @media screen and (min-width: 550px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-rdio {
       width: 62px;
       padding: 7px; } }
   @media screen and (min-width: 992px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-rdio {
       width: 72px;
       padding: 10px; } }
-  /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+  /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
   .pwp-contrast-rdio .pwp-rdio:before {
     color: #fff;
     font-size: 45px; }
     @media screen and (min-width: 550px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-rdio .pwp-rdio:before {
         font-size: 48px; } }
     @media screen and (min-width: 992px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-rdio .pwp-rdio:before {
         font-size: 52px; } }
 
-/* line 42, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 43, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-rss:before {
   color: #ff7b0a;
   font-size: 45px; }
 
-/* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-contrast-rss {
   display: inline-block;
   width: 53px;
@@ -2053,34 +2061,34 @@ progress[aria-valuenow]:before {
   border-radius: 6px;
   padding: 4px; }
   @media screen and (min-width: 550px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-rss {
       width: 62px;
       padding: 7px; } }
   @media screen and (min-width: 992px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-rss {
       width: 72px;
       padding: 10px; } }
-  /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+  /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
   .pwp-contrast-rss .pwp-rss:before {
     color: #fff;
     font-size: 45px; }
     @media screen and (min-width: 550px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-rss .pwp-rss:before {
         font-size: 48px; } }
     @media screen and (min-width: 992px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-rss .pwp-rss:before {
         font-size: 52px; } }
 
-/* line 42, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 43, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-soundcloud:before {
   color: #f60;
   font-size: 45px; }
 
-/* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-contrast-soundcloud {
   display: inline-block;
   width: 53px;
@@ -2088,34 +2096,34 @@ progress[aria-valuenow]:before {
   border-radius: 6px;
   padding: 4px; }
   @media screen and (min-width: 550px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-soundcloud {
       width: 62px;
       padding: 7px; } }
   @media screen and (min-width: 992px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-soundcloud {
       width: 72px;
       padding: 10px; } }
-  /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+  /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
   .pwp-contrast-soundcloud .pwp-soundcloud:before {
     color: #fff;
     font-size: 45px; }
     @media screen and (min-width: 550px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-soundcloud .pwp-soundcloud:before {
         font-size: 48px; } }
     @media screen and (min-width: 992px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-soundcloud .pwp-soundcloud:before {
         font-size: 52px; } }
 
-/* line 42, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 43, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-skype:before {
   color: #00b8ed;
   font-size: 45px; }
 
-/* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-contrast-skype {
   display: inline-block;
   width: 53px;
@@ -2123,34 +2131,34 @@ progress[aria-valuenow]:before {
   border-radius: 6px;
   padding: 4px; }
   @media screen and (min-width: 550px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-skype {
       width: 62px;
       padding: 7px; } }
   @media screen and (min-width: 992px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-skype {
       width: 72px;
       padding: 10px; } }
-  /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+  /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
   .pwp-contrast-skype .pwp-skype:before {
     color: #fff;
     font-size: 45px; }
     @media screen and (min-width: 550px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-skype .pwp-skype:before {
         font-size: 48px; } }
     @media screen and (min-width: 992px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-skype .pwp-skype:before {
         font-size: 52px; } }
 
-/* line 42, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 43, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-stackoverflow:before {
   color: #000;
   font-size: 45px; }
 
-/* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-contrast-stackoverflow {
   display: inline-block;
   width: 53px;
@@ -2158,34 +2166,34 @@ progress[aria-valuenow]:before {
   border-radius: 6px;
   padding: 4px; }
   @media screen and (min-width: 550px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-stackoverflow {
       width: 62px;
       padding: 7px; } }
   @media screen and (min-width: 992px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-stackoverflow {
       width: 72px;
       padding: 10px; } }
-  /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+  /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
   .pwp-contrast-stackoverflow .pwp-stackoverflow:before {
     color: #fff;
     font-size: 45px; }
     @media screen and (min-width: 550px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-stackoverflow .pwp-stackoverflow:before {
         font-size: 48px; } }
     @media screen and (min-width: 992px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-stackoverflow .pwp-stackoverflow:before {
         font-size: 52px; } }
 
-/* line 42, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 43, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-steam:before {
   color: #000;
   font-size: 45px; }
 
-/* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-contrast-steam {
   display: inline-block;
   width: 53px;
@@ -2193,34 +2201,34 @@ progress[aria-valuenow]:before {
   border-radius: 6px;
   padding: 4px; }
   @media screen and (min-width: 550px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-steam {
       width: 62px;
       padding: 7px; } }
   @media screen and (min-width: 992px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-steam {
       width: 72px;
       padding: 10px; } }
-  /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+  /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
   .pwp-contrast-steam .pwp-steam:before {
     color: #fff;
     font-size: 45px; }
     @media screen and (min-width: 550px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-steam .pwp-steam:before {
         font-size: 48px; } }
     @media screen and (min-width: 992px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-steam .pwp-steam:before {
         font-size: 52px; } }
 
-/* line 42, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 43, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-tumblr:before {
   color: #395976;
   font-size: 45px; }
 
-/* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-contrast-tumblr {
   display: inline-block;
   width: 53px;
@@ -2228,34 +2236,34 @@ progress[aria-valuenow]:before {
   border-radius: 6px;
   padding: 4px; }
   @media screen and (min-width: 550px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-tumblr {
       width: 62px;
       padding: 7px; } }
   @media screen and (min-width: 992px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-tumblr {
       width: 72px;
       padding: 10px; } }
-  /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+  /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
   .pwp-contrast-tumblr .pwp-tumblr:before {
     color: #fff;
     font-size: 45px; }
     @media screen and (min-width: 550px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-tumblr .pwp-tumblr:before {
         font-size: 48px; } }
     @media screen and (min-width: 992px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-tumblr .pwp-tumblr:before {
         font-size: 52px; } }
 
-/* line 42, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 43, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-twitter:before {
   color: #00aced;
   font-size: 45px; }
 
-/* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-contrast-twitter {
   display: inline-block;
   width: 53px;
@@ -2263,34 +2271,34 @@ progress[aria-valuenow]:before {
   border-radius: 6px;
   padding: 4px; }
   @media screen and (min-width: 550px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-twitter {
       width: 62px;
       padding: 7px; } }
   @media screen and (min-width: 992px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-twitter {
       width: 72px;
       padding: 10px; } }
-  /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+  /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
   .pwp-contrast-twitter .pwp-twitter:before {
     color: #fff;
     font-size: 45px; }
     @media screen and (min-width: 550px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-twitter .pwp-twitter:before {
         font-size: 48px; } }
     @media screen and (min-width: 992px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-twitter .pwp-twitter:before {
         font-size: 52px; } }
 
-/* line 42, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 43, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-vimeo:before {
   color: #aad450;
   font-size: 45px; }
 
-/* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-contrast-vimeo {
   display: inline-block;
   width: 53px;
@@ -2298,34 +2306,34 @@ progress[aria-valuenow]:before {
   border-radius: 6px;
   padding: 4px; }
   @media screen and (min-width: 550px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-vimeo {
       width: 62px;
       padding: 7px; } }
   @media screen and (min-width: 992px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-vimeo {
       width: 72px;
       padding: 10px; } }
-  /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+  /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
   .pwp-contrast-vimeo .pwp-vimeo:before {
     color: #fff;
     font-size: 45px; }
     @media screen and (min-width: 550px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-vimeo .pwp-vimeo:before {
         font-size: 48px; } }
     @media screen and (min-width: 992px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-vimeo .pwp-vimeo:before {
         font-size: 52px; } }
 
-/* line 42, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 43, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-wordpress:before {
   color: #006a94;
   font-size: 45px; }
 
-/* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-contrast-wordpress {
   display: inline-block;
   width: 53px;
@@ -2333,34 +2341,34 @@ progress[aria-valuenow]:before {
   border-radius: 6px;
   padding: 4px; }
   @media screen and (min-width: 550px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-wordpress {
       width: 62px;
       padding: 7px; } }
   @media screen and (min-width: 992px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-wordpress {
       width: 72px;
       padding: 10px; } }
-  /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+  /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
   .pwp-contrast-wordpress .pwp-wordpress:before {
     color: #fff;
     font-size: 45px; }
     @media screen and (min-width: 550px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-wordpress .pwp-wordpress:before {
         font-size: 48px; } }
     @media screen and (min-width: 992px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-wordpress .pwp-wordpress:before {
         font-size: 52px; } }
 
-/* line 42, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 43, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-xing:before {
   color: #006461;
   font-size: 45px; }
 
-/* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-contrast-xing {
   display: inline-block;
   width: 53px;
@@ -2368,34 +2376,34 @@ progress[aria-valuenow]:before {
   border-radius: 6px;
   padding: 4px; }
   @media screen and (min-width: 550px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-xing {
       width: 62px;
       padding: 7px; } }
   @media screen and (min-width: 992px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-xing {
       width: 72px;
       padding: 10px; } }
-  /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+  /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
   .pwp-contrast-xing .pwp-xing:before {
     color: #fff;
     font-size: 45px; }
     @media screen and (min-width: 550px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-xing .pwp-xing:before {
         font-size: 48px; } }
     @media screen and (min-width: 992px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-xing .pwp-xing:before {
         font-size: 52px; } }
 
-/* line 42, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 43, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-youtube:before {
   color: #b00;
   font-size: 45px; }
 
-/* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+/* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
 .pwp-contrast-youtube {
   display: inline-block;
   width: 53px;
@@ -2403,25 +2411,25 @@ progress[aria-valuenow]:before {
   border-radius: 6px;
   padding: 4px; }
   @media screen and (min-width: 550px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-youtube {
       width: 62px;
       padding: 7px; } }
   @media screen and (min-width: 992px) {
-    /* line 46, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+    /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
     .pwp-contrast-youtube {
       width: 72px;
       padding: 10px; } }
-  /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+  /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
   .pwp-contrast-youtube .pwp-youtube:before {
     color: #fff;
     font-size: 45px; }
     @media screen and (min-width: 550px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-youtube .pwp-youtube:before {
         font-size: 48px; } }
     @media screen and (min-width: 992px) {
-      /* line 60, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
+      /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-network.scss */
       .pwp-contrast-youtube .pwp-youtube:before {
         font-size: 52px; } }
 
@@ -2518,85 +2526,82 @@ progress[aria-valuenow]:before {
     display: none; }
 
 /* line 5, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_chapters.scss */
-.podlovewebplayer_chapterbox {
+.chapters {
   height: auto;
   -webkit-transition: all 0.5s;
   transition: all 0.5s; }
   /* line 9, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_chapters.scss */
-  .podlovewebplayer_chapterbox .podlovewebplayer_chapters {
+  .chapters .podlovewebplayer_chapters {
     width: 100%;
     border-collapse: collapse; }
-    /* line 13, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_chapters.scss */
-    .podlovewebplayer_chapterbox .podlovewebplayer_chapters thead,
-    .podlovewebplayer_chapterbox .podlovewebplayer_chapters caption {
+    /* line 12, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_chapters.scss */
+    .chapters .podlovewebplayer_chapters thead,
+    .chapters .podlovewebplayer_chapters caption {
       display: none; }
     /* line 16, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_chapters.scss */
-    .podlovewebplayer_chapterbox .podlovewebplayer_chapters tr {
+    .chapters .podlovewebplayer_chapters tr {
       cursor: pointer;
       height: 46px; }
       /* line 20, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_chapters.scss */
-      .podlovewebplayer_chapterbox .podlovewebplayer_chapters tr .chapter-number {
+      .chapters .podlovewebplayer_chapters tr .chapter-number {
         padding-left: 10px;
         text-align: right;
         width: 20px; }
         @media screen and (min-width: 480px) {
           /* line 20, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_chapters.scss */
-          .podlovewebplayer_chapterbox .podlovewebplayer_chapters tr .chapter-number {
+          .chapters .podlovewebplayer_chapters tr .chapter-number {
             padding-left: 18px;
             width: 48px; } }
         @media screen and (min-width: 992px) {
           /* line 20, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_chapters.scss */
-          .podlovewebplayer_chapterbox .podlovewebplayer_chapters tr .chapter-number {
+          .chapters .podlovewebplayer_chapters tr .chapter-number {
             padding-left: 20px;
             width: 50px; } }
       /* line 35, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_chapters.scss */
-      .podlovewebplayer_chapterbox .podlovewebplayer_chapters tr:hover {
+      .chapters .podlovewebplayer_chapters tr:hover {
         background: #67391b; }
         /* line 37, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_chapters.scss */
-        .podlovewebplayer_chapterbox .podlovewebplayer_chapters tr:hover .badge {
+        .chapters .podlovewebplayer_chapters tr:hover .badge {
           color: #fff;
           background-color: #ff6600; }
         /* line 41, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_chapters.scss */
-        .podlovewebplayer_chapterbox .podlovewebplayer_chapters tr:hover .chapter-duration span {
+        .chapters .podlovewebplayer_chapters tr:hover .chapter-duration span {
           color: #d8d8d8;
           font-weight: 500; }
-      /* line 49, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_chapters.scss */
-      .podlovewebplayer_chapterbox .podlovewebplayer_chapters tr.active,
-      .podlovewebplayer_chapterbox .podlovewebplayer_chapters tr.active:hover
-.podlovewebplayer_chapterbox .podlovewebplayer_chapters tr.active:focus {
+      /* line 47, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_chapters.scss */
+      .chapters .podlovewebplayer_chapters tr.active,
+      .chapters .podlovewebplayer_chapters tr.active:hover .chapters .podlovewebplayer_chapters tr.active:focus {
         background: #783e18; }
         /* line 51, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_chapters.scss */
-        .podlovewebplayer_chapterbox .podlovewebplayer_chapters tr.active .badge,
-        .podlovewebplayer_chapterbox .podlovewebplayer_chapters tr.active:hover
-.podlovewebplayer_chapterbox .podlovewebplayer_chapters tr.active:focus .badge {
+        .chapters .podlovewebplayer_chapters tr.active .badge,
+        .chapters .podlovewebplayer_chapters tr.active:hover .chapters .podlovewebplayer_chapters tr.active:focus .badge {
           background-color: #ff6600;
           color: #fff; }
         /* line 55, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_chapters.scss */
-        .podlovewebplayer_chapterbox .podlovewebplayer_chapters tr.active .chapter-duration span,
-        .podlovewebplayer_chapterbox .podlovewebplayer_chapters tr.active:hover
-.podlovewebplayer_chapterbox .podlovewebplayer_chapters tr.active:focus .chapter-duration span {
+        .chapters .podlovewebplayer_chapters tr.active .chapter-duration span,
+        .chapters .podlovewebplayer_chapters tr.active:hover .chapters .podlovewebplayer_chapters tr.active:focus .chapter-duration span {
           color: #d8d8d8;
           font-weight: 500; }
       /* line 61, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_chapters.scss */
-      .podlovewebplayer_chapterbox .podlovewebplayer_chapters tr.chapter:active {
+      .chapters .podlovewebplayer_chapters tr.chapter:active {
         background: #783e18; }
       /* line 64, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_chapters.scss */
-      .podlovewebplayer_chapterbox .podlovewebplayer_chapters tr td {
+      .chapters .podlovewebplayer_chapters tr td {
         padding: 0 5px;
         vertical-align: middle;
         cursor: pointer !important; }
         /* line 68, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_chapters.scss */
-        .podlovewebplayer_chapterbox .podlovewebplayer_chapters tr td a {
+        .chapters .podlovewebplayer_chapters tr td a {
           color: #ff6600;
           text-decoration: none; }
       /* line 73, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_chapters.scss */
-      .podlovewebplayer_chapterbox .podlovewebplayer_chapters tr .chapter-name span {
+      .chapters .podlovewebplayer_chapters tr .chapter-name span {
         font-weight: 500; }
       /* line 76, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_chapters.scss */
-      .podlovewebplayer_chapterbox .podlovewebplayer_chapters tr .title {
+      .chapters .podlovewebplayer_chapters tr .title {
         padding-top: 7px; }
       /* line 79, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_chapters.scss */
-      .podlovewebplayer_chapterbox .podlovewebplayer_chapters tr .chapter-duration {
+      .chapters .podlovewebplayer_chapters tr .chapter-duration {
         font-family: "Droid Sans Mono", Monaco, Menlo, Consolas, "Courier New", monospace;
         font-size: 11px;
         white-space: nowrap;
@@ -2605,11 +2610,11 @@ progress[aria-valuenow]:before {
         padding-right: 10px; }
         @media all and (min-width: 480px) {
           /* line 79, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_chapters.scss */
-          .podlovewebplayer_chapterbox .podlovewebplayer_chapters tr .chapter-duration {
+          .chapters .podlovewebplayer_chapters tr .chapter-duration {
             padding-right: 18px; } }
         @media all and (min-width: 768px) {
           /* line 79, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_chapters.scss */
-          .podlovewebplayer_chapterbox .podlovewebplayer_chapters tr .chapter-duration {
+          .chapters .podlovewebplayer_chapters tr .chapter-duration {
             font-size: 13px; } }
 
 /* line 97, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_chapters.scss */
@@ -2641,25 +2646,15 @@ progress[aria-valuenow]:before {
       width: 100%;
       min-width: 156px;
       height: auto; } }
-  /* line 29, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_downloads.scss */
-  .poster-wrapper .download-overlay {
-    background: url("../img/download-overlay.png") no-repeat;
-    background-position: center;
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    margin: 0 auto; }
 
-/* line 41, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_downloads.scss */
+/* line 29, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_downloads.scss */
 .download {
-  margin: 20px auto; }
+  margin: 0 auto 20px auto; }
   @media screen and (max-width: 480px) {
-    /* line 41, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_downloads.scss */
+    /* line 29, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_downloads.scss */
     .download {
       margin: 0 auto; } }
-  /* line 48, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_downloads.scss */
+  /* line 36, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_downloads.scss */
   .download .poster-image {
     width: 100%;
     min-height: 256px;
@@ -2668,73 +2663,78 @@ progress[aria-valuenow]:before {
     -webkit-box-shadow: 0 11px 15px -6px black;
     box-shadow: 0 11px 15px -6px black; }
     @media screen and (max-width: 360px) {
-      /* line 48, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_downloads.scss */
+      /* line 36, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_downloads.scss */
       .download .poster-image {
         width: 100%;
         max-width: 256px;
         height: auto;
         min-height: 0; } }
-  /* line 62, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_downloads.scss */
+  /* line 50, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_downloads.scss */
   .download .default-poster {
     background: #ff6600; }
-  /* line 66, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_downloads.scss */
+  /* line 54, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_downloads.scss */
   .download.button-submit {
     display: block;
     margin: 0 auto 20px auto;
-    padding: 15px;
-    font-size: 15px; }
+    font-size: 15px;
+    max-width: 500px;
+    width: 95vw; }
     @media screen and (max-width: 360px) {
-      /* line 66, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_downloads.scss */
+      /* line 54, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_downloads.scss */
       .download.button-submit {
-        width: 95vw; } }
-    @media screen and (min-width: 360px) {
-      /* line 66, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_downloads.scss */
+        height: 40px; } }
+    @media screen and (min-width: 480px) {
+      /* line 54, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_downloads.scss */
       .download.button-submit {
-        font-size: 20px;
-        padding: 18px; } }
-  /* line 80, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_downloads.scss */
+        padding: 15px;
+        width: auto; } }
+    @media screen and (min-width: 768px) {
+      /* line 54, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_downloads.scss */
+      .download.button-submit {
+        font-size: 20px; } }
+  /* line 73, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_downloads.scss */
   .download.label {
     margin-left: 5px;
     font-family: "Roboto", "Helvetica Neue", "Helvetica", sans-serif;
     font-weight: 500; }
     @media screen and (min-width: 1200px) {
-      /* line 80, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_downloads.scss */
+      /* line 73, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_downloads.scss */
       .download.label {
         font-size: 1.5vw; } }
-  /* line 88, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_downloads.scss */
+  /* line 81, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_downloads.scss */
   .download > h2 {
     margin: 20px auto 0 auto;
     text-align: center; }
-  /* line 93, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_downloads.scss */
+  /* line 86, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_downloads.scss */
   .download p {
     margin: 10px auto;
     text-align: center; }
-    /* line 96, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_downloads.scss */
+    /* line 89, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_downloads.scss */
     .download p:first-of-type {
       margin-bottom: 0; }
-    /* line 99, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_downloads.scss */
+    /* line 92, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_downloads.scss */
     .download p:last-of-type {
       margin-top: 0; }
 
-/* line 105, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_downloads.scss */
+/* line 98, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_downloads.scss */
 select::-ms-expand {
   /* for IE 11 */
   display: none; }
 
 /*target Internet Explorer 9 and Internet Explorer 10:*/
-@media screen and (min-width: 0 \0) {
-  /* line 110, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_downloads.scss */
+@media screen and (min-width: 0\0) {
+  /* line 103, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_downloads.scss */
   select {
     background: none;
     padding: 5px; } }
 
-/* line 117, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_downloads.scss */
+/* line 110, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_downloads.scss */
 .select {
   background-color: #d8d8d8 !important;
   border: 1px solid #d8d8d8;
   margin: 0 auto 25px auto;
   height: 40px;
-  padding: 6px 12px;
+  padding: 6px 38px 6px 12px;
   font-size: 11px;
   line-height: 1.4;
   color: #262626 !important;
@@ -2744,31 +2744,25 @@ select::-ms-expand {
   -moz-appearance: none;
   appearance: none;
   overflow: hidden;
-  background: url(/img/arrow-down-white.png) 96% no-repeat #ddd;
+  background: url("/img/arrow-down-white.png") 95% no-repeat #ddd;
   text-overflow: ellipsis;
-  white-space: nowrap; }
-  @media screen and (max-width: 360px) {
-    /* line 117, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_downloads.scss */
-    .select {
-      width: 95vw; } }
-  @media screen and (min-width: 360px) {
-    /* line 117, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_downloads.scss */
-    .select {
-      width: 50vw;
-      font-size: 13px; } }
+  white-space: nowrap;
+  width: 95vw; }
   @media screen and (min-width: 480px) {
-    /* line 117, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_downloads.scss */
+    /* line 110, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_downloads.scss */
     .select {
-      margin: 0 auto 10px auto; } }
+      margin: 0 auto 10px auto;
+      font-size: 13px;
+      width: auto; } }
   @media screen and (min-width: 992px) {
-    /* line 117, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_downloads.scss */
+    /* line 110, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_downloads.scss */
     .select {
       margin: 0 auto 20px auto; } }
   @media screen and (min-width: 1200px) {
-    /* line 117, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_downloads.scss */
+    /* line 110, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_downloads.scss */
     .select {
       font-size: 1.15vw; } }
-  /* line 152, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_downloads.scss */
+  /* line 141, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_downloads.scss */
   .select option {
     background-color: #fff !important;
     color: #262626 !important; }
@@ -2862,106 +2856,106 @@ select::-ms-expand {
   line-height: 1px; }
 
 /* line 9, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_share.scss */
-.tabs .podlovewebplayer_share .main {
+.tabs .share .main {
   margin: 70px 0 25px 0; }
   @media all and (max-width: 480px) {
     /* line 9, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_share.scss */
-    .tabs .podlovewebplayer_share .main {
+    .tabs .share .main {
       margin: 70px 0 10px 0; } }
 
 /* line 17, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_share.scss */
-.tabs .podlovewebplayer_share .share-button-wrapper {
+.tabs .share .share-button-wrapper {
   width: 100%; }
   /* line 20, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_share.scss */
-  .tabs .podlovewebplayer_share .share-button-wrapper caption {
+  .tabs .share .share-button-wrapper caption {
     display: none; }
   /* line 24, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_share.scss */
-  .tabs .podlovewebplayer_share .share-button-wrapper .share-select-option {
+  .tabs .share .share-button-wrapper .share-select-option {
     width: 100%;
     cursor: pointer;
     height: 46px; }
     /* line 29, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_share.scss */
-    .tabs .podlovewebplayer_share .share-button-wrapper .share-select-option td {
+    .tabs .share .share-button-wrapper .share-select-option td {
       padding: 0 5px;
       vertical-align: middle; }
   /* line 34, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_share.scss */
-  .tabs .podlovewebplayer_share .share-button-wrapper .share-description {
+  .tabs .share .share-button-wrapper .share-description {
     text-align: right;
     width: 15vw; }
   /* line 38, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_share.scss */
-  .tabs .podlovewebplayer_share .share-button-wrapper .share-label {
+  .tabs .share .share-button-wrapper .share-label {
     width: 80vw; }
     /* line 40, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_share.scss */
-    .tabs .podlovewebplayer_share .share-button-wrapper .share-label > label {
+    .tabs .share .share-button-wrapper .share-label > label {
       text-align: left;
       font-weight: 500; }
   /* line 45, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_share.scss */
-  .tabs .podlovewebplayer_share .share-button-wrapper .share-radio {
+  .tabs .share .share-button-wrapper .share-radio {
     text-align: center;
     padding-right: 20px;
     width: 5vw; }
   @media all and (max-width: 480px) {
     /* line 51, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_share.scss */
-    .tabs .podlovewebplayer_share .share-button-wrapper td.share-radio {
+    .tabs .share .share-button-wrapper td.share-radio {
       padding: 6px 10px !important; } }
   @media all and (max-width: 768px) {
     /* line 56, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_share.scss */
-    .tabs .podlovewebplayer_share .share-button-wrapper .share-description {
+    .tabs .share .share-button-wrapper .share-description {
       display: none; }
     /* line 59, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_share.scss */
-    .tabs .podlovewebplayer_share .share-button-wrapper .share-label {
+    .tabs .share .share-button-wrapper .share-label {
       width: 100vw; }
       /* line 61, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_share.scss */
-      .tabs .podlovewebplayer_share .share-button-wrapper .share-label > label {
+      .tabs .share .share-button-wrapper .share-label > label {
         text-align: left;
         font-weight: 500; }
     /* line 66, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_share.scss */
-    .tabs .podlovewebplayer_share .share-button-wrapper td.share-radio {
+    .tabs .share .share-button-wrapper td.share-radio {
       padding: 6px 20px; } }
 
 /* line 72, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_share.scss */
-.tabs .podlovewebplayer_share form {
+.tabs .share form {
   margin-bottom: 20px; }
   /* line 74, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_share.scss */
-  .tabs .podlovewebplayer_share form > h3 {
+  .tabs .share form > h3 {
     margin: 0 20px 10px 20px; }
     @media all and (max-width: 480px) {
       /* line 74, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_share.scss */
-      .tabs .podlovewebplayer_share form > h3 {
+      .tabs .share form > h3 {
         margin: 0 10px 10px 10px; } }
 
 @media screen and (max-width: 480px) {
   /* line 83, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_share.scss */
-  .tabs .podlovewebplayer_share .share-button-wrapper {
+  .tabs .share .share-button-wrapper {
     width: 100%; }
   /* line 86, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_share.scss */
-  .tabs .podlovewebplayer_share .button-container {
+  .tabs .share .button-container {
     display: block; } }
 
 /* line 91, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_share.scss */
-.tabs .podlovewebplayer_share footer {
+.tabs .share footer {
   padding: 20px 20px 20px; }
   @media screen and (min-width: 992px) {
     /* line 91, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_share.scss */
-    .tabs .podlovewebplayer_share footer {
+    .tabs .share footer {
       padding: 25px 20px; } }
   /* line 96, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_share.scss */
-  .tabs .podlovewebplayer_share footer > div {
+  .tabs .share footer > div {
     width: 70%;
     margin: 0 auto; }
   /* line 100, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_share.scss */
-  .tabs .podlovewebplayer_share footer h3 {
+  .tabs .share footer h3 {
     margin: 0 0 10px 0;
     text-align: left; }
     @media screen and (min-width: 992px) {
       /* line 100, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_share.scss */
-      .tabs .podlovewebplayer_share footer h3 {
+      .tabs .share footer h3 {
         margin: 0 0 15px 0; } }
   /* line 107, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_share.scss */
-  .tabs .podlovewebplayer_share footer label {
+  .tabs .share footer label {
     display: block; }
   /* line 110, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_share.scss */
-  .tabs .podlovewebplayer_share footer input {
+  .tabs .share footer input {
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
     border-bottom-right-radius: 5px;
@@ -2976,19 +2970,19 @@ select::-ms-expand {
     cursor: text; }
     @media screen and (min-width: 992px) {
       /* line 110, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_share.scss */
-      .tabs .podlovewebplayer_share footer input {
+      .tabs .share footer input {
         height: 40px; } }
 
 /* line 126, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_share.scss */
-.tabs .podlovewebplayer_share ul {
+.tabs .share ul {
   margin: 0 0 10px 0; }
   @media screen and (min-width: 992px) {
     /* line 126, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_share.scss */
-    .tabs .podlovewebplayer_share ul {
+    .tabs .share ul {
       margin: 0 0 32px 0; } }
 
 /* line 132, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_share.scss */
-.tabs .podlovewebplayer_share span {
+.tabs .share span {
   padding: 6px 10px; }
 
 /* line 138, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_share.scss */
@@ -3049,15 +3043,11 @@ select::-ms-expand {
   /* line 189, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_share.scss */
   .share-select-option:active {
     background-color: #ffa366; }
-  /* line 193, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_share.scss */
-  .share-select-option:focus,
-  .share-select-option.selected {
+  /* line 192, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_share.scss */
+  .share-select-option:focus, .share-select-option.selected {
     background-color: #ff6600; }
-  /* line 199, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_share.scss */
-  .share-select-option:hover,
-  .share-select-option:active,
-  .share-select-option:focus,
-  .share-select-option.selected {
+  /* line 196, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/modules/_share.scss */
+  .share-select-option:hover, .share-select-option:active, .share-select-option:focus, .share-select-option.selected {
     color: #262626; }
 
 /* line 5, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-profiles.scss */
@@ -3095,9 +3085,8 @@ select::-ms-expand {
     .social-links li a {
       display: inline-block; }
 
-/* line 20, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_mixins.scss */
-.clearfix:before,
-.clearfix:after {
+/* line 19, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_mixins.scss */
+.clearfix:before, .clearfix:after {
   content: " ";
   /* 1 */
   display: table;

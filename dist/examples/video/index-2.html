@@ -14,13 +14,7 @@
   <h1>Video Test Page</h1>
   <div class="podlove-player-wrapper">
     <video controls="controls" preload="none">
-      <source src="http://cdn.media.ccc.de/congress/2013/mp4/30c3-5605-en-Opening_Event_h264-hq.mp4" type="video/mp4" />
-      <source src="http://cdn.media.ccc.de/congress/2013/webm/30c3-5605-en-Opening_Event_webm.webm" type="video/webm" />
-      <source src="http://cdn.media.ccc.de/congress/2013/mp3/30c3-5605-en-Opening_Event_mp3.mp3" type="audio/mp3" />
-      <object type="application/x-shockwave-flash" data="/bin/flashmediaelement.swf">
-        <param name="movie" value="/bin/flashmediaelement.swf"/>
-        <param name="flashvars" value="controls=true&amp;file=30c3-5433-de-en-Recht_auf_Remix_h264-hq.mp4"/>
-      </object>
+      <source src="http://ftp.halifax.rwth-aachen.de/ccc/congress/2013/mp4/30c3-5605-en-Opening_Event_h264-hq.mp4" type="video/mp4" />
     </video>
   </div>
   <script src="/js/vendor/html5shiv.js"></script>
@@ -30,6 +24,9 @@
   <script>
     $('video').podlovewebplayer({
       pluginPath: "/bin/",
+      alwaysShowHours: true,
+      chaptersVisible: true,
+      chapterlinks: 'all',
       poster: '/examples/folder-30c3.png',
       title: '30c3 - Opening Event',
       permalink: 'http://media.ccc.de/browse/congress/2013/30C3_-_5605_-_en_-_saal_1_-_201312271100_-_opening_event_-_tim_pritlove.html',
