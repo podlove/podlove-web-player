@@ -108,7 +108,7 @@ Downloads.prototype.createDownloadTab = function (params) {
 
   var $tabContent = downloadTab.createMainContent(
     '<div class="download">' +
-      '<form action="?">' +
+      '<form action="#">' +
         '<select class="select" name="select-file">' + this.list.map(createOption) + '</select>' +
         '<button class="download button-submit icon pwp-download" name="download-file">' +
           '<span class="download label">Download</span>' +
@@ -121,7 +121,7 @@ Downloads.prototype.createDownloadTab = function (params) {
   var $select = $tabContent.find('select.select');
   $button.on('click', function (e) {
     e.preventDefault();
-    window.open($select.val());
+    window.open($select.val(), '_self');
   });
 
   return downloadTab;

@@ -13,3 +13,12 @@ addons:
 after_script:
 - cat lcov.info | codeclimate
 sudo: false
+deploy:
+  provider: releases
+  api_key:
+    secure: UK/BK5UavwiWJjFNhkkj7Az+MeyXAUvi9uMthyanfcxKSgc9OUnLiAH3BehLeZWeTEmrbqBh5nwbS1M1Ly+Kw6rUajM4u59YyBqeQlJlZR2rNtpTut1q1S6/SYMJe2OCrXeJzgU0YRHgZhgLazTFCcUzxQddz/hxsj4yQa6NtnI=
+  file: dist/**/*
+  skip_cleanup: true
+  on:
+    tags: true
+    repo: podlove/podlove-web-player

@@ -115,9 +115,14 @@ $tab-header-height-mobile:  50px;
     @include order(2);
     // Offset for fixed header
     margin-top: $tab-header-height;
+    margin-bottom: $margin-base-horizontal;
+
     @media screen and (max-width: $screen-phone) {
       margin-top: $tab-header-height-mobile;
     }
+  }
+  .aside {
+    margin-bottom: $margin-base-horizontal;
   }
   footer {
     @include flex(1 100%);
