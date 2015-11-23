@@ -12,11 +12,18 @@ function getPublicationDate(rawDate) {
   return '<p>Veröffentlicht am: ' + date.getDate() + '.' + (date.getMonth() + 1) + '.' + date.getFullYear() + '</p>';
 }
 
+function getSummary (summary) {
+  if (summary && summary.length > 0) {
+    return '<p>' + summary + '</p>';
+  }
+  return '';
+}
+
 function createEpisodeInfo(tab, params) {
   tab.createMainContent(
     '<h2>' + params.title + '</h2>' +
     '<h3>' + params.subtitle + '</h3>' +
-    '<p>' + params.summary + '</p>' +
+    getSummary(params.summary) +
     '<p>Dauer: ' + timeCode.fromTimeStamp(params.duration) + '</p>' +
      getPublicationDate(params.publicationDate) +
     '<p>' +
@@ -78,14 +85,15 @@ function createSocialInfo(profiles) {
 }
 
 function createSocialAndLicenseInfo (tab, params) {
-  if (!params.license && !params.profiles) {
+  if (!params.license || !params.show) {
     return;
   }
   tab.createFooter(
     '<p>Die Show "' + params.show.title + '" ist lizensiert unter<br>' +
       '<a href="' + params.license.url + '" target="_blank" title="Lizenz ansehen">' + params.license.name + '</a>' +
     '</p>'
-  ).prepend(createSocialInfo(params.profiles));
+  )
+  tab.prepend(createSocialInfo(params.profiles));
 }
 
 /**
@@ -94,9 +102,9 @@ function createSocialAndLicenseInfo (tab, params) {
  * @returns {null|Tab} info tab instance or null
  */
 function createInfoTab(params) {
-  if (!params.summary) {
-    return null;
-  }
+  // if (!params.summary) {
+  //   return null;
+  // }
   var infoTab = new Tab({
     icon: 'pwp-info',
     title: 'Infos anzeigen / verbergen',
