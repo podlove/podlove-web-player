@@ -88,12 +88,12 @@ function createSocialAndLicenseInfo (tab, params) {
   if (!params.license || !params.show) {
     return;
   }
-  tab.createFooter(
+  var footer = tab.createFooter(
     '<p>Die Show "' + params.show.title + '" ist lizensiert unter<br>' +
       '<a href="' + params.license.url + '" target="_blank" title="Lizenz ansehen">' + params.license.name + '</a>' +
     '</p>'
   )
-  tab.prepend(createSocialInfo(params.profiles));
+  footer.prepend(createSocialInfo(params.profiles));
 }
 
 /**
