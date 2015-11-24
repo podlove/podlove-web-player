@@ -12,7 +12,6 @@
     "valid-jsdoc": 0,
     "brace-style": [2, "stroustrup", { "allowSingleLine": true }],
     "consistent-this": [2, "self"],
-    "no-space-before-semi": 1,
     "no-constant-condition": 1,
     "no-underscore-dangle": 2,
     "no-use-before-define": 1,
@@ -26,9 +25,6 @@
     "no-unused-vars": [2, {"vars": "local"}],
     "quotes": [1, "single"],
     "space-infix-ops": 1,
-    "global-strict": [2, "always"],
-    "strict": 0,
-    "no-extra-strict": 2,
     "block-scoped-var": 1
   }
 }
