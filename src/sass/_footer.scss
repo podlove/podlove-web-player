@@ -1,0 +1,39 @@
+//
+// Footer within tabs
+// --------------------------------------------------
+.tabs footer {
+  @include flex(1 100%);
+  @include order(3);
+  text-align: center;
+  color: $footer-color;
+  background-color: $footer-background;
+  border: 1px solid $footer-border !important;
+  padding: 20px $padding-base-horizontal $padding-base-horizontal;
+  @media screen and (min-width: $screen-desktop) {
+    padding: $padding-large-vertical $padding-base-horizontal;
+  }
+  h3 {
+    margin: 0 0 $margin-small-vertical 0;
+    text-align: left;
+    @media screen and (min-width: $screen-desktop) {
+      margin: 0 0 15px 0;
+    }
+  }
+  label {
+    display: block;
+  }
+  input {
+    @include border-radius(5px);
+    font-family: $font-family-monospace;
+    border: 1px solid $input-border;
+    width: 100%;
+    padding: 8px;
+    text-align: center;
+    color: $input-color;
+    height: 30px;
+    cursor: text;
+    @media screen and (min-width: $screen-desktop) {
+      height: 40px;
+    }
+  }
+}
