@@ -80,5 +80,8 @@
   },
   "scripts": {
     "test": "gulp test"
+  },
+  "dependencies": {
+    "loglevel": "^1.4.0"
   }
 }
