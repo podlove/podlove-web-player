@@ -35,8 +35,7 @@ require('../../bower_components/mediaelement/build/mediaelement.js');
 
 // include i18n plugin
 // load translations
-var loadTranslations = require('./localize');
-loadTranslations();
+var setLocale = require('./localize');
 
 /**
  * The most missing feature regarding embedded players
@@ -398,6 +397,8 @@ function addBehavior(player, params, wrapper) {
 function getDeferredPlayerCallBack(deferredPlayer) {
   return function (data) {
     var params = $.extend({}, Player.defaults, data);
+    setLocale(params.languageCode);
+
     data.sources.forEach(function (sourceObject) {
       $('<source>', sourceObject).appendTo(deferredPlayer);
     });
@@ -421,6 +422,7 @@ $.fn.podlovewebplayer = function webPlayer(options) {
 
   // Additional parameters default values
   var params = $.extend({}, Player.defaults, options);
+  setLocale(params.languageCode);
 
   // turn each player in the current set into a Podlove Web Player
   return this.each(function (i, playerElement) {
