@@ -96,7 +96,7 @@
 .titlebar {
 
   // < 480px
-  @media all and (max-width: $screen-phone) {
+  @media all and (max-width: $screen-phone - 1px) {
     .coverart {
       @include flex(1 100%);
       @include order(1);
