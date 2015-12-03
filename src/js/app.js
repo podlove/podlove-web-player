@@ -297,9 +297,8 @@ function addBehavior(player, params, wrapper) {
        startedPaused = media.paused;
        }
        */
-      e.preventDefault();
-      e.stopPropagation();
-
+      //  e.preventDefault();
+      //  e.stopPropagation();
       var keyCode = e.which,
         duration = timeline.player.duration,
         seekTime = timeline.player.currentTime;
@@ -340,7 +339,7 @@ function addBehavior(player, params, wrapper) {
             timeline.player.pause();
           return false;
         default:
-          return false;
+          return true;
       }
 
       timeline.setTime(seekTime);
