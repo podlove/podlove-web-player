@@ -4,6 +4,7 @@
  * @type {Chapters}
  */
 var Chapters = require('./modules/chapter');
+var log = require('./logging').getLogger('Chapters');
 
 function createTimeControls() {
   return $('<ul class="timecontrolbar"></ul>');
@@ -19,9 +20,9 @@ function playerStarted(player) {
 
 function getCombinedCallback(callback) {
   return function (evt) {
-    console.debug('Controls', 'controlbutton clicked', evt);
+    log.debug('Controls', 'controlbutton clicked', evt);
     evt.preventDefault();
-    console.debug('Controls', 'player started?', playerStarted(this.player));
+    log.debug('Controls', 'player started?', playerStarted(this.player));
     if (!playerStarted(this.player)) {
       this.player.play();
     }
@@ -52,37 +53,37 @@ function Controls (timeline) {
 Controls.prototype.createTimeControls = function (chapterModule) {
   var hasChapters = (chapterModule instanceof Chapters);
   if (!hasChapters) {
-    console.info('Controls', 'createTimeControls', 'no chapterTab found');
+    log.info('Controls', 'createTimeControls', 'no chapterTab found');
   }
   if (hasChapters) {
     this.createButton('pwp-controls-previous-chapter', 'Zurück zum vorigen Kapitel', function () {
       var activeChapter = chapterModule.getActiveChapter();
       if (this.timeline.getTime() > activeChapter.start + 10) {
-        console.debug('Controls', 'Zurück zum Kapitelanfang', chapterModule.currentChapter, 'from', this.timeline.getTime());
+        log.debug('Controls', 'Zurück zum Kapitelanfang', chapterModule.currentChapter, 'from', this.timeline.getTime());
         return chapterModule.playCurrentChapter();
       }
-      console.debug('Controls', 'Zurück zum vorigen Kapitel', chapterModule.currentChapter);
+      log.debug('Controls', 'Zurück zum vorigen Kapitel', chapterModule.currentChapter);
       return chapterModule.previous();
     });
   }
 
   this.createButton('pwp-controls-back-30', '30 Sekunden zurück', function () {
-    console.debug('Controls', 'rewind before', this.timeline.getTime());
+    log.debug('Controls', 'rewind before', this.timeline.getTime());
     this.timeline.setTime(this.timeline.getTime() - 30);
-    console.debug('Controls', 'rewind after', this.timeline.getTime());
+    log.debug('Controls', 'rewind after', this.timeline.getTime());
   });
 
   this.createButton('pwp-controls-forward-30', '30 Sekunden vor', function () {
-    console.debug('Controls', 'ffwd before', this.timeline.getTime());
+    log.debug('Controls', 'ffwd before', this.timeline.getTime());
     this.timeline.setTime(this.timeline.getTime() + 30);
-    console.debug('Controls', 'ffwd after', this.timeline.getTime());
+    log.debug('Controls', 'ffwd after', this.timeline.getTime());
   });
 
   if (hasChapters) {
     this.createButton('pwp-controls-next-chapter', 'Zum nächsten Kapitel springen', function () {
-      console.debug('Controls', 'next Chapter before', this.timeline.getTime());
+      log.debug('Controls', 'next Chapter before', this.timeline.getTime());
       chapterModule.next();
-      console.debug('Controls', 'next Chapter after', this.timeline.getTime());
+      log.debug('Controls', 'next Chapter after', this.timeline.getTime());
     });
   }
 };

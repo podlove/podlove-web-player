@@ -1,6 +1,7 @@
 'use strict';
 
 var Tab = require('../tab');
+var log = require('../logging').getLogger('Downloads');
 
 /**
  * Calculate the filesize into KB and MB
@@ -27,7 +28,7 @@ function formatSize(size) {
  * @returns {string}
  */
 function createOption(asset) {
-  console.log(asset);
+  log.debug('found asset', asset.assetTitle);
   return '<option value="' + asset.downloadUrl + '">' +
       asset.assetTitle + ' &#8226; ' + formatSize(asset.size) +
     '</option>';

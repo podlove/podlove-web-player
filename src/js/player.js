@@ -1,6 +1,7 @@
 'use strict';
 
 var parseTimecode = require('./timecode').parse;
+var log = require('./logging').getLogger('Player');
 
 /**
  * player
@@ -176,7 +177,7 @@ function create(player, params, callback) {
     callback(playerElement, params, wrapper);
   };
   var me = new MediaElement(player, mejsoptions);
-  console.log('MediaElement', me);
+  log.info('MediaElement', me);
 }
 
 module.exports = {

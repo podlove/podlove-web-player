@@ -1,5 +1,7 @@
 'use strict';
 
+var log = require('../logging').getLogger('SaveTime');
+
 /**
  * Saving the playtime
  */
@@ -18,7 +20,7 @@ function hasItem () {
 }
 
 function update () {
-  console.debug('SaveTime', 'update', this.timeline.getTime());
+  log.debug('update', this.timeline.getTime());
   if (this.timeline.getTime() === 0) {
     return removeItem.call(this);
   }

@@ -1,5 +1,7 @@
 'use strict';
 
+var log = require('./logging').getLogger('TabRegistry');
+
 /**
  *
  * @param {Tab} tab
@@ -7,7 +9,7 @@
  */
 function getToggleClickHandler(tab) {
   /*jshint validthis:true */
-  console.debug('TabRegistry', 'activeTab', this.activeTab);
+  log.debug('activeTab', this.activeTab);
   if (this.activeTab) {
     this.activeTab.close();
   }
@@ -25,7 +27,7 @@ function getToggleClickHandler(tab) {
  * @param {HTMLElement} player
  */
 function logCurrentTime (player) {
-  console.log('player.currentTime', player.currentTime);
+  log.debug('player.currentTime', player.currentTime);
 }
 
 function TabRegistry() {
@@ -71,7 +73,7 @@ TabRegistry.prototype.openInitial = function (tabName) {
     return (tab.name === tabName);
   });
   if (matchingTabs.length === 0) {
-    console.warn('TabRegistry.openInitial: Could not open tab', tabName);
+    log.warn('openInitial', 'Could not open tab', tabName);
     return;
   }
   var initialActiveTab = matchingTabs.pop();
@@ -93,7 +95,7 @@ TabRegistry.prototype.addModule = function(module) {
 };
 
 TabRegistry.prototype.update = function(event) {
-  console.log('TabRegistry#update', event);
+  log.debug('update', event);
   var player = event.currentTarget;
   $.each(this.listeners, function (i, listener) { listener(player); });
 };

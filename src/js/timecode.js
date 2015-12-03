@@ -1,6 +1,7 @@
 'use strict';
 
 var zeroFill = require('./util').zeroFill;
+var log = require('./logging').getLogger('TimeCode');
 
 /**
  * Timecode as described in http://podlove.org/deep-link/
@@ -19,7 +20,7 @@ function extractTime(tc) {
   }
   var parts = timeCodeMatcher.exec(tc);
   if (!parts) {
-    console.warn('Could not extract time from', tc);
+    log.warn('Could not extract time from', tc);
     return false;
   }
   var time = 0;
@@ -125,7 +126,7 @@ module.exports = {
     var timeparts = timecode.split('-');
 
     if (!timeparts.length) {
-      console.warn('no timeparts:', timecode);
+      log.warn('no timeparts:', timecode);
       return [false, false];
     }
 

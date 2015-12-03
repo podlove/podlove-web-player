@@ -26,12 +26,15 @@ var TabRegistry = require('./tabregistry'),
   SaveTime = require('./modules/savetime'),
   Controls = require('./controls'),
   Player = require('./player'),
-  ProgressBar = require('./modules/progressbar');
+  ProgressBar = require('./modules/progressbar'),
+  loglevel = require('./logging');
 
 var pwp;
 
 // will expose/attach itself to the $ global
 require('../../bower_components/mediaelement/build/mediaelement.js');
+
+var log = loglevel.getLogger('Webplayer');
 
 /**
  * The most missing feature regarding embedded players
@@ -204,7 +207,7 @@ function addBehavior(player, params, wrapper) {
 
   var deepLink;
 
-  console.debug('webplayer', 'metadata', timeline.getData());
+  log.info('Metadata', timeline.getData());
   jqPlayer.prop({
     controls: null,
     preload: 'metadata'
@@ -291,12 +294,8 @@ function addBehavior(player, params, wrapper) {
 
   $(document)
     .on('keydown', function (e) {
-      console.log('progress', 'keydown', e);
-      /*
-       if ((new Date() - lastKeyPressTime) >= 1000) {
-       startedPaused = media.paused;
-       }
-       */
+      log.debug('Keydown', e);
+
       e.preventDefault();
       e.stopPropagation();
 
@@ -349,7 +348,7 @@ function addBehavior(player, params, wrapper) {
 
   jqPlayer
     .on('timelineElement', function (event) {
-      console.log(event.currentTarget.id, event);
+      log.trace(event.currentTarget.id, event);
     })
     .on('timeupdate progress', function (event) {
       timeline.update(event);
