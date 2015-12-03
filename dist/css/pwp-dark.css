@@ -822,7 +822,7 @@ progress[aria-valuenow]:before {
   order: 2;
   min-width: 1px; }
 
-@media all and (max-width: 480px) {
+@media all and (max-width: 479px) {
   /* line 100, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_titlebar.scss */
   .titlebar .coverart {
     -webkit-box-flex: 1;
@@ -2730,7 +2730,7 @@ select::-ms-expand {
   -moz-appearance: none;
   appearance: none;
   overflow: hidden;
-  background: url("/img/arrow-down-white.png") 95% no-repeat #ddd;
+  background: url("../img/arrow-down-white.png") 95% no-repeat #ddd;
   text-overflow: ellipsis;
   white-space: nowrap;
   width: 95vw; }
