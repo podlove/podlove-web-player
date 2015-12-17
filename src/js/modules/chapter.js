@@ -48,13 +48,13 @@ function render(html) {
  */
 function renderChapterTable() {
   return render(
-    '<table class="podlovewebplayer_chapters"><caption>Kapitel</caption>' +
+    '<table class="podlovewebplayer_chapters"><caption>' + $.i18n( 'title_chapter_table' ) + '</caption>' +
       '<thead>' +
         '<tr>' +
-          '<th scope="col">Kapitelnummer</th>' +
-          '<th scope="col">Startzeit</th>' +
-          '<th scope="col">Titel</th>' +
-          '<th scope="col">Dauer</th>' +
+          '<th scope="col">' + $.i18n( 'title_chapter_table_col_number' ) + '</th>' +
+          '<th scope="col">' + $.i18n( 'title_chapter_table_col_time' ) + '</th>' +
+          '<th scope="col">' + $.i18n( 'title_chapter_table_col_title' ) + '</th>' +
+          '<th scope="col"' + $.i18n( 'title_chapter_table_col_dur' ) + '></th>' +
         '</tr>' +
       '</thead>' +
       '<tbody></tbody>' +
@@ -147,8 +147,8 @@ function Chapters (timeline, params) {
 
   this.tab = new Tab({
     icon: 'pwp-chapters',
-    title: 'Kapitel anzeigen / verbergen',
-    headline: 'Kapitel',
+    title: $.i18n( 'tab_title_message', $.i18n( 'tab_chapter_name' ), $.i18n( 'tab_title_actions' ) ),
+    headline: $.i18n( 'tab_chapter_name' ),
     name: 'chapters'
   });
 

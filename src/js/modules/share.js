@@ -94,7 +94,7 @@ function createOption(option) {
 function createShareList(params) {
   shareOptions[0].title = params.show.title;
   shareOptions[1].title = params.title;
-  var table = $('<table class="share-button-wrapper" data-toggle="buttons"><caption>Podcast teilen</caption><tbody></tbody</table>');
+  var table = $('<table class="share-button-wrapper" data-toggle="buttons"><caption>'+ $.i18n( 'tab_share_table_caption_share' ) + '</caption><tbody></tbody</table>');
   table.append(shareOptions.map(createOption));
   return table;
 }
@@ -105,7 +105,7 @@ function createShareList(params) {
  */
 function createShareOptions(params) {
   var form = $('<form>' +
-    '<h3>Was möchtest du teilen?</h3>' +
+    '<h3>'+ $.i18n( 'tab_share_title_what_share' ) + '</h3>' +
   '</form>');
   form.append(createShareList(params));
   return form;
@@ -123,13 +123,13 @@ function createShareTab(params) {
 
   var shareTab = new Tab({
     icon: 'pwp-share',
-    title: 'Teilen anzeigen / verbergen',
-    name: 'share',
-    headline: 'Teilen'
+    title: $.i18n( 'tab_title_message', $.i18n( 'tab_share_name' ), $.i18n( 'tab_title_actions' ) ),
+    headline: $.i18n( 'tab_share_name' ),
+    name: 'share'
   });
 
   shareButtons = new SocialButtonList(services, getShareData('episode'));
-  linkInput = $('<h3>Direkter Link</h3>' +
+  linkInput = $('<h3>' + $.i18n( 'tab_share_title_direct_link' ) + '</h3>' +
     '<input type="url" name="share-link-url" readonly>');
   linkInput.update = function(data) {
     this.val(data.rawUrl);
@@ -137,7 +137,7 @@ function createShareTab(params) {
 
   shareTab.createMainContent('')
     .append(createShareOptions(params))
-    .append('<h3>Teilen via ...</h3>')
+    .append('<h3>' + $.i18n( 'tab_share_title_share_via' ) + '</h3>')
     .append(shareButtons.list);
   shareTab.createFooter('').append(linkInput);
 

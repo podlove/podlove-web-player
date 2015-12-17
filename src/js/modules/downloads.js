@@ -101,9 +101,9 @@ Downloads.prototype.createDownloadTab = function (params) {
   }
   var downloadTab = new Tab({
     icon: 'pwp-download',
-    title: 'Downloads anzeigen / verbergen',
+    title: $.i18n( 'tab_title_message', $.i18n( 'tab_downloads_name' ), $.i18n( 'tab_title_actions' ) ),
+    headline: $.i18n( 'tab_downloads_name' ),
     name: 'downloads',
-    headline: 'Download'
   });
 
   var $tabContent = downloadTab.createMainContent(
@@ -111,7 +111,7 @@ Downloads.prototype.createDownloadTab = function (params) {
       '<form action="#">' +
         '<select class="select" name="select-file">' + this.list.map(createOption) + '</select>' +
         '<button class="download button-submit icon pwp-download" name="download-file">' +
-          '<span class="download label">Download</span>' +
+          '<span class="download label">' + $.i18n( 'tab_downloads_btn_download' ) + '</span>' +
         '</button>' +
       '</form>' +
     '</div>'

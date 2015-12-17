@@ -33,6 +33,10 @@ var pwp;
 // will expose/attach itself to the $ global
 require('../../bower_components/mediaelement/build/mediaelement.js');
 
+// include i18n plugin
+// load translations
+var setLocale = require('./localize');
+
 /**
  * The most missing feature regarding embedded players
  * @param {string} title the title of the show
@@ -44,7 +48,7 @@ function renderShowTitle(title, url) {
     return '';
   }
   if (url) {
-    title = '<a href="' + url + '" target="_blank" title="Link zur Show">' + title + '</a>';
+    title = '<a href="' + url + '" target="_blank" title="' + $.i18n( 'link_show' ) + '">' + title + '</a>';
   }
   return '<h3 class="showtitle">' + title + '</h3>';
 }
@@ -59,7 +63,7 @@ function renderTitle(text, link) {
   var titleBegin = '<h1 class="episodetitle">',
     titleEnd = '</h1>';
   if (text !== undefined && link !== undefined) {
-    text = '<a href="' + link + '"  target="_blank" title="Link zur Episode">' + text + '</a>';
+    text = '<a href="' + link + '"  target="_blank" title="' + $.i18n( 'link_episode' ) + '">' + text + '</a>';
   }
   return titleBegin + text + titleEnd;
 }
@@ -94,7 +98,7 @@ function renderTitleArea(params) {
  * @returns {string}
  */
 function renderPlaybutton() {
-  return $('<a class="play" title="Abspielen" href="javascript:;"></a>');
+  return $('<a class="play" title="' + $.i18n( 'btn_play' ) + '" href="javascript:;"></a>');
 }
 
 /**
@@ -107,7 +111,7 @@ function renderPoster(posterUrl) {
   if (!posterUrl) {
     return '';
   }
-  return '<div class="coverart"><img class="coverimg" src="' + posterUrl + '" data-img="' + posterUrl + '" alt="Poster Image"></div>';
+  return '<div class="coverart"><img class="coverimg" src="' + posterUrl + '" data-img="' + posterUrl + '" alt="' + $.i18n( 'alt_coverart' ) + '"></div>';
 }
 
 /**
@@ -392,6 +396,8 @@ function addBehavior(player, params, wrapper) {
 function getDeferredPlayerCallBack(deferredPlayer) {
   return function (data) {
     var params = $.extend({}, Player.defaults, data);
+    setLocale(params.languageCode);
+
     data.sources.forEach(function (sourceObject) {
       $('<source>', sourceObject).appendTo(deferredPlayer);
     });
@@ -415,6 +421,7 @@ $.fn.podlovewebplayer = function webPlayer(options) {
 
   // Additional parameters default values
   var params = $.extend({}, Player.defaults, options);
+  setLocale(params.languageCode);
 
   // turn each player in the current set into a Podlove Web Player
   return this.each(function (i, playerElement) {

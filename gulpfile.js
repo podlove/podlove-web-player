@@ -114,6 +114,10 @@ gulp.task('copy', function() {
   // Copy Podlove Font
   gulp.src(bower + 'podlove-font/font/*')
     .pipe(gulp.dest(dest + 'font'));
+
+  // Copy Locales
+  gulp.src(source + 'i18n/*')
+    .pipe(gulp.dest(dest + 'i18n'));
 });
 
 // copy example files
