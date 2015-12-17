@@ -9,7 +9,8 @@ function getPublicationDate(rawDate) {
     return '';
   }
   var date = new Date(rawDate);
-  return '<p>' + $.i18n( 'tab_info_title_published' ) + ': ' + date.getDate() + '.' + (date.getMonth() + 1) + '.' + date.getFullYear() + '</p>';
+  var options = { year: 'numeric', month: 'short', day: '2-digit', time: '' };
+  return '<p>' + $.i18n( 'tab_info_title_published' ) + ': ' + date.toLocaleString($.i18n( 'date_locale' ), options) + '</p>';
 }
 
 function getSummary (summary) {
