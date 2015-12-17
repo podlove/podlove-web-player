@@ -5,8 +5,7 @@ var url = require('./url'),
 
 var log = require('./logging').getLogger('Moderator');
 
-var $ = jQuery,
-    IFRAME_HEIGHT_DEFAULT = 300,
+var IFRAME_HEIGHT_DEFAULT = 300,
     IFRAME_HEIGHT_MIN = 100,
     IFRAME_HEIGHT_MAX = 3000,
     players = {},
@@ -68,13 +67,13 @@ function getStaticEmbedPageSource(id) {
 }
 
 function getIframeReplacement() {
+
+  var data;
   /*jshint validthis:true */
-  var $frame, frame, data;
-  var $element = $(this);
-  var source = $element.data('podlove-web-player-source');
+  var source = this.getAttribute('data-podlove-web-player-source');
 
   if (!source) {
-    var elementId = $element.get(0).id;
+    var elementId = this.id;
     if (!elementId) { throw new Error('Element without source set needs an ID'); }
     source = getStaticEmbedPageSource(elementId);
     data = window[metadataList][elementId];
@@ -86,28 +85,22 @@ function getIframeReplacement() {
     source += '#t=' + url.getFragment('t');
   }
 
-  $frame = $('<iframe>', {
-    src: source,
-    height: getPlayerHeight($element.data('podlove-web-player-height')),
-    width: getPlayerWidth($element.data('podlove-web-player-width')),
-    className: 'podlove-webplayer-frame',
-    css: {
-      border: 'none',
-      overflow: 'hidden'
-    }
-  });
-
-  frame = $frame.get(0);
+  var frame = document.createElement('iframe');
+  frame.src = source;
+  frame.height = getPlayerHeight(this.getAttribute('data-podlove-web-player-height'));
+  frame.width = getPlayerWidth(this.getAttribute('data-podlove-web-player-width'));
+  frame.classList.add('podlove-webplayer-frame');
+  frame.setAttribute('style', 'border:none;overflow:hidden;');
 
   // register player frame
   players[frame.src] = {
     data: data,
-    frame: $frame,
+    frame: frame,
     state: -1
   };
   log.info('registered player with id', frame.src);
 
-  return $frame;
+  return frame;
 }
 
 /**
@@ -125,7 +118,7 @@ function pausePlayersExceptOne(currentPlayerId) {
       continue;
     } // nothing to do, it is already paused
 
-    playerData.frame.get(0).contentWindow.postMessage(message, playerId);
+    playerData.frame.contentWindow.postMessage(message, playerId);
   }
 }
 
@@ -135,11 +128,11 @@ function pausePlayersExceptOne(currentPlayerId) {
  */
 function handleMessage(event) {
   // discard hash - it changes along with the time media is played
-  var originalEvent = event.originalEvent,
-    data = originalEvent.data,
+  console.log(event);
+  var data = event.data,
     action = data.action,
     argumentObject = data.arg,
-    id = getIdFromLocation(originalEvent.source.location),
+    id = getIdFromLocation(event.source.location),
     player = players[id];
 
   log.debug('received message', action, argumentObject);
@@ -157,7 +150,7 @@ function handleMessage(event) {
   log.debug('received', action, 'from', id, 'with', argumentObject);
 
   if (action === 'waiting') {
-    player.frame.get(0).contentWindow.postMessage({playerOptions: player.data}, '*');
+    player.frame.contentWindow.postMessage({playerOptions: player.data}, '*');
   }
 
   if (action === 'ready' || action === 'pause') {
@@ -170,22 +163,54 @@ function handleMessage(event) {
   }
 
   if (action === 'resize') {
-    player.frame.height(getPlayerHeight(argumentObject));
+    player.frame.height = getPlayerHeight(argumentObject);
   }
 }
 
 // receive messages from embedded players
-$(window).on('message', handleMessage);
+window.addEventListener('message', handleMessage, false);
 
 /**
  * Replace selection of nodes with embedded podlove webplayers and register them internally
  * @param {object} opts
  * @returns {jQuery} jQuery extended HTMLIFrameElement
  */
-$.fn.podlovewebplayer = function (opts) {
-  options = opts || {};
-  return this.replaceWith(getIframeReplacement);
-};
+function replaceWithJQ(opts) {
+  if (opts) {
+    pwp.options = opts || {};
+  }
+  return this.replaceWith(getIframeReplacement, pwp.options);
+}
+
+/**
+ *
+ * @param selector default selector '[podlove-web-player-source]'
+ */
+function getElementsBySelector (selector) {
+  if (!selector) {
+    return document.querySelectorAll('[data-podlove-web-player-source]');
+  }
+  return document.querySelectorAll(selector);
+}
+
+function replaceAll () {
+  var elementList = getElementsBySelector();
+  var l = elementList.length;
+  var frame, element;
+  while (l--) {
+    element = elementList[l];
+    frame = getIframeReplacement.call(element);
+    element.parentElement.insertBefore(frame, element);
+  }
+}
+
+// decide what to do based on given context
+if (!window.jQuery) {
+  replaceAll();
+}
+if (window.jQuery) {
+   jQuery.fn.podlovewebplayer = replaceWithJQ;
+}
 
 window.pwp = {
   players: players
