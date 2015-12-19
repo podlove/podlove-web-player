@@ -102,8 +102,8 @@ Downloads.prototype.createDownloadTab = function (params) {
   var downloadTab = new Tab({
     icon: 'pwp-download',
     title: $.i18n( 'tab_title_message', $.i18n( 'tab_downloads_name' ), $.i18n( 'tab_title_actions' ) ),
-    headline: $.i18n( 'tab_downloads_name' ),
-    name: 'downloads',
+    headline: $.i18n( 'tab_downloads_title' ),
+    name: 'downloads'
   });
 
   var $tabContent = downloadTab.createMainContent(
@@ -141,7 +141,7 @@ Downloads.prototype.createDownloadTab = function (params) {
   $select.on('change', setUrl);
 
   downloadTab
-    .createFooter('<h3>Direkter Link</h3>')
+    .createFooter('<h3>' + $.i18n('tab_downloads_direct_link') + '</h3>')
     .append($downloadLinkElement);
 
   return downloadTab;
