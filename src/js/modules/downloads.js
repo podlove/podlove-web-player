@@ -141,7 +141,7 @@ Downloads.prototype.createDownloadTab = function (params) {
   $select.on('change', setUrl);
 
   downloadTab
-    .createFooter('<h3>Direkter Link</h3>')
+    .createFooter('<h3>' + $.i18n('tab_downloads_direct_link') + '</h3>')
     .append($downloadLinkElement);
 
   return downloadTab;
