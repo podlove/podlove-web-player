@@ -124,7 +124,7 @@ function createShareTab(params) {
   var shareTab = new Tab({
     icon: 'pwp-share',
     title: $.i18n( 'tab_title_message', $.i18n( 'tab_share_name' ), $.i18n( 'tab_title_actions' ) ),
-    headline: $.i18n( 'tab_share_name' ),
+    headline: $.i18n( 'tab_share_title' ),
     name: 'share'
   });
 

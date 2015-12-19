@@ -109,7 +109,7 @@ function createInfoTab(params) {
   var infoTab = new Tab({
     icon: 'pwp-info',
     title: $.i18n( 'tab_title_message', $.i18n( 'tab_info_name' ), $.i18n( 'tab_title_actions' ) ),
-    headline: $.i18n( 'tab_info_name' ),
+    headline: $.i18n( 'tab_info_title' ),
     name: 'info'
   });
 

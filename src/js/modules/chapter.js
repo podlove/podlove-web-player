@@ -147,7 +147,7 @@ function Chapters (timeline, params) {
   this.tab = new Tab({
     icon: 'pwp-chapters',
     title: $.i18n( 'tab_title_message', $.i18n( 'tab_chapter_name' ), $.i18n( 'tab_title_actions' ) ),
-    headline: $.i18n( 'tab_chapter_name' ),
+    headline: $.i18n( 'tab_chapter_title' ),
     name: 'chapters'
   });
 
