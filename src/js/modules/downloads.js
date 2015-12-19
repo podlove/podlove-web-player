@@ -103,7 +103,7 @@ Downloads.prototype.createDownloadTab = function (params) {
     icon: 'pwp-download',
     title: $.i18n( 'tab_title_message', $.i18n( 'tab_downloads_name' ), $.i18n( 'tab_title_actions' ) ),
     headline: $.i18n( 'tab_downloads_name' ),
-    name: 'downloads',
+    name: 'downloads'
   });
 
   var $tabContent = downloadTab.createMainContent(
