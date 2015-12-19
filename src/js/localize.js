@@ -3,11 +3,12 @@
 require('../../bower_components/jquery.i18n/src/jquery.i18n.js');
 require('../../bower_components/jquery.i18n/src/jquery.i18n.messagestore.js');
 /**
- * Load all the string translations (en + de)
+ * Load all the string translations (en + de + eo)
  */
 var locales = {
    'de': require('../i18n/de.json'),
-   'en': require('../i18n/en.json')
+   'en': require('../i18n/en.json'),
+   'eo': require('../i18n/eo.json')
 };
 
 $.i18n({ locale: 'de' }).load(locales);
