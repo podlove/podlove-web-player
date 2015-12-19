@@ -35,5 +35,9 @@
     "tab_share_title_what_share": "Kion vi volas konigi?",
     "tab_share_title_direct_link": "Ligilo",
     "tab_share_title_share_via": "Konigi per ...",
+    "tab_share_option_show":  "La podkaston",
+    "tab_share_option_episode":  "La episodon",
+    "tab_share_option_chapter":  "La ĉapitron",
+    "tab_share_option_timed":  "Ekzakte tiun ĉi parton",
     "date_locale": "eo-EO"
 }

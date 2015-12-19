@@ -34,5 +34,9 @@
   "tab_share_title_what_share": "Was möchtest du teilen?",
   "tab_share_title_direct_link": "Direkter Link",
   "tab_share_title_share_via": "Teilen via ...",
+  "tab_share_option_show":  "Show",
+  "tab_share_option_episode":  "Episode",
+  "tab_share_option_chapter":  "Kapitel",
+  "tab_share_option_timed":  "Genau diesen Teil hier",
   "date_locale": "de-DE"
 }

@@ -5,10 +5,10 @@ var Tab = require('../tab')
 
 var services = ['twitter', 'facebook', 'gplus', 'tumblr', 'email']
   , shareOptions = [
-    {name: 'Show', value: 'show'},
-    {name: 'Episode', value: 'episode', default: true},
-    {name: 'Chapter', value: 'chapter', disabled: true},
-    {name: 'Exactly this part here', value: 'timed', disabled: true}
+    {name: 'tab_share_option_show', value: 'show'},
+    {name: 'tab_share_option_episode', value: 'episode', default: true},
+    {name: 'tab_share_option_chapter', value: 'chapter', disabled: true},
+    {name: 'tab_share_option_timed', value: 'timed', disabled: true}
   ]
   , shareData = {};
 
@@ -69,7 +69,7 @@ function createOption(option) {
   }
 
   var element = $('<tr class="share-select-option">' +
-    '<td class="share-description">' + option.name + '</td>' +
+    '<td class="share-description">' + $.i18n(option.name) + '</td>' +
     '<td class="share-radio"><input type="radio" id="share-option-' + option.name + '" name="r-group" value="' + option.title + '"></td>' +
     '<td class="share-label"><label for="share-option-' + option.name + '">' + option.title + '</label></td>' +
     '</tr>'
