@@ -81,8 +81,18 @@ gulp.task('player', function() {
     .pipe(gulp.dest(dest + 'js'));
 });
 
+gulp.task('embed', function() {
+  return gulp.src(source + 'js/embed-episode.js')
+    .pipe(browserify({ insertGlobals: true, debug: true }))
+    .pipe(rename('podlove-web-embed.js'))
+    .pipe(gulp.dest(dest + 'js'))
+    .pipe(rename({ suffix: '.min' }))
+    .pipe(uglify())
+    .pipe(gulp.dest(dest + 'js'));
+});
+
 // Scripts
-gulp.task('scripts', ['player', 'moderator']);
+gulp.task('scripts', ['player', 'moderator', 'embed']);
 
 // Images
 gulp.task('images', function() {
