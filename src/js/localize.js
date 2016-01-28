@@ -1,3 +1,5 @@
+'use strict';
+
 require('../../bower_components/jquery.i18n/src/jquery.i18n.js');
 require('../../bower_components/jquery.i18n/src/jquery.i18n.messagestore.js');
 /**
