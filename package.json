@@ -67,6 +67,7 @@
     "gulp-sass": "^2.0.1",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^0.3.0",
+    "intl": "^1.0.1",
     "jasmine-core": "^2.3.4",
     "karma": "^0.12.31",
     "karma-browserify": "^4.1.2",
