@@ -221,7 +221,8 @@ $controlbar-active-triangle-size: 8px !default;
 
 // Extra small and very old phone sceen
 $screen-xxs:                  360px !default;
-$screen-tiny-phone:           $screen-xxs !default;
+$screen-xxs-min:              $screen-xxs !default
+$screen-tiny-phone:           $screen-xxs-min !default;
 
 // Extra small screen / phone
 $screen-xs:                   480px !default;
@@ -247,6 +248,7 @@ $screen-lg-min:               $screen-lg !default;
 $screen-lg-desktop:           $screen-lg-min !default;
 
 // So media queries don't overlap when required, provide a maximum
+$screen-xxs-max:              ($screen-xs-min - 1) !default;
 $screen-xs-max:               ($screen-sm-min - 1) !default;
 $screen-sm-max:               ($screen-md-min - 1) !default;
 $screen-md-max:               ($screen-lg-min - 1) !default;

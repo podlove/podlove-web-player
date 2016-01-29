@@ -80,7 +80,7 @@ progress[aria-valuenow]:before  {
   height: $progress-wrapper-height;
   font-weight: $font-weight-light;
   // Height of progress wrapper on small screens
-  @media screen and (max-width: $screen-phone) {
+  @media screen and (max-width: $screen-xxs-max) {
     height: $progress-wrapper-height-mobile;
   }
   .progress-info {
@@ -143,7 +143,7 @@ progress[aria-valuenow]:before  {
       text-align: left;
       color: $progress-bar-time-current;
 
-      @media all and (max-width: $screen-phone) {
+      @media all and (max-width: $screen-xxs-max) {
         @include flex(0 76px);
         padding-left: $padding-small-horizontal !important;
       }
@@ -157,7 +157,8 @@ progress[aria-valuenow]:before  {
       padding-right: $padding-base-horizontal;
       text-align: right;
       color: $progress-bar-time-duration;
-      @media all and (max-width: $screen-phone) {
+
+      @media all and (max-width: $screen-xxs-max) {
         padding-right: $padding-small-horizontal !important;
       }
       // > 768px
@@ -186,7 +187,7 @@ progress[aria-valuenow]:before  {
     top: 0;
     left: 0;
     // Height of the progressbar on small screens
-    @media screen and (max-width: $screen-phone) {
+    @media screen and (max-width: $screen-xxs-max) {
       height: $progress-bar-height-mobile;
     }
   }
@@ -208,7 +209,7 @@ progress[aria-valuenow]:before  {
   background-repeat: repeat-x;
   margin: 0 auto;
   // Position of the buffer on small screens
-  @media screen and (max-width: $screen-phone) {
+  @media screen and (max-width: $screen-xxs-max) {
     top: $progress-bar-height-mobile + 6px;
     height: $buffer-height * 2;
   }
@@ -224,7 +225,7 @@ progress[aria-valuenow]:before  {
   width: $progress-bar-height;
   z-index: 100;
   // Dimensions of the scrubber/handle on small screens
-  @media screen and (max-width: $screen-phone) {
+  @media screen and (max-width: $screen-xxs-max) {
     height: $progress-bar-height-mobile;
   }
   .inner-handle {
@@ -241,7 +242,7 @@ progress[aria-valuenow]:before  {
       transform: scale(1.0, 1.5);
     }
     // Dimensions of the scrubber/handle on small screens
-    @media screen and (max-width: $screen-phone) {
+    @media screen and (max-width: $screen-xxs-max) {
       height: $progress-bar-height-mobile;
       &:hover {
         transform: scaleY(1.3);

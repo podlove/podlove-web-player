@@ -37,7 +37,7 @@
   // Container for image
   .poster-image {
     margin: $margin-small-vertical $margin-base-horizontal 16px;
-    @media all and (max-width: $screen-phone) {
+    @media all and (max-width: $screen-xxs-max) {
       margin: $margin-small-horizontal;
     }
     img {
