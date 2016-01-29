@@ -116,11 +116,16 @@ progress[aria-valuenow]:before  {
     }
     .chapter-title {
       display: block;
-      padding: 11px 20px 0 15px;
+      padding: 11px $padding-base-horizontal 0 15px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
       font-weight: $font-weight-bold;
+      font-size: $font-size-base;
+      @media screen and (min-width: $screen-lg-min) {
+        font-size: $font-size-wide-screen;
+        padding: $padding-small-vertical $padding-base-horizontal 0 15px;
+      }
     }
   }
   .time {
