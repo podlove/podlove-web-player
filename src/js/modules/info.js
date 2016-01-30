@@ -92,7 +92,7 @@ function createSocialAndLicenseInfo (tab, params) {
     '<p>Die Show "' + params.show.title + '" ist lizensiert unter<br>' +
       '<a href="' + params.license.url + '" target="_blank" title="Lizenz ansehen">' + params.license.name + '</a>' +
     '</p>'
-  )
+  );
   footer.prepend(createSocialInfo(params.profiles));
 }
 
