@@ -200,15 +200,22 @@ function addBehavior(player, params, wrapper) {
     metaElement = $('<div class="titlebar"></div>'),
     playerType = params.type,
     playButton = renderPlaybutton(),
-    poster = params.poster || jqPlayer.attr('poster');
+    poster = params.poster || jqPlayer.attr('poster'),
+    delayModuleRendering = !timeline.duration || isNaN(timeline.duration) || timeline.duration <= 0;
 
   var deepLink;
 
   console.debug('webplayer', 'metadata', timeline.getData());
   jqPlayer.prop({
-    controls: null,
-    preload: 'metadata'
+    controls: null
   });
+
+  //only load metadata, if you don't have a duration
+  if(delayModuleRendering) {
+    jqPlayer.prop({
+      preload: 'metadata'
+    });
+  }
 
   /**
    * Build rich player with meta data
@@ -368,8 +375,6 @@ function addBehavior(player, params, wrapper) {
       // delete the cached play time
       timeline.rewind();
     });
-
-  var delayModuleRendering = !timeline.duration || isNaN(timeline.duration) || timeline.duration <= 0;
 
   if (!delayModuleRendering) {
     renderModules(timeline, wrapper, params);
