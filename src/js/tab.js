@@ -95,7 +95,11 @@ Tab.prototype.createAside = function(content) {
  * @param content
  */
 Tab.prototype.createFooter = function(content) {
-  var footer = content ? $('<footer>' + content + '</footer>') : $('<footer></footer>');
+  var footer;
+  if(!content) {
+    content = '';
+  }
+  footer = content ? $('<footer>' + content + '</footer>') : $('<footer></footer>');
   this.box.append(footer);
   return footer;
 };
