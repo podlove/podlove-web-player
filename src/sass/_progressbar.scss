@@ -215,6 +215,7 @@ progress[aria-valuenow]:before  {
 }
 
 .handle {
+  cursor: pointer;
   display: block;
   position: absolute;
   top: 0;
