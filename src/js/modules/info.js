@@ -93,7 +93,7 @@ function createSocialInfo(profiles) {
  */
 function createSocialAndLicenseInfo (tab, params) {
   var footer, footerContent,
-    completeLicenseInfo = params.license.url && params.license.name && params.show.title;
+    completeLicenseInfo = params.license && params.license.url && params.license.name && params.show.title;
   if (!completeLicenseInfo && !params.profiles) {
     return;
   }

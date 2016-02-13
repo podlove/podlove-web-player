@@ -99,7 +99,7 @@ Tab.prototype.createFooter = function(content) {
   if(!content) {
     content = '';
   }
-  footer = content ? $('<footer>' + content + '</footer>') : $('<footer></footer>');
+  footer = $('<footer>' + content + '</footer>');
   this.box.append(footer);
   return footer;
 };
