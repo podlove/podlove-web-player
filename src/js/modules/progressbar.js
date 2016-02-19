@@ -3,6 +3,8 @@
 var tc = require('../timecode');
 var cap = require('../util').cap;
 
+var log = require('../logging').getLogger('ProgressBar');
+
 function renderTimeElement(className, time) {
   return $('<div class="time time-' + className + '">' + time + '</div>');
 }
@@ -20,7 +22,7 @@ function renderCurrentChapterElement() {
 
   var index = this.chapterModule.currentChapter;
   var chapter = this.chapterModule.chapters[index];
-  console.debug('Progressbar', 'renderCurrentChapterElement', index, chapter);
+  log.debug('Progressbar', 'renderCurrentChapterElement', index, chapter);
 
   this.chapterBadge = $('<span class="badge">' + (index + 1) + '</span>');
   this.chapterTitle = $('<span class="chapter-title">' + chapter.title + '</span>');
@@ -92,7 +94,7 @@ function update (timeline) {
  */
 function ProgressBar(timeline) {
   if (!timeline) {
-    console.error('Timeline missing', arguments);
+    log.error('Timeline missing', arguments);
     return;
   }
   this.timeline = timeline;
@@ -118,7 +120,7 @@ function ProgressBar(timeline) {
 ProgressBar.prototype.setHandlePosition = function (time) {
   var percent = time / this.duration * 100;
   var newLeftOffset = percent + '%';
-  console.debug('ProgressBar', 'setHandlePosition', 'time', time, 'newLeftOffset', newLeftOffset);
+  log.debug('setHandlePosition', 'time', time, 'newLeftOffset', newLeftOffset);
   this.handle.css('left', newLeftOffset);
 };
 

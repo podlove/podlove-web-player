@@ -3,6 +3,8 @@
 var url = require('./url'),
   cap = require('./util').cap;
 
+var log = require('./logging').getLogger('Moderator');
+
 var $ = jQuery,
     IFRAME_HEIGHT_DEFAULT = 300,
     IFRAME_HEIGHT_MIN = 100,
@@ -26,11 +28,11 @@ function checkBoundaries(value, min, max) {
  */
 function getPlayerHeight(height) {
   if (!height || isNaN(height)) {
-    console.warn('Set frame height to default');
+    log.info('Set frame height to default');
     return IFRAME_HEIGHT_DEFAULT;
   }
-  if (!checkBoundaries(height, IFRAME_HEIGHT_MIN, IFRAME_HEIGHT_MAX)) {
-    console.warn('Frame height', height, 'out of bounds.');
+  if (checkBoundaries(height, IFRAME_HEIGHT_MIN, IFRAME_HEIGHT_MAX)) {
+    log.debug('Frame height %d out of bounds.', height);
   }
   return cap(height, IFRAME_HEIGHT_MIN, IFRAME_HEIGHT_MAX);
 }
@@ -103,7 +105,7 @@ function getIframeReplacement() {
     frame: $frame,
     state: -1
   };
-  console.info('registered player with src=', frame.src);
+  log.info('registered player with id', frame.src);
 
   return $frame;
 }
@@ -140,19 +142,19 @@ function handleMessage(event) {
     id = getIdFromLocation(originalEvent.source.location),
     player = players[id];
 
-  console.debug('received message', action, argumentObject);
+  log.debug('received message', action, argumentObject);
 
   if (!player) {
-    console.log('no player found with src=', id);
+    log.warn('no player found with id', id);
     return;
   }
 
   if (action === null || argumentObject === null) {
-    console.warn('no action or data was given');
+    log.warn('no action or data was given');
     return;
   }
 
-  console.debug('received', action, 'from', id, 'with', argumentObject);
+  log.debug('received', action, 'from', id, 'with', argumentObject);
 
   if (action === 'waiting') {
     player.frame.get(0).contentWindow.postMessage({playerOptions: player.data}, '*');
