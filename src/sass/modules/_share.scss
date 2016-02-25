@@ -9,7 +9,7 @@ $button-width: $share-image-width + ($share-image-border-width * 2);
     .main {
       // Top offset for fixed tab-header
       margin: $tab-header-height 0 $margin-base-vertical 0;
-      @media all and (max-width: $screen-phone) {
+      @media all and (max-width: $screen-xxs-max) {
         margin: $tab-header-height 0 $margin-small-vertical 0;
       }
     }
@@ -47,7 +47,7 @@ $button-width: $share-image-width + ($share-image-border-width * 2);
         padding-right: $padding-base-horizontal;
         width: 5vw;
       }
-      @media all and (max-width: $screen-phone) {
+      @media all and (max-width: $screen-xxs-max) {
         td.share-radio {
           padding: $padding-small-vertical $padding-small-horizontal !important;
         }
@@ -73,7 +73,7 @@ $button-width: $share-image-width + ($share-image-border-width * 2);
       margin-bottom: $margin-base-horizontal;
       > h3 {
         margin: 0 $margin-base-horizontal $margin-small-horizontal $margin-base-horizontal;
-        @media all and (max-width: $screen-phone) {
+        @media all and (max-width: $screen-xxs-max) {
           margin: 0 $margin-small-horizontal $margin-small-horizontal $margin-small-horizontal;
         }
       }

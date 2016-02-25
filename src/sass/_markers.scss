@@ -13,7 +13,7 @@
   width: $marker-width;
   margin-left: - ($marker-width/2);
   background: $marker-background;
-  @media screen and (max-width: $screen-phone) {
+  @media screen and (max-width: $screen-xxs-max) {
     height: $progress-bar-height-mobile;
   }
 }

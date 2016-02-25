@@ -12,7 +12,7 @@
     @include order(2);
   }
   // The aside element will move under the section (.main) element
-  @media all and (min-width: $screen-phone) {
+  @media all and (min-width: $screen-sm-min) {
     .aside {
       @include flex(1 0px);
       margin-top: $margin-base-vertical;
@@ -37,7 +37,7 @@
   // Container for image
   .poster-image {
     margin: $margin-small-vertical $margin-base-horizontal 16px;
-    @media all and (max-width: $screen-phone) {
+    @media all and (max-width: $screen-xxs-max) {
       margin: $margin-small-horizontal;
     }
     img {

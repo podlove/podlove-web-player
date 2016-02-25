@@ -147,7 +147,7 @@ $font-size-base:              13px !default;
 $font-size-small:             floor($font-size-base * 0.847) !default; //  11px
 $font-size-large:             ceil($font-size-base * 1.125) !default;
 $font-size-xlarge:            ceil($font-size-base * 1.5) !default;  // ~19.5px
-$font-size-wide-screen:       1.15vw; // Adaptive font-size used for wide screens
+$font-size-wide-screen:       $font-size-large;
 $font-size-icons:             ceil($font-size-base * 1.63 ) !default;
 $font-size-mobile-icons:      ceil($font-size-base * 2.15) !default;
 $font-size-social-icons:      ceil($font-size-base * 3.46) !default;
@@ -221,7 +221,8 @@ $controlbar-active-triangle-size: 8px !default;
 
 // Extra small and very old phone sceen
 $screen-xxs:                  360px !default;
-$screen-tiny-phone:           $screen-xxs !default;
+$screen-xxs-min:              $screen-xxs !default
+$screen-tiny-phone:           $screen-xxs-min !default;
 
 // Extra small screen / phone
 $screen-xs:                   480px !default;
@@ -247,6 +248,7 @@ $screen-lg-min:               $screen-lg !default;
 $screen-lg-desktop:           $screen-lg-min !default;
 
 // So media queries don't overlap when required, provide a maximum
+$screen-xxs-max:              ($screen-xs-min - 1) !default;
 $screen-xs-max:               ($screen-sm-min - 1) !default;
 $screen-sm-max:               ($screen-md-min - 1) !default;
 $screen-md-max:               ($screen-lg-min - 1) !default;
@@ -268,7 +270,7 @@ $play-button-margin:          auto;
 $play-button-margin-big:      0.375em;
 
 // Image in Info Tab
-$info-image-width:            400px;
+$info-image-width:            350px;
 
 // Share Tab: Button Image
 $share-image-border-width:    10px;
