@@ -175,7 +175,7 @@ progress[aria-valuenow]:before  {
 // -------------------------
 
 .progress {
-  margin: 0 ($progress-bar-height/2);
+  margin: 0 $margin-small-horizontal;
   position: relative;
   .current {
     width: 100%;
