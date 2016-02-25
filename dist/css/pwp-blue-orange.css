@@ -603,7 +603,7 @@ progress[aria-valuenow]:before {
 
 /* line 177, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_progressbar.scss */
 .progress {
-  margin: 0 auto;
+  margin: 0 10px;
   position: relative; }
   /* line 180, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_progressbar.scss */
   .progress .current {
@@ -642,6 +642,7 @@ progress[aria-valuenow]:before {
 
 /* line 217, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_progressbar.scss */
 .handle {
+  cursor: pointer;
   display: block;
   position: absolute;
   top: 0;
@@ -654,7 +655,7 @@ progress[aria-valuenow]:before {
     /* line 217, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_progressbar.scss */
     .handle {
       height: 20px; } }
-  /* line 230, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_progressbar.scss */
+  /* line 231, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_progressbar.scss */
   .handle .inner-handle {
     background: #d7d7d7;
     height: 10px;
@@ -668,16 +669,16 @@ progress[aria-valuenow]:before {
     transform: scale(1, 1);
     -webkit-transition: width 0.3s, left 0.3s, -webkit-transform 0.1s, ease;
     transition: width 0.3s, left 0.3s, transform 0.1s, ease; }
-    /* line 240, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_progressbar.scss */
+    /* line 241, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_progressbar.scss */
     .handle .inner-handle:hover {
       -webkit-transform: scale(1, 1.5);
       -ms-transform: scale(1, 1.5);
       transform: scale(1, 1.5); }
     @media screen and (max-width: 480px) {
-      /* line 230, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_progressbar.scss */
+      /* line 231, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_progressbar.scss */
       .handle .inner-handle {
         height: 20px; }
-        /* line 246, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_progressbar.scss */
+        /* line 247, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_progressbar.scss */
         .handle .inner-handle:hover {
           -webkit-transform: scaleY(1.3);
           -ms-transform: scaleY(1.3);
@@ -3000,36 +3001,35 @@ select::-ms-expand {
 
 /* line 5, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-profiles.scss */
 .social-links {
-  border-bottom: 16px solid #fff;
   padding: 25px 20px 15px; }
   @media screen and (min-width: 992px) {
     /* line 5, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-profiles.scss */
     .social-links {
       padding: 25px 20px; } }
-  /* line 12, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-profiles.scss */
+  /* line 11, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-profiles.scss */
   .social-links h3 {
     margin: 0 0 10px 0; }
     @media screen and (min-width: 992px) {
-      /* line 12, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-profiles.scss */
+      /* line 11, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-profiles.scss */
       .social-links h3 {
         margin: 0 0 15px 0; } }
-  /* line 18, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-profiles.scss */
+  /* line 17, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-profiles.scss */
   .social-links ul {
     margin-bottom: 0 !important; }
-  /* line 21, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-profiles.scss */
+  /* line 20, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-profiles.scss */
   .social-links li {
     display: inline-block;
     margin: 10px; }
-    /* line 24, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-profiles.scss */
+    /* line 23, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-profiles.scss */
     .social-links li img {
       display: block;
       width: 100%;
       max-width: 100px; }
-    /* line 29, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-profiles.scss */
+    /* line 28, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-profiles.scss */
     .social-links li span {
       display: block;
       padding-top: 6px; }
-    /* line 33, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-profiles.scss */
+    /* line 32, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_social-profiles.scss */
     .social-links li a {
       display: inline-block; }
 
@@ -3081,6 +3081,12 @@ select::-ms-expand {
       /* line 25, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_footer.scss */
       .tabs footer input {
         height: 40px; } }
+
+/* line 5, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_license-area.scss */
+.tab .license-area {
+  border-top: 16px solid #fff;
+  margin: 0;
+  padding: 25px 20px; }
 
 /* line 19, /Users/line0/Projects/Podlove/podlove-web-player/src/sass/_mixins.scss */
 .clearfix:before, .clearfix:after {
