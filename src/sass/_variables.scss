@@ -147,7 +147,7 @@ $font-size-base:              13px !default;
 $font-size-small:             floor($font-size-base * 0.847) !default; //  11px
 $font-size-large:             ceil($font-size-base * 1.125) !default;
 $font-size-xlarge:            ceil($font-size-base * 1.5) !default;  // ~19.5px
-$font-size-wide-screen:       1.15vw; // Adaptive font-size used for wide screens
+$font-size-wide-screen:       $font-size-large;
 $font-size-icons:             ceil($font-size-base * 1.63 ) !default;
 $font-size-mobile-icons:      ceil($font-size-base * 2.15) !default;
 $font-size-social-icons:      ceil($font-size-base * 3.46) !default;

@@ -99,7 +99,7 @@ progress[aria-valuenow]:before  {
       height: 100%;
 
       // > 360px
-      @media all and (max-width: $screen-tiny-phone) {
+      @media all and (max-width: $screen-xxs-max) {
         @include flex(1 0px);
         @include order(2);
       }
@@ -110,8 +110,11 @@ progress[aria-valuenow]:before  {
       margin-top: 8px;
       color: $player-base-highlight-color;
       background-color: $player-contrast-color;
-      @media all and (min-width: $screen-desktop) {
-        margin-top: 5px;
+      @media all and (min-width: $screen-md-min) {
+        margin-top: 4px;
+      }
+      @media screen and (min-width: $screen-lg-min) {
+        font-size: $font-size-wide-screen;
       }
     }
     .chapter-title {
@@ -121,22 +124,21 @@ progress[aria-valuenow]:before  {
       overflow: hidden;
       text-overflow: ellipsis;
       font-weight: $font-weight-bold;
-      font-size: $font-size-base;
       @media screen and (min-width: $screen-lg-min) {
         font-size: $font-size-wide-screen;
-        padding: $padding-small-vertical $padding-base-horizontal 0 15px;
+        padding: $padding-base-vertical $padding-base-horizontal 0 15px;
       }
     }
   }
   .time {
     font-family: $font-family-monospace;
     font-weight: $font-weight-normal;
-    padding-top: 12px;
+    padding-top: 11px;
     height: 100%;
     vertical-align: middle;
 
     // > 768px
-    @media all and (max-width: $screen-tablet) {
+    @media all and (max-width: $screen-xs-max) {
       font-size: $font-size-small;
       padding-top: 12px;
     }
