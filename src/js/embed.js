@@ -1,5 +1,7 @@
 'use strict';
 
+var log = require('./logging').getLogger('Embed');
+
 // everything for an embedded player
 var
   players = [],
@@ -7,7 +9,7 @@ var
   $body;
 
 function postToOpener(obj) {
-  console.debug('postToOpener', obj);
+  log.debug('postToOpener', obj);
   window.parent.postMessage(obj, '*');
 }
 

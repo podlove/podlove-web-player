@@ -1,6 +1,8 @@
 'use strict';
 
 var SocialNetwork = require('./social-network');
+var log = require('./logging').getLogger('SocialNetWorks');
+
 var socialNetworks = {
   twitter: new SocialNetwork({
     icon: 'twitter',
@@ -74,7 +76,7 @@ var socialNetworks = {
 function getService (serviceName) {
   var service = socialNetworks[serviceName];
   if (!service) {
-    console.error('Unknown service', serviceName);
+    log.error('Unknown service', serviceName);
   }
   return service;
 }

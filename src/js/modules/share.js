@@ -3,6 +3,8 @@
 var Tab = require('../tab')
   , SocialButtonList = require('../social-button-list');
 
+var log = require('../logging').getLogger('Share');
+
 var services = ['twitter', 'facebook', 'gplus', 'tumblr', 'email']
   , shareOptions = [
     {name: 'Show', value: 'show'},
@@ -44,7 +46,7 @@ function onShareOptionChangeTo (element, value) {
     radio.prop('checked', true);
     element.addClass('selected');
     selectedOption = element;
-    console.log('sharing options changed', element, value);
+    log.debug('sharing options changed', element, value);
 
     updateUrls(data);
   };
@@ -57,14 +59,14 @@ function onShareOptionChangeTo (element, value) {
  */
 function createOption(option) {
   if (option.disabled) {
-    console.log('Share', 'createOption', 'omit disabled option', option.name);
+    log.debug('createOption', 'omit disabled option', option.name);
     return null;
   }
 
   var data = getShareData(option.value);
 
   if (!data) {
-    console.log('Share', 'createOption', 'omit option without data', option.name);
+    log.debug('createOption', 'omit option without data', option.name);
     return null;
   }
 

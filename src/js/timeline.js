@@ -19,6 +19,7 @@
  ]
  */
 var cap = require('./util').cap;
+var log = require('./logging').getLogger('Timeline');
 
 function call(listener) {
   listener(this);
@@ -35,7 +36,7 @@ function filterByType(type) {
  * @param {Timeline} timeline
  */
 function logCurrentTime(timeline) {
-  console.log('Timeline', 'currentTime', timeline.getTime());
+  log.debug('currentTime', timeline.getTime());
 }
 
 /**
@@ -51,7 +52,7 @@ function checkForChapters(params) {
 
 function stopOnEndTime() {
   if (this.currentTime >= this.endTime) {
-    console.log('ENDTIME REACHED');
+    log.info('ENDTIME REACHED');
     this.player.stop();
     delete this.endTime;
   }
@@ -102,7 +103,7 @@ Timeline.prototype.playRange = function (range) {
 };
 
 Timeline.prototype.update = function (event) {
-  console.log('Timeline', 'update', event);
+  log.debug('update', event);
   this.setBufferedTime(event);
 
   if (event && event.type === 'timeupdate') {
@@ -123,7 +124,7 @@ Timeline.prototype.emitEventsBetween = function (start, end) {
       ended = (event.end < end);
 
     if (later && earlier && !ended || emitStarted) {
-      console.log('Timeline', 'Emit', event);
+      log.debug('Emit', event);
       emit(event);
     }
     emitStarted = later;
@@ -141,15 +142,15 @@ Timeline.prototype.isValidTime = function (time) {
 
 Timeline.prototype.setTime = function (time) {
   if (!this.isValidTime(time)) {
-    console.warn('Timeline', 'setTime', 'time out of bounds', time);
+    log.warn('Timeline', 'setTime', 'time out of bounds', time);
     return this.currentTime;
   }
 
-  console.log('Timeline', 'setTime', 'time', time);
+  log.debug('setTime', 'time', time);
   this.currentTime = time;
   this.update();
 
-  console.log('canplay', 'setTime', 'playerState', this.player.readyState);
+  log.debug('setTime', 'player ready state', this.player.readyState);
   if (this.player.readyState === this.player.HAVE_ENOUGH_DATA) {
     this.player.setCurrentTime(time);
     return this.currentTime;
@@ -160,7 +161,7 @@ Timeline.prototype.setTime = function (time) {
   $(this.player).one('canplay', function () {
     // TODO remove buffer state visual
     // $(document).find('.play').css({color:'white'});
-    console.log('Player', 'canplay', 'buffered', time);
+    log.debug('Player', 'canplay', 'buffered', time);
     this.setCurrentTime(time);
   });
 
@@ -168,14 +169,14 @@ Timeline.prototype.setTime = function (time) {
 };
 
 Timeline.prototype.seek = function (time) {
-  console.debug('Timeline', 'seek', time);
+  log.debug('seek', time);
   this.currentTime = cap(time, 0, this.duration);
   this.setTime(this.currentTime);
 };
 
 Timeline.prototype.stopAt = function (time) {
   if (!time || time <= 0 || time > this.duration) {
-    return console.warn('Timeline', 'stopAt', 'time out of bounds', time);
+    return log.warn('stopAt', 'time out of bounds', time);
   }
   var self = this;
   this.endTime = time;
@@ -190,7 +191,7 @@ Timeline.prototype.getTime = function () {
 
 Timeline.prototype.getBuffered = function () {
   if (isNaN(this.bufferedTime)) {
-    console.warn('Timeline', 'getBuffered', 'bufferedTime is not a number');
+    log.warn('getBuffered', 'bufferedTime is not a number');
     return 0;
   }
   return this.bufferedTime;
@@ -216,7 +217,7 @@ Timeline.prototype.setBufferedTime = function (e) {
     buffered = e.loaded / e.total * target.duration;
   }
   var cappedTime = cap(buffered, 0, target.duration);
-  console.log('Timeline', 'setBufferedTime', cappedTime);
+  log.debug('setBufferedTime', cappedTime);
   this.bufferedTime = cappedTime;
 };
 

@@ -84,15 +84,26 @@ function createSocialInfo(profiles) {
   return container;
 }
 
+/**
+ * Create footer with license area and social media profiles,
+ * if (params.license && params.show) and params.profiles
+ * are defined
+ * @param  {Tab} tab
+ * @param  {object} params
+ */
 function createSocialAndLicenseInfo (tab, params) {
-  if (!params.license || !params.show) {
+  var footer, footerContent,
+    completeLicenseInfo = params.license && params.license.url && params.license.name && params.show.title;
+  if (!completeLicenseInfo && !params.profiles) {
     return;
   }
-  var footer = tab.createFooter(
-    '<p>Die Show "' + params.show.title + '" ist lizensiert unter<br>' +
-      '<a href="' + params.license.url + '" target="_blank" title="Lizenz ansehen">' + params.license.name + '</a>' +
-    '</p>'
-  )
+  footerContent = '';
+  if (completeLicenseInfo) {
+    footerContent = '<p class="license-area">Die Show "' + params.show.title + '" ist lizensiert unter<br>' +
+        '<a href="' + params.license.url + '" target="_blank" title="Lizenz ansehen">' + params.license.name + '</a>' +
+      '</p>';
+  }
+  footer = tab.createFooter(footerContent);
   footer.prepend(createSocialInfo(params.profiles));
 }
 
