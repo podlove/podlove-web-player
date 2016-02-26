@@ -14,7 +14,9 @@ It can be used as a WordPress plugin or within a static HTML/JavaScript context.
 The **Podlove** Web Player supports almost every modern browser and also does captions, chapters and much more.
 Thanks to MediaElement.js for providing the foundation.
 
-* [Official Site on podlove.org](http://podlove.org/podlove-web-player/)
+* [Web Player Documentation](http://docs.podlove.org/podlove-web-player/)
+* [Web Player Wiki](https://github.com/podlove/podlove-web-player/wiki)
+* [Official site on podlove.org](http://podlove.org/podlove-web-player/)
 * [WordPress Plugin Page](http://wordpress.org/plugins/podlove-web-player/)
 
 ## Usage
@@ -139,6 +141,37 @@ Paste the contents of your clipboard into the description field and edit them
 to be a human readable changelog.
 
 Hit the **save** button.
+
+<hr>
+## Send feedback about the Podlove Web Player
+
+### Join the conversation
+
+Become a part of the
+* **Podlove community** [community.podlove.org](https://community.podlove.org/), or discuss your
+* **Web Player** topics or questions on [community.podlove.org/c/podlove-web-player](https://community.podlove.org/c/podlove-web-player).
+
+If you're interested in discussing podcasting topics in general, please visit [sendegate.de](https://sendegate.de/).
+
+### Podlove Docs
+
+* **Podlove Project:** [podlove.github.com](http://podlove.github.com)
+* **Web Player:** [docs.podlove.org/podlove-web-player](http://docs.podlove.org/podlove-web-player/)
+
+### Report an issue
+If you encounter a specific problem using the Podlove Web Player that you think is a bug, or you see a problem in the documentation, you can report the issue here:<br>
+[github.com/podlove/podlove-web-player/issues](https://github.com/podlove/podlove-web-player/issues)
+
+Also, if you have ideas for new features for player, please submit them as a [Github issue](https://github.com/podlove/podlove-web-player/issues).
+
+Have a look on the Trello board to watch the status and progress of your issues:<br>
+[trello.com/b/mFPdgi1P/podlove-web-player](https://trello.com/b/mFPdgi1P/podlove-web-player)
+
+### Update the documentation
+For contributing to Podlove Web Player documentation, see:<br>
+[github.com/podlove/podlove.github.com](https://github.com/podlove/podlove.github.com)
+
+<hr>
 
 ## Contributors
 
