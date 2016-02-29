@@ -71,3 +71,8 @@
   vertical-align: super;
   line-height: 1px;
 }
+
+// Episode and show-link paragraphs in columns
+.info-link {
+  @extend .break-all;
+}

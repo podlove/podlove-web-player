@@ -26,7 +26,7 @@ function createEpisodeInfo(tab, params) {
     getSummary(params.summary) +
     '<p>Dauer: ' + timeCode.fromTimeStamp(params.duration) + '</p>' +
      getPublicationDate(params.publicationDate) +
-    '<p>' +
+    '<p class="info-link">' +
       'Permalink:<br>' +
       '<a href="' + params.permalink + '" target="_blank" title="Permalink für die Episode">' + params.permalink + '</a>' +
     '</p>'
@@ -58,7 +58,7 @@ function createShowInfo (tab, params) {
     '<h3>' + params.show.subtitle + '</h3>' +
     createPosterImage(params.show.poster) +
     createSubscribeButton(params) +
-    '<p>Link zur Show:<br>' +
+    '<p class="info-link">Link zur Show:<br>' +
       '<a href="' + params.show.url + '" target="_blank" title="Link zur Show">' + params.show.url + '</a></p>'
   );
 }
