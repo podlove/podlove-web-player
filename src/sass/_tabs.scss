@@ -10,6 +10,12 @@ $tab-header-height-mobile:  50px;
   background-color: $tab-background;
   position: relative;
 
+  h2, h3, p {
+    hyphens: auto;
+    /* Non standard for webkit */
+    word-break: break-word;
+  }
+
   a {
     color: $tab-link-color;
     &:hover,

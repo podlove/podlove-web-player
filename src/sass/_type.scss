@@ -10,16 +10,12 @@
 // -------------------------
 
 .break-all {
-  hyphens: auto;
   word-break: break-all;
-  /* Non standard for webkit */
-  word-break: break-word;
 }
 
 p {
   margin: 0 0 ($line-height-computed / 2);
   font-weight: $font-weight-normal;
-  @extend .break-all;
 }
 
 
@@ -31,7 +27,6 @@ h1, h2, h3, h4, h5, h6,
   font-family: $headings-font-family;
   line-height: $headings-line-height;
   color:       $headings-color;
-  @extend .break-all;
 }
 
 h1, h2,
