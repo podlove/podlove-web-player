@@ -31,7 +31,10 @@ $tab-header-height-mobile:  50px;
   }
 
   p {
-    margin: 0 $margin-base-horizontal;
+    margin: 0 $margin-base-horizontal $margin-small-vertical;
+    &:last-of-type {
+      margin-bottom: 0;
+    }
   }
 
   .tab {
