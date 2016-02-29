@@ -17,7 +17,7 @@
 }
 
 p {
-  margin:      0 0 ($line-height-computed / 2);
+  margin: 0 0 ($line-height-computed / 2);
   font-weight: $font-weight-normal;
   @extend .break-all;
 }
