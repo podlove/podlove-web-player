@@ -2,6 +2,7 @@
 
 var Tab = require('../tab')
   , SocialButtonList = require('../social-button-list');
+var constants = require('../constants')
 
 var log = require('../logging').getLogger('Share');
 
@@ -15,7 +16,7 @@ var services = ['twitter', 'facebook', 'gplus', 'tumblr', 'email']
   , shareData = {};
 
 // module globals
-var selectedOption, shareButtons, linkInput;
+var selectedOption, shareButtons, linkInput, embedInput;
 
 function getShareData(value) {
   if (value === 'show') {
@@ -31,9 +32,14 @@ function getShareData(value) {
   return data;
 }
 
+function getEmbedCode(source) {
+  return '<script src="' + constants.cdn + '/' + constants.version + '/js/podlove-web-moderator.js" data-podlove-web-player-source="' + source + '"></script>'
+}
+
 function updateUrls(data) {
-  shareButtons.update(data);
-  linkInput.update(data);
+  shareButtons.update(data)
+  linkInput.update(data)
+  embedInput.update(window.location.href)
 }
 
 function onShareOptionChangeTo (element, value) {
@@ -137,11 +143,19 @@ function createShareTab(params) {
     this.val(data.rawUrl);
   };
 
+  embedInput = $('<h3>Embed Code</h3>' +
+    '<input type="url" name="share-embed-code" readonly>');
+  embedInput.update = function(source) {
+    this.val(getEmbedCode(source));
+  };
+
   shareTab.createMainContent('')
     .append(createShareOptions(params))
     .append('<h3>Teilen via ...</h3>')
     .append(shareButtons.list);
-  shareTab.createFooter('').append(linkInput);
+  shareTab.createFooter('')
+    .append(linkInput)
+    .append(embedInput);
 
   return shareTab;
 }
