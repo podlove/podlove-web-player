@@ -4,7 +4,7 @@
 var gulp = require('gulp')
   , sass = require('gulp-sass')
   , autoprefixer = require('gulp-autoprefixer')
-  , minifycss = require('gulp-minify-css')
+  , minifycss = require('gulp-clean-css')
   , eslint = require('gulp-eslint')
   , uglify = require('gulp-uglify')
   , imagemin = require('gulp-imagemin')
