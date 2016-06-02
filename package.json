@@ -62,7 +62,6 @@
     "gulp-concat": "^2.2.0",
     "gulp-eslint": "^0.2.0",
     "gulp-imagemin": "^2.4.0",
-    "gulp-jshint": "^1.8.3",
     "gulp-clean-css": "^2.0.9",
     "gulp-rename": "^1.2.0",
     "gulp-sass": "^2.0.1",
