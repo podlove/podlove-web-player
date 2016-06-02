@@ -4,7 +4,7 @@
 var gulp = require('gulp')
   , sass = require('gulp-sass')
   , autoprefixer = require('gulp-autoprefixer')
-  , minifycss = require('gulp-minify-css')
+  , minifycss = require('gulp-clean-css')
   , eslint = require('gulp-eslint')
   , uglify = require('gulp-uglify')
   , imagemin = require('gulp-imagemin')
@@ -12,11 +12,13 @@ var gulp = require('gulp')
   , del = require('del')
 // deactivate caching until issue is resolved
 //  , cache = require('gulp-cache')
-  , browserify = require('gulp-browserify')
+  , browserify = require('browserify')
   , browserSync = require('browser-sync')
   , karma = require('karma').server
   , _ = require('lodash')
   , karmaConf = require('./karma.conf.json')
+  , sourceStream = require('vinyl-source-stream')
+  , buffer = require('vinyl-buffer')
   ;
 
 // set paths
@@ -62,21 +64,23 @@ gulp.task('styles', function() {
 });
 
 gulp.task('moderator', function() {
-  return gulp.src(source + 'js/moderator.js')
-    .pipe(browserify({ insertGlobals: true, debug: true }))
-    .pipe(rename('podlove-web-moderator.js'))
+  return browserify(source + 'js/moderator.js', {insertGlobals: true, debug: true})
+    .bundle()
+    .pipe(sourceStream('podlove-web-moderator.js'))
     .pipe(gulp.dest(dest + 'js'))
     .pipe(rename({ suffix: '.min' }))
+    .pipe(buffer())
     .pipe(uglify())
     .pipe(gulp.dest(dest + 'js'));
 });
 
 gulp.task('player', function() {
-  return gulp.src(source + 'js/app.js')
-    .pipe(browserify({ insertGlobals: true, debug: true }))
-    .pipe(rename('podlove-web-player.js'))
+  return browserify(source + 'js/app.js', {insertGlobals: true, debug: true})
+    .bundle()
+    .pipe(sourceStream('podlove-web-player.js'))
     .pipe(gulp.dest(dest + 'js'))
     .pipe(rename({ suffix: '.min' }))
+    .pipe(buffer())
     .pipe(uglify())
     .pipe(gulp.dest(dest + 'js'));
 });
