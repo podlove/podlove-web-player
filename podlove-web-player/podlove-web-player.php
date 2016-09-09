@@ -55,20 +55,13 @@ include_once( PODLOVEWEBPLAYER_DIR . 'settings.php' );
 /* embed javascript files */
 
 function podlovewebplayer_add_scripts() {
-	wp_enqueue_script( 
-		'ba_hashchange', 
-		plugins_url('static/hashchange.min.js', __FILE__), 
-		array(), '1.3.0', false
-	);
-	wp_enqueue_script( 
-		'podlovewebplayer', 
-		plugins_url('static/podlove-web-player.js', __FILE__), 
+	wp_enqueue_script(
+		'podlovewebplayer',
+		plugins_url('static/podlove-web-player.js', __FILE__),
 		array(), '2.0.19', false
 	);
 }
 add_action('wp_print_scripts', 'podlovewebplayer_add_scripts');
-
-
 
 /* embed css files */
 
@@ -163,7 +156,7 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 	if ( $autoplay ) {
 		$attributes[] = 'autoplay="' . $autoplay . '"';
 	}
-	
+
 
 	$supported_sources = podlovewebplayer_get_supported_sources( $tag_name );
 	$supported_mime_types = array_flip( $supported_sources );
@@ -175,7 +168,7 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 	}
 
 	if ( $src ) {
-		$src = trim( $src ); 
+		$src = trim( $src );
 		// does it have an extension?
 		$suffixlength = strlen( substr( $src, strrpos( $src, "." ) ) );
 		if ($suffixlength == 4 || $suffixlength == 5) {
@@ -183,7 +176,7 @@ function podlovewebplayer_render_player( $tag_name, $atts ) {
 		}
 	}
 	$attributes_string = !empty($attributes) ? implode(' ', $attributes) : '';
-	
+
 	// ------------------- prepare <source> elements
 	$mp3source = '';
 	foreach ( $supported_sources as $source_extension => $source_type ) {
@@ -410,7 +403,7 @@ function podlovewebplayer_get_enclosed( $post_id ) {
 				$config = get_option( 'podPress_config', array() );
 				$podPress_upload_path = isset( $config['mediaWebPath'] ) ? $config['mediaWebPath'] : './wp-content/uploads/';
 				$fileurl = trailingslashit( $podPress_upload_path ) . '/' . $fileurl;
-			} 
+			}
 
 			$pung[] = array(
 				$fileurl,
@@ -436,11 +429,11 @@ function podlovewebplayer_enclosures( $content ) {
 		AND
 		(
 			isset( $wp_options['enclosure_force'] ) // forced to render enclosures by option
-			OR 
+			OR
 			(
-				strpos( $content, "[podloveaudio" ) === false AND 
+				strpos( $content, "[podloveaudio" ) === false AND
 				strpos( $content, "[podlovevideo" ) === false AND
-				strpos( $content, "[audio" ) === false AND 
+				strpos( $content, "[audio" ) === false AND
 				strpos( $content, "[video" ) === false
 			) // there is no manual shortcode
 		)
@@ -520,7 +513,7 @@ function podlovewebplayer_init() {
 	wp_enqueue_script('jquery');
 }
 add_action('init', 'podlovewebplayer_init');
-	
+
 }
 
 ?>

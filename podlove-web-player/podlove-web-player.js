@@ -674,7 +674,7 @@ if (typeof String.prototype.trim !== 'function') {
         // bind seeked to addressCurrentTime
         checkCurrentURL();
         // handle browser history navigation
-        jQuery(window).bind('hashchange onpopstate', function (e) {
+        jQuery(window).bind('onhashchange hashchange onpopstate', function (e) {
           if (!ignoreHashChange) {
             checkCurrentURL();
           }
