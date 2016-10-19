@@ -18,3 +18,5 @@ build:
 	cp -R ./podlove-web-player/libs/podlove-font/font/ ./podlove-web-player/font/
 	cp ./podlove-web-player/help/xss.htaccess ./podlove-web-player/font/.htaccess
 	rm  ./podlove-web-player/static/podlove-web-player.tmp.css ./podlove-web-player/static/podlove-web-player.tmp.js
+	./node_modules/.bin/uglifycss ./podlove-web-player/static/podlove-web-player.css > ./podlove-web-player/static/podlove-web-player.min.css
+	./node_modules/.bin/uglifyjs --compress --mangle -o ./podlove-web-player/static/podlove-web-player.min.js -- ./podlove-web-player/static/podlove-web-player.js
