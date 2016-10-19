@@ -30,13 +30,7 @@
 }
 
 .podlovewebplayer_wrapper .mejs-container .mejs-controls {
-    background: url(background.png);
-    background: rgba(0, 0, 0, 0.7);
-    background: -webkit-linear-gradient(top, rgba(50,50,50,0.7), rgba(0,0,0,0.7));
-    background: -moz-linear-gradient(top, rgba(50,50,50,0.7), rgba(0,0,0,0.7));
-    background: -o-linear-gradient(top, rgba(50,50,50,0.7), rgba(0,0,0,0.7));
-    background: -ms-linear-gradient(top, rgba(50,50,50,0.7), rgba(0,0,0,0.7));
-    background: linear-gradient(rgba(50,50,50,0.7), rgba(0,0,0,0.7));
+	background: #232323;
 }
 
 .podlovewebplayer_wrapper .mejs-container .mejs-controls > div:first-child {
@@ -54,7 +48,6 @@
 	padding-bottom: 1.5em;
 	background: white;
 	padding: 0px;
-	border-radius: 15px;
 	border: 0px solid black;
 }
 
@@ -98,32 +91,16 @@
 .podlovewebplayer_wrapper .podlovewebplayer_chapters tr {
 	color: black;
 	cursor: pointer;
-	background: -moz-linear-gradient(top, #ffffff 0%, #f2f2f2 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#f2f2f2));
-	background: -webkit-linear-gradient(top, #ffffff 0%,#f2f2f2 100%);
-	background: -o-linear-gradient(top, #ffffff 0%,#f2f2f2 100%);
-	background: -ms-linear-gradient(top, #ffffff 0%,#f2f2f2 100%);
-	background: linear-gradient(to bottom, #ffffff 0%,#f2f2f2 100%);
+	background: #f2f2f2;
 }
 
 .podlovewebplayer_wrapper .podlovewebplayer_chapters tr:hover {
-	background: -moz-linear-gradient(top, #efefef 0%, #d2d2d2 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#efefef), color-stop(100%,#d2d2d2));
-	background: -webkit-linear-gradient(top, #efefef 0%,#d2d2d2 100%);
-	background: -o-linear-gradient(top, #efefef 0%,#d2d2d2 100%);
-	background: -ms-linear-gradient(top, #efefef 0%,#d2d2d2 100%);
-	background: linear-gradient(to bottom, #efefef 0%,#d2d2d2 100%);
+	background: #d2d2d2;
 }
 
 .podlovewebplayer_wrapper .podlovewebplayer_chapters tr.active,
 .podlovewebplayer_wrapper .podlovewebplayer_chapters tr.active:hover {
 	background: #a6c9dd;
-	background: -moz-linear-gradient(top, #a6c9dd 0%, #d8f1ff 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a6c9dd), color-stop(100%,#d8f1ff));
-	background: -webkit-linear-gradient(top, #a6c9dd 0%,#d8f1ff 100%);
-	background: -o-linear-gradient(top, #a6c9dd 0%,#d8f1ff 100%);
-	background: -ms-linear-gradient(top, #a6c9dd 0%,#d8f1ff 100%);
-	background: linear-gradient(to bottom, #a6c9dd 0%,#d8f1ff 100%);
 }
 
 .podlovewebplayer_wrapper .podlovewebplayer_chapters tr td {
@@ -160,21 +137,7 @@
 	height: auto;
 	margin-bottom: 1px;
 	padding-bottom: 5px;
-	-webkit-border-top-left-radius: 10px;
-	-webkit-border-top-right-radius: 10px;
-	-moz-border-radius-topleft: 10px;
-	-moz-border-radius-topright: 10px;
-	border-top-left-radius: 10px;
-	border-top-right-radius: 10px;
-	background: url(background.png);
-	background: #545454;
-	background: -moz-linear-gradient(top,#545454 0%,#262626 100%);
-	background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#545454),color-stop(100%,#262626));
-	background: -webkit-linear-gradient(top,#545454 0%,#262626 100%);
-	background: -o-linear-gradient(top,#545454 0%,#262626 100%);
-	background: -ms-linear-gradient(top,#545454 0%,#262626 100%);
-	background: linear-gradient(to bottom,#545454 0%,#262626 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#545454',endColorstr='#262626',GradientType=0 );
+	background: rgb(35, 35, 35);
 }
 
 .podlovewebplayer_top {
@@ -402,12 +365,6 @@
 	padding-top: 30px;
 	padding-bottom: 45px;
 	margin-bottom: 0px !important;
-	-webkit-border-top-left-radius: 0px;
-	-webkit-border-top-right-radius: 0px;
-	-moz-border-radius-topleft: 0px;
-	-moz-border-radius-topright: 0px;
-	border-top-left-radius: 0px;
-	border-top-right-radius: 0px;
 }
 
 .podlovewebplayer_video .mejs-container .mejs-inner .mejs-controls {
@@ -451,14 +408,7 @@
 }
 
 .podlovewebplayer_wrapper .mejs-container .mejs-inner .mejs-controls .mejs-time-rail .mejs-time-total .mejs-time-loaded {
-	background: #11B5DB;
-	background: -moz-linear-gradient(top, #11B5DB 0%, #589CEF 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#11B5DB), color-stop(100%,#589CEF));
-	background: -webkit-linear-gradient(top, #11B5DB 0%,#589CEF 100%);
-	background: -o-linear-gradient(top, #11B5DB 0%,#589CEF 100%);
-	background: -ms-linear-gradient(top, #11B5DB 0%,#589CEF 100%);
-	background: linear-gradient(to bottom, #11B5DB 0%,#589CEF 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc4383db', endColorstr='#cc589cef',GradientType=0 );
+	background: #505050;
 }
 
 .podlovewebplayer_wrapper .mejs-container .mejs-controls .mejs-time-rail span,
@@ -473,14 +423,6 @@
 	width: 60px;
 }
 
-.podlovewebplayer_wrapper .mejs-container .mejs-inner .mejs-container .mejs-controls .mejs-time span {
-	-webkit-text-shadow: 0px 0px 2px #000000;
-	-moz-text-shadow: 0px 0px 2px #000000;
-	-o-text-shadow: 0px 0px 2px #000000;
-	text-shadow: 0px 0px 2px #000000;
-	filter: dropshadow(color=#000000, offx=0, offy=0);
-}
-
 .podlovewebplayer_meta + .summary,
 .podlovewebplayer_wrapper .podlovewebplayer_controlbox {
 	overflow: hidden;
@@ -489,17 +431,24 @@
 	font-size: 12px;
 	line-height: 1.5;
 	color: #fff;
-	background: #262626;
-	border-left: 3px #262626 solid;
-	border-right: 3px #262626 solid;
-	-webkit-transition: all 0.5s;
-	-moz-transition: all 0.5s;
-	-o-transition: all 0.5s;
-	transition: all 0.5s;
+	background: #232323;
+	border-left: 3px #232323 solid;
+	border-right: 3px #232323 solid;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	transition: all 0.3s;
 }
 
 .podlovewebplayer_meta .summary .summarydiv {
 	margin: 0px 5px;
+}
+
+.podlovewebplayer_meta .summary .summarydiv p a,
+.podlovewebplayer_meta .summary .summarydiv p a:focus
+.podlovewebplayer_meta .summary .summarydiv p a:hover
+.podlovewebplayer_meta .summary .summarydiv p a:active {
+	color: #8AB7E5;
 }
 
 .podlovewebplayer_video .podlovewebplayer_meta + .summary,
@@ -545,9 +494,9 @@
 	height: 0px;
 	font-size: 4px;
 	text-align: center;
-	background: #0f0f0f;
-	border-left: 3px #0f0f0f solid;
-	border-right: 3px #0f0f0f solid;
+	background: #232323;
+	border-left: 3px #232323 solid;
+	border-right: 3px #232323 solid;
 }
 
 .podlovewebplayer_wrapper .podlovewebplayer_controlbox.active {
@@ -563,10 +512,6 @@
 	color: #fff;
 	background: transparent !important;
 	font-size: 1.75em;
-	-webkit-text-shadow: 0px 0px 1px #000000;
-	-moz-text-shadow: 0px 0px 1px #000000;
-	-o-text-shadow: 0px 0px 1px #000000;
-	text-shadow: 0px 0px 1px #000000;
 	-webkit-font-smoothing: antialiased;
 	-moz-font-smoothing: antialiased;
 	-o-font-smoothing: antialiased;
@@ -575,11 +520,6 @@
 	speak: none;
 	display: inline;
 	text-decoration: none;
-	/* Animation for Buttons
-	-webkit-transition: all 0.1s ease;
-	-moz-transition: all 0.1s ease;
-	-o-transition: all 0.1s ease;
-	transition: all 0.1s ease; */
 }
 
 .podlovewebplayer_meta .togglers a.infobuttons {
@@ -622,7 +562,7 @@
 .podlovewebplayer_meta .togglers .infobuttons a:hover,
 .podlovewebplayer_wrapper .podlovewebplayer_controlbox .infobuttons:hover,
 .podlovewebplayer_wrapper .podlovewebplayer_controlbox .infobuttons a:hover  {
-	text-shadow: 0px 0px 4px #FFFFFF;
+	text-shadow: 0px 0px 4px rgba(166, 201, 221, 0.7);
 	text-decoration: none;
 	filter: dropshadow(color=#FFFFFF, offx=0, offy=0);
 	cursor: pointer;
@@ -668,10 +608,6 @@
 	width: 25px;
 	height: 25px;
 	background: #bbb;
-	-webkit-border-radius: 13px;
-	-moz-border-radius: 13px;
-	-o-border-radius: 13px;
-	border-radius: 13px;
 	cursor: pointer;
 	-webkit-transition: all 0.07s;
 	-moz-transition: all 0.07s;
@@ -729,13 +665,6 @@
 	-moz-text-shadow: 0px 0px 3px #111111;
 	text-shadow: 0px 0px 3px #111111;
 	background: #ffffff;
-	background: -moz-linear-gradient(top, #ffffff 0%, #f6f6f6 47%, #ededed 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(47%,#f6f6f6), color-stop(100%,#ededed));
-	background: -webkit-linear-gradient(top, #ffffff 0%,#f6f6f6 47%,#ededed 100%);
-	background: -o-linear-gradient(top, #ffffff 0%,#f6f6f6 47%,#ededed 100%);
-	background: -ms-linear-gradient(top, #ffffff 0%,#f6f6f6 47%,#ededed 100%);
-	background: linear-gradient(to bottom, #ffffff 0%,#f6f6f6 47%,#ededed 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 );
 }
 
 .podlovewebplayer_chapters td b {
@@ -752,14 +681,14 @@
 .podlovewebplayer_wrapper .podlovewebplayer_chapterbox {
 	display: block;
 	height: auto;
-	border: 3px #0f0f0f solid;
-	border-bottom: 0px #0f0f0f solid;
+	border: 3px #232323 solid;
+	border-bottom: 0px #232323 solid;
 	border-top: 0px;
 	overflow-y: hidden;
-	-webkit-transition: all 0.5s;
-	-moz-transition: all 0.5s;
-	-o-transition: all 0.5s;
-	transition: all 0.5s;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	transition: all 0.3s;
 }
 
 .podlovewebplayer_wrapper .podlovewebplayer_chapterbox .podlovewebplayer_chapters tr td {
@@ -796,18 +725,12 @@
 .podlovewebplayer_wrapper .podlovewebplayer_tableend {
 	position: initial;
 	display: block;
-	height: 11px;
+	height: 2px;
 	left: 0px;
-	background: #0f0f0f;
-	-webkit-box-shadow: 0px 1px #0f0f0f;
-	-moz-box-shadow: 0px 1px #0f0f0f;
-	box-shadow: 0px 1px #0f0f0f;
-	-webkit-border-bottom-left-radius: 10px;
-	-webkit-border-bottom-right-radius: 10px;
-	-moz-border-radius-bottomleft: 10px;
-	-moz-border-radius-bottomright: 10px;
-	border-bottom-left-radius: 10px;
-	border-bottom-right-radius: 10px;
+	background: #232323;
+	-webkit-box-shadow: 0px 1px #232323;
+	-moz-box-shadow: 0px 1px #232323;
+	box-shadow: 0px 1px #232323;
 }
 
 .podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_tableend,
@@ -861,14 +784,6 @@ and (max-width : 500px) {
 		margin-left: 0px;
 		margin-right: 0px;
 	}
-	.podlovewebplayer_meta {
-		-webkit-border-top-left-radius: 0px !important;
-		-webkit-border-top-right-radius: 0px !important;
-		-moz-border-radius-topleft: 0px !important;
-		-moz-border-radius-topright: 0px !important;
-		border-top-left-radius: 0px !important;
-		border-top-right-radius: 0px !important;
-	}
 
 	.podlovewebplayer_meta .subtitle {
 		position: initial;
@@ -887,22 +802,5 @@ and (max-width : 500px) {
 
 	.podlovewebplayer_wrapper .podlovewebplayer_controlbox .infobuttons span {
 		font-size: 13pt;
-	}
-
-	.podlovewebplayer_wrapper .podlovewebplayer_tableend,
-	.podlovewebplayer_wrapper .podlovewebplayer_top {
-		-webkit-border-top-left-radius: 0px;
-		-webkit-border-top-right-radius: 0px;
-		-moz-border-radius-topleft: 0px;
-		-moz-border-radius-topright: 0px;
-		border-top-left-radius: 0px;
-		border-top-right-radius: 0px;
-
-		-webkit-border-bottom-left-radius: 0px;
-		-webkit-border-bottom-right-radius: 0px;
-		-moz-border-radius-bottomleft: 0px;
-		-moz-border-radius-bottomright: 0px;
-		border-bottom-left-radius: 0px;
-		border-bottom-right-radius: 0px;
 	}
 }
