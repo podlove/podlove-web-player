@@ -1194,7 +1194,7 @@ div.mejs-speed-button {
 }
 
 .podlovewebplayer_wrapper .mejs-container .mejs-controls {
-	background: #232323;
+	background: #444;
 }
 
 .podlovewebplayer_wrapper .mejs-container .mejs-controls > div:first-child {
@@ -1264,7 +1264,7 @@ div.mejs-speed-button {
 
 .podlovewebplayer_wrapper .podlovewebplayer_chapters tr.active,
 .podlovewebplayer_wrapper .podlovewebplayer_chapters tr.active:hover {
-	background: #a6c9dd;
+	background: #b6cfdd;
 }
 
 .podlovewebplayer_wrapper .podlovewebplayer_chapters tr td {
@@ -1304,7 +1304,7 @@ div.mejs-speed-button {
 	height: auto;
 	margin-bottom: 1px;
 	padding-bottom: 5px;
-	background: rgb(35, 35, 35);
+	background: #444;
 }
 
 .podlovewebplayer_top {
@@ -1575,7 +1575,7 @@ div.mejs-speed-button {
 }
 
 .podlovewebplayer_wrapper .mejs-container .mejs-inner .mejs-controls .mejs-time-rail .mejs-time-total .mejs-time-loaded {
-	background: #505050;
+	background: #777;
 }
 
 .podlovewebplayer_wrapper .mejs-container .mejs-controls .mejs-time-rail span,
@@ -1598,9 +1598,9 @@ div.mejs-speed-button {
 	font-size: 12px;
 	line-height: 1.5;
 	color: #fff;
-	background: #232323;
-	border-left: 3px #232323 solid;
-	border-right: 3px #232323 solid;
+	background: #444;
+	border-left: 3px #444 solid;
+	border-right: 3px #444 solid;
 	-webkit-transition: all 0.3s;
 	-moz-transition: all 0.3s;
 	-o-transition: all 0.3s;
@@ -1661,9 +1661,9 @@ div.mejs-speed-button {
 	height: 0px;
 	font-size: 4px;
 	text-align: center;
-	background: #232323;
-	border-left: 3px #232323 solid;
-	border-right: 3px #232323 solid;
+	background: #444;
+	border-left: 3px #444 solid;
+	border-right: 3px #444 solid;
 }
 
 .podlovewebplayer_wrapper .podlovewebplayer_controlbox.active {
@@ -1848,8 +1848,8 @@ div.mejs-speed-button {
 .podlovewebplayer_wrapper .podlovewebplayer_chapterbox {
 	display: block;
 	height: auto;
-	border: 3px #232323 solid;
-	border-bottom: 0px #232323 solid;
+	border: 3px #444 solid;
+	border-bottom: 0px #444 solid;
 	border-top: 0px;
 	overflow-y: hidden;
 	-webkit-transition: all 0.3s;
@@ -1894,10 +1894,10 @@ div.mejs-speed-button {
 	display: block;
 	height: 2px;
 	left: 0px;
-	background: #232323;
-	-webkit-box-shadow: 0px 1px #232323;
-	-moz-box-shadow: 0px 1px #232323;
-	box-shadow: 0px 1px #232323;
+	background: #444;
+	-webkit-box-shadow: 0px 1px #444;
+	-moz-box-shadow: 0px 1px #444;
+	box-shadow: 0px 1px #444;
 }
 
 .podlovewebplayer_wrapper.podlovewebplayer_video .podlovewebplayer_tableend,
