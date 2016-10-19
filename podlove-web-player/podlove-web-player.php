@@ -57,7 +57,7 @@ include_once( PODLOVEWEBPLAYER_DIR . 'settings.php' );
 function podlovewebplayer_add_scripts() {
 	wp_enqueue_script(
 		'podlovewebplayer',
-		plugins_url('static/podlove-web-player.js', __FILE__),
+		plugins_url('static/podlove-web-player.min.js', __FILE__),
 		array(), '2.0.20', false
 	);
 }
@@ -68,7 +68,7 @@ add_action('wp_print_scripts', 'podlovewebplayer_add_scripts');
 function podlovewebplayer_add_styles() {
 	global $blog_id;
 	$wp_options = get_option('podlovewebplayer_options');
-	wp_enqueue_style( 'pwpfont', plugins_url('static/podlove-web-player.css', __FILE__), array(), '2.0.20' );
+	wp_enqueue_style( 'pwpfont', plugins_url('static/podlove-web-player.min.css', __FILE__), array(), '2.0.20' );
 }
 add_action( 'wp_print_styles', 'podlovewebplayer_add_styles' );
 
