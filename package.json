@@ -48,6 +48,8 @@
   "author": "eteubert <eric@ericteubert.de>",
   "license": "MIT",
   "dependencies": {
+    "autoprefixer": "^6.5.1",
+    "postcss-cli": "^2.6.0",
     "uglifycss": "^0.0.24",
     "uglifyjs": "^2.4.10"
   }
