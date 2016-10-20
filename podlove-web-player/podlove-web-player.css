@@ -590,7 +590,8 @@
 	font-size: 11px;
 }
 
-.podlovewebplayer_wrapper .podlovewebplayer_chapters tr td.starttime {
+.podlovewebplayer_wrapper .podlovewebplayer_chapters tr td.starttime,
+.podlovewebplayer_wrapper .podlovewebplayer_chapters tr th.starttime {
 	width: 60px;
 	text-align: right;
 }
