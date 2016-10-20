@@ -128,6 +128,10 @@
 	text-align: right;
 }
 
+.podlovewebplayer_wrapper .podlovewebplayer_chapters tr td.timecode {
+    padding-right: 5px !important;
+}
+
 .podlovewebplayer_wrapper .podlovewebplayer_chapters tr td span {
 	text-align: right;
 }
@@ -583,7 +587,7 @@
 }
 
 .podlovewebplayer_chapters * {
-	font-size: 13px;
+	font-size: 11px;
 }
 
 .podlovewebplayer_wrapper .podlovewebplayer_chapters tr td.chapternr {
@@ -594,7 +598,7 @@
 }
 
 .podlovewebplayer_wrapper .podlovewebplayer_chapters tr td.starttime {
-	width: 50px;
+	width: 60px;
 	text-align: right;
 }
 
