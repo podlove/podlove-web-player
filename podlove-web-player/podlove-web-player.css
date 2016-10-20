@@ -807,3 +807,63 @@ and (max-width : 500px) {
 		font-size: 13pt;
 	}
 }
+
+@media only screen
+and (max-width : 500px) {
+	.podlovewebplayer_wrapper div {
+		display: inherit;
+	}
+
+	.podlovewebplayer_wrapper .podlovewebplayer_meta {
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	.podlovewebplayer_meta .bigplay {
+	    order: 2;
+	    margin: 42.5px auto 42.5px auto !important;
+	}
+
+	.podlovewebplayer_meta .coverart {
+		order: 1;
+	    margin: 30px auto 30px auto !important;
+	}
+
+	.podlovewebplayer_meta .coverart img {
+		margin: 0 !important;
+		float: none !important;
+		position: inherit !important;
+	    height: 100px !important;
+	}
+
+	.podlovewebplayer_meta .episodetitle {
+		order: 3;
+		margin: 15px auto;
+		padding: 0px;
+	    padding: 0px 20px;
+	    display: block;
+	}
+
+	.podlovewebplayer_meta .subtitle {
+		order: 4;
+		margin: 0;
+		padding: 0;
+	    padding: 10px 20px;
+	}
+
+	.podlovewebplayer_meta .togglers {
+		order: 5;
+		float: none;
+	    display: block;
+	    margin: 7px auto 0 auto;
+	    position: initial;
+	}
+
+	.podlovewebplayer_meta + .summary.active {
+	    padding: 5px 15px 5px 15px;
+	}
+
+	.podlovewebplayer_wrapper .podlovewebplayer_controlbox.active {
+		padding: 20px 10px 27px 10px;
+	}
+}
