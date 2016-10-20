@@ -1251,6 +1251,7 @@ div.mejs-speed-button {
 	padding: 0;
 	position: absolute;
 	width: 1px;
+	display: none; /* sorry screen readers, but without this there are side effects */
 }
 
 .podlovewebplayer_wrapper .podlovewebplayer_chapters tr {
