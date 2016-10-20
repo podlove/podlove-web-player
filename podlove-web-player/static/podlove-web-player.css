@@ -1191,6 +1191,7 @@ div.mejs-speed-button {
 
 .podlovewebplayer_wrapper .mejs-container.mejs-audio {
 	min-height: 30px;
+	margin-bottom: 5px;
 }
 
 .podlovewebplayer_wrapper .mejs-container .mejs-controls {
@@ -1210,9 +1211,9 @@ div.mejs-speed-button {
 	display: block;
 	position: relative;
 	padding-bottom: 1.5em;
-	background: white;
 	padding: 0px;
 	border: 0px solid black;
+	background: #444;
 }
 
 .podlovewebplayer_wrapper a, .podlovewebplayer_wrapper a:active, .podlovewebplayer_wrapper a:focus {
@@ -1943,6 +1944,14 @@ div.mejs-speed-button {
 .podlovewebplayer_smallplayer .podlovewebplayer_top,
 .podlovewebplayer_smallplayer .podlovewebplayer_meta {
 	min-height: 60px;
+}
+
+.podlovewebplayer_wrapper a {
+	box-shadow: none;
+}
+
+.mejs-controls div.mejs-time-rail {
+    padding-top: 7px;
 }
 
 @media only screen
