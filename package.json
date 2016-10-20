@@ -1,56 +1,56 @@
 {
-  "name": "podlovewebplayer",
-  "title": "PodloveWebPlayer",
-  "description": "a Podcast-optimized, HTML5-based video and audio player with Flash fallback. It can be used as a WordPress plugin or within a static HTML/JavaScript context.",
-  "version": "2.0.20",
-  "homepage": "https://github.com/podlove/podlove-web-player",
-  "contributors": [
-    {
-      "name": "Gerrit van Aaken",
-      "email": "info@praegnanz.de",
-      "url": "http://praegnanz.de"
-    },
-    {
-      "name": "Simon Waldherr",
-      "email": "contact@simonwaldherr.de",
-      "url": "http://simon.waldherr.eu/"
-    },
-    {
-      "name": "Frank Hase"
-    },
-    {
-      "name": "Eric Teubert"
-    }
-  ],
-  "repository": {
-    "url": "https://github.com/podlove/podlove-web-player.git",
-    "type": "git"
-  },
-  "bugs": {
-    "url": "https://github.com/podlove/podlove-web-player/issues"
-  },
-  "licenses": [
-    {
-      "type": "BSD 2-Clause License",
-      "url": "http://opensource.org/licenses/BSD-2-Clause"
-    }
-  ],
-  "keywords": [
-    "podcasting",
-    "podlove",
-    "html5audio",
-    "audio",
-    "video",
-    "podcast",
-    "player"
-  ],
-  "main": "index.js",
-  "author": "eteubert <eric@ericteubert.de>",
-  "license": "MIT",
-  "dependencies": {
-    "autoprefixer": "^6.5.1",
-    "postcss-cli": "^2.6.0",
-    "uglifycss": "^0.0.24",
-    "uglifyjs": "^2.4.10"
-  }
+	"name": "podlovewebplayer",
+	"title": "PodloveWebPlayer",
+	"description": "a Podcast-optimized, HTML5-based video and audio player with Flash fallback. It can be used as a WordPress plugin or within a static HTML/JavaScript context.",
+	"version": "2.1.0",
+	"homepage": "https://github.com/podlove/podlove-web-player",
+	"contributors": [
+		{
+			"name": "Gerrit van Aaken",
+			"email": "info@praegnanz.de",
+			"url": "http://praegnanz.de"
+		},
+		{
+			"name": "Simon Waldherr",
+			"email": "contact@simonwaldherr.de",
+			"url": "http://simon.waldherr.eu/"
+		},
+		{
+			"name": "Frank Hase"
+		},
+		{
+			"name": "Eric Teubert"
+		}
+	],
+	"repository": {
+		"url": "https://github.com/podlove/podlove-web-player.git",
+		"type": "git"
+	},
+	"bugs": {
+		"url": "https://github.com/podlove/podlove-web-player/issues"
+	},
+	"licenses": [
+		{
+			"type": "BSD 2-Clause License",
+			"url": "http://opensource.org/licenses/BSD-2-Clause"
+		}
+	],
+	"keywords": [
+		"podcasting",
+		"podlove",
+		"html5audio",
+		"audio",
+		"video",
+		"podcast",
+		"player"
+	],
+	"main": "index.js",
+	"author": "eteubert <eric@ericteubert.de>",
+	"license": "MIT",
+	"dependencies": {
+		"autoprefixer": "^6.5.1",
+		"postcss-cli": "^2.6.0",
+		"uglifycss": "^0.0.24",
+		"uglifyjs": "^2.4.10"
+	}
 }

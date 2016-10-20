@@ -55,9 +55,9 @@ The used icons are built in as fonts and provided by <a href="http://fortawesome
 
 ### Where can i get help?
 
-Definitely not on wordpress.org  
-If you need help, please go to our github repo  
-You can find it at https://github.com/podlove/podlove-web-player  
+Definitely not on wordpress.org
+If you need help, please go to our github repo
+You can find it at https://github.com/podlove/podlove-web-player
 
 ### How can I configure the player’s appearance?
 
@@ -222,6 +222,11 @@ Earlier versions of this plugin could handle alternative shortcodes, too: [audio
 3. Podlove Web Player Options
 
 == Changelog ==
+
+= 2.1.0 =
+* mejs update
+* simplified, modernised look
+* responsive layout for mobile devices
 
 = 2.0.19 =
 * mejs update

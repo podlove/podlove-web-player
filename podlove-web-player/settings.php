@@ -1,11 +1,11 @@
-<?php 
+<?php
 
 function podlovewebplayer_settings_init() {
 	if ( is_admin() ){
 		global $blog_id;
 		$wp_options = get_option('podlovewebplayer_options');
-		wp_enqueue_style( 'podlovewebplayer', plugins_url('static/podlove-web-player.css', __FILE__), array(), '2.0.20' );
-		// wp_enqueue_style( 'pwpdesigner', plugins_url('static/libs/pwpdesigner/style.css', __FILE__), array(), '2.0.20' );
+		wp_enqueue_style( 'podlovewebplayer', plugins_url('static/podlove-web-player.css', __FILE__), array(), '2.1.0' );
+		// wp_enqueue_style( 'pwpdesigner', plugins_url('static/libs/pwpdesigner/style.css', __FILE__), array(), '2.1.0' );
 		// if(isset($wp_options['style_custom'])) {
 		//   if($wp_options['style_custom'] !== '') {
 		//     wp_enqueue_style( 'custom-pwp-style', plugins_url('static/customcss/pwp_custom_id-'.$blog_id.'.css', __FILE__), array(), $wp_options['style_version'] );
@@ -13,8 +13,8 @@ function podlovewebplayer_settings_init() {
 		// } else {
 		//   wp_dequeue_style( 'custom-pwp-style');
 		// }
-		// wp_enqueue_script( 'colorconverter', plugins_url('static/libs/pwpdesigner/colorconv.js', __FILE__), array(), '2.0.20' );
-		// wp_enqueue_script( 'pwpdesigner', plugins_url('static/libs/pwpdesigner/script.js', __FILE__), array(), '2.0.20' );
+		// wp_enqueue_script( 'colorconverter', plugins_url('static/libs/pwpdesigner/colorconv.js', __FILE__), array(), '2.1.0' );
+		// wp_enqueue_script( 'pwpdesigner', plugins_url('static/libs/pwpdesigner/script.js', __FILE__), array(), '2.1.0' );
 		add_action( 'admin_menu', 'podlovewebplayer_create_menu' );
 		add_action( 'admin_init', 'podlovewebplayer_register_settings' );
 	}
@@ -32,7 +32,7 @@ function podlovewebplayer_settings_page() { ?>
 			</p>
 		</form>
 	</div>
-<?php 
+<?php
 }
 
 
@@ -150,11 +150,11 @@ function podlovewebplayer_register_settings() {
 			$i = 0;
 			foreach( $section['fields'] as $fieldname => $description ) {
 				$i += 1;
-				add_settings_field( 
-					$pwp.'_'.$sectionname.'_'.$fieldname, 
-					$description, $pwp.'_'.$sectionname.'_'.$fieldname, 
+				add_settings_field(
+					$pwp.'_'.$sectionname.'_'.$fieldname,
+					$description, $pwp.'_'.$sectionname.'_'.$fieldname,
 					$pwp, $pwp.'_'.$sectionname,
-					array( 'label_for' => 'pwp'.$sectionname.$i ) 
+					array( 'label_for' => 'pwp'.$sectionname.$i )
 				);
 			}
 		}
@@ -185,7 +185,7 @@ function podlovewebplayer_audio_height() {
 	print '<input id="pwpaudio2" name="podlovewebplayer_options[audio_height]" value="' . $options['audio_height'] . '" style="width:3em;" /> px&nbsp;&nbsp;(keep 30, if unsure)';
 }
 
-function podlovewebplayer_audio_type() { 
+function podlovewebplayer_audio_type() {
 	$options = get_option('podlovewebplayer_options');
 	if ((!isset($options['audio_type'])) || ($options['audio_type'] == "audio/mp3")) {
 		$options['audio_type'] = "audio/mpeg";
@@ -193,7 +193,7 @@ function podlovewebplayer_audio_type() {
 	print '<input id="pwpaudio3" name="podlovewebplayer_options[audio_type]" value="' . $options['audio_type'] . '" style="width:6em;" />&nbsp;&nbsp;(such as \'audio/mpeg\')';
 }
 
-function podlovewebplayer_video_width() { 
+function podlovewebplayer_video_width() {
 	$options = get_option('podlovewebplayer_options');
 	if (!isset($options['video_width'])) {
 		$options['video_width'] = '640';
@@ -201,7 +201,7 @@ function podlovewebplayer_video_width() {
 	print '<input id="pwpvideo1" name="podlovewebplayer_options[video_width]" value="' . $options['video_width'] . '" style="width:3em" /> px';
 }
 
-function podlovewebplayer_video_height() { 
+function podlovewebplayer_video_height() {
 	$options = get_option('podlovewebplayer_options');
 	if (!isset($options['video_height'])) {
 		$options['video_height'] = '270';
@@ -209,7 +209,7 @@ function podlovewebplayer_video_height() {
 	print '<input id="pwpvideo2" name="podlovewebplayer_options[video_height]" value="' . $options['video_height'] . '" style="width:3em" /> px';
 }
 
-function podlovewebplayer_video_type() { 
+function podlovewebplayer_video_type() {
 	$options = get_option('podlovewebplayer_options');
 	if (!isset($options['video_type'])) {
 		$options['video_type'] = 'video/mp4';
@@ -218,7 +218,7 @@ function podlovewebplayer_video_type() {
 }
 
 function podlovewebplayer_enclosure() {
-	print "<p>WordPress automatically creates an \"enclosure\" custom field whenever it detects an URL to a media file in the post text. 
+	print "<p>WordPress automatically creates an \"enclosure\" custom field whenever it detects an URL to a media file in the post text.
 		Use this option to turn these enclosures into Podlove Web Player instances.</p>\n\n
 	<script>
 	jQuery(function($){
@@ -231,46 +231,46 @@ function podlovewebplayer_enclosure() {
 	</script>";
 }
 
-function podlovewebplayer_enclosure_detect() { 
+function podlovewebplayer_enclosure_detect() {
 	$options = get_option('podlovewebplayer_options');
 	$checked = "";
 	if (isset($options['enclosure_detect'])) {
 		$checked = "checked ";
 	}
-	print "<input id='pwpenclosure1' name='podlovewebplayer_options[enclosure_detect]' 
+	print "<input id='pwpenclosure1' name='podlovewebplayer_options[enclosure_detect]'
 		$checked type='checkbox' value='1' />";
 }
 
-function podlovewebplayer_enclosure_force() { 
+function podlovewebplayer_enclosure_force() {
 	$options = get_option('podlovewebplayer_options');
 	$checked = "";
 	if (isset($options['enclosure_force'])) {
 		$checked = "checked ";
 	}
-	print "<input id='pwpenclosure2' name='podlovewebplayer_options[enclosure_force]' 
+	print "<input id='pwpenclosure2' name='podlovewebplayer_options[enclosure_force]'
 		$checked type='checkbox' value='1' />&nbsp;&nbsp;
 		(additionally to manually shortcoded Podlove Web Players, if both are present)";
 }
 
-function podlovewebplayer_enclosure_richplayer() { 
+function podlovewebplayer_enclosure_richplayer() {
 	$options = get_option('podlovewebplayer_options');
 	$checked = "";
 	if (isset($options['enclosure_richplayer'])) {
 		$checked = "checked ";
 	}
-	print "<input id='pwpenclosure3' name='podlovewebplayer_options[enclosure_richplayer]' 
+	print "<input id='pwpenclosure3' name='podlovewebplayer_options[enclosure_richplayer]'
 		$checked type='checkbox' value='1' />&nbsp;&nbsp;
 		(Use advanced player for enclosures)";
 }
 
 
-function podlovewebplayer_enclosure_bottom() { 
+function podlovewebplayer_enclosure_bottom() {
 	$options = get_option('podlovewebplayer_options');
 	$checked = "";
 	if (isset($options['enclosure_bottom'])) {
 		$checked = "checked ";
 	}
-	print "<input id='pwpenclosure4' name='podlovewebplayer_options[enclosure_bottom]' 
+	print "<input id='pwpenclosure4' name='podlovewebplayer_options[enclosure_bottom]'
 		$checked type='checkbox' value='1' />&nbsp;&nbsp;
 		(instead of the top)";
 }
@@ -280,11 +280,11 @@ function podlovewebplayer_chapter_height() {
 	if(!isset( $options['chapter_height'])) {
 		$options['chapter_height'] = "";
 	}
-	print "<input id='chapter_height' name='podlovewebplayer_options[chapter_height]' 
+	print "<input id='chapter_height' name='podlovewebplayer_options[chapter_height]'
 		value='" . $options['chapter_height'] . "' style='width:3em;' /> px&nbsp;&nbsp;(keep empty to show all)";
 }
 
-function podlovewebplayer_style() { 
+function podlovewebplayer_style() {
 	print "<div class='wrap'><h2>Custom CSS Style</h2>";
 }
 
@@ -311,7 +311,7 @@ function podlovewebplayer_style_custom() {
 			<source src="http://podlove.github.com/podlove-web-player/samples/podlove-test-track.opus" type="audio/ogg; codecs=opus"></source>
 		</audio>
 		<script>
-			
+
 		</script>';
 	$podlovewebplayer_custompwpstyle = podlovewebplayer_custompwpstyle();
 	if (!empty($podlovewebplayer_custompwpstyle)) {
@@ -344,7 +344,7 @@ function podlovewebplayer_buttons() {
 	print '<p>Here you can select, which buttons will be displayd. The Chapter-Toggle- and Summary-Info-Button are not configurable here, because they automaticle hidden, when no chapters/summary are provided.</p>'."\n\n";
 }
 
-function podlovewebplayer_buttons_time() { 
+function podlovewebplayer_buttons_time() {
 	$options = get_option('podlovewebplayer_options');
 	$checked = "";
 	if (isset($options['buttons_time'])) {
@@ -354,7 +354,7 @@ function podlovewebplayer_buttons_time() {
 		$checked type='checkbox' value='1' />&nbsp;&nbsp;";
 }
 
-function podlovewebplayer_buttons_share() { 
+function podlovewebplayer_buttons_share() {
 	$options = get_option('podlovewebplayer_options');
 	$checked = "";
 	if (isset($options['buttons_share'])) {
@@ -369,17 +369,17 @@ function podlovewebplayer_info() {
 	$dirname    = explode('/wp-content', dirname(__FILE__));
 	$pluginfile = dirname(__FILE__) . '/podlove-web-player.php';
 	$plugin_data = get_plugin_data( $pluginfile );
-	
+
 	print '<p>This is <strong>Version '.$plugin_data['Version'].'</strong> of the <strong>Podlove Web Player</strong>.<br>
 	The <strong>Including file</strong> is: <code>wp-admin'.$scriptname[1].'</code><br>
 	The <strong>PWP-directory</strong> is: <code>wp-content'.$dirname[1].'</code></p>
 	<p>Want to contribute? Found a bug? Need some help? <br/>you can found our github repo/page at
 	<a href="https://github.com/podlove/podlove-web-player">github.com/podlove/podlove-web-player</a></p>
-	<p>You can\'t help with code? Ok, you can help with money, too. Go to 
+	<p>You can\'t help with code? Ok, you can help with money, too. Go to
 	<a href="http://podlove.org/donations/">podlove.org/donations/</a> to donate to the Podlove Project.</p>
-	<p>We have <a href="https://github.com/podlove/podlove.github.com/wiki">lists with Podlove Publisher 
+	<p>We have <a href="https://github.com/podlove/podlove.github.com/wiki">lists with Podlove Publisher
 	and Podlove Web Player using podcasts</a>, feel free to enter your podcast.</p>
-	<p>If you found a bug, please tell us your WP- and PWP- (and PPP- if you use PPP) Version. <br/>Also your 
+	<p>If you found a bug, please tell us your WP- and PWP- (and PPP- if you use PPP) Version. <br/>Also your
 	Browser version, your PHP version and the URL of your Podcast can help us, find the bug.</p>';
 }
 
