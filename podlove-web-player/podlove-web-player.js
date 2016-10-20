@@ -257,7 +257,7 @@ if (typeof String.prototype.trim !== 'function') {
         scroll = 'style="overflow-y: auto; max-height: ' + parseInt(params.chapterHeight, 10) + 'px;"';
       }
     }
-    div = $('<div class="podlovewebplayer_chapterbox showonplay" ' + scroll + '><table><caption>Podcast Chapters</caption><thead><tr><th scope="col">Chapter Number</th><th scope="col">Start time</th><th scope="col">Title</th><th scope="col">Duration</th></tr></thead><tbody></tbody></table></div>');
+    div = $('<div class="podlovewebplayer_chapterbox showonplay" ' + scroll + '><table><caption>Podcast Chapters</caption><thead><tr><th scope="col">Chapter Start Time</th><th scope="col">Chapter Title</th><th scope="col">Chapter Duration</th></tr></thead><tbody></tbody></table></div>');
     table = div.children('table');
     tbody = table.children('tbody');
     if ((params.chaptersVisible === 'true') || (params.chaptersVisible === true)) {
