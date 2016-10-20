@@ -1990,16 +1990,17 @@ and (max-width : 500px) {
 	.podlovewebplayer_wrapper .podlovewebplayer_meta {
 		display: flex;
 		flex-wrap: wrap;
+	    justify-content: center;
 	}
 
 	.podlovewebplayer_meta .bigplay {
 	    order: 2;
-	    margin: 42.5px auto 42.5px auto !important;
+	    margin: 42.5px 15px 42.5px 15px !important;
 	}
 
 	.podlovewebplayer_meta .coverart {
 		order: 1;
-	    margin: 30px auto 30px auto !important;
+	    margin: 30px 15px 30px 15px !important;
 	}
 
 	.podlovewebplayer_meta .coverart img {
@@ -2015,6 +2016,7 @@ and (max-width : 500px) {
 		padding: 0px;
 	    padding: 0px 20px;
 	    display: block;
+	    text-align: center;
 	}
 
 	.podlovewebplayer_meta .subtitle {
@@ -2022,6 +2024,7 @@ and (max-width : 500px) {
 		margin: 0;
 		padding: 0;
 	    padding: 10px 20px;
+	    text-align: center;
 	}
 
 	.podlovewebplayer_meta .togglers {
