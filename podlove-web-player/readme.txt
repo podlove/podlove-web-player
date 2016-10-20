@@ -1,9 +1,9 @@
 === Podlove Web Player ===
 Contributors: gerritvanaaken, simonwaldherr
 Donate link: http://podlove.org/
-Tags: podcasting, podlove, html5audio, audio, video, podcast, player
+Tags: podcasting, podlove, html5audio, audio, video, podcast, player, media, webplayer
 Requires at least: 3.4.0
-Tested up to: 3.5.1
+Tested up to: 4.6.1
 Stable tag: trunk
 License: BSD 2-Clause License
 License URI: http://opensource.org/licenses/BSD-2-Clause
