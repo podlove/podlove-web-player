@@ -1995,12 +1995,13 @@ and (max-width : 500px) {
 
 	.podlovewebplayer_meta .bigplay {
 	    order: 2;
-	    margin: 42.5px 15px 42.5px 15px !important;
+	    margin: 42.5px 15px 37.5px 15px !important;
 	}
 
 	.podlovewebplayer_meta .coverart {
 		order: 1;
-	    margin: 30px 15px 30px 15px !important;
+	    margin: 30px 15px 25px 15px !important;
+	    height: 100px;
 	}
 
 	.podlovewebplayer_meta .coverart img {
