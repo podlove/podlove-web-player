@@ -2,10 +2,10 @@ const path = require('path')
 
 const config = {
   context: path.resolve(__dirname, 'src'),
-  entry: path.resolve(__dirname, 'player.jsx'),
+  entry: path.resolve(__dirname, 'app.jsx'),
   output: {
     path: path.resolve('dist'),
-    filename: 'player.bundle.js'
+    filename: 'app.bundle.js'
   },
   module: {
     loaders: [{
@@ -32,11 +32,8 @@ const config = {
   },
   sassLoader: {
     includePaths: [path.resolve('node_modules'), path.resolve(__dirname, 'styles')]
-  }
-}
-
-if (process.env.NODE_ENV !== 'production') {
-  config.devtool = 'eval'
+  },
+  devtool: 'eval-source-map'
 }
 
 module.exports = config

@@ -1,0 +1,18 @@
+@import 'font';
+@import 'theme';
+
+.podlove {
+  display: block;
+
+  @include roboto-font();
+
+  box-sizing: border-box;
+  *, ::before, ::after {
+    box-sizing: inherit;
+  }
+
+  // First draft
+  width: $xl-width;
+  height: auto;
+  padding: $padding;
+}

@@ -1,0 +1,90 @@
+@import 'theme';
+
+.podlove-player {
+  width: 100%;
+  padding: 0 $padding $padding $padding;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  background-color: $primary-color;
+
+  .podlove-player--button {
+    cursor: pointer;
+
+    background: transparent;
+
+    border-radius: 0;
+    border: 0;
+
+    &[disabled] {
+      opacity: 0.5;
+    }
+  }
+
+  // Control Bar
+  .podlove-player--control-bar {
+    width: 100%;
+    margin-bottom: $margin;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  // Progress Bar
+  .podlove-player--progress-bar {
+    width: 100%;
+    position: relative;
+    padding-bottom: $padding;
+  }
+
+  .podlove-player--progress-buffer {
+    display: block;
+    position: absolute;
+    height: 2px;
+    background: $secondary-color;
+    top: 2px;
+    left: 0;
+  }
+
+  // Slider
+  .podlove-player--progress-slider {
+    display: block;
+    position: absolute;
+
+    width: 100%;
+    background-color: rgba($secondary-color, 0.6);
+    height: 2px;
+    appearance: none;
+    outline: none;
+    border-color: transparent;
+    color: transparent;
+    left: 0;
+  }
+
+  // Thumb
+  .podlove-player--progress-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    height: 15px;
+    width: 3px;
+    border-radius: 0;
+    background: $secondary-color;
+    cursor: pointer;
+    margin-top: -2px;
+  }
+
+  // Timer
+  .podlove-player--timer {
+    display: block;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    color: $secondary-color;
+    font-weight: 100;
+    font-size: 0.8rem;
+  }
+}
