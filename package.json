@@ -3,7 +3,7 @@
   "title": "PodloveWebPlayer",
   "description": "a Podcast-optimized, HTML5-based video and audio player with Flash fallback. It can be used as a WordPress plugin or within a static HTML/JavaScript context.",
   "license": "BSD-2-Clause",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "homepage": "https://github.com/podlove/podlove-web-player",
   "contributors": [
     {
@@ -52,7 +52,7 @@
   ],
   "scripts": {
     "dist:clean": "mkdir -p dist && rm -rf dist/*",
-    "app:statics": "cp src/index.html dist/",
+    "app:statics": "cp src/index.html dist/ && cp -R statics dist/statics",
     "statics": "npm run app:statics",
     "webpack:dev": "webpack-dev-server --content-base dist/ --progress --colors --hot --inline --config src/webpack.config.js",
     "webpack:build": "NODE_ENV='production' webpack --config src/webpack.config.js",

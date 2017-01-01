@@ -1,4 +1,8 @@
+const webpack = require('webpack')
+
 const path = require('path')
+
+const isProduction = process.env.NODE_ENV === 'production'
 
 const config = {
   context: path.resolve(__dirname, 'src'),
@@ -32,8 +36,33 @@ const config = {
   },
   sassLoader: {
     includePaths: [path.resolve('node_modules'), path.resolve(__dirname, 'styles')]
-  },
-  devtool: 'eval-source-map'
+  }
+}
+
+if (isProduction) {
+  config.plugins = [
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.DedupePlugin(),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production')
+      }
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      minimize: true,
+      compress: {
+        unused: true,
+        dead_code: true,
+        warnings: false,
+        screw_ie8: true
+      },
+      compressor: {
+        warnings: false
+      }
+    })
+  ]
+} else {
+  config.devtool = 'eval-source-map'
 }
 
 module.exports = config
