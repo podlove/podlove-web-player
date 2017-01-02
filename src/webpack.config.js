@@ -6,10 +6,13 @@ const isProduction = process.env.NODE_ENV === 'production'
 
 const config = {
   context: path.resolve(__dirname, 'src'),
-  entry: path.resolve(__dirname, 'app.jsx'),
+  entry: {
+    app: path.resolve(__dirname, 'app.jsx'),
+    loader: path.resolve(__dirname, 'loader.js')
+  },
   output: {
     path: path.resolve('dist'),
-    filename: 'app.bundle.js'
+    filename: '[name].bundle.js'
   },
   module: {
     loaders: [{

@@ -1,3 +1,4 @@
+@import 'global';
 @import 'font';
 @import 'theme';
 
@@ -5,11 +6,6 @@
   display: block;
 
   @include roboto-font();
-
-  box-sizing: border-box;
-  *, ::before, ::after {
-    box-sizing: inherit;
-  }
 
   // First draft
   width: $xl-width;
