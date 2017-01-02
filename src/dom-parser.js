@@ -1,8 +1,10 @@
 import head from 'lodash/fp/head'
+import map from 'lodash/fp/map'
 import compose from 'lodash/fp/compose'
 
 const getNode = name => node => node.getElementsByTagName(name)
 const getText = node => node.innerText
+const getAttribute = attribute => node => node.getAttribute(attribute)
 
 const player = compose(
   head,
@@ -10,6 +12,8 @@ const player = compose(
 )
 
 const audio = compose(
+  map(getAttribute('src')),
+  getNode('source'),
   head,
   getNode('audio'),
   player

@@ -52,17 +52,16 @@
   ],
   "scripts": {
     "dist:clean": "mkdir -p dist && rm -rf dist/*",
-    "app:statics": "cp src/index.html dist/ && cp -R statics dist/statics",
+    "app:statics": "cp src/*.html dist/ && cp -R statics dist/statics",
     "statics": "npm run app:statics",
-    "webpack:dev": "webpack-dev-server --content-base dist/ --progress --colors --hot --inline --config src/webpack.config.js",
+    "webpack:dev": "webpack-dev-server --https --content-base dist/ --progress --colors --hot --inline --config src/webpack.config.js",
     "webpack:build": "NODE_ENV='production' webpack --config src/webpack.config.js",
     "build": "npm run dist:clean && npm run statics && npm run webpack:build",
     "dev": "npm run dist:clean && npm run statics && npm run webpack:dev"
   },
   "dependencies": {
-    "bluebird": "^3.4.7",
+    "howler": "^2.0.2",
     "lodash": "^4.17.3",
-    "mediaelement": "^2.23.4",
     "react": "15.3.0",
     "react-dom": "15.3.0",
     "react-redux": "4.4.5",

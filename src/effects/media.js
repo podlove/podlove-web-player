@@ -1,10 +1,10 @@
 export default mediaElement => action => {
   switch (action.type) {
-    case 'PLAY':
+    case 'UI_PLAY':
       return mediaElement.play()
-    case 'PAUSE':
+    case 'UI_PAUSE':
       return mediaElement.pause()
     case 'UPDATE_PLAYTIME':
-      return mediaElement.setCurrentTime(action.payload)
+      return mediaElement.seek(action.payload)
   }
 }

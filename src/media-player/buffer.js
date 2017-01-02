@@ -1,7 +1,9 @@
-export default (player, cb) => () => {
-  const bufferSize = player.buffered.length
+import get from 'lodash/get'
+
+export default (audioNode, cb) => {
+  const bufferSize = get(audioNode, 'buffered', []).length
 
   if (bufferSize > 0) {
-    cb(player.buffered.end(bufferSize - 1))
+    cb(audioNode.buffered.end(bufferSize - 1))
   }
 }

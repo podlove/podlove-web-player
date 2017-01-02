@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--General styling not embedded within the player-->
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400');
+        html, body {
+			font-family: 'Roboto', sans-serif;
+			padding: 0;
+			margin: 0;
+            background-color: #0B2540;
+            min-height: 100%;
+			height: 100%;
+			color: white;
+            font-weight: 100;
+        }
+
+        .chunk {
+            display: flex;
+            align-items: center;
+          	justify-content: center;
+          	flex-direction: column;
+            height: 100%;
+        }
+
+        .headline {
+            margin-bottom: 45px;
+            font-weight: 300;
+        }
+
+        .columns {
+            display: flex;
+            align-items: center;
+          	justify-content: center;
+        }
+
+        .column {
+            display: flex;
+            align-items: center;
+          	justify-content: center;
+            flex-direction: column;
+        }
+
+        a {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="chunk">
+        <h1 class="headline">Podlove Web Player v4 - Architektur Prototyp</h1>
+
+        <PodlovePlayer>
+            <title>FS171 Invasion!</title>
+            <subtitle>
+                LAN Planung - Kalender - Bingo - Wikipedia - Akkukalibration - Alte iPads und iPods - Find My Friends - iPhone Music Player - Apple Watch - Kommandozeile - Star Wars - Dante - Internet of Things Security - VPN
+            </subtitle>
+            <summary>
+                Wir haben eine wie wir finden abwechslungsreiche Sendung produziert, die wir Euch wie immer mit Freude bereitstellen. Während die Live-Hörer Freak-Show-Bingo spielen, greifen wir das Wikipedia-Thema der letzten Sendung auf und liefern auch noch weitere Aspekte des optimalen Star-Wars-Medienkonsums frei Haus. Dazu viel Nerderei rund um die Kommandozeile, eine Einschätzung der Perspektive der Apple Watch, ein Rant über die mangelhafte Security  im Internet of Things (and Buildings) und allerlei anderer Kram.  Roddi setzt dieses Mal aus, sonst Vollbesetzung.
+            </summary>
+            <publicationDate>2016-02-11T03:13:55+00:00</publicationDate>
+            <poster>https://freakshow.fm/wp-content/cache/podlove/04/662a9d4edcf77ea2abe3c74681f509/freak-show_200x200.jpg</poster>
+            <show>
+                <title>Freak Show</title>
+                <subtitle>Menschen! Technik! Sensationen!</subtitle>
+                <summary>Die muntere Talk Show um Leben mit Technik, das Netz und Technikkultur. Bisweilen Apple-lastig aber selten einseitig. Wir leben und lieben Technologie und reden darüber. Mit Tim, hukl, roddi, Clemens und Denis. Freak Show hieß irgendwann mal mobileMacs.
+                <poster>https://freakshow.fm/wp-content/cache/podlove/04/662a9d4edcf77ea2abe3c74681f509/freak-show_200x200.jpg</poster>
+                <url>https://freakshow.fm</url>
+            </show>
+            <chapters>
+                <chapter data-start-time="00:00:00">Intro</chapter>
+                <chapter data-start-time="00:01:39">Begrüßung</chapter>
+                <chapter data-start-time="00:04:58">IETF Meeting Netzwerk</chapter>
+                <chapter data-start-time="00:18:37">Kalender</chapter>
+                <chapter data-start-time="00:33:40">Freak Show Bingo</chapter>
+                <chapter data-start-time="00:35:37">Wikipedia</chapter>
+                <chapter data-start-time="01:17:26">iPhone Akkukalibration</chapter>
+                <chapter data-start-time="01:24:55">Alte iPads und iPod touches</chapter>
+                <chapter data-start-time="01:31:02">Find My Friends</chapter>
+                <chapter data-start-time="01:41:46">iPhone Music Player</chapter>
+                <chapter data-start-time="01:56:13">Apple Watch</chapter>
+                <chapter data-start-time="02:11:51">Kommandozeile: System Appreciation</chapter>
+                <chapter data-start-time="02:23:10">Sound und Design für Games</chapter>
+                <chapter data-start-time="02:24:59">Kommandozeile: Remote Deployment</chapter>
+                <chapter data-start-time="02:32:37">Kommandozeile: Man Pages</chapter>
+                <chapter data-start-time="02:44:31">Kommandozeile: screen vs. tmux</chapter>
+                <chapter data-start-time="02:58:02">Star Wars: Machete Order & Phantom Edit</chapter>
+                <chapter data-start-time="03:20:05">Kopfhörer-Ersatzteile</chapter>
+                <chapter data-start-time="03:23:39">Dante</chapter>
+                <chapter data-start-time="03:38:03">Dante Via</chapter>
+                <chapter data-start-time="03:45:33">Internet of Things Security</chapter>
+                <chapter data-start-time="03:56:11">That One Privacy Guy's VPN Comparison Chart</chapter>
+                <chapter data-start-time="04:10:00">Ausklang</chapter>
+            </chapters>
+            <audio>
+                <source src="http://freakshow.fm/podlove/file/4468/s/download/c/select-show/fs171-invasion.m4a" type="audio/mp4"></source>
+                <source src="http://freakshow.fm/podlove/file/4467/s/download/c/select-show/fs171-invasion.mp3" type="audio/mpeg"></source>
+                <source src="http://freakshow.fm/podlove/file/4466/s/download/c/select-show/fs171-invasion.oga" type="audio/ogg; codecs=vorbis"></source>
+                <source src="http://freakshow.fm/podlove/file/4465/s/download/c/select-show/fs171-invasion.opus" type="audio/ogg; codecs=opus"></source>
+            </audio>
+        </PodlovePlayer>
+
+        <p>Basis: @markus design v07</p>
+        <script src="app.bundle.js"></script>
+    </div>
+</body>
+</html>

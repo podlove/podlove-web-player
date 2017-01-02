@@ -30,11 +30,23 @@ const setDuration = duration => {
 
 const play = () => {
   store.dispatch({
-    type: 'PLAY'
+    type: 'UI_PLAY'
   })
 }
 
 const pause = () => {
+  store.dispatch({
+    type: 'UI_PAUSE'
+  })
+}
+
+const playEvent = () => {
+  store.dispatch({
+    type: 'PLAY'
+  })
+}
+
+const pauseEvent = () => {
   store.dispatch({
     type: 'PAUSE'
   })
@@ -46,5 +58,7 @@ export {
   setDuration,
   setBuffer,
   play,
-  pause
+  playEvent,
+  pause,
+  pauseEvent
 }

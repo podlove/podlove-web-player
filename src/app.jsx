@@ -26,14 +26,15 @@ const meta = domParser(document)
 // Initialize meta for store
 actions.meta.setMeta(meta)
 
-// Media Player
-mediaPlayer(meta.audio, {
-  onPlayTimeUpdate: actions.player.setPlaytime,
-  onBufferUpdate: actions.player.setBuffer,
-  onMeta: actions.player.setDuration,
-  onPause: actions.player.pause
+const media = mediaPlayer(meta.audio, {
+  setPlaytime: actions.player.setPlaytime,
+  setBufferState: actions.player.setBuffer,
+  setDuration: actions.player.setDuration,
+  onPlay: actions.player.playEvent,
+  onPause: actions.player.pauseEvent
 })
-.then(effects.registerMediaEffects)
+
+effects.registerMediaEffects(media)
 
 ReactDOM.render(
   <Provider store={store}>
@@ -44,5 +45,3 @@ ReactDOM.render(
   </Provider>,
   meta.player
 )
-
-// TODO (aheimbuch): support multiple players
