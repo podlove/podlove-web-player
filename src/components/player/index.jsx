@@ -4,8 +4,6 @@ import ControlBar from './control-bar.jsx'
 import ProgressBar from './progress-bar.jsx'
 import Timer from './timer.jsx'
 
-import './player.scss'
-
 export default React.createClass({
     render(){
       return (

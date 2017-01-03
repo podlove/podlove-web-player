@@ -1,14 +1,16 @@
+@import 'variables';
 @import 'global';
 @import 'font';
-@import 'theme';
+
 
 .podlove {
   display: block;
-
   @include roboto-font();
 
-  // First draft
-  width: $xl-width;
-  height: auto;
-  box-shadow: 0 0 5px $shadow-color;
+
+  &.ocean {
+    @import 'themes/ocean';
+    @import './components/components';
+  }
+
 }

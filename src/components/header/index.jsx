@@ -1,8 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-import './header.scss'
-
 const Header = ({title, poster, subtitle}) => (
   <div className="podlove-header">
     <img className="podlove-header--poster" src={poster} />

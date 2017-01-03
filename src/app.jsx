@@ -20,6 +20,7 @@ import domParser from './dom-parser'
 
 // Styles
 import './app.scss';
+import dimensions from './styles/dimensions'
 
 const meta = domParser(document)
 
@@ -38,7 +39,7 @@ effects.registerMediaEffects(media)
 
 ReactDOM.render(
   <Provider store={store}>
-    <div className="podlove">
+    <div className="podlove ocean" style={{maxWidth: dimensions.xl}}>
       <Header />
       <Player />
     </div>
