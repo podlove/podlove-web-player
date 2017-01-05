@@ -3,7 +3,6 @@ import get from 'lodash/get'
 const findNode = selector => document.querySelectorAll(selector)
 const createNode = tag => document.createElement(tag)
 const appendNode = (node, child) => node.appendChild(child)
-const iframeDocument= iframe => get(iframe, ['contentWindow', 'document'])
 
 const tag = (tag, value = '', attributes = {}) => {
   let attr = Object.keys(attributes).map(attribute => ` ${attribute}="${attributes[attribute]}"`)
@@ -23,21 +22,27 @@ const show = config =>
 
 const chapters = config => config.map(chapter => tag('chapter', chapter.title, {'data-start': chapter.start}))
 
-const frame = (config) => {
+
+const sandbox = () => {
   const frame = createNode('iframe')
 
-  frame.style.width = config.width
-  frame.style.height = config.height
+  frame.style.width = '100%'
 
   return frame
 }
 
+const sandboxWindow = iframe => get(iframe, 'contentWindow')
+const sandboxDocument = iframe => get(sandboxWindow(iframe), 'document')
+
 const renderPlayer = (config, player) => anchor => {
-  const injector = frame(config)
+  const injector = sandbox(config)
 
   appendNode(anchor, injector)
 
-  const injectorDoc = iframeDocument(injector)
+  const injectorDoc = sandboxDocument(injector)
+  const injectorWindow = sandboxWindow(injector)
+
+  injectorWindow.on('resize', () => console.log('resize', injectorWindow));
 
   injectorDoc.open()
 	injectorDoc.write(player)
