@@ -1,13 +1,14 @@
 import get from 'lodash/get'
 
-import store from '../store'
+import revue from 'store'
 import media from './media'
+
 
 const registerMediaEffects = mediaElement => {
   const player = media(mediaElement)
 
-  store.subscribe(() => {
-    const lastAction = get(store.getState(), 'lastAction')
+  revue.store.subscribe(() => {
+    const lastAction = get(revue.store.getState(), 'lastAction')
 
     player(lastAction)
   })

@@ -1,7 +1,7 @@
 const subtitle = (state = '', action) => {
   switch (action.type) {
     case 'SET_META':
-      return action.payload.subtitle
+      return action.payload.subtitle || state
     default:
       return state
   }
@@ -10,7 +10,7 @@ const subtitle = (state = '', action) => {
 const poster = (state = '', action) => {
   switch (action.type) {
     case 'SET_META':
-      return action.payload.poster
+      return action.payload.poster || state
     default:
       return state
   }
@@ -19,7 +19,7 @@ const poster = (state = '', action) => {
 const title = (state = '', action) => {
   switch (action.type) {
     case 'SET_META':
-      return action.payload.title
+      return action.payload.title || state
     default:
       return state
   }
@@ -28,7 +28,7 @@ const title = (state = '', action) => {
 const mode = (state = '', action) => {
   switch (action.type) {
     case 'SET_META':
-      return action.payload.mode
+      return action.payload.mode || state
     default:
       return state
   }

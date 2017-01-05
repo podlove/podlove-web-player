@@ -2,12 +2,10 @@ const webpack = require('webpack')
 
 const path = require('path')
 
-const isProduction = process.env.NODE_ENV === 'production'
-
 const config = {
   context: path.resolve(__dirname, 'src'),
   entry: {
-    app: path.resolve(__dirname, 'app.jsx'),
+    app: path.resolve(__dirname, 'app.js'),
     loader: path.resolve(__dirname, 'loader.js')
   },
   output: {
@@ -15,57 +13,69 @@ const config = {
     filename: '[name].bundle.js'
   },
   module: {
-    loaders: [{
+    rules: [{
+      test: /\.vue$/,
+      loader: 'vue-loader',
+      options: {
+        loaders: {
+          // Since sass-loader (weirdly) has SCSS as its default parse mode, we map
+          // the "scss" and "sass" values for the lang attribute to the right configs here.
+          // other preprocessors should work out of the box, no loader config like this nessessary.
+          'scss': 'vue-style-loader!css-loader!sass-loader',
+          'sass': 'vue-style-loader!css-loader!sass-loader?indentedSyntax'
+        }
+        // other vue-loader options go here
+      }
+    }, {
       test: /\.js$/,
-      loader: 'babel',
+      loader: 'babel-loader',
       exclude: /(node_modules)/,
       query: {
         presets: ['es2015']
       }
     }, {
-      test: /\.scss$/,
-      loaders: ['style', 'css', 'autoprefixer-loader?browsers=last 2 versions', 'sass']
-    }, {
-      test: /\.html$/,
-      loader: 'html'
-    }, {
-      test: /.jsx?$/,
-      loader: 'babel-loader',
-      exclude: /node_modules/,
-      query: {
-        presets: ['es2015', 'react']
+      test: /\.(png|jpg|gif|svg)$/,
+      loader: 'file-loader',
+      options: {
+        name: '[name].[ext]?[hash]'
       }
     }]
   },
-  sassLoader: {
-    includePaths: [path.resolve('node_modules'), path.resolve(__dirname, 'styles')]
-  }
+  resolve: {
+    alias: {
+      'vue$': 'vue/dist/vue.common.js',
+      store: path.resolve(__dirname, './store/index.js')
+    }
+  },
+  devServer: {
+    historyApiFallback: true,
+    noInfo: true
+  },
+  performance: {
+    hints: false
+  },
+  devtool: '#eval-source-map'
 }
 
-if (isProduction) {
-  config.plugins = [
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.optimize.DedupePlugin(),
+if (process.env.NODE_ENV === 'production') {
+  module.exports.devtool = '#source-map'
+  // http://vue-loader.vuejs.org/en/workflow/production.html
+  module.exports.plugins = (module.exports.plugins || []).concat([
     new webpack.DefinePlugin({
       'process.env': {
-        'NODE_ENV': JSON.stringify('production')
+        NODE_ENV: '"production"'
       }
     }),
     new webpack.optimize.UglifyJsPlugin({
-      minimize: true,
+      sourceMap: true,
       compress: {
-        unused: true,
-        dead_code: true,
-        warnings: false,
-        screw_ie8: true
-      },
-      compressor: {
         warnings: false
       }
+    }),
+    new webpack.LoaderOptionsPlugin({
+      minimize: true
     })
-  ]
-} else {
-  config.devtool = 'eval-source-map'
+  ])
 }
 
 module.exports = config
