@@ -21,14 +21,14 @@ import domParser from './dom-parser'
 const meta = domParser(document)
 
 // Initialize meta for store
-store.actions.setMeta(meta)
+store.dispatch(store.actions.setMeta(meta))
 
 const media = mediaPlayer(meta.audio, {
-  setPlaytime: store.actions.setPlaytime,
-  setBufferState: store.actions.setBuffer,
-  setDuration: store.actions.setDuration,
-  onPlay: store.actions.playEvent,
-  onPause: store.actions.pauseEvent
+  setPlaytime: playtime => store.dispatch(store.actions.setPlaytime(playtime)),
+  setBufferState: buffer => store.dispatch(store.actions.setBuffer(buffer)),
+  setDuration: duration => store.dispatch(store.actions.setDuration(duration)),
+  onPlay: () => store.dispatch(store.actions.playEvent()),
+  onPause: () => store.dispatch(store.actions.pauseEvent())
 })
 
 effects.registerMediaEffects(media)

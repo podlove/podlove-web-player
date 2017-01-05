@@ -1,56 +1,40 @@
 import store from 'store'
 
-const setPlaytime = playtime => {
-  store.dispatch({
+const setPlaytime = playtime => ({
     type: 'SET_PLAYTIME',
     payload: playtime
-  })
-}
+})
 
-const updatePlaytime = playtime => {
-  store.dispatch({
+const updatePlaytime = playtime => ({
     type: 'UPDATE_PLAYTIME',
     payload: playtime
-  })
-}
+})
 
-const setBuffer = buffer => {
-  store.dispatch({
+const setBuffer = buffer => ({
     type: 'SET_BUFFER',
     payload: buffer
-  })
-}
+})
 
-const setDuration = duration => {
-  store.dispatch({
+const setDuration = duration => ({
     type: 'SET_DURATION',
     payload: duration
-  })
-}
+})
 
-const play = () => {
-  store.dispatch({
-    type: 'UI_PLAY'
-  })
-}
+const play = () => ({
+  type: 'UI_PLAY'
+})
 
-const pause = () => {
-  store.dispatch({
+const pause = () => ({
     type: 'UI_PAUSE'
-  })
-}
+})
 
-const playEvent = () => {
-  store.dispatch({
+const playEvent = () => ({
     type: 'PLAY'
-  })
-}
+})
 
-const pauseEvent = () => {
-  store.dispatch({
+const pauseEvent = () => ({
     type: 'PAUSE'
-  })
-}
+})
 
 export {
   setPlaytime,
