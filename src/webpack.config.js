@@ -6,7 +6,7 @@ const config = {
   context: path.resolve(__dirname, 'src'),
   entry: {
     app: path.resolve(__dirname, 'app.js'),
-    loader: path.resolve(__dirname, 'loader.js')
+    embed: path.resolve(__dirname, 'embed.js')
   },
   output: {
     path: path.resolve('dist'),

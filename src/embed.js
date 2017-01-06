@@ -1,4 +1,6 @@
 import get from 'lodash/get'
+import { iframeResizer } from 'iframe-resizer'
+import iframeResizerContentWindow from 'raw-loader!iframe-resizer/js/iframeResizer.contentWindow.min.js'
 
 const findNode = selector => document.querySelectorAll(selector)
 const createNode = tag => document.createElement(tag)
@@ -27,6 +29,8 @@ const sandbox = () => {
   const frame = createNode('iframe')
 
   frame.style.width = '100%'
+  frame.setAttribute('seamless', '')
+  frame.setAttribute('scrolling', 'no')
 
   return frame
 }
@@ -38,15 +42,14 @@ const renderPlayer = (config, player) => anchor => {
   const injector = sandbox(config)
 
   appendNode(anchor, injector)
-
   const injectorDoc = sandboxDocument(injector)
   const injectorWindow = sandboxWindow(injector)
-
-  injectorWindow.on('resize', () => console.log('resize', injectorWindow));
 
   injectorDoc.open()
 	injectorDoc.write(player)
 	injectorDoc.close()
+
+  iframeResizer({checkOrigin: false}, injector)
 }
 
 window.podlovePlayer = (selector, config) => {
@@ -66,5 +69,5 @@ window.podlovePlayer = (selector, config) => {
 
   const logic = tag('script', '', {type: 'text/javascript', src: './app.bundle.js'})
 
-  anchor.forEach(renderPlayer(config, player + logic))
+  anchor.forEach(renderPlayer(config, player + logic + `<script>${iframeResizerContentWindow}</script>`))
 }

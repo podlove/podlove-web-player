@@ -61,6 +61,7 @@
   },
   "dependencies": {
     "howler": "^2.0.2",
+    "iframe-resizer": "^3.5.7",
     "lodash": "^4.17.3",
     "react": "15.3.0",
     "react-dom": "15.3.0",
@@ -76,6 +77,8 @@
     "cross-env": "^3.0.0",
     "css-loader": "^0.25.0",
     "file-loader": "^0.9.0",
+    "node-sass": "^4.1.1",
+    "raw-loader": "^0.5.1",
     "sass-loader": "^4.1.1",
     "vue-loader": "^10.0.0",
     "vue-template-compiler": "^2.1.0",
