@@ -45,7 +45,8 @@ const config = {
     alias: {
       'vue$': 'vue/dist/vue.common.js',
       store: path.resolve(__dirname, './store/index.js'),
-      variables: path.resolve(__dirname, './styles/variables.scss')
+      styles: path.resolve(__dirname, 'styles'),
+      utils: path.resolve(__dirname, 'utils')
     }
   },
   devServer: {

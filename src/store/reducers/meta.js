@@ -25,18 +25,8 @@ const title = (state = '', action) => {
   }
 }
 
-const mode = (state = '', action) => {
-  switch (action.type) {
-    case 'SET_META':
-      return action.payload.mode || state
-    default:
-      return state
-  }
-}
-
 export {
   poster,
   subtitle,
-  title,
-  // mode
+  title
 }

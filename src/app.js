@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import head from 'lodash/head'
 
 // Store
 import store from 'store'
@@ -12,13 +13,9 @@ import App from './components/App.vue'
 // import Player from './components/player/index.jsx'
 // import Header from './components/header/index.jsx'
 
-// Meta Information
-import domParser from './dom-parser'
-
 // Styles
 // import dimensions from './styles/dimensions'
-
-const meta = domParser(document)
+const meta = window.PODLOVE
 
 // Initialize meta for store
 store.dispatch(store.actions.setMeta(meta))
@@ -34,6 +31,6 @@ const media = mediaPlayer(meta.audio, {
 effects.registerMediaEffects(media)
 
 new Vue({
-  el: meta.player,
+  el: head(document.getElementsByTagName('PodlovePlayer')),
   render: h => h(App)
 })

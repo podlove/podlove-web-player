@@ -60,6 +60,7 @@
     "dev": "npm run dist:clean && npm run statics && npm run webpack:dev"
   },
   "dependencies": {
+    "blindparser": "^1.0.2",
     "howler": "^2.0.2",
     "iframe-resizer": "^3.5.7",
     "lodash": "^4.17.3",
@@ -68,6 +69,7 @@
     "react-redux": "4.4.5",
     "redux": "3.5.2",
     "revue": "^3.0.0",
+    "superagent": "^3.3.1",
     "vue": "^2.1.8"
   },
   "devDependencies": {

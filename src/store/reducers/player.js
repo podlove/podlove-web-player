@@ -1,3 +1,5 @@
+import { timeToSeconds } from 'utils/time'
+
 const playtime = (state = 0, action) => {
   switch (action.type) {
     case 'UPDATE_PLAYTIME':
@@ -11,6 +13,8 @@ const playtime = (state = 0, action) => {
 
 const duration = (state = 0, action) => {
   switch (action.type) {
+    case 'SET_META':
+      return timeToSeconds(action.payload.duration) || state
     case 'SET_DURATION':
       return action.payload
     default:
@@ -42,9 +46,21 @@ const running = (state = false, action) => {
   }
 }
 
+const playstate = (state = 'start', action) => {
+  switch (action.type) {
+    case 'UI_PLAY':
+      return 'playing'
+    case 'UI_PAUSE':
+      return 'idle'
+    default:
+      return state
+  }
+}
+
 export {
   playtime,
   duration,
   buffer,
-  running
+  running,
+  playstate
 }

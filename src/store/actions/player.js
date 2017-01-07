@@ -1,23 +1,21 @@
-import store from 'store'
-
 const setPlaytime = playtime => ({
-    type: 'SET_PLAYTIME',
-    payload: playtime
+  type: 'SET_PLAYTIME',
+  payload: playtime
 })
 
 const updatePlaytime = playtime => ({
-    type: 'UPDATE_PLAYTIME',
-    payload: playtime
+  type: 'UPDATE_PLAYTIME',
+  payload: playtime
 })
 
 const setBuffer = buffer => ({
-    type: 'SET_BUFFER',
-    payload: buffer
+  type: 'SET_BUFFER',
+  payload: buffer
 })
 
 const setDuration = duration => ({
-    type: 'SET_DURATION',
-    payload: duration
+  type: 'SET_DURATION',
+  payload: duration
 })
 
 const play = () => ({
@@ -25,16 +23,18 @@ const play = () => ({
 })
 
 const pause = () => ({
-    type: 'UI_PAUSE'
+  type: 'UI_PAUSE'
 })
 
 const playEvent = () => ({
-    type: 'PLAY'
+  type: 'PLAY'
 })
 
 const pauseEvent = () => ({
-    type: 'PAUSE'
+  type: 'PAUSE'
 })
+
+// TODO: stop action
 
 export {
   setPlaytime,
