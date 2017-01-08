@@ -34,7 +34,9 @@ const pauseEvent = () => ({
   type: 'PAUSE'
 })
 
-// TODO: stop action
+const stopEvent = () => ({
+  type: 'STOP'
+})
 
 export {
   setPlaytime,
@@ -44,5 +46,6 @@ export {
   play,
   playEvent,
   pause,
-  pauseEvent
+  pauseEvent,
+  stopEvent
 }

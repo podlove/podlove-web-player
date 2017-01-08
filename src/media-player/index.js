@@ -9,31 +9,11 @@ import buffer from './buffer'
 * Exposes Methods:
 * - play
 * - pause
-* - load
+* - seek
 */
-// const player = (element, {onPlayTimeUpdate, onMeta, onPause, onBufferUpdate}) => new Bluebird.Promise(resolve =>
-//   new MediaElement(element, Object.assign({}, config, {
-//     // method that fires when the Flash or Silverlight object is ready
-//     success (player) {
-//       // add event listener
-//       player.addEventListener('timeupdate', () => onPlayTimeUpdate(player.currentTime), false)
-//       player.addEventListener('timeupdate', buffer(player, onBufferUpdate), false)
-//       player.addEventListener('loadeddata', () => onMeta(player.duration), false)
-//       player.addEventListener('pause', onPause, false)
-
-//       resolve(player)
-//     },
-//     // fires when a problem is detected
-//     error (err) {
-//       // TODO: global error state
-//       console.log(err)
-//     }
-//   }))
-// )
-
 let ticker
 
-export default (audio = [], {setPlaytime, setBufferState, setDuration, onPlay, onPause}) => {
+export default (audio = [], {setPlaytime, setBufferState, setDuration, onPlay, onPause, onStop}) => {
   const player = new Howl({
     src: audio,
     html5: true,
@@ -45,7 +25,6 @@ export default (audio = [], {setPlaytime, setBufferState, setDuration, onPlay, o
   player.once('load', () => {
     // No api sugar for the audio node :/
     audioNode = get(player, ['_sounds', 0, '_node'])
-    console.log(audioNode)
     setDuration(player.duration())
   })
 
@@ -65,7 +44,7 @@ export default (audio = [], {setPlaytime, setBufferState, setDuration, onPlay, o
 
   player.on('stop', () => {
     clearInterval(ticker)
-    onPause()
+    onStop()
   })
 
   return player

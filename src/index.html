@@ -54,7 +54,7 @@
     <div class="chunk">
         <h1 class="headline">Podlove Web Player v4 - Architektur Prototyp</h1>
 
-        <div id="podlove-config"></div>
+        <div id="podlove-config" style="width: 760px;"></div>
         <script src="embed.bundle.js"></script>
         <script>
             podlovePlayer('#podlove-config', {
@@ -110,65 +110,6 @@
             })
         </script>
         </div>
-    </div>
-
-    <div class="chunk">
-        <h1 class="headline">Architektur</h1>
-        <div class="columns">
-            <div class="column" style="width: 60%">
-                <img src="statics/architektur.png" />
-            </div>
-            <div class="column" style="width: 40%">
-                <ul>
-                    <li>Basis: <a href="#redux">Redux Store</a></li>
-                    <li>Media Treiber: <s>Mediaelement</s> Howler
-                        <ul>
-                            <li><s>Mediaelement</s> Howler ohne Player</li>
-                            <li>API treiben store</li>
-                            <li>Kann durch belibige andere Mediaelement Bibliotheken ausgetauscht werden</li>
-                            <li>Mediaelement über Store entkoppelt vom UI</li>
-                        </ul>
-                    </li>
-                    <li>UI Renderer: react
-                        <ul>
-                            <li>Austauschbar (bspw. Vue.js)</li>
-                            <li>Integriert sich gut mit Redux Store</li>
-                            <li>Viele Bibliotheken für Theming, i18n, ...</li>
-                            <li>UI über Store entkoppelt von Mediaelement</li>
-                        </ul>
-                    </li>
-                    <li>Actions
-                        <ul>
-                            <li>Abstraktion für den Store</li>
-                            <li>Gewährleistet Austauschbarkeit von Action Types</li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <div class="chunk">
-        <h1 class="headline">Einschränkungen vom Prototyp</h1>
-
-        <ul>
-            <li>Tabs fehlen (Kapitel, Transkripte, Einstellungen)</li>
-            <li>Kein Theming (mehrere Möglichkeiten, bspw. fixierte Themes wie in <a href="http://www.material-ui.com/#/customization/themes">Material UI</a>)</li>
-            <li>Kein i18n (bspw. auf Basis von <a href="https://github.com/yahoo/react-intl">react-intl</a>)</li>
-            <li>Kein Depplinking (kann relativ simpel als redux store akteur implementiert werden)</li>
-            <li><s>Nur ein player (mehrere Lösungsansätze: ein store pro player oder ein store pro seite)</s></li>
-        </ul>
-
-    </div>
-
-    <div class="chunk" id="redux">
-        <h1 class="headline">Redux</h1>
-
-        <h3>Redux in action: In C</h3>
-        <iframe width="853" height="480" src="https://www.youtube.com/embed/-fPyfSAEZgk" frameborder="0" allowfullscreen></iframe>
-
-        <h3>Redux: Getting started</h3>
-        <a href="https://egghead.io/courses/getting-started-with-redux">Egghead Kurs</a>
     </div>
 </body>
 </html>

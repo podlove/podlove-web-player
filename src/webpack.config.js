@@ -1,4 +1,6 @@
 const webpack = require('webpack')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const path = require('path')
 
@@ -18,6 +20,7 @@ const config = {
       loader: 'vue-loader',
       options: {
         loaders: {
+          js: 'babel-loader',
           // Since sass-loader (weirdly) has SCSS as its default parse mode, we map
           // the "scss" and "sass" values for the lang attribute to the right configs here.
           // other preprocessors should work out of the box, no loader config like this nessessary.
@@ -29,6 +32,9 @@ const config = {
     }, {
       test: /\.js$/,
       loader: 'babel-loader',
+      include: [
+          path.resolve(__dirname, 'src')
+      ],
       exclude: /(node_modules)/,
       query: {
         presets: ['es2015']
@@ -60,24 +66,39 @@ const config = {
 }
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports.devtool = '#source-map'
+  config.devtool = '#source-map'
   // http://vue-loader.vuejs.org/en/workflow/production.html
-  module.exports.plugins = (module.exports.plugins || []).concat([
+  config.plugins = [
+    // http://vuejs.github.io/vue-loader/en/workflow/production.html
     new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: '"production"'
-      }
+      'process.env': 'production'
     }),
     new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
       compress: {
         warnings: false
       }
     }),
-    new webpack.LoaderOptionsPlugin({
-      minimize: true
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    // extract css into its own file
+
+    // generate dist index.html with correct asset hash for caching.
+    // you can customize output by editing /index.html
+    // see https://github.com/ampedandwired/html-webpack-plugin
+    new HtmlWebpackPlugin({
+      filename: config.build.index,
+      template: 'index.html',
+      inject: true,
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeAttributeQuotes: true
+        // more options:
+        // https://github.com/kangax/html-minifier#options-quick-reference
+      },
+      // necessary to consistently work with multiple chunks via CommonsChunkPlugin
+      chunksSortMode: 'dependency'
     })
-  ])
+  ]
 }
 
 module.exports = config

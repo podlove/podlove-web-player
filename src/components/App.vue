@@ -7,7 +7,7 @@
 
 <script>
   import PodloveHeader from './Header.vue'
-  import PodlovePlayer from './Player.vue'
+  import PodlovePlayer from './player/Player.vue'
 
   export default {
     name: 'app',

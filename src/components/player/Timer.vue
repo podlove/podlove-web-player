@@ -1,5 +1,5 @@
 <template>
-  <div class="podlove-player--timer">
+  <div class="podlove-player--timer" :class="playstate">
     <span class="podlove-player--timer--current">{{secondsToTime(playtime)}}</span>
     <span class="podlove-player--timer--duration">{{secondsToTime(duration)}}</span>
   </div>
@@ -11,8 +11,9 @@ import { secondsToTime } from 'utils/time'
 export default {
   data() {
     return {
-      playtime: this.$select('playtime'),
-      duration: this.$select('duration')
+      playtime:   this.$select('playtime'),
+      duration:   this.$select('duration'),
+      playstate:  this.$select('playstate')
     }
   },
   methods: {
@@ -22,7 +23,9 @@ export default {
 </script>
 
 <style lang="scss">
+  @import '../../styles/variables';
   @import '../../styles/themes/ocean';
+
   // Timer
   .podlove-player--timer {
     display: block;
@@ -32,6 +35,13 @@ export default {
     color: $secondary-color;
     font-weight: 100;
     font-size: 0.8rem;
+    overflow: hidden;
+    height: 15px;
+    transition: height $animation-duration;
+
+    &.start, &.idle {
+      height: 0;
+    }
   }
 </style>
 

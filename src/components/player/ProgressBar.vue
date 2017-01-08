@@ -1,5 +1,5 @@
 <template>
-  <div class="podlove-player--progress-bar">
+  <div class="podlove-player--progress-bar" :class="playstate">
     <input
       class="podlove-player--progress-slider"
       type="range"
@@ -28,7 +28,8 @@
       return {
         playtime: this.$select('playtime'),
         duration: this.$select('duration'),
-        buffer: this.$select('buffer')
+        buffer: this.$select('buffer'),
+        playstate: this.$select('playstate')
       }
     },
     methods: {
@@ -49,6 +50,12 @@
     width: 100%;
     position: relative;
     padding-bottom: $padding;
+    transition: padding $animation-duration;
+
+    &.start, &.idle {
+      padding-bottom: 0;
+      overflow: hidden;
+    }
   }
 
   .podlove-player--progress-buffer {
@@ -85,5 +92,6 @@
     background: $secondary-color;
     cursor: pointer;
     margin-top: -2px;
+    z-index: 99;
   }
 </style>

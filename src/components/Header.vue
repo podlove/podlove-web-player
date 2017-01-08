@@ -64,7 +64,7 @@
     .podlove-header--subtitle {
       overflow: hidden;
       text-overflow: ellipsis;
-
+      height: 60px;
       font-size: 0.9rem;
       font-weight: 100;
       color: rgba($secondary-color, 0.8);
