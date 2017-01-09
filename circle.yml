@@ -6,7 +6,8 @@ test:
   override:
 
 compile:
-  override: npm run build
+  override:
+    - npm run build
 
 deployment:
   production:
