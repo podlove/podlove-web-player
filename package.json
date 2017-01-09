@@ -87,6 +87,7 @@
     "node-sass": "^4.1.1",
     "raw-loader": "^0.5.1",
     "sass-loader": "^4.1.1",
+    "surge": "^0.18.0",
     "transform-runtime": "0.0.0",
     "vue-loader": "^10.0.0",
     "vue-template-compiler": "^2.1.0",
