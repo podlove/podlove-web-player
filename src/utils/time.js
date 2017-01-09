@@ -6,7 +6,6 @@ export function timeToSeconds (time = '0') {
   return partials.reduce((prev, curr, i) => prev + curr * Math.pow(60, i), 0)
 }
 
-
 const calcSeconds = (time = 0) => parseInt(time % 60)
 const calcMinutes = (time = 0) => parseInt(time / 60) % 60
 const calcHours = (time = 0) => parseInt(time / 3600) % 24
