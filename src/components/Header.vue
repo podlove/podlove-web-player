@@ -23,8 +23,8 @@
 </script>
 
 <style lang="scss">
-  @import '../styles/variables';
-  @import '../styles/themes/ocean';
+  @import 'variables';
+  @import 'themes/ocean';
 
   $poster-size: 100px;
 
@@ -68,6 +68,20 @@
       font-size: 0.9rem;
       font-weight: 100;
       color: rgba($secondary-color, 0.8);
+    }
+
+    @media screen and (max-width: $width-l) {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      .podlove-header--title {
+        margin-top: $margin;
+      }
+
+      .podlove-header--title, .podlove-header--subtitle {
+        text-align: center;
+      }
     }
   }
 </style>

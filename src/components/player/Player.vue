@@ -26,8 +26,8 @@
 </script>
 
 <style lang="scss">
-  @import '../../styles/variables';
-  @import '../../styles/themes/ocean';
+  @import 'variables';
+  @import 'themes/ocean';
 
   .podlove-player {
     width: 100%;

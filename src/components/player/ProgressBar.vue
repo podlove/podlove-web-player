@@ -43,8 +43,9 @@
 </script>
 
 <style lang="scss">
-  @import '../../styles/variables';
-  @import '../../styles/themes/ocean';
+  @import 'variables';
+  @import 'themes/ocean';
+
   // Progress Bar
   .podlove-player--progress-bar {
     width: 100%;

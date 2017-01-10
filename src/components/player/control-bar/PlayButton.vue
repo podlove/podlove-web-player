@@ -57,7 +57,7 @@
 </script>
 
 <style lang="scss">
-  @import '../../../styles/variables';
+  @import 'variables';
   $dimension: 50px;
 
   .podlove-player--play-icon {

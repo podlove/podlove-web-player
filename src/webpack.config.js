@@ -20,13 +20,9 @@ const config = {
       options: {
         loaders: {
           js: 'babel-loader',
-          // Since sass-loader (weirdly) has SCSS as its default parse mode, we map
-          // the "scss" and "sass" values for the lang attribute to the right configs here.
-          // other preprocessors should work out of the box, no loader config like this nessessary.
           scss: 'vue-style-loader!css-loader!sass-loader',
-          sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax'
+          sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax',
         }
-        // other vue-loader options go here
       }
     }, {
       test: /\.js$/,
@@ -46,7 +42,6 @@ const config = {
     alias: {
       'vue$': 'vue/dist/vue.common.js',
       store: path.resolve(__dirname, './store/index.js'),
-      styles: path.resolve(__dirname, 'styles'),
       utils: path.resolve(__dirname, 'utils')
     }
   },
@@ -57,13 +52,22 @@ const config = {
   performance: {
     hints: false
   },
-  devtool: '#eval-source-map'
+  devtool: '#eval-source-map',
+  plugins: [
+    new webpack.LoaderOptionsPlugin({
+      options: {
+          sassLoader: {
+              includePaths: [path.resolve(__dirname, 'styles')]
+          },
+      }
+    })
+  ]
 }
 
 if (process.env.NODE_ENV === 'production') {
   config.devtool = '#source-map'
   // http://vue-loader.vuejs.org/en/workflow/production.html
-  config.plugins = [
+  config.plugins = [...config.plugins,
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: '"production"'

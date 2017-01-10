@@ -19,13 +19,15 @@
 </script>
 
 <style lang="scss">
-  @import '../styles/variables';
-  @import '../styles/global';
-  @import '../styles/font';
+  @import 'variables';
+  @import 'global';
+  @import 'font';
 
   .podlove {
     display: block;
-    max-width: 756px;
+    max-width: $width-xl;
+    min-width: $width-xs;
+
     @include roboto-font();
   }
 </style>

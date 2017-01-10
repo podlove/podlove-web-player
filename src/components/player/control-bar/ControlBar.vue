@@ -28,7 +28,7 @@
 </script>
 
 <style lang="scss">
-  @import '../../../styles/variables';
+  @import 'variables';
 
   .podlove-player--control-bar {
     width: 100%;
