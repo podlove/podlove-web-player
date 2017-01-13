@@ -6,22 +6,30 @@
       min="0" :max="interpolate(duration)" step="0.1"
       :value="interpolate(playtime)"
        v-on:change="onChange"
+       v-on:input="onInput"
     />
-    <span class="podlove-player--progress-buffer" v-bind:style="buffered(buffer, duration)"></span>
+    <span class="podlove-player--progress-thumb" v-bind:style="thumbStyle(thumbPosition)"></span>
+    <span class="podlove-player--progress-buffer" v-bind:style="bufferStyle(theme, buffer, duration)"></span>
   </div>
+
 </template>
 
 <script>
   import store from 'store'
 
   const interpolate = (num = 0) => Math.round(num * 100) / 100
-  const buffered = (buffer = 0, duration = 1) => {
-    const bufferLength = (buffer * 100) / duration
 
-    return {
-      width: Math.round(bufferLength) + '%'
-    }
-  }
+  const relativePosition = (current = 0, maximum = 0) =>
+    Math.round((current * 100) / maximum) + '%'
+
+  const bufferStyle = (theme, buffer = 0, duration = 1) => ({
+    width: relativePosition(buffer, duration),
+    'background-color': theme.secondary
+  })
+
+  const thumbStyle = position => ({
+      left: position
+  })
 
   export default {
     data () {
@@ -29,15 +37,26 @@
         playtime: this.$select('playtime'),
         duration: this.$select('duration'),
         buffer: this.$select('buffer'),
-        playstate: this.$select('playstate')
+        playstate: this.$select('playstate'),
+        theme: this.$select('theme'),
+        thumbPosition: 0
+      }
+    },
+    watch: {
+      playtime: function (time) {
+        this.thumbPosition = relativePosition(time, this.duration)
       }
     },
     methods: {
       onChange (event) {
         store.dispatch(store.actions.updatePlaytime(event.target.value))
       },
+      onInput (event) {
+        this.thumbPosition = relativePosition(interpolate(event.target.value), this.duration)
+      },
       interpolate,
-      buffered
+      bufferStyle,
+      thumbStyle
     }
   }
 </script>
@@ -59,11 +78,20 @@
     }
   }
 
+  .podlove-player--progress-thumb {
+    position: absolute;
+    top: 0;
+    margin-top: -5px;
+    height: 14px;
+    width: 4px;
+    background-color: white;
+    pointer-events: none;
+  }
+
   .podlove-player--progress-buffer {
     display: block;
     position: absolute;
     height: 2px;
-    background: $secondary-color;
     top: 2px;
     left: 0;
   }
@@ -74,7 +102,7 @@
     position: absolute;
 
     width: 100%;
-    background-color: rgba($secondary-color, 0.6);
+    background-color: rgba($accent-color, 0.25);
     height: 2px;
     -webkit-appearance: none;
     outline: none;
@@ -87,10 +115,11 @@
   .podlove-player--progress-slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     border: none;
-    height: 15px;
-    width: 3px;
+    height: 14px;
+    width: 4px;
+    margin-left: -4px;
     border-radius: 0;
-    background: $secondary-color;
+    background: transparent;
     cursor: pointer;
     margin-top: -2px;
     z-index: 99;

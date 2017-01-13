@@ -1,5 +1,5 @@
 <template>
-  <div class="podlove-player" :class="playstate">
+  <div class="podlove-player" :class="playstate" :style="playerStyle">
     <ControlBar />
     <ProgressBar />
     <Timer />
@@ -14,7 +14,10 @@
   export default {
     data() {
       return {
-        playstate: this.$select('playstate')
+        playstate: this.$select('playstate'),
+        playerStyle: {
+          'background-color': this.$select('theme.primary')
+        }
       }
     },
     components: {
@@ -37,8 +40,6 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-
-    background-color: $primary-color;
 
     &.start, &.idle {
       padding-bottom: 0;

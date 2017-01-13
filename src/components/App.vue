@@ -22,6 +22,7 @@
   @import 'variables';
   @import 'global';
   @import 'font';
+  /*@import 'resets';*/
 
   .podlove {
     display: block;
