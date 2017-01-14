@@ -56,8 +56,6 @@ export default {
 
   .podlove-tabs {
     width: 100%;
-    max-height: 300px;
-    transition: max-height $animation-duration;
 
     &.start, &.idle {
       overflow: hidden;
