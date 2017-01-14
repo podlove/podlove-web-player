@@ -1,30 +1,53 @@
 <template>
-  <div class="podlove-header">
-    <img class="podlove-header--poster" :src="poster" />
+  <div class="podlove-header" :style="headerStyle(theme)">
+    <img class="podlove-header--poster" :src="poster" :style="posterStyle(theme)"/>
     <div class="podlover-header--info">
-      <h1 class="podlove-header--title">{{title}}</h1>
-      <div class="podlove-header--subtitle">{{subtitle}}</div>
+      <h1 class="podlove-header--title" :style="titleStyle(theme)">{{title}}</h1>
+      <div class="podlove-header--subtitle" :style="subtitleStyle(theme)">{{subtitle}}</div>
     </div>
   </div>
 </template>
 
 <script>
   import store from 'store'
+  import color from 'color'
+
+  const headerStyle = theme => ({
+    'background-color': theme.tertiary ? theme.secondary : theme.primary
+  })
+
+  const posterStyle = theme => ({
+    'border-color': theme.tertiary ? theme.primary : theme.secondary
+  })
+
+  const titleStyle = theme => ({
+    color: theme.tertiary ? theme.primary : theme.secondary
+  })
+
+  const subtitleStyle = theme => ({
+    color: color(theme.tertiary ? theme.tertiary : theme.secondary).fade(0.25)
+  })
 
   export default {
     data () {
       return {
         poster: this.$select('poster'),
         title: this.$select('title'),
-        subtitle: this.$select('subtitle')
+        subtitle: this.$select('subtitle'),
+        theme: this.$select('theme')
       }
+    },
+    methods: {
+      headerStyle,
+      posterStyle,
+      titleStyle,
+      subtitleStyle
     }
   }
 </script>
 
 <style lang="scss">
   @import 'variables';
-  @import 'themes/ocean';
 
   $poster-size: 100px;
 
@@ -34,8 +57,6 @@
     width: 100%;
     display: flex;
 
-    background-color: $primary-color;
-
     .podlove-header--poster {
       display: block;
 
@@ -43,8 +64,7 @@
       width: auto;
 
       margin-right: $margin;
-
-      border: 2px solid $secondary-color;
+      border: 2px solid;
     }
 
     .podlover-header--info {
@@ -58,7 +78,6 @@
 
       font-size: 1.2rem;
       font-weight: 300;
-      color: $secondary-color;
     }
 
     .podlove-header--subtitle {
@@ -67,7 +86,6 @@
       height: 60px;
       font-size: 0.9rem;
       font-weight: 100;
-      color: rgba($secondary-color, 0.8);
     }
 
     @media screen and (max-width: $width-l) {

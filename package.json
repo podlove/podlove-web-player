@@ -61,6 +61,7 @@
   },
   "dependencies": {
     "blindparser": "^1.0.2",
+    "color": "^1.0.3",
     "howler": "^2.0.2",
     "iframe-resizer": "^3.5.7",
     "lodash": "^4.17.3",
@@ -81,7 +82,6 @@
     "babel-register": "^6.0.0",
     "cross-env": "^3.0.0",
     "css-loader": "^0.25.0",
-    "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.9.0",
     "html-webpack-plugin": "^2.26.0",
     "node-sass": "^4.1.1",

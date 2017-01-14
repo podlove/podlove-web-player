@@ -1,6 +1,4 @@
 const webpack = require('webpack')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const path = require('path')
 
@@ -56,9 +54,9 @@ const config = {
   plugins: [
     new webpack.LoaderOptionsPlugin({
       options: {
-          sassLoader: {
-              includePaths: [path.resolve(__dirname, 'styles')]
-          },
+        sassLoader: {
+          includePaths: [path.resolve(__dirname, 'styles')]
+        }
       }
     })
   ]

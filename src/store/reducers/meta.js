@@ -32,7 +32,8 @@ const theme = (state = {}, action) => {
     case 'SET_META':
       return Object.assign({}, state, {
         primary: get(action.payload, ['theme', 'primary'], '#2B8AC6'),
-        secondary: get(action.payload, ['theme', 'secondary'], '#fff')
+        secondary: get(action.payload, ['theme', 'secondary'], '#fff'),
+        tertiary: get(action.payload, ['theme', 'tertiary'])
       })
     default:
       return state

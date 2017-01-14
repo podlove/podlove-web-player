@@ -46,29 +46,52 @@ input[type=range]:focus {
 
 /* Make the thumbs the same size as your custom sliderthumb. They will not be visible but they will be draggable. */
 input[type=range]::-ms-thumb {
-  width: 40px;
-  height: 40px;
+  height: 14px;
+  width: 4px;
+
+  cursor: pointer;
+
+  margin: -2px 0 0 -4px;
+
   border-radius: 0px;
   border: 0 none;
+
   background: transparent;
+
+  z-index: 99;
 }
 
 input[type=range]::-moz-range-thumb {
-  width: 40px;
-  height: 40px;
+  height: 14px;
+  width: 4px;
+
+  margin: -2px 0 0 -4px;
+
   border-radius: 0px;
   border: 0 none;
+
   background: transparent;
+
+  cursor: pointer;
+  z-index: 99;
 }
 
 input[type=range]::-webkit-slider-thumb {
-  width: 40px;
-  height: 40px;
+  height: 14px;
+  width: 4px;
+
+  margin: -2px 0 0 -4px;
+
   border-radius: 0px;
   border: 0 none;
+
   background: transparent;
   -webkit-appearance: none;
+
+  cursor: pointer;
+  z-index: 99;
 }
+
 
 /* Eliminate the default appearance and tooltip behaviour that is peculiar to IE and Edge. */
 input[type=range]::-ms-fill-lower {

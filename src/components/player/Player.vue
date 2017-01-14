@@ -1,5 +1,5 @@
 <template>
-  <div class="podlove-player" :class="playstate" :style="playerStyle">
+  <div class="podlove-player" :class="playstate" :style="playerStyle(theme)">
     <ControlBar />
     <ProgressBar />
     <Timer />
@@ -11,14 +11,19 @@
   import ProgressBar from './ProgressBar.vue'
   import Timer from './Timer.vue'
 
+  const playerStyle = theme => ({
+    'background-color': theme.tertiary ? theme.secondary : theme.primary
+  })
+
   export default {
     data() {
       return {
         playstate: this.$select('playstate'),
-        playerStyle: {
-          'background-color': this.$select('theme.primary')
-        }
+        theme: this.$select('theme')
       }
+    },
+    methods: {
+      playerStyle
     },
     components: {
       ControlBar,
@@ -30,7 +35,6 @@
 
 <style lang="scss">
   @import 'variables';
-  @import 'themes/ocean';
 
   .podlove-player {
     width: 100%;

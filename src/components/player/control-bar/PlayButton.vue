@@ -1,11 +1,11 @@
 <template>
   <button class="podlove-player--button" @click="onButtonClick">
-    <span class="podlove-player--play-icon" :class="playstate" :style="wrapperStyle">
-      <PlayIcon color="#2B8AC6" v-if="playstate === 'start' || playstate === 'idle' || playstate === 'end'"/>
-      <PauseIcon color="#2B8AC6" v-else />
-      <span v-if="playstate === 'start'" class="play-text" :style="textStyle">{{secondsToTime(duration)}}</span>
-      <span v-if="playstate === 'idle'" class="play-text" :style="textStyle">{{secondsToTime(playtime)}}</span>
-      <span v-if="playstate === 'end'" class="play-text" :style="textStyle">replay</span>
+    <span class="podlove-player--play-icon" :class="playstate" :style="wrapperStyle(theme)">
+      <PlayIcon :color="theme.tertiary ? theme.secondary : theme.primary" v-if="playstate === 'start' || playstate === 'idle' || playstate === 'end'"/>
+      <PauseIcon :color="theme.tertiary ? theme.secondary : theme.primary" v-else />
+      <span v-if="playstate === 'start'" class="play-text" :style="textStyle(theme)">{{secondsToTime(duration)}}</span>
+      <span v-if="playstate === 'idle'" class="play-text" :style="textStyle(theme)">{{secondsToTime(playtime)}}</span>
+      <span v-if="playstate === 'end'" class="play-text" :style="textStyle(theme)">replay</span>
     </span>
   </button>
 </template>
@@ -16,6 +16,14 @@
 
   import PlayIcon from '../../icons/PlayIcon.vue'
   import PauseIcon from '../../icons/PauseIcon.vue'
+
+  const wrapperStyle = theme => ({
+    'background-color': theme.tertiary ? theme.primary : theme.secondary
+  })
+
+  const textStyle = theme => ({
+    color: theme.tertiary ? theme.secondary : theme.primary
+  })
 
   export default {
     name: 'PlayButton',
@@ -28,16 +36,13 @@
         duration: this.$select('duration'),
         playtime: this.$select('playtime'),
         playstate: this.$select('playstate'),
-        wrapperStyle: {
-          'background-color': '#fff'
-        },
-        textStyle: {
-          color: '#2B8AC6'
-        }
+        theme: this.$select('theme')
       }
     },
     methods: {
       secondsToTime,
+      wrapperStyle,
+      textStyle,
       onButtonClick () {
         switch (this.playstate) {
           case 'start':
