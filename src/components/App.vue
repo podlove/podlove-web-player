@@ -2,18 +2,21 @@
   <div class="podlove">
     <PodloveHeader />
     <PodlovePlayer />
+    <PodloveTabs />
   </div>
 </template>
 
 <script>
   import PodloveHeader from './Header.vue'
   import PodlovePlayer from './player/Player.vue'
+  import PodloveTabs from './tabs/Tabs.vue'
 
   export default {
     name: 'app',
     components: {
       PodloveHeader,
-      PodlovePlayer
+      PodlovePlayer,
+      PodloveTabs
     }
   }
 </script>
@@ -22,7 +25,6 @@
   @import 'variables';
   @import 'global';
   @import 'font';
-  /*@import 'resets';*/
 
   .podlove {
     display: block;

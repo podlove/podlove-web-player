@@ -39,6 +39,7 @@ const theme = (state = {}, action) => {
       return state
   }
 }
+
 export {
   poster,
   subtitle,

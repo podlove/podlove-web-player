@@ -22,7 +22,7 @@
   const interpolate = (num = 0) => Math.round(num * 100) / 100
 
   const relativePosition = (current = 0, maximum = 0) =>
-    Math.round((current * 100) / maximum) + '%'
+    ((current * 100) / maximum) + '%'
 
   const bufferStyle = (theme, buffer = 0, duration = 1) => ({
     width: relativePosition(buffer, duration),

@@ -13,12 +13,6 @@
 
   export default {
     name: 'ControlBar',
-    data () {
-      return {
-        running: this.$select('running'),
-        playstate: this.$select('playstate')
-      }
-    },
     components: {
       PlayButton,
       StepBackButton,
