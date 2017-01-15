@@ -1,5 +1,5 @@
 <template>
-  <button class="podlove-player--button" :class="playstate" @click="onButtonClick" :disabled="(playtime + 30) < 0">
+  <button class="podlove-player--button podlove-player--player-control" :class="playstate" @click="onButtonClick" :disabled="(playtime + 30) < 0">
     <Icon width="36" height="31"
       :primary-color="theme.tertiary ? theme.secondary : theme.primary"
       :secondary-color="theme.tertiary ? theme.primary : theme.secondary"
@@ -12,7 +12,6 @@
   import Icon from '../../icons/StepForwardIcon.vue'
 
   export default {
-    name: 'StepBackButton',
     components: {
       Icon
     },

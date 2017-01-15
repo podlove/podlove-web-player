@@ -26,7 +26,6 @@
   })
 
   export default {
-    name: 'PlayButton',
     components: {
       PlayIcon,
       PauseIcon
