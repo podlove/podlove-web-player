@@ -1,6 +1,6 @@
 <template>
   <div class="podlove-chapters--entry" v-bind:style="chapterStyle(theme, chapter)" @click="onChapterClick(chapter)">
-    <span class="podlove-chapters--entry--index">{{index}}</span>
+    <span class="podlove-chapters--entry--index">{{index + 1}}</span>
     <span class="podlove-chapters--entry--title">{{chapter.title}}</span>
     <span class="podlove-chapters--entry--duration">{{secondsToTime(chapter.end - chapter.start)}}</span>
 

@@ -5,16 +5,12 @@
 </template>
 
 <script>
-  import findIndex from 'lodash/findIndex'
-
+  import { currentChapterIndex } from 'utils/chapters'
   import store from 'store'
   import Icon from '../../icons/ChapterBackIcon.vue'
 
-  const currentChapter = chapters =>
-    findIndex(chapters, {active: true})
-
   const isDisabled = chapters =>
-    currentChapter(chapters) <= 0
+    currentChapterIndex(chapters) <= 0
 
   export default {
     components: {
@@ -30,7 +26,7 @@
     methods: {
       onButtonClick () {
         const chapters = this.$select('chapters')
-        const current = currentChapter(chapters)
+        const current = currentChapterIndex(chapters)
 
         if (current <= 0) {
           return
