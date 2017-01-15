@@ -81,11 +81,12 @@
     }
 
     .podlove-header--subtitle {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      height: 60px;
+      max-height: 3.6rem;
       font-size: 0.9rem;
+      line-height: 1.2rem;
       font-weight: 100;
+      overflow: hidden;
+      position: relative;
     }
 
     @media screen and (max-width: $width-l) {
