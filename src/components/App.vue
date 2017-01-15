@@ -31,6 +31,6 @@
     max-width: $width-xl;
     min-width: $width-xs;
 
-    @include roboto-font();
+    @include font();
   }
 </style>
