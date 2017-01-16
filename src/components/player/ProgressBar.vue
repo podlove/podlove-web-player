@@ -87,7 +87,7 @@
       overflow: hidden;
     }
 
-    &.idle {
+    &.idle, &.end {
       .podlove-player--progress-thumb {
         opacity: 0;
       }

@@ -1,7 +1,9 @@
 <template>
   <button class="podlove-player--button" @click="onButtonClick">
     <span class="podlove-player--play-icon" :class="playstate" :style="wrapperStyle(theme)">
-      <PlayIcon :color="theme.tertiary ? theme.secondary : theme.primary" v-if="playstate === 'start' || playstate === 'idle' || playstate === 'end'"/>
+      <PlayIcon
+        :color="theme.tertiary ? theme.secondary : theme.primary"
+        v-if="playstate === 'start' || playstate === 'idle' || playstate === 'end' || playstate === 'pause'"/>
       <PauseIcon :color="theme.tertiary ? theme.secondary : theme.primary" v-else />
       <span v-if="playstate === 'start'" class="play-text" :style="textStyle(theme)">{{secondsToTime(duration)}}</span>
       <span v-if="playstate === 'idle'" class="play-text" :style="textStyle(theme)">{{secondsToTime(playtime)}}</span>
@@ -46,11 +48,11 @@
         switch (this.playstate) {
           case 'start':
           case 'idle':
+          case 'pause':
             store.dispatch(store.actions.play())
             break
           case 'end':
-            store.dispatch(store.actions.setPlaytime(0))
-            store.dispatch(store.actions.play())
+            store.dispatch(store.actions.restart())
             break
           default:
             store.dispatch(store.actions.pause())

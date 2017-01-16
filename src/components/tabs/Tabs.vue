@@ -57,7 +57,7 @@ export default {
   .podlove-tabs {
     width: 100%;
 
-    &.start, &.idle {
+    &.start, &.idle, &.end {
       overflow: hidden;
       max-height: 0;
     }

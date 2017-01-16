@@ -38,11 +38,13 @@ const playstate = (state = 'start', action) => {
     case 'UI_PLAY':
       return 'playing'
     case 'PAUSE':
-      return 'idle'
+      return 'pause'
     case 'UI_PAUSE':
-      return 'idle'
+      return 'pause'
     case 'STOP':
       return 'end'
+    case 'IDLE':
+      return 'idle'
     default:
       return state
   }

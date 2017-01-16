@@ -27,6 +27,7 @@ const media = mediaPlayer(meta.audio, {
 })
 
 effects.registerMediaEffects(media)
+effects.registerIdleEffects()
 
 export default new Vue({
   el: head(document.getElementsByTagName('PodlovePlayer')),
