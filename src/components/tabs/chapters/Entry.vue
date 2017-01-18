@@ -93,7 +93,7 @@
     position: absolute;
     left: 0;
     bottom: 1px;
-    height: 1px;
+    height: 2px;
     width: 100%;
     z-index: 99;
   }

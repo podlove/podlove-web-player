@@ -22,7 +22,6 @@ const chapterTitle = chapters => {
   return `Kapitel ${index + 1}: ${get(current, 'title', '')}`
 }
 
-
 export default {
   data() {
     return {
