@@ -17,10 +17,10 @@ export function secondsToTime (time = 0) {
   let minutes = calcMinutes(time)
   let seconds = calcSeconds(time)
 
-  let result = `${leadingZero(minutes)}:${leadingZero(seconds)}`
+  let result = `${minutes}:${leadingZero(seconds)}`
 
   if (hours > 0) {
-    result = `${leadingZero(hours)}:${result}`
+    result = `${hours}:${result}`
   }
 
   return result

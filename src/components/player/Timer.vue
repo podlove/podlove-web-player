@@ -60,5 +60,21 @@ export default {
       height: 0;
     }
   }
+
+  .podlove-player--timer--current {
+    text-align: left;
+    width: 20%;
+  }
+
+  .podlove-player--timer--chapter {
+    text-align: center;
+    width: 80%;
+  }
+
+  .podlove-player--timer--duration {
+    text-align: right;
+    width: 20%;
+  }
+
 </style>
 
