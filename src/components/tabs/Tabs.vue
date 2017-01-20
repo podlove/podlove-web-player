@@ -1,48 +1,56 @@
 <template>
-  <div class="podlove-tabs" :style="containerStyle(theme)" :class="playstate">
+  <div class="podlove-tabs" :class="playstate">
     <ul class="podlove-tabs--tab-header" :style="headerStyle(theme)">
-      <li class="podlove-tabs--tab-header--element" :style="tabStyle(theme)">
-        <ChaptersIcon class="podlove-tabs--tab-header--icon" :color="theme.primary" />
-        <span class="podlove-tabs--tab-header--caption">Kapitel</span>
+      <li class="podlove-tabs--tab-header--element" :style="tabStyle(theme, tabs.chapters)" :class="{active: tabs.chapters}">
+        <a href="javascript:void(0);" @click.prevent="toggleTab('chapters')" class="podlove-tabs--tab-header--caption">
+        <ChaptersIcon class="podlove-tabs--tab-header--icon" :color="iconColor(theme, tabs.chapters)" />
+        <span class="podlove-tabs--tab-header--title">Kapitel</span>
+        </a>
       </li>
     </ul>
-    <ChaptersTab />
+    <div class="podlove-tabs--tab-body" :class="{active: tabs.chapters}">
+      <ChaptersTab />
+    </div>
   </div>
 </template>
 
 <script>
 import color from 'color'
+import store from 'store'
 
 import ChaptersIcon from '../icons/ChaptersIcon.vue'
 
 import ChaptersTab from './chapters/Chapters.vue'
 
-const containerStyle = theme => ({
-  'background-color': theme.primary
-})
-
 const headerStyle = theme => ({
-  color: color(theme.secondary).fade(0.2),
   'background-color': color(theme.primary).darken(0.1)
 })
 
-const tabStyle = theme => ({
-  color: theme.primary,
-  'background-color': theme.secondary
+const tabStyle = (theme, active) => ({
+  color: active ? theme.primary : color(theme.secondary).fade(0.2)
 })
+
+const iconColor = (theme, active) =>
+  active ? theme.primary : color(theme.secondary).fade(0.2)
+
+const toggleTab = tab => {
+  store.dispatch(store.actions.toggleTab(tab))
+}
 
 export default {
   data() {
     return {
       playstate: this.$select('playstate'),
-      theme: this.$select('theme')
+      theme: this.$select('theme'),
+      tabs: this.$select('tabs')
     }
   },
   methods: {
-    containerStyle,
     headerStyle,
     tabStyle,
-    color
+    color,
+    iconColor,
+    toggleTab
   },
   components: {
     ChaptersIcon,
@@ -56,10 +64,9 @@ export default {
 
   .podlove-tabs {
     width: 100%;
-
     &.start, &.idle, &.end {
       overflow: hidden;
-      max-height: 0;
+      height: 0;
     }
   }
 
@@ -73,6 +80,7 @@ export default {
     list-style: none;
     font-weight: 100;
     text-transform: uppercase;
+    height: $tabs-header-height;
   }
 
   .podlove-tabs--tab-header--element {
@@ -82,10 +90,38 @@ export default {
     padding: ($padding / 2) $padding;
     width: 100%;
     margin: 0;
+    height: $tabs-header-height;
+    transition: all $animation-duration;
+
+    &.active {
+      background-color: $tabs-background;
+    }
   }
 
   .podlove-tabs--tab-header--caption {
-    margin-left: $margin / 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     overflow: hidden;
+    vertical-align: middle;
+    text-align: center;
+    width: 100%;
+  }
+
+  .podlove-tabs--tab-body {
+    max-height: 0;
+    overflow: hidden;
+    background-color: $tabs-background;
+    transition: max-height $animation-duration;
+
+    &.active {
+      max-height: $tabs-body-max-height;
+      overflow: auto;
+    }
+  }
+
+  .podlove-tabs--tab-header--icon {
+    margin-right: $margin / 3;
   }
 </style>
