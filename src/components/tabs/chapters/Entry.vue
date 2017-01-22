@@ -86,16 +86,13 @@
 
   .podlove-chapters--entry--duration {
     display: block;
-    width: 30px;
     text-align: right;
   }
 
   .podlove-chapters--entry--progress {
     position: absolute;
     left: 0;
-    bottom: 1px;
-    height: 2px;
-    width: 100%;
-    z-index: 99;
+    bottom: 0;
+    height: 3px;
   }
 </style>

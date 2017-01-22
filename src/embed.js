@@ -35,10 +35,17 @@ const renderPlayer = (config, player) => anchor => {
   const injectorDoc = sandboxDocument(injector)
 
   injectorDoc.open()
-	injectorDoc.write(player)
-	injectorDoc.close()
+  injectorDoc.write('<!DOCTYPE html>')
+  injectorDoc.write('<html>')
+  injectorDoc.write('<head></head>')
+  injectorDoc.write(player)
+  injectorDoc.close()
 
-  iframeResizer({checkOrigin: false, log: true}, injector)
+  iframeResizer({
+    checkOrigin: false,
+    log: true,
+    enablePublicMethods: true
+  }, injector)
 }
 
 const generateConfig = config => {

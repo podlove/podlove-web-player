@@ -64,9 +64,12 @@ export default {
 
   .podlove-tabs {
     width: 100%;
+    padding-bottom: $padding;
+
     &.start, &.idle, &.end {
       overflow: hidden;
       height: 0;
+      padding-bottom: 0;
     }
   }
 
@@ -113,11 +116,10 @@ export default {
     max-height: 0;
     overflow: hidden;
     background-color: $tabs-background;
-    transition: max-height $animation-duration;
 
     &.active {
       max-height: $tabs-body-max-height;
-      overflow: auto;
+      overflow-y: auto;
     }
   }
 
