@@ -1,5 +1,6 @@
 import get from 'lodash/get'
 import Bluebird from 'bluebird'
+import browser from 'detect-browser'
 import { iframeResizer } from 'iframe-resizer'
 import iframeResizerContentWindow from 'raw-loader!iframe-resizer/js/iframeResizer.contentWindow.min.js'
 
@@ -17,7 +18,10 @@ const tag = (tag, value = '', attributes = {}) => {
 const sandbox = () => {
   const frame = createNode('iframe')
 
-  frame.style.width = '100%'
+  if (browser.name !== 'ios') {
+    frame.style.width = '100%'
+  }
+
   frame.setAttribute('seamless', '')
   frame.setAttribute('scrolling', 'no')
   frame.style.border = '0'
