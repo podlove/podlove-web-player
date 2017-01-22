@@ -52,7 +52,7 @@
   ],
   "scripts": {
     "dist:clean": "mkdir -p dist && rm -rf dist/*",
-    "app:statics": "cp src/*.html dist/ && cp -R statics dist/statics",
+    "app:statics": "cp -R statics/* dist",
     "statics": "npm run app:statics",
     "webpack:dev": "webpack-dev-server --content-base dist/ --progress --colors --hot --inline --config src/webpack.config.js",
     "webpack:build": "NODE_ENV='production' webpack --config src/webpack.config.js",

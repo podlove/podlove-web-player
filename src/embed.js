@@ -38,7 +38,7 @@ const renderPlayer = (config, player) => anchor => {
 	injectorDoc.write(player)
 	injectorDoc.close()
 
-  iframeResizer({checkOrigin: false}, injector)
+  iframeResizer({checkOrigin: false, log: true}, injector)
 }
 
 const generateConfig = config => {
