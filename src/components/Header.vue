@@ -17,7 +17,7 @@
   })
 
   const posterStyle = theme => ({
-    'border-color': theme.tertiary ? theme.primary : theme.secondary
+    'border-color': theme.tertiary ? theme.tertiary : theme.secondary
   })
 
   const titleStyle = theme => ({

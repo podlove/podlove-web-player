@@ -22,7 +22,6 @@ const chapterTitle = chapters => {
   return `Kapitel ${index + 1}: ${get(current, 'title', '')}`
 }
 
-
 export default {
   data() {
     return {
@@ -57,9 +56,25 @@ export default {
     height: 1rem;
     transition: height $animation-duration;
 
-    &.start, &.idle {
+    &.start, &.idle, &.end {
       height: 0;
     }
   }
+
+  .podlove-player--timer--current {
+    text-align: left;
+    width: 20%;
+  }
+
+  .podlove-player--timer--chapter {
+    text-align: center;
+    width: 80%;
+  }
+
+  .podlove-player--timer--duration {
+    text-align: right;
+    width: 20%;
+  }
+
 </style>
 

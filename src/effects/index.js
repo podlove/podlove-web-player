@@ -1,8 +1,9 @@
 import get from 'lodash/get'
 
 import revue from 'store'
-import media from './media'
 
+import media from './media'
+import idle from './idle'
 
 const registerMediaEffects = mediaElement => {
   const player = media(mediaElement)
@@ -14,6 +15,15 @@ const registerMediaEffects = mediaElement => {
   })
 }
 
+const registerIdleEffects = () => {
+  revue.store.subscribe(() => {
+    const lastAction = get(revue.store.getState(), 'lastAction')
+
+    idle(lastAction)
+  })
+}
+
 export {
-  registerMediaEffects
+  registerMediaEffects,
+  registerIdleEffects
 }

@@ -41,6 +41,7 @@
 
   const onChapterClick = chapter => {
     store.dispatch(store.actions.updatePlaytime(chapter.start))
+    store.dispatch(store.actions.setPlaytime(chapter.start))
   }
 
   export default {
@@ -93,7 +94,7 @@
     position: absolute;
     left: 0;
     bottom: 1px;
-    height: 1px;
+    height: 2px;
     width: 100%;
     z-index: 99;
   }

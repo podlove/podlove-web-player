@@ -45,7 +45,7 @@
     justify-content: center;
     flex-direction: column;
 
-    &.start, &.idle {
+    &.start, &.idle, &.end {
       padding-bottom: 0;
     }
   }

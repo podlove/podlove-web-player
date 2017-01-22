@@ -26,6 +26,14 @@ const pause = () => ({
   type: 'UI_PAUSE'
 })
 
+const restart = () => ({
+  type: 'UI_RESTART'
+})
+
+const idle = () => ({
+  type: 'IDLE'
+})
+
 const playEvent = () => ({
   type: 'PLAY'
 })
@@ -47,5 +55,7 @@ export {
   playEvent,
   pause,
   pauseEvent,
-  stopEvent
+  stopEvent,
+  restart,
+  idle
 }
