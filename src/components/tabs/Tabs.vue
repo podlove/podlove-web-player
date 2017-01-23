@@ -65,6 +65,7 @@ export default {
   .podlove-tabs {
     width: 100%;
     padding-bottom: $padding;
+    background: $tabs-background;
 
     &.start, &.idle, &.end {
       overflow: hidden;
