@@ -1,10 +1,9 @@
 <template>
-  <div class="podlove-chapters--entry" v-bind:style="chapterStyle(theme, chapter)" @click="onChapterClick(chapter)">
+  <div class="podlove-chapters--entry" :style="chapterStyle(theme, chapter)" @click="onChapterClick(chapter)">
     <span class="podlove-chapters--entry--index">{{index + 1}}</span>
     <span class="podlove-chapters--entry--title">{{chapter.title}}</span>
     <span class="podlove-chapters--entry--duration">{{secondsToTime(chapter.end - chapter.start)}}</span>
-
-    <span class="podlove-chapters--entry--progress" v-bind:style="progresStyle(theme, chapter, playtime)"></span>
+    <span class="podlove-chapters--entry--progress" :style="progressStyle(theme, chapter, playtime)"></span>
   </div>
 </template>
 
@@ -14,19 +13,17 @@
   import {secondsToTime} from 'utils/time'
 
   const chapterStyle = (theme, chapter) => {
-    const style = {
-      'background-color': theme.secondary
-    }
+    const style = {}
 
     if (chapter.active) {
-      style['background-color'] = color(theme.primary).fade(0.9)
-      style['color'] = theme.primary
+      style['background-color'] = color(theme.tabs.body.backgroundActive).fade(0.9)
+      style['color'] = theme.tabs.body.textActives
     }
 
     return style
   }
 
-  const progresStyle = (theme, chapter, playtime) => {
+  const progressStyle = (theme, chapter, playtime) => {
     if (!chapter.active || playtime > chapter.end) {
       return {}
     }
@@ -35,7 +32,7 @@
 
     return {
       'width': progress + '%',
-      'background-color': theme.primary
+      'background-color': theme.tabs.body.progress
     }
   }
 
@@ -54,7 +51,7 @@
     },
     methods: {
       chapterStyle,
-      progresStyle,
+      progressStyle,
       secondsToTime,
       onChapterClick
     },

@@ -1,6 +1,6 @@
 <template>
   <button class="podlove-player--button podlove-player--player-control podlove-player--chapter-control" :class="playstate" @click="onButtonClick" :disabled="isDisabled(chapters)">
-    <Icon :color="theme.tertiary ? theme.primary : theme.secondary" />
+    <Icon :color="theme.player.actions.background" />
   </button>
 </template>
 

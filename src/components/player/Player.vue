@@ -12,7 +12,7 @@
   import Timer from './Timer.vue'
 
   const playerStyle = theme => ({
-    'background-color': theme.tertiary ? theme.secondary : theme.primary
+    'background-color': theme.player.background
   })
 
   export default {

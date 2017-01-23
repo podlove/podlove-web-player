@@ -2,9 +2,9 @@
   <button class="podlove-player--button" @click="onButtonClick">
     <span class="podlove-player--play-icon" :class="playstate" :style="wrapperStyle(theme)">
       <PlayIcon
-        :color="theme.tertiary ? theme.secondary : theme.primary"
+        :color="theme.player.actions.icon"
         v-if="playstate === 'start' || playstate === 'idle' || playstate === 'end' || playstate === 'pause'"/>
-      <PauseIcon :color="theme.tertiary ? theme.secondary : theme.primary" v-else />
+      <PauseIcon :color="theme.player.actions.icon" v-else />
       <span v-if="playstate === 'start'" class="play-text" :style="textStyle(theme)">{{secondsToTime(duration)}}</span>
       <span v-if="playstate === 'idle'" class="play-text" :style="textStyle(theme)">{{secondsToTime(playtime)}}</span>
       <span v-if="playstate === 'end'" class="play-text" :style="textStyle(theme)">replay</span>
@@ -20,11 +20,11 @@
   import PauseIcon from '../../icons/PauseIcon.vue'
 
   const wrapperStyle = theme => ({
-    'background-color': theme.tertiary ? theme.primary : theme.secondary
+    'background-color': theme.player.actions.background
   })
 
   const textStyle = theme => ({
-    color: theme.tertiary ? theme.secondary : theme.primary
+    color: theme.player.actions.icon
   })
 
   export default {

@@ -1,5 +1,5 @@
 <template>
-  <div class="podlove-tabs" :class="playstate">
+  <div class="podlove-tabs" :class="playstate" :style="containerStyle(theme)">
     <ul class="podlove-tabs--tab-header" :style="headerStyle(theme)">
       <li class="podlove-tabs--tab-header--element" :style="tabStyle(theme, tabs.chapters)" :class="{active: tabs.chapters}">
         <a href="javascript:void(0);" @click.prevent="toggleTab('chapters')" class="podlove-tabs--tab-header--caption">
@@ -22,16 +22,20 @@ import ChaptersIcon from '../icons/ChaptersIcon.vue'
 
 import ChaptersTab from './chapters/Chapters.vue'
 
+const containerStyle = theme => ({
+  'background-color': theme.tabs.body.background
+})
+
 const headerStyle = theme => ({
-  'background-color': color(theme.primary).darken(0.1)
+  'background-color': color(theme.tabs.header.background).darken(0.1)
 })
 
 const tabStyle = (theme, active) => ({
-  color: active ? theme.primary : color(theme.secondary).fade(0.2)
+  color: active ? theme.tabs.header.colorActive : color(theme.tabs.header.color).fade(0.2)
 })
 
 const iconColor = (theme, active) =>
-  active ? theme.primary : color(theme.secondary).fade(0.2)
+  active ? theme.tabs.header.colorActive : color(theme.tabs.header.color).fade(0.2)
 
 const toggleTab = tab => {
   store.dispatch(store.actions.toggleTab(tab))
@@ -46,6 +50,7 @@ export default {
     }
   },
   methods: {
+    containerStyle,
     headerStyle,
     tabStyle,
     color,

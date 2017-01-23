@@ -54,7 +54,7 @@
     "dist:clean": "mkdir -p dist && rm -rf dist/*",
     "app:statics": "cp -R statics/* dist",
     "statics": "npm run app:statics",
-    "webpack:dev": "webpack-dev-server --content-base dist/ --progress --colors --hot --inline --config src/webpack.config.js --host aktivstoff.fritz.box",
+    "webpack:dev": "webpack-dev-server --content-base dist/ --progress --colors --hot --inline --config src/webpack.config.js",
     "webpack:build": "NODE_ENV='production' webpack --config src/webpack.config.js",
     "build": "npm run dist:clean && npm run statics && npm run webpack:build",
     "dev": "npm run dist:clean && npm run statics && npm run webpack:dev"

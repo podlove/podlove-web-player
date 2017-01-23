@@ -8,9 +8,9 @@
        v-on:input="onInput"
     />
     <span class="podlove-player--progress-range"></span>
-    <span class="podlove-player--progress-buffer" v-bind:style="bufferStyle(theme, buffer, duration)"></span>
-    <span class="podlove-player--progress-thumb" v-bind:style="thumbStyle(theme, thumbPosition)"></span>
-    <span class="podlove-player--progress-track" v-bind:style="trackStyle(theme, thumbPosition)"></span>
+    <span class="podlove-player--progress-buffer" :style="bufferStyle(theme, buffer, duration)"></span>
+    <span class="podlove-player--progress-thumb" :style="thumbStyle(theme, thumbPosition)"></span>
+    <span class="podlove-player--progress-track" :style="trackStyle(theme, thumbPosition)"></span>
   </div>
 
 </template>
@@ -26,17 +26,18 @@
 
   const bufferStyle = (theme, buffer = 0, duration = 1) => ({
     width: relativePosition(buffer, duration),
-    'background-color': color(theme.tertiary ? theme.primary : theme.secondary).fade(0.75)
+    'background-color': color(theme.player.progress.bar).fade(0.75)
   })
 
   const thumbStyle = (theme, position) => ({
       left: position,
-      'background-color': theme.tertiary ? theme.primary : theme.secondary
+      'background-color': theme.player.progress.thumb,
+      'border-color': theme.player.progress.border
   })
 
   const trackStyle = (theme, position) => ({
     width: position,
-    'background-color': theme.tertiary ? theme.primary : theme.secondary
+    'background-color': theme.player.progress.bar
   })
 
   export default {
@@ -117,6 +118,7 @@
   .podlove-player--progress-thumb {
     position: absolute;
     top: 0;
+    border: 1px solid;
     margin-top: -5px;
     height: 14px;
     width: 4px;

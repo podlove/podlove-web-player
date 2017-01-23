@@ -1,7 +1,7 @@
 <template>
   <div class="podlove-player--timer" :class="playstate" :style="timerStyle(theme)">
     <span class="podlove-player--timer--current">{{secondsToTime(playtime)}}</span>
-    <span class="podlove-player--timer--chapter" v-if="currentChapterIndex(chapters) > -1">{{chapterTitle(chapters)}}</span>
+    <span class="podlove-player--timer--chapter" :style="chapterStyle(theme)" v-if="currentChapterIndex(chapters) > -1">{{chapterTitle(chapters)}}</span>
     <span class="podlove-player--timer--duration">{{secondsToTime(duration)}}</span>
   </div>
 </template>
@@ -13,7 +13,11 @@ import { secondsToTime } from 'utils/time'
 import { currentChapter, currentChapterIndex } from 'utils/chapters'
 
 const timerStyle = theme => ({
-  color: theme.tertiary ? theme.tertiary : theme.secondary
+  color: theme.player.timer.text
+})
+
+const chapterStyle = theme => ({
+  color: theme.player.timer.chapter
 })
 
 const chapterTitle = chapters => {
@@ -35,6 +39,7 @@ export default {
   methods: {
     secondsToTime,
     timerStyle,
+    chapterStyle,
     chapterTitle,
     currentChapterIndex
   }

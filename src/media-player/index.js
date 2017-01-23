@@ -13,7 +13,7 @@ import buffer from './buffer'
 */
 let ticker
 
-export default (audio = [], {setPlaytime, setBufferState, setDuration, onPlay, onPause, onStop}) => {
+export default (audio = [], {setPlaytime, setBufferState, setDuration, onPlay, onPause, onStop, onLoad}) => {
   const player = new Howl({
     src: audio,
     html5: true,
@@ -23,6 +23,7 @@ export default (audio = [], {setPlaytime, setBufferState, setDuration, onPlay, o
   let audioNode
 
   player.once('load', () => {
+    console.log('loaded')
     // No api sugar for the audio node :/
     audioNode = get(player, ['_sounds', 0, '_node'])
     setDuration(player.duration())
@@ -30,6 +31,7 @@ export default (audio = [], {setPlaytime, setBufferState, setDuration, onPlay, o
 
   player.on('play', onPlay)
 
+  // Playtime
   player.on('play', () => {
     ticker = setInterval(() => {
       setPlaytime(player.seek())
