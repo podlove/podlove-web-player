@@ -121,7 +121,7 @@
     border: 1px solid;
     margin-top: -5px;
     height: 14px;
-    width: 4px;
+    width: 6px;
     pointer-events: none;
   }
 
