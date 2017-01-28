@@ -46,6 +46,10 @@ const stopEvent = () => ({
   type: 'STOP'
 })
 
+const toggleTimerMode = () => ({
+  type: 'TOGGLE_TIMERMODE'
+})
+
 export {
   setPlaytime,
   updatePlaytime,
@@ -57,5 +61,6 @@ export {
   pauseEvent,
   stopEvent,
   restart,
-  idle
+  idle,
+  toggleTimerMode
 }

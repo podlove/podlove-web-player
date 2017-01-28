@@ -50,9 +50,19 @@ const playstate = (state = 'start', action) => {
   }
 }
 
+const timerMode = (state = 'remaining', action) => {
+  switch (action.type) {
+    case 'TOGGLE_TIMERMODE':
+      return state === 'remaining' ? 'duration' : 'remaining'
+    default:
+      return state
+  }
+}
+
 export {
   playtime,
   duration,
   buffer,
-  playstate
+  playstate,
+  timerMode
 }

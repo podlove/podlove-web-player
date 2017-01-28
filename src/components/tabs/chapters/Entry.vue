@@ -2,7 +2,10 @@
   <div class="podlove-chapters--entry" :style="chapterStyle(theme, chapter)" @click="onChapterClick(chapter)">
     <span class="podlove-chapters--entry--index">{{index + 1}}</span>
     <span class="podlove-chapters--entry--title">{{chapter.title}}</span>
-    <span class="podlove-chapters--entry--duration">{{secondsToTime(chapter.end - chapter.start)}}</span>
+    <a class="podlove-chapters--entry--duration" href="javascript: void(0);">
+      <span v-if="timerMode === 'remaining' && chapter.active">{{secondsToTime(chapter.end - playtime < 0 ? 0 : chapter.end - playtime)}}</span>
+      <span v-else>{{secondsToTime(chapter.end - chapter.start)}}</span>
+    </a>
     <span class="podlove-chapters--entry--progress" :style="progressStyle(theme, chapter, playtime)"></span>
   </div>
 </template>
@@ -44,9 +47,10 @@
   export default {
     data() {
       return {
-        theme: this.$select('theme'),
-        chapters: this.$select('chapters'),
-        playtime: this.$select('playtime')
+        theme:      this.$select('theme'),
+        chapters:   this.$select('chapters'),
+        playtime:   this.$select('playtime'),
+        timerMode:  this.$select('timerMode')
       }
     },
     methods: {

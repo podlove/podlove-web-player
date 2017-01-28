@@ -2,17 +2,25 @@
   <div class="podlove-player--timer" :class="playstate" :style="timerStyle(theme)">
     <span class="podlove-player--timer--current">{{secondsToTime(playtime)}}</span>
     <CurrentChapter class="podlove-player--timer--chapter" />
-    <span class="podlove-player--timer--duration">{{secondsToTime(duration)}}</span>
+    <a href="javascript:void(0)" class="podlove-player--timer--duration" @click="toggleTimerMode">
+      <span v-if="timerMode === 'duration'">{{secondsToTime(duration)}}</span>
+      <span v-else>{{secondsToTime(duration - playtime)}}</span>
+    </a>
   </div>
 </template>
 
 <script>
+import store from 'store';
 import { secondsToTime } from 'utils/time'
 import CurrentChapter from './chapters/Current.vue'
 
 const timerStyle = theme => ({
   color: theme.player.timer.text
 })
+
+const toggleTimerMode = () => {
+  store.dispatch(store.actions.toggleTimerMode())
+}
 
 export default {
   data() {
@@ -21,12 +29,14 @@ export default {
       duration:   this.$select('duration'),
       playstate:  this.$select('playstate'),
       theme:      this.$select('theme'),
-      chapters:   this.$select('chapters')
+      chapters:   this.$select('chapters'),
+      timerMode:  this.$select('timerMode')
     }
   },
   methods: {
     secondsToTime,
-    timerStyle
+    timerStyle,
+    toggleTimerMode
   },
   components: {
     CurrentChapter,
