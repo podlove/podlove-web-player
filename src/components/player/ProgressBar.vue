@@ -4,8 +4,8 @@
       type="range"
       min="0" :max="interpolate(duration)" step="0.1"
       :value="interpolate(playtime)"
-       v-on:change="onChange"
-       v-on:input="onInput"
+      v-on:change="onChange"
+      v-on:input="onInput"
     />
     <span class="podlove-player--progress-range"></span>
     <span class="podlove-player--progress-buffer" :style="bufferStyle(theme, buffer, duration)"></span>
@@ -33,9 +33,9 @@
   })
 
   const thumbStyle = (theme, position) => ({
-      left: position,
-      'background-color': theme.player.progress.thumb,
-      'border-color': theme.player.progress.border
+    left: position,
+    'background-color': theme.player.progress.thumb,
+    'border-color': theme.player.progress.border
   })
 
   const trackStyle = (theme, position) => ({

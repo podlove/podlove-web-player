@@ -1,13 +1,19 @@
 <template>
-  <span :style="chapterStyle(theme)" v-if="currentChapterIndex(chapters) > -1">{{chapterTitle(chapters)}}</span>
+  <span
+    class="podlove-player--timer--chapter-title"
+    :style="chapterStyle(theme)"
+    v-if="currentChapterIndex(chapters) > -1">
+      {{chapterTitle(chapters)}}
+  </span>
 </template>
 
 <script>
+  import color from 'color'
   import get from 'lodash/get'
   import { currentChapter, currentChapterIndex } from 'utils/chapters'
 
   const chapterStyle = theme => ({
-    color: theme.player.timer.chapter
+    color: color(theme.player.timer.chapter).fade(0.5)
   })
 
   const chapterTitle = chapters => {
@@ -30,4 +36,13 @@
   }
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+  .podlove-player--timer--chapter-title {
+    width: 100%;
+    text-align: center;
+    font-style: italic;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+</style>

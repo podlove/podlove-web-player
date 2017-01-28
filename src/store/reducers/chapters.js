@@ -37,7 +37,6 @@ const chapters = (state = [], action) => {
   }
 }
 
-
 export {
   chapters
 }
