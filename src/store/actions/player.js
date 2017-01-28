@@ -50,6 +50,10 @@ const toggleTimerMode = () => ({
   type: 'TOGGLE_TIMERMODE'
 })
 
+const loading = () => ({
+  type: 'LOADING'
+})
+
 export {
   setPlaytime,
   updatePlaytime,
@@ -62,5 +66,6 @@ export {
   stopEvent,
   restart,
   idle,
-  toggleTimerMode
+  toggleTimerMode,
+  loading
 }

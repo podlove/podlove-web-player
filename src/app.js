@@ -23,7 +23,8 @@ const media = mediaPlayer(meta.audio, {
   setDuration: duration => store.dispatch(store.actions.setDuration(duration)),
   onPlay: () => store.dispatch(store.actions.playEvent()),
   onPause: () => store.dispatch(store.actions.pauseEvent()),
-  onStop: () => store.dispatch(store.actions.stopEvent())
+  onStop: () => store.dispatch(store.actions.stopEvent()),
+  onLoad: () => store.dispatch(store.actions.loading())
 })
 
 effects.registerMediaEffects(media)

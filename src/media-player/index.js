@@ -23,10 +23,10 @@ export default (audio = [], {setPlaytime, setBufferState, setDuration, onPlay, o
   let audioNode
 
   player.once('load', () => {
-    console.log('loaded')
     // No api sugar for the audio node :/
     audioNode = get(player, ['_sounds', 0, '_node'])
     setDuration(player.duration())
+    // onLoad()
   })
 
   player.on('play', onPlay)
@@ -48,6 +48,19 @@ export default (audio = [], {setPlaytime, setBufferState, setDuration, onPlay, o
     clearInterval(ticker)
     onStop()
   })
+
+  // Hower doesn't have an "start loading" event, so this is a monkey patch :/
+  // Maybe this could be a useful plugin
+  const howlerPlay = player.play.bind(player)
+  let initialPlay = false
+
+  player.play = (sprite, internal) => {
+    if (!initialPlay) {
+      onLoad()
+    }
+
+    howlerPlay(sprite, internal)
+  }
 
   return player
 }

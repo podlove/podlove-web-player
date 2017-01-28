@@ -35,16 +35,14 @@ const playstate = (state = 'start', action) => {
   switch (action.type) {
     case 'PLAY':
       return 'playing'
-    case 'UI_PLAY':
-      return 'playing'
     case 'PAUSE':
-      return 'pause'
-    case 'UI_PAUSE':
       return 'pause'
     case 'STOP':
       return 'end'
     case 'IDLE':
       return 'idle'
+    case 'LOADING':
+      return 'loading'
     default:
       return state
   }
