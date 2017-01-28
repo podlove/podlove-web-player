@@ -3,13 +3,23 @@
     <ul class="podlove-tabs--tab-header" :style="headerStyle(theme)">
       <li class="podlove-tabs--tab-header--element" :style="tabStyle(theme, tabs.chapters)" :class="{active: tabs.chapters}">
         <a href="javascript:void(0);" @click.prevent="toggleTab('chapters')" class="podlove-tabs--tab-header--caption">
-        <ChaptersIcon class="podlove-tabs--tab-header--icon" :color="iconColor(theme, tabs.chapters)" />
-        <span class="podlove-tabs--tab-header--title">Kapitel</span>
+          <ChaptersIcon class="podlove-tabs--tab-header--icon" :color="iconColor(theme, tabs.chapters)" />
+          <span class="podlove-tabs--tab-header--title">Kapitel</span>
+        </a>
+      </li>
+      <li class="podlove-tabs--tab-header--element" :style="tabStyle(theme, tabs.settings)" :class="{active: tabs.settings}">
+        <a href="javascript:void(0);" @click.prevent="toggleTab('settings')" class="podlove-tabs--tab-header--caption">
+          <SettingsIcon class="podlove-tabs--tab-header--icon" :color="iconColor(theme, tabs.settings)" />
+          <span class="podlove-tabs--tab-header--title">Settings</span>
         </a>
       </li>
     </ul>
     <div class="podlove-tabs--tab-body" :class="{active: tabs.chapters}">
       <ChaptersTab />
+    </div>
+
+    <div class="podlove-tabs--tab-body" :class="{active: tabs.settings}">
+      <SettingsTab />
     </div>
   </div>
 </template>
@@ -19,8 +29,10 @@ import color from 'color'
 import store from 'store'
 
 import ChaptersIcon from '../icons/ChaptersIcon.vue'
+import SettingsIcon from '../icons/SettingsIcon.vue'
 
 import ChaptersTab from './chapters/Chapters.vue'
+import SettingsTab from './settings/Settings.vue'
 
 const containerStyle = theme => ({
   'background-color': theme.tabs.body.background
@@ -59,7 +71,9 @@ export default {
   },
   components: {
     ChaptersIcon,
-    ChaptersTab
+    ChaptersTab,
+    SettingsIcon,
+    SettingsTab
   }
 }
 </script>
