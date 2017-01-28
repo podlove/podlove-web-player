@@ -4,7 +4,7 @@
       <PlayIcon
         :color="theme.player.actions.icon"
         v-if="playstate === 'start' || playstate === 'idle' || playstate === 'end' || playstate === 'pause'"/>
-      <PauseIcon :color="theme.player.actions.icon" v-else />
+      <PauseIcon :color="theme.player.actions.icon" v-if="playstate === 'playing'" />
       <span v-if="playstate === 'start'" class="play-text" :style="textStyle(theme)">{{secondsToTime(duration)}}</span>
       <span v-if="playstate === 'idle'" class="play-text" :style="textStyle(theme)">{{secondsToTime(playtime)}}</span>
       <span v-if="playstate === 'end'" class="play-text" :style="textStyle(theme)">replay</span>
@@ -82,6 +82,11 @@
       width: ($dimension * 2) + $padding * 2;
     }
 
+    &.loading {
+      -webkit-animation: loading 1.2s infinite ease-in-out;
+      animation: loading 1.2s infinite ease-in-out;
+    }
+
     .play-icon {
       display: block;
       /* visually adjustment */
@@ -97,4 +102,25 @@
       text-transform: uppercase;
     }
   }
+
+  @-webkit-keyframes loading {
+  0% {
+    -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+            transform: perspective(120px) rotateX(0deg) rotateY(0deg); }
+  50% {
+    -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+            transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg); }
+  100% {
+    -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+            transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg); } }
+@keyframes loading {
+  0% {
+    -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+            transform: perspective(120px) rotateX(0deg) rotateY(0deg); }
+  50% {
+    -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+            transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg); }
+  100% {
+    -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+            transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg); } }
 </style>

@@ -54,7 +54,7 @@
       opacity: 0.5;
     }
 
-    &.start, &.idle, &.end {
+    &.start, &.idle, &.end, &.loading {
       opacity: 0;
     }
   }
