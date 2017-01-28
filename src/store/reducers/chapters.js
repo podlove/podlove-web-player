@@ -30,6 +30,7 @@ const chapters = (state = [], action) => {
       const chapters = get(action.payload, 'chapters', [])
       return chapters.reduce(parseChapters(action.payload.duration), [])
     case 'SET_PLAYTIME':
+    case 'UPDATE_PLAYTIME':
       return state.map(setActive(action.payload))
     default:
       return state

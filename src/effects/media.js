@@ -5,7 +5,7 @@ export default mediaElement => action => {
     case 'UI_PAUSE':
       return mediaElement.pause()
     case 'UI_RESTART':
-      mediaelement.seek(0)
+      mediaElement.seek(0)
       return mediaElement.play()
     case 'UPDATE_PLAYTIME':
       return mediaElement.seek(action.payload)

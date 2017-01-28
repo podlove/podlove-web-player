@@ -8,7 +8,7 @@
 
 <script>
 import { secondsToTime } from 'utils/time'
-import CurrentChapter from './chapters/CurrentChapter.vue'
+import CurrentChapter from './chapters/Current.vue'
 
 const timerStyle = theme => ({
   color: theme.player.timer.text
@@ -29,7 +29,7 @@ export default {
     timerStyle
   },
   components: {
-    CurrentChapter
+    CurrentChapter,
   }
 }
 </script>

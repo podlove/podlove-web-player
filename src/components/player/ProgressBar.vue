@@ -9,8 +9,9 @@
     />
     <span class="podlove-player--progress-range"></span>
     <span class="podlove-player--progress-buffer" :style="bufferStyle(theme, buffer, duration)"></span>
-    <span class="podlove-player--progress-thumb" :style="thumbStyle(theme, thumbPosition)"></span>
     <span class="podlove-player--progress-track" :style="trackStyle(theme, thumbPosition)"></span>
+    <ChaptersIndicator />
+    <span class="podlove-player--progress-thumb" :style="thumbStyle(theme, thumbPosition)"></span>
   </div>
 
 </template>
@@ -18,6 +19,8 @@
 <script>
   import store from 'store'
   import color from 'color'
+
+  import ChaptersIndicator from './chapters/Indicator.vue'
 
   const interpolate = (num = 0) => Math.round(num * 100) / 100
 
@@ -62,11 +65,15 @@
       },
       onInput (event) {
         this.thumbPosition = relativePosition(interpolate(event.target.value), this.duration)
+        store.dispatch(store.actions.updatePlaytime(event.target.value))
       },
       interpolate,
       bufferStyle,
       thumbStyle,
       trackStyle
+    },
+    components: {
+      ChaptersIndicator
     }
   }
 </script>
