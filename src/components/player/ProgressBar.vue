@@ -26,7 +26,7 @@
 
   const bufferStyle = (theme, buffer = 0, duration = 1) => ({
     width: relativePosition(buffer, duration),
-    'background-color': color(theme.player.progress.bar).fade(0.75)
+    'background-color': color(theme.player.progress.bar).fade(0.5)
   })
 
   const thumbStyle = (theme, position) => ({
