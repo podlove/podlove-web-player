@@ -24,13 +24,15 @@ export default {
 </script>
 
 <style lang="scss">
+$bubbles-height: 12px;
+
 .podlove-player--loading-indicator {
   width: 65px;
   text-align: center;
 
   .loading-bubble {
-    width: 15px;
-    height: 15px;
+    width: $bubbles-height;
+    height: $bubbles-height;
     border-radius: 100%;
     display: inline-block;
     animation: loading 1.4s ease-in-out 0s infinite both;
