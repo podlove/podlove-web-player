@@ -49,10 +49,14 @@ export default (audio = [], {setPlaytime, setBufferState, setDuration, onPlay, o
     onStop()
   })
 
-  // Hower doesn't have an "start loading" event, so this is a monkey patch :/
+  // Howler doesn't have an "start loading" event, so this is a monkey patch :/
   // Maybe this could be a useful plugin
   const howlerPlay = player.play.bind(player)
   let initialPlay = false
+
+  player.once('play', () => {
+    initialPlay = true
+  })
 
   player.play = (sprite, internal) => {
     if (!initialPlay) {
