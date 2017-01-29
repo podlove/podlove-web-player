@@ -8,6 +8,7 @@
       <span v-if="playstate === 'start'" class="play-text" :style="textStyle(theme)">{{secondsToTime(duration)}}</span>
       <span v-if="playstate === 'idle'" class="play-text" :style="textStyle(theme)">{{secondsToTime(playtime)}}</span>
       <span v-if="playstate === 'end'" class="play-text" :style="textStyle(theme)">replay</span>
+      <LoadingIndicator v-if="playstate === 'loading'" />
     </span>
   </button>
 </template>
@@ -18,6 +19,7 @@
 
   import PlayIcon from '../../icons/PlayIcon.vue'
   import PauseIcon from '../../icons/PauseIcon.vue'
+  import LoadingIndicator from './LoadingIndicator.vue'
 
   const wrapperStyle = theme => ({
     'background-color': theme.player.actions.background
@@ -30,7 +32,8 @@
   export default {
     components: {
       PlayIcon,
-      PauseIcon
+      PauseIcon,
+      LoadingIndicator
     },
     data() {
       return {
@@ -77,14 +80,9 @@
     border-radius: $dimension / 2;
     transition: width $animation-duration;
 
-    &.start, &.idle, &.end {
+    &.start, &.idle, &.end, &.loading {
       padding: $padding;
       width: ($dimension * 2) + $padding * 2;
-    }
-
-    &.loading {
-      -webkit-animation: loading 1.2s infinite ease-in-out;
-      animation: loading 1.2s infinite ease-in-out;
     }
 
     .play-icon {
@@ -102,21 +100,4 @@
       text-transform: uppercase;
     }
   }
-
-  @-webkit-keyframes loading {
-  0% {
-    -webkit-transform: scale(0);
-            transform: scale(0); }
-  100% {
-    -webkit-transform: scale(1);
-            transform: scale(1);
-    opacity: 0; } }
-@keyframes loading {
-  0% {
-    -webkit-transform: scale(0);
-            transform: scale(0); }
-  100% {
-    -webkit-transform: scale(1);
-            transform: scale(1);
-    opacity: 0; } }
 </style>
