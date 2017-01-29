@@ -2,9 +2,9 @@
   <div class="podlove-player--timer" :class="playstate" :style="timerStyle(theme)">
     <span class="podlove-player--timer--current">{{secondsToTime(playtime)}}</span>
     <CurrentChapter class="podlove-player--timer--chapter" />
-    <a href="javascript:void(0)" class="podlove-player--timer--duration" @click="toggleTimerMode">
+    <a href="javascript:void(0)" class="podlove-player--timer--time" @click="toggleTimerMode">
       <span v-if="timerMode === 'duration'">{{secondsToTime(duration)}}</span>
-      <span v-else>{{secondsToTime(duration - playtime)}}</span>
+      <span v-else>-{{secondsToTime(duration - playtime)}}</span>
     </a>
   </div>
 </template>
@@ -46,6 +46,7 @@ export default {
 
 <style lang="scss">
   @import 'variables';
+  @import 'font';
 
   // Timer
   .podlove-player--timer {
@@ -65,8 +66,10 @@ export default {
   }
 
   .podlove-player--timer--current {
+    display: block;
     text-align: left;
     width: 20%;
+    @include font-monospace();
   }
 
   .podlove-player--timer--chapter {
@@ -74,9 +77,11 @@ export default {
     width: 80%;
   }
 
-  .podlove-player--timer--duration {
+  .podlove-player--timer--time {
+    display: block;
     text-align: right;
     width: 20%;
+    @include font-monospace();
   }
 
 </style>

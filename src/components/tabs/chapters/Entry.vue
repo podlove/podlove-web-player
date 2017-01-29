@@ -2,8 +2,8 @@
   <div class="podlove-chapters--entry" :style="chapterStyle(theme, chapter)" @click="onChapterClick(chapter)">
     <span class="podlove-chapters--entry--index">{{index + 1}}</span>
     <span class="podlove-chapters--entry--title">{{chapter.title}}</span>
-    <a class="podlove-chapters--entry--duration" href="javascript: void(0);">
-      <span v-if="timerMode === 'remaining' && chapter.active">{{secondsToTime(chapter.end - playtime < 0 ? 0 : chapter.end - playtime)}}</span>
+    <a class="podlove-chapters--entry--timer" href="javascript: void(0);">
+      <span v-if="timerMode === 'remaining' && chapter.active">-{{secondsToTime(chapter.end - playtime < 0 ? 0 : chapter.end - playtime)}}</span>
       <span v-else>{{secondsToTime(chapter.end - chapter.start)}}</span>
     </a>
     <span class="podlove-chapters--entry--progress" :style="progressStyle(theme, chapter, playtime)"></span>
@@ -65,6 +65,7 @@
 
 <style lang="scss">
   @import 'variables';
+  @import 'font';
 
   .podlove-chapters--entry {
     width: 100%;
@@ -85,9 +86,10 @@
     width: calc(100% - 30px - 30px)
   }
 
-  .podlove-chapters--entry--duration {
+  .podlove-chapters--entry--timer {
     display: block;
     text-align: right;
+    @include font-monospace();
   }
 
   .podlove-chapters--entry--progress {
