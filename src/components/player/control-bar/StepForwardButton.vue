@@ -1,5 +1,5 @@
 <template>
-  <button class="podlove-player--button podlove-player--player-control" :class="playstate" @click="onButtonClick" :disabled="(playtime + 30) < 0">
+  <button class="podlove-player--button podlove-player--player-control" :class="playstate" @click="onButtonClick" :disabled="(playtime + 30) > duration">
     <Icon
       :primary-color="theme.player.actions.icon"
       :secondary-color="theme.player.actions.background"
@@ -18,6 +18,7 @@
     data () {
       return {
         playtime: this.$select('playtime'),
+        duration: this.$select('duration'),
         playstate: this.$select('playstate'),
         theme: this.$select('theme')
       }

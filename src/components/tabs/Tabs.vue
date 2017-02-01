@@ -86,7 +86,7 @@ export default {
     padding-bottom: $padding;
     background: $tabs-background;
 
-    &.start, &.idle, &.end {
+    &.start, &.idle {
       overflow: hidden;
       height: 0;
       padding-bottom: 0;

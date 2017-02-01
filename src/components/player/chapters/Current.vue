@@ -41,7 +41,6 @@
     width: 100%;
     text-align: center;
     font-style: italic;
-    font-weigth: 100;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
