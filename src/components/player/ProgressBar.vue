@@ -112,6 +112,7 @@
     top: 2px;
     height: 2px;
     background-color: rgba($accent-color, 0.25);
+    pointer-events: none;
   }
 
   .podlove-player--progress-track {
@@ -120,6 +121,7 @@
     left: 0;
     top: 2px;
     height: 2px;
+    pointer-events: none;
   }
 
   .podlove-player--progress-thumb {
@@ -139,5 +141,6 @@
     height: 2px;
     top: 2px;
     left: 0;
+    pointer-events: none;
   }
 </style>
