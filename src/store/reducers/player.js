@@ -33,7 +33,7 @@ const buffer = (state = 0, action) => {
 
 const playstate = (state = 'start', action) => {
   switch (action.type) {
-    // User scrubs after end of playtime
+    // Enable scrubs in end state
     case 'UPDATE_PLAYTIME':
       return state === 'end' ? 'pause' : state
     case 'PLAY':

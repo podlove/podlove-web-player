@@ -5,7 +5,8 @@ const path = require('path')
 const config = {
   entry: {
     app: path.resolve(__dirname, 'app.js'),
-    embed: path.resolve(__dirname, 'embed.js')
+    embed: path.resolve(__dirname, 'embed.js'),
+    share: path.resolve(__dirname, 'share.js')
   },
   output: {
     path: path.resolve('dist'),
@@ -19,7 +20,7 @@ const config = {
         loaders: {
           js: 'babel-loader',
           scss: 'vue-style-loader!css-loader!sass-loader',
-          sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax',
+          sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax'
         }
       }
     }, {

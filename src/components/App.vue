@@ -7,7 +7,7 @@
 </template>
 
 <script>
-  import PodloveHeader from './player/Header.vue'
+  import PodloveHeader from './header/Header.vue'
   import PodlovePlayer from './player/Player.vue'
   import PodloveTabs from './tabs/Tabs.vue'
 
