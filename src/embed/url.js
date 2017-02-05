@@ -1,7 +1,7 @@
 import request from 'superagent'
 import queryString from 'query-string'
 
-import boot from './boot'
+import app from '../app'
 
 const params = queryString.parse(window.location.search)
 
@@ -10,4 +10,4 @@ request
   .query({ format: 'json' })
   .set('Accept', 'application/json')
   .then(res => res.body)
-  .then(boot)
+  .then(app)

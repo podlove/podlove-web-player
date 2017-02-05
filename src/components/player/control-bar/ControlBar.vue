@@ -33,30 +33,10 @@
 
   .podlove-player--control-bar {
     width: 100%;
-    margin-bottom: $margin;
 
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-
-  .podlove-player--button {
-    cursor: pointer;
-
-    background: transparent;
-
-    border-radius: 0;
-    border: 0;
-    opacity: 1;
-    transition: opacity $animation-duration;
-
-    &[disabled] {
-      opacity: 0.5;
-    }
-
-    &.start, &.idle, &.end, &.loading {
-      opacity: 0;
-    }
   }
 
   .podlove-player--player-control {

@@ -60,7 +60,7 @@ const generateConfig = config => {
 window.podlovePlayer = (selector, config) => {
   const anchor = findNode(selector)
 
-  const logic = tag('script', '', {type: 'text/javascript', src: './app.bundle.js'})
+  const logic = tag('script', '', {type: 'text/javascript', src: './window.bundle.js'})
   const dynamicResizer = tag('script', iframeResizerContentWindow)
   const playerEntry = tag('PodlovePlayer')
 

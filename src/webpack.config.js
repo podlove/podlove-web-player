@@ -4,9 +4,9 @@ const path = require('path')
 
 const config = {
   entry: {
-    app: path.resolve(__dirname, 'app.js'),
-    embed: path.resolve(__dirname, 'embed.js'),
-    share: path.resolve(__dirname, 'share.js')
+    embed: path.resolve(__dirname, 'embed', 'embed.js'),
+    window: path.resolve(__dirname, 'embed', 'window.js'),
+    url: path.resolve(__dirname, 'embed', 'url.js')
   },
   output: {
     path: path.resolve('dist'),
@@ -41,7 +41,9 @@ const config = {
     alias: {
       'vue$': 'vue/dist/vue.common.js',
       store: path.resolve(__dirname, './store/index.js'),
-      utils: path.resolve(__dirname, 'utils')
+      utils: path.resolve(__dirname, 'utils'),
+      shared: path.resolve(__dirname, 'components', 'shared'),
+      icons: path.resolve(__dirname, 'components', 'icons')
     }
   },
   devServer: {

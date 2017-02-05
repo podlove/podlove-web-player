@@ -12,7 +12,7 @@ const tabs = (state = INITIAL, action) => {
       })
 
     default:
-      return state;
+      return state
   }
 }
 

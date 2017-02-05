@@ -60,7 +60,7 @@ export default {
     height: 1.2rem;
     transition: height $animation-duration;
 
-    &.start, &.idle, &.end {
+    &.start, &.idle {
       height: 0;
     }
   }
