@@ -84,9 +84,9 @@ export default {
   .podlove-tabs {
     width: 100%;
     padding-bottom: $padding;
-    background: $tabs-background;
+    background: $background;
 
-    &.start, &.idle, &.end {
+    &.start, &.idle {
       overflow: hidden;
       height: 0;
       padding-bottom: 0;
@@ -117,7 +117,7 @@ export default {
     transition: all $animation-duration;
 
     &.active {
-      background-color: $tabs-background;
+      background-color: $background;
     }
   }
 
@@ -135,7 +135,7 @@ export default {
   .podlove-tabs--tab-body {
     max-height: 0;
     overflow: hidden;
-    background-color: $tabs-background;
+    background-color: $background;
 
     &.active {
       max-height: $tabs-body-max-height;

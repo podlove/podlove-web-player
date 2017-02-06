@@ -1,21 +1,23 @@
 <template>
-  <button class="podlove-player--button podlove-player--player-control podlove-player--chapter-control" :class="playstate" @click="onButtonClick" :disabled="isDisabled(chapters)">
-    <Icon :color="theme.player.actions.background" />
-  </button>
+  <PodloveButton class="podlove-player--button podlove-player--player-control podlove-player--chapter-control" :class="playstate" :click="onButtonClick" :disabled="isDisabled(chapters)">
+    <ChapterNextIcon :color="theme.player.actions.background" />
+  </PodloveButton>
 </template>
 
 <script>
   import { currentChapterIndex } from 'utils/chapters'
 
   import store from 'store'
-  import Icon from '../../icons/ChapterNextIcon.vue'
+  import PodloveButton from 'shared/Button.vue'
+  import ChapterNextIcon from 'icons/ChapterNextIcon.vue'
 
   const isDisabled = chapters =>
     currentChapterIndex(chapters) === (chapters.length - 1)
 
   export default {
     components: {
-      Icon
+      PodloveButton,
+      ChapterNextIcon
     },
     data () {
       return {

@@ -39,6 +39,7 @@
     width: 2px;
     height: 2px;
     top: 2px;
+    pointer-events: none;
 
     &.last {
       width: 0;

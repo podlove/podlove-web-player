@@ -1,5 +1,5 @@
 <template>
-  <button class="podlove-player--button" @click="onButtonClick">
+  <PodloveButton :click="onButtonClick">
     <span class="podlove-player--play-icon" :class="playstate" :style="wrapperStyle(theme)">
       <PlayIcon
         :color="theme.player.actions.icon"
@@ -10,15 +10,16 @@
       <span v-if="playstate === 'end'" class="play-text" :style="textStyle(theme)">replay</span>
       <LoadingIndicator v-if="playstate === 'loading'" />
     </span>
-  </button>
+  </PodloveButton>
 </template>
 
 <script>
   import store from 'store'
   import { secondsToTime } from 'utils/time'
 
-  import PlayIcon from '../../icons/PlayIcon.vue'
-  import PauseIcon from '../../icons/PauseIcon.vue'
+  import PlayIcon from 'icons/PlayIcon.vue'
+  import PauseIcon from 'icons/PauseIcon.vue'
+  import PodloveButton from 'shared/Button.vue'
   import LoadingIndicator from './LoadingIndicator.vue'
 
   const wrapperStyle = theme => ({
@@ -31,6 +32,7 @@
 
   export default {
     components: {
+      PodloveButton,
       PlayIcon,
       PauseIcon,
       LoadingIndicator

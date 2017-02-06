@@ -57,10 +57,10 @@ export default {
     font-weight: 100;
     font-size: 0.8rem;
     overflow: hidden;
-    height: 1rem;
+    height: 1.2rem;
     transition: height $animation-duration;
 
-    &.start, &.idle, &.end {
+    &.start, &.idle {
       height: 0;
     }
   }

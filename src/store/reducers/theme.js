@@ -4,9 +4,12 @@ import color from 'color'
 const themeColors = (colors = {}) => {
   const primary = get(colors, 'primary', '#2B8AC6')
   const secondary = get(colors, 'secondary')
+
   const light = '#fff'
   const dark = '#000'
   const grey = '#333'
+  const overlay = '#32424C'
+
   const negative = color(primary).dark()
 
   return {
@@ -44,6 +47,11 @@ const themeColors = (colors = {}) => {
         textActive: negative ? primary : dark,
         progress: secondary ? secondary : negative ? primary : dark
       }
+    },
+    overlay: {
+      actions: overlay,
+      color: overlay,
+      button: negative ? light : dark
     }
   }
 }
