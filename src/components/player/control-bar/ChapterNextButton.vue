@@ -1,5 +1,5 @@
 <template>
-  <PodloveButton class="podlove-player--button podlove-player--player-control podlove-player--chapter-control" :class="playstate" :click="onButtonClick" :disabled="isDisabled(chapters)">
+  <PodloveButton class="podlove-player--player-control podlove-player--chapter-control" :class="playstate" :click="onButtonClick" :disabled="isDisabled(chapters)">
     <ChapterNextIcon :color="theme.player.actions.background" />
   </PodloveButton>
 </template>

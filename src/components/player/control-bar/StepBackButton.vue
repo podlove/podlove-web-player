@@ -1,5 +1,5 @@
 <template>
-  <PodloveButton class="podlove-player--button podlove-player--player-control" :class="playstate" :click="onButtonClick" :disabled="(playtime - 30) < 0">
+  <PodloveButton class="podlove-player--player-control" :class="playstate" :click="onButtonClick" :disabled="(playtime - 30) < 0">
     <StepBackIcon
       :primary-color="theme.player.actions.icon"
       :secondary-color="theme.player.actions.background"
