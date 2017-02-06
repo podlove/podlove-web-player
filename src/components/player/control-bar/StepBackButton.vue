@@ -1,5 +1,5 @@
 <template>
-  <PodloveButton class="podlove-player--player-control" :class="playstate" :click="onButtonClick" :disabled="(playtime - 30) < 0">
+  <PodloveButton class="podlove-player--player-control" :class="playstate" :click="onButtonClick" :disabled="isDisabled(playtime)">
     <StepBackIcon
       :primary-color="theme.player.actions.icon"
       :secondary-color="theme.player.actions.background"
@@ -27,6 +27,9 @@
     methods: {
       onButtonClick () {
         store.dispatch(store.actions.updatePlaytime(this.$select('playtime') - 30))
+      },
+      isDisabled (playtime) {
+        return (Math.round(playtime, 1) - 30) < 0
       }
     }
   }
