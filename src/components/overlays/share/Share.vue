@@ -11,11 +11,11 @@
           <div class="podlove-player--embed--config--time">
           </div>
           <div class="podlove-player--embed--config--size">
-            <button class="podlove-player--embed--size-button" @click="setDimensions(250, 440)" :class="{active: activeSizeButton(share, 250, 440)}">xs</button>
-            <button class="podlove-player--embed--size-button" @click="setDimensions(320, 440)" :class="{active: activeSizeButton(share, 320, 440)}">s</button>
-            <button class="podlove-player--embed--size-button" @click="setDimensions(375, 440)" :class="{active: activeSizeButton(share, 375, 440)}">m</button>
-            <button class="podlove-player--embed--size-button" @click="setDimensions(600, 320)" :class="{active: activeSizeButton(share, 600, 320)}">l</button>
-            <button class="podlove-player--embed--size-button" @click="setDimensions(768, 320)" :class="{active: activeSizeButton(share, 768, 320)}">xl</button>
+            <button class="podlove-player--embed--size-button" @click="setDimensions(250, 440)" :class="{active: activeSizeButton(share, 250, 440)}">250x440</button>
+            <button class="podlove-player--embed--size-button" @click="setDimensions(320, 440)" :class="{active: activeSizeButton(share, 320, 440)}">320x440</button>
+            <button class="podlove-player--embed--size-button" @click="setDimensions(375, 440)" :class="{active: activeSizeButton(share, 375, 440)}">375x440</button>
+            <button class="podlove-player--embed--size-button" @click="setDimensions(600, 320)" :class="{active: activeSizeButton(share, 600, 320)}">600x320</button>
+            <button class="podlove-player--embed--size-button" @click="setDimensions(768, 320)" :class="{active: activeSizeButton(share, 768, 320)}">768x320</button>
           </div>
         </div>
       </div>
@@ -68,7 +68,7 @@
 
   $embed-width: 40px;
   $embed-height: 35px;
-  $size-button-width: 30px;
+  $size-button-width: 80px;
 
   .podlove-player--embed--title {
     color: $overlay-color;
