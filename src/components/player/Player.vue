@@ -1,5 +1,5 @@
 <template>
-  <div class="podlove-player" :class="playstate" :style="playerStyle(theme)">
+  <div class="podlove-player" :class="playstate">
     <div class="podlove-player--control">
       <div class="podlove-player--download"></div>
       <ControlBar class="podlove-player--control-bar"/>
@@ -17,19 +17,11 @@
 
   import ShareButton from '../overlays/share/ShareButton.vue'
 
-  const playerStyle = theme => ({
-    'background-color': theme.player.background
-  })
-
   export default {
     data() {
       return {
-        playstate: this.$select('playstate'),
-        theme: this.$select('theme')
+        playstate: this.$select('playstate')
       }
-    },
-    methods: {
-      playerStyle
     },
     components: {
       ShareButton,
@@ -46,6 +38,7 @@
   .podlove-player {
     width: 100%;
     padding: $padding;
+    height: $player-height;
 
     display: flex;
     align-items: center;
@@ -74,6 +67,9 @@
 
     .podlove-player--share {
       align-items: right;
+      @media screen and (max-width: $width-l) {
+        display: none;
+      }
     }
 
     .podlove-player--control-bar {

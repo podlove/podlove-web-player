@@ -8,7 +8,6 @@ const themeColors = (colors = {}) => {
   const light = '#fff'
   const dark = '#000'
   const grey = '#333'
-  const overlay = '#32424C'
 
   const negative = color(primary).dark()
 
@@ -49,8 +48,6 @@ const themeColors = (colors = {}) => {
       }
     },
     overlay: {
-      actions: overlay,
-      color: overlay,
       button: negative ? light : dark
     }
   }

@@ -1,6 +1,12 @@
 import Vue from 'vue'
 import head from 'lodash/head'
 
+import clipboard from './directives/clipboard'
+
+Vue.directive(
+    'clipboard', clipboard
+)
+
 // Store
 import store from 'store'
 import * as effects from './effects'
