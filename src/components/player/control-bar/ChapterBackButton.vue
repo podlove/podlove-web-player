@@ -30,7 +30,7 @@
         const current = currentChapterIndex(chapters)
 
         let previous;
-                  console.log((playtime - chapters[current].start))
+
         switch (true) {
           case current <= 0:
             previous = chapters[0]
