@@ -3,8 +3,6 @@ import get from 'lodash/get'
 
 import buffer from './buffer'
 
-// console.log(new Howl())
-
 /*
 * Exposes Methods:
 * - play
@@ -13,7 +11,7 @@ import buffer from './buffer'
 */
 let ticker
 
-export default (audio = [], {setPlaytime, setBufferState, setDuration, onPlay, onPause, onStop, onLoad}) => {
+export default (audio = [], {playtime, setPlaytime, setBufferState, setDuration, onPlay, onPause, onStop, onLoad}) => {
   const player = new Howl({
     src: audio,
     html5: true,
@@ -26,6 +24,7 @@ export default (audio = [], {setPlaytime, setBufferState, setDuration, onPlay, o
     // No api sugar for the audio node :/
     audioNode = get(player, ['_sounds', 0, '_node'])
     setDuration(player.duration())
+    player.seek(playtime)
     // onLoad()
   })
 

@@ -8,7 +8,6 @@ const themeColors = (colors = {}) => {
   const light = '#fff'
   const dark = '#000'
   const grey = '#333'
-  const overlay = '#32424C'
 
   const negative = color(primary).dark()
 
@@ -49,8 +48,6 @@ const themeColors = (colors = {}) => {
       }
     },
     overlay: {
-      actions: overlay,
-      color: overlay,
       button: negative ? light : dark
     }
   }
@@ -58,7 +55,7 @@ const themeColors = (colors = {}) => {
 
 const theme = (state = {}, action) => {
   switch (action.type) {
-    case 'SET_META':
+    case 'INIT':
       return Object.assign({}, state, themeColors(get(action.payload, 'theme')))
     default:
       return state

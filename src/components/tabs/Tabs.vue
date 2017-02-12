@@ -1,16 +1,18 @@
 <template>
-  <div class="podlove-tabs" :class="playstate" :style="containerStyle(theme)">
+  <div class="podlove-tabs" :style="containerStyle(theme)" :class="mode">
     <ul class="podlove-tabs--tab-header" :style="headerStyle(theme)">
       <li class="podlove-tabs--tab-header--element" :style="tabStyle(theme, tabs.chapters)" :class="{active: tabs.chapters}">
         <a href="javascript:void(0);" @click.prevent="toggleTab('chapters')" class="podlove-tabs--tab-header--caption">
           <ChaptersIcon class="podlove-tabs--tab-header--icon" :color="iconColor(theme, tabs.chapters)" />
           <span class="podlove-tabs--tab-header--title">Kapitel</span>
+          <CloseIcon class="podlove-tabs--tab-header--close" :color="iconColor(theme, true)" v-if="tabs.chapters" />
         </a>
       </li>
       <li class="podlove-tabs--tab-header--element" :style="tabStyle(theme, tabs.settings)" :class="{active: tabs.settings}">
         <a href="javascript:void(0);" @click.prevent="toggleTab('settings')" class="podlove-tabs--tab-header--caption">
           <SettingsIcon class="podlove-tabs--tab-header--icon" :color="iconColor(theme, tabs.settings)" />
           <span class="podlove-tabs--tab-header--title">Settings</span>
+          <CloseIcon class="podlove-tabs--tab-header--close" :color="iconColor(theme, true)" v-if="tabs.settings" />
         </a>
       </li>
     </ul>
@@ -28,8 +30,9 @@
 import color from 'color'
 import store from 'store'
 
-import ChaptersIcon from '../icons/ChaptersIcon.vue'
-import SettingsIcon from '../icons/SettingsIcon.vue'
+import ChaptersIcon from 'icons/ChaptersIcon.vue'
+import SettingsIcon from 'icons/SettingsIcon.vue'
+import CloseIcon from 'icons/CloseIcon.vue'
 
 import ChaptersTab from './chapters/Chapters.vue'
 import SettingsTab from './settings/Settings.vue'
@@ -58,7 +61,8 @@ export default {
     return {
       playstate: this.$select('playstate'),
       theme: this.$select('theme'),
-      tabs: this.$select('tabs')
+      tabs: this.$select('tabs'),
+      mode: this.$select('mode')
     }
   },
   methods: {
@@ -73,7 +77,8 @@ export default {
     ChaptersIcon,
     ChaptersTab,
     SettingsIcon,
-    SettingsTab
+    SettingsTab,
+    CloseIcon
   }
 }
 </script>
@@ -83,14 +88,7 @@ export default {
 
   .podlove-tabs {
     width: 100%;
-    padding-bottom: $padding;
-    background: $background;
-
-    &.start, &.idle {
-      overflow: hidden;
-      height: 0;
-      padding-bottom: 0;
-    }
+    background: $background-color;
   }
 
   .podlove-tabs--tab-header {
@@ -117,7 +115,7 @@ export default {
     transition: all $animation-duration;
 
     &.active {
-      background-color: $background;
+      background-color: $background-color;
     }
   }
 
@@ -135,7 +133,7 @@ export default {
   .podlove-tabs--tab-body {
     max-height: 0;
     overflow: hidden;
-    background-color: $background;
+    background-color: $background-color;
 
     &.active {
       max-height: $tabs-body-max-height;
@@ -145,5 +143,36 @@ export default {
 
   .podlove-tabs--tab-header--icon {
     margin-right: $margin / 3;
+  }
+
+  .podlove-tabs--tab-header--close {
+    display: none;
+  }
+
+  // Share mode
+  .podlove-tabs.share {
+    .podlove-tabs--tab-header--element.active {
+      position: fixed;
+      top: 0;
+    }
+
+    .podlove-tabs--tab-body {
+      top: 100%;
+      position: fixed;
+      transition: top $animation-duration;
+    }
+
+    .podlove-tabs--tab-body.active {
+      top: $tabs-header-height;
+      width: 100%;
+      height: calc(100% - #{$tabs-header-height})
+    }
+
+    .podlove-tabs--tab-header--close {
+      display: block;
+      position: fixed;
+      top: $margin / 2;
+      right: $margin / 2;
+    }
   }
 </style>
