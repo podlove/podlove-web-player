@@ -55,7 +55,7 @@ const themeColors = (colors = {}) => {
 
 const theme = (state = {}, action) => {
   switch (action.type) {
-    case 'SET_META':
+    case 'INIT':
       return Object.assign({}, state, themeColors(get(action.payload, 'theme')))
     default:
       return state

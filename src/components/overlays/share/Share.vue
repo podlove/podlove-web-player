@@ -4,18 +4,22 @@
       <div class="podlove-player--embed">
         <h4 class="podlove-player--embed--title">Embed</h4>
         <div class="podlove-player--embed--dialog">
-          <input type="text" class="podlove-player--embed--input" disabled :value="clipboardContent(reference, share)" />
-          <button class="podlove-player--embed--copy-button" :data-clipboard-text="clipboardContent(reference, share)" v-clipboard>copy</button>
+          <input type="text" class="podlove-player--embed--input podlove-player--embed--copy" disabled :value="clipboardContent(reference, share, playtime)" />
+          <button class="podlove-player--embed--copy-button" :data-clipboard-text="clipboardContent(reference, share, playtime)" v-clipboard>copy</button>
         </div>
         <div class="podlove-player--embed--config">
           <div class="podlove-player--embed--config--time">
+            <input type="checkbox" class="podlove-player--embed--checkbox" v-model="share.customStart" v-on:change="toggleCustomStart()" />
+            <label class="podlove-player--embed--label">Start um:</label>
+            <input type="text" class="podlove-player--embed--input" :value="secondsToTime(share.customStarttime)" v-on:input="setCustomStarttime"/>
           </div>
           <div class="podlove-player--embed--config--size">
-            <button class="podlove-player--embed--size-button" @click="setDimensions(250, 440)" :class="{active: activeSizeButton(share, 250, 440)}">250x440</button>
-            <button class="podlove-player--embed--size-button" @click="setDimensions(320, 440)" :class="{active: activeSizeButton(share, 320, 440)}">320x440</button>
-            <button class="podlove-player--embed--size-button" @click="setDimensions(375, 440)" :class="{active: activeSizeButton(share, 375, 440)}">375x440</button>
-            <button class="podlove-player--embed--size-button" @click="setDimensions(600, 320)" :class="{active: activeSizeButton(share, 600, 320)}">600x320</button>
-            <button class="podlove-player--embed--size-button" @click="setDimensions(768, 320)" :class="{active: activeSizeButton(share, 768, 320)}">768x320</button>
+            <label class="podlove-player--embed--label">Playergröße:</label>
+            <select class="podlove-player--embed--input" v-model="share.dimensions" v-on:change="setDimensions(share.dimensions)">
+              <option v-for="option in sizeOptions" v-bind:value="option">
+                {{ option }}
+              </option>
+            </select>
           </div>
         </div>
       </div>
@@ -23,7 +27,12 @@
 </template>
 
 <script>
+  import get from 'lodash/get'
+  import debounce from 'lodash/debounce'
+
   import store from 'store'
+  import {secondsToTime, timeToSeconds} from 'utils/time'
+
   import PodloveOverlay from 'shared/Overlay.vue'
   import CopyIcon from 'icons/CopyIcon.vue'
 
@@ -31,23 +40,47 @@
     store.dispatch(store.actions.toggleShare())
   }
 
-  const clipboardContent = (reference, share) =>
-    `<iframe width="${share.width}" height="${share.height}" src="${reference.share}?episode=${reference.config}" frameborder="0" scrolling="no"></iframe>`
+  const clipboardContent = (reference, share, playtime) => {
+    const [width, height] = share.dimensions.split('x')
+    let time = share.customStart ? `&playtime=${secondsToTime(share.customStarttime)}` : ''
 
-  const setDimensions = (width, height) => {
-    store.dispatch(store.actions.setEmbedDimensions(width, height))
+    return `<iframe width="${width}" height="${height}" src="${reference.share}?episode=${reference.config}${time}" frameborder="0" scrolling="no"></iframe>`
   }
 
-  const activeSizeButton = (share, width, height) => {
-    return share.width === width && share.height === height
+  // Sharing
+
+  const setDimensions = dimensions => {
+    store.dispatch(store.actions.setEmbedDimensions(dimensions))
   }
+
+  const toggleCustomStart = () => {
+    store.dispatch(store.actions.toggleShareCustomStart())
+  }
+
+  const setCustomStarttime = debounce(input => {
+    const duration = get(store.store.getState(), 'duration')
+    let time = timeToSeconds(input.target.value)
+
+    if (!time) {
+      return
+    }
+
+    if (time > duration) {
+      time = duration
+    }
+
+    store.dispatch(store.actions.setCustomStarttime(time))
+  }, 1000)
 
   export default {
     data() {
       return {
         theme: this.$select('theme'),
         share: this.$select('share'),
-        reference: this.$select('reference')
+        reference: this.$select('reference'),
+        playtime: this.$select('playtime'),
+        duration: this.$select('duration'),
+        sizeOptions: ['250x440', '320x440', '375x440', '600x320', '768x320']
       }
     },
     components: {
@@ -57,8 +90,10 @@
     methods: {
       toggleShare,
       setDimensions,
-      activeSizeButton,
-      clipboardContent
+      clipboardContent,
+      secondsToTime,
+      toggleCustomStart,
+      setCustomStarttime
     }
   }
 </script>
@@ -82,16 +117,23 @@
   }
 
   .podlove-player--embed--input {
-    display: block;
-    width: calc(100% - #{$embed-width});
+    display: inline-block;
     resize: none;
-    padding: $padding / 2;
-    font-size: 1rem;
+    padding: $padding / 4;
+    font-size: 0.8rem;
     overflow: hidden;
     text-overflow: ellipsis;
     border: 1px solid $overlay-color;
-    height: $embed-height;
+    border-radius: 2px;
+    height: 100%;
+  }
+
+  .podlove-player--embed--copy {
+    padding: $padding / 2;
+    width: calc(100% - #{$embed-width});
     border-radius: 2px 0 0 2px;
+    font-size: 1rem;
+    height: $embed-height;
   }
 
   .podlove-player--embed--copy-button {
@@ -118,7 +160,6 @@
 
   .podlove-player--embed--config {
     display: flex;
-
     margin-bottom: $margin / 2;
   }
 
@@ -136,20 +177,15 @@
     width: 50%;
   }
 
-  .podlove-player--embed--size-button {
+  .podlove-player--embed--label {
     display: inline-block;
-    cursor: pointer;
-    opacity: 1;
-    color: $background-color;
-    border: 2px solid  $overlay-color;
-    background-color: $overlay-color;
-    width: $size-button-width;
-    margin: 0 $margin / 3;
-    border-radius: $size-button-width / 5;
+    font-size: 0.8rem;
+    margin-right: $margin / 3;
+    padding: ($padding / 4) 0;
+  }
 
-    &.active {
-      color: $overlay-color;
-      background: $background-color;
-    }
+  .podlove-player--embed--checkbox {
+    display: inline-block;
+    margin: ($margin / 2) ($margin / 2) 0 ($margin / 2);
   }
 </style>

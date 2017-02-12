@@ -1,5 +1,10 @@
+import {timeToSeconds} from 'utils/time'
+
 export default mediaElement => action => {
   switch (action.type) {
+    case 'INIT':
+      mediaElement.seek(timeToSeconds(action.payload.playtime) || 0)
+      break
     case 'UI_PLAY':
       mediaElement.play()
       break

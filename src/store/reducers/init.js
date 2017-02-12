@@ -2,7 +2,7 @@ import get from 'lodash/get'
 
 const subtitle = (state = '', action) => {
   switch (action.type) {
-    case 'SET_META':
+    case 'INIT':
       return action.payload.subtitle || state
     default:
       return state
@@ -11,7 +11,7 @@ const subtitle = (state = '', action) => {
 
 const mode = (state = 'native', action) => {
   switch (action.type) {
-    case 'SET_META':
+    case 'INIT':
       return action.payload.mode || state
     default:
       return state
@@ -20,7 +20,7 @@ const mode = (state = 'native', action) => {
 
 const poster = (state = '', action) => {
   switch (action.type) {
-    case 'SET_META':
+    case 'INIT':
       return action.payload.poster || state
     default:
       return state
@@ -29,7 +29,7 @@ const poster = (state = '', action) => {
 
 const title = (state = '', action) => {
   switch (action.type) {
-    case 'SET_META':
+    case 'INIT':
       return action.payload.title || state
     default:
       return state
@@ -38,7 +38,7 @@ const title = (state = '', action) => {
 
 const reference = (state = {}, action) => {
   switch (action.type) {
-    case 'SET_META':
+    case 'INIT':
       return Object.assign({}, {
         config: get(action.payload, ['reference', 'config'], null),
         share: get(action.payload, ['reference', 'share'], null)
