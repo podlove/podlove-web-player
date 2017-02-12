@@ -1,7 +1,11 @@
+import get from 'lodash/get'
 import { timeToSeconds } from 'utils/time'
 
 const playtime = (state = 0, action) => {
   switch (action.type) {
+    case 'INIT':
+      const playtime = get(action.payload, 'playtime', state)
+      return timeToSeconds(playtime)
     case 'UPDATE_PLAYTIME':
       return parseFloat(action.payload)
     case 'SET_PLAYTIME':
@@ -13,7 +17,7 @@ const playtime = (state = 0, action) => {
 
 const duration = (state = 0, action) => {
   switch (action.type) {
-    case 'SET_META':
+    case 'INIT':
       return timeToSeconds(action.payload.duration) || state
     case 'SET_DURATION':
       return action.payload
@@ -33,6 +37,8 @@ const buffer = (state = 0, action) => {
 
 const playstate = (state = 'start', action) => {
   switch (action.type) {
+    case 'INIT':
+      return get(action.payload, 'playstate', state)
     // Enable scrubs in end state
     case 'UPDATE_PLAYTIME':
       return state === 'end' ? 'pause' : state

@@ -1,17 +1,20 @@
 const INITIAL = {
   open: false,
-  width: 250,
-  height: 440
+  customStart: false,
+  dimensions: '250x440',
+  customStarttime: 0
 }
 
 const share = (state = INITIAL, action) => {
   switch (action.type) {
     case 'TOGGLE_SHARE':
-      return Object.assign({}, state, {
-        open: !state.open
-      })
+      return Object.assign({}, state, {open: !state.open})
+    case 'TOGGLE_SHARE_CUSTOMSTART':
+      return Object.assign({}, state, {customStart: state.customStart})
     case 'SET_EMBED_DIMENSIONS':
-      return Object.assign({}, state, action.payload)
+      return Object.assign({}, state, {dimensions: action.payload})
+    case 'SET_SHARE_CUSTOMSTARTTIME':
+      return Object.assign({}, state, {customStarttime: action.payload})
     default:
       return state
   }

@@ -1,7 +1,7 @@
 
 // Transforms a h:mm:ss or mm:ss or ss time to seconds
 export function timeToSeconds (time = '0') {
-  const partials = time.split(':').reverse()
+  const partials = time.toString().split(':').reverse()
 
   return partials.reduce((prev, curr, i) => prev + curr * Math.pow(60, i), 0)
 }
