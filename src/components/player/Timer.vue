@@ -52,9 +52,8 @@ export default {
 
   // Timer
   .podlove-player--timer {
-    display: block;
-    width: 100%;
     display: flex;
+    width: 100%;
     justify-content: space-between;
     font-weight: 100;
     font-size: 0.8rem;

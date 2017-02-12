@@ -10,4 +10,8 @@ request
   .query({ format: 'json' })
   .set('Accept', 'application/json')
   .then(res => res.body)
+  .then(res => {
+    res.mode = 'share'
+    return res
+  })
   .then(app)

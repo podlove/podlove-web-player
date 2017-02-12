@@ -1,25 +1,40 @@
 <template>
-  <div class="podlove">
-    <PodloveHeader />
-    <PodlovePlayer />
+  <div class="podlove" :class="mode">
+    <div class="podlove-player--header" :style="headerStyle(theme)">
+      <PodloveInfo />
+      <PodlovePlayer />
+    </div>
     <PodloveTabs />
     <PodloveShareOverlay />
   </div>
 </template>
 
 <script>
-  import PodloveHeader from './header/Header.vue'
+  import PodloveInfo from './info/Info.vue'
   import PodlovePlayer from './player/Player.vue'
   import PodloveTabs from './tabs/Tabs.vue'
   import PodloveShareOverlay from './overlays/share/Share.vue'
 
+  const headerStyle = theme => ({
+    'background-color': theme.player.background
+  })
+
   export default {
     name: 'app',
+    data () {
+      return {
+        theme: this.$select('theme'),
+        mode: this.$select('mode')
+      }
+    },
     components: {
-      PodloveHeader,
+      PodloveInfo,
       PodlovePlayer,
       PodloveTabs,
       PodloveShareOverlay
+    },
+    methods: {
+      headerStyle
     }
   }
 </script>
@@ -36,5 +51,13 @@
     min-width: $width-xs;
 
     @include font();
+
+    &.share {
+      height: 100%;
+
+      .podlove-player--header {
+        height: calc(100% - #{$tabs-header-height});
+      }
+    }
   }
 </style>

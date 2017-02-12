@@ -1,5 +1,5 @@
 <template>
-  <PodloveButton class="podlove-player--player-control podlove-player--chapter-control" :class="playstate" :click="onButtonClick" :disabled="isDisabled(chapters)">
+  <PodloveButton class="podlove-player--player-control podlove-player--chapter-control" :class="playstate" :click="onButtonClick">
     <ChapterBackIcon :color="theme.player.actions.background" />
   </PodloveButton>
 </template>
@@ -10,9 +10,6 @@
   import store from 'store'
   import PodloveButton from 'shared/Button.vue'
   import ChapterBackIcon from 'icons/ChapterBackIcon.vue'
-
-  const isDisabled = chapters =>
-    currentChapterIndex(chapters) <= 0
 
   export default {
     components: {
@@ -29,15 +26,26 @@
     methods: {
       onButtonClick () {
         const chapters = this.$select('chapters')
+        const playtime = this.$select('playtime')
         const current = currentChapterIndex(chapters)
 
-        if (current <= 0) {
-          return
+        let previous;
+
+        switch (true) {
+          case current <= 0:
+            previous = chapters[0]
+          break
+
+          case (playtime - chapters[current].start) <= 2:
+            previous = chapters[current - 1]
+          break
+
+          default:
+            previous = chapters[current]
         }
 
-        store.dispatch(store.actions.updatePlaytime(chapters[current - 1].start))
-      },
-      isDisabled
+        store.dispatch(store.actions.updatePlaytime(previous.start))
+      }
     }
   }
 </script>

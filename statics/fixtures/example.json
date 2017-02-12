@@ -43,5 +43,9 @@
         "http://freakshow.fm/podlove/file/4467/s/download/c/select-show/fs171-invasion.mp3",
         "http://freakshow.fm/podlove/file/4466/s/download/c/select-show/fs171-invasion.oga",
         "http://freakshow.fm/podlove/file/4465/s/download/c/select-show/fs171-invasion.opus"
-    ]
+    ],
+    "reference": {
+        "config": "//podlove-player.surge.sh/fixtures/example.json",
+        "share": "//podlove-player.surge.sh/share"
+    }
 }
