@@ -3,7 +3,7 @@ import { timeToSeconds } from 'utils/time'
 const playtime = (state = 0, action) => {
   switch (action.type) {
     case 'UPDATE_PLAYTIME':
-      return action.payload
+      return parseFloat(action.payload)
     case 'SET_PLAYTIME':
       return action.payload
     default:

@@ -48,6 +48,8 @@ export default {
   @import 'variables';
   @import 'font';
 
+  $timer-width: 80px;
+
   // Timer
   .podlove-player--timer {
     display: block;
@@ -67,22 +69,21 @@ export default {
 
   .podlove-player--timer--current {
     display: block;
+    width: $timer-width;
     text-align: left;
-    width: 20%;
     @include font-monospace();
   }
 
   .podlove-player--timer--chapter {
     text-align: center;
-    width: 80%;
+    width: calc(100% - #{$timer-width * 2});
+    margin: 0 $margin / 2;
   }
 
   .podlove-player--timer--time {
     display: block;
+    width: $timer-width;
     text-align: right;
-    width: 20%;
     @include font-monospace();
   }
-
 </style>
-
