@@ -38,7 +38,6 @@
   .podlove-player {
     width: 100%;
     padding: $padding;
-    height: $player-height;
 
     display: flex;
     align-items: center;

@@ -1,0 +1,15 @@
+@import 'variables';
+
+.podlove {
+   &.share {
+      height: 100%;
+
+      .podlove-player--header {
+        height: calc(100% - #{$tabs-header-height});
+      }
+
+      .podlove-player {
+        height: $player-height;
+      }
+    }
+}

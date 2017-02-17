@@ -44,6 +44,8 @@
   @import 'global';
   @import 'font';
 
+  @import 'share';
+
   .podlove {
     display: block;
     position: relative;
@@ -51,13 +53,5 @@
     min-width: $width-xs;
 
     @include font();
-
-    &.share {
-      height: 100%;
-
-      .podlove-player--header {
-        height: calc(100% - #{$tabs-header-height});
-      }
-    }
   }
 </style>

@@ -1,6 +1,7 @@
 import get from 'lodash/get'
 import Bluebird from 'bluebird'
 import browser from 'detect-browser'
+import request from 'superagent'
 import { iframeResizer } from 'iframe-resizer'
 import iframeResizerContentWindow from 'raw-loader!iframe-resizer/js/iframeResizer.contentWindow.min.js'
 
@@ -47,24 +48,38 @@ const renderPlayer = (config, player) => anchor => {
 
   iframeResizer({
     checkOrigin: false,
-    log: true,
+    log: false,
     enablePublicMethods: true
   }, injector)
 }
 
 const generateConfig = config => {
-  // TODO: check if url with meta information is provided
   return Bluebird.resolve(tag('script', `window.PODLOVE = ${JSON.stringify(config)}`))
 }
 
+const getConfig = config => {
+  if (typeof config === 'string') {
+    return request
+        .get(config)
+        .query({ format: 'json' })
+        .set('Accept', 'application/json')
+        .then(res => res.body)
+        .then(generateConfig)
+  }
+
+  if (typeof config === 'object') {
+    return generateConfig(config)
+  }
+}
+
 window.podlovePlayer = (selector, config) => {
-  const anchor = findNode(selector)
+  const anchor = typeof selector === 'string' ? findNode(selector) : [selector]
 
   const logic = tag('script', '', {type: 'text/javascript', src: './window.bundle.js'})
   const dynamicResizer = tag('script', iframeResizerContentWindow)
   const playerEntry = tag('PodlovePlayer')
 
-  generateConfig(config).then(configObject => {
+  getConfig(config).then(configObject => {
     anchor.forEach(renderPlayer(config, [
       playerEntry,
       configObject,

@@ -1,0 +1,25 @@
+{
+  "title": "TLF005 Cruising Amsterdam with Bicyclemark",
+  "subtitle": "",
+  "summary": "",
+  "publicationDate": "2006-04-30T21:53:09.000Z",
+  "show": {
+    "title": "The Lunatic Fringe",
+    "subtitle": "Merkwürdiges und Denkwürdiges von Tim Pritlove",
+    "summary": "Lunatic Fringe ist ein experimenteller Audiopodcast mit wechselnden Inhalten und Stimmungslagen.",
+    "poster": "http://tim.pritlove.org/wp-content/cache/podlove/a3/5f409d7acf6bc487c2023915e3afd8/the-lunatic-fringe_original.jpg",
+    "url": "http://tim.pritlove.org"
+  },
+  "duration": "00:56:30",
+  "chapters": [],
+  "audio": [
+    "http://tracking.feedpress.it/link/13551/1926865/tlf005.m4a"
+  ],
+  "theme": {
+    "primary": "#F279B4"
+  },
+  "reference": {
+    "share": "//podlove-player.surge.sh/share",
+    "config": "//podlove-player.surge.sh/fixtures/2be19ec8.json"
+  }
+}
