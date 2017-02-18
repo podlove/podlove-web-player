@@ -1,7 +1,7 @@
 import Clipboard from 'clipboard'
 
 export default {
-  bind (el, binding, vnode, oldVnode) {
+  bind (el) {
     return new Clipboard(el)
   }
 }
