@@ -11,5 +11,32 @@
       .podlove-player {
         height: $player-height;
       }
+
+      // Share mode
+      .podlove-tabs {
+        .podlove-tabs--tab-header--item.active {
+          position: fixed;
+          top: 0;
+        }
+
+        .podlove-tabs--tab-body {
+          top: 100%;
+          position: fixed;
+          transition: top $animation-duration;
+        }
+
+        .podlove-tabs--tab-body.active {
+          top: $tabs-header-height;
+          width: 100%;
+          height: calc(100% - #{$tabs-header-height})
+        }
+
+        .podlove-tabs--tab-header--close {
+          display: block;
+          position: fixed;
+          top: $margin / 2;
+          right: $margin / 2;
+        }
+      }
     }
 }
