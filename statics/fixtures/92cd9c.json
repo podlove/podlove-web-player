@@ -1,0 +1,25 @@
+{
+  "title": "TLF003 Maha im Flugzeug",
+  "subtitle": "",
+  "summary": "",
+  "publicationDate": "2006-03-19T01:37:37.000Z",
+  "show": {
+    "title": "The Lunatic Fringe",
+    "subtitle": "Merkwürdiges und Denkwürdiges von Tim Pritlove",
+    "summary": "Lunatic Fringe ist ein experimenteller Audiopodcast mit wechselnden Inhalten und Stimmungslagen.",
+    "poster": "http://tim.pritlove.org/wp-content/cache/podlove/a3/5f409d7acf6bc487c2023915e3afd8/the-lunatic-fringe_original.jpg",
+    "url": "http://tim.pritlove.org"
+  },
+  "duration": "00:22:21",
+  "chapters": [],
+  "audio": [
+    "http://tracking.feedpress.it/link/13551/1926867/tlf003.m4a"
+  ],
+  "theme": {
+    "primary": "#F2EA79"
+  },
+  "reference": {
+    "share": "//podlove-player.surge.sh/share",
+    "config": "//podlove-player.surge.sh/fixtures/92cd9c.json"
+  }
+}

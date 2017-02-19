@@ -80,7 +80,7 @@
         reference: this.$select('reference'),
         playtime: this.$select('playtime'),
         duration: this.$select('duration'),
-        sizeOptions: ['250x440', '320x440', '375x440', '600x320', '768x320']
+        sizeOptions: ['250x440', '320x440', '375x440', '600x290', '768x290']
       }
     },
     components: {

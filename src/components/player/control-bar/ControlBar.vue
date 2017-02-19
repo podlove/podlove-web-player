@@ -1,12 +1,12 @@
 <template>
   <div class="podlove-player--control-bar">
-    <ChapterBackButton />
+    <ChapterBackButton class="podlove-player--chapter-control" v-if="chapters.length > 0"/>
     <StepBackButton />
 
     <PlayButton />
 
     <StepForwardButton />
-    <ChapterNextButton />
+    <ChapterNextButton class="podlove-player--chapter-control" v-if="chapters.length > 0"/>
   </div>
 </template>
 
@@ -18,6 +18,11 @@
   import ChapterBackButton from './ChapterBackButton.vue'
 
   export default {
+    data() {
+      return {
+        chapters: this.$select('chapters')
+      }
+    },
     components: {
       PlayButton,
       StepBackButton,

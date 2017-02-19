@@ -21,7 +21,7 @@ const mode = (state = 'native', action) => {
 const poster = (state = '', action) => {
   switch (action.type) {
     case 'INIT':
-      return action.payload.poster || state
+      return action.payload.poster || action.payload.show.poster || state
     default:
       return state
   }

@@ -1,7 +1,7 @@
 <template>
   <div class="podlove-tabs" :style="containerStyle(theme)" :class="mode">
     <ul class="podlove-tabs--tab-header" :style="headerStyle(theme)">
-      <li class="podlove-tabs--tab-header--element" :style="tabStyle(theme, tabs.chapters)" :class="{active: tabs.chapters}">
+      <li class="podlove-tabs--tab-header--element" :style="tabStyle(theme, tabs.chapters)" :class="{active: tabs.chapters}" v-if="chapters.length > 0">
         <a href="javascript:void(0);" @click.prevent="toggleTab('chapters')" class="podlove-tabs--tab-header--caption">
           <ChaptersIcon class="podlove-tabs--tab-header--icon" :color="iconColor(theme, tabs.chapters)" />
           <span class="podlove-tabs--tab-header--title">Kapitel</span>
@@ -16,7 +16,7 @@
         </a>
       </li>
     </ul>
-    <div class="podlove-tabs--tab-body" :class="{active: tabs.chapters}">
+    <div class="podlove-tabs--tab-body" :class="{active: tabs.chapters}" v-if="chapters.length > 0">
       <ChaptersTab />
     </div>
 
@@ -62,7 +62,8 @@ export default {
       playstate: this.$select('playstate'),
       theme: this.$select('theme'),
       tabs: this.$select('tabs'),
-      mode: this.$select('mode')
+      mode: this.$select('mode'),
+      chapters: this.$select('chapters')
     }
   },
   methods: {
