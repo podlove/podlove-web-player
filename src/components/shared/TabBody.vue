@@ -18,7 +18,6 @@
 
     &.active {
       max-height: $tabs-body-max-height;
-      overflow-y: auto;
     }
   }
 </style>

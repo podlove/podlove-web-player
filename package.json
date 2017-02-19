@@ -74,6 +74,7 @@
     "redux": "3.5.2",
     "revue": "^3.0.0",
     "superagent": "^3.4.1",
+    "viscroll": "^1.0.0",
     "vue": "^2.1.8"
   },
   "devDependencies": {
