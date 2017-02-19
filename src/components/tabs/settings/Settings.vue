@@ -1,11 +1,21 @@
 <template>
   <div class="podlove-settings">
-    Here will be dragons.
+    <a :href="exportStore()" download="podlove-web-player-debug.json">export debug state</button>
   </div>
 </template>
 
 <script>
-  export default {}
+  import store from 'store'
+
+  const exportStore = () => {
+    return `data:text/json;charset=utf-8,${encodeURIComponent(JSON.stringify(store.store.getState()))}`;
+  }
+
+  export default {
+    methods: {
+      exportStore
+    }
+  }
 </script>
 
 <style lang="scss">
@@ -14,5 +24,6 @@
   .podlove-settings {
     width: 100%;
     padding: $padding 0;
+    text-align: center;
   }
 </style>

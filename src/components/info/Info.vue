@@ -56,12 +56,14 @@
   @import 'variables';
 
   $poster-size: 100px;
+  $description-height: 100px;
 
   .podlove-info {
     padding: $padding;
     height: calc(100% - #{$player-height});
     width: 100%;
     display: flex;
+    overflow: hidden;
 
     .podlove-info--header {
       display: flex;
@@ -90,21 +92,21 @@
 
     .podlover-info--description {
       padding: ($padding / 3) 0;
-      max-height: $poster-size;
+      max-height: $description-height;
     }
 
     .podlove-info--title {
       margin: 0 0 ($margin / 2) 0;
       padding: 0;
 
-      font-size: 1.2rem;
+      font-size: 20px;
       font-weight: 300;
     }
 
     .podlove-info--subtitle {
       max-height: 3.6rem;
-      font-size: 0.9rem;
-      line-height: 1.2rem;
+      font-size: 14px;
+      line-height: 20px;
       font-weight: 100;
       overflow: hidden;
       position: relative;
@@ -118,6 +120,7 @@
 
       .podlove-info--header {
         width: 100%;
+        align-items: center;
       }
 
       .podlove-info--poster {
@@ -132,7 +135,6 @@
       .podlove-info--title {
         margin-top: $margin;
       }
-
 
       .podlove-info--title, .podlove-info--subtitle {
         text-align: center;

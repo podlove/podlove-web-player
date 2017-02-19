@@ -1,4 +1,6 @@
+import get from 'lodash/get'
 import {timeToSeconds} from 'utils/time'
+import store from 'store'
 
 export default mediaElement => action => {
   switch (action.type) {
@@ -16,6 +18,12 @@ export default mediaElement => action => {
       mediaElement.play()
       break
     case 'UPDATE_PLAYTIME':
+      const playstate = get(store.store.getState(), 'playstate', '')
+
+      if (playstate === 'start') {
+        mediaElement.play()
+      }
+
       mediaElement.seek(action.payload)
       break
   }

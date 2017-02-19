@@ -88,7 +88,7 @@
 
             config.theme.primary = hex;
             window.PODLOVE_STORE.store.dispatch({
-                type: 'SET_META',
+                type: 'INIT',
                 payload: config
             })
         });
@@ -102,7 +102,7 @@
 
             config.theme.secondary = hex;
             window.PODLOVE_STORE.store.dispatch({
-                type: 'SET_META',
+                type: 'INIT',
                 payload: config
             })
         });
