@@ -41,3 +41,15 @@
     transform: translate3d(0, -2000px, 0);
   }
 }
+
+@keyframes stop-and-scroll {
+	0% {
+		transform: translateX(0);
+	}
+  30% {
+    transform: translateX(0);
+  }
+	100%{
+		transform: translateX(-100%);
+	}
+}

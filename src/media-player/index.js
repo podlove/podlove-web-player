@@ -48,6 +48,15 @@ export default (audio = [], {playtime, setPlaytime, setBufferState, setDuration,
     onStop()
   })
 
+  // Extend seek functionality to be capable of jumping in without loaded player
+  player.setPlaytime = playtime => {
+    if (player._state !== 'loaded') {
+      player.play()
+    }
+
+    player.seek(playtime)
+  }
+
   // Howler doesn't have an "start loading" event, so this is a monkey patch :/
   // Maybe this could be a useful plugin
   const howlerPlay = player.play.bind(player)

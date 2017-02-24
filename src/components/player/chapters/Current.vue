@@ -1,10 +1,11 @@
 <template>
-  <span
-    class="podlove-player--timer--chapter-title"
-    :style="chapterStyle(theme)"
-    v-if="currentChapterIndex(chapters) > -1">
-      {{chapterTitle(chapters)}}
-  </span>
+  <div class="podlove-player--timer--chapter">
+    <span class="podlove-player--timer--chapter-title" v-marquee
+      :style="chapterStyle(theme)"
+      v-if="currentChapterIndex(chapters) > -1">
+        {{chapterTitle(chapters)}}
+    </span>
+  </div>
 </template>
 
 <script>
@@ -37,12 +38,18 @@
 </script>
 
 <style lang="scss">
-  .podlove-player--timer--chapter-title {
+  @import 'animations';
+
+  .podlove-player--timer--chapter {
     width: 100%;
     text-align: center;
     font-style: italic;
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
+  }
+
+  .podlove-player--timer--chapter-title {
+    white-space: nowrap;
+    display: inline-block;
   }
 </style>

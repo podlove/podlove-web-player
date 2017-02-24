@@ -2,13 +2,9 @@ import Vue from 'vue'
 import head from 'lodash/head'
 
 import { timeToSeconds } from 'utils/time'
+import registerDirectives from './directives'
 
-
-import clipboard from './directives/clipboard'
-
-Vue.directive(
-    'clipboard', clipboard
-)
+registerDirectives(Vue)
 
 // Store
 import store from 'store'
