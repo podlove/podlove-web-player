@@ -1,0 +1,10 @@
+.podlove-player--truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.podlove-player--marquee {
+  transform: translateX(0);
+  animation: stop-and-scroll 15s linear infinite;
+}

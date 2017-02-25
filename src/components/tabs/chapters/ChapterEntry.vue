@@ -1,7 +1,7 @@
 <template>
   <div class="podlove-chapters--entry" :style="chapterStyle(theme, chapter)" @click="onChapterClick(chapter)">
     <span class="podlove-chapters--entry--index">{{index + 1}}</span>
-    <span class="podlove-chapters--entry--title">{{chapter.title}}</span>
+    <span class="podlove-chapters--entry--title podlove-player--truncate">{{chapter.title}}</span>
     <a class="podlove-chapters--entry--timer" href="javascript: void(0);">
       <span v-if="timerMode === 'remaining' && chapter.active">-{{secondsToTime(chapter.end - playtime < 0 ? 0 : chapter.end - playtime)}}</span>
       <span v-else>{{secondsToTime(chapter.end - chapter.start)}}</span>

@@ -45,7 +45,7 @@
   @import 'font';
 
   @import 'share';
-  @import 'marquee';
+  @import 'utils';
 
   .podlove {
     display: block;

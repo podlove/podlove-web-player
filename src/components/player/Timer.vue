@@ -12,7 +12,7 @@
 <script>
 import store from 'store';
 import { secondsToTime } from 'utils/time'
-import CurrentChapter from './chapters/Current.vue'
+import CurrentChapter from './chapters/CurrentChapter.vue'
 
 const timerStyle = theme => ({
   color: theme.player.timer.text
@@ -56,9 +56,9 @@ export default {
     width: 100%;
     justify-content: space-between;
     font-weight: 100;
-    font-size: 0.8rem;
+    font-size: 13px;
     overflow: hidden;
-    height: 1.2rem;
+    height: 20px;
     transition: height $animation-duration;
 
     &.start, &.idle {
