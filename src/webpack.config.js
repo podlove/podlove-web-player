@@ -6,7 +6,7 @@ const config = {
   entry: {
     embed: path.resolve(__dirname, 'embed', 'embed.js'),
     window: path.resolve(__dirname, 'embed', 'window.js'),
-    url: path.resolve(__dirname, 'embed', 'url.js')
+    share: path.resolve(__dirname, 'embed', 'share.js')
   },
   output: {
     path: path.resolve('dist'),
