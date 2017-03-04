@@ -54,7 +54,7 @@
     "dist:clean": "mkdir -p dist && rm -rf dist/*",
     "app:statics": "cp -R statics/* dist",
     "statics": "npm run app:statics",
-    "webpack:dev": "webpack-dev-server --content-base dist/ --progress --colors --hot --inline --config src/webpack.config.js",
+    "webpack:dev": "webpack-dashboard -- webpack-dev-server --content-base dist/ --progress --colors --hot --inline --config src/webpack.config.js",
     "webpack:build": "NODE_ENV='production' webpack --config src/webpack.config.js",
     "build": "npm run dist:clean && npm run statics && npm run webpack:build",
     "dev": "npm run dist:clean && npm run statics && npm run webpack:dev"
@@ -97,6 +97,7 @@
     "vue-loader": "^10.0.0",
     "vue-template-compiler": "^2.1.0",
     "webpack": "^2.1.0-beta.25",
+    "webpack-dashboard": "^0.3.0",
     "webpack-dev-server": "^2.1.0-beta.9"
   },
   "engines": {
