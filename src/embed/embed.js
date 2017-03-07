@@ -1,22 +1,16 @@
 import get from 'lodash/get'
 import Bluebird from 'bluebird'
 import browser from 'detect-browser'
-import request from 'superagent'
+
+import { findNode, createNode, appendNode, tag } from 'utils/dom'
+import requestConfig from 'utils/request'
+import urlConfig from 'utils/url'
+
 import { iframeResizer } from 'iframe-resizer'
 import iframeResizerContentWindow from 'raw-loader!iframe-resizer/js/iframeResizer.contentWindow.min.js'
 
-const findNode = selector => document.querySelectorAll(selector)
-const createNode = tag => document.createElement(tag)
-const appendNode = (node, child) => node.appendChild(child)
-
-const tag = (tag, value = '', attributes = {}) => {
-  let attr = Object.keys(attributes).map(attribute => ` ${attribute}="${attributes[attribute]}"`)
-
-  attr = attr.join('')
-  return `<${tag}${attr}>${value}</${tag}>`
-}
-
-const sandbox = () => {
+// Sandbox
+const playerSandbox = () => {
   const frame = createNode('iframe')
 
   if (browser.name !== 'ios') {
@@ -30,60 +24,57 @@ const sandbox = () => {
   return frame
 }
 
-const sandboxDocument = iframe => get(iframe, ['contentWindow', 'document'])
-
+// Player renderer
 const renderPlayer = (config, player) => anchor => {
-  const injector = sandbox(config)
+  const sandbox = playerSandbox(config)
 
-  appendNode(anchor, injector)
+  appendNode(anchor, sandbox)
 
-  const injectorDoc = sandboxDocument(injector)
+  const sandboxDoc = get(sandbox, ['contentWindow', 'document'])
 
-  injectorDoc.open()
-  injectorDoc.write('<!DOCTYPE html>')
-  injectorDoc.write('<html>')
-  injectorDoc.write('<head></head>')
-  injectorDoc.write(player)
-  injectorDoc.close()
+  sandboxDoc.open()
+  sandboxDoc.write('<!DOCTYPE html>')
+  sandboxDoc.write('<html>')
+  sandboxDoc.write('<head></head>')
+  sandboxDoc.write(player)
+  sandboxDoc.close()
 
   iframeResizer({
     checkOrigin: false,
     log: false
-  }, injector)
+  }, sandbox)
 }
 
-const generateConfig = config => {
-  return Bluebird.resolve(tag('script', `window.PODLOVE = ${JSON.stringify(config)}`))
-}
+// Config Handling
+const createConfigNode = (config = {}) =>
+  tag('script', `window.PODLOVE = ${JSON.stringify(config)}`)
 
-const getConfig = config => {
+const remoteConfig = (config = {}) => {
   if (typeof config === 'string') {
-    return request
-        .get(config)
-        .query({ format: 'json' })
-        .set('Accept', 'application/json')
-        .then(res => res.body)
-        .then(generateConfig)
+    return requestConfig(config)
   }
 
-  if (typeof config === 'object') {
-    return generateConfig(config)
-  }
+  return Bluebird.resolve(config)
 }
 
+// Bootstrap
 window.podlovePlayer = (selector, config) => {
   const anchor = typeof selector === 'string' ? findNode(selector) : [selector]
 
-  const logic = tag('script', '', {type: 'text/javascript', src: './window.bundle.js'})
+  const appLogic = tag('script', '', {type: 'text/javascript', src: './window.bundle.js'})
   const dynamicResizer = tag('script', iframeResizerContentWindow)
   const playerEntry = tag('PodlovePlayer')
 
-  getConfig(config).then(configObject => {
-    anchor.forEach(renderPlayer(config, [
-      playerEntry,
-      configObject,
-      logic,
-      dynamicResizer
-    ].join('')))
-  })
+  remoteConfig(config)
+    // load parameters from url
+    .then(config => anchor.length > 1 ? config : Object.assign({}, config, urlConfig))
+    .then(createConfigNode)
+    .then(configObject => {
+      anchor.forEach(renderPlayer(config, [
+        playerEntry,
+        configObject,
+        appLogic,
+        dynamicResizer
+      ].join('')))
+    })
 }
