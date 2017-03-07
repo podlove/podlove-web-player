@@ -67,6 +67,7 @@
     "howler": "^2.0.2",
     "iframe-resizer": "^3.5.7",
     "lodash": "^4.17.3",
+    "object-hash": "^1.1.5",
     "query-string": "^4.3.1",
     "react": "15.3.0",
     "react-dom": "15.3.0",

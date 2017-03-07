@@ -11,7 +11,7 @@ import buffer from './buffer'
 */
 let ticker
 
-export default (audio = [], {playtime, setPlaytime, setBufferState, setDuration, onPlay, onPause, onStop, onLoad}) => {
+export default (audio = [], {setPlaytime, setBufferState, setDuration, onPlay, onPause, onStop, onLoad}) => {
   const player = new Howl({
     src: audio,
     html5: true,
@@ -24,8 +24,6 @@ export default (audio = [], {playtime, setPlaytime, setBufferState, setDuration,
     // No api sugar for the audio node :/
     audioNode = get(player, ['_sounds', 0, '_node'])
     setDuration(player.duration())
-    player.seek(playtime)
-    // onLoad()
   })
 
   player.on('play', onPlay)
@@ -50,8 +48,8 @@ export default (audio = [], {playtime, setPlaytime, setBufferState, setDuration,
 
   // Extend seek functionality to be capable of jumping in without loaded player
   player.setPlaytime = playtime => {
-    if (player._state !== 'loaded') {
-      player.play()
+    if (player.state() === 'unloaded') {
+      player.load()
     }
 
     player.seek(playtime)

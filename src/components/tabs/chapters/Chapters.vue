@@ -5,7 +5,7 @@
 </template>
 
 <script>
-  import ChapterEntry from './Entry.vue'
+  import ChapterEntry from './ChapterEntry.vue'
 
   export default {
     data() {

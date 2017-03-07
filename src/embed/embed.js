@@ -48,8 +48,7 @@ const renderPlayer = (config, player) => anchor => {
 
   iframeResizer({
     checkOrigin: false,
-    log: false,
-    enablePublicMethods: true
+    log: false
   }, injector)
 }
 

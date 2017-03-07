@@ -20,7 +20,7 @@
   import store from 'store'
   import color from 'color'
 
-  import ChaptersIndicator from './chapters/Indicator.vue'
+  import ChaptersIndicator from './chapters/ChapterIndicator.vue'
 
   const interpolate = (num = 0) => Math.round(num * 100) / 100
 

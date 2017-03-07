@@ -4,7 +4,7 @@ import { timeToSeconds } from 'utils/time'
 const playtime = (state = 0, action) => {
   switch (action.type) {
     case 'INIT':
-      const playtime = get(action.payload, 'playtime', state)
+      const playtime = state > 0 ? state : get(action.payload, 'playtime', state)
       return timeToSeconds(playtime)
     case 'UPDATE_PLAYTIME':
       return parseFloat(action.payload)
