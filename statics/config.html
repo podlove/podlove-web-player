@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{meta_description}">
+    <meta name="author" content="">
+
+    <title>Podlove Web Player - Configuration</title>
+
+    <link href="./assets/gitbook.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="wrapper">
+        <sidebar class="sidebar">
+            <ul class="navigation">
+                <li><a href="/">Overview</a></li>
+                <li><a href="/embedding.html">Embedding</a></li>
+                <li><a href="/theme.html">Theming</a></li>
+                <li><a class="active" href="/config.html">Configuration</a></li>
+                <li><a href="/persistence.html">Player Persistence</a></li>
+                <li><a href="/advanced.html">Advanced Usage</a></li>
+                <li><a href="/example.html">Example</a></li>
+            </ul>
+        </sidebar>
+
+        <main class="content">
+            <div class="inner">
+                <h1>Configuration</h1>
+
+                <table>
+                    <thead>
+                        <tr><th colspan="2">General Show Information</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>show.title</td><td>Show Title</td></tr>
+                        <tr><td>show.subtitle</td><td>Show Description</td></tr>
+                        <tr><td>show.summary</td><td>Show Summary</td></tr>
+                        <tr><td>show.poster</td><td>Show Cover</td></tr>
+                        <tr><td>show.url</td><td>Url to show</td></tr>
+                    </tbody>
+                </table>
+<pre><code class="language-js">{
+    show: {
+        title: &#x27;Freak Show&#x27;,
+        subtitle: &#x27;Menschen! Technik! Sensationen!&#x27;,
+        summary: &#x27;Die muntere Talk Show um Leben mit Technik, das Netz und Technikkultur. Bisweilen Apple-lastig aber selten einseitig. Wir leben und lieben Technologie und reden dar&#xFC;ber. Mit Tim, hukl, roddi, Clemens und Denis. Freak Show hie&#xDF; irgendwann mal mobileMacs.&#x27;,
+        poster: &#x27;https://freakshow.fm/wp-content/cache/podlove/04/662a9d4edcf77ea2abe3c74681f509/freak-show_200x200.jpg&#x27;,
+        url: &#x27;https://freakshow.fm&#x27;
+    }
+}</code></pre>
+                <table>
+                    <thead>
+                        <tr><th colspan="2">General Episode Information</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>title</td><td>Episode Title</td></tr>
+                        <tr><td>subtitle</td><td>Episode Description</td></tr>
+                        <tr><td>summary</td><td>Episode Summary</td></tr>
+                        <tr><td>poster</td><td>Episode Cover</td></tr>
+                        <tr><td>publicationDate</td><td>Episode Publication Date</td></tr>
+                        <tr><td>duration</td><td>Episode Duration</td></tr>
+                    </tbody>
+                </table>
+<pre><code class="language-js">{
+    title: &#x27;FS171 Invasion!&#x27;,
+    subtitle: &#x27;LAN Planung - Kalender - Bingo - Wikipedia - Akkukalibration - Alte iPads und iPods - Find My Friends - iPhone Music Player - Apple Watch - Kommandozeile - Star Wars - Dante - Internet of Things Security - VPN&#x27;,
+    summary: &#x27;Wir haben eine wie wir finden abwechslungsreiche Sendung produziert, die wir Euch wie immer mit Freude bereitstellen. W&#xE4;hrend die Live-H&#xF6;rer Freak-Show-Bingo spielen, greifen wir das Wikipedia-Thema der letzten Sendung auf und liefern auch noch weitere Aspekte des optimalen Star-Wars-Medienkonsums frei Haus. Dazu viel Nerderei rund um die Kommandozeile, eine Einsch&#xE4;tzung der Perspektive der Apple Watch, ein Rant &#xFC;ber die mangelhafte Security  im Internet of Things (and Buildings) und allerlei anderer Kram.  Roddi setzt dieses Mal aus, sonst Vollbesetzung.&#x27;,
+    publicationDate: &#x27;2016-02-11T03:13:55+00:00&#x27;,
+    poster: &#x27;https://freakshow.fm/wp-content/cache/podlove/04/662a9d4edcf77ea2abe3c74681f509/freak-show_200x200.jpg&#x27;,
+    duration: &#x27;04:15:32&#x27;
+}</code></pre>
+                <table>
+                    <thead>
+                        <tr><th colspan="2">Episode Chapters</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>start</td><td>Chapter Start Time in Format hh:mm:ss</td></tr>
+                        <tr><td>title</td><td>Chapter Title</td></tr>
+                    </tbody>
+                </table>
+                <em>Not providing chapters will disable all chapter related functions.</em>
+<pre><code class="language-js">{
+    chapters: [
+        { start:&#x22;00:00:00&#x22;, title: &#x27;Intro&#x27;},
+        { start:&#x22;00:01:39&#x22;, title: &#x27;Begr&#xFC;&#xDF;ung&#x27;},
+        { start:&#x22;00:04:58&#x22;, title: &#x27;IETF Meeting Netzwerk&#x27;},
+        { start:&#x22;00:18:37&#x22;, title: &#x27;Kalender&#x27;},
+        { start:&#x22;00:33:40&#x22;, title: &#x27;Freak Show Bingo&#x27;},
+        { start:&#x22;00:35:37&#x22;, title: &#x27;Wikipedia&#x27;},
+        { start:&#x22;01:17:26&#x22;, title: &#x27;iPhone Akkukalibration&#x27;},
+        { start:&#x22;01:24:55&#x22;, title: &#x27;Alte iPads und iPod touches&#x27;},
+        { start:&#x22;01:31:02&#x22;, title: &#x27;Find My Friends&#x27;},
+        { start:&#x22;01:41:46&#x22;, title: &#x27;iPhone Music Player&#x27;},
+        { start:&#x22;01:56:13&#x22;, title: &#x27;Apple Watch&#x27;},
+        { start:&#x22;02:11:51&#x22;, title: &#x27;Kommandozeile: System Appreciation&#x27;},
+        { start:&#x22;02:23:10&#x22;, title: &#x27;Sound und Design f&#xFC;r Games&#x27;},
+        { start:&#x22;02:24:59&#x22;, title: &#x27;Kommandozeile: Remote Deployment&#x27;},
+        { start:&#x22;02:32:37&#x22;, title: &#x27;Kommandozeile: Man Pages&#x27;},
+        { start:&#x22;02:44:31&#x22;, title: &#x27;Kommandozeile: screen vs. tmux&#x27;},
+        { start:&#x22;02:58:02&#x22;, title: &#x27;Star Wars: Machete Order &#x26; Phantom Edit&#x27;},
+        { start:&#x22;03:20:05&#x22;, title: &#x27;Kopfh&#xF6;rer-Ersatzteile&#x27;},
+        { start:&#x22;03:23:39&#x22;, title: &#x27;Dante&#x27;},
+        { start:&#x22;03:38:03&#x22;, title: &#x27;Dante Via&#x27;},
+        { start:&#x22;03:45:33&#x22;, title: &#x27;Internet of Things Security&#x27;},
+        { start:&#x22;03:56:11&#x22;, title: &#x27;That One Privacy Guy\&#x27;s VPN Comparison Chart&#x27;},
+        { start:&#x22;04:10:00&#x22;, title: &#x27;Ausklang&#x27;}
+    ]
+}</code></pre>
+                <table>
+                    <thead>
+                        <tr><th colspan="2">Audio Nodes Chapters</th></tr>
+                    </thead>
+                <table>
+<pre><code class="language-js">{
+    audio: [
+        &#x27;http://freakshow.fm/podlove/file/4468/s/download/c/select-show/fs171-invasion.m4a&#x27;,
+        &#x27;http://freakshow.fm/podlove/file/4467/s/download/c/select-show/fs171-invasion.mp3&#x27;,
+        &#x27;http://freakshow.fm/podlove/file/4466/s/download/c/select-show/fs171-invasion.oga&#x27;,
+        &#x27;http://freakshow.fm/podlove/file/4465/s/download/c/select-show/fs171-invasion.opus&#x27;
+    ]
+}</code></pre>
+                <table>
+                    <thead>
+                        <tr><th colspan="2">References</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>reference.config</td><td>Reference to the Current Configuration</td></tr>
+                        <tr><td>reference.share</td><td>Reference Sharing Embed Endpoint</td></tr>
+                    </tbody>
+                </table>
+
+<pre><code class="language-js">{
+    reference: {
+        config: &#x27;//podlove-player.surge.sh/fixtures/example.json&#x27;,
+        share: &#x27;//podlove-player.surge.sh/share&#x27;
+    }
+}</code></pre>
+
+                <table>
+                    <thead>
+                        <tr><th colspan="2">Theming</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>theme.primary</td><td>Primary theme color (default: #2B8AC6)</td></tr>
+                        <tr><td>theme.secondary</td><td>Secondary theme color</td></tr>
+                    </tbody>
+                </table>
+
+<pre><code class="language-js">{
+    theme: {
+        primary: &#x27;#2B8AC6&#x27;,
+        secondary: &#x27;#EC79F2&#x27;
+    }
+}</code></pre>
+            </div>
+        </main>
+    </div>
+
+    <script src="assets/gitbook.min.js"></script>
+</body>
+</html>

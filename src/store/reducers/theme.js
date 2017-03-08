@@ -57,6 +57,8 @@ const theme = (state = {}, action) => {
   switch (action.type) {
     case 'INIT':
       return Object.assign({}, state, themeColors(get(action.payload, 'theme')))
+    case 'SET_THEME':
+      return Object.assign({}, state, themeColors(action.payload))
     default:
       return state
   }
