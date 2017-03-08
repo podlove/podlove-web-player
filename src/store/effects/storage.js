@@ -1,14 +1,18 @@
 import actions from '../actions'
 
 import storage from 'utils/storage'
-import hash from 'object-hash'
+import hash from 'short-hash'
 
 let podloveStorage
 
 export default (store, action) => {
   switch (action.type) {
     case 'INIT':
-      podloveStorage = storage(hash(action.payload))
+      if (!action.payload.title) {
+        return
+      }
+
+      podloveStorage = storage(hash(action.payload.title))
 
       let storedPlaytime = podloveStorage.get('playtime')
 
@@ -18,6 +22,10 @@ export default (store, action) => {
       }
       break
     case 'SET_PLAYTIME':
+      if (!podloveStorage) {
+        return
+      }
+
       podloveStorage.set('playtime', action.payload)
       break
   }

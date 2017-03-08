@@ -1,6 +1,6 @@
 <template>
   <div class="podlove-settings">
-    <a :href="exportStore()" download="podlove-web-player-debug.json">export debug state</button>
+    <a :href="exportStore()" download="podlove-web-player-debug.json">export debug state</a>
   </div>
 </template>
 
