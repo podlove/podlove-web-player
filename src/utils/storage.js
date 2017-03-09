@@ -1,16 +1,22 @@
 import curry from 'lodash/fp/curry'
 import get from 'lodash/get'
 
+const PODLOVE_WEB_PLAYER_TOKEN = 'pwp'
+
 const getItem = curry((hash, key) => {
   try {
-    const fromStore = window.localStorage.getItem(hash) || ''
+    const fromStore = window.localStorage.getItem(PODLOVE_WEB_PLAYER_TOKEN) || ''
     let obj = JSON.parse(fromStore)
 
-    if (!key) {
+    if (!hash) {
       return obj || {}
     }
 
-    return get(obj, key)
+    if (!key) {
+      return get(obj, hash, {})
+    }
+
+    return get(obj, [hash, key])
   } catch (err) {
     return undefined
   }
@@ -26,10 +32,10 @@ const setItem = curry((hash, first, second) => {
   }
 
   try {
-    const currentStore = getItem(hash, null)
-    const toStore = JSON.stringify(Object.assign({}, currentStore, data))
+    const currentStore = getItem(null, null)
+    const toStore = JSON.stringify(Object.assign({}, currentStore, {[hash]: data}))
 
-    return window.localStorage.setItem(hash, toStore)
+    return window.localStorage.setItem(PODLOVE_WEB_PLAYER_TOKEN, toStore)
   } catch (err) {
     return undefined
   }
