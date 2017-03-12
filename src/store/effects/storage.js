@@ -1,6 +1,4 @@
 import actions from '../actions'
-
-import storage from 'utils/storage'
 import { hashCode } from 'hashcode'
 
 let podloveStorage
@@ -8,7 +6,7 @@ let podloveStorage
 const metaHash = config =>
   hashCode().value(Object.assign({}, config, {playtime: 0}))
 
-export default (store, action) => {
+export default storage => (store, action) => {
   switch (action.type) {
     case 'INIT':
       podloveStorage = storage(metaHash(action.payload))

@@ -2,9 +2,6 @@ machine:
   node:
     version: 6.2.1
 
-test:
-  override:
-
 compile:
   override:
     - npm run build

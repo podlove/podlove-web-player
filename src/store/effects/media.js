@@ -1,7 +1,6 @@
-import mediaPlayer from '../../media-player'
 import actions from '../actions'
 
-const initMediaPlayer = (dispatch, config) =>
+const initMediaPlayer = (mediaPlayer, dispatch, config) =>
   mediaPlayer(config.audio, {
     setPlaytime: playtime => dispatch(actions.setPlaytime(playtime)),
     setBufferState: buffer => dispatch(actions.setBuffer(buffer)),
@@ -12,28 +11,28 @@ const initMediaPlayer = (dispatch, config) =>
     onLoad: () => dispatch(actions.loading())
   })
 
-let mediaElement
+let mediaElement = null
 
-export default (store, action) => {
+export default mediaPlayer => (store, action) => {
   const state = store.getState()
 
   switch (action.type) {
     case 'INIT':
-      mediaElement = initMediaPlayer(store.dispatch, action.payload)
+      mediaElement = initMediaPlayer(mediaPlayer, store.dispatch, action.payload)
       break
     case 'UI_PLAY':
-      mediaElement.setPlaytime(state.playtime)
-      mediaElement.play()
+      mediaElement && mediaElement.setPlaytime(state.playtime)
+      mediaElement && mediaElement.play()
       break
     case 'UI_PAUSE':
-      mediaElement.pause()
+      mediaElement && mediaElement.pause()
       break
     case 'UI_RESTART':
-      mediaElement.setPlaytime(0)
-      mediaElement.play()
+      mediaElement && mediaElement.setPlaytime(0)
+      mediaElement && mediaElement.play()
       break
     case 'UPDATE_PLAYTIME':
-      mediaElement.setPlaytime(action.payload)
+      mediaElement && mediaElement.setPlaytime(action.payload)
       break
   }
 }

@@ -18,3 +18,4 @@ atlassian-ide-plugin.xml
 # build artefacts
 _site
 dist
+coverage
