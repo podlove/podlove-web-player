@@ -1,4 +1,5 @@
 const webpack = require('webpack')
+const DashboardPlugin = require('webpack-dashboard/plugin')
 
 const path = require('path')
 
@@ -81,6 +82,8 @@ if (process.env.NODE_ENV === 'production') {
       }
     })
   ]
+} else {
+  config.plugins = [...config.plugins, new DashboardPlugin()]
 }
 
 module.exports = config
