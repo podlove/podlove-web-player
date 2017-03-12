@@ -57,7 +57,8 @@
     "webpack:dev": "webpack-dashboard -- webpack-dev-server --content-base dist/ --progress --colors --hot --inline --config src/webpack.config.js",
     "webpack:build": "NODE_ENV='production' webpack --config src/webpack.config.js",
     "build": "npm run dist:clean && npm run statics && npm run webpack:build",
-    "dev": "npm run dist:clean && npm run statics && npm run webpack:dev"
+    "dev": "npm run dist:clean && npm run statics && npm run webpack:dev",
+    "test": "ava"
   },
   "dependencies": {
     "blindparser": "^1.0.2",
@@ -79,6 +80,7 @@
     "vue": "^2.1.8"
   },
   "devDependencies": {
+    "ava": "^0.18.2",
     "babel-core": "^6.0.0",
     "babel-loader": "^6.0.0",
     "babel-plugin-transform-runtime": "^6.0.0",
@@ -101,6 +103,27 @@
     "webpack-dev-server": "^2.1.0-beta.9"
   },
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=5.0.0"
+  },
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
+  },
+  "ava": {
+    "files": [
+      "src/**/*.test.js"
+    ],
+    "source": [
+      "src/**/*.{js}"
+    ],
+    "concurrency": 5,
+    "failFast": true,
+    "tap": false,
+    "powerAssert": false,
+    "require": [
+      "babel-register"
+    ],
+    "babel": "inherit"
   }
 }
