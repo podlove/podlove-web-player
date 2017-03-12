@@ -1,4 +1,5 @@
 import get from 'lodash/get'
+import isString from 'lodash/isString'
 import Bluebird from 'bluebird'
 import browser from 'detect-browser'
 
@@ -9,8 +10,8 @@ import urlConfig from 'utils/url'
 import { iframeResizer } from 'iframe-resizer'
 import iframeResizerContentWindow from 'raw-loader!iframe-resizer/js/iframeResizer.contentWindow.min.js'
 
-// Sandbox
-const playerSandbox = () => {
+// Player renderer
+const playerSandbox = anchor => {
   const frame = createNode('iframe')
 
   if (browser.name !== 'ios') {
@@ -19,17 +20,13 @@ const playerSandbox = () => {
 
   frame.setAttribute('seamless', '')
   frame.setAttribute('scrolling', 'no')
-  frame.style.border = '0'
+  frame.setAttribute('frameborder', '0')
 
+  appendNode(anchor, frame)
   return frame
 }
 
-// Player renderer
-const renderPlayer = (config, player) => anchor => {
-  const sandbox = playerSandbox(config)
-
-  appendNode(anchor, sandbox)
-
+const injectPlayer = (sandbox, player) => new Bluebird(resolve => {
   const sandboxDoc = get(sandbox, ['contentWindow', 'document'])
 
   sandboxDoc.open()
@@ -39,42 +36,71 @@ const renderPlayer = (config, player) => anchor => {
   sandboxDoc.write(player)
   sandboxDoc.close()
 
-  iframeResizer({
-    checkOrigin: false,
-    log: false
-  }, sandbox)
-}
+  setInterval(() => {
+    if (sandboxDoc.readyState !== 'complete') {
+      return
+    }
 
-// Config Handling
-const createConfigNode = (config = {}) =>
-  tag('script', `window.PODLOVE = ${JSON.stringify(config)}`)
+    resolve(sandbox)
+  }, 150)
+})
 
-const remoteConfig = (config = {}) => {
-  if (typeof config === 'string') {
-    return requestConfig(config)
+const preloader = sandbox => ({
+  init: () => {
+    sandbox.style.opacity = 0
+    sandbox.style.transition = 'all 500ms'
+  },
+  done: () => {
+    sandbox.style.opacity = 1
+    sandbox.style.height = 'auto'
   }
+})
 
-  return Bluebird.resolve(config)
+const renderPlayer = player => anchor => {
+  const sandbox = playerSandbox(anchor)
+  const loader = preloader(sandbox)
+
+  loader.init()
+
+  injectPlayer(sandbox, player)
+    .then(() => {
+      loader.done()
+      iframeResizer({
+        checkOrigin: false,
+        log: false
+      }, sandbox)
+    })
 }
+
+// Config Node
+const configNode = (config = {}) =>
+  Bluebird.resolve(config)
+    // If the config is a string, lets assume that this will point to the remote config json
+    .then(config => isString(config) ? requestConfig(config) : config)
+    // load parameters from url
+    .then(config => Object.assign({}, config, urlConfig))
+    // Finally return the node
+    .then(config => tag('script', `window.PODLOVE = ${JSON.stringify(config)}`))
+
+// Player Logic
+const appLogic = tag('script', '', {type: 'text/javascript', src: './window.bundle.js'})
+
+// Dynamic resizer
+const dynamicResizer = tag('script', iframeResizerContentWindow)
+
+// Transclusion point
+const playerEntry = tag('PodlovePlayer')
 
 // Bootstrap
 window.podlovePlayer = (selector, config) => {
-  const anchor = typeof selector === 'string' ? findNode(selector) : [selector]
+  const anchors = typeof selector === 'string' ? findNode(selector) : [selector]
 
-  const appLogic = tag('script', '', {type: 'text/javascript', src: './window.bundle.js'})
-  const dynamicResizer = tag('script', iframeResizerContentWindow)
-  const playerEntry = tag('PodlovePlayer')
-
-  remoteConfig(config)
-    // load parameters from url
-    .then(config => anchor.length > 1 ? config : Object.assign({}, config, urlConfig))
-    .then(createConfigNode)
-    .then(configObject => {
-      anchor.forEach(renderPlayer(config, [
-        playerEntry,
-        configObject,
-        appLogic,
-        dynamicResizer
-      ].join('')))
-    })
+  Bluebird.all([
+    playerEntry,
+    configNode(config),
+    appLogic,
+    dynamicResizer
+  ])
+  .then(result => result.join(''))
+  .then(result => anchors.forEach(renderPlayer(result)))
 }
