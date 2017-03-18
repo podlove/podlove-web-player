@@ -1,0 +1,206 @@
+import test from 'ava'
+import { playtime, duration, buffer, playstate, timerMode } from './player'
+
+// PLAYTIME TESTS
+test(`playtime: is a reducer function`, t => {
+  t.is(typeof playtime, 'function')
+})
+
+test(`playtime: parses the playtime on INIT`, t => {
+  let result = playtime(undefined, {
+    type: 'INIT',
+    payload: {
+      playtime: '01:00'
+    }
+  })
+
+  t.is(result, 60)
+
+  result = playtime(10, {
+    type: 'INIT',
+    payload: {
+      playtime: '01:00'
+    }
+  })
+
+  t.is(result, 10)
+})
+
+test(`playtime: parses playtime on UPDATE_PLAYTIME`, t => {
+  let result = playtime(undefined, {
+    type: 'UPDATE_PLAYTIME',
+    payload: '60'
+  })
+
+  t.is(result, 60)
+})
+
+test(`playtime: parses playtime on SET_PLAYTIME`, t => {
+  let result = playtime(undefined, {
+    type: 'SET_PLAYTIME',
+    payload: 60
+  })
+
+  t.is(result, 60)
+})
+
+test(`playtime: it does nothing if a unknown action is dispatched`, t => {
+  const result = playtime(10, {
+    type: 'NOT_A_REAL_TYPE'
+  })
+  t.is(result, 10)
+})
+
+// DURATION TESTS
+test(`duration: is a reducer function`, t => {
+  t.is(typeof duration, 'function')
+})
+
+test(`duration: parses the duration on INIT`, t => {
+  let result = duration(undefined, {
+    type: 'INIT',
+    payload: {
+      duration: '01:00'
+    }
+  })
+
+  t.is(result, 60)
+
+  result = duration(10, {
+    type: 'INIT',
+    payload: {}
+  })
+
+  t.is(result, 10)
+})
+
+test(`duration: parses duration on SET_DURATION`, t => {
+  let result = duration(undefined, {
+    type: 'SET_DURATION',
+    payload: 60
+  })
+
+  t.is(result, 60)
+})
+
+test(`duration: it does nothing if a unknown action is dispatched`, t => {
+  const result = duration(10, {
+    type: 'NOT_A_REAL_TYPE'
+  })
+  t.is(result, 10)
+})
+
+// BUFFER TESTS
+test(`buffer: is a reducer function`, t => {
+  t.is(typeof buffer, 'function')
+})
+
+test(`buffer: parses the buffer on SET_BUFFER`, t => {
+  let result = buffer(undefined, {
+    type: 'SET_BUFFER',
+    payload: 60
+  })
+
+  t.is(result, 60)
+})
+
+test(`buffer: it does nothing if a unknown action is dispatched`, t => {
+  const result = buffer(10, {
+    type: 'NOT_A_REAL_TYPE'
+  })
+  t.is(result, 10)
+})
+
+// PLAYSTATE TESTS
+test(`playstate: is a reducer function`, t => {
+  t.is(typeof playstate, 'function')
+})
+
+test(`playstate: parses the playstate on INIT`, t => {
+  let result = playstate(undefined, {
+    type: 'INIT',
+    payload: {
+      playstate: 'CUSTOM'
+    }
+  })
+
+  t.is(result, 'CUSTOM')
+
+  result = playstate('CUSTOM', {
+    type: 'INIT',
+    payload: {}
+  })
+
+  t.is(result, 'CUSTOM')
+})
+
+test(`playstate: parses the playstate on UPDATE_PLAYTIME`, t => {
+  let result = playstate('end', {
+    type: 'UPDATE_PLAYTIME'
+  })
+
+  t.is(result, 'pause')
+
+  result = playstate('CUSTOM', {
+    type: 'UPDATE_PLAYTIME'
+  })
+
+  t.is(result, 'CUSTOM')
+})
+
+const playstates = {
+  PLAY: 'playing',
+  PAUSE: 'pause',
+  STOP: 'end',
+  IDLE: 'idle',
+  LOADING: 'loading'
+}
+
+Object.keys(playstates).forEach(state => {
+  test(`playstate: parses the playstate on ${state}`, t => {
+    let result = playstate(undefined, {
+      type: state
+    })
+
+    t.is(result, playstates[state])
+  })
+})
+
+test(`playstate: it does nothing if a unknown action is dispatched`, t => {
+  const result = playstate('CUSTOM', {
+    type: 'NOT_A_REAL_TYPE'
+  })
+  t.is(result, 'CUSTOM')
+})
+
+// TIMERMODE TESTS
+test(`timerMode: is a reducer function`, t => {
+  t.is(typeof timerMode, 'function')
+})
+
+test(`timerMode: it does nothing if a unknown action is dispatched`, t => {
+  const result = timerMode('CUSTOM', {
+    type: 'NOT_A_REAL_TYPE'
+  })
+  t.is(result, 'CUSTOM')
+})
+
+test(`timerMode: parses the mode on TOGGLE_TIMERMODE`, t => {
+  let result = timerMode(undefined, {
+    type: 'TOGGLE_TIMERMODE'
+  })
+
+  t.is(result, 'duration')
+
+  result = timerMode('remaining', {
+    type: 'TOGGLE_TIMERMODE'
+  })
+
+  t.is(result, 'duration')
+
+  result = timerMode('duration', {
+    type: 'TOGGLE_TIMERMODE'
+  })
+
+  t.is(result, 'remaining')
+})

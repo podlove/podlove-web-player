@@ -1,3 +1,13 @@
 {
-  "presets": ["es2015"]
+  "presets": ["es2015"],
+  "env": {
+    "AVA": {
+      "plugins": [
+        [
+          "babel-plugin-webpack-alias",
+          { "config": "src/webpack.config.js" }
+        ]
+      ]
+    }
+  }
 }

@@ -28,7 +28,9 @@ const chapters = (state = [], action) => {
   switch (action.type) {
     case 'INIT':
       const chapters = get(action.payload, 'chapters', [])
-      return chapters.reduce(parseChapters(action.payload.duration), [])
+      return chapters
+        .reduce(parseChapters(action.payload.duration), [])
+        .map(setActive(action.payload.playtime || 0))
     case 'SET_PLAYTIME':
     case 'UPDATE_PLAYTIME':
       return state.map(setActive(action.payload))
