@@ -58,7 +58,7 @@
     "webpack:build": "NODE_ENV='production' webpack --config src/webpack.config.js",
     "build": "npm run dist:clean && npm run statics && npm run webpack:build",
     "dev": "npm run dist:clean && npm run statics && npm run webpack:dev",
-    "test": "NODE_ENV=AVA ava",
+    "test": "NODE_ENV=AVA nyc ava && nyc report --reporter=lcov",
     "test:dev": "NODE_ENV=AVA ava --watch --fail-fast"
   },
   "dependencies": {
@@ -97,6 +97,7 @@
     "inject-loader": "^3.0.0-beta4",
     "lolex": "^1.6.0",
     "node-sass": "^4.1.1",
+    "nyc": "^10.1.2",
     "raw-loader": "^0.5.1",
     "sass-loader": "^4.1.1",
     "sinon": "^1.17.7",
@@ -123,8 +124,28 @@
     "tap": false,
     "powerAssert": true,
     "require": [
+      "babel-core/register",
       "babel-register"
     ],
-    "babel": "inherit"
+    "babel": {
+      "presets": [
+        "es2015"
+      ],
+      "plugins": [
+        "transform-runtime"
+      ],
+      "env": {
+        "development": {
+          "sourceMaps": "inline"
+        }
+      }
+    }
+  },
+  "nyc": {
+    "exclude": [
+      "src/webpack.config.js",
+      "**/*.test.js",
+      "build"
+    ]
   }
 }

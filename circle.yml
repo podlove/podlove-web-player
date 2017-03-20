@@ -6,6 +6,10 @@ compile:
   override:
     - npm run build
 
+test:
+  post:
+    - bash <(curl -s https://codecov.io/bash)
+
 deployment:
   production:
     branch: v4

@@ -20,6 +20,7 @@
     border: 0;
     opacity: 1;
     transition: opacity $animation-duration;
+    outline: none;
 
     &[disabled] {
       opacity: 0.5;

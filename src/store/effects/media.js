@@ -15,7 +15,6 @@ let mediaElement = null
 
 export default mediaPlayer => (store, action) => {
   const state = store.getState()
-
   switch (action.type) {
     case 'INIT':
       mediaElement = initMediaPlayer(mediaPlayer, store.dispatch, action.payload)
