@@ -1,12 +1,27 @@
+general:
+  branches:
+    ignore:
+      - gh-pages
+
 machine:
+  environment:
+    PATH: "${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin"
   node:
     version: 6.2.1
 
+dependencies:
+  override:
+    - yarn
+  cache_directories:
+    - ~/.cache/yarn
+
 compile:
   override:
-    - npm run build
+    - yarn build
 
 test:
+  override:
+    - yarn test
   post:
     - bash <(curl -s https://codecov.io/bash)
 
@@ -14,4 +29,4 @@ deployment:
   production:
     branch: v4
     commands:
-      - surge --project ./dist --domain podlove-player.surge.sh
+      - ./scripts/deploy-ghpages.sh dist

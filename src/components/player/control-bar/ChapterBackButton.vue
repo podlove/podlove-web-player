@@ -5,7 +5,7 @@
 </template>
 
 <script>
-  import { currentChapterIndex } from 'utils/chapters'
+  import { previousChapterPlaytime } from 'utils/chapters'
 
   import store from 'store'
   import PodloveButton from 'shared/Button.vue'
@@ -27,24 +27,9 @@
       onButtonClick () {
         const chapters = this.$select('chapters')
         const playtime = this.$select('playtime')
-        const current = currentChapterIndex(chapters)
+        const previousChapter = previousChapterPlaytime(chapters, playtime)
 
-        let previous;
-
-        switch (true) {
-          case current <= 0:
-            previous = chapters[0]
-          break
-
-          case (playtime - chapters[current].start) <= 2:
-            previous = chapters[current - 1]
-          break
-
-          default:
-            previous = chapters[current]
-        }
-
-        store.dispatch(store.actions.updatePlaytime(previous.start))
+        store.dispatch(store.actions.updatePlaytime(previousChapter || 0))
       }
     }
   }

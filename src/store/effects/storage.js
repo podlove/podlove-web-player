@@ -1,5 +1,7 @@
 import actions from '../actions'
+import get from 'lodash/get'
 import { hashCode } from 'hashcode'
+import { tabs } from '../reducers/tabs'
 
 let podloveStorage
 
@@ -11,19 +13,29 @@ export default storage => (store, action) => {
     case 'INIT':
       podloveStorage = storage(metaHash(action.payload))
 
-      let storedPlaytime = podloveStorage.get('playtime')
+      const storedPlaytime = podloveStorage.get('playtime')
+      const storedTabs = podloveStorage.get('tabs')
 
-      if (storedPlaytime !== undefined) {
+      if (storedPlaytime) {
         store.dispatch(actions.setPlaytime(storedPlaytime))
         store.dispatch(actions.idle())
       }
+
+      if (storedTabs) {
+        store.dispatch(actions.setTabs(storedTabs))
+      }
       break
     case 'SET_PLAYTIME':
+    case 'UPDATE_PLAYTIME':
       if (!podloveStorage) {
         return
       }
 
       podloveStorage.set('playtime', action.payload)
+      break
+    case 'TOGGLE_TAB':
+      const currentState = get(store.getState(), 'tabs', {})
+      podloveStorage.set('tabs', currentState)
       break
   }
 }

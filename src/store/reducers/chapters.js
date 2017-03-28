@@ -28,6 +28,7 @@ const chapters = (state = [], action) => {
   switch (action.type) {
     case 'INIT':
       const chapters = get(action.payload, 'chapters', [])
+
       return chapters
         .reduce(parseChapters(action.payload.duration), [])
         .map(setActive(action.payload.playtime || 0))
