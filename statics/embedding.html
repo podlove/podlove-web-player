@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{meta_description}">
+    <meta name="author" content="">
+
+    <title>Podlove Web Player - Embeddung</title>
+
+    <link href="./assets/gitbook.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="wrapper">
+        <sidebar class="sidebar">
+            <ul class="navigation">
+                <li><a href="/">Overview</a></li>
+                <li><a class="active" href="/embedding.html">Embedding</a></li>
+                <li><a href="/theme.html">Theming</a></li>
+                <li><a href="/config.html">Configuration</a></li>
+                <li><a href="/persistence.html">Player Persistence</a></li>
+                <li><a href="/advanced.html">Advanced Usage</a></li>
+                <li><a href="/example.html">Example</a></li>
+            </ul>
+        </sidebar>
+
+        <main class="content">
+            <div class="inner">
+                <h1>Embedding</h1>
+
+                <div id="example" class="section"></div>
+                <script src="embed.bundle.js"></script>
+                <script>
+                    podlovePlayer('#example', './fixtures/example.json');
+                </script>
+
+                <h2>Signature</h2>
+<pre><code class="language-js">/**
+*   Podlove Player Factory
+*   @param {string, dom node}   selector        - CSS selector or dom node
+*   @param {string, object}     configuration   - Path to JSON config or configuration object
+*   @returns {Promise}          store           - Promise returning a redux store
+*/
+podlovePlayer(selector, configuration)</code></pre>
+                <ul>
+                    <li>Selector can be a css selector or a dom node reference</li>
+                    <li>An iframe as the canvas is injected into the reference, encapsulating the player</li>
+                    <li>Configuration can be provided as a meta object or an url to the configuration json file</li>
+                    <li>Canvas width can be defined by the template</li>
+                    <li>Canvas height is adapted to players height</li>
+                </ul>
+
+                <p>
+                    Using a selector that matches multiple elements the player will be rendered in the first matching element.
+                    The <em>podlovePlayer</em> returns a promise with a redux store as a result that can be used to change the player state from outside.
+                </p>
+
+
+                <h3>Example Embedding with JSON File</h3>
+<pre><code class="language-html">&#x3C;div id=&#x22;example&#x22;&#x3E;&#x3C;/div&#x3E;
+&#x3C;script src=&#x22;embed.bundle.js&#x22;&#x3E;&#x3C;/script&#x3E;
+&#x3C;script&#x3E;
+    podlovePlayer(&#x27;#example&#x27;, &#x27;./fixtures/example.json&#x27;);
+&#x3C;/script&#x3E;</code></pre>
+
+                <h3>Example Embedding with Meta Object</h3>
+<pre><code class="language-html">&#x3C;div id=&#x22;example&#x22;&#x3E;&#x3C;/div&#x3E;
+&#x3C;script src=&#x22;embed.bundle.js&#x22;&#x3E;&#x3C;/script&#x3E;
+&#x3C;script&#x3E;
+    podlovePlayer(&#x27;#example&#x27;, {
+        title: &#x27;FS171 Invasion!&#x27;,
+        subtitle: &#x27;LAN Planung - Kalender - Bingo - Wikipedia - Akkukalibration - Alte iPads und iPods - Find My Friends - iPhone Music Player - Apple Watch - Kommandozeile - Star Wars - Dante - Internet of Things Security - VPN&#x27;,
+        summary: &#x27;Wir haben eine wie wir finden abwechslungsreiche Sendung produziert, die wir Euch wie immer mit Freude bereitstellen. W&#xE4;hrend die Live-H&#xF6;rer Freak-Show-Bingo spielen, greifen wir das Wikipedia-Thema der letzten Sendung auf und liefern auch noch weitere Aspekte des optimalen Star-Wars-Medienkonsums frei Haus. Dazu viel Nerderei rund um die Kommandozeile, eine Einsch&#xE4;tzung der Perspektive der Apple Watch, ein Rant &#xFC;ber die mangelhafte Security  im Internet of Things (and Buildings) und allerlei anderer Kram.  Roddi setzt dieses Mal aus, sonst Vollbesetzung.&#x27;,
+        publicationDate: &#x27;2016-02-11T03:13:55+00:00&#x27;,
+        poster: &#x27;https://freakshow.fm/wp-content/cache/podlove/04/662a9d4edcf77ea2abe3c74681f509/freak-show_200x200.jpg&#x27;,
+        show: {
+            title: &#x27;Freak Show&#x27;,
+            subtitle: &#x27;Menschen! Technik! Sensationen!&#x27;,
+            summary: &#x27;Die muntere Talk Show um Leben mit Technik, das Netz und Technikkultur. Bisweilen Apple-lastig aber selten einseitig. Wir leben und lieben Technologie und reden dar&#xFC;ber. Mit Tim, hukl, roddi, Clemens und Denis. Freak Show hie&#xDF; irgendwann mal mobileMacs.&#x27;,
+            poster: &#x27;https://freakshow.fm/wp-content/cache/podlove/04/662a9d4edcf77ea2abe3c74681f509/freak-show_200x200.jpg&#x27;,
+            url: &#x27;https://freakshow.fm&#x27;
+        },
+        duration: &#x27;04:15:32&#x27;,
+        chapters: [
+            { start:&#x22;00:00:00&#x22;, title: &#x27;Intro&#x27;},
+            { start:&#x22;00:01:39&#x22;, title: &#x27;Begr&#xFC;&#xDF;ung&#x27;},
+            { start:&#x22;00:04:58&#x22;, title: &#x27;IETF Meeting Netzwerk&#x27;},
+            { start:&#x22;00:18:37&#x22;, title: &#x27;Kalender&#x27;},
+            { start:&#x22;00:33:40&#x22;, title: &#x27;Freak Show Bingo&#x27;},
+            { start:&#x22;00:35:37&#x22;, title: &#x27;Wikipedia&#x27;},
+            { start:&#x22;01:17:26&#x22;, title: &#x27;iPhone Akkukalibration&#x27;},
+            { start:&#x22;01:24:55&#x22;, title: &#x27;Alte iPads und iPod touches&#x27;},
+            { start:&#x22;01:31:02&#x22;, title: &#x27;Find My Friends&#x27;},
+            { start:&#x22;01:41:46&#x22;, title: &#x27;iPhone Music Player&#x27;},
+            { start:&#x22;01:56:13&#x22;, title: &#x27;Apple Watch&#x27;},
+            { start:&#x22;02:11:51&#x22;, title: &#x27;Kommandozeile: System Appreciation&#x27;},
+            { start:&#x22;02:23:10&#x22;, title: &#x27;Sound und Design f&#xFC;r Games&#x27;},
+            { start:&#x22;02:24:59&#x22;, title: &#x27;Kommandozeile: Remote Deployment&#x27;},
+            { start:&#x22;02:32:37&#x22;, title: &#x27;Kommandozeile: Man Pages&#x27;},
+            { start:&#x22;02:44:31&#x22;, title: &#x27;Kommandozeile: screen vs. tmux&#x27;},
+            { start:&#x22;02:58:02&#x22;, title: &#x27;Star Wars: Machete Order &#x26; Phantom Edit&#x27;},
+            { start:&#x22;03:20:05&#x22;, title: &#x27;Kopfh&#xF6;rer-Ersatzteile&#x27;},
+            { start:&#x22;03:23:39&#x22;, title: &#x27;Dante&#x27;},
+            { start:&#x22;03:38:03&#x22;, title: &#x27;Dante Via&#x27;},
+            { start:&#x22;03:45:33&#x22;, title: &#x27;Internet of Things Security&#x27;},
+            { start:&#x22;03:56:11&#x22;, title: &#x27;That One Privacy Guy\&#x27;s VPN Comparison Chart&#x27;},
+            { start:&#x22;04:10:00&#x22;, title: &#x27;Ausklang&#x27;}
+        ],
+        audio: [
+            &#x27;http://freakshow.fm/podlove/file/4468/s/download/c/select-show/fs171-invasion.m4a&#x27;,
+            &#x27;http://freakshow.fm/podlove/file/4467/s/download/c/select-show/fs171-invasion.mp3&#x27;,
+            &#x27;http://freakshow.fm/podlove/file/4466/s/download/c/select-show/fs171-invasion.oga&#x27;,
+            &#x27;http://freakshow.fm/podlove/file/4465/s/download/c/select-show/fs171-invasion.opus&#x27;
+        ],
+        reference: {
+            config: &#x27;//podlove-player.surge.sh/fixtures/example.json&#x27;,
+            share: &#x27;//podlove-player.surge.sh/share&#x27;
+        }
+    });
+&#x3C;/script&#x3E;</code></pre>
+            </div>
+        </main>
+    </div>
+
+    <script src="assets/gitbook.min.js"></script>
+</body>
+</html>

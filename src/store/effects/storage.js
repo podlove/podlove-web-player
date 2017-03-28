@@ -1,18 +1,17 @@
 import actions from '../actions'
 
 import storage from 'utils/storage'
-import hash from 'short-hash'
+import { hashCode } from 'hashcode'
 
 let podloveStorage
+
+const metaHash = config =>
+  hashCode().value(Object.assign({}, config, {playtime: 0}))
 
 export default (store, action) => {
   switch (action.type) {
     case 'INIT':
-      if (!action.payload.title) {
-        return
-      }
-
-      podloveStorage = storage(hash(action.payload.title))
+      podloveStorage = storage(metaHash(action.payload))
 
       let storedPlaytime = podloveStorage.get('playtime')
 
