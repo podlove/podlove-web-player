@@ -1,6 +1,6 @@
 <template>
   <div class="podlove-chapters">
-    <ChapterEntry v-for="(chapter, index) in chapters" :chapter="chapter" :index="index"/>
+    <ChapterEntry v-for="(chapter, index) in chapters" :chapter="chapter" :index="index" :key="index"/>
   </div>
 </template>
 

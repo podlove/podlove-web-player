@@ -5,33 +5,8 @@
   "license": "BSD-2-Clause",
   "version": "4.0.0-proto",
   "homepage": "https://github.com/podlove/podlove-web-player",
-  "contributors": [
-    {
-      "name": "Gerrit van Aaken",
-      "email": "info@praegnanz.de",
-      "url": "http://praegnanz.de"
-    },
-    {
-      "name": "Simon Waldherr",
-      "email": "contact@simonwaldherr.de",
-      "url": "http://simon.waldherr.eu/"
-    },
-    {
-      "name": "Frank Hase"
-    },
-    {
-      "name": "Eric Teubert"
-    },
-    {
-      "name": "Juri Leino",
-      "email": "contact@line-o.de",
-      "url": "http://line-o.de/"
-    }
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/podlove/podlove-web-player.git"
-  },
+  "contributors": [],
+  "repository": "https://github.com/podlove/podlove-web-player.git",
   "bugs": {
     "url": "https://github.com/podlove/podlove-web-player/issues"
   },
@@ -54,7 +29,7 @@
     "dist:clean": "mkdir -p dist && rm -rf dist/*",
     "app:statics": "cp -R statics/* dist",
     "statics": "npm run app:statics",
-    "webpack:dev": "webpack-dashboard -- webpack-dev-server --content-base dist/ --progress --colors --hot --inline --config src/webpack.config.js",
+    "webpack:dev": "webpack-dashboard -- webpack-dev-server --content-base dist/ --progress --hot --inline --config src/webpack.config.js",
     "webpack:build": "NODE_ENV='production' webpack --config src/webpack.config.js",
     "build": "npm run dist:clean && npm run statics && npm run webpack:build",
     "dev": "npm run dist:clean && npm run statics && npm run webpack:dev",
@@ -62,52 +37,49 @@
     "test:dev": "NODE_ENV=AVA ava --watch --fail-fast"
   },
   "dependencies": {
-    "blindparser": "^1.0.2",
-    "clipboard": "^1.6.0",
-    "color": "^1.0.3",
-    "detect-browser": "^1.6.2",
-    "hashcode": "^1.0.3",
-    "howler": "^2.0.2",
-    "iframe-resizer": "^3.5.7",
-    "lodash": "^4.17.4",
-    "query-string": "^4.3.1",
-    "react": "15.3.0",
-    "react-dom": "15.3.0",
-    "react-redux": "4.4.5",
+    "clipboard": "1.6.0",
+    "color": "1.0.3",
+    "detect-browser": "1.6.2",
+    "hashcode": "1.0.3",
+    "howler": "2.0.3",
+    "iframe-resizer": "3.5.7",
+    "keyboardjs": "2.3.3",
+    "lodash": "4.17.4",
+    "query-string": "4.3.1",
     "redux": "3.5.2",
-    "revue": "^3.0.0",
-    "superagent": "^3.4.1",
-    "viscroll": "^1.0.0",
-    "vue": "^2.1.8"
+    "revue": "3.0.0",
+    "superagent": "3.4.1",
+    "viscroll": "1.0.0",
+    "vue": "2.2.6"
   },
   "devDependencies": {
-    "ava": "^0.18.2",
-    "babel-core": "^6.0.0",
-    "babel-loader": "^6.0.0",
-    "babel-plugin-transform-runtime": "^6.0.0",
-    "babel-plugin-webpack-alias": "^2.1.2",
-    "babel-preset-es2015": "^6.0.0",
-    "babel-preset-stage-2": "^6.0.0",
-    "babel-register": "^6.0.0",
-    "browser-env": "^2.0.25",
-    "cross-env": "^3.0.0",
-    "css-loader": "^0.25.0",
-    "file-loader": "^0.9.0",
-    "html-webpack-plugin": "^2.26.0",
-    "inject-loader": "^3.0.0-beta4",
-    "lolex": "^1.6.0",
-    "node-sass": "^4.1.1",
-    "nyc": "^10.1.2",
-    "raw-loader": "^0.5.1",
-    "sass-loader": "^4.1.1",
-    "sinon": "^1.17.7",
-    "surge": "^0.18.0",
+    "ava": "0.18.2",
+    "babel-core": "6.22.0",
+    "babel-loader": "6.4.1",
+    "babel-plugin-transform-runtime": "6.22.0",
+    "babel-plugin-webpack-alias": "2.1.2",
+    "babel-preset-es2015": "6.22.0",
+    "babel-preset-stage-2": "6.22.0",
+    "babel-register": "6.22.0",
+    "browser-env": "2.0.25",
+    "cross-env": "3.0.0",
+    "css-loader": "0.25.0",
+    "file-loader": "0.9.0",
+    "html-webpack-plugin": "2.26.0",
+    "inject-loader": "3.0.0-beta4",
+    "lolex": "1.6.0",
+    "node-sass": "4.1.1",
+    "nyc": "10.1.2",
+    "raw-loader": "0.5.1",
+    "sass-loader": "4.1.1",
+    "sinon": "2.1.0",
+    "surge": "0.18.0",
     "transform-runtime": "0.0.0",
-    "vue-loader": "^10.0.0",
-    "vue-template-compiler": "^2.1.0",
-    "webpack": "^2.1.0-beta.25",
-    "webpack-dashboard": "^0.3.0",
-    "webpack-dev-server": "^2.1.0-beta.9"
+    "vue-loader": "11.3.4",
+    "vue-template-compiler": "2.2.6",
+    "webpack": "2.3.2",
+    "webpack-dashboard": "0.3.0",
+    "webpack-dev-server": "2.1.0-beta.9"
   },
   "engines": {
     "node": ">=5.0.0"
@@ -147,5 +119,7 @@
       "**/*.test.js",
       "build"
     ]
-  }
+  },
+  "main": "index.js",
+  "author": "Alexander Heimbuch <github@heimbu.ch>"
 }

@@ -12,6 +12,8 @@ const tabs = (state = INITIAL, action) => {
         [action.payload]: !get(state, action.payload, false)
       })
 
+    case 'SET_TABS':
+      return action.payload
     default:
       return state
   }

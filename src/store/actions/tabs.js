@@ -3,6 +3,12 @@ const toggleTab = tab => ({
   payload: tab
 })
 
+const setTabs = tabs => ({
+  type: 'SET_TABS',
+  payload: tabs
+})
+
 export {
-  toggleTab
+  toggleTab,
+  setTabs
 }

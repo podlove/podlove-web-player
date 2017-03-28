@@ -1,88 +1,53 @@
 # Podlove Web Player
 
 [![Code Climate](https://codeclimate.com/github/podlove/podlove-web-player/badges/gpa.svg)](https://codeclimate.com/github/podlove/podlove-web-player)
-
-[![Build Status](https://travis-ci.org/podlove/podlove-web-player.svg)](https://travis-ci.org/podlove/podlove-web-player)
+[![Build Status](https://img.shields.io/circleci/project/github/podlove/podlove-web-player/v4.svg)](https://circleci.com/gh/podlove/podlove-web-player)
+[![Coverage](https://img.shields.io/codecov/c/github/podlove/podlove-web-player/feature/coverage.svg)](https://codecov.io/gh/podlove/podlove-web-player/branch/v4)
+[![Coverage](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://github.com/feross/standard)
 
 ## About
 
 HTML5 Goodness for Podcasting
 
-**Podlove** Web Player is a Podcast-optimized, HTML5-based video and audio player with Flash fallback.
+**Podlove** Web Player is a Podcast-optimized, HTML5-based video and audio player.
 It can be used as a WordPress plugin or within a static HTML/JavaScript context.
 
 The **Podlove** Web Player supports almost every modern browser and also does captions, chapters and much more.
-Thanks to MediaElement.js for providing the foundation.
+Thanks to Howler.js for providing the foundation.
 
 * [Web Player Documentation](http://docs.podlove.org/podlove-web-player/)
 * [Web Player Wiki](https://github.com/podlove/podlove-web-player/wiki)
 * [Official site on podlove.org](http://podlove.org/podlove-web-player/)
 * [WordPress Plugin Page](http://wordpress.org/plugins/podlove-web-player/)
 
-## Usage
+## Used Technologies
 
-The release version should have the application, the moderator their dependencies and necessary styles and fonts
-ready in the `dist` folder.
-Along with them there is a running example that shows you how to integrate the player in any webpage.
-Either directly as in `embed.html` or as an iframe/ embedded player as in `index.html`.
-
-## Installation
-
-Clone the repository and install all dependencies with
-
-    bower install
-    npm install
-    npm install -g gulp
-
-## Install autoprefixer
-
-Install autoprefixer to parse CSS and add vendor prefixes to rules fetched from 'Can I Use'
-[https://github.com/ai/autoprefixer](https://github.com/ai/autoprefixer)
-
-    sudo npm install --global autoprefixer
-
-## Build the CSS file
-
-There is a gulp task for that, processing a version with line comments as well as a minified one
-
-    gulp styles
-
-## Build Distribution Package
-
-Make is now replaced by [gulp](https://github.com/gulpjs/gulp/blob/master/docs/README.md)
-
-Just run the default task to build the distribution package to `dist` folder.
-
-    gulp
-
-### For production
-
-    npm install -g uglifyify minifyify
-
-smallest possible code (>50kB)
-
-    browserify -g uglifyify js/app.js > static/podlove-web-player.js
-
-with sourcemaps (~250kB)
-
-    browserify -d js/app.js | minifyify > static/podlove-web-player.js
+- Package Manager: [Yarn](https://github.com/yarnpkg/yarn)
+- Media Library: [Howler](https://github.com/goldfire/howler.js/)
+- View Renderer: [VueJS](https://github.com/vuejs/vue)
+- Bundler: [Webpack](https://github.com/webpack/webpack)
+- State Management: [Redux](https://github.com/reactjs/redux)
 
 ## Development
 
-Build, serve and watch the local repository version. With livereload on top
+### Setup
 
-    gulp serve
+Clone the repository and install all dependencies with `yarn`
 
-## Test
+### Local Development
 
-Some automated tests are written and can be found in the *spec* folder.
-Install [PhantomJS](http://phantomjs.org/) to be able to run them on your machine.
+1. Run `yarn dev`
+2. Access `http://localhost:8080/standalone.html` for development
 
-Run them with
+### Tests
 
-    gulp test
+1. Run `yarn test` for test suite
+2. or `yarn test:dev` for interactive mode
 
-Each commit pushed to the repo will automatically launch the tests on TravisCI.
+### Build
+
+1. Run `yarn build`
+2. Locate build artefacts in `dist/`
 
 ## Info
 
@@ -106,44 +71,6 @@ Push to the branch
     git push origin my-new-feature
 
 Create new Pull Request
-
-## Release
-
-    git fetch
-
-    git checkout -b release origin/release
-
-    git merge origin/dev
-
-    gulp build
-
-Force add all changes. Otherwise changes to the `dist` folder would not be part
-of the release.
-
-    git add dist -f
-
-    git commit "release <version-number>"
-
-    git push
-
-Copy the commit messages from the merge commit to clipboard for later use.
-
-    git show HEAD^
-
-Go to https://github.com/podlove/podlove-web-player/releases/new
-
-Use <version-number> as the tagname. Be sure to add a "v" to the beginning.
-Versions follow semantic versioning (for details see http://semver.org).
-
-Find a (funny) name that can be easily remembered by humans.
-
-Paste the contents of your clipboard into the description field and edit them
-to be a human readable changelog.
-
-Hit the **save** button.
-
-<hr>
-## Send feedback about the Podlove Web Player
 
 ### Join the conversation
 

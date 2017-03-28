@@ -1,5 +1,6 @@
 import curry from 'lodash/fp/curry'
 import get from 'lodash/get'
+import merge from 'lodash/merge'
 
 const PODLOVE_WEB_PLAYER_TOKEN = 'pwp'
 
@@ -33,7 +34,7 @@ const setItem = hash => (...args) => {
 
   try {
     const currentStore = getItem(null, null)
-    const toStore = JSON.stringify(Object.assign({}, currentStore, {[hash]: data}))
+    const toStore = JSON.stringify(merge(currentStore, {[hash]: data}))
 
     return window.localStorage.setItem(PODLOVE_WEB_PLAYER_TOKEN, toStore)
   } catch (err) {
