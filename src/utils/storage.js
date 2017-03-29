@@ -22,13 +22,13 @@ const getItem = curry((hash, key) => {
   }
 })
 
-const setItem = curry((hash, first, second) => {
+const setItem = hash => (...args) => {
   let data
 
-  if (!second) {
-    data = first
+  if (args.length > 1) {
+    data = {[args[0]]: args[1]}
   } else {
-    data = {[first]: second}
+    data = args[0]
   }
 
   try {
@@ -39,7 +39,7 @@ const setItem = curry((hash, first, second) => {
   } catch (err) {
     return undefined
   }
-})
+}
 
 export default hash => ({
   set: setItem(hash),
