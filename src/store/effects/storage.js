@@ -14,7 +14,7 @@ export default (store, action) => {
       podloveStorage = storage(metaHash(action.payload))
 
       let storedPlaytime = podloveStorage.get('playtime')
-
+      console.log(storedPlaytime)
       if (storedPlaytime !== undefined) {
         store.dispatch(actions.setPlaytime(storedPlaytime))
         store.dispatch(actions.idle())
