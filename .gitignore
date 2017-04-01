@@ -7,6 +7,8 @@
 !.travis.yml
 !.babelrc
 
+coverage
+
 # external dependencies
 node_modules
 bower_components
@@ -18,3 +20,4 @@ atlassian-ide-plugin.xml
 # build artefacts
 _site
 dist
+coverage

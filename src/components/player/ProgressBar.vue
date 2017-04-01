@@ -45,13 +45,15 @@
 
   export default {
     data () {
+      let playtime = this.$select('playtime')
+      let duration = this.$select('duration')
       return {
-        playtime: this.$select('playtime'),
-        duration: this.$select('duration'),
+        playtime,
+        duration,
         buffer: this.$select('buffer'),
         playstate: this.$select('playstate'),
         theme: this.$select('theme'),
-        thumbPosition: 0
+        thumbPosition: relativePosition(playtime, duration)
       }
     },
     watch: {

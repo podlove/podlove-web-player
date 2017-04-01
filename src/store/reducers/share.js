@@ -10,7 +10,7 @@ const share = (state = INITIAL, action) => {
     case 'TOGGLE_SHARE':
       return Object.assign({}, state, {open: !state.open})
     case 'TOGGLE_SHARE_CUSTOMSTART':
-      return Object.assign({}, state, {customStart: state.customStart})
+      return Object.assign({}, state, {customStart: !state.customStart})
     case 'SET_EMBED_DIMENSIONS':
       return Object.assign({}, state, {dimensions: action.payload})
     case 'SET_SHARE_CUSTOMSTARTTIME':
