@@ -26,7 +26,7 @@ test:
     - bash <(curl -s https://codecov.io/bash)
 
 deployment:
-  production:
+  staging:
     branch: v4
     commands:
-      - ./scripts/deploy-ghpages.sh dist
+      - yarn deploy:surge
