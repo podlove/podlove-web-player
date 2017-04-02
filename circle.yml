@@ -29,4 +29,5 @@ deployment:
   production:
     branch: v4
     commands:
-      - ./scripts/deploy-ghpages.sh dist
+      - yarn gh-pages
+      - yarn deploy:latest

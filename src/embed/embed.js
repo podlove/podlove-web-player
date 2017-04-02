@@ -91,7 +91,7 @@ const configNode = (config = {}) =>
     .then(config => tag('script', `window.PODLOVE = ${JSON.stringify(config)}`))
 
 // Player Logic
-const appLogic = tag('script', '', {type: 'text/javascript', src: './window.bundle.js'})
+const appLogic = tag('script', '', {type: 'text/javascript', src: './window.js'})
 
 // Dynamic resizer
 const dynamicResizer = tag('script', iframeResizerContentWindow)

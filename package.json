@@ -34,7 +34,10 @@
     "build": "npm run dist:clean && npm run statics && npm run webpack:build",
     "dev": "npm run dist:clean && npm run statics && npm run webpack:dev",
     "test": "NODE_ENV=AVA nyc ava && nyc report --reporter=lcov",
-    "test:dev": "NODE_ENV=AVA ava --watch --fail-fast"
+    "test:dev": "NODE_ENV=AVA ava --watch --fail-fast",
+    "gh-pages": "scripts/deploy-ghpages.sh dist",
+    "deploy:version": "scripts/deploy-version.sh",
+    "deploy:latest": "scripts/deploy-version.sh latest"
   },
   "dependencies": {
     "clipboard": "1.6.0",
@@ -72,6 +75,7 @@
     "nyc": "10.1.2",
     "raw-loader": "0.5.1",
     "sass-loader": "4.1.1",
+    "semver": "^5.3.0",
     "sinon": "2.1.0",
     "surge": "0.18.0",
     "transform-runtime": "0.0.0",
