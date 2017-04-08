@@ -12,6 +12,8 @@ machine:
 dependencies:
   override:
     - yarn
+  pre:
+    - yarn global add publish-release
   cache_directories:
     - ~/.cache/yarn
 
@@ -27,7 +29,8 @@ test:
 
 deployment:
   production:
-    branch: v4
+    tag: /v.*/
     commands:
       - yarn gh-pages
-      - yarn deploy:latest
+      - yarn deploy:release
+      - yarn deploy:cdn
