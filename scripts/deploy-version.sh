@@ -1,21 +1,27 @@
 #!/bin/sh
-version=$(node ./scripts/version.js)
+echo "Starting deploying $minorVersion"
+echo "--------------------------------"
+
+echo "Publishing to Github"
+publish-release --token $GITHUB_TOKEN --owner $CIRCLE_PROJECT_USERNAME --repo $CIRCLE_PROJECT_REPONAME --tag $CIRCLE_TAG --assets dist/share.html,dist/*.js --name "Podlove Web Player"
+
+echo "Publishing to CDN"
+
+minorVersion=$(node ./scripts/version.js)
 user="podlove"
 server="cdn.podlove.org"
 port="10022"
 target="/home/podlove/projects/podlove-web-player"
 
-echo $version
-
 if [ -z "$1" ]
   then
-    target=$target/$version
+    target=$target/$minorVersion
   else
     target=$target/$1
 fi
 
 echo "Creating $target@$server"
-ssh -p $port $user@$server "mkdir -p $target"
+ssh -o PasswordAuthentication=no -p $port $user@$server "mkdir -p $target"
 
 echo "Copy files to $target@$server"
-scp -P $port -r dist/share.html dist/*.js $user@$server:$target
+scp -o PasswordAuthentication=no -P $port -r dist/share.html dist/*.js $user@$server:$target
