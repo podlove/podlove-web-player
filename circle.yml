@@ -12,6 +12,8 @@ machine:
 dependencies:
   override:
     - yarn
+  pre:
+    - yarn global add publish-release
   cache_directories:
     - ~/.cache/yarn
 
