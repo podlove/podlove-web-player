@@ -16,6 +16,7 @@ export default storage => (store, action) => {
       const storedTabs = podloveStorage.get('tabs')
       const storedVolume = podloveStorage.get('volume')
       const storedRate = podloveStorage.get('rate')
+      const storedQuantiles = podloveStorage.get('quantiles')
 
       if (storedPlaytime) {
         store.dispatch(actions.setPlaytime(storedPlaytime))
@@ -33,6 +34,9 @@ export default storage => (store, action) => {
       if (storedRate) {
         store.dispatch(actions.setRate(storedRate))
       }
+      if (storedQuantiles) {
+        store.dispatch(actions.loadQuantiles(storedQuantiles))
+      }
       break
     case 'SET_PLAYTIME':
     case 'UPDATE_PLAYTIME':
@@ -43,8 +47,12 @@ export default storage => (store, action) => {
       podloveStorage.set('playtime', action.payload)
       break
     case 'TOGGLE_TAB':
-      const currentState = get(store.getState(), 'tabs', {})
-      podloveStorage.set('tabs', currentState)
+      const tabs = get(store.getState(), 'tabs', {})
+      podloveStorage.set('tabs', tabs)
+      break
+    case 'SET_QUANTILE':
+      const quantiles = get(store.getState(), 'quantiles', [])
+      podloveStorage.set('quantiles', quantiles)
       break
     case 'SET_VOLUME':
       const currentVolume = get(store.getState(), 'volume', 1)
