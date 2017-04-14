@@ -88,12 +88,12 @@ test(`subtitle: it extracts the subtitle`, t => {
   t.is(result, 'subtitle')
 })
 
-test(`subtitle: it returns the state if no subtitle is available`, t => {
+test(`subtitle: it returns null if no subtitle is available`, t => {
   const result = subtitle('foo', {
     type: 'INIT',
     payload: {}
   })
-  t.is(result, 'foo')
+  t.is(result, null)
 })
 
 test(`subtitle: it does nothing if not the init action is dispatched`, t => {
@@ -113,12 +113,12 @@ test(`title: it extracts the title`, t => {
   t.is(result, 'title')
 })
 
-test(`title: it returns the state if no title is available`, t => {
+test(`title: it returns null if no title is available`, t => {
   const result = title('foo', {
     type: 'INIT',
     payload: {}
   })
-  t.is(result, 'foo')
+  t.is(result, null)
 })
 
 test(`title: it does nothing if not the init action is dispatched`, t => {

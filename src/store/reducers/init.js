@@ -3,7 +3,7 @@ import get from 'lodash/get'
 const subtitle = (state = '', action) => {
   switch (action.type) {
     case 'INIT':
-      return action.payload.subtitle || state
+      return action.payload.subtitle || null
     default:
       return state
   }
@@ -21,7 +21,7 @@ const mode = (state = 'native', action) => {
 const poster = (state = '', action) => {
   switch (action.type) {
     case 'INIT':
-      return action.payload.poster || action.payload.show.poster || state
+      return action.payload.poster || action.payload.show.poster || null
     default:
       return state
   }
@@ -30,7 +30,7 @@ const poster = (state = '', action) => {
 const title = (state = '', action) => {
   switch (action.type) {
     case 'INIT':
-      return action.payload.title || state
+      return action.payload.title || null
     default:
       return state
   }
