@@ -38,6 +38,8 @@
     "deploy:gh-pages": "scripts/deploy-ghpages.sh dist",
     "deploy:version": "scripts/deploy-version.sh",
     "deploy:latest": "scripts/deploy-version.sh latest",
+    "deploy:cdn": "scripts/deploy-cdn.sh",
+    "deploy:release": "scripts/deploy-release.sh",
     "deploy:surge": "surge --project ./dist --domain podlove-player.surge.sh"
   },
   "dependencies": {
