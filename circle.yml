@@ -36,6 +36,6 @@ deployment:
   production:
     tag: /v.*/
     commands:
-      - yarn deploy:gh-pages
+      # - yarn deploy:gh-pages
       - yarn deploy:release
       - yarn deploy:cdn
