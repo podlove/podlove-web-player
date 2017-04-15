@@ -129,13 +129,15 @@
                         <tr><th colspan="2">References</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td>reference.config</td><td>Reference to the Current Configuration</td></tr>
-                        <tr><td>reference.share</td><td>Reference Sharing Embed Endpoint</td></tr>
+                        <tr><td>reference.base</td><td>Reference to webplayer base, if not provided it falls back to the current url</td></tr>
+                        <tr><td>reference.config</td><td>Reference to the current configuration</td></tr>
+                        <tr><td>reference.share</td><td>Reference sharing embed endpoint</td></tr>
                     </tbody>
                 </table>
 
 <pre><code class="language-js">{
     reference: {
+        base: &#x27;//podlove-player.surge.sh&#x27;,
         config: &#x27;//podlove-player.surge.sh/fixtures/example.json&#x27;,
         share: &#x27;//podlove-player.surge.sh/share&#x27;
     }

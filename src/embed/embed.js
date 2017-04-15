@@ -91,7 +91,7 @@ const configNode = (config = {}) =>
     .then(config => tag('script', `window.PODLOVE = ${JSON.stringify(config)}`))
 
 // Player Logic
-const appLogic = tag('script', '', {type: 'text/javascript', src: './window.js'})
+const appLogic = config => tag('script', '', {type: 'text/javascript', src: `${get(config.reference, 'base', '.')}/window.js`})
 
 // Dynamic resizer
 const dynamicResizer = tag('script', iframeResizerContentWindow)
@@ -104,11 +104,11 @@ window.podlovePlayer = (selector, config) => {
   const anchor = typeof selector === 'string' ? head(findNode(selector)) : selector
 
   return Bluebird.all([
-      playerEntry,
-      configNode(config),
-      appLogic,
-      dynamicResizer
-    ])
-    .then(result => result.join(''))
-    .then(renderPlayer(anchor))
+    playerEntry,
+    configNode(config),
+    appLogic(config),
+    dynamicResizer
+  ])
+  .then(result => result.join(''))
+  .then(renderPlayer(anchor))
 }
