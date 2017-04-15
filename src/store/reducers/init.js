@@ -48,10 +48,20 @@ const reference = (state = {}, action) => {
   }
 }
 
+const debug = (state = {}, action) => {
+  switch (action.type) {
+    case 'INIT':
+      return get(action.payload, 'debug', state)
+    default:
+      return state
+  }  
+}
+
 export {
   poster,
   subtitle,
   title,
   reference,
-  mode
+  mode,
+  debug
 }

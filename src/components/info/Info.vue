@@ -3,7 +3,7 @@
     <div class="podlove-info--header">
       <div class="podlove-player--download"></div>
       <div class="podlove-info--poster">
-        <img class="podlove-info--poster--image" :src="poster" :style="posterStyle(theme)"/>
+        <img class="podlove-info--poster--image" v-if="poster" :src="poster" :style="posterStyle(theme)"/>
       </div>
       <div class="podlove-player--share"><ShareButton /></div>
     </div>

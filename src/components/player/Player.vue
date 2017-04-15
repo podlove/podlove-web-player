@@ -3,7 +3,7 @@
     <div class="podlove-player--control">
       <div class="podlove-player--download"></div>
       <ControlBar class="podlove-player--control-bar"/>
-      <div class="podlove-player--share"><ShareButton /></div>
+      <div class="podlove-player--share" v-if="reference.share && reference.config"><ShareButton /></div>
     </div>
     <ProgressBar />
     <Timer />
@@ -20,7 +20,8 @@
   export default {
     data() {
       return {
-        playstate: this.$select('playstate')
+        playstate: this.$select('playstate'),
+        reference: this.$select('reference')
       }
     },
     components: {
