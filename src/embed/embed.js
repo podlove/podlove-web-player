@@ -85,7 +85,7 @@ const configNode = (config = {}) =>
   Bluebird.resolve(config)
     // If the config is a string, lets assume that this will point to the remote config json
     .then(config => isString(config) ? requestConfig(config) : config)
-    // load parameters from url
+    // Load parameters from url
     .then(config => Object.assign({}, config, urlConfig))
     // Finally return the node
     .then(config => tag('script', `window.PODLOVE = ${JSON.stringify(config)}`))
@@ -102,7 +102,6 @@ const playerEntry = tag('PodlovePlayer')
 // Bootstrap
 window.podlovePlayer = (selector, config) => {
   const anchor = typeof selector === 'string' ? head(findNode(selector)) : selector
-
   return Bluebird.all([
     playerEntry,
     configNode(config),

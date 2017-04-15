@@ -1,6 +1,8 @@
 <template>
   <div class="podlove-settings">
-    <a :href="exportStore()" download="podlove-web-player-debug.json">export debug state</a>
+    <div class="podlove-settings__footer">
+      <a class="podlove-settings__version" title="Export Debug State" :href="exportStore()" download="podlove-web-player-debug.json">Podlove Web Player v{{version}}</a>
+    </div>
   </div>
 </template>
 
@@ -12,6 +14,11 @@
   }
 
   export default {
+    data() {
+      return {
+         version: this.$select('debug.version')
+      }
+    },
     methods: {
       exportStore
     }
@@ -23,7 +30,15 @@
 
   .podlove-settings {
     width: 100%;
-    padding: $padding 0;
-    text-align: center;
+    padding: $padding;
+  }
+
+  .podlove-settings__footer {
+    text-align: right;
+  }
+
+  .podlove-settings__version {
+    font-size: 0.8rem;
+    color: #444;
   }
 </style>
