@@ -32,6 +32,11 @@ const themeColors = (colors = {}) => {
         chapter: secondary ? secondary : negative ? light : dark
       }
     },
+    settings: {
+      slider: {
+        thumb: primary
+      }
+    },
     tabs: {
       header: {
         background: primary,

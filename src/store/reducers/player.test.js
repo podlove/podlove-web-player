@@ -1,5 +1,5 @@
 import test from 'ava'
-import { playtime, duration, buffer, playstate, timerMode } from './player'
+import { playtime, duration, buffer, playstate, timerMode, volume, rate } from './player'
 
 // PLAYTIME TESTS
 test(`playtime: is a reducer function`, t => {
@@ -203,4 +203,62 @@ test(`timerMode: parses the mode on TOGGLE_TIMERMODE`, t => {
   })
 
   t.is(result, 'remaining')
+})
+
+// VOLUME
+test(`volume: is a reducer function`, t => {
+  t.is(typeof volume, 'function')
+})
+
+test(`volume: it does nothing if a unknown action is dispatched`, t => {
+  const result = volume('CUSTOM', {
+    type: 'NOT_A_REAL_TYPE'
+  })
+  t.is(result, 'CUSTOM')
+})
+
+test(`volume: it returns the correct volume`, t => {
+  t.is(volume(undefined, {
+    type: 'SET_RATE',
+    payload: 1
+  }), 1)
+
+  t.is(volume(1, {
+    type: 'SET_VOLUME',
+    payload: -1
+  }), 0)
+
+  t.is(volume(1, {
+    type: 'SET_VOLUME',
+    payload: 2
+  }), 1)
+})
+
+// VOLUME
+test(`rate: is a reducer function`, t => {
+  t.is(typeof rate, 'function')
+})
+
+test(`rate: it does nothing if a unknown action is dispatched`, t => {
+  const result = rate('CUSTOM', {
+    type: 'NOT_A_REAL_TYPE'
+  })
+  t.is(result, 'CUSTOM')
+})
+
+test(`rate: it returns the correct rate`, t => {
+  t.is(rate(undefined, {
+    type: 'SET_RATE',
+    payload: 1
+  }), 1)
+
+  t.is(rate(1, {
+    type: 'SET_RATE',
+    payload: 0.2
+  }), 0.5)
+
+  t.is(rate(1, {
+    type: 'SET_RATE',
+    payload: 5
+  }), 4)
 })

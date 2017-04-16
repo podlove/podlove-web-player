@@ -66,10 +66,42 @@ const timerMode = (state = 'remaining', action) => {
   }
 }
 
+const volume = (state = 1, action) => {
+  if (action.type !== 'SET_VOLUME') {
+    return state
+  }
+
+  switch (true) {
+    case action.payload < 0:
+      return 0
+    case action.payload > 1:
+      return 1
+    default:
+      return action.payload
+  }
+}
+
+const rate = (state = 1, action) => {
+  if (action.type !== 'SET_RATE') {
+    return state
+  }
+
+  switch (true) {
+    case action.payload < 0.5:
+      return 0.5
+    case action.payload > 4:
+      return 4
+    default:
+      return action.payload
+  }
+}
+
 export {
   playtime,
   duration,
   buffer,
   playstate,
-  timerMode
+  timerMode,
+  volume,
+  rate
 }

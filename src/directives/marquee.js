@@ -22,7 +22,7 @@ const removeClass = (el, cssClass) => {
 export default {
   update (el, binding, vnode) {
     if (el.parentNode.clientWidth >= el.clientWidth) {
-      el.className = removeClass(el, 'podlove-player--marquee')
+      el.className = removeClass(el, 'marquee')
       return
     }
 
@@ -31,6 +31,6 @@ export default {
     }
 
     el.marquee_text = el.innerText
-    el.className = addClass(el, 'podlove-player--marquee')
+    el.className = addClass(el, 'marquee')
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <ul class="podlove-tabs--tab-header" :style="headerStyle(theme)">
+  <ul class="tab-header" :style="headerStyle(theme)">
     <slot></slot>
   </ul>
 </template>
@@ -22,7 +22,8 @@
 </script>
 <style lang="scss">
   @import 'variables';
-  .podlove-tabs--tab-header {
+  .tab-header {
+    position: relative;
     width: 100%;
     display: flex;
     align-items: center;
@@ -33,5 +34,18 @@
     font-weight: 100;
     text-transform: uppercase;
     height: $tabs-header-height;
+
+
+    &::after {
+      position: absolute;
+      top: $tabs-header-height;
+      left: 0;
+      right: 0;
+      content: ' ';
+      display: block;
+      height: $padding;
+      background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+      z-index: 100;
+    }
   }
 </style>

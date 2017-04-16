@@ -33,5 +33,11 @@ export default mediaPlayer => (store, action) => {
     case 'UPDATE_PLAYTIME':
       mediaElement && mediaElement.setPlaytime(action.payload)
       break
+    case 'SET_VOLUME':
+      mediaElement && mediaElement.volume(action.payload)
+      break
+    case 'SET_RATE':
+      mediaElement && mediaElement.rate(action.payload)
+      break
   }
 }

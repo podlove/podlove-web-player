@@ -69,22 +69,22 @@
 
 <style lang="scss">
   @import 'variables';
-  $dimension: 50px;
+  $button-width: 50px;
 
   .podlove-player--play-icon {
     display: flex;
     align-items: center;
     justify-content: center;
 
-    height: $dimension;
-    width: $dimension;
+    height: $button-width;
+    width: $button-width;
 
-    border-radius: $dimension / 2;
+    border-radius: $button-width / 2;
     transition: width $animation-duration;
 
     &.start, &.idle, &.end, &.loading {
       padding: $padding;
-      width: ($dimension * 2) + $padding * 2;
+      width: ($button-width * 2) + 30px;
     }
 
     .play-icon {

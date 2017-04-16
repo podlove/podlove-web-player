@@ -59,7 +59,10 @@ const config = {
     new webpack.LoaderOptionsPlugin({
       options: {
         sassLoader: {
-          includePaths: [path.resolve(__dirname, 'styles')]
+          includePaths: [
+            path.resolve(__dirname, 'styles'),
+            path.resolve(__dirname, '..', 'node_modules', 'foundation-sites', 'scss')
+          ]
         }
       }
     })

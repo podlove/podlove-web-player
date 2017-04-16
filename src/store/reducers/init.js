@@ -36,6 +36,15 @@ const title = (state = '', action) => {
   }
 }
 
+const showTitle = (state = '', action) => {
+  switch (action.type) {
+    case 'INIT':
+      return get(action.payload, ['show', 'title']) || null
+    default:
+      return state
+  }
+}
+
 const reference = (state = {}, action) => {
   switch (action.type) {
     case 'INIT':
@@ -61,6 +70,7 @@ export {
   poster,
   subtitle,
   title,
+  showTitle,
   reference,
   mode,
   debug

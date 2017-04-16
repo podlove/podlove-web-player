@@ -1,7 +1,7 @@
 const INITIAL = {
   open: false,
   customStart: false,
-  dimensions: '250x440',
+  dimensions: '250x400',
   customStarttime: 0
 }
 
