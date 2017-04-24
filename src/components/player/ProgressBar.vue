@@ -7,11 +7,11 @@
       v-on:change="onChange"
       v-on:input="onInput"
     />
-    <span class="podlove-player--progress-range"></span>
-    <span class="podlove-player--progress-buffer" :style="bufferStyle(theme, buffer, duration)"></span>
-    <span class="podlove-player--progress-track" :style="trackStyle(theme, thumbPosition)"></span>
+    <span class="progress-range"></span>
+    <span class="progress-buffer" :style="bufferStyle(theme, buffer, duration)"></span>
+    <span class="progress-track" :style="trackStyle(theme, thumbPosition)"></span>
     <ChaptersIndicator />
-    <span class="podlove-player--progress-thumb" :style="thumbStyle(theme, thumbPosition)"></span>
+    <span class="progress-thumb" :style="thumbStyle(theme, thumbPosition)"></span>
   </div>
 
 </template>
@@ -84,10 +84,12 @@
   @import 'variables';
   @import 'range-resets';
 
+  $progress-bar-height: 44px;
+
   .podlove-player--progress-bar {
     width: 100%;
     position: relative;
-    height: $padding;
+    height: $progress-bar-height;
     transition: opacity ($animation-duration / 2), height $animation-duration;
     opacity: 1;
 
@@ -98,50 +100,47 @@
     }
 
     &.idle {
-      .podlove-player--progress-thumb {
+      .progress-thumb {
         opacity: 0;
       }
-
-      height: $padding * 2;
     }
   }
 
-  .podlove-player--progress-range {
+  .progress-range {
     display: block;
     position: absolute;
     width: 100%;
     left: 0;
-    top: 2px;
+    top: calc(50% - 1px);
     height: 2px;
     background-color: rgba($accent-color, 0.25);
     pointer-events: none;
   }
 
-  .podlove-player--progress-track {
+  .progress-track {
     display: block;
     position: absolute;
     left: 0;
-    top: 2px;
+    top: calc(50% - 1px);
     height: 2px;
     pointer-events: none;
   }
 
-  .podlove-player--progress-thumb {
+  .progress-thumb {
     position: absolute;
-    top: 0;
     border: 1px solid;
-    margin-top: -5px;
     height: 14px;
+    top: calc(50% - 7px);
     width: 6px;
     pointer-events: none;
   }
 
-  .podlove-player--progress-buffer {
+  .progress-buffer {
     display: block;
     opacity: 1;
     position: absolute;
     height: 2px;
-    top: 2px;
+    top: calc(50% - 1px);
     left: 0;
     pointer-events: none;
   }

@@ -1,12 +1,10 @@
 <template>
   <div class="podlove-chapters--entry" :style="chapterStyle(theme, chapter)" @click="onChapterClick(chapter)">
-    <span class="podlove-chapters--entry--index">{{index + 1}}</span>
-    <span class="podlove-chapters--entry--title podlove-player--truncate">{{chapter.title}}</span>
-    <a class="podlove-chapters--entry--timer" href="javascript: void(0);">
-      <span v-if="timerMode === 'remaining' && chapter.active">-{{secondsToTime(chapter.end - playtime < 0 ? 0 : chapter.end - playtime)}}</span>
-      <span v-else>{{secondsToTime(chapter.end - chapter.start)}}</span>
-    </a>
-    <span class="podlove-chapters--entry--progress" :style="progressStyle(theme, chapter, playtime)"></span>
+    <span class="index">{{index + 1}}</span>
+    <span class="title truncate">{{chapter.title}}</span>
+    <span class="timer">{{remainingTime(chapter, playtime)}}</span>
+    
+    <span class="progress" :style="progressStyle(theme, chapter, playtime)"></span>
   </div>
 </template>
 
@@ -39,6 +37,14 @@
     }
   }
 
+  const remainingTime = (chapter, playtime) => {
+    if (chapter.active) {
+      return secondsToTime(chapter.end - playtime)
+    }
+
+    return secondsToTime(chapter.end - chapter.start)
+  }
+
   const onChapterClick = chapter => {
     store.dispatch(store.actions.updatePlaytime(chapter.start))
     store.dispatch(store.actions.setPlaytime(chapter.start))
@@ -56,7 +62,7 @@
     methods: {
       chapterStyle,
       progressStyle,
-      secondsToTime,
+      remainingTime,
       onChapterClick
     },
     props: ['chapter', 'index']
@@ -74,28 +80,28 @@
     font-weight: 300;
     display: flex;
     cursor: pointer;
-  }
 
-  .podlove-chapters--entry--index {
-    display: block;
-    width: 30px;
-  }
+    .index {
+      display: block;
+      width: 30px;
+    }
 
-  .podlove-chapters--entry--title {
-    display: block;
-    width: calc(100% - 30px - 30px)
-  }
+    .title {
+      display: block;
+      width: calc(100% - 30px - 30px)
+    }
 
-  .podlove-chapters--entry--timer {
-    display: block;
-    text-align: right;
-    @include font-monospace();
-  }
+    .timer {
+      display: block;
+      text-align: right;
+      @include font-monospace();
+    }
 
-  .podlove-chapters--entry--progress {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    height: 3px;
+    .progress {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 3px;
+    }
   }
 </style>

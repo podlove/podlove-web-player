@@ -1,6 +1,6 @@
 <template>
-  <div class="podlove-player--timer--chapter">
-    <span class="podlove-player--timer--chapter-title" v-marquee
+  <div class="timer-chapter truncate">
+    <span class="chapter-title" v-marquee
       :style="chapterStyle(theme)"
       v-if="currentChapterIndex(chapters) > -1">
         {{chapterTitle(chapters)}}
@@ -9,12 +9,11 @@
 </template>
 
 <script>
-  import color from 'color'
   import get from 'lodash/get'
   import { currentChapter, currentChapterIndex } from 'utils/chapters'
 
   const chapterStyle = theme => ({
-    color: color(theme.player.timer.chapter).fade(0.5)
+    color: theme.player.timer.chapter
   })
 
   const chapterTitle = chapters => {
@@ -40,16 +39,13 @@
 <style lang="scss">
   @import 'animations';
 
-  .podlove-player--timer--chapter {
+  .timer-chapter {
     width: 100%;
     text-align: center;
-    font-style: italic;
-    white-space: nowrap;
-    overflow: hidden;
-  }
-
-  .podlove-player--timer--chapter-title {
-    white-space: nowrap;
-    display: inline-block;
+    
+    .chapter-title {
+      white-space: nowrap;
+      display: inline-block;
+    }
   }
 </style>

@@ -1,7 +1,6 @@
 import actions from '../actions'
 import get from 'lodash/get'
 import { hashCode } from 'hashcode'
-import { tabs } from '../reducers/tabs'
 
 let podloveStorage
 
@@ -15,6 +14,8 @@ export default storage => (store, action) => {
 
       const storedPlaytime = podloveStorage.get('playtime')
       const storedTabs = podloveStorage.get('tabs')
+      const storedVolume = podloveStorage.get('volume')
+      const storedRate = podloveStorage.get('rate')
 
       if (storedPlaytime) {
         store.dispatch(actions.setPlaytime(storedPlaytime))
@@ -23,6 +24,14 @@ export default storage => (store, action) => {
 
       if (storedTabs) {
         store.dispatch(actions.setTabs(storedTabs))
+      }
+
+      if (storedVolume) {
+        store.dispatch(actions.setVolume(storedVolume))
+      }
+
+      if (storedRate) {
+        store.dispatch(actions.setRate(storedRate))
       }
       break
     case 'SET_PLAYTIME':
@@ -36,6 +45,14 @@ export default storage => (store, action) => {
     case 'TOGGLE_TAB':
       const currentState = get(store.getState(), 'tabs', {})
       podloveStorage.set('tabs', currentState)
+      break
+    case 'SET_VOLUME':
+      const currentVolume = get(store.getState(), 'volume', 1)
+      podloveStorage.set('volume', currentVolume)
+      break
+    case 'SET_RATE':
+      const currentRate = get(store.getState(), 'rate', 1)
+      podloveStorage.set('rate', currentRate)
       break
   }
 }

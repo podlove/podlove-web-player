@@ -5,13 +5,20 @@
         <ChaptersIcon slot="icon"></ChaptersIcon>
         <span slot="title">Kapitel</span>
       </TabHeaderItem>
+      <TabHeaderItem :active="tabs.share" :click="toggleTab('share')">
+        <ShareIcon slot="icon"></ShareIcon>
+        <span slot="title">Share</span>
+      </TabHeaderItem>
       <TabHeaderItem :active="tabs.settings" :click="toggleTab('settings')">
         <SettingsIcon slot="icon"></SettingsIcon>
         <span slot="title">Settings</span>
       </TabHeaderItem>
     </TabHeader>
-    <TabBody :active="tabs.chapters" v-iscroll v-if="chapters.length > 0">
+    <TabBody :active="tabs.chapters" v-if="chapters.length > 0">
       <ChaptersTab />
+    </TabBody>
+    <TabBody :active="tabs.share">
+      <ShareTab />
     </TabBody>
     <TabBody :active="tabs.settings">
       <SettingsTab />
@@ -27,9 +34,11 @@ import TabHeaderItem from 'shared/TabHeaderItem.vue'
 import TabBody from 'shared/TabBody.vue'
 
 import ChaptersIcon from 'icons/ChaptersIcon.vue'
+import ShareIcon from 'icons/ShareIcon.vue'
 import SettingsIcon from 'icons/SettingsIcon.vue'
 
 import ChaptersTab from './chapters/Chapters.vue'
+import ShareTab from './share/Share.vue'
 import SettingsTab from './settings/Settings.vue'
 
 const containerStyle = theme => ({
@@ -61,6 +70,8 @@ export default {
     TabBody,
     ChaptersIcon,
     ChaptersTab,
+    ShareIcon,
+    ShareTab,
     SettingsIcon,
     SettingsTab
   }

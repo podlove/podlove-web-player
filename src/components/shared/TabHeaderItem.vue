@@ -1,9 +1,9 @@
 <template>
-  <li class="podlove-tabs--tab-header--item" :style="tabStyle(theme, active)" :class="{active}">
-    <a href="javascript:void(0);" @click.prevent="click()" class="podlove-tabs--tab-header--caption">
-      <span class="podlove-tabs--tab-header--icon" :style="{fill: iconColor(theme, active)}"><slot name="icon"></slot></span>
-      <span class="podlove-tabs--tab-header--title"><slot name="title"></slot></span>
-      <CloseIcon class="podlove-tabs--tab-header--close" :color="iconColor(theme, true)" v-if="active" />
+  <li class="tab-header-item" :style="tabStyle(theme, active)" :class="{active}">
+    <a href="javascript:void(0);" @click.prevent="click()" class="caption">
+      <span class="icon" :style="{fill: iconColor(theme, active)}"><slot name="icon"></slot></span>
+      <span class="title"><slot name="title"></slot></span>
+      <CloseIcon class="close" :color="iconColor(theme, true)" v-if="active" />
     </a>
   </li>
 </template>
@@ -40,7 +40,7 @@
 <style lang="scss">
   @import 'variables';
 
-  .podlove-tabs--tab-header--item {
+  .tab-header-item {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -52,10 +52,17 @@
 
       &.active {
         background-color: $background-color;
-      }
-    }
 
-    .podlove-tabs--tab-header--caption {
+        &:last-child {
+          border-right: 1px solid rgba($accent-color, 0.1);
+        }
+
+        &:first-child {
+          border-left: 1px solid rgba($accent-color, 0.1);
+        }
+      }
+
+    .caption {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -66,12 +73,24 @@
       width: 100%;
     }
 
-
-    .podlove-tabs--tab-header--icon {
-      margin-right: $margin / 3;
+    .title {
+      margin-left: $margin / 3;
     }
 
-    .podlove-tabs--tab-header--close {
+
+    .icon {
+      margin-right: $margin / 3;
+      line-height: 0;
+    }
+
+    .close {
       display: none;
     }
+
+    @media screen and (max-width: $width-s) {
+      .title {
+        display: none;
+      }
+    }
+  }
 </style>

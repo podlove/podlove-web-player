@@ -1,6 +1,6 @@
 <template>
-  <div class="podlove-player--chapters-progress">
-    <span class="podlove-player--chapters-progress--indicator"
+  <div class="chapters-progress">
+    <span class="indicator"
       v-for="(chapter, index) in chapters"
       :style="indicatorStyle(theme, chapter, duration)"
       :class="{ last: isLast(chapters, index) }"></span>
@@ -32,18 +32,18 @@
 </script>
 
 <style lang="scss">
-  .podlove-player--chapters-progress {}
+  .chapters-progress {
+    .indicator {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      top: calc(50% - 1px);
+      pointer-events: none;
 
-  .podlove-player--chapters-progress--indicator {
-    position: absolute;
-    width: 2px;
-    height: 2px;
-    top: 2px;
-    pointer-events: none;
-
-    &.last {
-      width: 0;
-      height: 0;
+      &.last {
+        width: 0;
+        height: 0;
+      }
     }
   }
 </style>

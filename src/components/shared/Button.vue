@@ -29,5 +29,17 @@
     &.start, &.idle, &.end, &.loading {
       opacity: 0;
     }
+
+    &.solid {
+      color: $background-color;
+      background: $accent-color;
+      border-radius: 4px;
+      border: 2px solid $accent-color;
+
+      &:hover, &.active {
+        color: $accent-color;
+        background: $background-color;
+      }
+    }
   }
 </style>

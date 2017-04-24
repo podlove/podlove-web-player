@@ -1,0 +1,25 @@
+// Import Foundation Grid
+@import 'variables';
+@import 'settings/settings';
+@import 'foundation';
+
+// Override Foundation default breakpoints
+$breakpoints: (
+  small: $width-xs,
+  medium: $width-l,
+  large: $width-l,
+  xlarge: $width-xl,
+  xxlarge: $width-xl,
+);
+
+$breakpoint-classes: (small medium large);
+
+// Set default max-width to 100%
+$grid-row-width: 100%;
+
+@include foundation-flex-grid; // IE10+
+
+// Bugfix for https://github.com/zurb/foundation-sites/issues/8304
+.row .row {
+  max-width: none;
+}
