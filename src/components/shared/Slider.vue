@@ -94,6 +94,7 @@
       border: 1px solid;
       height: 20px;
       width: 10px;
+      margin-left: -5px;
       pointer-events: none;
       border: 1px solid $background-color;
     }

@@ -34,7 +34,9 @@ const themeColors = (colors = {}) => {
     },
     settings: {
       slider: {
-        thumb: primary
+        thumb: primary,
+        button: color(primary).fade(0.8),
+        text: primary
       }
     },
     tabs: {
