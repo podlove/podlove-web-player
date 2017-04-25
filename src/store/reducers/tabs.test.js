@@ -6,7 +6,8 @@ let testState
 test.beforeEach(t => {
     testState = {
         'chapters': false,
-        'settings': false
+        'settings': false,
+        'share': false
     }
 })
 

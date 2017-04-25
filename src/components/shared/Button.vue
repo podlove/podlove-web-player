@@ -1,10 +1,23 @@
 <template>
-  <button class="podlove-player--button" @click="click()"><slot></slot></button>
+  <button :style="buttonStyle(color)" class="podlove-player--button" @click="click()"><slot></slot></button>
 </template>
 
 <script>
+  const buttonStyle = color => {
+    if (!color) {
+      return {}
+    }
+
+    return {
+      'background-color': color
+    }
+  }
+
   export default {
-    props: ['click']
+    props: ['click', 'color'],
+    methods: {
+      buttonStyle
+    }
   }
 </script>
 

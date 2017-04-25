@@ -43,6 +43,7 @@
     "deploy:surge": "surge --project ./dist --domain podlove-player.surge.sh"
   },
   "dependencies": {
+    "bluebird": "^3.5.0",
     "clipboard": "1.6.0",
     "color": "1.0.3",
     "detect-browser": "1.6.2",
@@ -57,7 +58,6 @@
     "redux": "3.5.2",
     "revue": "3.0.0",
     "superagent": "3.4.1",
-    "viscroll": "1.0.0",
     "vue": "2.2.6"
   },
   "devDependencies": {

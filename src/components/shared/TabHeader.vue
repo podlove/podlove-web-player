@@ -22,6 +22,7 @@
 </script>
 <style lang="scss">
   @import 'variables';
+
   .tab-header {
     position: relative;
     width: 100%;
@@ -35,12 +36,11 @@
     text-transform: uppercase;
     height: $tabs-header-height;
 
-
     &::after {
       position: absolute;
       top: $tabs-header-height;
-      left: 0;
-      right: 0;
+      left: 1px;
+      right: 1px;
       content: ' ';
       display: block;
       height: $padding;

@@ -3,29 +3,19 @@
     <div class="input">
       <h4 class="label">
         <span class="title">Volume</span>
-        <span class="volume">{{decimalToPercent(volume)}}</span>
+        <span class="volume">{{decimalToPercent(volume)}}%</span>
       </h4>
       <PodloveSlider min="0" max="1" :value="volume" step="0.001" :onInput="setVolume" :thumbColor="theme.settings.slider.thumb"></PodloveSlider>
-      <div class="range">
-        <span class="range--start">0%</span>
-        <span class="range--end">100%</span>
-      </div>
     </div>
     <div class="input">
       <h4 class="label">
-        <span class="title">Rate</span>
-        <div>
-          <PodloveButton class="solid preset" :class="{active: rate > 0.75 && rate < 0.85}" :click="fixedRate(0.8)">0.8x</PodloveButton>
-          <PodloveButton class="solid preset" :class="{active: rate > 0.95 && rate < 1.05}" :click="fixedRate(1)">1x</PodloveButton>
-          <PodloveButton class="solid preset" :class="{active: rate > 1.45 && rate < 1.55}" :click="fixedRate(1.5)">1.5x</PodloveButton>
-          <PodloveButton class="solid preset" :class="{active: rate > 1.95 && rate < 2.05}" :click="fixedRate(2)">2x</PodloveButton>
-          <PodloveButton class="solid preset" :class="{active: rate > 2.95 && rate < 3.05}" :click="fixedRate(3)">3x</PodloveButton>
-        </div>
+        <span class="title">Speed</span>
+        <span class="rate">{{decimalToPercent(rate)}}%</span>
       </h4>
-      <PodloveSlider min="0.5" max="4" :value="rate" step="0.001" :onInput="setRate" :thumbColor="theme.settings.slider.thumb"></PodloveSlider>
-      <div class="range">
-        <span class="range--start">0.5x</span>
-        <span class="range--end">4x</span>
+      <div class="input--rate">
+        <PodloveButton class="rate-button" :click="decreaseRate(rate)" :style="buttonStyle(theme)">-</PodloveButton>
+        <PodloveButton class="rate-button" :click="increaseRate(rate)" :style="buttonStyle(theme)">+</PodloveButton>
+        <PodloveSlider class="rate--slider" min="0.5" max="4" :value="rate" step="0.001" :onInput="setRate" :thumbColor="theme.settings.slider.thumb"></PodloveSlider>
       </div>
     </div>
     <div class="footer">
@@ -43,6 +33,16 @@
     return `data:text/json;charset=utf-8,${encodeURIComponent(JSON.stringify(store.store.getState()))}`;
   }
 
+  const decimalToPercent = input => {
+    input = parseFloat(input) * 100
+    return Math.round(input)
+  }
+
+  const buttonStyle = (theme) => ({
+    color: theme.settings.slider.text,
+    background: theme.settings.slider.button
+  })
+
   const setVolume = volume => {
     store.dispatch(store.actions.setVolume(volume))
   }
@@ -51,10 +51,46 @@
     store.dispatch(store.actions.setRate(rate))
   }
 
-  const fixedRate = rate => () => setRate(rate)
+  const roundUp = (base, number) => {
+    if (number % base == 0) {
+      return number + base
+    }
 
-  const decimalToPercent = input => {
-    return parseInt(input * 100, 10) + '%'
+    return number + (base - number % base)
+  }
+
+  const increaseRate = (rate) => {
+    let reference = Date.now()
+
+    rate = decimalToPercent(rate)
+    return () => {
+      let now = Date.now()
+
+      if ((now - reference) < 500) {
+        store.dispatch(store.actions.setRate(roundUp(10, rate) / 100))
+      } else {
+        store.dispatch(store.actions.setRate(roundUp(5, rate) / 100))
+      }
+
+      reference = now
+    }
+  }
+
+  const decreaseRate = (rate) => {
+    let reference = Date.now()
+
+    rate = decimalToPercent(rate)
+    return () => {
+      let now = Date.now()
+
+      if ((now - reference) < 500) {
+        store.dispatch(store.actions.setRate(roundUp(-10, rate) / 100))
+      } else {
+        store.dispatch(store.actions.setRate(roundUp(-5, rate) / 100))
+      }
+
+      reference = now
+    }
   }
 
   export default {
@@ -70,7 +106,9 @@
       exportStore,
       setVolume,
       setRate,
-      fixedRate,
+      increaseRate,
+      decreaseRate,
+      buttonStyle,
       decimalToPercent
     },
     components: {
@@ -84,6 +122,7 @@
   @import 'variables';
 
   $preset-width: 40px;
+  $button-size: 30px;
 
   .podlove-settings {
     width: 100%;
@@ -118,6 +157,24 @@
 
     .preset {
       width: $preset-width;
+    }
+
+    .input--rate {
+      display: flex;
+      align-items: center;
+    }
+
+    .rate--slider {
+      width: 100%;
+      margin-left: $margin / 2;
+    }
+
+    .rate-button {
+      font-weight: bold;
+      font-size: 1.2em;
+      height: $button-size;
+      width: $button-size;
+      margin-right: $margin / 2;
     }
   }
 </style>

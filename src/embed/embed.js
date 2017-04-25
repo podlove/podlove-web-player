@@ -1,8 +1,5 @@
-import get from 'lodash/get'
-import head from 'lodash/head'
-import isString from 'lodash/isString'
+import { get, head, isString } from 'lodash'
 import Bluebird from 'bluebird'
-import browser from 'detect-browser'
 
 import { findNode, createNode, appendNode, tag } from 'utils/dom'
 import requestConfig from 'utils/request'
@@ -15,10 +12,7 @@ import iframeResizerContentWindow from 'raw-loader!iframe-resizer/js/iframeResiz
 const playerSandbox = anchor => {
   const frame = createNode('iframe')
 
-  if (browser.name !== 'ios') {
-    frame.style.width = '100%'
-  }
-
+  frame.setAttribute('width', '100%')
   frame.setAttribute('seamless', '')
   frame.setAttribute('scrolling', 'no')
   frame.setAttribute('frameborder', '0')
