@@ -1,5 +1,7 @@
 const webpack = require('webpack')
 const DashboardPlugin = require('webpack-dashboard/plugin')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const CompressionPlugin = require('compression-webpack-plugin')
 
 const path = require('path')
 
@@ -7,7 +9,8 @@ const config = {
   entry: {
     embed: path.resolve(__dirname, 'embed', 'embed.js'),
     window: path.resolve(__dirname, 'embed', 'window.js'),
-    share: path.resolve(__dirname, 'embed', 'share.js')
+    share: path.resolve(__dirname, 'embed', 'share.js'),
+    vendor: path.resolve(__dirname, 'vendor.js')
   },
   output: {
     path: path.resolve('dist'),
@@ -57,6 +60,7 @@ const config = {
   devtool: '#eval-source-map',
   plugins: [
     new webpack.LoaderOptionsPlugin({
+      minimize: true,
       options: {
         sassLoader: {
           includePaths: [
@@ -65,6 +69,12 @@ const config = {
           ]
         }
       }
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      filename: 'vendor.js',
+      chunks: ['share', 'window'],
+      minChunks: Infinity
     })
   ]
 }
@@ -79,14 +89,23 @@ if (process.env.NODE_ENV === 'production') {
       }
     }),
     new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
+      sourceMap: false,
       compress: {
         warnings: false
       }
+    }),
+    new CompressionPlugin({
+      test: /\.(js)$/
     })
   ]
 } else {
-  config.plugins = [...config.plugins, new DashboardPlugin()]
+  config.plugins = [...config.plugins,
+    new DashboardPlugin(),
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'static',
+      openAnalyzer: false
+    })
+  ]
 }
 
 module.exports = config

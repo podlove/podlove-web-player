@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import head from 'lodash/head'
+import { head } from 'lodash'
 
 import debug from 'utils/debug'
 import registerDirectives from './directives'
