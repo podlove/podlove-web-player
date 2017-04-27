@@ -18,4 +18,4 @@ echo "Creating $target@$server"
 ssh -o PasswordAuthentication=no -p $port $user@$server "mkdir -p $target"
 
 echo "Copy files to $target@$server"
-scp -o PasswordAuthentication=no -P $port -r dist/share.html dist/*.js $user@$server:$target
+scp -o PasswordAuthentication=no -P $port -r dist/* $user@$server:$target

@@ -1,7 +1,6 @@
 const webpack = require('webpack')
 const DashboardPlugin = require('webpack-dashboard/plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
-const CompressionPlugin = require('compression-webpack-plugin')
 
 const path = require('path')
 
@@ -93,13 +92,15 @@ if (process.env.NODE_ENV === 'production') {
       compress: {
         warnings: false
       }
-    }),
-    new CompressionPlugin({
-      test: /\.(js)$/
     })
   ]
 } else {
   config.plugins = [...config.plugins,
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: '"development"'
+      }
+    }),
     new DashboardPlugin(),
     new BundleAnalyzerPlugin({
       analyzerMode: 'static',

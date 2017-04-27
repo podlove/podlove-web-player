@@ -2355,11 +2355,11 @@ figures@^2.0.0:
   dependencies:
     escape-string-regexp "^1.0.5"
 
-file-loader@0.9.0:
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/file-loader/-/file-loader-0.9.0.tgz#1d2daddd424ce6d1b07cfe3f79731bed3617ab42"
+file-loader@^0.11.1:
+  version "0.11.1"
+  resolved "https://registry.yarnpkg.com/file-loader/-/file-loader-0.11.1.tgz#6b328ee1234a729e4e47d36375dd6d35c0e1db84"
   dependencies:
-    loader-utils "~0.2.5"
+    loader-utils "^1.0.2"
 
 filename-regex@^2.0.0:
   version "2.0.0"
@@ -2419,6 +2419,12 @@ find-up@^2.0.0:
 flatten@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/flatten/-/flatten-1.0.2.tgz#dae46a9d78fbe25292258cc1e780a41d95c03782"
+
+fn-compose@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/fn-compose/-/fn-compose-1.1.0.tgz#6a18465403a6898c7a324566aa0409820ba44a07"
+  dependencies:
+    maybe-args "0.0.3"
 
 fn-name@^2.0.0:
   version "2.0.1"
@@ -2995,6 +3001,12 @@ inject-loader@3.0.0-beta4:
   dependencies:
     loader-utils "^0.2.3"
 
+inline-environment-variables-webpack-plugin@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/inline-environment-variables-webpack-plugin/-/inline-environment-variables-webpack-plugin-1.2.0.tgz#02d74eb288ba82b36006d9fcfc385f403665efd9"
+  dependencies:
+    fn-compose "^1.1.0"
+
 interpret@^1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/interpret/-/interpret-1.0.2.tgz#f4f623f0bb7122f15f5717c8e254b8161b5c5b2d"
@@ -3475,7 +3487,7 @@ loader-runner@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/loader-runner/-/loader-runner-2.3.0.tgz#f482aea82d543e07921700d5a46ef26fdac6b8a2"
 
-loader-utils@^0.2.15, loader-utils@^0.2.16, loader-utils@^0.2.3, loader-utils@~0.2.2, loader-utils@~0.2.5:
+loader-utils@^0.2.15, loader-utils@^0.2.16, loader-utils@^0.2.3, loader-utils@~0.2.2:
   version "0.2.17"
   resolved "https://registry.yarnpkg.com/loader-utils/-/loader-utils-0.2.17.tgz#f86e6374d43205a6e6c60e9196f17c0299bfb348"
   dependencies:
@@ -3660,6 +3672,10 @@ math-expression-evaluator@^1.2.14:
 max-timeout@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/max-timeout/-/max-timeout-1.0.0.tgz#b68f69a2f99e0b476fd4cb23e2059ca750715e1f"
+
+maybe-args@0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/maybe-args/-/maybe-args-0.0.3.tgz#333396b7660fa59fb9a49b73035843a836d4f026"
 
 md5-hex@^1.2.0, md5-hex@^1.3.0:
   version "1.3.0"
