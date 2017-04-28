@@ -232,6 +232,11 @@ test(`volume: it returns the correct volume`, t => {
     type: 'SET_VOLUME',
     payload: 2
   }), 1)
+
+  t.is(volume(1, {
+    type: 'SET_VOLUME',
+    payload: 0.2
+  }), 0.2)
 })
 
 // VOLUME

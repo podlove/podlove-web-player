@@ -1,8 +1,6 @@
 {
-  "presets": [
-    "bluebird", ["es2015", { "loose": true, "modules": false }]
-  ],
-  "plugins": ["lodash"],
+  "presets": ["es2015"],
+  "plugins": ["lodash", "transform-runtime"],
   "env": {
     "AVA": {
       "plugins": [

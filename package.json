@@ -112,27 +112,7 @@
       "babel-core/register",
       "babel-register"
     ],
-    "babel": {
-      "presets": [
-        "bluebird",
-        [
-          "es2015",
-          {
-            "loose": true,
-            "modules": false
-          }
-        ]
-      ],
-      "plugins": [
-        "lodash",
-        "transform-runtime"
-      ],
-      "env": {
-        "development": {
-          "sourceMaps": "inline"
-        }
-      }
-    }
+    "babel": {"babelrc": true}
   },
   "nyc": {
     "exclude": [
