@@ -1,8 +1,11 @@
 import Vue from 'vue'
-import head from 'lodash/head'
+import { head } from 'lodash'
 
 import debug from 'utils/debug'
 import registerDirectives from './directives'
+
+// Import share static page
+require('file-loader?name=share.html!./statics/share.html')
 
 registerDirectives(Vue)
 

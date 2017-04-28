@@ -85,7 +85,8 @@ const configNode = (config = {}) =>
     .then(config => tag('script', `window.PODLOVE = ${JSON.stringify(config)}`))
 
 // Player Logic
-const appLogic = config => tag('script', '', {type: 'text/javascript', src: `${get(config.reference, 'base', '.')}/window.js`})
+const vendorBundle = config => tag('script', '', {type: 'text/javascript', src: `${get(config.reference, 'base', '.')}/vendor.js`})
+const appBundle = config => tag('script', '', {type: 'text/javascript', src: `${get(config.reference, 'base', '.')}/window.js`})
 
 // Dynamic resizer
 const dynamicResizer = tag('script', iframeResizerContentWindow)
@@ -99,7 +100,8 @@ window.podlovePlayer = (selector, config) => {
   return Bluebird.all([
     playerEntry,
     configNode(config),
-    appLogic(config),
+    vendorBundle(config),
+    appBundle(config),
     dynamicResizer
   ])
   .then(result => result.join(''))

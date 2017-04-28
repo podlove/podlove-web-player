@@ -27,12 +27,11 @@
   ],
   "scripts": {
     "dist:clean": "mkdir -p dist && rm -rf dist/*",
-    "app:statics": "cp -R statics/* dist",
-    "statics": "npm run app:statics",
+    "docs": "cp -R docs/* dist",
     "webpack:dev": "webpack-dashboard -- webpack-dev-server --content-base dist/ --progress --hot --inline --config src/webpack.config.js",
     "webpack:build": "NODE_ENV='production' webpack --config src/webpack.config.js",
-    "build": "npm run dist:clean && npm run statics && npm run webpack:build",
-    "dev": "npm run dist:clean && npm run statics && npm run webpack:dev",
+    "build": "npm run dist:clean && npm run webpack:build",
+    "dev": "npm run dist:clean && npm run docs && npm run webpack:dev",
     "test": "NODE_ENV=AVA nyc ava && nyc report --reporter=lcov",
     "test:dev": "NODE_ENV=AVA ava --watch --fail-fast",
     "deploy:gh-pages": "scripts/deploy-ghpages.sh dist",
@@ -63,18 +62,22 @@
   "devDependencies": {
     "ava": "0.18.2",
     "babel-core": "6.22.0",
-    "babel-loader": "6.4.1",
+    "babel-loader": "7.0.0",
+    "babel-plugin-lodash": "^3.2.11",
     "babel-plugin-transform-runtime": "6.22.0",
     "babel-plugin-webpack-alias": "2.1.2",
+    "babel-preset-bluebird": "^1.0.1",
     "babel-preset-es2015": "6.22.0",
     "babel-preset-stage-2": "6.22.0",
     "babel-register": "6.22.0",
     "browser-env": "2.0.25",
+    "compression-webpack-plugin": "^0.4.0",
     "cross-env": "3.0.0",
     "css-loader": "0.25.0",
-    "file-loader": "0.9.0",
+    "file-loader": "^0.11.1",
     "html-webpack-plugin": "2.26.0",
     "inject-loader": "3.0.0-beta4",
+    "inline-environment-variables-webpack-plugin": "^1.2.0",
     "lolex": "1.6.0",
     "node-sass": "4.1.1",
     "nyc": "10.1.2",
@@ -87,6 +90,7 @@
     "vue-loader": "11.3.4",
     "vue-template-compiler": "2.2.6",
     "webpack": "2.3.2",
+    "webpack-bundle-analyzer": "^2.4.0",
     "webpack-dashboard": "0.3.0",
     "webpack-dev-server": "2.1.0-beta.9"
   },
@@ -108,19 +112,7 @@
       "babel-core/register",
       "babel-register"
     ],
-    "babel": {
-      "presets": [
-        "es2015"
-      ],
-      "plugins": [
-        "transform-runtime"
-      ],
-      "env": {
-        "development": {
-          "sourceMaps": "inline"
-        }
-      }
-    }
+    "babel": {"babelrc": true}
   },
   "nyc": {
     "exclude": [

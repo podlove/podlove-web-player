@@ -1,4 +1,4 @@
-import get from 'lodash/get'
+import { get } from 'lodash'
 
 const subtitle = (state = '', action) => {
   switch (action.type) {
@@ -21,7 +21,7 @@ const mode = (state = 'native', action) => {
 const poster = (state = '', action) => {
   switch (action.type) {
     case 'INIT':
-      return action.payload.poster || action.payload.show.poster || null
+      return get(action.payload, 'poster') || get(action.payload, ['show', 'poster']) || null
     default:
       return state
   }
@@ -63,7 +63,7 @@ const debug = (state = {}, action) => {
       return get(action.payload, 'debug', state)
     default:
       return state
-  }  
+  }
 }
 
 export {

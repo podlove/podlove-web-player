@@ -1,5 +1,5 @@
 import test from 'ava'
-import { poster, subtitle, title, reference, mode } from './init'
+import { poster, subtitle, title, reference, mode, showTitle, debug } from './init'
 
 let testAction
 
@@ -12,7 +12,7 @@ test.beforeEach(t => {
       publicationDate: '2016-02-11T03:13:55+00:00',
       poster: '//episode/poster',
       show: {
-        title: 'Freak Show',
+        title: 'showTitle',
         subtitle: 'Menschen! Technik! Sensationen!',
         summary: 'Die muntere Talk Show um Leben mit Technik, das Netz und Technikkultur. Bisweilen Apple-lastig aber selten einseitig. Wir leben und lieben Technologie und reden darüber. Mit Tim, hukl, roddi, Clemens und Denis. Freak Show hieß irgendwann mal mobileMacs.',
         poster: '//show/poster',
@@ -50,7 +50,8 @@ test.beforeEach(t => {
       reference: {
         config: '//config/reference',
         share: '//share/reference'
-      }
+      },
+      debug: 'debug'
     }
   }
 })
@@ -78,6 +79,21 @@ test(`poster: it does nothing if not the init action is dispatched`, t => {
   t.is(result, 'foobar')
 })
 
+test(`poster: it has a default fallback if a missing state is provided`, t => {
+  const result = poster(undefined, {
+    type: 'NOT_A_REAL_TYPE'
+  })
+  t.is(result, '')
+})
+
+test(`poster: it returns null if neither an episode poster nor an show poster is defined`, t => {
+  const result = poster('', {
+    type: 'INIT',
+    payload: {}
+  })
+  t.is(result, null)
+})
+
 // SUBTITLE TESTS
 test(`subtitle: it is a reducer function`, t => {
   t.is(typeof subtitle, 'function')
@@ -103,6 +119,13 @@ test(`subtitle: it does nothing if not the init action is dispatched`, t => {
   t.is(result, 'foobar')
 })
 
+test(`subtitle: it has a default fallback if a missing state is provided`, t => {
+  const result = subtitle(undefined, {
+    type: 'NOT_A_REAL_TYPE'
+  })
+  t.is(result, '')
+})
+
 // TITLE TESTS
 test(`title: it is a reducer function`, t => {
   t.is(typeof title, 'function')
@@ -126,6 +149,45 @@ test(`title: it does nothing if not the init action is dispatched`, t => {
     type: 'NOT_A_REAL_TYPE'
   })
   t.is(result, 'foobar')
+})
+
+test(`title: it has a default fallback if a missing state is provided`, t => {
+  const result = title(undefined, {
+    type: 'NOT_A_REAL_TYPE'
+  })
+  t.is(result, '')
+})
+
+// SHOW TITLE TESTS
+test(`showTitle: it is a reducer function`, t => {
+  t.is(typeof showTitle, 'function')
+})
+
+test(`showTitle: it extracts the showTitle`, t => {
+  const result = showTitle('', testAction)
+  t.is(result, 'showTitle')
+})
+
+test(`showTitle: it returns null if no showTitle is available`, t => {
+  const result = showTitle('foo', {
+    type: 'INIT',
+    payload: {}
+  })
+  t.is(result, null)
+})
+
+test(`showTitle: it does nothing if not the init action is dispatched`, t => {
+  const result = showTitle('foobar', {
+    type: 'NOT_A_REAL_TYPE'
+  })
+  t.is(result, 'foobar')
+})
+
+test(`showTitle: it has a default fallback if a missing state is provided`, t => {
+  const result = showTitle(undefined, {
+    type: 'NOT_A_REAL_TYPE'
+  })
+  t.is(result, '')
 })
 
 // REFERENCE TESTS
@@ -164,8 +226,14 @@ test(`reference: it does nothing if not the init action is dispatched`, t => {
   t.is(result, 'foobar')
 })
 
+test(`reference: it has a default fallback if a missing state is provided`, t => {
+  const result = reference(undefined, {
+    type: 'NOT_A_REAL_TYPE'
+  })
+  t.deepEqual(result, {})
+})
 
-// REFERENCE TESTS
+// MODE TESTS
 test(`mode: it is a reducer function`, t => {
   t.is(typeof mode, 'function')
 })
@@ -183,6 +251,30 @@ test(`mode: it returns native if a mode is not available`, t => {
 
 test(`mode: it does nothing if not the init action is dispatched`, t => {
   const result = mode('foobar', {
+    type: 'NOT_A_REAL_TYPE'
+  })
+  t.is(result, 'foobar')
+})
+
+// DEBUG TESTS
+test(`debug: it is a reducer function`, t => {
+  t.is(typeof debug, 'function')
+})
+
+test(`debug: it extracts the debug`, t => {
+  const result = debug('', testAction)
+  t.is(result, 'debug')
+})
+
+test(`debug: it returns an empty object if a debug is not available`, t => {
+  let result = debug(undefined, {
+    type: 'NOT_A_REAL_TYPE'
+  })
+  t.deepEqual(result, {})
+})
+
+test(`debug: it does nothing if not the init action is dispatched`, t => {
+  const result = debug('foobar', {
     type: 'NOT_A_REAL_TYPE'
   })
   t.is(result, 'foobar')
