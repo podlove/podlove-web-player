@@ -9,7 +9,7 @@
     />
     <span class="progress-range"></span>
     <span class="progress-buffer" :style="bufferStyle(theme, buffer, duration)"></span>
-    <span class="progress-track" :style="trackStyle(theme, thumbPosition)"></span>
+    <span v-for="quantile in quantiles" class="progress-track" :style="trackStyle(theme, duration, quantile)"></span>
     <ChaptersIndicator />
     <span class="progress-thumb" :style="thumbStyle(theme, thumbPosition)"></span>
   </div>
@@ -38,9 +38,10 @@
     'border-color': theme.player.progress.border
   })
 
-  const trackStyle = (theme, position) => ({
-    width: position,
-    'background-color': theme.player.progress.bar
+  const trackStyle = (theme, duration, [start, end]) => ({
+      left: relativePosition(start, duration),
+      width: relativePosition(end - start, duration),
+      'background-color': theme.player.progress.bar
   })
 
   export default {
@@ -53,7 +54,8 @@
         buffer: this.$select('buffer'),
         playstate: this.$select('playstate'),
         theme: this.$select('theme'),
-        thumbPosition: relativePosition(playtime, duration)
+        thumbPosition: relativePosition(playtime, duration),
+        quantiles: this.$select('quantiles')
       }
     },
     watch: {
