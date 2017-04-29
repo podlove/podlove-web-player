@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import { head } from 'lodash'
 
-import debug from 'utils/debug'
+import runtime from 'utils/runtime'
 import registerDirectives from './directives'
 
 // Import share static page
@@ -17,7 +17,7 @@ import App from './components/App.vue'
 
 export default config => {
   // Enhance config with app debug information
-  config = Object.assign({}, config, { debug })
+  config = Object.assign({}, config, { runtime })
 
   // Initialize meta for store
   store.dispatch(store.actions.init(config))

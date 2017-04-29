@@ -1,5 +1,5 @@
 <template>
-  <div class="podlove" :class="mode">
+  <div class="podlove" :class="{[mode]: mode, [platform]: platform}">
     <PodloveInfo />
     <PodlovePlayer />
     <PodloveTabs />
@@ -15,7 +15,8 @@
     name: 'app',
     data () {
       return {
-        mode: this.$select('mode')
+        mode: this.$select('mode'),
+        platform: this.$select('runtime.platform')
       }
     },
     components: {

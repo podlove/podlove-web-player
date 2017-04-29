@@ -57,10 +57,10 @@ const reference = (state = {}, action) => {
   }
 }
 
-const debug = (state = {}, action) => {
+const runtime = (state = {}, action) => {
   switch (action.type) {
     case 'INIT':
-      return get(action.payload, 'debug', state)
+      return get(action.payload, 'runtime', state)
     default:
       return state
   }
@@ -73,5 +73,5 @@ export {
   showTitle,
   reference,
   mode,
-  debug
+  runtime
 }
