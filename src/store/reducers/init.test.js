@@ -1,5 +1,5 @@
 import test from 'ava'
-import { poster, subtitle, title, reference, mode, showTitle, debug } from './init'
+import { poster, subtitle, title, reference, mode, showTitle, runtime } from './init'
 
 let testAction
 
@@ -51,7 +51,7 @@ test.beforeEach(t => {
         config: '//config/reference',
         share: '//share/reference'
       },
-      debug: 'debug'
+      runtime: 'runtime'
     }
   }
 })
@@ -256,25 +256,25 @@ test(`mode: it does nothing if not the init action is dispatched`, t => {
   t.is(result, 'foobar')
 })
 
-// DEBUG TESTS
-test(`debug: it is a reducer function`, t => {
-  t.is(typeof debug, 'function')
+// RUNTIME TESTS
+test(`runtime: it is a reducer function`, t => {
+  t.is(typeof runtime, 'function')
 })
 
-test(`debug: it extracts the debug`, t => {
-  const result = debug('', testAction)
-  t.is(result, 'debug')
+test(`runtime: it extracts the runtime`, t => {
+  const result = runtime('', testAction)
+  t.is(result, 'runtime')
 })
 
-test(`debug: it returns an empty object if a debug is not available`, t => {
-  let result = debug(undefined, {
+test(`runtime: it returns an empty object if a runtime is not available`, t => {
+  let result = runtime(undefined, {
     type: 'NOT_A_REAL_TYPE'
   })
   t.deepEqual(result, {})
 })
 
-test(`debug: it does nothing if not the init action is dispatched`, t => {
-  const result = debug('foobar', {
+test(`runtime: it does nothing if not the init action is dispatched`, t => {
+  const result = runtime('foobar', {
     type: 'NOT_A_REAL_TYPE'
   })
   t.is(result, 'foobar')

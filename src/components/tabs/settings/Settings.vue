@@ -5,17 +5,21 @@
         <span class="title">Volume</span>
         <span class="volume">{{decimalToPercent(volume)}}%</span>
       </h4>
-      <PodloveSlider min="0" max="1" :value="volume" step="0.001" :onInput="setVolume" :thumbColor="theme.settings.slider.thumb"></PodloveSlider>
+      <div class="input-slider">
+        <PodloveButton class="slider-button" :click="changeVolume(volume, -5)" :style="buttonStyle(theme)">-</PodloveButton>
+        <PodloveButton class="slider-button" :click="changeVolume(volume, 5)" :style="buttonStyle(theme)">+</PodloveButton>
+        <PodloveSlider class="input-slider" min="0" max="1" :value="volume" step="0.001" :onInput="setVolume" :thumbColor="theme.tabs.slider.thumb"></PodloveSlider>
+      </div>
     </div>
     <div class="input">
       <h4 class="label">
         <span class="title">Speed</span>
         <span class="rate">{{decimalToPercent(rate)}}%</span>
       </h4>
-      <div class="input--rate">
-        <PodloveButton class="rate-button" :click="decreaseRate(rate)" :style="buttonStyle(theme)">-</PodloveButton>
-        <PodloveButton class="rate-button" :click="increaseRate(rate)" :style="buttonStyle(theme)">+</PodloveButton>
-        <PodloveSlider class="rate--slider" min="0.5" max="4" :value="rate" step="0.001" :onInput="setRate" :thumbColor="theme.settings.slider.thumb"></PodloveSlider>
+      <div class="input-slider">
+        <PodloveButton class="slider-button" :click="changeRate(rate, -5)" :style="buttonStyle(theme)">-</PodloveButton>
+        <PodloveButton class="slider-button" :click="changeRate(rate, 5)" :style="buttonStyle(theme)">+</PodloveButton>
+        <PodloveSlider class="input-slider" min="0.5" max="4" :value="rate" step="0.001" :onInput="setRate" :thumbColor="theme.tabs.slider.thumb"></PodloveSlider>
       </div>
     </div>
     <div class="footer">
@@ -39,8 +43,8 @@
   }
 
   const buttonStyle = (theme) => ({
-    color: theme.settings.slider.text,
-    background: theme.settings.slider.button
+    color: theme.tabs.button.text,
+    background: theme.tabs.button.background
   })
 
   const setVolume = volume => {
@@ -52,45 +56,19 @@
   }
 
   const roundUp = (base, number) => {
-    if (number % base == 0) {
+    if (number % base === 0) {
       return number + base
     }
 
     return number + (base - number % base)
   }
 
-  const increaseRate = (rate) => {
-    let reference = Date.now()
-
-    rate = decimalToPercent(rate)
-    return () => {
-      let now = Date.now()
-
-      if ((now - reference) < 500) {
-        store.dispatch(store.actions.setRate(roundUp(10, rate) / 100))
-      } else {
-        store.dispatch(store.actions.setRate(roundUp(5, rate) / 100))
-      }
-
-      reference = now
-    }
+  const changeRate = (rate, offset) => () => {
+    store.dispatch(store.actions.setRate(roundUp(offset, (rate * 100)) / 100))
   }
 
-  const decreaseRate = (rate) => {
-    let reference = Date.now()
-
-    rate = decimalToPercent(rate)
-    return () => {
-      let now = Date.now()
-
-      if ((now - reference) < 500) {
-        store.dispatch(store.actions.setRate(roundUp(-10, rate) / 100))
-      } else {
-        store.dispatch(store.actions.setRate(roundUp(-5, rate) / 100))
-      }
-
-      reference = now
-    }
+  const changeVolume = (volume, offset) => () => {
+    store.dispatch(store.actions.setVolume(roundUp(offset, (volume * 100)) / 100))
   }
 
   export default {
@@ -98,7 +76,7 @@
       return {
         volume: this.$select('volume'),
         rate: this.$select('rate'),
-        version: this.$select('debug.version'),
+        version: this.$select('runtime.version'),
         theme: this.$select('theme')
       }
     },
@@ -106,8 +84,8 @@
       exportStore,
       setVolume,
       setRate,
-      increaseRate,
-      decreaseRate,
+      changeRate,
+      changeVolume,
       buttonStyle,
       decimalToPercent
     },
@@ -120,6 +98,7 @@
 
 <style lang="scss">
   @import 'variables';
+  @import 'inputs';
 
   $preset-width: 40px;
   $button-size: 30px;
@@ -133,11 +112,6 @@
       justify-content: space-between;
       margin-top: $margin * -1;
       color: rgba($accent-color, 0.25)
-    }
-
-    .input {
-      border-bottom: 1px dashed rgba($accent-color, 0.2);
-      padding-bottom: $padding * 2;
     }
 
     .footer {
@@ -159,17 +133,17 @@
       width: $preset-width;
     }
 
-    .input--rate {
+    .input-slider {
       display: flex;
       align-items: center;
     }
 
-    .rate--slider {
+    .input-slider {
       width: 100%;
       margin-left: $margin / 2;
     }
 
-    .rate-button {
+    .slider-button {
       font-weight: bold;
       font-size: 1.2em;
       height: $button-size;
