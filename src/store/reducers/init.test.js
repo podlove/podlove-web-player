@@ -49,7 +49,8 @@ test.beforeEach(t => {
       ],
       reference: {
         config: '//config/reference',
-        share: '//share/reference'
+        share: '//share/reference',
+        origin: '//origin/reference'
       },
       runtime: 'runtime'
     }
@@ -199,7 +200,8 @@ test(`reference: it extracts the references`, t => {
   const result = reference('', testAction)
   t.deepEqual(result, {
     config: '//config/reference',
-    share: '//share/reference'
+    share: '//share/reference',
+    origin: '//origin/reference'
   })
 })
 
@@ -208,12 +210,22 @@ test(`reference: it returns null if a reference is available`, t => {
   let result = reference('foo', testAction)
   t.deepEqual(result, {
     config: '//config/reference',
+    origin: '//origin/reference',
     share: null
   })
 
   delete testAction.payload.reference.config
   result = reference('foo', testAction)
   t.deepEqual(result, {
+    origin: '//origin/reference',
+    config: null,
+    share: null
+  })
+
+  delete testAction.payload.reference.origin
+  result = reference('foo', testAction)
+  t.deepEqual(result, {
+    origin: null,
     config: null,
     share: null
   })

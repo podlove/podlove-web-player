@@ -2,23 +2,39 @@ const toggleShare = () => ({
   type: 'TOGGLE_SHARE'
 })
 
-const setEmbedDimensions = dimension => ({
-  type: 'SET_EMBED_DIMENSIONS',
-  payload: dimension
+// Embed
+const setShareEmbedSize = size => ({
+  type: 'SET_SHARE_EMBED_SIZE',
+  payload: size
 })
 
-const toggleShareCustomStart = () => ({
-  type: 'TOGGLE_SHARE_CUSTOMSTART'
+const toggleShareEmbedStart = () => ({
+  type: 'TOGGLE_SHARE_EMBED_START'
 })
 
-const setCustomStarttime = (time) => ({
-  type: 'SET_SHARE_CUSTOMSTARTTIME',
+const setShareEmbedStarttime = time => ({
+  type: 'SET_SHARE_EMBED_STARTTIME',
+  payload: time
+})
+
+// Link
+
+const toggleShareLinkStart = () => ({
+  type: 'TOGGLE_SHARE_LINK_START'
+})
+
+const setShareLinkStarttime = time => ({
+  type: 'SET_SHARE_LINK_STARTTIME',
   payload: time
 })
 
 export {
   toggleShare,
-  setEmbedDimensions,
-  toggleShareCustomStart,
-  setCustomStarttime
+
+  setShareEmbedSize,
+  toggleShareEmbedStart,
+  setShareEmbedStarttime,
+
+  toggleShareLinkStart,
+  setShareLinkStarttime
 }

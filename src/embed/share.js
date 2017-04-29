@@ -1,4 +1,4 @@
-import urlConfig from 'utils/url'
+import { aprams as urlConfig } from 'utils/url'
 import remoteConfig from 'utils/request'
 
 import app from '../app'

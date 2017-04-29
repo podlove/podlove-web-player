@@ -6,9 +6,16 @@ let expected
 test.beforeEach(t => {
     expected = {
         open: false,
-        customStart: false,
-        dimensions: '250x400',
-        customStarttime: 0
+        embed: {
+            size: '250x400',
+            availableSizes: ['250x400', '320x400', '375x400', '600x290', '768x290'],
+            start: false,
+            starttime: 0
+        },
+        link: {
+            start: false,
+            starttime: 0
+        }
     }
 })
 
@@ -32,39 +39,39 @@ test(`share: it togges the overlay state on TOGGLE_SHARE`, t => {
     t.deepEqual(result, expected)
 })
 
-test(`share: it sets the start time state on SET_SHARE_CUSTOMSTARTTIME`, t => {
+test(`share: it sets the start time state on SET_SHARE_EMBED_STARTTIME`, t => {
     let result = share(undefined, {
-        type: 'SET_SHARE_CUSTOMSTARTTIME',
+        type: 'SET_SHARE_EMBED_STARTTIME',
         payload: 20
     })
 
-    expected.customStarttime = 20
+    expected.embed.starttime = 20
     t.deepEqual(result, expected)
 })
 
-test(`share: it toggles the start time on TOGGLE_SHARE_CUSTOMSTART`, t => {
+test(`share: it toggles the start time on TOGGLE_SHARE_EMBED_START`, t => {
     let result = share(undefined, {
-        type: 'TOGGLE_SHARE_CUSTOMSTART'
+        type: 'TOGGLE_SHARE_EMBED_START'
     })
 
-    expected.customStart = true
+    expected.embed.start = true
     t.deepEqual(result, expected)
 
     result = share(result, {
-        type: 'TOGGLE_SHARE_CUSTOMSTART'
+        type: 'TOGGLE_SHARE_EMBED_START'
     })
 
-    expected.customStart = false
+    expected.embed.start = false
     t.deepEqual(result, expected)
 })
 
-test(`share: it sets the dimensions on SET_EMBED_DIMENSIONS`, t => {
+test(`share: it sets the dimensions on SET_SHARE_EMBED_SIZE`, t => {
     let result = share(undefined, {
-        type: 'SET_EMBED_DIMENSIONS',
+        type: 'SET_SHARE_EMBED_SIZE',
         payload: '100x100'
     })
+    expected.embed.size = '100x100'
 
-    expected.dimensions = '100x100'
     t.deepEqual(result, expected)
 })
 
@@ -73,5 +80,31 @@ test(`share: it does nothing if a unknown action is dispatched`, t => {
         type: 'NOT_A_REAL_TYPE'
     })
 
+    t.deepEqual(result, expected)
+})
+
+test(`share: it toggles the start time on TOGGLE_SHARE_LINK_START`, t => {
+    let result = share(undefined, {
+        type: 'TOGGLE_SHARE_LINK_START'
+    })
+
+    expected.link.start = true
+    t.deepEqual(result, expected)
+
+    result = share(result, {
+        type: 'TOGGLE_SHARE_LINK_START'
+    })
+
+    expected.link.start = false
+    t.deepEqual(result, expected)
+})
+
+test(`share: it sets the start time state on SET_SHARE_LINK_STARTTIME`, t => {
+    let result = share(undefined, {
+        type: 'SET_SHARE_LINK_STARTTIME',
+        payload: 20
+    })
+
+    expected.link.starttime = 20
     t.deepEqual(result, expected)
 })

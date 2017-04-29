@@ -1,9 +1,11 @@
 import test from 'ava'
 import {
     toggleShare,
-    setEmbedDimensions,
-    toggleShareCustomStart,
-    setCustomStarttime
+    setShareEmbedSize,
+    toggleShareEmbedStart,
+    setShareEmbedStarttime,
+    toggleShareLinkStart,
+    setShareLinkStarttime
 } from './share'
 
 test(`toggleShareAction: creates the TOGGLE_SHARE action`, t => {
@@ -12,22 +14,41 @@ test(`toggleShareAction: creates the TOGGLE_SHARE action`, t => {
     })
 })
 
-test(`setEmbedDimensionsAction: creates the SET_EMBED_DIMENSIONS action`, t => {
-    t.deepEqual(setEmbedDimensions('100x100'), {
-        type: 'SET_EMBED_DIMENSIONS',
+test(`setShareEmbedDimensionsAction: creates the SET_SHARE_EMBED_SIZE action`, t => {
+    t.deepEqual(setShareEmbedSize('100x100'), {
+        type: 'SET_SHARE_EMBED_SIZE',
         payload: '100x100'
     })
 })
 
-test(`toggleShareCustomStartAction: creates the TOGGLE_SHARE_CUSTOMSTART action`, t => {
-    t.deepEqual(toggleShareCustomStart(), {
-        type: 'TOGGLE_SHARE_CUSTOMSTART'
+test(`toggleShareEmbedStartAction: creates the TOGGLE_SHARE_EMBED_START action`, t => {
+    t.deepEqual(toggleShareEmbedStart(), {
+        type: 'TOGGLE_SHARE_EMBED_START'
     })
 })
 
-test(`setCustomStarttimeAction: creates the SET_SHARE_CUSTOMSTARTTIME action`, t => {
-    t.deepEqual(setCustomStarttime(100), {
-        type: 'SET_SHARE_CUSTOMSTARTTIME',
+test(`setShareEmbedStarttimeAction: creates the SET_SHARE_EMBED_STARTTIME action`, t => {
+    t.deepEqual(setShareEmbedStarttime(100), {
+        type: 'SET_SHARE_EMBED_STARTTIME',
+        payload: 100
+    })
+})
+
+test(`toggleShareEmbedStartAction: creates the TOGGLE_SHARE_EMBED_START action`, t => {
+    t.deepEqual(toggleShareEmbedStart(), {
+        type: 'TOGGLE_SHARE_EMBED_START'
+    })
+})
+
+test(`toggleShareLinkStartAction: creates the TOGGLE_SHARE_LINK_START action`, t => {
+    t.deepEqual(toggleShareLinkStart(), {
+        type: 'TOGGLE_SHARE_LINK_START'
+    })
+})
+
+test(`setShareLinkStarttimeAction: creates the SET_SHARE_LINK_STARTTIME action`, t => {
+    t.deepEqual(setShareLinkStarttime(100), {
+        type: 'SET_SHARE_LINK_STARTTIME',
         payload: 100
     })
 })
