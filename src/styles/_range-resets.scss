@@ -1,10 +1,14 @@
+$range-input-height: 44px;
+$thumb-width-desktop: 8px;
+$thumb-width-mobile: 44px;
+
 // Input Range Resets
 input[type=range]::-ms-track {
   width: 100%;
   height: 100%;
   -webkit-appearance: none;
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
   border: 0 none;
   background: transparent;
   color: transparent;
@@ -15,8 +19,8 @@ input[type=range]::-moz-range-track {
   width: 100%;
   height: 100%;
   -moz-appearance: none;
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
   border: 0 none;
   background: transparent;
   color: transparent;
@@ -25,10 +29,10 @@ input[type=range]::-moz-range-track {
 
 input[type=range] {
   width: 100%;
-  height: 44px;
+  height: $range-input-height;
   -webkit-appearance: none;
   position: absolute;
-  padding: 0px;
+  padding: 0;
   border: 0 none;
   color: transparent;
   overflow: visible;
@@ -46,8 +50,8 @@ input[type=range]:focus {
 
 /* Make the thumbs the same size as your custom sliderthumb. They will not be visible but they will be draggable. */
 input[type=range]::-ms-thumb {
-  height: 44px;
-  width: 44px;
+  height: $range-input-height;
+  width: $thumb-width-desktop;
 
   cursor: pointer;
 
@@ -61,8 +65,8 @@ input[type=range]::-ms-thumb {
 }
 
 input[type=range]::-moz-range-thumb {
-  height: 44px;
-  width: 44px;
+  height: $range-input-height;
+  width: $thumb-width-desktop;
 
   border-radius: 0px;
   border: 0 none;
@@ -74,8 +78,8 @@ input[type=range]::-moz-range-thumb {
 }
 
 input[type=range]::-webkit-slider-thumb {
-  height: 44px;
-  width: 44px;
+  height: $range-input-height;
+  width: $thumb-width-desktop;
 
   border-radius: 0px;
   border: 0 none;
@@ -85,6 +89,20 @@ input[type=range]::-webkit-slider-thumb {
 
   cursor: pointer;
   z-index: 99;
+}
+
+.mobile {
+  input[type=range]::-ms-thumb {
+    width: $thumb-width-mobile;
+  }
+
+  input[type=range]::-moz-range-thumb {
+    width: $thumb-width-mobile;
+  }
+
+  input[type=range]::-webkit-slider-thumb {
+    width: $thumb-width-mobile;
+  }
 }
 
 /* Eliminate the default appearance and tooltip behaviour that is peculiar to IE and Edge. */

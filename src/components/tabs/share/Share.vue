@@ -1,20 +1,25 @@
 <template>
   <div class="podlove-share">
     <div class="embed">
-      <h4 class="embed--title">Embed</h4>
-      <div class="embed--dialog">
-        <input type="text" class="embed--input embed--copy" disabled :value="clipboardContent(reference, share, playtime)" />
-        <button class="embed--copy-button" :data-clipboard-text="clipboardContent(reference, share, playtime)" v-clipboard v-on:click="openCopiedTooltip">copy</button>
+      <h4 class="title">Embed</h4>
+      <div class="input-row">
+        <input type="text" class="share-input share-copy" disabled :value="clipboardContent(reference, share, playtime)" />
+        <PodloveButton
+          class="share-copy-button"
+          :data-clipboard-text="clipboardContent(reference, share, playtime)"
+          v-clipboard
+          :style="buttonStyle(theme)">
+            copy
+        </PodloveButton>
       </div>
-      <div class="embed--config">
-        <div class="embed--config--time">
-          <input type="checkbox" class="embed--checkbox" :value="share.customStart" v-on:change="toggleCustomStart()" />
-          <label class="embed--label">Start um:</label>
-          <input type="text" class="embed--input" :value="secondsToTime(share.customStarttime)" v-on:input="setCustomStarttime"/>
+      <div class="input-row">
+        <div class="share-config--time">
+          <label class="input-label"><input type="checkbox" class="embed--checkbox" :value="share.customStart" v-on:change="toggleCustomStart(playtime)" /> Start:</label>
+          <input type="text" class="share-input" :value="secondsToTime(share.customStarttime)" v-on:input="setCustomStarttime"/>
         </div>
-        <div class="embed--config--size">
-          <label class="embed--label">Playergröße:</label>
-          <select class="embed--input" v-model="share.dimensions" v-on:change="setDimensions(share.dimensions)">
+        <div class="share-config--size">
+          <label class="input-label">Size:</label>
+          <select class="share-input" v-model="share.dimensions" v-on:change="setDimensions(share.dimensions)">
             <option v-for="option in sizeOptions" v-bind:value="option">
               {{ option }}
             </option>
@@ -27,6 +32,7 @@
 
 <script>
   import {debounce, get} from 'lodash'
+  import PodloveButton from 'shared/Button.vue'
 
   import store from 'store'
   import {secondsToTime, timeToSeconds} from 'utils/time'
@@ -43,13 +49,9 @@
     store.dispatch(store.actions.setEmbedDimensions(dimensions))
   }
 
-  const toggleCustomStart = () => {
+  const toggleCustomStart = (time) => {
     store.dispatch(store.actions.toggleShareCustomStart())
-  }
-
-  const openCopiedTooltip = (tooltipOpen) => {
-    tooltipOpen = !tooltipOpen
-    return tooltipOpen
+    store.dispatch(store.actions.setCustomStarttime(time))
   }
 
   const setCustomStarttime = debounce(input => {
@@ -67,6 +69,11 @@
     store.dispatch(store.actions.setCustomStarttime(time))
   }, 1000)
 
+  const buttonStyle = (theme) => ({
+    color: theme.tabs.button.text,
+    background: theme.tabs.button.background
+  })
+
   export default {
     data() {
       return {
@@ -75,7 +82,7 @@
         playtime: this.$select('playtime'),
         duration: this.$select('duration'),
         sizeOptions: ['250x400', '320x400', '375x400', '600x290', '768x290'],
-        tooltipOpen: false
+        theme: this.$select('theme')
       }
     },
     methods: {
@@ -84,7 +91,10 @@
       secondsToTime,
       toggleCustomStart,
       setCustomStarttime,
-      openCopiedTooltip
+      buttonStyle
+    },
+    components: {
+      PodloveButton
     }
   }
 
@@ -92,6 +102,8 @@
 
 <style lang="scss">
   @import 'variables';
+  @import 'utils';
+  @import 'inputs';
 
   $embed-width: 40px;
   $embed-height: 35px;
@@ -100,33 +112,25 @@
   .podlove-share {
     padding: $padding;
 
-    .embed--title {
-      color: $overlay-color;
-      padding-bottom: 0;
-      margin-bottom: $margin / 2;
-    }
-
-    .embed--input {
+    .share-input {
       display: inline-block;
       resize: none;
       padding: $padding / 4;
-      font-size: 0.8rem;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      border: 1px solid $overlay-color;
+      border-color: rgba($accent-color, 0.8);
+      border-width: 1px;
       border-radius: 2px;
-      height: 100%;
     }
 
-    .embed--copy {
+    .share-copy {
       padding: $padding / 2;
       width: calc(100% - #{$embed-width});
       border-radius: 2px 0 0 2px;
-      font-size: 1rem;
+      font-size: 1em;
+      border-width: 1px 0 1px 1px;
       height: $embed-height;
     }
 
-    .embed--copy-button {
+    .share-copy-button {
       cursor: pointer;
 
       display: flex;
@@ -135,11 +139,7 @@
 
       height: $embed-height;
       width: $embed-width;
-      background: $overlay-color;
-      color: $background-color;
-      border-color: $overlay-color;
-      border-width: 1px 1px 1px 0;
-      border-radius: 0 2px 2px 0;
+      border: 1px solid rgba($accent-color, 0.8);
 
       opacity: 1;
 
@@ -148,39 +148,25 @@
       }
     }
 
-    .embed--dialog {
+    .share-config--time, .share-config--size {
+      line-height: 1em;
+    }
+
+    .input-row {
       display: flex;
+      justify-content: space-between;
       margin-bottom: $margin / 2;
     }
 
-    .embed--config {
-      display: flex;
-      margin-bottom: $margin / 2;
+    .input-label {
+      margin-bottom: $margin / 4;
+    }
 
-      .embed--config--time {
-        display: flex;
-        align-items: flex-start;
-        justify-content: flex-start;
-        width: 50%;
-      }
-
-      .embed--config--size {
-        display: flex;
-        align-items: flex-end;
-        justify-content: flex-end;
-        width: 50%;
-      }
-
-      .embed--checkbox {
-        display: inline-block;
-        margin: ($margin / 2) ($margin / 2) 0 ($margin / 2);
-      }
-
-      .embed--label {
-        display: inline-block;
-        font-size: 0.8rem;
-        margin-right: $margin / 3;
-        padding: ($padding / 4) 0;
+    @media screen and (max-width: $width-m) {
+      .share-config--time, .share-config--size {
+        .input-label {
+          display: block;
+        }
       }
     }
   }

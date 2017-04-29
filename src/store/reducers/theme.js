@@ -32,13 +32,6 @@ const themeColors = (colors = {}) => {
         chapter: secondary ? secondary : negative ? light : dark
       }
     },
-    settings: {
-      slider: {
-        thumb: primary,
-        button: color(primary).fade(0.8),
-        text: primary
-      }
-    },
     tabs: {
       header: {
         background: primary,
@@ -52,6 +45,13 @@ const themeColors = (colors = {}) => {
         text: grey,
         textActive: negative ? primary : dark,
         progress: secondary ? secondary : negative ? primary : dark
+      },
+      slider: {
+        thumb: primary
+      },
+      button: {
+        background: color(primary).fade(0.8),
+        text: primary
       }
     },
     overlay: {

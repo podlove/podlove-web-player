@@ -86,13 +86,15 @@ const rate = (state = 1, action) => {
     return state
   }
 
+  const rate = parseFloat(action.payload, 10)
+
   switch (true) {
-    case action.payload < 0.5:
+    case rate < 0.5:
       return 0.5
-    case action.payload > 4:
+    case rate > 4:
       return 4
     default:
-      return action.payload
+      return rate
   }
 }
 

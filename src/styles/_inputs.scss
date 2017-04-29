@@ -1,0 +1,6 @@
+@import 'variables';
+
+.input {
+  border-bottom: 1px dashed rgba($accent-color, 0.2);
+  padding-bottom: $padding * 2;
+}

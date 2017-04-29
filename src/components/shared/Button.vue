@@ -1,5 +1,5 @@
 <template>
-  <button :style="buttonStyle(color)" class="podlove-player--button" @click="click()"><slot></slot></button>
+  <button :style="buttonStyle(color)" class="podlove-player--button" @click="click && click()"><slot></slot></button>
 </template>
 
 <script>

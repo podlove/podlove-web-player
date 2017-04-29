@@ -68,12 +68,6 @@ const config = {
           ]
         }
       }
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      filename: 'vendor.js',
-      chunks: ['share', 'window'],
-      minChunks: Infinity
     })
   ]
 }
@@ -87,6 +81,12 @@ if (process.env.NODE_ENV === 'production') {
         NODE_ENV: '"production"'
       }
     }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      filename: 'vendor.js',
+      chunks: ['share', 'window'],
+      minChunks: Infinity
+    }),
     new webpack.optimize.UglifyJsPlugin({
       sourceMap: true,
       compress: {
@@ -96,11 +96,6 @@ if (process.env.NODE_ENV === 'production') {
   ]
 } else {
   config.plugins = [...config.plugins,
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: '"development"'
-      }
-    }),
     new DashboardPlugin(),
     new BundleAnalyzerPlugin({
       analyzerMode: 'static',
