@@ -1,3 +1,6 @@
+
+@import 'variables';
+
 .truncate {
   white-space: nowrap;
   overflow: hidden;
@@ -15,4 +18,9 @@
 
 .align-right {
   text-align: right;
+}
+
+.seperator {
+  border-bottom: 1px dashed rgba($accent-color, 0.2);
+  padding-bottom: $padding * 2;
 }

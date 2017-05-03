@@ -50,7 +50,8 @@ const reference = (state = {}, action) => {
     case 'INIT':
       return Object.assign({}, {
         config: get(action.payload, ['reference', 'config'], null),
-        share: get(action.payload, ['reference', 'share'], null)
+        share: get(action.payload, ['reference', 'share'], null),
+        origin: get(action.payload, ['reference', 'origin'], null)
       })
     default:
       return state

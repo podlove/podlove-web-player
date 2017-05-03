@@ -1,6 +1,6 @@
 <template>
   <div class="podlove-settings">
-    <div class="input">
+    <div class="seperator">
       <h4 class="label">
         <span class="title">Volume</span>
         <span class="volume">{{decimalToPercent(volume)}}%</span>
@@ -11,7 +11,7 @@
         <PodloveSlider class="input-slider" min="0" max="1" :value="volume" step="0.001" :onInput="setVolume" :thumbColor="theme.tabs.slider.thumb"></PodloveSlider>
       </div>
     </div>
-    <div class="input">
+    <div class="seperator">
       <h4 class="label">
         <span class="title">Speed</span>
         <span class="rate">{{decimalToPercent(rate)}}%</span>
@@ -56,6 +56,8 @@
   }
 
   const roundUp = (base, number) => {
+    number = Math.ceil(number)
+
     if (number % base === 0) {
       return number + base
     }
@@ -101,7 +103,6 @@
   @import 'inputs';
 
   $preset-width: 40px;
-  $button-size: 30px;
 
   .podlove-settings {
     width: 100%;
@@ -131,24 +132,6 @@
 
     .preset {
       width: $preset-width;
-    }
-
-    .input-slider {
-      display: flex;
-      align-items: center;
-    }
-
-    .input-slider {
-      width: 100%;
-      margin-left: $margin / 2;
-    }
-
-    .slider-button {
-      font-weight: bold;
-      font-size: 1.2em;
-      height: $button-size;
-      width: $button-size;
-      margin-right: $margin / 2;
     }
   }
 </style>

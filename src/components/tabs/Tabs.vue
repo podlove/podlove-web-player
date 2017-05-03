@@ -5,7 +5,7 @@
         <ChaptersIcon slot="icon"></ChaptersIcon>
         <span slot="title">Kapitel</span>
       </TabHeaderItem>
-      <TabHeaderItem v-if="reference.config && reference.share" :active="tabs.share" :click="toggleTab('share')">
+      <TabHeaderItem v-if="(reference.config && reference.share) || reference.origin" :active="tabs.share" :click="toggleTab('share')">
         <ShareIcon slot="icon"></ShareIcon>
         <span slot="title">Share</span>
       </TabHeaderItem>
@@ -17,7 +17,7 @@
     <TabBody :active="tabs.chapters" v-if="chapters.length > 0">
       <ChaptersTab />
     </TabBody>
-    <TabBody :active="tabs.share" v-if="reference.config && reference.share">
+    <TabBody :active="tabs.share" v-if="(reference.config && reference.share) || reference.origin">
       <ShareTab />
     </TabBody>
     <TabBody :active="tabs.settings">

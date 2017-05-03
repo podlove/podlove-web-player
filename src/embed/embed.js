@@ -3,7 +3,7 @@ import Bluebird from 'bluebird'
 
 import { findNode, createNode, appendNode, tag } from 'utils/dom'
 import requestConfig from 'utils/request'
-import urlConfig from 'utils/url'
+import { params as urlConfig } from 'utils/url'
 
 import { iframeResizer } from 'iframe-resizer'
 import iframeResizerContentWindow from 'raw-loader!iframe-resizer/js/iframeResizer.contentWindow.min.js'

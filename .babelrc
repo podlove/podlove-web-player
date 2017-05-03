@@ -1,6 +1,6 @@
 {
   "presets": ["es2015"],
-  "plugins": ["lodash"],
+  "plugins": ["lodash", "transform-object-rest-spread"],
   "env": {
     "AVA": {
       "plugins": [

@@ -100,12 +100,6 @@
       opacity: 0;
       overflow: hidden;
     }
-
-    &.idle {
-      .progress-thumb {
-        opacity: 0;
-      }
-    }
   }
 
   .progress-range {
