@@ -3,7 +3,7 @@ import Bluebird from 'bluebird'
 
 import { findNode, createNode, appendNode, tag } from 'utils/dom'
 import requestConfig from 'utils/request'
-import { params as urlConfig } from 'utils/url'
+import { params } from 'utils/url'
 
 import { iframeResizer } from 'iframe-resizer'
 import iframeResizerContentWindow from 'raw-loader!iframe-resizer/js/iframeResizer.contentWindow.min.js'
@@ -80,7 +80,7 @@ const configNode = (config = {}) =>
     // If the config is a string, lets assume that this will point to the remote config json
     .then(config => isString(config) ? requestConfig(config) : config)
     // Load parameters from url
-    .then(config => Object.assign({}, config, urlConfig))
+    .then(config => Object.assign({}, config, params))
     // Finally return the node
     .then(config => tag('script', `window.PODLOVE = ${JSON.stringify(config)}`))
 

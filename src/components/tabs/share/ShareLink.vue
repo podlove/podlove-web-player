@@ -34,7 +34,7 @@
         const parameters = {}
 
         if (link.start) {
-            parameters.playtime = secondsToTime(link.starttime)
+            parameters.t = secondsToTime(link.starttime)
         }
 
         return addQueryParameter(reference.origin, parameters)
