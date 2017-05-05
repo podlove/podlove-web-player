@@ -3,17 +3,21 @@ import { timeToSeconds } from 'utils/time'
 
 const locationParams = queryString.parse(window.location.search)
 
-const parsePlaytime = parameters => {
-  if (parameters.playtime) {
-    return {
-      playtime: timeToSeconds(parameters.playtime)
-    }
+const parseParameters = parameters => {
+  const parsed = {}
+
+  if (parameters.t) {
+    parsed.playtime = timeToSeconds(parameters.t)
   }
 
-  return {}
+  if (parameters.episode) {
+    parsed.episode = parameters.episode
+  }
+
+  return parsed
 }
 
-export const params = Object.assign({}, params, parsePlaytime(locationParams))
+export const params = Object.assign({}, parseParameters(locationParams))
 
 export const addQueryParameter = (url, additionalParameters = {}) => {
   const parser = document.createElement('a')

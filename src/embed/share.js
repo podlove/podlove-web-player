@@ -1,9 +1,9 @@
-import { aprams as urlConfig } from 'utils/url'
+import { params } from 'utils/url'
 import remoteConfig from 'utils/request'
 
 import app from '../app'
 
-remoteConfig(urlConfig.episode)
-  .then(config => Object.assign({}, config, urlConfig))
+remoteConfig(params.episode)
+  .then(config => Object.assign({}, config, params))
   .then(config => Object.assign({}, config, {mode: 'share'}))
   .then(app)

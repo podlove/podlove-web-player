@@ -51,7 +51,7 @@
     }
 
     if (embed.start) {
-      parameters.playtime = secondsToTime(embed.starttime)
+      parameters.t = secondsToTime(embed.starttime)
     }
 
     return `<iframe width="${width}" height="${height}" src="${addQueryParameter(reference.share, parameters)}" frameborder="0" scrolling="no"></iframe>`
