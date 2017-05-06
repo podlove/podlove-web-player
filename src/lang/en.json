@@ -1,0 +1,19 @@
+{
+  "CHAPTERS": {
+    "TITLE": "Chapters"
+  },
+  "SHARE": {
+    "TITLE": "Share",
+    "LINK": "Link",
+    "EMBED": "Embed",
+    "START": "Start:",
+    "SIZE": "Size:",
+    "COPY": "copy"
+  },
+  "SETTINGS": {
+    "TITLE": "Settings",
+    "VOLUME": "Volume",
+    "SPEED": "Speed",
+    "DEBUG_STATE": "Export Debug State"
+  }
+}

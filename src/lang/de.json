@@ -1,0 +1,19 @@
+{
+  "CHAPTERS": {
+    "TITLE": "Kapitel"
+  },
+  "SHARE": {
+    "TITLE": "Teilen",
+    "LINK": "Link",
+    "EMBED": "Einbetten",
+    "START": "Start:",
+    "SIZE": "Größe:",
+    "COPY": "kopieren"
+  },
+  "SETTINGS": {
+    "TITLE": "Einstellung",
+    "VOLUME": "Lautstärke",
+    "SPEED": "Geschwindigkeit",
+    "DEBUG_STATE": "Debug State exportieren"
+  }
+}

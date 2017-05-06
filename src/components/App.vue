@@ -1,5 +1,5 @@
 <template>
-  <div class="podlove" :class="{[mode]: mode, [platform]: platform}">
+  <div class="podlove" :class="{[mode]: mode, [runtime.platform]: runtime.platform}">
     <PodloveInfo />
     <PodlovePlayer />
     <PodloveTabs />
@@ -14,9 +14,18 @@
   export default {
     name: 'app',
     data () {
+      // i18n integration
+      this.$i18n.locale = this.$select('runtime.language')
+
       return {
         mode: this.$select('mode'),
-        platform: this.$select('runtime.platform')
+        runtime: this.$select('runtime')
+      }
+    },
+    watch: {
+      runtime (runtime) {
+        // i18n integration
+        this.$i18n.locale = runtime.language
       }
     },
     components: {

@@ -1,5 +1,5 @@
 import test from 'ava'
-import { poster, subtitle, title, reference, mode, showTitle, runtime } from './init'
+import { poster, subtitle, title, reference, mode, showTitle } from './init'
 
 let testAction
 
@@ -263,30 +263,6 @@ test(`mode: it returns native if a mode is not available`, t => {
 
 test(`mode: it does nothing if not the init action is dispatched`, t => {
   const result = mode('foobar', {
-    type: 'NOT_A_REAL_TYPE'
-  })
-  t.is(result, 'foobar')
-})
-
-// RUNTIME TESTS
-test(`runtime: it is a reducer function`, t => {
-  t.is(typeof runtime, 'function')
-})
-
-test(`runtime: it extracts the runtime`, t => {
-  const result = runtime('', testAction)
-  t.is(result, 'runtime')
-})
-
-test(`runtime: it returns an empty object if a runtime is not available`, t => {
-  let result = runtime(undefined, {
-    type: 'NOT_A_REAL_TYPE'
-  })
-  t.deepEqual(result, {})
-})
-
-test(`runtime: it does nothing if not the init action is dispatched`, t => {
-  const result = runtime('foobar', {
     type: 'NOT_A_REAL_TYPE'
   })
   t.is(result, 'foobar')

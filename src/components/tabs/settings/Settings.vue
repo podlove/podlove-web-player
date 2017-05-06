@@ -2,7 +2,7 @@
   <div class="podlove-settings">
     <div class="seperator">
       <h4 class="label">
-        <span class="title">Volume</span>
+        <span class="title">{{ $t('SETTINGS.VOLUME') }}</span>
         <span class="volume">{{decimalToPercent(volume)}}%</span>
       </h4>
       <div class="input-slider">
@@ -13,7 +13,7 @@
     </div>
     <div class="seperator">
       <h4 class="label">
-        <span class="title">Speed</span>
+        <span class="title">{{ $t('SETTINGS.SPEED') }}</span>
         <span class="rate">{{decimalToPercent(rate)}}%</span>
       </h4>
       <div class="input-slider">
@@ -23,13 +23,14 @@
       </div>
     </div>
     <div class="footer">
-      <a class="version" title="Export Debug State" :href="exportStore()" download="podlove-web-player-debug.json">Podlove Web Player v{{version}}</a>
+      <a class="version" title="Export Debug" :href="exportStore()" download="podlove-web-player-debug.json">Podlove Web Player v{{version}}</a>
     </div>
   </div>
 </template>
 
 <script>
   import store from 'store'
+
   import PodloveSlider from 'shared/Slider.vue'
   import PodloveButton from 'shared/Button.vue'
 

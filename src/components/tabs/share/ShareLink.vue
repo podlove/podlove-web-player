@@ -1,19 +1,19 @@
 <template>
     <div class="link">
-        <h4 class="title">Link</h4>
+        <h4 class="title">{{ $t('SHARE.LINK') }}</h4>
         <div class="input-row input-group">
             <input type="text" class="input-text" disabled :value="clipboardContent(reference, share.link, playtime)" />
             <PodloveButton
-                class="input-button"
+                class="input-button truncate"
                 :data-clipboard-text="clipboardContent(reference, share.link, playtime)"
                 v-clipboard
                 :style="buttonStyle(theme)">
-                copy
+                {{ $t('SHARE.COPY') }}
             </PodloveButton>
         </div>
         <div class="input-row">
             <div>
-                <label class="input-label"><input type="checkbox" :value="share.link.start" v-on:change="toggleStart(playtime)" /> Start:</label>
+                <label class="input-label"><input type="checkbox" :value="share.link.start" v-on:change="toggleStart(playtime)"/> {{ $t('SHARE.START') }}</label>
                 <input type="text" class="input-text" :value="secondsToTime(share.link.starttime)" v-on:input="setStarttime"/>
             </div>
         </div>
@@ -72,7 +72,8 @@
                 reference: this.$select('reference'),
                 playtime: this.$select('playtime'),
                 duration: this.$select('duration'),
-                theme: this.$select('theme')
+                theme: this.$select('theme'),
+                translate: this.$select('l10n')
             }
         },
         methods: {

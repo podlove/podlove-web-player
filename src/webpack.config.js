@@ -46,7 +46,9 @@ const config = {
       store: path.resolve(__dirname, './store/index.js'),
       utils: path.resolve(__dirname, 'utils'),
       shared: path.resolve(__dirname, 'components', 'shared'),
-      icons: path.resolve(__dirname, 'components', 'icons')
+      icons: path.resolve(__dirname, 'components', 'icons'),
+      lang: path.resolve(__dirname, 'lang'),
+      core: path.resolve(__dirname, 'core')
     }
   },
   devServer: {
