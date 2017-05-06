@@ -52,6 +52,8 @@ const playstate = (state = 'start', action) => {
       return 'idle'
     case 'LOADING':
       return 'loading'
+    case 'ERROR_LOAD':
+      return 'error'
     default:
       return state
   }

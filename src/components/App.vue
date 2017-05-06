@@ -1,15 +1,15 @@
 <template>
   <div class="podlove" :class="{[mode]: mode, [runtime.platform]: runtime.platform}">
-    <PodloveInfo />
-    <PodlovePlayer />
-    <PodloveTabs />
+    <HeaderComponent />
+    <PlayerComponent />
+    <TabsComponent />
   </div>
 </template>
 
 <script>
-  import PodloveInfo from './info/Info.vue'
-  import PodlovePlayer from './player/Player.vue'
-  import PodloveTabs from './tabs/Tabs.vue'
+  import HeaderComponent from './header/Header.vue'
+  import PlayerComponent from './player/Player.vue'
+  import TabsComponent from './tabs/Tabs.vue'
 
   export default {
     name: 'app',
@@ -29,9 +29,9 @@
       }
     },
     components: {
-      PodloveInfo,
-      PodlovePlayer,
-      PodloveTabs
+      HeaderComponent,
+      PlayerComponent,
+      TabsComponent
     }
   }
 </script>
@@ -44,6 +44,8 @@
   @import 'share';
   @import 'utils';
   @import 'grid';
+
+  @import 'transitions';
 
   .podlove {
     display: block;

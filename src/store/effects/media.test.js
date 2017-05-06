@@ -6,17 +6,21 @@ import mediaEffectFactory from './media'
 let store
 let mediaEffect
 let mediaPlayer
-let playStub, pauseStub, setPlaytimeStub
+let playStub, pauseStub, setPlaytimeStub, volumeStub, rateStub
 
 test.beforeEach(t => {
   playStub = sinon.stub()
   pauseStub = sinon.stub()
   setPlaytimeStub = sinon.stub()
+  volumeStub = sinon.stub()
+  rateStub = sinon.stub()
 
   mediaPlayer = sinon.stub().returns({
     play: playStub,
     pause: pauseStub,
-    setPlaytime: setPlaytimeStub
+    setPlaytime: setPlaytimeStub,
+    volume: volumeStub,
+    rate: rateStub
   })
 
   store = {
@@ -42,6 +46,16 @@ test(`mediaEffect: it creates the media element on INIT`, t => {
   })
 
   t.truthy(mediaPlayer.called)
+})
+
+test(`mediaEffect: it doesn't creates the media element on INIT on invalid config`, t => {
+  mediaEffect(store, {
+    type: 'INIT',
+    payload: {
+    }
+  })
+
+  t.falsy(mediaPlayer.called)
 })
 
 test(`mediaEffect: it calls setPlaytime and play on UI_PLAY`, t => {
@@ -124,4 +138,36 @@ test(`mediaEffect: it does nothing if mediaElement is not initialized`, t => {
   t.falsy(playStub.called)
   t.falsy(pauseStub.called)
   t.falsy(setPlaytimeStub.called)
+})
+
+test(`mediaEffect: it calls volume on SET_VOLUME`, t => {
+  mediaEffect(store, {
+    type: 'INIT',
+    payload: {
+      audio: 'foo'
+    }
+  })
+
+  mediaEffect(store, {
+    type: 'SET_VOLUME',
+    payload: 100
+  })
+
+  t.is(volumeStub.getCall(0).args[0], 100)
+})
+
+test(`mediaEffect: it calls rate on SET_RATE`, t => {
+  mediaEffect(store, {
+    type: 'INIT',
+    payload: {
+      audio: 'foo'
+    }
+  })
+
+  mediaEffect(store, {
+    type: 'SET_RATE',
+    payload: 100
+  })
+
+  t.is(rateStub.getCall(0).args[0], 100)
 })

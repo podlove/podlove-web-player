@@ -1,14 +1,14 @@
 <template>
-  <div class="podlove-settings">
+  <div class="settings">
     <div class="seperator">
       <h4 class="label">
         <span class="title">{{ $t('SETTINGS.VOLUME') }}</span>
         <span class="volume">{{decimalToPercent(volume)}}%</span>
       </h4>
       <div class="input-slider">
-        <PodloveButton class="slider-button" :click="changeVolume(volume, -5)" :style="buttonStyle(theme)">-</PodloveButton>
-        <PodloveButton class="slider-button" :click="changeVolume(volume, 5)" :style="buttonStyle(theme)">+</PodloveButton>
-        <PodloveSlider class="input-slider" min="0" max="1" :value="volume" step="0.001" :onInput="setVolume" :thumbColor="theme.tabs.slider.thumb"></PodloveSlider>
+        <ButtonComponent class="slider-button" :click="changeVolume(volume, -5)" :style="buttonStyle(theme)">-</ButtonComponent>
+        <ButtonComponent class="slider-button" :click="changeVolume(volume, 5)" :style="buttonStyle(theme)">+</ButtonComponent>
+        <SliderComponent class="input-slider" min="0" max="1" :value="volume" step="0.001" :onInput="setVolume" :thumbColor="theme.tabs.slider.thumb"></SliderComponent>
       </div>
     </div>
     <div class="seperator">
@@ -17,13 +17,13 @@
         <span class="rate">{{decimalToPercent(rate)}}%</span>
       </h4>
       <div class="input-slider">
-        <PodloveButton class="slider-button" :click="changeRate(rate, -5)" :style="buttonStyle(theme)">-</PodloveButton>
-        <PodloveButton class="slider-button" :click="changeRate(rate, 5)" :style="buttonStyle(theme)">+</PodloveButton>
-        <PodloveSlider class="input-slider" min="0.5" max="4" :value="rate" step="0.001" :onInput="setRate" :thumbColor="theme.tabs.slider.thumb"></PodloveSlider>
+        <ButtonComponent class="slider-button" :click="changeRate(rate, -5)" :style="buttonStyle(theme)">-</ButtonComponent>
+        <ButtonComponent class="slider-button" :click="changeRate(rate, 5)" :style="buttonStyle(theme)">+</ButtonComponent>
+        <SliderComponent class="input-slider" min="0.5" max="4" :value="rate" step="0.001" :onInput="setRate" :thumbColor="theme.tabs.slider.thumb"></SliderComponent>
       </div>
     </div>
     <div class="footer">
-      <a class="version" title="Export Debug" :href="exportStore()" download="podlove-web-player-debug.json">Podlove Web Player v{{version}}</a>
+      <a class="version" title="Export Debug" :href="exportStore()" download="web-player-debug.json">Podlove Web Player v{{version}}</a>
     </div>
   </div>
 </template>
@@ -31,8 +31,8 @@
 <script>
   import store from 'store'
 
-  import PodloveSlider from 'shared/Slider.vue'
-  import PodloveButton from 'shared/Button.vue'
+  import SliderComponent from 'shared/Slider.vue'
+  import ButtonComponent from 'shared/Button.vue'
 
   const exportStore = () => {
     return `data:text/json;charset=utf-8,${encodeURIComponent(JSON.stringify(store.store.getState()))}`;
@@ -93,8 +93,8 @@
       decimalToPercent
     },
     components: {
-      PodloveSlider,
-      PodloveButton
+      SliderComponent,
+      ButtonComponent
     }
   }
 </script>
@@ -105,7 +105,7 @@
 
   $preset-width: 40px;
 
-  .podlove-settings {
+  .settings {
     width: 100%;
     padding: $padding;
 

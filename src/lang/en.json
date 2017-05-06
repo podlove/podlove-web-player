@@ -15,5 +15,19 @@
     "VOLUME": "Volume",
     "SPEED": "Speed",
     "DEBUG_STATE": "Export Debug State"
+  },
+  "PLAYER": {
+    "REPLAY": "replay",
+    "RETRY": "Retry"
+  },
+  "ERROR": {
+    "LOADING": {
+      "TITLE": "Error loading audio files",
+      "MESSAGE": "Couldn't load the audio files from the server. Please try again later."
+    },
+    "MISSING_FILES": {
+      "TITLE": "Required information missing",
+      "MESSAGE": "To play the podcast important references to audio files are missing."
+    }
   }
 }

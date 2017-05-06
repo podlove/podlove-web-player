@@ -1,0 +1,20 @@
+@import 'variables';
+
+// Fade Transitions
+.button-enter-active, .button-leave-active {
+  transition: opacity $animation-duration * 2;
+}
+
+.button-enter, .button-leave-to {
+  opacity: 0
+}
+
+// Height Transitions
+.progressbar-enter-active, .progressbar-leave-active {
+  height: $progress-bar-height;
+  transition: height $animation-duration * 2;
+}
+
+.progressbar-enter, .progressbar-leave-to {
+  height: 0;
+}

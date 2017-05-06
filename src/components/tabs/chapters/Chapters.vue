@@ -1,11 +1,11 @@
 <template>
-  <div class="podlove-chapters">
-    <ChapterEntry v-for="(chapter, index) in chapters" :chapter="chapter" :index="index" :key="index"/>
+  <div class="chapters">
+    <ChapterEntryComponent v-for="(chapter, index) in chapters" :chapter="chapter" :index="index" :key="index"/>
   </div>
 </template>
 
 <script>
-  import ChapterEntry from './ChapterEntry.vue'
+  import ChapterEntryComponent from './ChapterEntry.vue'
 
   export default {
     data() {
@@ -15,7 +15,7 @@
       }
     },
     components: {
-      ChapterEntry
+      ChapterEntryComponent
     }
   }
 </script>
@@ -23,7 +23,7 @@
 <style lang="scss">
   @import 'variables';
 
-  .podlove-chapters {
+  .chapters {
     width: 100%;
     padding: $padding 0;
   }

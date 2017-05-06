@@ -1,5 +1,5 @@
 <template>
-  <div class="podlove-player--progress-bar" :class="playstate">
+  <div class="progress">
     <input
       type="range"
       min="0" :max="interpolate(duration)" step="0.1"
@@ -13,14 +13,13 @@
     <ChaptersIndicator />
     <span class="progress-thumb" :style="thumbStyle(theme, thumbPosition)"></span>
   </div>
-
 </template>
 
 <script>
   import store from 'store'
   import color from 'color'
 
-  import ChaptersIndicator from './chapters/ChapterIndicator.vue'
+  import ChaptersIndicator from './ChapterIndicator.vue'
 
   const interpolate = (num = 0) => Math.round(num * 100) / 100
 
@@ -86,20 +85,13 @@
   @import 'variables';
   @import 'range-resets';
 
-  $progress-bar-height: 44px;
+  $progress-height: 44px;
 
-  .podlove-player--progress-bar {
+  .progress {
     width: 100%;
     position: relative;
-    height: $progress-bar-height;
+    height: $progress-height;
     transition: opacity ($animation-duration / 2), height $animation-duration;
-    opacity: 1;
-
-    &.start {
-      height: 0;
-      opacity: 0;
-      overflow: hidden;
-    }
   }
 
   .progress-range {

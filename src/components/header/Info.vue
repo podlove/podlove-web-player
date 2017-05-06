@@ -1,5 +1,5 @@
 <template>
-  <div class="podlove-info" :style="backgroundStyle(theme)">
+  <div class="info" >
     <div class="poster" v-if="poster">
       <div class="poster-container" :style="posterStyle(theme)">
           <img class="poster-image" :src="poster" />
@@ -29,10 +29,6 @@
     color: color(theme.player.text).fade(0.25)
   })
 
-  const backgroundStyle = theme => ({
-    'background-color': theme.player.background
-  })
-
   export default {
     data () {
       return {
@@ -46,8 +42,7 @@
     methods: {
       posterStyle,
       titleStyle,
-      subtitleStyle,
-      backgroundStyle
+      subtitleStyle
     }
   }
 </script>
@@ -58,12 +53,10 @@
   $poster-size: 100px;
   $description-height: 100px;
 
-  .podlove-info {
-    padding: $padding $padding 0 $padding;
+  .info {
     width: 100%;
     display: flex;
     flex-direction: row;
-    overflow: hidden;
 
     .poster {
       margin: 0 $margin 0 0;
@@ -86,7 +79,7 @@
       margin: 0;
       font-weight: inherit;
       font-size: 1em;
-      line-height: 1.2;
+      line-height: 1.2em;
     }
 
     .subtitle {
@@ -96,7 +89,7 @@
   }
 
   @media screen and (max-width: $width-l) {
-    .podlove-info {
+    .info {
       flex-direction: column;
       text-align: center;
 

@@ -1,26 +1,25 @@
 <template>
-  <PodloveButton class="podlove-player--player-control podlove-player--chapter-control" :class="playstate" :click="onButtonClick">
+  <ButtonComponent class="chapter-control" :click="onButtonClick">
     <ChapterNextIcon :color="theme.player.actions.background" />
-  </PodloveButton>
+  </ButtonComponent>
 </template>
 
 <script>
   import { nextChapterPlaytime } from 'utils/chapters'
 
   import store from 'store'
-  import PodloveButton from 'shared/Button.vue'
+  import ButtonComponent from 'shared/Button.vue'
   import ChapterNextIcon from 'icons/ChapterNextIcon.vue'
 
   export default {
     components: {
-      PodloveButton,
+      ButtonComponent,
       ChapterNextIcon
     },
     data () {
       return {
         chapters: this.$select('chapters'),
-        theme: this.$select('theme'),
-        playstate: this.$select('playstate')
+        theme: this.$select('theme')
       }
     },
     methods: {

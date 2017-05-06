@@ -15,5 +15,19 @@
     "VOLUME": "Lautstärke",
     "SPEED": "Geschwindigkeit",
     "DEBUG_STATE": "Debug State exportieren"
+  },
+  "PLAYER": {
+    "REPLAY": "Wiederholen",
+    "RETRY": "Retry"
+  },
+  "ERROR": {
+    "LOADING": {
+      "TITLE": "Fehler beim laden der Audiodatei",
+      "MESSAGE": "Die Audiodatei konnte nicht geladen werden, der Server ist nicht erreichbar. Bitte versuch es später nochmal."
+    },
+    "MISSING_FILES": {
+      "TITLE": "Benötigte Informationen fehlen",
+      "MESSAGE": "Zum abspielen des Podcasts fehlen die Referenzen zu den Audiodateien."
+    }
   }
 }

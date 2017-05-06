@@ -1,6 +1,7 @@
 import mediaEffectsFactory from './media'
 import storageEffectsFactory from './storage'
 import keyboardEffectsFactory from './keyboard'
+import componentsEffects from './components'
 import idleEffects from './idle'
 import quantileEffects from './quantiles'
 
@@ -18,6 +19,7 @@ export default store => {
 
   return next => action => {
     next(action)
+    componentsEffects(store, action)
     storageEffects(store, action)
     mediaEffects(store, action)
     idleEffects(store, action)
