@@ -3,7 +3,7 @@
     <span class="index">{{index + 1}}</span>
     <span class="title truncate">{{chapter.title}}</span>
     <span class="timer">{{remainingTime(chapter, playtime)}}</span>
-    
+
     <span class="progress" :style="progressStyle(theme, chapter, playtime)"></span>
   </div>
 </template>

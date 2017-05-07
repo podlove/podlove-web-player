@@ -91,7 +91,7 @@
 
     .subtitle {
       overflow: hidden;
-      height: 1.5 * 2em; 
+      height: 1.5 * 2em;
     }
   }
 

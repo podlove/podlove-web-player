@@ -7,7 +7,8 @@ import * as tabs from './tabs'
 import * as theme from './theme'
 import * as share from './share'
 import * as quantiles from './quantiles'
+import * as runtime from './runtime'
 
 export default combineReducers(
-    Object.assign({}, init, player, chapters, tabs, theme, share, quantiles)
+    Object.assign({}, init, player, chapters, tabs, theme, share, quantiles, runtime)
 )

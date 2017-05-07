@@ -58,21 +58,11 @@ const reference = (state = {}, action) => {
   }
 }
 
-const runtime = (state = {}, action) => {
-  switch (action.type) {
-    case 'INIT':
-      return get(action.payload, 'runtime', state)
-    default:
-      return state
-  }
-}
-
 export {
   poster,
   subtitle,
   title,
   showTitle,
   reference,
-  mode,
-  runtime
+  mode
 }
