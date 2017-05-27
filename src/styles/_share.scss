@@ -4,12 +4,16 @@
    &.share {
       height: 100%;
 
-      .podlove-player {
+      .header {
+        height: calc(100% - #{$player-height} - #{$tabs-header-height})
+      }
+
+      .player {
         height: $player-height;
       }
 
       // Share mode
-      .podlove-tabs {
+      .tabs {
         .tab-header-item.active {
           position: fixed;
           top: 0;

@@ -24,19 +24,21 @@
                 <li><a href="./config.html">Configuration</a></li>
                 <li><a href="./persistence.html">Player Persistence</a></li>
                 <li><a href="./advanced.html">Advanced Usage</a></li>
-                <li><a class="active" href="./playground.html">Playground</a></li>
-                <li><a href="./error.html">Error Handling</a></li>
+                <li><a href="./playground.html">Playground</a></li>
+                <li><a class="active" href="./error.html">Error Handling</a></li>
                 <li><a href="./example.html">Example</a></li>
             </ul>
         </sidebar>
 
         <main class="content">
             <div class="inner">
-                <h1>Playground</h1>
-                <div id="player"></div>
-                <div id="editor"></div>
+                <h1>Error Handling</h1>
+                <h3>Load Error</h3>
+                <p id="load-error"></p>
+
+                <h3>Missing Audio Reference</h3>
+                <p id="reference-error"></p>
                 <script src="embed.js"></script>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/5.5.11/jsoneditor.min.js"></script>
                 <script>
                     var config = {
                         title: 'FS171 Invasion!',
@@ -80,58 +82,19 @@
                             { start:"03:56:11", title: 'That One Privacy Guy\'s VPN Comparison Chart'},
                             { start:"04:10:00", title: 'Ausklang'}
                         ],
-                        audio: [
-                            "http://freakshow.fm/podlove/file/4468/s/download/c/select-show/fs171-invasion.m4a",
-                            "http://freakshow.fm/podlove/file/4467/s/download/c/select-show/fs171-invasion.mp3",
-                            "http://freakshow.fm/podlove/file/4466/s/download/c/select-show/fs171-invasion.oga",
-                            "http://freakshow.fm/podlove/file/4465/s/download/c/select-show/fs171-invasion.opus"
-                        ],
+                        audio: [],
                         reference: {
                             config: '//podlove-player.surge.sh/fixtures/example.json',
                             share: '//podlove-player.surge.sh/share'
-                        },
-                        runtime: {
-                            language: 'en'
                         }
                     };
 
-                    function loadEditor(store) {
-                        // create the editor
-                        var options = {
-                            search: false,
-                            onChange: updatePlayer,
-                            mode: 'code'
-                        };
+                    podlovePlayer('#load-error', Object.assign({}, config, {
+                        audio: ['http://invalid.url']
+                    }))
 
-                        var editor = new JSONEditor(document.getElementById('editor'), options);
-                        editor.set(config);
-
-
-                        function updatePlayer() {
-                            store.dispatch({
-                                type: 'INIT',
-                                payload: editor.get()
-                            })
-                        }
-                    }
-
-                    podlovePlayer('#player', config)
-                        .then(loadEditor);
+                    podlovePlayer('#reference-error', Object.assign({}, config))
                 </script>
-                <style>
-                    #editor {
-                        height: 750px;
-                    }
-
-                    #editor .jsoneditor {
-                        border-color: #2B8AC6;
-                    }
-
-                    #editor .jsoneditor-menu {
-                        background: #2B8AC6;
-                        border-color: #2B8AC6;
-                    }
-                </style>
             </div>
         </main>
     </div>

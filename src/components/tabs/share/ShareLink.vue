@@ -3,13 +3,13 @@
         <h4 class="title">{{ $t('SHARE.LINK') }}</h4>
         <div class="input-row input-group">
             <input type="text" class="input-text" disabled :value="clipboardContent(reference, share.link, playtime)" />
-            <PodloveButton
+            <ButtonComponent
                 class="input-button truncate"
                 :data-clipboard-text="clipboardContent(reference, share.link, playtime)"
                 v-clipboard
                 :style="buttonStyle(theme)">
                 {{ $t('SHARE.COPY') }}
-            </PodloveButton>
+            </ButtonComponent>
         </div>
         <div class="input-row">
             <div>
@@ -24,7 +24,7 @@
     import { debounce, get } from 'lodash'
     import store from 'store'
 
-    import PodloveButton from 'shared/Button.vue'
+    import ButtonComponent from 'shared/Button.vue'
 
     import { addQueryParameter } from 'utils/url'
     import { secondsToTime, timeToSeconds } from 'utils/time'
@@ -85,7 +85,7 @@
             setStarttime
         },
         components: {
-            PodloveButton
+            ButtonComponent
         }
     }
 </script>

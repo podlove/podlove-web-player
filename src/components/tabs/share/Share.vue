@@ -1,13 +1,13 @@
 <template>
-  <div class="podlove-share">
-    <ShareLink class="seperator" v-if="reference.origin"></ShareLink>
-    <ShareEmbed v-if="reference.config && reference.share"></ShareEmbed>
+  <div class="share">
+    <ShareLinkComponent class="seperator" v-if="reference.origin"></ShareLinkComponent>
+    <ShareEmbedComponent v-if="reference.config && reference.share"></ShareEmbedComponent>
   </div>
 </template>
 
 <script>
-  import ShareLink from './ShareLink.vue'
-  import ShareEmbed from './ShareEmbed.vue'
+  import ShareLinkComponent from './ShareLink.vue'
+  import ShareEmbedComponent from './ShareEmbed.vue'
 
   export default {
     data() {
@@ -20,8 +20,8 @@
       }
     },
     components: {
-      ShareLink,
-      ShareEmbed
+      ShareLinkComponent,
+      ShareEmbedComponent
     }
   }
 </script>

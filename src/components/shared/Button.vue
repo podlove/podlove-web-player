@@ -1,5 +1,5 @@
 <template>
-  <button :style="buttonStyle(color)" class="podlove-player--button" @click="click && click()"><slot></slot></button>
+  <button :style="buttonStyle(color)" class="button" @click="click && click()"><slot></slot></button>
 </template>
 
 <script>
@@ -24,23 +24,17 @@
 <style lang="scss">
   @import 'variables';
 
-  .podlove-player--button {
+  .button {
     cursor: pointer;
 
     background: transparent;
 
     border-radius: 0;
     border: 0;
-    opacity: 1;
-    transition: opacity $animation-duration;
     outline: none;
 
     &[disabled] {
       opacity: 0.5;
-    }
-
-    &.start, &.idle, &.end, &.loading {
-      opacity: 0;
     }
 
     &.solid {

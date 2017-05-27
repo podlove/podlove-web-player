@@ -1,5 +1,5 @@
 <template>
-  <div class="podlove-player--timer" :class="playstate" :style="timerStyle(theme)">
+  <div class="timer-progress" :class="playstate" :style="timerStyle(theme)">
     <span class="current">{{secondsToTime(playtime)}}</span>
     <CurrentChapter class="chapter" />
     <span class="time">{{secondsToTime(duration - playtime)}}</span>
@@ -11,7 +11,7 @@ import store from 'store';
 import color from 'color'
 
 import { secondsToTime } from 'utils/time'
-import CurrentChapter from './chapters/CurrentChapter.vue'
+import CurrentChapter from './CurrentChapter.vue'
 
 const timerStyle = theme => ({
   color: color(theme.player.timer.text).fade(0.5)
@@ -46,19 +46,14 @@ export default {
   $timer-height: 20px;
 
   // Timer
-  .podlove-player--timer {
+  .timer-progress {
     display: flex;
     width: 100%;
     justify-content: space-between;
     overflow: hidden;
     transition: height $animation-duration;
     margin-top: -1em;
-    height: 20px;
-
-    &.start, &.idle {
-      margin-top: 0;
-      height: 0;
-    }
+    height: $timer-height;
 
     .current {
       display: block;

@@ -58,11 +58,21 @@ const reference = (state = {}, action) => {
   }
 }
 
+const audio = (state = {}, action) => {
+  switch (action.type) {
+    case 'INIT':
+      return get(action.payload, 'audio', [])
+    default:
+      return state
+  }
+}
+
 export {
   poster,
   subtitle,
   title,
   showTitle,
   reference,
-  mode
+  mode,
+  audio
 }

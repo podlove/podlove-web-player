@@ -1,12 +1,20 @@
 <template>
-  <div class="podlove-player--control-bar">
-    <ChapterBackButton class="podlove-player--chapter-control" v-if="chapters.length > 0"/>
-    <StepBackButton />
-
-    <PlayButton />
-
-    <StepForwardButton />
-    <ChapterNextButton class="podlove-player--chapter-control" v-if="chapters.length > 0"/>
+  <div class="control-bar">
+    <transition name="button">
+      <ChapterBackButton v-if="components.controls.chapters && chapters.length > 0" />
+    </transition>
+    <transition name="button">
+      <StepBackButton v-if="components.controls.steppers" />
+    </transition>
+    <transition name="button">
+      <PlayButton v-if="components.controls.button.visible" />
+    </transition>
+    <transition name="button">
+      <StepForwardButton v-if="components.controls.steppers" />
+    </transition>
+    <transition name="button">
+      <ChapterNextButton v-if="components.controls.chapters && chapters.length > 0" />
+    </transition>
   </div>
 </template>
 
@@ -20,7 +28,8 @@
   export default {
     data() {
       return {
-        chapters: this.$select('chapters')
+        chapters: this.$select('chapters'),
+        components: this.$select('components')
       }
     },
     components: {
@@ -36,7 +45,7 @@
 <style lang="scss">
   @import 'variables';
 
-  .podlove-player--control-bar {
+  .control-bar {
     width: 100%;
 
     display: flex;
@@ -44,12 +53,12 @@
     justify-content: center;
   }
 
-  .podlove-player--player-control {
+  .player-control {
     margin: 0 ($margin / 1.5);
   }
 
   @media screen and (max-width: $width-xs) {
-    .podlove-player--chapter-control {
+    .chapter-control {
       display: none;
     }
   }

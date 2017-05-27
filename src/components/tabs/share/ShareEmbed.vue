@@ -3,13 +3,13 @@
       <h4 class="title">{{ $t('SHARE.EMBED') }}</h4>
       <div class="input-row input-group">
         <input type="text" class="input-text" disabled :value="clipboardContent(reference, share.embed, playtime)" />
-        <PodloveButton
+        <ButtonComponent
           class="input-button truncate"
           :data-clipboard-text="clipboardContent(reference, share.embed, playtime)"
           v-clipboard
           :style="buttonStyle(theme)">
              {{ $t('SHARE.COPY') }}
-        </PodloveButton>
+        </ButtonComponent>
       </div>
       <div class="input-row">
         <div class="share-config--time">
@@ -35,7 +35,7 @@
   import store from 'store'
   import { secondsToTime, timeToSeconds } from 'utils/time'
 
-  import PodloveButton from 'shared/Button.vue'
+  import ButtonComponent from 'shared/Button.vue'
 
   const buttonStyle = (theme) => ({
     color: theme.tabs.button.text,
@@ -102,7 +102,7 @@
       setStarttime,
     },
     components: {
-      PodloveButton
+      ButtonComponent
     }
   }
 
@@ -117,7 +117,7 @@
   $embed-height: 35px;
   $size-button-width: 80px;
 
-  .podlove-share {
+  .embed {
     padding: $padding;
 
     .share-config--time, .share-config--size {

@@ -1,17 +1,15 @@
 <template>
-  <div class="podlove-player" :style="backgroundStyle(theme)" :class="playstate">
-    <div class="control" :class="playstate">
-      <ControlBar class="control-bar"/>
-    </div>
-    <ProgressBar />
-    <Timer />
+  <div class="player" :style="backgroundStyle(theme)">
+    <ControlBar />
+    <transition name="progressbar">
+      <ProgressBar v-if="components.progressbar" />
+    </transition>
   </div>
 </template>
 
 <script>
   import ControlBar from './control-bar/ControlBar.vue'
-  import ProgressBar from './ProgressBar.vue'
-  import Timer from './Timer.vue'
+  import ProgressBar from './progress-bar/ProgressBar.vue'
 
   const backgroundStyle = theme => ({
     'background-color': theme.player.background
@@ -22,13 +20,13 @@
       return {
         playstate: this.$select('playstate'),
         reference: this.$select('reference'),
-        theme: this.$select('theme')
+        theme: this.$select('theme'),
+        components: this.$select('components')
       }
     },
     components: {
       ControlBar,
-      ProgressBar,
-      Timer
+      ProgressBar
     },
     methods: {
       backgroundStyle
@@ -39,7 +37,7 @@
 <style lang="scss">
   @import 'variables';
 
-  .podlove-player {
+  .player {
     width: 100%;
     padding: $padding;
 
@@ -47,18 +45,5 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-
-    &.start, &.idle {
-      padding-bottom: 0;
-    }
-  }
-
-  .control {
-    width: 100%;
-    display: flex;
-
-    &.start {
-      margin-bottom: $margin;
-    }
   }
 </style>

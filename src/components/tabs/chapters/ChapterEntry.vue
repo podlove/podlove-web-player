@@ -1,5 +1,5 @@
 <template>
-  <div class="podlove-chapters--entry" :style="chapterStyle(theme, chapter)" @click="onChapterClick(chapter)">
+  <div class="chapters--entry" :style="chapterStyle(theme, chapter)" @click="onChapterClick(chapter)">
     <span class="index">{{index + 1}}</span>
     <span class="title truncate">{{chapter.title}}</span>
     <span class="timer">{{remainingTime(chapter, playtime)}}</span>
@@ -73,7 +73,7 @@
   @import 'variables';
   @import 'font';
 
-  .podlove-chapters--entry {
+  .chapters--entry {
     width: 100%;
     position: relative;
     padding: $padding / 2 $padding;
