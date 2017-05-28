@@ -1,24 +1,24 @@
 <template>
   <div class="settings">
-    <div class="seperator">
-      <h4 class="label">
+    <div class="seperator input-element">
+      <h4 class="title label">
         <span class="title">{{ $t('SETTINGS.VOLUME') }}</span>
-        <span class="volume">{{decimalToPercent(volume)}}%</span>
+        <span class="volume">{{ toPercent(volume) }}%</span>
       </h4>
       <div class="input-slider">
-        <ButtonComponent class="slider-button" :click="changeVolume(volume, -5)" :style="buttonStyle(theme)">-</ButtonComponent>
-        <ButtonComponent class="slider-button" :click="changeVolume(volume, 5)" :style="buttonStyle(theme)">+</ButtonComponent>
+        <ButtonComponent class="slider-button" :click="changeVolume(-5, volume)" :style="buttonStyle(theme)">-</ButtonComponent>
+        <ButtonComponent class="slider-button" :click="changeVolume(5, volume)" :style="buttonStyle(theme)">+</ButtonComponent>
         <SliderComponent class="input-slider" min="0" max="1" :value="volume" step="0.001" :onInput="setVolume" :thumbColor="theme.tabs.slider.thumb"></SliderComponent>
       </div>
     </div>
-    <div class="seperator">
-      <h4 class="label">
+    <div class="seperator input-element">
+      <h4 class="title label">
         <span class="title">{{ $t('SETTINGS.SPEED') }}</span>
-        <span class="rate">{{decimalToPercent(rate)}}%</span>
+        <span class="rate">{{ toPercent(rate) }}%</span>
       </h4>
       <div class="input-slider">
-        <ButtonComponent class="slider-button" :click="changeRate(rate, -5)" :style="buttonStyle(theme)">-</ButtonComponent>
-        <ButtonComponent class="slider-button" :click="changeRate(rate, 5)" :style="buttonStyle(theme)">+</ButtonComponent>
+        <ButtonComponent class="slider-button" :click="changeRate(-5, rate)" :style="buttonStyle(theme)">-</ButtonComponent>
+        <ButtonComponent class="slider-button" :click="changeRate(5, rate)" :style="buttonStyle(theme)">+</ButtonComponent>
         <SliderComponent class="input-slider" min="0.5" max="4" :value="rate" step="0.001" :onInput="setRate" :thumbColor="theme.tabs.slider.thumb"></SliderComponent>
       </div>
     </div>
@@ -31,16 +31,15 @@
 <script>
   import store from 'store'
 
+  import { compose, curry } from 'lodash/fp'
+  import { toPercent, roundUp } from 'utils/math'
+
   import SliderComponent from 'shared/Slider.vue'
   import ButtonComponent from 'shared/Button.vue'
 
+  // Template Functions
   const exportStore = () => {
     return `data:text/json;charset=utf-8,${encodeURIComponent(JSON.stringify(store.store.getState()))}`;
-  }
-
-  const decimalToPercent = input => {
-    input = parseFloat(input) * 100
-    return Math.round(input)
   }
 
   const buttonStyle = (theme) => ({
@@ -48,31 +47,12 @@
     background: theme.tabs.button.background
   })
 
-  const setVolume = volume => {
-    store.dispatch(store.actions.setVolume(volume))
-  }
+  // State Changers
+  const setVolume = compose(store.dispatch.bind(store), store.actions.setVolume)
+  const changeVolume = (offset, rate) => () => compose(setVolume, roundUp(offset))(rate)
 
-  const setRate = rate => {
-    store.dispatch(store.actions.setRate(rate))
-  }
-
-  const roundUp = (base, number) => {
-    number = Math.ceil(number)
-
-    if (number % base === 0) {
-      return number + base
-    }
-
-    return number + (base - number % base)
-  }
-
-  const changeRate = (rate, offset) => () => {
-    store.dispatch(store.actions.setRate(roundUp(offset, (rate * 100)) / 100))
-  }
-
-  const changeVolume = (volume, offset) => () => {
-    store.dispatch(store.actions.setVolume(roundUp(offset, (volume * 100)) / 100))
-  }
+  const setRate = compose(store.dispatch.bind(store), store.actions.setRate)
+  const changeRate = (offset, rate) => () => compose(setRate, roundUp(offset))(rate)
 
   export default {
     data() {
@@ -90,7 +70,7 @@
       changeRate,
       changeVolume,
       buttonStyle,
-      decimalToPercent
+      toPercent
     },
     components: {
       SliderComponent,
@@ -107,7 +87,6 @@
 
   .settings {
     width: 100%;
-    padding: $padding;
 
     .range {
       display: flex;
@@ -117,7 +96,7 @@
     }
 
     .footer {
-      margin-top: $margin;
+      margin: $margin;
       text-align: right;
     }
 

@@ -1,5 +1,5 @@
 <template>
-  <button :style="buttonStyle(color)" class="button" @click="click && click()"><slot></slot></button>
+  <button :style="buttonStyle(color)" class="button" @click="click && click()" v-else><slot></slot></button>
 </template>
 
 <script>
@@ -47,6 +47,10 @@
         color: $accent-color;
         background: $background-color;
       }
+    }
+
+    &.labeled {
+      font-size: 0.8em;
     }
   }
 </style>
