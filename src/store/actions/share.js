@@ -18,7 +18,6 @@ const setShareEmbedStarttime = time => ({
 })
 
 // Link
-
 const toggleShareLinkStart = () => ({
   type: 'TOGGLE_SHARE_LINK_START'
 })
@@ -26,6 +25,12 @@ const toggleShareLinkStart = () => ({
 const setShareLinkStarttime = time => ({
   type: 'SET_SHARE_LINK_STARTTIME',
   payload: time
+})
+
+// Download
+const switchDownloadFile = file => ({
+  type: 'SWITCH_DOWNLOAD_FILE',
+  payload: file
 })
 
 export {
@@ -36,5 +41,7 @@ export {
   setShareEmbedStarttime,
 
   toggleShareLinkStart,
-  setShareLinkStarttime
+  setShareLinkStarttime,
+
+  switchDownloadFile
 }

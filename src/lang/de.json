@@ -6,9 +6,16 @@
     "TITLE": "Teilen",
     "LINK": "Link",
     "EMBED": "Einbetten",
-    "START": "Start:",
-    "SIZE": "Größe:",
-    "COPY": "kopieren"
+    "DOWNLOAD": "Download",
+    "LABELS": {
+      "TYPE": "Type:",
+      "START": "Start:",
+      "SIZE": "Größe:"
+    },
+    "ACTIONS": {
+      "COPY": "kopieren",
+      "DOWNLOAD": "download"
+    }
   },
   "SETTINGS": {
     "TITLE": "Einstellung",

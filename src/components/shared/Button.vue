@@ -48,5 +48,9 @@
         background: $background-color;
       }
     }
+
+    &.labeled {
+      font-size: 0.8em;
+    }
   }
 </style>

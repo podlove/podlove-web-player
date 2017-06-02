@@ -6,9 +6,16 @@
     "TITLE": "Share",
     "LINK": "Link",
     "EMBED": "Embed",
-    "START": "Start:",
-    "SIZE": "Size:",
-    "COPY": "copy"
+    "DOWNLOAD": "Download",
+    "LABELS": {
+      "TYPE": "Type:",
+      "START": "Start:",
+      "SIZE": "Size:"
+    },
+    "ACTIONS": {
+      "COPY": "copy",
+      "DOWNLOAD": "download"
+    }
   },
   "SETTINGS": {
     "TITLE": "Settings",

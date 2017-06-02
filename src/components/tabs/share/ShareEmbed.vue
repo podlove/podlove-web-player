@@ -1,5 +1,5 @@
 <template>
-    <div class="embed">
+    <div class="embed input-element">
       <h4 class="title">{{ $t('SHARE.EMBED') }}</h4>
       <div class="input-row input-group">
         <input type="text" class="input-text" disabled :value="clipboardContent(reference, share.embed, playtime)" />
@@ -8,17 +8,17 @@
           :data-clipboard-text="clipboardContent(reference, share.embed, playtime)"
           v-clipboard
           :style="buttonStyle(theme)">
-             {{ $t('SHARE.COPY') }}
+             {{ $t('SHARE.ACTIONS.COPY') }}
         </ButtonComponent>
       </div>
       <div class="input-row">
         <div class="share-config--time">
-          <label class="input-label"><input type="checkbox" class="embed--checkbox" :value="share.embed.start" v-on:change="toggleEmbedStart(playtime)"/> {{ $t('SHARE.START') }}</label>
+          <label class="input-label"><input type="checkbox" class="input-checkbox" :value="share.embed.start" v-on:change="toggleEmbedStart(playtime)"/> {{ $t('SHARE.LABELS.START') }}</label>
           <input type="text" class="input-text" :value="secondsToTime(share.embed.starttime)" v-on:input="setStarttime"/>
         </div>
         <div class="share-config--size">
-          <label class="input-label">{{ $t('SHARE.SIZE') }}</label>
-          <select class="share-input" v-model="share.embed.size" v-on:change="setEmbedSize(share.embed.size)">
+          <label class="input-label">{{ $t('SHARE.LABELS.SIZE') }}</label>
+          <select class="input-select" v-model="share.embed.size" v-on:change="setEmbedSize(share.embed.size)">
             <option v-for="option in share.embed.availableSizes" v-bind:value="option">
               {{ option }}
             </option>
@@ -113,17 +113,7 @@
   @import 'utils';
   @import 'inputs';
 
-  $embed-width: 40px;
-  $embed-height: 35px;
-  $size-button-width: 80px;
-
   .embed {
-    padding: $padding;
-
-    .share-config--time, .share-config--size {
-      line-height: 1em;
-    }
-
     @media screen and (max-width: $width-m) {
       .share-config--time, .share-config--size {
         .input-label {
