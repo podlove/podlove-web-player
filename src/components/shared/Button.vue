@@ -1,5 +1,5 @@
 <template>
-  <button :style="buttonStyle(color)" class="button" @click="click && click()" v-else><slot></slot></button>
+  <button :style="buttonStyle(color)" class="button" @click="click && click()"><slot></slot></button>
 </template>
 
 <script>
