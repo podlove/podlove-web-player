@@ -1,5 +1,6 @@
 @import 'variables';
 @import 'utils';
+
 $input-group-height: 35px;
 $input-height: 25px;
 $input-secondary-height: 1em;
@@ -53,9 +54,9 @@ $slider-button-size: 30px;
   .input-text {
     padding: $padding / 2;
     width: calc(100% - #{$addon-button-width});
-    border-radius: 2px 0 0 2px;
+    border-radius: 0 2px 2px 0;
     font-size: 1em;
-    border-width: 1px 0 1px 1px;
+    border-width: 1px 1px 1px 0;
     height: $input-group-height;
   }
   .input-button {
@@ -75,7 +76,7 @@ $slider-button-size: 30px;
 
 .slider-button {
   font-weight: bold;
-  font-size: 1.2em;
+  font-size: 1em;
   height: $slider-button-size;
   width: $slider-button-size;
   margin-right: $margin / 2;

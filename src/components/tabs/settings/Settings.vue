@@ -19,7 +19,9 @@
       <div class="input-slider">
         <ButtonComponent class="slider-button" :click="changeRate(-5, rate)" :style="buttonStyle(theme)">-</ButtonComponent>
         <ButtonComponent class="slider-button" :click="changeRate(5, rate)" :style="buttonStyle(theme)">+</ButtonComponent>
-        <SliderComponent class="input-slider" min="0.5" max="4" :value="rate" step="0.001" :onInput="setRate" :thumbColor="theme.tabs.slider.thumb"></SliderComponent>
+        <SliderComponent class="input-slider"
+          min="0" max="1" step="0.001"
+          :value="sliderRate" :onInput="toStateRate" :thumbColor="theme.tabs.slider.thumb"></SliderComponent>
       </div>
     </div>
     <div class="footer">
@@ -32,7 +34,7 @@
   import store from 'store'
 
   import { compose, curry } from 'lodash/fp'
-  import { toPercent, roundUp } from 'utils/math'
+  import { toPercent, roundUp, round } from 'utils/math'
 
   import SliderComponent from 'shared/Slider.vue'
   import ButtonComponent from 'shared/Button.vue'
@@ -44,14 +46,67 @@
 
   const buttonStyle = (theme) => ({
     color: theme.tabs.button.text,
+    border: `1px solid ${theme.tabs.button.text}`,
     background: theme.tabs.button.background
   })
 
+  // Speed Modifiers
+  const normalizeSliderValue = (value = 0) => {
+    if (value < 0) {
+      value = 0
+    }
+
+    if (value > 1) {
+      value = 1
+    }
+
+    return value
+  }
+
+  const normalizeRateValue = (value = 0) => {
+    if (value < 0.5) {
+      value = 0.5
+    }
+
+    if (value > 4) {
+      value = 4
+    }
+
+    return value
+  }
+
+  const speedSliderToState = (value = 0) => {
+    value = parseFloat(value)
+
+    if (value <= 0.5) {
+      value = 0.5 + value
+    } else {
+      value = 2 * value + (value - 0.5) * 4
+    }
+
+    return value
+  }
+
+  const stateToSpeedSlider = (value = 0) => {
+    value = parseFloat(value)
+
+    if (value <= 1) {
+      value = value - 0.5
+    } else {
+      value = (value + 2) / 6
+    }
+
+    return value
+  }
+
   // State Changers
   const setVolume = compose(store.dispatch.bind(store), store.actions.setVolume)
-  const changeVolume = (offset, rate) => () => compose(setVolume, roundUp(offset))(rate)
-
   const setRate = compose(store.dispatch.bind(store), store.actions.setRate)
+
+  const toStateRate = compose(setRate, round, speedSliderToState, normalizeSliderValue)
+  const toSliderRate = compose(round, stateToSpeedSlider, normalizeRateValue)
+
+  const changeVolume = (offset, rate) => () => compose(setVolume, roundUp(offset))(rate)
   const changeRate = (offset, rate) => () => compose(setRate, roundUp(offset))(rate)
 
   export default {
@@ -63,10 +118,17 @@
         theme: this.$select('theme')
       }
     },
+    computed: {
+      sliderRate: function () {
+        return toSliderRate(this.rate)
+      }
+    },
     methods: {
       exportStore,
       setVolume,
       setRate,
+      toStateRate,
+      toSliderRate,
       changeRate,
       changeVolume,
       buttonStyle,

@@ -47,6 +47,7 @@
     data () {
       let playtime = this.$select('playtime')
       let duration = this.$select('duration')
+
       return {
         playtime,
         duration,

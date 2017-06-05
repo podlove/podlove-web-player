@@ -51,7 +51,7 @@ const themeColors = (colors = {}) => {
       },
       button: {
         background: color(primary).fade(0.8),
-        text: primary
+        text: negative ? dark : light
       }
     },
     overlay: {

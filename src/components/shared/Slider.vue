@@ -31,16 +31,6 @@
 
   export default {
     props: ['min', 'max', 'step', 'value', 'onChange', 'onInput', 'thumbColor'],
-    data () {
-      return {
-        thumbPosition: relativePosition(this.value, this.min || 0, this.max || 100)
-      }
-    },
-    watch: {
-      value: function () {
-        this.thumbPosition = relativePosition(this.value, this.minValue, this.maxValue)
-      }
-    },
     computed: {
       minValue: function () {
         return isUndefined(this.min) ? 0 : this.min
@@ -50,6 +40,9 @@
       },
       sliderSteps: function () {
         return isUndefined(this.step) ? 0.1 : this.step
+      },
+      thumbPosition: function () {
+        return relativePosition(this.value, this.minValue, this.maxValue)
       }
     },
     mounted: function () {

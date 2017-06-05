@@ -2,7 +2,6 @@
     <div class="embed input-element">
       <h4 class="title">{{ $t('SHARE.EMBED') }}</h4>
       <div class="input-row input-group">
-        <input type="text" class="input-text" disabled :value="clipboardContent(reference, share.embed, playtime)" />
         <ButtonComponent
           class="input-button truncate"
           :data-clipboard-text="clipboardContent(reference, share.embed, playtime)"
@@ -10,6 +9,7 @@
           :style="buttonStyle(theme)">
              {{ $t('SHARE.ACTIONS.COPY') }}
         </ButtonComponent>
+        <input type="text" class="input-text" disabled :value="clipboardContent(reference, share.embed, playtime)" />
       </div>
       <div class="input-row">
         <div class="share-config--time">

@@ -1,8 +1,12 @@
 import { curry } from 'lodash/fp'
 
-const toPercent = input => {
+const toPercent = (input = 0) => {
   input = parseFloat(input) * 100
   return Math.round(input)
+}
+
+const round = (input = 0) => {
+  return Math.ceil(input * 100) / 100
 }
 
 const roundUp = curry((base, number) => {
@@ -17,5 +21,6 @@ const roundUp = curry((base, number) => {
 
 export {
   toPercent,
-  roundUp
+  roundUp,
+  round
 }

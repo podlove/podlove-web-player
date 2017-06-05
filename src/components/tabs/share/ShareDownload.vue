@@ -2,19 +2,21 @@
     <div class="input-element">
         <h4 class="title">{{ $t('SHARE.DOWNLOAD') }}</h4>
         <div class="input-row input-group">
-            <input type="text" class="input-text" disabled :value="activeAudioFile(share.download.files)" />
             <a class="button input-button truncate"
                 :href="activeAudioFile(share.download.files)"
                 :style="buttonStyle(theme)">
                 {{ $t('SHARE.ACTIONS.DOWNLOAD') }}
             </a>
+            <input type="text" class="input-text" disabled :value="activeAudioFile(share.download.files)" />
         </div>
         <div class="input-row" v-if="share.download.files.length > 1">
           <div></div>
           <div>
             <label class="input-label">{{ $t('SHARE.LABELS.TYPE') }}</label>
             <select class="input-select" v-on:change="switchAudioType">
-              <option v-for="option in share.download.files" v-bind:value="option.file" :selected="activeAudioType(share.download.files) === option.type">
+              <option v-for="option in share.download.files"
+                v-bind:value="option.file"
+                :selected="activeAudioType(share.download.files) === option.type">
                 {{ option.type }}
               </option>
             </select>

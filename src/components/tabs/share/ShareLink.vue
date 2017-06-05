@@ -2,7 +2,6 @@
     <div class="input-element">
       <h4 class="title">{{ $t('SHARE.LINK') }}</h4>
       <div class="input-row input-group">
-        <input type="text" class="input-text" disabled :value="clipboardContent(reference, share.link, playtime)" />
         <ButtonComponent
             class="input-button truncate"
             :data-clipboard-text="clipboardContent(reference, share.link, playtime)"
@@ -10,10 +9,13 @@
             :style="buttonStyle(theme)">
             {{ $t('SHARE.ACTIONS.COPY') }}
         </ButtonComponent>
+        <input type="text" class="input-text" disabled :value="clipboardContent(reference, share.link, playtime)" />
       </div>
       <div class="input-row">
         <div>
-          <label class="input-label"><input type="checkbox" class="input-checkbox" :value="share.link.start" v-on:change="toggleStart(playtime)"/> {{ $t('SHARE.LABELS.START') }}</label>
+          <label class="input-label">
+            <input type="checkbox" class="input-checkbox" :value="share.link.start" v-on:change="toggleStart(playtime)"/> {{ $t('SHARE.LABELS.START') }}
+          </label>
           <input type="text" class="input-text" :value="secondsToTime(share.link.starttime)" v-on:input="setStarttime"/>
         </div>
       </div>
