@@ -7,7 +7,7 @@
           :data-clipboard-text="clipboardContent(reference, share.embed, playtime)"
           v-clipboard
           :style="buttonStyle(theme)">
-             {{ $t('SHARE.ACTIONS.COPY') }}
+            <CopyIcon :color="theme.tabs.button.text"/>
         </ButtonComponent>
         <input type="text" class="input-text" :style="inputStyle(theme)" disabled :value="clipboardContent(reference, share.embed, playtime)" />
       </div>
@@ -36,6 +36,7 @@
   import { secondsToTime, timeToSeconds } from 'utils/time'
 
   import ButtonComponent from 'shared/Button.vue'
+  import CopyIcon from 'icons/CopyIcon.vue'
 
   const buttonStyle = (theme) => ({
     color: theme.tabs.button.text,
@@ -107,7 +108,8 @@
       setStarttime
     },
     components: {
-      ButtonComponent
+      ButtonComponent,
+      CopyIcon
     }
   }
 </script>
