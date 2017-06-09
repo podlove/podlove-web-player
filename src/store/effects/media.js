@@ -32,24 +32,30 @@ export default mediaPlayer => (store, action) => {
 
       break
     case 'UI_PLAY':
-      mediaElement && mediaElement.setPlaytime(state.playtime)
+      mediaElement && mediaElement.seek(state.playtime)
       mediaElement && mediaElement.play()
       break
     case 'UI_PAUSE':
       mediaElement && mediaElement.pause()
       break
     case 'UI_RESTART':
-      mediaElement && mediaElement.setPlaytime(0)
+      mediaElement && mediaElement.seek(0)
       mediaElement && mediaElement.play()
       break
     case 'UPDATE_PLAYTIME':
-      mediaElement && mediaElement.setPlaytime(action.payload)
+      mediaElement && mediaElement.seek(action.payload)
       break
     case 'SET_VOLUME':
       mediaElement && mediaElement.volume(action.payload)
       break
     case 'SET_RATE':
       mediaElement && mediaElement.rate(action.payload)
+      break
+    case 'MUTE':
+      mediaElement && mediaElement.mute(true)
+      break
+    case 'UNMUTE':
+      mediaElement && mediaElement.mute(false)
       break
   }
 }

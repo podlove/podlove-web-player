@@ -34,6 +34,7 @@ export default storage => (store, action) => {
       if (storedRate) {
         store.dispatch(actions.setRate(storedRate))
       }
+
       if (storedQuantiles) {
         store.dispatch(actions.loadQuantiles(storedQuantiles))
       }

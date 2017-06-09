@@ -50,8 +50,11 @@ const themeColors = (colors = {}) => {
         thumb: primary
       },
       button: {
-        background: color(primary).fade(0.8),
-        text: negative ? dark : light
+        background: primary,
+        text: negative ? light : dark
+      },
+      input: {
+        border: negative ? primary: dark
       }
     },
     overlay: {

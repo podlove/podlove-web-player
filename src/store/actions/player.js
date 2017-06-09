@@ -64,6 +64,14 @@ const setRate = rate => ({
   payload: rate
 })
 
+const mute = () => ({
+  type: 'MUTE'
+})
+
+const unmute = () => ({
+  type: 'UNMUTE'
+})
+
 export {
   setPlaytime,
   updatePlaytime,
@@ -79,5 +87,7 @@ export {
   toggleTimerMode,
   loading,
   setVolume,
-  setRate
+  setRate,
+  mute,
+  unmute
 }

@@ -10,7 +10,7 @@
         v-on:change="onSliderChange"
       />
     <span class="slider--track"></span>
-    <span class="slider--thumb" :style="thumbStyle(thumbPosition, thumbColor)"></span>
+    <span class="slider--thumb" :style="thumbStyle(thumbPosition, thumbColor, thumbBorder)"></span>
     <slot></slot>
   </div>
 </template>
@@ -20,17 +20,19 @@
   import { isUndefined } from 'lodash'
 
   const defaultThumbColor = color('#000').fade(0.1)
+  const defaultThumbBorder = color('#fff')
 
   const relativePosition = (current = 0, minimum = 0, maximum = 0) =>
     (((parseFloat(current, 10) - parseFloat(minimum, 10)) * 100) / (parseFloat(maximum, 10) - parseFloat(minimum, 10))) + '%'
 
-  const thumbStyle = (left, color) => ({
+  const thumbStyle = (left, backgroundColor, borderColor) => ({
     left,
-    'background-color': color || defaultThumbColor
+    'background-color': backgroundColor || defaultThumbColor,
+    'border-color': borderColor || defaultThumbBorder
   })
 
   export default {
-    props: ['min', 'max', 'step', 'value', 'onChange', 'onInput', 'thumbColor'],
+    props: ['min', 'max', 'step', 'value', 'onChange', 'onInput', 'thumbColor', 'thumbBorder'],
     computed: {
       minValue: function () {
         return isUndefined(this.min) ? 0 : this.min
@@ -89,7 +91,9 @@
       width: 10px;
       margin-left: -5px;
       pointer-events: none;
-      border: 1px solid $background-color;
+      border-width: 1px;
+      border-style: solid;
+      border-radius: 2px;
     }
   }
 </style>

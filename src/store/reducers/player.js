@@ -59,6 +59,17 @@ const playstate = (state = 'start', action) => {
   }
 }
 
+const muted = (state = false, action) => {
+  switch (action.type) {
+    case 'MUTE':
+      return true
+    case 'UNMUTE':
+      return false
+    default:
+      return state
+  }
+}
+
 const timerMode = (state = 'remaining', action) => {
   switch (action.type) {
     case 'TOGGLE_TIMERMODE':
@@ -107,5 +118,6 @@ export {
   playstate,
   timerMode,
   volume,
-  rate
+  rate,
+  muted
 }

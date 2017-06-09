@@ -19,9 +19,9 @@ export default store => {
 
   return next => action => {
     next(action)
+    mediaEffects(store, action)
     componentsEffects(store, action)
     storageEffects(store, action)
-    mediaEffects(store, action)
     idleEffects(store, action)
     quantileEffects(store, action)
   }
