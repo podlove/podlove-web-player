@@ -29,7 +29,7 @@ test:
 
 deployment:
   staging:
-    branch: v4
+    branch: development
     commands:
       - yarn docs
       - yarn deploy:surge
