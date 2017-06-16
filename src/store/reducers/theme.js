@@ -15,21 +15,21 @@ const themeColors = (colors = {}) => {
     player: {
       background: primary,
       poster: light,
-      title: secondary ? secondary : negative ? light : dark,
+      title: secondary || negative ? light : dark,
       text: negative ? light : dark,
       progress: {
         bar: negative ? light : dark,
-        thumb: secondary ? secondary : negative ? light : dark,
+        thumb: secondary || negative ? light : dark,
         border: primary,
         seperator: primary
       },
       actions: {
-        background: secondary ? secondary : negative ? light : dark,
+        background: secondary || negative ? light : dark,
         icon: primary
       },
       timer: {
         text: negative ? light : dark,
-        chapter: secondary ? secondary : negative ? light : dark
+        chapter: secondary || negative ? light : dark
       }
     },
     tabs: {
@@ -37,14 +37,14 @@ const themeColors = (colors = {}) => {
         background: primary,
         backgroundActive: light,
         color: negative ? light : dark,
-        colorActive: secondary ? secondary : negative ? primary : dark
+        colorActive: secondary || negative ? primary : dark
       },
       body: {
         background: light,
-        backgroundActive: secondary ? secondary : primary,
+        backgroundActive: secondary || primary,
         text: grey,
         textActive: negative ? primary : dark,
-        progress: secondary ? secondary : negative ? primary : dark
+        progress: secondary || negative ? primary : dark
       },
       slider: {
         thumb: primary
@@ -54,7 +54,7 @@ const themeColors = (colors = {}) => {
         text: negative ? light : dark
       },
       input: {
-        border: negative ? primary: dark
+        border: negative ? primary : dark
       }
     },
     overlay: {

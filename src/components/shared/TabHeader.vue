@@ -10,7 +10,7 @@
   })
 
   export default {
-    data() {
+    data () {
       return {
         theme: this.$select('theme')
       }

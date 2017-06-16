@@ -8,7 +8,7 @@
   import ChapterEntryComponent from './ChapterEntry.vue'
 
   export default {
-    data() {
+    data () {
       return {
         theme: this.$select('theme'),
         chapters: this.$select('chapters')

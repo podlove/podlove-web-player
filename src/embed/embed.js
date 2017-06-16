@@ -6,6 +6,7 @@ import requestConfig from 'utils/request'
 import { params } from 'utils/url'
 
 import { iframeResizer } from 'iframe-resizer'
+// eslint-disable-next-line
 import iframeResizerContentWindow from 'raw-loader!iframe-resizer/js/iframeResizer.contentWindow.min.js'
 
 // Player renderer

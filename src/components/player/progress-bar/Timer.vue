@@ -7,7 +7,6 @@
 </template>
 
 <script>
-import store from 'store';
 import color from 'color'
 
 import { secondsToTime } from 'utils/time'
@@ -18,14 +17,14 @@ const timerStyle = theme => ({
 })
 
 export default {
-  data() {
+  data () {
     return {
-      playtime:   this.$select('playtime'),
-      duration:   this.$select('duration'),
-      playstate:  this.$select('playstate'),
-      theme:      this.$select('theme'),
-      chapters:   this.$select('chapters'),
-      timerMode:  this.$select('timerMode')
+      playtime: this.$select('playtime'),
+      duration: this.$select('duration'),
+      playstate: this.$select('playstate'),
+      theme: this.$select('theme'),
+      chapters: this.$select('chapters'),
+      timerMode: this.$select('timerMode')
     }
   },
   methods: {

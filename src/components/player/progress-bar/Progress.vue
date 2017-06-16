@@ -38,9 +38,9 @@
   })
 
   const trackStyle = (theme, duration, [start, end]) => ({
-      left: relativePosition(start, duration),
-      width: relativePosition(end - start, duration),
-      'background-color': theme.player.progress.bar
+    left: relativePosition(start, duration),
+    width: relativePosition(end - start, duration),
+    'background-color': theme.player.progress.bar
   })
 
   export default {

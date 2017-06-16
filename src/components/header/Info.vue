@@ -14,7 +14,6 @@
 </template>
 
 <script>
-  import store from 'store'
   import color from 'color'
 
   const posterStyle = theme => ({

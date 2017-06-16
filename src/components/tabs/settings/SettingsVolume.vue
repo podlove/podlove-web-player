@@ -18,8 +18,8 @@
   import store from 'store'
 
   import { get } from 'lodash'
-  import { compose, curry } from 'lodash/fp'
-  import { toPercent, roundUp, round } from 'utils/math'
+  import { compose } from 'lodash/fp'
+  import { toPercent } from 'utils/math'
 
   import SliderComponent from 'shared/Slider.vue'
   import ButtonComponent from 'shared/Button.vue'
@@ -47,16 +47,11 @@
   }
 
   export default {
-    data() {
+    data () {
       return {
         volume: this.$select('volume'),
         theme: this.$select('theme'),
         muted: this.$select('muted')
-      }
-    },
-    computed: {
-      sliderRate: function () {
-        return toSliderRate(this.rate)
       }
     },
     methods: {

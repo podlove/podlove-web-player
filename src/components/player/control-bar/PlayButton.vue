@@ -67,7 +67,7 @@
       ErrorIcon,
       ReloadIcon
     },
-    data() {
+    data () {
       return {
         duration: this.$select('duration'),
         playtime: this.$select('playtime'),

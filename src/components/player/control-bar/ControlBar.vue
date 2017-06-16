@@ -26,7 +26,7 @@
   import ChapterBackButton from './ChapterBackButton.vue'
 
   export default {
-    data() {
+    data () {
       return {
         chapters: this.$select('chapters'),
         components: this.$select('components')

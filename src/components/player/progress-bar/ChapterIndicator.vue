@@ -9,15 +9,15 @@
 
 <script>
   const indicatorStyle = (theme, chapter, duration) => ({
-      left: ((chapter.end * 100) / duration) + '%',
-      background: theme.player.progress.seperator
+    left: ((chapter.end * 100) / duration) + '%',
+    background: theme.player.progress.seperator
   })
 
   const isLast = (chapters, index) =>
     chapters.length - 1 === index
 
   export default {
-    data() {
+    data () {
       return {
         chapters: this.$select('chapters'),
         theme: this.$select('theme'),

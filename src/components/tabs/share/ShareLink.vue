@@ -23,80 +23,80 @@
 </template>
 
 <script>
-    import { debounce, get } from 'lodash'
-    import store from 'store'
+  import { debounce, get } from 'lodash'
+  import store from 'store'
 
-    import ButtonComponent from 'shared/Button.vue'
+  import ButtonComponent from 'shared/Button.vue'
 
-    import { addQueryParameter } from 'utils/url'
-    import { secondsToTime, timeToSeconds } from 'utils/time'
+  import { addQueryParameter } from 'utils/url'
+  import { secondsToTime, timeToSeconds } from 'utils/time'
 
-    // Link
-    const clipboardContent = (reference, link, playtime) => {
-        const parameters = {}
+  // Link
+  const clipboardContent = (reference, link, playtime) => {
+    const parameters = {}
 
-        if (link.start) {
-            parameters.t = secondsToTime(link.starttime)
-        }
-
-        return addQueryParameter(reference.origin, parameters)
+    if (link.start) {
+      parameters.t = secondsToTime(link.starttime)
     }
 
-    const toggleStart = time => {
-        store.dispatch(store.actions.toggleShareLinkStart())
-        store.dispatch(store.actions.setShareLinkStarttime(time))
+    return addQueryParameter(reference.origin, parameters)
+  }
+
+  const toggleStart = time => {
+    store.dispatch(store.actions.toggleShareLinkStart())
+    store.dispatch(store.actions.setShareLinkStarttime(time))
+  }
+
+  const setStarttime = debounce(input => {
+    const duration = get(store.store.getState(), 'duration')
+    let time = timeToSeconds(input.target.value)
+
+    if (!time) {
+      return
     }
 
-    const setStarttime = debounce(input => {
-        const duration = get(store.store.getState(), 'duration')
-        let time = timeToSeconds(input.target.value)
-
-        if (!time) {
-            return
-        }
-
-        if (time > duration) {
-            time = duration
-        }
-
-        store.dispatch(store.actions.setShareLinkStarttime(time))
-    }, 1000)
-
-    const buttonStyle = (theme) => ({
-      color: theme.tabs.button.text,
-      background: theme.tabs.button.background,
-      'border-color': theme.tabs.input.border
-    })
-
-    const inputStyle = (theme) => ({
-      'border-color': theme.tabs.input.border
-    })
-
-    export default {
-        data() {
-            return {
-              share: this.$select('share'),
-              reference: this.$select('reference'),
-              playtime: this.$select('playtime'),
-              duration: this.$select('duration'),
-              theme: this.$select('theme')
-            }
-        },
-        methods: {
-          secondsToTime,
-
-          buttonStyle,
-          inputStyle,
-
-          clipboardContent,
-          toggleStart,
-          setStarttime
-        },
-        components: {
-          ButtonComponent,
-          inputStyle
-        }
+    if (time > duration) {
+      time = duration
     }
+
+    store.dispatch(store.actions.setShareLinkStarttime(time))
+  }, 1000)
+
+  const buttonStyle = (theme) => ({
+    color: theme.tabs.button.text,
+    background: theme.tabs.button.background,
+    'border-color': theme.tabs.input.border
+  })
+
+  const inputStyle = (theme) => ({
+    'border-color': theme.tabs.input.border
+  })
+
+  export default {
+    data () {
+      return {
+        share: this.$select('share'),
+        reference: this.$select('reference'),
+        playtime: this.$select('playtime'),
+        duration: this.$select('duration'),
+        theme: this.$select('theme')
+      }
+    },
+    methods: {
+      secondsToTime,
+
+      buttonStyle,
+      inputStyle,
+
+      clipboardContent,
+      toggleStart,
+      setStarttime
+    },
+    components: {
+      ButtonComponent,
+      inputStyle
+    }
+  }
 </script>
 
 <style lang="scss">

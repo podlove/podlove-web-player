@@ -73,7 +73,6 @@ const toggleSettingsTab = visibility => ({
   payload: visibility
 })
 
-
 export {
   toggleInfo,
   toggleError,

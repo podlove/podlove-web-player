@@ -19,10 +19,9 @@
   const iconColor = (theme, active) =>
     active ? theme.tabs.header.colorActive : color(theme.tabs.header.color).fade(0.2)
 
-
   export default {
     props: ['click', 'active'],
-    data() {
+    data () {
       return {
         theme: this.$select('theme')
       }

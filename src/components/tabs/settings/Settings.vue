@@ -15,12 +15,11 @@
   import SettingsVolumeComponent from './SettingsVolume.vue'
 
   // Template Functions
-  const exportStore = () => {
-    return `data:text/json;charset=utf-8,${encodeURIComponent(JSON.stringify(store.store.getState()))}`;
-  }
+  const exportStore = () =>
+    `data:text/json;charset=utf-8,${encodeURIComponent(JSON.stringify(store.store.getState()))}`
 
   export default {
-    data() {
+    data () {
       return {
         version: this.$select('runtime.version')
       }

@@ -7,9 +7,6 @@
 </template>
 
 <script>
-  import store from 'store'
-  import color from 'color'
-
   import PodloveInfo from './Info.vue'
   import PodloveError from './Error.vue'
 

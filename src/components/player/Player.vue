@@ -16,7 +16,7 @@
   })
 
   export default {
-    data() {
+    data () {
       return {
         playstate: this.$select('playstate'),
         reference: this.$select('reference'),

@@ -6,7 +6,6 @@
 </template>
 
 <script>
-  import store from 'store'
   import color from 'color'
 
   import ErrorIcon from 'icons/ErrorIcon.vue'

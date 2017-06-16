@@ -17,7 +17,7 @@
 <script>
   import store from 'store'
 
-  import { compose, curry } from 'lodash/fp'
+  import { compose } from 'lodash/fp'
   import { toPercent, roundUp, round } from 'utils/math'
 
   import SliderComponent from 'shared/Slider.vue'
@@ -86,7 +86,7 @@
   const changeRate = (offset, rate) => () => compose(setRate, roundUp(offset))(rate)
 
   export default {
-    data() {
+    data () {
       return {
         rate: this.$select('rate'),
         theme: this.$select('theme')

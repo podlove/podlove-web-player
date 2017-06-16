@@ -51,12 +51,12 @@
   }
 
   export default {
-    data() {
+    data () {
       return {
-        theme:      this.$select('theme'),
-        chapters:   this.$select('chapters'),
-        playtime:   this.$select('playtime'),
-        timerMode:  this.$select('timerMode')
+        theme: this.$select('theme'),
+        chapters: this.$select('chapters'),
+        playtime: this.$select('playtime'),
+        timerMode: this.$select('timerMode')
       }
     },
     methods: {

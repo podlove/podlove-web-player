@@ -104,7 +104,7 @@ toggleActions.forEach(action => {
 voidActions.forEach(action => {
   test(`${action.name}: creates the ${action.type} action`, t => {
     t.deepEqual(action.method(), {
-      type: action.type,
+      type: action.type
     })
   })
 })

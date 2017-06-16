@@ -156,7 +156,6 @@ test(`keyboardEffect: previous chapter dispatches duration as a fallback for UPD
   t.is(action.payload, 2000)
 })
 
-
 test(`keyboardEffect: previous chapter dispatches 0 as a fallback for UPDATE_PLAYTIME`, t => {
   store.getState = () => ({
     playtime: 10,
@@ -168,4 +167,3 @@ test(`keyboardEffect: previous chapter dispatches 0 as a fallback for UPDATE_PLA
   t.is(action.type, 'UPDATE_PLAYTIME')
   t.is(action.payload, 0)
 })
-

@@ -47,7 +47,6 @@
     'border-color': theme.tabs.input.border
   })
 
-
   // Embed
   const clipboardContent = (reference, embed, playtime) => {
     const [width, height] = embed.size.split('x')
@@ -87,9 +86,8 @@
     store.dispatch(store.actions.setShareEmbedStarttime(time))
   }, 1000)
 
-
   export default {
-    data() {
+    data () {
       return {
         share: this.$select('share'),
         reference: this.$select('reference'),
@@ -106,13 +104,12 @@
       setEmbedSize,
       clipboardContent,
       toggleEmbedStart,
-      setStarttime,
+      setStarttime
     },
     components: {
       ButtonComponent
     }
   }
-
 </script>
 
 <style lang="scss">
@@ -130,5 +127,4 @@
       }
     }
   }
-
 </style>

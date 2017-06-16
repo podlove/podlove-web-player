@@ -28,7 +28,6 @@
 
 <script>
 import store from 'store'
-import { translate } from 'core'
 
 import TabHeaderComponent from 'shared/TabHeader.vue'
 import TabHeaderItemComponent from 'shared/TabHeaderItem.vue'
@@ -51,7 +50,7 @@ const toggleTab = tab => () => {
 }
 
 export default {
-  data() {
+  data () {
     return {
       theme: this.$select('theme'),
       tabs: this.$select('tabs'),

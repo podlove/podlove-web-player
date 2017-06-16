@@ -22,7 +22,7 @@
   }
 
   export default {
-    data() {
+    data () {
       return {
         chapters: this.$select('chapters'),
         theme: this.$select('theme')
@@ -42,7 +42,7 @@
   .timer-chapter {
     width: 100%;
     text-align: center;
-    
+
     .chapter-title {
       white-space: nowrap;
       display: inline-block;

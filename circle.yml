@@ -23,6 +23,7 @@ compile:
 
 test:
   override:
+    - yarn lint
     - yarn test
   post:
     - bash <(curl -s https://codecov.io/bash)
@@ -35,8 +36,13 @@ deployment:
       - yarn deploy:surge
 
   production:
+    branch: master
+    commands:
+      - yarn docs
+      - yarn deploy:gh-pages
+
+  release:
     tag: /v.*/
     commands:
-      # - yarn deploy:gh-pages
       - yarn deploy:release
       - yarn deploy:cdn

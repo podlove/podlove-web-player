@@ -17,9 +17,9 @@
   import CloseIcon from 'icons/CloseIcon.vue'
 
   export default {
-    data() {
+    data () {
       return {
-         theme: this.$select('theme')
+        theme: this.$select('theme')
       }
     },
     props: ['visible', 'onClose'],

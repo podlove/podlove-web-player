@@ -26,48 +26,46 @@
 </template>
 
 <script>
-    import { compose, find, get } from 'lodash/fp'
-    import store from 'store'
+  import store from 'store'
+  import { compose, find, get } from 'lodash/fp'
 
-    import ButtonComponent from 'shared/Button.vue'
+  import ButtonComponent from 'shared/Button.vue'
 
-    import { addQueryParameter } from 'utils/url'
+  const buttonStyle = (theme) => ({
+    color: theme.tabs.button.text,
+    background: theme.tabs.button.background,
+    'border-color': theme.tabs.input.border
+  })
 
-    const buttonStyle = (theme) => ({
-      color: theme.tabs.button.text,
-      background: theme.tabs.button.background,
-      'border-color': theme.tabs.input.border
-    })
+  const inputStyle = (theme) => ({
+    'border-color': theme.tabs.input.border
+  })
 
-    const inputStyle = (theme) => ({
-      'border-color': theme.tabs.input.border
-    })
+  const activeAudioFile = compose(get('file'), find({active: true}))
+  const activeAudioType = compose(get('type'), find({active: true}))
 
-    const activeAudioFile = compose(get('file'), find({active: true}))
-    const activeAudioType = compose(get('type'), find({active: true}))
+  const switchAudioType = (input) => {
+    store.dispatch(store.actions.switchDownloadFile(input.target.value))
+  }
 
-    const switchAudioType = (input) => {
-      store.dispatch(store.actions.switchDownloadFile(input.target.value))
+  export default {
+    data () {
+      return {
+        share: this.$select('share'),
+        theme: this.$select('theme')
+      }
+    },
+    methods: {
+      buttonStyle,
+      inputStyle,
+      activeAudioFile,
+      activeAudioType,
+      switchAudioType
+    },
+    components: {
+      ButtonComponent
     }
-
-    export default {
-        data() {
-            return {
-                share: this.$select('share'),
-                theme: this.$select('theme')
-            }
-        },
-        methods: {
-            buttonStyle,
-            inputStyle,
-            activeAudioFile,
-            activeAudioType,
-            switchAudioType
-        },
-        components: {
-            ButtonComponent
-        }
-    }
+  }
 </script>
 
 <style lang="scss">
