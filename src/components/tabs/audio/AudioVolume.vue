@@ -1,7 +1,7 @@
 <template>
   <div class="input-element">
     <h4 class="title">
-      <span class="label">{{ $t('SETTINGS.VOLUME') }}</span>
+      <span class="label">{{ $t('AUDIO.VOLUME') }}</span>
       <span class="volume">{{ toPercent(volume) }}%</span>
     </h4>
     <div class="input-slider">
@@ -75,7 +75,7 @@
 
   $mute-control-width: calc(60px + #{$padding});
 
-  .settings {
+  .audio {
     .title {
       display: flex;
       justify-content: space-between;

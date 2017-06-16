@@ -21,7 +21,7 @@ const INITIAL = {
   tabs: {
     chapters: false,
     share: false,
-    settings: true
+    audio: true
   }
 }
 
@@ -129,12 +129,12 @@ const components = (state = INITIAL, action) => {
           share: action.payload
         }
       }
-    case 'TOGGLE_COMPONENT_TABS_SETTINGS':
+    case 'TOGGLE_COMPONENT_TABS_AUDIO':
       return {
         ...state,
         tabs: {
           ...state.tabs,
-          settings: action.payload
+          audio: action.payload
         }
       }
     default:

@@ -78,16 +78,28 @@ test(`componentsEffect: it shows correct ui components for PAUSE action`, t => {
 
 test(`componentsEffect: it shows correct ui components for IDLE action`, t => {
   const testAction = {
-    type: 'PAUSE'
+    type: 'IDLE'
   }
 
   components(store, testAction)
   t.deepEqual(store.dispatch.getCall(0).args[0], {
     type: 'SHOW_COMPONENT_CONTROLS_BUTTON_PAUSE'
   })
+  t.deepEqual(store.dispatch.getCall(1).args[0], {
+    type: 'TOGGLE_COMPONENT_CONTROLS_CHAPTERS',
+    payload: true
+  })
+  t.deepEqual(store.dispatch.getCall(2).args[0], {
+    type: 'TOGGLE_COMPONENT_CONTROLS_STEPPERS',
+    payload: true
+  })
+  t.deepEqual(store.dispatch.getCall(3).args[0], {
+    type: 'TOGGLE_COMPONENT_PROGRESSBAR',
+    payload: true
+  })
 })
 
-test(`componentsEffect: it shows correct ui components for INIT action`, t => {
+test(`componentsEffect: it shows correct ui components for restore INIT action`, t => {
   const testAction = {
     type: 'INIT'
   }
@@ -101,6 +113,17 @@ test(`componentsEffect: it shows correct ui components for INIT action`, t => {
     type: 'TOGGLE_COMPONENT_TABS_SHARE',
     payload: true
   })
+})
+
+test(`componentsEffect: it shows correct ui components for INIT action`, t => {
+  const testAction = {
+    type: 'INIT'
+  }
+
+  store.getState = sinon.stub().returns({})
+
+  components(store, testAction)
+  t.is(store.dispatch.getCalls().length, 0)
 })
 
 test(`componentsEffect: it shows correct ui components for STOP action`, t => {

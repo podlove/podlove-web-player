@@ -1,5 +1,5 @@
-import get from 'lodash/get'
-import { nextChapterPlaytime, previousChapterPlaytime } from 'utils/chapters'
+import { get } from 'lodash'
+import { currentChapter, currentChapterIndex } from 'utils/chapters'
 
 import actions from '../actions'
 
@@ -46,21 +46,21 @@ const playPause = store => () => {
 }
 
 const nextChapter = store => () => {
-  const state = store.getState()
-  const chapters = get(state, 'chapters')
-  const duration = get(state, 'duration')
-  const nextChapter = nextChapterPlaytime(chapters) || duration
-
-  store.dispatch(actions.updatePlaytime(nextChapter))
+  store.dispatch(actions.nextChapter())
 }
 
 const previousChapter = store => () => {
   const state = store.getState()
   const chapters = get(state, 'chapters')
   const playtime = get(state, 'playtime')
-  const previousChapter = previousChapterPlaytime(chapters, playtime) || 0
+  const current = currentChapter(chapters)
+  const currentIndex = currentChapterIndex(chapters)
 
-  store.dispatch(actions.updatePlaytime(previousChapter))
+  if (playtime - current.start <= 2) {
+    store.dispatch(actions.previousChapter())
+  } else {
+    store.dispatch(actions.setChapter(currentIndex))
+  }
 }
 
 export default keyhandler => store => {

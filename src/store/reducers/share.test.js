@@ -26,6 +26,27 @@ test(`share: is a reducer function`, t => {
   t.is(typeof share, 'function')
 })
 
+test(`share: it transforms the download files on startup`, t => {
+  let result = share(undefined, {
+    type: 'INIT',
+    payload: {
+      audio: ['foo.bar', 'bar.baz']
+    }
+  })
+
+  expected.download.files = [{
+    file: 'foo.bar',
+    active: true,
+    type: 'bar'
+  }, {
+    file: 'bar.baz',
+    active: false,
+    type: 'baz'
+  }]
+
+  t.deepEqual(result, expected)
+})
+
 test(`share: it togges the overlay state on TOGGLE_SHARE`, t => {
   let result = share(undefined, {
     type: 'TOGGLE_SHARE'
@@ -109,5 +130,27 @@ test(`share: it sets the start time state on SET_SHARE_LINK_STARTTIME`, t => {
   })
 
   expected.link.starttime = 20
+  t.deepEqual(result, expected)
+})
+
+test(`share: it switches the download file on SWITCH_DOWNLOAD_FILE`, t => {
+  expected.download.files = [{
+    file: 'foo.bar',
+    active: true,
+    type: 'bar'
+  }, {
+    file: 'bar.baz',
+    active: false,
+    type: 'baz'
+  }]
+
+  let result = share(expected, {
+    type: 'SWITCH_DOWNLOAD_FILE',
+    payload: 'bar.baz'
+  })
+
+  expected.download.files[0].active = false
+  expected.download.files[1].active = true
+
   t.deepEqual(result, expected)
 })

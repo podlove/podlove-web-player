@@ -5,7 +5,7 @@
             <a class="button input-button truncate"
                 :href="activeAudioFile(share.download.files)"
                 :style="buttonStyle(theme)">
-                <DownloadIcon :color="theme.tabs.button.text" />
+                {{ $t('SHARE.ACTIONS.DOWNLOAD') }}
             </a>
             <input type="text" class="input-text" disabled :style="inputStyle(theme)" :value="activeAudioFile(share.download.files)" />
         </div>
@@ -29,7 +29,6 @@
   import store from 'store'
   import { compose, find, get } from 'lodash/fp'
 
-  import DownloadIcon from 'icons/DownloadIcon.vue'
   import ButtonComponent from 'shared/Button.vue'
 
   const buttonStyle = (theme) => ({
@@ -64,8 +63,7 @@
       switchAudioType
     },
     components: {
-      ButtonComponent,
-      DownloadIcon
+      ButtonComponent
     }
   }
 </script>

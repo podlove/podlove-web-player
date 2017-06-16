@@ -1,5 +1,5 @@
 <template>
-  <div class="chapters--entry" :style="chapterStyle(theme, chapter)" @click="onChapterClick(chapter)">
+  <div class="chapters--entry" :style="chapterStyle(theme, chapter)" @click="onChapterClick(index)">
     <span class="index">{{index + 1}}</span>
     <span class="title truncate">{{chapter.title}}</span>
     <span class="timer">{{remainingTime(chapter, playtime)}}</span>
@@ -11,7 +11,7 @@
 <script>
   import color from 'color'
   import store from 'store'
-  import {secondsToTime} from 'utils/time'
+  import { secondsToTime } from 'utils/time'
 
   const chapterStyle = (theme, chapter) => {
     const style = {}
@@ -45,9 +45,8 @@
     return secondsToTime(chapter.end - chapter.start)
   }
 
-  const onChapterClick = chapter => {
-    store.dispatch(store.actions.updatePlaytime(chapter.start))
-    store.dispatch(store.actions.setPlaytime(chapter.start))
+  const onChapterClick = index => {
+    store.dispatch(store.actions.setChapter(index))
   }
 
   export default {

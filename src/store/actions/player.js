@@ -1,13 +1,3 @@
-const setPlaytime = playtime => ({
-  type: 'SET_PLAYTIME',
-  payload: playtime
-})
-
-const updatePlaytime = playtime => ({
-  type: 'UPDATE_PLAYTIME',
-  payload: playtime
-})
-
 const setBuffer = buffer => ({
   type: 'SET_BUFFER',
   payload: buffer
@@ -73,8 +63,6 @@ const unmute = () => ({
 })
 
 export {
-  setPlaytime,
-  updatePlaytime,
   setDuration,
   setBuffer,
   play,

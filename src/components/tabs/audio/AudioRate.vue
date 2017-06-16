@@ -1,7 +1,7 @@
 <template>
   <div class="input-element">
     <h4 class="title">
-      <span class="label">{{ $t('SETTINGS.SPEED') }}</span>
+      <span class="label">{{ $t('AUDIO.SPEED') }}</span>
       <span class="rate">{{ toPercent(rate) }}%</span>
     </h4>
     <div class="input-slider">
@@ -116,7 +116,7 @@
   @import 'variables';
   @import 'inputs';
 
-  .settings {
+  .audio {
     .title {
       display: flex;
       justify-content: space-between;

@@ -39,3 +39,10 @@ test(`theme: it sets the theme on SET_THEME`, t => {
 
   t.is(typeof result, 'object')
 })
+
+test(`theme: it does nothing if a unknown action is dispatched`, t => {
+  const result = theme('CUSTOM', {
+    type: 'NOT_A_REAL_TYPE'
+  })
+  t.is(result, 'CUSTOM')
+})
