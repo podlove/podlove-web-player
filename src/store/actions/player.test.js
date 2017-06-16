@@ -14,7 +14,9 @@ import {
   toggleTimerMode,
   loading,
   setVolume,
-  setRate
+  setRate,
+  mute,
+  unmute
 } from './player'
 
 test(`setPlaytimeAction: creates the SET_PLAYTIME action`, t => {
@@ -110,5 +112,17 @@ test(`rateAction: creates the SET_RATE action`, t => {
   t.deepEqual(setRate(1), {
     type: 'SET_RATE',
     payload: 1
+  })
+})
+
+test(`muteAction: creates the MUTE action`, t => {
+  t.deepEqual(mute(), {
+    type: 'MUTE'
+  })
+})
+
+test(`unmuteAction: creates the UNMUTE action`, t => {
+  t.deepEqual(unmute(), {
+    type: 'UNMUTE'
   })
 })

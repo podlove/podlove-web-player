@@ -7,7 +7,7 @@
             :data-clipboard-text="clipboardContent(reference, share.link, playtime)"
             v-clipboard
             :style="buttonStyle(theme)">
-            {{ $t('SHARE.ACTIONS.COPY') }}
+            <CopyIcon :color="theme.tabs.button.text" />
         </ButtonComponent>
         <input type="text" class="input-text" disabled :style="inputStyle(theme)" :value="clipboardContent(reference, share.link, playtime)" />
       </div>
@@ -27,6 +27,7 @@
   import store from 'store'
 
   import ButtonComponent from 'shared/Button.vue'
+  import CopyIcon from 'icons/CopyIcon.vue'
 
   import { addQueryParameter } from 'utils/url'
   import { secondsToTime, timeToSeconds } from 'utils/time'
@@ -94,7 +95,7 @@
     },
     components: {
       ButtonComponent,
-      inputStyle
+      CopyIcon
     }
   }
 </script>
