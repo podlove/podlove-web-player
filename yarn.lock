@@ -1590,7 +1590,7 @@ commander@2.9.x, commander@^2.8.1, commander@^2.9.0, commander@~2.9.0:
   dependencies:
     graceful-readlink ">= 1.0.0"
 
-commitizen@^2.9.6:
+commitizen@2.9.6:
   version "2.9.6"
   resolved "https://registry.yarnpkg.com/commitizen/-/commitizen-2.9.6.tgz#c0d00535ef264da7f63737edfda4228983fa2291"
   dependencies:
@@ -2362,16 +2362,9 @@ domutils@1.1:
   dependencies:
     domelementtype "1"
 
-domutils@1.5.1:
+domutils@1.5.1, domutils@^1.5.1:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/domutils/-/domutils-1.5.1.tgz#dcd8488a26f563d61079e48c9f7b7e32373682cf"
-  dependencies:
-    dom-serializer "0"
-    domelementtype "1"
-
-domutils@^1.5.1:
-  version "1.6.2"
-  resolved "https://registry.yarnpkg.com/domutils/-/domutils-1.6.2.tgz#1958cc0b4c9426e9ed367fb1c8e854891b0fa3ff"
   dependencies:
     dom-serializer "0"
     domelementtype "1"
@@ -2650,7 +2643,7 @@ eslint-module-utils@^2.0.0:
     debug "2.2.0"
     pkg-dir "^1.0.0"
 
-eslint-plugin-html@^3.0.0:
+eslint-plugin-html@3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/eslint-plugin-html/-/eslint-plugin-html-3.0.0.tgz#2c982a71b9d965654f0f3a52358735821a1a4239"
   dependencies:
@@ -3230,9 +3223,9 @@ gaze@^1.0.0:
   dependencies:
     globule "^1.0.0"
 
-generate-changelog@^1.1.0:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/generate-changelog/-/generate-changelog-1.2.1.tgz#f3f0f6884d7ac0d7a85f3f82bcd6f400f7614f78"
+generate-changelog@1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/generate-changelog/-/generate-changelog-1.1.0.tgz#2a70badc4e47a7cb5e1145194e5cb5acf4ed06e1"
   dependencies:
     bluebird "^3.0.6"
     commander "^2.9.0"
@@ -6505,7 +6498,7 @@ slide@^1.1.5:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/slide/-/slide-1.1.6.tgz#56eb027d65b4d2dce6cb2e2d32c4d4afc9e1d707"
 
-snazzy@^7.0.0:
+snazzy@7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/snazzy/-/snazzy-7.0.0.tgz#95edaccc4a8d6f80f4ac5cc7b520e8f8f9ac2325"
   dependencies:
@@ -6729,7 +6722,7 @@ stack-utils@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/stack-utils/-/stack-utils-1.0.1.tgz#d4f33ab54e8e38778b0ca5cfd3b3afb12db68620"
 
-standard-changelog@^1.0.1:
+standard-changelog@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/standard-changelog/-/standard-changelog-1.0.1.tgz#72d9f6fb4f787dad4d07c9c2b02ecfe399c7634f"
   dependencies:
@@ -6760,7 +6753,7 @@ standard-json@^1.0.0:
   dependencies:
     concat-stream "^1.5.0"
 
-standard@^10.0.2:
+standard@10.0.2:
   version "10.0.2"
   resolved "https://registry.yarnpkg.com/standard/-/standard-10.0.2.tgz#974c1c53cc865b075a4b576e78441e1695daaf7b"
   dependencies:

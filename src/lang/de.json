@@ -17,8 +17,8 @@
       "DOWNLOAD": "download"
     }
   },
-  "SETTINGS": {
-    "TITLE": "Einstellung",
+  "AUDIO": {
+    "TITLE": "Audio",
     "VOLUME": "Lautstärke",
     "SPEED": "Geschwindigkeit",
     "DEBUG_STATE": "Debug State exportieren"

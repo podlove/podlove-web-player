@@ -21,7 +21,10 @@ export default (store, action) => {
       store.dispatch(actions.showPauseButton())
       break
     case 'IDLE':
-      store.dispatch(actions.showRemainingButton())
+      store.dispatch(actions.showPauseButton())
+      store.dispatch(actions.toggleChapterControls(true))
+      store.dispatch(actions.toggleSteppersControls(true))
+      store.dispatch(actions.toggleProgressBar(true))
       break
     case 'INIT':
       const state = store.getState()

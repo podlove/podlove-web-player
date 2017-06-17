@@ -9,9 +9,9 @@
         <ShareIcon slot="icon"></ShareIcon>
         <span slot="title">{{ $t('SHARE.TITLE') }}</span>
       </TabHeaderItemComponent>
-      <TabHeaderItemComponent :active="tabs.settings" v-if="components.tabs.settings" :click="toggleTab('settings')">
-        <SettingsIcon slot="icon"></SettingsIcon>
-        <span slot="title">{{ $t('SETTINGS.TITLE') }}</span>
+      <TabHeaderItemComponent :active="tabs.audio" v-if="components.tabs.audio" :click="toggleTab('audio')">
+        <AudioIcon slot="icon"></AudioIcon>
+        <span slot="title">{{ $t('AUDIO.TITLE') }}</span>
       </TabHeaderItemComponent>
     </TabHeaderComponent>
     <TabBodyComponent :active="tabs.chapters" v-if="components.tabs.chapters">
@@ -20,8 +20,8 @@
     <TabBodyComponent :active="tabs.share" v-if="components.tabs.share">
       <ShareTab />
     </TabBodyComponent>
-    <TabBodyComponent :active="tabs.settings" v-if="components.tabs.settings">
-      <SettingsTab />
+    <TabBodyComponent :active="tabs.audio" v-if="components.tabs.audio">
+      <AudioTab />
     </TabBodyComponent>
   </div>
 </template>
@@ -35,11 +35,11 @@ import TabBodyComponent from 'shared/TabBody.vue'
 
 import ChaptersIcon from 'icons/ChaptersIcon.vue'
 import ShareIcon from 'icons/ShareIcon.vue'
-import SettingsIcon from 'icons/SettingsIcon.vue'
+import AudioIcon from 'icons/AudioIcon.vue'
 
 import ChaptersTab from './chapters/Chapters.vue'
 import ShareTab from './share/Share.vue'
-import SettingsTab from './settings/Settings.vue'
+import AudioTab from './audio/Audio.vue'
 
 const containerStyle = theme => ({
   'background-color': theme.tabs.body.background
@@ -71,8 +71,8 @@ export default {
     ChaptersTab,
     ShareIcon,
     ShareTab,
-    SettingsIcon,
-    SettingsTab
+    AudioIcon,
+    AudioTab
   }
 }
 </script>

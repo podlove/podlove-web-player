@@ -1,7 +1,7 @@
 <template>
-  <div class="settings">
-    <SettingsVolumeComponent class="seperator"/>
-    <SettingsRateComponent class="seperator"/>
+  <div class="audio">
+    <AudioVolumeComponent class="seperator"/>
+    <AudioRateComponent class="seperator"/>
     <div class="footer">
       <a class="version" title="Export Debug" :href="exportStore()" download="web-player-debug.json">Podlove Web Player v{{version}}</a>
     </div>
@@ -11,8 +11,8 @@
 <script>
   import store from 'store'
 
-  import SettingsRateComponent from './SettingsRate.vue'
-  import SettingsVolumeComponent from './SettingsVolume.vue'
+  import AudioRateComponent from './AudioRate.vue'
+  import AudioVolumeComponent from './AudioVolume.vue'
 
   // Template Functions
   const exportStore = () =>
@@ -28,8 +28,8 @@
       exportStore
     },
     components: {
-      SettingsRateComponent,
-      SettingsVolumeComponent
+      AudioRateComponent,
+      AudioVolumeComponent
     }
   }
 </script>
@@ -38,7 +38,7 @@
   @import 'variables';
   @import 'inputs';
 
-  .settings {
+  .audio {
     width: 100%;
 
     .footer {

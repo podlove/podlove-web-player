@@ -3,20 +3,22 @@ import {
   toggleInfo,
   toggleError,
   toggleProgressBar,
+
   toggleChapterControls,
   toggleSteppersControls,
   toggleButtonControl,
-  showPauseButton,
-  toggleChaptersTab,
-  toggleShareTab,
-  toggleSettingsTab,
 
   showLoadingButton,
   showReplayButton,
   showRemainingButton,
   showDurationButton,
   showRetryButton,
-  showPlayingButton
+  showPlayingButton,
+  showPauseButton,
+
+  toggleChaptersTab,
+  toggleShareTab,
+  toggleAudioTab
 } from './components'
 
 const toggleActions = [{
@@ -53,8 +55,8 @@ const toggleActions = [{
   type: 'TOGGLE_COMPONENT_TABS_SHARE'
 }, {
   name: 'toggleSettingsTabAction',
-  method: toggleSettingsTab,
-  type: 'TOGGLE_COMPONENT_TABS_SETTINGS'
+  method: toggleAudioTab,
+  type: 'TOGGLE_COMPONENT_TABS_AUDIO'
 }]
 
 const voidActions = [{
@@ -89,6 +91,8 @@ const voidActions = [{
 
 toggleActions.forEach(action => {
   test(`${action.name}: creates the ${action.type} action`, t => {
+    t.is(typeof action.method, 'function')
+
     t.deepEqual(action.method(false), {
       type: action.type,
       payload: false

@@ -2,7 +2,7 @@ const get = require('lodash/get')
 
 const INITIAL = {
   'chapters': false,
-  'settings': false,
+  'audio': false,
   'share': false
 }
 

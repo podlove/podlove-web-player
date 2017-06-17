@@ -5,7 +5,8 @@ import {
     toggleShareEmbedStart,
     setShareEmbedStarttime,
     toggleShareLinkStart,
-    setShareLinkStarttime
+    setShareLinkStarttime,
+    switchDownloadFile
 } from './share'
 
 test(`toggleShareAction: creates the TOGGLE_SHARE action`, t => {
@@ -50,5 +51,12 @@ test(`setShareLinkStarttimeAction: creates the SET_SHARE_LINK_STARTTIME action`,
   t.deepEqual(setShareLinkStarttime(100), {
     type: 'SET_SHARE_LINK_STARTTIME',
     payload: 100
+  })
+})
+
+test(`switchDownloadFileAction: creates the SWITCH_DOWNLOAD_FILE action`, t => {
+  t.deepEqual(switchDownloadFile('fooobar'), {
+    type: 'SWITCH_DOWNLOAD_FILE',
+    payload: 'fooobar'
   })
 })

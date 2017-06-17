@@ -11,6 +11,8 @@ export default (store, action) => {
 
       store.dispatch(actions.setQuantile(startTime, action.payload))
       break
+    case 'NEXT_CHAPTER':
+    case 'PREVIOUS_CHAPTER':
     case 'UPDATE_PLAYTIME':
       startTime = null
       break

@@ -27,7 +27,7 @@ test.beforeEach(() => {
     tabs: {
       chapters: false,
       share: false,
-      settings: true
+      audio: true
     }
   }
 
@@ -212,13 +212,13 @@ test(`tabs: it controls the share tabs component`, t => {
   t.deepEqual(result, compareState)
 })
 
-test(`tabs: it controls the settings tabs component`, t => {
+test(`tabs: it controls the audio tabs component`, t => {
   const result = components(uiState, {
-    type: 'TOGGLE_COMPONENT_TABS_SETTINGS',
+    type: 'TOGGLE_COMPONENT_TABS_AUDIO',
     payload: true
   })
 
-  compareState.tabs.settings = true
+  compareState.tabs.audio = true
 
   t.deepEqual(result, compareState)
 })
