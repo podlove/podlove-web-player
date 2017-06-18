@@ -1,8 +1,8 @@
 <template>
   <div class="timer-progress" :class="playstate" :style="timerStyle(theme)">
-    <span class="current">{{secondsToTime(playtime)}}</span>
+    <span class="current">{{ secondsToTime(ghost.active ? ghost.time : playtime) }}</span>
     <CurrentChapter class="chapter" />
-    <span class="time">{{secondsToTime(duration - playtime)}}</span>
+    <span class="time">{{ secondsToTime(duration - (ghost.active ? ghost.time : playtime)) }}</span>
   </div>
 </template>
 
@@ -20,11 +20,11 @@ export default {
   data () {
     return {
       playtime: this.$select('playtime'),
+      ghost: this.$select('ghost'),
       duration: this.$select('duration'),
       playstate: this.$select('playstate'),
       theme: this.$select('theme'),
-      chapters: this.$select('chapters'),
-      timerMode: this.$select('timerMode')
+      chapters: this.$select('chapters')
     }
   },
   methods: {

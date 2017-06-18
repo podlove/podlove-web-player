@@ -11,7 +11,8 @@ import * as share from './share'
 import * as quantiles from './quantiles'
 import * as runtime from './runtime'
 import * as error from './error'
+import * as ghost from './ghost'
 
-export default combineReducers(
-    Object.assign({}, init, components, player, playtime, chapters, tabs, theme, share, quantiles, runtime, error)
-)
+export default combineReducers(Object.assign({},
+  init, components, player, playtime, chapters, tabs, theme, share, quantiles, runtime, error, ghost
+))

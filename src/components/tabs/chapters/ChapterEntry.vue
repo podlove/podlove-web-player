@@ -2,9 +2,9 @@
   <div class="chapters--entry" :style="chapterStyle(theme, chapter)" @click="onChapterClick(index)">
     <span class="index">{{index + 1}}</span>
     <span class="title truncate">{{chapter.title}}</span>
-    <span class="timer">{{remainingTime(chapter, playtime)}}</span>
+    <span class="timer">{{remainingTime(chapter, ghost.active ? ghost.time : playtime)}}</span>
 
-    <span class="progress" :style="progressStyle(theme, chapter, playtime)"></span>
+    <span class="progress" :style="progressStyle(theme, chapter, ghost.active ? ghost.time : playtime)"></span>
   </div>
 </template>
 
@@ -55,7 +55,7 @@
         theme: this.$select('theme'),
         chapters: this.$select('chapters'),
         playtime: this.$select('playtime'),
-        timerMode: this.$select('timerMode')
+        ghost: this.$select('ghost')
       }
     },
     methods: {

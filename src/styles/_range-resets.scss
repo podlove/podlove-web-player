@@ -1,5 +1,6 @@
 $range-input-height: 44px;
-$thumb-width-desktop: 8px;
+$thumb-width-desktop: 6px;
+$thumb-width-desktop-hover: 8px;
 $thumb-width-mobile: 44px;
 
 // Input Range Resets
@@ -55,13 +56,15 @@ input[type=range]::-ms-thumb {
 
   cursor: pointer;
 
-
   border-radius: 0px;
   border: 0 none;
 
   background: transparent;
 
   z-index: 99;
+  &:hover {
+    width: $thumb-width-desktop-hover;
+  }
 }
 
 input[type=range]::-moz-range-thumb {
@@ -75,6 +78,9 @@ input[type=range]::-moz-range-thumb {
 
   cursor: pointer;
   z-index: 99;
+  &:hover {
+    width: $thumb-width-desktop-hover;
+  }
 }
 
 input[type=range]::-webkit-slider-thumb {
@@ -89,6 +95,10 @@ input[type=range]::-webkit-slider-thumb {
 
   cursor: pointer;
   z-index: 99;
+
+  &:hover {
+    width: $thumb-width-desktop-hover;
+  }
 }
 
 .mobile {

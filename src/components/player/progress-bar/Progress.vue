@@ -4,14 +4,17 @@
       type="range"
       min="0" :max="interpolate(duration)" step="0.1"
       :value="interpolate(playtime)"
-      v-on:change="onChange"
-      v-on:input="onInput"
+      @change="onChange"
+      @input="onInput"
+      @mousemove="onMouseMove"
+      @mouseout="onMouseOut"
     />
     <span class="progress-range"></span>
     <span class="progress-buffer" :style="bufferStyle(theme, buffer, duration)"></span>
     <span v-for="quantile in quantiles" class="progress-track" :style="trackStyle(theme, duration, quantile)"></span>
     <ChaptersIndicator />
-    <span class="progress-thumb" :style="thumbStyle(theme, thumbPosition)"></span>
+    <span class="ghost-thumb" :style="thumbStyle(theme, ghostPosition, ghost.active)"></span>
+    <span class="progress-thumb" :class="{ active: thumbActive }" :style="thumbStyle(theme, thumbPosition)"></span>
   </div>
 </template>
 
@@ -31,7 +34,8 @@
     'background-color': color(theme.player.progress.bar).fade(0.5)
   })
 
-  const thumbStyle = (theme, position) => ({
+  const thumbStyle = (theme, position, active = true) => ({
+    display: active ? 'block' : 'none',
     left: position,
     'background-color': theme.player.progress.thumb,
     'border-color': theme.player.progress.border
@@ -47,15 +51,21 @@
     data () {
       let playtime = this.$select('playtime')
       let duration = this.$select('duration')
+      let theme = this.$select('theme')
 
       return {
         playtime,
         duration,
+        theme,
+
         buffer: this.$select('buffer'),
         playstate: this.$select('playstate'),
-        theme: this.$select('theme'),
         thumbPosition: relativePosition(playtime, duration),
-        quantiles: this.$select('quantiles')
+        quantiles: this.$select('quantiles'),
+
+        ghost: this.$select('ghost'),
+        ghostPosition: 0,
+        thumbActive: false
       }
     },
     watch: {
@@ -71,6 +81,23 @@
         this.thumbPosition = relativePosition(interpolate(event.target.value), this.duration)
         store.dispatch(store.actions.updatePlaytime(event.target.value))
       },
+      onMouseMove (event) {
+        if (event.offsetY < 13 && event.offsetY > 31) {
+          this.thumbActive = false
+          store.dispatch(store.actions.disableGhostMode())
+          return
+        }
+        this.thumbActive = true
+        this.ghostPosition = relativePosition(event.offsetX, event.target.clientWidth)
+        store.dispatch(store.actions.simulatePlaytime(this.duration * event.offsetX / event.target.clientWidth))
+        store.dispatch(store.actions.enableGhostMode())
+      },
+      onMouseOut (event) {
+        this.thumbActive = false
+        store.dispatch(store.actions.disableGhostMode())
+        store.dispatch(store.actions.simulatePlaytime(this.playtime))
+      },
+
       interpolate,
       bufferStyle,
       thumbStyle,
@@ -88,11 +115,19 @@
 
   $progress-height: 44px;
 
+  $progress-track-height: 2px;
+
+  $progress-thumb-height: 14px;
+  $progress-thumb-width: 6px;
+  $progress-thumb-active-height: 18px;
+  $progress-thumb-active-width: 8px;
+
   .progress {
     width: 100%;
     position: relative;
     height: $progress-height;
     transition: opacity ($animation-duration / 2), height $animation-duration;
+    cursor: pointer;
   }
 
   .progress-range {
@@ -100,8 +135,8 @@
     position: absolute;
     width: 100%;
     left: 0;
-    top: calc(50% - 1px);
-    height: 2px;
+    top: calc(50% - #{$progress-track-height / 2});
+    height: $progress-track-height;
     background-color: rgba($accent-color, 0.25);
     pointer-events: none;
   }
@@ -110,17 +145,39 @@
     display: block;
     position: absolute;
     left: 0;
-    top: calc(50% - 1px);
-    height: 2px;
+    top: calc(50% - #{$progress-track-height / 2});
+    height:  $progress-track-height;
     pointer-events: none;
   }
 
   .progress-thumb {
     position: absolute;
     border: 1px solid;
-    height: 14px;
-    top: calc(50% - 7px);
-    width: 6px;
+    // border offset
+    margin-left: -2px;
+    height: $progress-thumb-height;
+    top: calc(50% - #{$progress-thumb-height / 2});
+    width: $progress-thumb-width;
+    pointer-events: none;
+
+    transition: all $animation-duration / 2;
+
+    &.active {
+      width: $progress-thumb-active-width;
+      height: $progress-thumb-active-height;
+      top: calc(50% - #{$progress-thumb-active-height / 2});
+    }
+  }
+
+  .ghost-thumb {
+    display: none;
+    position: absolute;
+    border: 1px solid transparent;
+    opacity: 0.8;
+    margin-left: -2px;
+    height: $progress-thumb-height;
+    top: calc(50% - #{$progress-thumb-height / 2});
+    width: $progress-thumb-width;
     pointer-events: none;
   }
 
@@ -128,8 +185,8 @@
     display: block;
     opacity: 1;
     position: absolute;
-    height: 2px;
-    top: calc(50% - 1px);
+    height: $progress-track-height;
+    top: calc(50% - #{$progress-track-height / 2});
     left: 0;
     pointer-events: none;
   }

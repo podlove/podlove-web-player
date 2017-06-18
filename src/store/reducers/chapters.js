@@ -71,6 +71,7 @@ const chapters = (state = [], action) => {
       return chapters
         .reduce(parseChapters(action.payload.duration), [])
         .map(setActiveByPlaytime(action.payload.playtime || 0))
+    case 'SIMULATE_PLAYTIME':
     case 'SET_PLAYTIME':
     case 'UPDATE_PLAYTIME':
       const nextChapters = state.map(setActiveByPlaytime(action.payload))
