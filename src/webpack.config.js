@@ -94,6 +94,9 @@ if (process.env.NODE_ENV === 'production') {
       compress: {
         warnings: false
       }
+    }),
+    new webpack.DefinePlugin({
+      'PRODUCTION': JSON.stringify(true)
     })
   ]
 } else {
@@ -102,6 +105,9 @@ if (process.env.NODE_ENV === 'production') {
     new BundleAnalyzerPlugin({
       analyzerMode: 'static',
       openAnalyzer: false
+    }),
+    new webpack.DefinePlugin({
+      'PRODUCTION': JSON.stringify(false)
     })
   ]
 }

@@ -59,6 +59,8 @@
     "mobile-detect": "1.3.6",
     "normalize.css": "6.0.0",
     "query-string": "4.3.1",
+    "raven-for-redux": "1.0.0",
+    "raven-js": "3.16.0",
     "redux": "3.5.2",
     "revue": "3.0.0",
     "superagent": "3.4.1",
@@ -112,6 +114,7 @@
   "engines": {
     "node": ">=5.0.0"
   },
+  "sentry": "https://03bb03b146f34e8e96194a92572c0329@sentry.io/182383",
   "ava": {
     "files": [
       "src/**/*.test.js"
