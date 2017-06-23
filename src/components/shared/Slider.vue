@@ -6,8 +6,8 @@
         :max="maxValue"
         :value="value"
         :step="sliderSteps"
-        v-on:input="onSliderInput"
-        v-on:change="onSliderChange"
+        @input="onSliderInput"
+        @change="onSliderChange"
       />
     <span class="slider--track"></span>
     <span class="slider--thumb" :style="thumbStyle(thumbPosition, thumbColor, thumbBorder)"></span>
