@@ -1,7 +1,7 @@
 <template>
   <div class="audio">
-    <AudioVolumeComponent class="seperator"/>
-    <AudioRateComponent class="seperator"/>
+    <AudioVolumeComponent class="seperator"></AudioVolumeComponent>
+    <AudioRateComponent class="seperator"></AudioRateComponent>
     <div class="footer">
       <a class="version" title="Export Debug" :href="exportStore()" download="web-player-debug.json">Podlove Web Player v{{version}}</a>
     </div>
