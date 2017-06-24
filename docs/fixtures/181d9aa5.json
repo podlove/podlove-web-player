@@ -17,7 +17,7 @@
     "https://tracking.feedpress.it/link/13440/1885499/cre195-das-gehirn.m4a"
   ],
   "theme": {
-    "primary": "#D0F279"
+    "main": "#D0F279"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

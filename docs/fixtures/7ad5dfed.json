@@ -17,7 +17,7 @@
     "https://tracking.feedpress.it/link/13440/1885682/cre154-digital-audio.m4a"
   ],
   "theme": {
-    "primary": "#F2799D"
+    "main": "#F2799D"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

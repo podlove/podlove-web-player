@@ -17,7 +17,7 @@
     "https://tracking.feedpress.it/link/13440/1885507/cre187-paparazzi.m4a"
   ],
   "theme": {
-    "primary": "#79BCF2"
+    "main": "#79BCF2"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

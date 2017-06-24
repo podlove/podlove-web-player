@@ -53,7 +53,7 @@
     "https://tracking.feedpress.it/link/13476/5150317/lnp206-goldene-zeiten.m4a"
   ],
   "theme": {
-    "primary": "#BAF279"
+    "main": "#BAF279"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

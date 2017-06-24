@@ -77,7 +77,7 @@
     "https://tracking.feedpress.it/link/13476/4537938/lnp197-kulturell-demokratische-zukunft.m4a"
   ],
   "theme": {
-    "primary": "#799BF2"
+    "main": "#799BF2"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

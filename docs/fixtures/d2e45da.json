@@ -98,7 +98,7 @@
     "https://tracking.feedpress.it/link/13440/1885494/cre200-stadtplanung.m4a"
   ],
   "theme": {
-    "primary": "#F2BC79"
+    "main": "#F2BC79"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

@@ -65,7 +65,7 @@
     "https://tracking.feedpress.it/link/13476/5328844/lnp210-netzpolitische-suedkurve.m4a"
   ],
   "theme": {
-    "primary": "#79F2B2"
+    "main": "#79F2B2"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

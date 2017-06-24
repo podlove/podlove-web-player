@@ -114,7 +114,7 @@
     "https://tracking.feedpress.it/link/13440/2072376/cre210-die-jagd.m4a"
   ],
   "theme": {
-    "primary": "#DE79F2"
+    "main": "#DE79F2"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

@@ -16,7 +16,7 @@
     "http://tracking.feedpress.it/link/13444/1886727/nsfw048-der-fnord-im-keksglas.m4a"
   ],
   "theme": {
-    "primary": "#79F2D2"
+    "main": "#79F2D2"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

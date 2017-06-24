@@ -78,7 +78,7 @@
     "https://tracking.feedpress.it/link/13440/1885488/cre206-das-ohr.m4a"
   ],
   "theme": {
-    "primary": "#79F2D4"
+    "main": "#79F2D4"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

@@ -113,7 +113,7 @@
     "https://tracking.feedpress.it/link/13453/4732097/fs186-kastratur.m4a"
   ],
   "theme": {
-    "primary": "#F27991"
+    "main": "#F27991"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

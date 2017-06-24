@@ -73,7 +73,7 @@
     "http://tracking.feedpress.it/link/13444/1886691/nsfw084-der-fuehrer-ist-in-europa-vorerst-gescheitert.m4a"
   ],
   "theme": {
-    "primary": "#79F28D"
+    "main": "#79F28D"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

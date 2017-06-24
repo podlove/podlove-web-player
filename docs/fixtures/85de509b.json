@@ -85,7 +85,7 @@
     "https://tracking.feedpress.it/link/13453/4526790/fs184-dringendes-klickbeduerfnis.m4a"
   ],
   "theme": {
-    "primary": "#F27979"
+    "main": "#F27979"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

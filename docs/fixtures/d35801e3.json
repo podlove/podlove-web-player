@@ -17,7 +17,7 @@
     "https://tracking.feedpress.it/link/13440/1885677/cre159-nachrichtendienste.m4a"
   ],
   "theme": {
-    "primary": "#7999F2"
+    "main": "#7999F2"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

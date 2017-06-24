@@ -93,7 +93,7 @@
     "http://tracking.feedpress.it/link/13444/4417473/nsfw096-spass-mit-toten.m4a"
   ],
   "theme": {
-    "primary": "#79F289"
+    "main": "#79F289"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

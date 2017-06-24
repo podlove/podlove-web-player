@@ -16,7 +16,7 @@
     "https://tracking.feedpress.it/link/12319/1327941/ls000-der-lautsprecher.mp3"
   ],
   "theme": {
-    "primary": "#C079F2"
+    "main": "#C079F2"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

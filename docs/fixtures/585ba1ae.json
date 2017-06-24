@@ -73,7 +73,7 @@
     "https://tracking.feedpress.it/link/11988/1268839/me001-stand-der-dinge-sommer-2015.mp3"
   ],
   "theme": {
-    "primary": "#AE79F2"
+    "main": "#AE79F2"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

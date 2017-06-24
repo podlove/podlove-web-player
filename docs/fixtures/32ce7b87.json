@@ -93,7 +93,7 @@
     "https://tracking.feedpress.it/link/13476/4810574/lnp201-das-trumpeltier-regiert-die-welt.m4a"
   ],
   "theme": {
-    "primary": "#87F279"
+    "main": "#87F279"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

@@ -17,7 +17,7 @@
     "https://tracking.feedpress.it/link/13440/1885500/cre194-bier.m4a"
   ],
   "theme": {
-    "primary": "#8779F2"
+    "main": "#8779F2"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

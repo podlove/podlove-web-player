@@ -16,7 +16,7 @@
     "https://tracking.feedpress.it/link/12319/1327935/ls006-open-source-tools.mp3"
   ],
   "theme": {
-    "primary": "#B0F279"
+    "main": "#B0F279"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

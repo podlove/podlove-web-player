@@ -65,7 +65,7 @@
     "https://tracking.feedpress.it/link/11988/2111214/me002-stand-der-dinge-herbst-2015.mp3"
   ],
   "theme": {
-    "primary": "#F2D079"
+    "main": "#F2D079"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

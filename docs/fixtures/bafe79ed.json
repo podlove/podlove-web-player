@@ -16,7 +16,7 @@
     "https://tracking.feedpress.it/link/12319/1327933/ls008-bitlove.mp3"
   ],
   "theme": {
-    "primary": "#F2F279"
+    "main": "#F2F279"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

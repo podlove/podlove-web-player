@@ -109,7 +109,7 @@
     "https://tracking.feedpress.it/link/13453/4671005/fs185-haltbares-wasser.m4a"
   ],
   "theme": {
-    "primary": "#F279BA"
+    "main": "#F279BA"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

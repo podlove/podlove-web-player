@@ -9,15 +9,15 @@
 </template>
 
 <script>
-  import color from 'color'
   import CloseIcon from 'icons/CloseIcon.vue'
 
   const tabStyle = (theme, active) => ({
-    color: active ? theme.tabs.header.colorActive : color(theme.tabs.header.color).fade(0.2)
+    color: active ? theme.tabs.header.colorActive : theme.tabs.header.color,
+    background: active ? theme.tabs.header.backgroundActive : theme.tabs.header.background
   })
 
   const iconColor = (theme, active) =>
-    active ? theme.tabs.header.colorActive : color(theme.tabs.header.color).fade(0.2)
+    active ? theme.tabs.header.colorActive : theme.tabs.header.color
 
   export default {
     props: ['click', 'active'],
@@ -49,18 +49,6 @@
       height: $tabs-header-height;
       transition: all $animation-duration;
 
-      &.active {
-        background-color: $background-color;
-
-        &:last-child {
-          border-right: 1px solid rgba($accent-color, 0.1);
-        }
-
-        &:first-child {
-          border-left: 1px solid rgba($accent-color, 0.1);
-        }
-      }
-
     .caption {
       display: flex;
       align-items: center;
@@ -75,7 +63,6 @@
     .title {
       margin-left: $margin / 3;
     }
-
 
     .icon {
       margin-right: $margin / 3;

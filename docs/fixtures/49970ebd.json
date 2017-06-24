@@ -17,7 +17,7 @@
     "https://tracking.feedpress.it/link/13440/1885659/cre177-commodore-64.m4a"
   ],
   "theme": {
-    "primary": "#F279A8"
+    "main": "#F279A8"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

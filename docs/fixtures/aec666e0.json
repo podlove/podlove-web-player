@@ -17,7 +17,7 @@
     "https://tracking.feedpress.it/link/13440/1885660/cre176-cloud-computing.m4a"
   ],
   "theme": {
-    "primary": "#79CAF2"
+    "main": "#79CAF2"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

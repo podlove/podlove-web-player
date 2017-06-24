@@ -53,7 +53,7 @@
     "https://tracking.feedpress.it/link/11988/2939400/me005-februar-maerz-2016.mp3"
   ],
   "theme": {
-    "primary": "#AAF279"
+    "main": "#AAF279"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

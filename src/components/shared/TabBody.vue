@@ -1,11 +1,23 @@
 <template>
-  <div class="tab-body" :class="{active}">
+  <div class="tab-body" :class="{active}" :style="bodyStyle(theme)">
     <slot></slot>
   </div>
 </template>
 <script>
+  const bodyStyle = theme => ({
+    'background-color': theme.tabs.body.background
+  })
+
   export default {
-    props: ['active']
+    props: ['active'],
+    data () {
+      return {
+        theme: this.$select('theme')
+      }
+    },
+    methods: {
+      bodyStyle
+    }
   }
 </script>
 <style lang="scss">
@@ -14,14 +26,9 @@
   .tab-body {
     max-height: 0;
     overflow: hidden;
-    background-color: $background-color;
-    border-color: rgba($accent-color, 0.1);
-    border-width: 0;
-    border-style: solid;
 
     &.active {
       max-height: $tabs-body-max-height;
-      border-width: 0 1px 1px 1px;
       overflow-y: auto;
     }
   }

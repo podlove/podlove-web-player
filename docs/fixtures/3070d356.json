@@ -16,7 +16,7 @@
     "https://tracking.feedpress.it/link/13440/1885669/cre167-nodejs.m4a"
   ],
   "theme": {
-    "primary": "#79B2F2"
+    "main": "#79B2F2"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

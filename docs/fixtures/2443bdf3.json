@@ -121,7 +121,7 @@
     "https://tracking.feedpress.it/link/13453/2019429/fs165-skandal-im-sperrbezirk.m4a"
   ],
   "theme": {
-    "primary": "#79F297"
+    "main": "#79F297"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

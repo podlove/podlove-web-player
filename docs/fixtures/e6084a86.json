@@ -61,7 +61,7 @@
     "http://tracking.feedpress.it/link/13444/1886713/nsfw062-hab-ich-extra-gemacht.m4a"
   ],
   "theme": {
-    "primary": "#DC79F2"
+    "main": "#DC79F2"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

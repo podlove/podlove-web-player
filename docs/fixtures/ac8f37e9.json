@@ -16,7 +16,7 @@
     "https://tracking.feedpress.it/link/12319/1327929/ls012-das-sendezentrum.mp3"
   ],
   "theme": {
-    "primary": "#79F293"
+    "main": "#79F293"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

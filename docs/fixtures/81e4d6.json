@@ -81,7 +81,7 @@
     "http://tracking.feedpress.it/link/13444/1886719/nsfw056-regensburg-ist-ueberall.m4a"
   ],
   "theme": {
-    "primary": "#79EAF2"
+    "main": "#79EAF2"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

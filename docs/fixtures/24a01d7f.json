@@ -78,7 +78,7 @@
     "https://tracking.feedpress.it/link/13440/2008525/cre209-das-linux-system.m4a"
   ],
   "theme": {
-    "primary": "#797DF2"
+    "main": "#797DF2"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

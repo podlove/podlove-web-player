@@ -69,7 +69,7 @@
     "http://tracking.feedpress.it/link/13444/1886718/nsfw057-gangnam-style.m4a"
   ],
   "theme": {
-    "primary": "#F279C6"
+    "main": "#F279C6"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

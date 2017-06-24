@@ -49,7 +49,7 @@
     "http://tracking.feedpress.it/link/13444/1886705/nsfw070-die-eifel-ist-ein-feuchtgebiet.m4a"
   ],
   "theme": {
-    "primary": "#79F2C8"
+    "main": "#79F2C8"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

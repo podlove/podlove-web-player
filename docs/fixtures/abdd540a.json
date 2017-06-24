@@ -16,7 +16,7 @@
     "https://tracking.feedpress.it/link/12319/1327934/ls007-auphonic.mp3"
   ],
   "theme": {
-    "primary": "#D079F2"
+    "main": "#D079F2"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

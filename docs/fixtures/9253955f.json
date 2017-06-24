@@ -16,7 +16,7 @@
     "https://tracking.feedpress.it/link/12319/1327940/ls001-audioformate-feeds-itunes.mp3"
   ],
   "theme": {
-    "primary": "#F2E479"
+    "main": "#F2E479"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

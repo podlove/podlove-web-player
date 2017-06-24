@@ -16,7 +16,7 @@
     "https://tracking.feedpress.it/link/12319/1327938/ls003-podcast-publishing.mp3"
   ],
   "theme": {
-    "primary": "#79F2C6"
+    "main": "#79F2C6"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

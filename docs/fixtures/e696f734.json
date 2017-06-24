@@ -16,7 +16,7 @@
     "https://tracking.feedpress.it/link/13440/1885675/cre161-ccc-oeffentlichkeit.m4a"
   ],
   "theme": {
-    "primary": "#C479F2"
+    "main": "#C479F2"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

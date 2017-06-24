@@ -121,7 +121,7 @@
     "https://tracking.feedpress.it/link/13453/4302962/fs182-britzelpieps.m4a"
   ],
   "theme": {
-    "primary": "#79C4F2"
+    "main": "#79C4F2"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

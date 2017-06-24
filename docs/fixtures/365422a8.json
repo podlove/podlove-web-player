@@ -105,7 +105,7 @@
     "http://tracking.feedpress.it/link/13444/1886546/nsfw092-dafuer-kommen-wir-in-die-hoelle.m4a"
   ],
   "theme": {
-    "primary": "#E2F279"
+    "main": "#E2F279"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

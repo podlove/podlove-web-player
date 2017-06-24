@@ -16,7 +16,7 @@
     "https://tracking.feedpress.it/link/12319/1327931/ls010-podlove.mp3"
   ],
   "theme": {
-    "primary": "#F2B279"
+    "main": "#F2B279"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

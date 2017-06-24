@@ -16,7 +16,7 @@
     "https://tracking.feedpress.it/link/12319/1327936/ls005-aufnahmekonzepte.mp3"
   ],
   "theme": {
-    "primary": "#79F283"
+    "main": "#79F283"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

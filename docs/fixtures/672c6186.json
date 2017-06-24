@@ -65,7 +65,7 @@
     "http://tracking.feedpress.it/link/13444/1886692/nsfw083-darmspiegel-online.m4a"
   ],
   "theme": {
-    "primary": "#79F2CE"
+    "main": "#79F2CE"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

@@ -17,7 +17,7 @@
     "https://tracking.feedpress.it/link/13440/1885679/cre157-fernsehen.m4a"
   ],
   "theme": {
-    "primary": "#79F2E2"
+    "main": "#79F2E2"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

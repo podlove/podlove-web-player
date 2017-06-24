@@ -61,7 +61,7 @@
     "http://tracking.feedpress.it/link/13444/1886720/nsfw055-troll-comfort.m4a"
   ],
   "theme": {
-    "primary": "#F2D879"
+    "main": "#F2D879"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

@@ -101,7 +101,7 @@
     "https://tracking.feedpress.it/link/13453/2801819/fs173-koreaners-katzi.m4a"
   ],
   "theme": {
-    "primary": "#79F2A6"
+    "main": "#79F2A6"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

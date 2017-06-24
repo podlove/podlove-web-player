@@ -77,7 +77,7 @@
     "https://tracking.feedpress.it/link/13476/5202004/lnp207-pressebrecher.m4a"
   ],
   "theme": {
-    "primary": "#F2798B"
+    "main": "#F2798B"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

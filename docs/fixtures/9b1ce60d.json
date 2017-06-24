@@ -57,7 +57,7 @@
     "https://tracking.feedpress.it/link/13476/4591341/lnp198-freiwillige-cyberwehr.m4a"
   ],
   "theme": {
-    "primary": "#79F29D"
+    "main": "#79F29D"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

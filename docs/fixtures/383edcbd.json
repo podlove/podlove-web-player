@@ -53,7 +53,7 @@
     "https://tracking.feedpress.it/link/12319/2339553/ls016-studio-link.mp3"
   ],
   "theme": {
-    "primary": "#F279DC"
+    "main": "#F279DC"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

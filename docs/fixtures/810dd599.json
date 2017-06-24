@@ -69,7 +69,7 @@
     "https://tracking.feedpress.it/link/13476/4787373/lnp200-aus-mitlike.m4a"
   ],
   "theme": {
-    "primary": "#F279D4"
+    "main": "#F279D4"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

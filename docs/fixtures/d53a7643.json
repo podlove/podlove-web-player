@@ -16,7 +16,7 @@
     "https://tracking.feedpress.it/link/13440/1885673/cre163-ruby-und-rails.m4a"
   ],
   "theme": {
-    "primary": "#F279B8"
+    "main": "#F279B8"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

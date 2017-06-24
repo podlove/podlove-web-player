@@ -9,7 +9,7 @@
       @mousemove="onMouseMove"
       @mouseout="onMouseOut"
     />
-    <span class="progress-range"></span>
+    <span class="progress-range" :style="rangeStyle(theme)"></span>
     <span class="progress-buffer" :style="bufferStyle(theme, buffer, duration)"></span>
     <span v-for="quantile in quantiles" class="progress-track" :style="trackStyle(theme, duration, quantile)"></span>
     <ChaptersIndicator />
@@ -20,7 +20,6 @@
 
 <script>
   import store from 'store'
-  import color from 'color'
 
   import ChaptersIndicator from './ChapterIndicator.vue'
 
@@ -29,9 +28,13 @@
   const relativePosition = (current = 0, maximum = 0) =>
     ((current * 100) / maximum) + '%'
 
+  const rangeStyle = (theme) => ({
+    'background-color': theme.player.progress.range
+  })
+
   const bufferStyle = (theme, buffer = 0, duration = 1) => ({
     width: relativePosition(buffer, duration),
-    'background-color': color(theme.player.progress.bar).fade(0.5)
+    'background-color': theme.player.progress.buffer
   })
 
   const thumbStyle = (theme, position, active = true) => ({
@@ -44,7 +47,7 @@
   const trackStyle = (theme, duration, [start, end]) => ({
     left: relativePosition(start, duration),
     width: relativePosition(end - start, duration),
-    'background-color': theme.player.progress.bar
+    'background-color': theme.player.progress.track
   })
 
   export default {
@@ -99,6 +102,7 @@
       },
 
       interpolate,
+      rangeStyle,
       bufferStyle,
       thumbStyle,
       trackStyle

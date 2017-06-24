@@ -61,7 +61,7 @@
     "https://tracking.feedpress.it/link/13476/5300004/lnp209-das-juengste-geruecht.m4a"
   ],
   "theme": {
-    "primary": "#F28F79"
+    "main": "#F28F79"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

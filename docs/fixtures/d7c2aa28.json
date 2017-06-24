@@ -25,7 +25,7 @@
     "https://tracking.feedpress.it/link/13476/4657989/remember-remember.m4a"
   ],
   "theme": {
-    "primary": "#F2A279"
+    "main": "#F2A279"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

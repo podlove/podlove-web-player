@@ -85,7 +85,7 @@
     "http://tracking.feedpress.it/link/13444/1886547/nsfw091-liebe-bundesregierung.m4a"
   ],
   "theme": {
-    "primary": "#F279EC"
+    "main": "#F279EC"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

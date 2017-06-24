@@ -73,7 +73,7 @@
     "http://tracking.feedpress.it/link/13444/1886714/nsfw061-keks-ist-fortschritt.m4a"
   ],
   "theme": {
-    "primary": "#79F2BA"
+    "main": "#79F2BA"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",
