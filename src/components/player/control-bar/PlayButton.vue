@@ -122,7 +122,8 @@
     }
 
     &.wide {
-      width: ($button-width * 2) + 30px;
+      min-width: ($button-width * 2) + 30px;
+      width: auto;
     }
 
     .label{
