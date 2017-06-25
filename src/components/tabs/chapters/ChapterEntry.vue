@@ -39,7 +39,7 @@
 
   const remainingTime = (chapter, playtime) => {
     if (chapter.active) {
-      return secondsToTime(chapter.end - playtime)
+      return `-${secondsToTime(chapter.end - playtime)}`
     }
 
     return secondsToTime(chapter.end - chapter.start)
@@ -82,6 +82,7 @@
 
     .index {
       display: block;
+      text-align: center;
       width: 30px;
     }
 
