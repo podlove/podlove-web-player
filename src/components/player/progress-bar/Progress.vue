@@ -80,11 +80,13 @@
       onChange (event) {
         store.dispatch(store.actions.updatePlaytime(event.target.value))
       },
+
       onInput (event) {
         store.dispatch(store.actions.disableGhostMode())
         this.thumbPosition = relativePosition(interpolate(event.target.value), this.duration)
         store.dispatch(store.actions.updatePlaytime(event.target.value))
       },
+
       onMouseMove (event) {
         if ((event.offsetY < 13 && event.offsetY > 31) || event.offsetX < 0 || event.offsetX > event.target.clientWidth) {
           this.thumbActive = false
@@ -97,6 +99,7 @@
         store.dispatch(store.actions.simulatePlaytime(this.duration * event.offsetX / event.target.clientWidth))
         store.dispatch(store.actions.enableGhostMode())
       },
+
       onMouseOut (event) {
         this.thumbActive = false
         store.dispatch(store.actions.disableGhostMode())

@@ -1,5 +1,10 @@
 <template>
-  <div class="chapters--entry" :style="chapterStyle(theme, chapter)" @click="onChapterClick(index)">
+  <div class="chapters--entry"
+    :style="chapterStyle(theme, chapter, hover)"
+    @click="onChapterClick(index)"
+    @mouseover="hover = true"
+    @mouseleave="hover = false">
+
     <span class="index">{{index + 1}}</span>
     <span class="title truncate">{{chapter.title}}</span>
     <span class="timer">{{remainingTime(chapter, ghost.active ? ghost.time : playtime)}}</span>
@@ -13,15 +18,13 @@
   import store from 'store'
   import { secondsToTime } from 'utils/time'
 
-  const chapterStyle = (theme, chapter) => {
-    const style = {}
+  const activeChapter = theme => ({
+    'background-color': color(theme.tabs.body.backgroundActive).fade(0.9),
+    color: theme.tabs.body.textActives
+  })
 
-    if (chapter.active) {
-      style['background-color'] = color(theme.tabs.body.backgroundActive).fade(0.9)
-      style['color'] = theme.tabs.body.textActives
-    }
-
-    return style
+  const chapterStyle = (theme, chapter, hover) => {
+    return chapter.active || hover ? activeChapter(theme) : {}
   }
 
   const progressStyle = (theme, chapter, playtime) => {
@@ -55,7 +58,8 @@
         theme: this.$select('theme'),
         chapters: this.$select('chapters'),
         playtime: this.$select('playtime'),
-        ghost: this.$select('ghost')
+        ghost: this.$select('ghost'),
+        hover: false
       }
     },
     methods: {
