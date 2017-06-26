@@ -11,8 +11,8 @@
     />
     <span class="progress-range" :style="rangeStyle(theme)"></span>
     <span class="progress-buffer" :style="bufferStyle(theme, buffer, duration)"></span>
-    <span v-for="quantile in quantiles" class="progress-track" :style="trackStyle(theme, duration, quantile)"></span>
-    <ChaptersIndicator />
+    <span v-for="(quantile, index) in quantiles" class="progress-track" :style="trackStyle(theme, duration, quantile)" :key="index"></span>
+    <ChaptersIndicator></ChaptersIndicator>
     <span class="ghost-thumb" :style="thumbStyle(theme, ghostPosition, ghost.active)"></span>
     <span class="progress-thumb" :class="{ active: thumbActive }" :style="thumbStyle(theme, thumbPosition)"></span>
   </div>
@@ -82,6 +82,7 @@
       },
 
       onInput (event) {
+        this.thumbAnimated = false
         store.dispatch(store.actions.disableGhostMode())
         this.thumbPosition = relativePosition(interpolate(event.target.value), this.duration)
         store.dispatch(store.actions.updatePlaytime(event.target.value))
@@ -94,6 +95,7 @@
           return
         }
 
+        this.thumbAnimated = true
         this.thumbActive = true
         this.ghostPosition = relativePosition(event.offsetX, event.target.clientWidth)
         store.dispatch(store.actions.simulatePlaytime(this.duration * event.offsetX / event.target.clientWidth))
@@ -168,6 +170,8 @@
     top: calc(50% - #{$progress-thumb-height / 2});
     width: $progress-thumb-width;
     pointer-events: none;
+
+    transition: left $animation-duration / 2;
 
     &.active {
       width: $progress-thumb-active-width;

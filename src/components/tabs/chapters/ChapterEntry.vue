@@ -84,6 +84,8 @@
     display: flex;
     cursor: pointer;
 
+    transition: background $animation-duration, color $animation-duration;
+
     .index {
       display: block;
       text-align: center;

@@ -1,6 +1,6 @@
 <template>
   <div class="chapters">
-    <ChapterEntryComponent v-for="(chapter, index) in chapters" :chapter="chapter" :index="index" :key="index"/>
+    <ChapterEntryComponent v-for="(chapter, index) in chapters" :chapter="chapter" :index="index" :key="index"></ChapterEntryComponent>
   </div>
 </template>
 
