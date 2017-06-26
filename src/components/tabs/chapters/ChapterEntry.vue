@@ -108,6 +108,7 @@
       left: 0;
       bottom: 0;
       height: 3px;
+      transition: width $animation-duration;
     }
   }
 </style>
