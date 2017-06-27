@@ -65,7 +65,7 @@
     "http://tracking.feedpress.it/link/13444/1886700/nsfw075-tokamak-und-stellarator-jagen-dr-avogadro.m4a"
   ],
   "theme": {
-    "primary": "#EEF279"
+    "main": "#EEF279"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

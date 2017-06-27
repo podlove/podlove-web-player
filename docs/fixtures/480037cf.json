@@ -41,7 +41,7 @@
     "https://tracking.feedpress.it/link/12319/1327928/ls013-ultraschall.mp3"
   ],
   "theme": {
-    "primary": "#79E8F2"
+    "main": "#79E8F2"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

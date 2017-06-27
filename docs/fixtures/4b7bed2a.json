@@ -154,7 +154,7 @@
     "https://tracking.feedpress.it/link/13440/2393358/cre211-ziviler-luftverkehr.m4a"
   ],
   "theme": {
-    "primary": "#9D79F2"
+    "main": "#9D79F2"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

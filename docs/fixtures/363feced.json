@@ -109,7 +109,7 @@
     "https://tracking.feedpress.it/link/13453/2558991/fs171-invasion.m4a"
   ],
   "theme": {
-    "primary": "#F2C479"
+    "main": "#F2C479"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

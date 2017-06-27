@@ -142,7 +142,7 @@
     "https://tracking.feedpress.it/link/13440/1885492/cre202-hackerfilme.m4a"
   ],
   "theme": {
-    "primary": "#D8F279"
+    "main": "#D8F279"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

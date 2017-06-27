@@ -16,7 +16,7 @@
     "https://tracking.feedpress.it/link/12319/1327937/ls004-mischpulte.mp3"
   ],
   "theme": {
-    "primary": "#E879F2"
+    "main": "#E879F2"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

@@ -153,7 +153,7 @@
     "https://tracking.feedpress.it/link/13453/5123589/fs191-sendungslaengenangst.m4a"
   ],
   "theme": {
-    "primary": "#79F2BC"
+    "main": "#79F2BC"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

@@ -53,7 +53,7 @@
     "http://tracking.feedpress.it/link/13444/1886716/nsfw059-der-titel-dieser-sendung.m4a"
   ],
   "theme": {
-    "primary": "#797FF2"
+    "main": "#797FF2"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

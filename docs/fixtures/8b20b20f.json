@@ -16,7 +16,7 @@
     "https://tracking.feedpress.it/link/12319/1327930/ls011-podlove-publisher.mp3"
   ],
   "theme": {
-    "primary": "#CAF279"
+    "main": "#CAF279"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

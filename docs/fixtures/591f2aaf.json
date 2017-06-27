@@ -117,7 +117,7 @@
     "https://tracking.feedpress.it/link/13453/4417382/fs183-zukunftstechnologie-spreizblatt.m4a"
   ],
   "theme": {
-    "primary": "#C0F279"
+    "main": "#C0F279"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

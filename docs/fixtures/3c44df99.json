@@ -53,7 +53,7 @@
     "http://tracking.feedpress.it/link/13444/1886703/nsfw072-da-muss-apple-noch-nachbessern.m4a"
   ],
   "theme": {
-    "primary": "#AC79F2"
+    "main": "#AC79F2"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

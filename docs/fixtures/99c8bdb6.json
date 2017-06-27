@@ -126,7 +126,7 @@
     "https://tracking.feedpress.it/link/13440/1885503/cre191-internet-im-festnetz.m4a"
   ],
   "theme": {
-    "primary": "#F28379"
+    "main": "#F28379"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

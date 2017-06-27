@@ -41,7 +41,7 @@
     "http://tracking.feedpress.it/link/13444/1886706/nsfw069-stereo-macht-doppelt-froh.m4a"
   ],
   "theme": {
-    "primary": "#93F279"
+    "main": "#93F279"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

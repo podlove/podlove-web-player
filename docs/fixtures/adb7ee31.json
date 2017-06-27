@@ -113,7 +113,7 @@
     "https://tracking.feedpress.it/link/13453/5074213/fs190-bitte-werfen-sie-eine-muenze-ein.m4a"
   ],
   "theme": {
-    "primary": "#F2DA79"
+    "main": "#F2DA79"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

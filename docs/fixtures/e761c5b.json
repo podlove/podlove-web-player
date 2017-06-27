@@ -109,7 +109,7 @@
     "https://tracking.feedpress.it/link/13453/3313704/fs176-sein-deutsch-deterioriert-zunehmend.m4a"
   ],
   "theme": {
-    "primary": "#F279F2"
+    "main": "#F279F2"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

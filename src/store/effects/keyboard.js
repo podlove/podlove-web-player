@@ -63,10 +63,31 @@ const previousChapter = store => () => {
   }
 }
 
+const changeVolume = (store, modifier) => () => {
+  const state = store.getState()
+  const volume = get(state, 'volume', 0)
+
+  store.dispatch(actions.setVolume(parseFloat(volume) + modifier))
+}
+
+const mute = (store) => () => {
+  const state = store.getState()
+  const muted = get(state, 'muted', false)
+
+  if (muted) {
+    store.dispatch(actions.unmute())
+  } else {
+    store.dispatch(actions.mute())
+  }
+}
+
 export default keyhandler => store => {
   keyhandler('right', scrubForward(store), resetModifier)
   keyhandler('left', scrubBackward(store), resetModifier)
   keyhandler('space', playPause(store))
   keyhandler('alt+right', nextChapter(store))
   keyhandler('alt+left', previousChapter(store))
+  keyhandler('up', changeVolume(store, 0.05))
+  keyhandler('down', changeVolume(store, -0.05))
+  keyhandler('m', mute(store))
 }

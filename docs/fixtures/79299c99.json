@@ -17,7 +17,7 @@
     "https://tracking.feedpress.it/link/13440/1885667/cre169-bluetooth.m4a"
   ],
   "theme": {
-    "primary": "#79F287"
+    "main": "#79F287"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

@@ -158,3 +158,45 @@ test(`keyboardEffect: previous chapter dispatches SET_CHAPTER if playtime is nea
   const action = store.dispatch.firstCall.args[0]
   t.is(action.type, 'SET_CHAPTER')
 })
+
+test(`keyboardEffect: lower volume dispatches SET_VOLUME with the current volume`, t => {
+  store.getState = () => ({
+    volume: 1
+  })
+
+  effect('down')(store)
+  const action = store.dispatch.firstCall.args[0]
+  t.is(action.type, 'SET_VOLUME')
+  t.is(action.payload, 0.95)
+})
+
+test(`keyboardEffect: increase volume dispatches SET_VOLUME with the current volume`, t => {
+  store.getState = () => ({
+    volume: 0.95
+  })
+
+  effect('up')(store)
+  const action = store.dispatch.firstCall.args[0]
+  t.is(action.type, 'SET_VOLUME')
+  t.is(action.payload, 1)
+})
+
+test(`keyboardEffect: mute toggles MUTE if its currently unmuted`, t => {
+  store.getState = () => ({
+    muted: false
+  })
+
+  effect('m')(store)
+  const action = store.dispatch.firstCall.args[0]
+  t.is(action.type, 'MUTE')
+})
+
+test(`keyboardEffect: mute toggles UNMUTE if its currently muted`, t => {
+  store.getState = () => ({
+    muted: true
+  })
+
+  effect('m')(store)
+  const action = store.dispatch.firstCall.args[0]
+  t.is(action.type, 'UNMUTE')
+})

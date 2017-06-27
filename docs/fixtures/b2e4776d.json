@@ -61,7 +61,7 @@
     "http://tracking.feedpress.it/link/13444/1886709/nsfw066-schnackenpfefferhausen.m4a"
   ],
   "theme": {
-    "primary": "#F279E0"
+    "main": "#F279E0"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

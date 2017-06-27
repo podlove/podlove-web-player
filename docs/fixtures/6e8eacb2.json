@@ -74,7 +74,7 @@
     "https://tracking.feedpress.it/link/13440/1885491/cre203-online-journalismus.m4a"
   ],
   "theme": {
-    "primary": "#F2CA79"
+    "main": "#F2CA79"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

@@ -105,7 +105,7 @@
     "https://tracking.feedpress.it/link/13453/3021920/fs174-legacy-keystroke-importer.m4a"
   ],
   "theme": {
-    "primary": "#79D4F2"
+    "main": "#79D4F2"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

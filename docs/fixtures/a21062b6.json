@@ -69,7 +69,7 @@
     "https://tracking.feedpress.it/link/12319/4310139/ls018-audioformate-fuer-podcasts.mp3"
   ],
   "theme": {
-    "primary": "#EE79F2"
+    "main": "#EE79F2"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

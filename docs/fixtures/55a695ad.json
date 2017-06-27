@@ -101,7 +101,7 @@
     "https://tracking.feedpress.it/link/13453/4928304/fs188-gas-wasser-freak-show.m4a"
   ],
   "theme": {
-    "primary": "#79F2AC"
+    "main": "#79F2AC"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

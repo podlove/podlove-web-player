@@ -41,7 +41,7 @@
     "http://tracking.feedpress.it/link/13444/1886712/nsfw063-pontifex-interruptus.m4a"
   ],
   "theme": {
-    "primary": "#E4F279"
+    "main": "#E4F279"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

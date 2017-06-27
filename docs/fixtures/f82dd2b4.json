@@ -17,7 +17,7 @@
     "https://tracking.feedpress.it/link/13440/1885676/cre160-ddr.m4a"
   ],
   "theme": {
-    "primary": "#79F29F"
+    "main": "#79F29F"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

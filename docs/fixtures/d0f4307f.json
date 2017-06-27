@@ -45,7 +45,7 @@
     "http://tracking.feedpress.it/link/13444/1886711/nsfw064-stuhl-im-hals.m4a"
   ],
   "theme": {
-    "primary": "#79C2F2"
+    "main": "#79C2F2"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

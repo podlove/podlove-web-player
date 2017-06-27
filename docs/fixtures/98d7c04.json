@@ -49,7 +49,7 @@
     "http://tracking.feedpress.it/link/13444/1886701/nsfw074-das-wetter-muss-weg.m4a"
   ],
   "theme": {
-    "primary": "#F28D79"
+    "main": "#F28D79"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

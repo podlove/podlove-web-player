@@ -16,7 +16,7 @@
     "http://tracking.feedpress.it/link/13551/1926865/tlf005.m4a"
   ],
   "theme": {
-    "primary": "#F279B4"
+    "main": "#F279B4"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

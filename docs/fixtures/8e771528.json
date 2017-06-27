@@ -17,7 +17,7 @@
     "https://tracking.feedpress.it/link/13440/1885664/cre172-holland-und-die-hacker.m4a"
   ],
   "theme": {
-    "primary": "#ACF279"
+    "main": "#ACF279"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

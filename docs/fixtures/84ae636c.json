@@ -98,7 +98,7 @@
     "https://tracking.feedpress.it/link/13440/1885493/cre201-hoehlenforschung.m4a"
   ],
   "theme": {
-    "primary": "#79DEF2"
+    "main": "#79DEF2"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

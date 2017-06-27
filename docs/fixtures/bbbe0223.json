@@ -133,7 +133,7 @@
     "https://tracking.feedpress.it/link/13453/2683090/fs172-sendeeinsatzkommando.m4a"
   ],
   "theme": {
-    "primary": "#7993F2"
+    "main": "#7993F2"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

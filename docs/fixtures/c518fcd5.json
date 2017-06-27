@@ -53,7 +53,7 @@
     "http://tracking.feedpress.it/link/13444/1886708/nsfw067-these-go-to-eleven.m4a"
   ],
   "theme": {
-    "primary": "#F27D79"
+    "main": "#F27D79"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

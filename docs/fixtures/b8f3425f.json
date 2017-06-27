@@ -16,7 +16,7 @@
     "https://tracking.feedpress.it/link/12319/1327932/ls009-sendungsplanung.mp3"
   ],
   "theme": {
-    "primary": "#F279AC"
+    "main": "#F279AC"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

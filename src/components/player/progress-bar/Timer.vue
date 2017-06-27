@@ -2,7 +2,7 @@
   <div class="timer-progress" :class="playstate" :style="timerStyle(theme)">
     <span class="current">{{ secondsToTime(ghost.active ? ghost.time : playtime) }}</span>
     <CurrentChapter class="chapter" />
-    <span class="time">{{ secondsToTime(duration - (ghost.active ? ghost.time : playtime)) }}</span>
+    <span class="time">-{{ secondsToTime(duration - (ghost.active ? ghost.time : playtime)) }}</span>
   </div>
 </template>
 

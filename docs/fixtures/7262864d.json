@@ -85,7 +85,7 @@
     "https://tracking.feedpress.it/link/13453/3869520/fs181-und-ich-hab-selten-hals.m4a"
   ],
   "theme": {
-    "primary": "#F29379"
+    "main": "#F29379"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

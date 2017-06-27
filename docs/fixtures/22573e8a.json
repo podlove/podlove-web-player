@@ -53,7 +53,7 @@
     "http://tracking.feedpress.it/link/13444/1886702/nsfw073-syntax-error-in-10.m4a"
   ],
   "theme": {
-    "primary": "#F279D0"
+    "main": "#F279D0"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

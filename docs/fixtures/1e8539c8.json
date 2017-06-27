@@ -41,7 +41,7 @@
     "http://tracking.feedpress.it/link/13444/1886697/nsfw078-notbrot.m4a"
   ],
   "theme": {
-    "primary": "#F279C0"
+    "main": "#F279C0"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

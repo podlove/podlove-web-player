@@ -90,7 +90,7 @@
     "https://tracking.feedpress.it/link/13440/1885490/cre204-geocaching.m4a"
   ],
   "theme": {
-    "primary": "#798DF2"
+    "main": "#798DF2"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

@@ -133,7 +133,7 @@
     "https://tracking.feedpress.it/link/13453/3441719/fs177-talk-nerdy-to-me.m4a"
   ],
   "theme": {
-    "primary": "#79ACF2"
+    "main": "#79ACF2"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

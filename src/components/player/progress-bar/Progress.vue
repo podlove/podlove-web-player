@@ -9,10 +9,10 @@
       @mousemove="onMouseMove"
       @mouseout="onMouseOut"
     />
-    <span class="progress-range"></span>
+    <span class="progress-range" :style="rangeStyle(theme)"></span>
     <span class="progress-buffer" :style="bufferStyle(theme, buffer, duration)"></span>
-    <span v-for="quantile in quantiles" class="progress-track" :style="trackStyle(theme, duration, quantile)"></span>
-    <ChaptersIndicator />
+    <span v-for="(quantile, index) in quantiles" class="progress-track" :style="trackStyle(theme, duration, quantile)" :key="index"></span>
+    <ChaptersIndicator></ChaptersIndicator>
     <span class="ghost-thumb" :style="thumbStyle(theme, ghostPosition, ghost.active)"></span>
     <span class="progress-thumb" :class="{ active: thumbActive }" :style="thumbStyle(theme, thumbPosition)"></span>
   </div>
@@ -20,7 +20,6 @@
 
 <script>
   import store from 'store'
-  import color from 'color'
 
   import ChaptersIndicator from './ChapterIndicator.vue'
 
@@ -29,9 +28,13 @@
   const relativePosition = (current = 0, maximum = 0) =>
     ((current * 100) / maximum) + '%'
 
+  const rangeStyle = (theme) => ({
+    'background-color': theme.player.progress.range
+  })
+
   const bufferStyle = (theme, buffer = 0, duration = 1) => ({
     width: relativePosition(buffer, duration),
-    'background-color': color(theme.player.progress.bar).fade(0.5)
+    'background-color': theme.player.progress.buffer
   })
 
   const thumbStyle = (theme, position, active = true) => ({
@@ -44,7 +47,7 @@
   const trackStyle = (theme, duration, [start, end]) => ({
     left: relativePosition(start, duration),
     width: relativePosition(end - start, duration),
-    'background-color': theme.player.progress.bar
+    'background-color': theme.player.progress.track
   })
 
   export default {
@@ -77,21 +80,28 @@
       onChange (event) {
         store.dispatch(store.actions.updatePlaytime(event.target.value))
       },
+
       onInput (event) {
+        this.thumbAnimated = false
+        store.dispatch(store.actions.disableGhostMode())
         this.thumbPosition = relativePosition(interpolate(event.target.value), this.duration)
         store.dispatch(store.actions.updatePlaytime(event.target.value))
       },
+
       onMouseMove (event) {
-        if (event.offsetY < 13 && event.offsetY > 31) {
+        if ((event.offsetY < 13 && event.offsetY > 31) || event.offsetX < 0 || event.offsetX > event.target.clientWidth) {
           this.thumbActive = false
           store.dispatch(store.actions.disableGhostMode())
           return
         }
+
+        this.thumbAnimated = true
         this.thumbActive = true
         this.ghostPosition = relativePosition(event.offsetX, event.target.clientWidth)
         store.dispatch(store.actions.simulatePlaytime(this.duration * event.offsetX / event.target.clientWidth))
         store.dispatch(store.actions.enableGhostMode())
       },
+
       onMouseOut (event) {
         this.thumbActive = false
         store.dispatch(store.actions.disableGhostMode())
@@ -99,6 +109,7 @@
       },
 
       interpolate,
+      rangeStyle,
       bufferStyle,
       thumbStyle,
       trackStyle
@@ -160,7 +171,7 @@
     width: $progress-thumb-width;
     pointer-events: none;
 
-    transition: all $animation-duration / 2;
+    transition: left $animation-duration / 2;
 
     &.active {
       width: $progress-thumb-active-width;

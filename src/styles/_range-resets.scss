@@ -38,6 +38,7 @@ input[type=range] {
   color: transparent;
   overflow: visible;
   background: transparent;
+  cursor: pointer;
 }
 
 input[type=range]:focus::-webkit-slider-runnable-track {

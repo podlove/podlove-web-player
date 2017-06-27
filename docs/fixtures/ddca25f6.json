@@ -17,7 +17,7 @@
     "https://tracking.feedpress.it/link/13440/1885670/cre166-segeln.m4a"
   ],
   "theme": {
-    "primary": "#EC79F2"
+    "main": "#EC79F2"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

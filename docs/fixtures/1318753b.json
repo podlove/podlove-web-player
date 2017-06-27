@@ -45,7 +45,7 @@
     "https://tracking.feedpress.it/link/13476/5107978/lnp205-wir-haben-cyber-gemacht-bevor-es-cool-war-und-so-hiess.m4a"
   ],
   "theme": {
-    "primary": "#79F279"
+    "main": "#79F279"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

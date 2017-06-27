@@ -73,7 +73,7 @@
     "https://tracking.feedpress.it/link/13453/3752501/fs180-hypershitloop.m4a"
   ],
   "theme": {
-    "primary": "#A8F279"
+    "main": "#A8F279"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

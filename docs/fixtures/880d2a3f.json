@@ -61,7 +61,7 @@
     "https://tracking.feedpress.it/link/11988/2389648/me004-januar-2016.mp3"
   ],
   "theme": {
-    "primary": "#F279CE"
+    "main": "#F279CE"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

@@ -49,7 +49,7 @@
     "http://tracking.feedpress.it/link/13444/1886704/nsfw071-togglewarnung.m4a"
   ],
   "theme": {
-    "primary": "#D4F279"
+    "main": "#D4F279"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

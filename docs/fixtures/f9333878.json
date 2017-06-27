@@ -90,7 +90,7 @@
     "https://tracking.feedpress.it/link/13440/3454075/cre212-saudi-arabien.m4a"
   ],
   "theme": {
-    "primary": "#F27F79"
+    "main": "#F27F79"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

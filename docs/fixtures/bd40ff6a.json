@@ -82,7 +82,7 @@
     "https://tracking.feedpress.it/link/13440/1885489/cre205-wikidata.m4a"
   ],
   "theme": {
-    "primary": "#79CEF2"
+    "main": "#79CEF2"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

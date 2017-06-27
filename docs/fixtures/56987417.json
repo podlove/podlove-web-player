@@ -17,7 +17,7 @@
     "https://tracking.feedpress.it/link/13440/1885674/cre162-brettspiele.m4a"
   ],
   "theme": {
-    "primary": "#79DAF2"
+    "main": "#79DAF2"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

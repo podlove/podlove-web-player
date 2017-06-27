@@ -77,7 +77,7 @@
     "http://tracking.feedpress.it/link/13444/1886699/nsfw076-blattfisch.m4a"
   ],
   "theme": {
-    "primary": "#83F279"
+    "main": "#83F279"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

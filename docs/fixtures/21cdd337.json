@@ -74,7 +74,7 @@
     "https://tracking.feedpress.it/link/13440/1885487/cre207-planetarien.m4a"
   ],
   "theme": {
-    "primary": "#79A6F2"
+    "main": "#79A6F2"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

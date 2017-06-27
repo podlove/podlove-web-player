@@ -118,7 +118,7 @@
     "https://tracking.feedpress.it/link/13440/1885497/cre197-ipv6.m4a"
   ],
   "theme": {
-    "primary": "#F2D479"
+    "main": "#F2D479"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

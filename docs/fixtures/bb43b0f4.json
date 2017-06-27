@@ -93,7 +93,7 @@
     "https://tracking.feedpress.it/link/13453/3134003/fs175-die-bits-waren-zu-keiner-zeit-gefaehrdet.m4a"
   ],
   "theme": {
-    "primary": "#F2AC79"
+    "main": "#F2AC79"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",
