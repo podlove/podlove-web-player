@@ -26,10 +26,10 @@
   ],
   "scripts": {
     "dist:clean": "mkdir -p dist && rm -rf dist/*",
-    "docs": "cp -R docs/* dist",
+    "docs": "cd docs && bundle install && jekyll build && cd .. && cp -R docs/fixtures/* dist/fixtures",
     "webpack:dev": "webpack-dashboard -- webpack-dev-server --content-base dist/ --progress --hot --inline --config src/webpack.config.js",
     "webpack:build": "NODE_ENV='production' webpack --config src/webpack.config.js",
-    "build": "npm run dist:clean && npm run webpack:build",
+    "build": "npm run webpack:build",
     "dev": "npm run dist:clean && npm run docs && npm run webpack:dev",
     "test": "NODE_ENV=AVA nyc ava && nyc report --reporter=lcov",
     "test:dev": "NODE_ENV=AVA ava --watch --fail-fast",
