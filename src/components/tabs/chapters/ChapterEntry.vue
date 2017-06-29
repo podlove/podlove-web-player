@@ -5,7 +5,10 @@
     @mouseover="hover = true"
     @mouseleave="hover = false">
 
-    <span class="index">{{index + 1}}</span>
+    <span class="index" v-if="hover" @click="onPlayButtonClick(index)">
+      <PlayIcon size="12" :color="theme.tabs.body.icon"></PlayIcon>
+    </span>
+    <span class="index" v-else>{{index + 1}}</span>
     <span class="title truncate">{{chapter.title}}</span>
     <span class="timer">{{remainingTime(chapter, ghost.active ? ghost.time : playtime)}}</span>
 
@@ -18,13 +21,19 @@
   import store from 'store'
   import { secondsToTime } from 'utils/time'
 
+  import PlayIcon from 'icons/PlayIcon.vue'
+
   const activeChapter = theme => ({
     'background-color': color(theme.tabs.body.backgroundActive).fade(0.9),
-    color: theme.tabs.body.textActives
+    color: theme.tabs.body.textActive
   })
 
-  const chapterStyle = (theme, chapter, hover) => {
-    return chapter.active || hover ? activeChapter(theme) : {}
+  const chapterStyle = (theme, chapter, hover, even) => {
+    if (chapter.active || hover) {
+      return activeChapter(theme)
+    }
+
+    return {}
   }
 
   const progressStyle = (theme, chapter, playtime) => {
@@ -52,6 +61,11 @@
     store.dispatch(store.actions.setChapter(index))
   }
 
+  const onPlayButtonClick = index => {
+    store.dispatch(store.actions.setChapter(index))
+    store.dispatch(store.actions.play())
+  }
+
   export default {
     data () {
       return {
@@ -66,7 +80,11 @@
       chapterStyle,
       progressStyle,
       remainingTime,
-      onChapterClick
+      onChapterClick,
+      onPlayButtonClick
+    },
+    components: {
+      PlayIcon
     },
     props: ['chapter', 'index']
   }
@@ -87,7 +105,9 @@
     transition: background $animation-duration, color $animation-duration;
 
     .index {
-      display: block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-align: center;
       width: 30px;
     }
@@ -108,7 +128,6 @@
       left: 0;
       bottom: 0;
       height: 3px;
-      transition: width $animation-duration;
     }
   }
 </style>

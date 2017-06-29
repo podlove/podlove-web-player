@@ -54,8 +54,9 @@ const themeColors = (colors = {}) => {
       body: {
         background: color(main).fade(0.9),
         text: grey,
-        textActive: negative ? main : dark,
-        progress: fallbackColor(highlight, negative ? main : dark)
+        textActive: dark,
+        progress: fallbackColor(highlight, negative ? main : dark),
+        icon: negative ? main : dark
       },
       slider: {
         thumb: main
