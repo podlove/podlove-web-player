@@ -1,18 +1,20 @@
 <template>
   <div class="chapters--entry"
     :style="chapterStyle(theme, chapter, hover)"
-    @click="onChapterClick(ghost)"
-    @mouseout="onMouseOut"
-    @mousemove="onMouseMove">
-
-    <span class="index" v-if="hover">
+    @mouseover="onMouseOver"
+    @mouseleave="onMouseLeave">
+    <span class="index" v-if="hover" @click="onChapterPlayClick(index)">
       <PlayIcon size="12" :color="theme.tabs.body.icon"></PlayIcon>
     </span>
     <span class="index" v-else>{{index + 1}}</span>
-    <span class="title truncate">{{chapter.title}}</span>
-    <span class="timer">{{remainingTime(chapter, ghost.active ? ghost.time : playtime)}}</span>
-
-    <span class="progress" :style="progressStyle(theme, chapter, ghost, playtime)"></span>
+    <div class="chapter--progress"
+      @mouseout="onMouseOut"
+      @mousemove="onMouseMove"
+      @click="onChapterClick(ghost)">
+      <span class="title truncate">{{chapter.title}}</span>
+      <span class="timer">{{remainingTime(chapter, ghost.active ? ghost.time : playtime)}}</span>
+      <span class="progress" :style="progressStyle(theme, chapter, ghost, playtime)"></span>
+    </div>
   </div>
 </template>
 
@@ -39,7 +41,7 @@
   const progressStyle = (theme, chapter, ghost, playtime) => {
     let time = ghost.active ? ghost.time : playtime
 
-    if (time < chapter.start || time > chapter.end) {
+    if (!chapter.active || time > chapter.end) {
       return {}
     }
 
@@ -64,6 +66,11 @@
     store.dispatch(store.actions.play())
   }
 
+  const onChapterPlayClick = index => {
+    store.dispatch(store.actions.setChapter(index))
+    store.dispatch(store.actions.play())
+  }
+
   export default {
     data () {
       return {
@@ -78,16 +85,23 @@
       progressStyle,
       remainingTime,
       onChapterClick,
+      onChapterPlayClick,
 
       onMouseOut () {
-        this.hover = false
         store.dispatch(store.actions.disableGhostMode())
       },
 
       onMouseMove (event) {
-        this.hover = true
         store.dispatch(store.actions.enableGhostMode())
         store.dispatch(store.actions.simulatePlaytime(this.chapter.start + (this.chapter.end - this.chapter.start) * event.offsetX / event.target.clientWidth))
+      },
+
+      onMouseOver () {
+        this.hover = true
+      },
+
+      onMouseLeave () {
+        this.hover = false
       }
     },
     components: {
@@ -101,10 +115,11 @@
   @import 'variables';
   @import 'font';
 
+  $index-width: 40px;
+
   .chapters--entry {
     width: 100%;
     position: relative;
-    padding: $padding / 2 $padding;
     font-weight: 300;
     display: flex;
     cursor: pointer;
@@ -116,29 +131,36 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      width: 30px;
-      pointer-events: none;
+      width: $index-width;
     }
 
-    .title {
-      display: block;
-      width: calc(100% - 30px);
-      pointer-events: none;
-    }
+    .chapter--progress {
+      display: flex;
+      align-items: center;
+      position: relative;
+      padding: ($padding / 2) 0;
+      width: 100%;
 
-    .timer {
-      display: block;
-      text-align: right;
-      @include font-monospace();
-      pointer-events: none;
-    }
+      .title {
+        width: calc(100% -   #{$index-width});
+        pointer-events: none;
+      }
 
-    .progress {
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      height: 3px;
-      pointer-events: none;
+      .timer {
+        display: block;
+        text-align: right;
+        @include font-monospace();
+        pointer-events: none;
+        padding-right: $padding / 2;
+      }
+
+      .progress {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 3px;
+        pointer-events: none;
+      }
     }
   }
 </style>

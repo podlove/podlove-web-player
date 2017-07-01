@@ -110,9 +110,10 @@
 
     height: $button-width;
     width: $button-width;
+    min-width: $button-width;
 
     border-radius: $button-width / 2;
-    transition: width $animation-duration * 2;
+    transition: min-width $animation-duration * 2;
 
     .inner {
       display: flex;
