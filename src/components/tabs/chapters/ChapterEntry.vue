@@ -1,18 +1,18 @@
 <template>
   <div class="chapters--entry"
     :style="chapterStyle(theme, chapter, hover)"
-    @click="onChapterClick(index)"
-    @mouseover="hover = true"
-    @mouseleave="hover = false">
+    @click="onChapterClick(ghost)"
+    @mouseout="onMouseOut"
+    @mousemove="onMouseMove">
 
-    <span class="index" v-if="hover" @click="onPlayButtonClick(index)">
+    <span class="index" v-if="hover">
       <PlayIcon size="12" :color="theme.tabs.body.icon"></PlayIcon>
     </span>
     <span class="index" v-else>{{index + 1}}</span>
     <span class="title truncate">{{chapter.title}}</span>
     <span class="timer">{{remainingTime(chapter, ghost.active ? ghost.time : playtime)}}</span>
 
-    <span class="progress" :style="progressStyle(theme, chapter, ghost.active ? ghost.time : playtime)"></span>
+    <span class="progress" :style="progressStyle(theme, chapter, ghost, playtime)"></span>
   </div>
 </template>
 
@@ -36,12 +36,14 @@
     return {}
   }
 
-  const progressStyle = (theme, chapter, playtime) => {
-    if (!chapter.active || playtime > chapter.end) {
+  const progressStyle = (theme, chapter, ghost, playtime) => {
+    let time = ghost.active ? ghost.time : playtime
+
+    if (time < chapter.start || time > chapter.end) {
       return {}
     }
 
-    let progress = ((playtime - chapter.start) * 100) / (chapter.end - chapter.start)
+    let progress = ((time - chapter.start) * 100) / (chapter.end - chapter.start)
 
     return {
       'width': progress + '%',
@@ -57,12 +59,8 @@
     return secondsToTime(chapter.end - chapter.start)
   }
 
-  const onChapterClick = index => {
-    store.dispatch(store.actions.setChapter(index))
-  }
-
-  const onPlayButtonClick = index => {
-    store.dispatch(store.actions.setChapter(index))
+  const onChapterClick = ghost => {
+    store.dispatch(store.actions.updatePlaytime(ghost.time))
     store.dispatch(store.actions.play())
   }
 
@@ -70,7 +68,6 @@
     data () {
       return {
         theme: this.$select('theme'),
-        chapters: this.$select('chapters'),
         playtime: this.$select('playtime'),
         ghost: this.$select('ghost'),
         hover: false
@@ -81,7 +78,17 @@
       progressStyle,
       remainingTime,
       onChapterClick,
-      onPlayButtonClick
+
+      onMouseOut () {
+        this.hover = false
+        store.dispatch(store.actions.disableGhostMode())
+      },
+
+      onMouseMove (event) {
+        this.hover = true
+        store.dispatch(store.actions.enableGhostMode())
+        store.dispatch(store.actions.simulatePlaytime(this.chapter.start + (this.chapter.end - this.chapter.start) * event.offsetX / event.target.clientWidth))
+      }
     },
     components: {
       PlayIcon
@@ -110,17 +117,20 @@
       justify-content: center;
       text-align: center;
       width: 30px;
+      pointer-events: none;
     }
 
     .title {
       display: block;
-      width: calc(100% - 30px - 30px)
+      width: calc(100% - 30px);
+      pointer-events: none;
     }
 
     .timer {
       display: block;
       text-align: right;
       @include font-monospace();
+      pointer-events: none;
     }
 
     .progress {
@@ -128,6 +138,7 @@
       left: 0;
       bottom: 0;
       height: 3px;
+      pointer-events: none;
     }
   }
 </style>

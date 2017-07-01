@@ -5,6 +5,7 @@ import actions from '../actions'
 export default (store, action) => {
   const state = store.getState()
   const chapters = get(state, 'chapters', [])
+  const ghost = get(state, 'ghost', {})
   const current = currentChapter(chapters)
   const currentIndex = currentChapterIndex(chapters)
 
@@ -25,6 +26,15 @@ export default (store, action) => {
       break
     case 'SET_CHAPTER':
       store.dispatch(actions.updatePlaytime(current.start))
+      break
+    case 'SIMULATE_PLAYTIME':
+      store.dispatch(actions.updateChapter(action.payload))
+      break
+    case 'SET_PLAYTIME':
+    case 'UPDATE_PLAYTIME':
+      if (!ghost.active) {
+        store.dispatch(actions.updateChapter(action.payload))
+      }
       break
   }
 }

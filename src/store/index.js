@@ -10,7 +10,7 @@ import reducers from './reducers'
 import actions from './actions'
 import effects from './effects'
 
-Raven.config(sentry, { release: version }).install()
+Raven.config(sentry, { release: version, ignoreUrls: ['localhost'] }).install()
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
