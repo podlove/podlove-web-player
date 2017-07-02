@@ -3,12 +3,13 @@
   "subtitle": "Britische Fernsehserien — CeBIT — Cosmos — Podcast-Mainstream — Generationskonflikte — Wissenschaft",
   "summary": "Wir hoffen nach einer wieder längeren Pause nun wieder in den Zwei-Wochen-Rhythmus zuzukehren und müssen uns erst mal wieder sammeln. Daher steuern wir dieses mal weitgehend aufregungsfrei durch die Themen, geraten allerdings ein wenig in Konflikt wenn es um den richtigen Weg geht, Podcasting weiter voranzutreiben. Ansonsten viel dies und das und schlechte Musik und skurrile Nahrungsmittelbeiträge aus Russland.",
   "publicationDate": "2014-03-17T17:52:52.000Z",
+  "link": "http://not-safe-for-work.de/nsfw082-erfahrungskohorte-nsfw/",
   "show": {
     "title": "Not Safe For Work",
     "subtitle": "Die Internationale Unterhaltungsgala mit Tim Pritlove und Holger Klein",
     "summary": "NSFW ist unkonventionell, unregelmäßig, unsinnig und ungemein unanständig. Garantiert mindestens zwei Worte pro Sendung, die man nicht auf der Arbeit sagen sollte. NSFW sollte nicht zu ernst genommen werden und selbstverständlich als Richtlinie aller Eurer künftigen Handlungen gelten.",
     "poster": "http://not-safe-for-work.de/wp-content/cache/podlove/0f/63751ecd7feba0789d91d4f9a45191/not-safe-for-work_original.jpg",
-    "url": "http://not-safe-for-work.de"
+    "link": "http://not-safe-for-work.de"
   },
   "duration": "03:35:07",
   "chapters": [
@@ -82,13 +83,14 @@
     }
   ],
   "audio": [
-    "http://tracking.feedpress.it/link/13444/1886693/nsfw082-erfahrungskohorte-nsfw.m4a"
+    "https://tracking.feedpress.it/link/13444/1886693/nsfw082-erfahrungskohorte-nsfw.m4a"
   ],
-  "theme": {
-    "main": "#8DF279"
-  },
   "reference": {
     "share": "//podlove-player.surge.sh/share",
-    "config": "//podlove-player.surge.sh/fixtures/24b1dbfa.json"
+    "config": "//podlove-player.surge.sh/fixtures/24b1dbfa.json",
+    "origin": "http://not-safe-for-work.de/nsfw082-erfahrungskohorte-nsfw/"
+  },
+  "theme": {
+    "main": "rgb(242,156,148)"
   }
 }

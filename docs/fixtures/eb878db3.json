@@ -61,7 +61,7 @@
     "https://tracking.feedpress.it/link/13476/4481995/lnp196-bundesnachrichtendienstleistung.m4a"
   ],
   "theme": {
-    "main": "#F279E2"
+    "primary": "#A179F2"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

@@ -165,7 +165,7 @@
     "https://tracking.feedpress.it/link/13453/2346456/fs169-hauptschuhle.m4a"
   ],
   "theme": {
-    "main": "#DEF279"
+    "primary": "#EC79F2"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

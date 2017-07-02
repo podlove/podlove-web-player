@@ -3,12 +3,13 @@
   "subtitle": "Die erste Sendung nach der Sommerpause",
   "summary": "Nach reichlich Pause setzen wir die Serie fort und legen dann zur Entschädigung auch gleich noch eine Sendung in ausreichender Länge hin. Wir reden über Hipster, Schusswaffen, TED-Talks, amerikanischen Dialekt, Störerhaftung, die OHM 2013, Satelliten-Tracking und -Spotting, den NSA-Skandal und den Ausblick für unsere politisch-gesellschaftliche Realität, das Hörerinnengrillen, geklaute Telefone, Abnehmen, die anstehenden Wahlen in Deutschland und Österreich und vieles anderes mehr. Vielen Dank an @eyupstep und @derkroemer für das goldige Intro.",
   "publicationDate": "2013-08-05T16:38:01.000Z",
+  "link": "http://not-safe-for-work.de/nsfw073-syntax-error-in-10/",
   "show": {
     "title": "Not Safe For Work",
     "subtitle": "Die Internationale Unterhaltungsgala mit Tim Pritlove und Holger Klein",
     "summary": "NSFW ist unkonventionell, unregelmäßig, unsinnig und ungemein unanständig. Garantiert mindestens zwei Worte pro Sendung, die man nicht auf der Arbeit sagen sollte. NSFW sollte nicht zu ernst genommen werden und selbstverständlich als Richtlinie aller Eurer künftigen Handlungen gelten.",
     "poster": "http://not-safe-for-work.de/wp-content/cache/podlove/0f/63751ecd7feba0789d91d4f9a45191/not-safe-for-work_original.jpg",
-    "url": "http://not-safe-for-work.de"
+    "link": "http://not-safe-for-work.de"
   },
   "duration": "03:45:04",
   "chapters": [
@@ -50,13 +51,14 @@
     }
   ],
   "audio": [
-    "http://tracking.feedpress.it/link/13444/1886702/nsfw073-syntax-error-in-10.m4a"
+    "https://tracking.feedpress.it/link/13444/1886702/nsfw073-syntax-error-in-10.m4a"
   ],
-  "theme": {
-    "main": "#F279D0"
-  },
   "reference": {
     "share": "//podlove-player.surge.sh/share",
-    "config": "//podlove-player.surge.sh/fixtures/22573e8a.json"
+    "config": "//podlove-player.surge.sh/fixtures/22573e8a.json",
+    "origin": "http://not-safe-for-work.de/nsfw073-syntax-error-in-10/"
+  },
+  "theme": {
+    "main": "rgb(242,156,148)"
   }
 }

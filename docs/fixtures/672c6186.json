@@ -3,12 +3,13 @@
   "subtitle": "Darmspiegelung — Gestorben 1968 — Alkoholika — Britische Fernsehserien — Kaffee — Dinner for One — Second Screen",
   "summary": "Eine pünktlich Sendung und dieses mal wieder mit 30% mehr Hitler und allerlei Lebensendzeitberatung dafür ohne nachhaltige Streitpunkte. Wir laufen uns erst langsam wieder warm und hoffen auf den Frühling während wir uns für die Fünf-Jahres-Sendung rüsten, die laut Prognose ausgerechnet die 88. sein wird. Ui ui ui.",
   "publicationDate": "2014-03-31T14:41:23.000Z",
+  "link": "http://not-safe-for-work.de/nsfw083-darmspiegel-online/",
   "show": {
     "title": "Not Safe For Work",
     "subtitle": "Die Internationale Unterhaltungsgala mit Tim Pritlove und Holger Klein",
     "summary": "NSFW ist unkonventionell, unregelmäßig, unsinnig und ungemein unanständig. Garantiert mindestens zwei Worte pro Sendung, die man nicht auf der Arbeit sagen sollte. NSFW sollte nicht zu ernst genommen werden und selbstverständlich als Richtlinie aller Eurer künftigen Handlungen gelten.",
     "poster": "http://not-safe-for-work.de/wp-content/cache/podlove/0f/63751ecd7feba0789d91d4f9a45191/not-safe-for-work_original.jpg",
-    "url": "http://not-safe-for-work.de"
+    "link": "http://not-safe-for-work.de"
   },
   "duration": "03:11:11",
   "chapters": [
@@ -62,13 +63,14 @@
     }
   ],
   "audio": [
-    "http://tracking.feedpress.it/link/13444/1886692/nsfw083-darmspiegel-online.m4a"
+    "https://tracking.feedpress.it/link/13444/1886692/nsfw083-darmspiegel-online.m4a"
   ],
-  "theme": {
-    "main": "#79F2CE"
-  },
   "reference": {
     "share": "//podlove-player.surge.sh/share",
-    "config": "//podlove-player.surge.sh/fixtures/672c6186.json"
+    "config": "//podlove-player.surge.sh/fixtures/672c6186.json",
+    "origin": "http://not-safe-for-work.de/nsfw083-darmspiegel-online/"
+  },
+  "theme": {
+    "main": "rgb(242,156,148)"
   }
 }

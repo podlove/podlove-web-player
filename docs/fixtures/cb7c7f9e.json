@@ -3,12 +3,13 @@
   "subtitle": "Datenvisualisierung — Porno — Metaebene Community — Blackberry — Klamotten und Accessoires — iPhone SE — iPad Pro — JavaScript — Star Wars — Genealogie — Editoren — FreeBSD — NASA Space App Challenge",
   "summary": "Die Ausfälle der Woche — Clemens ist auf Lustreise und Roddi hat sich mit einer Glastür angelegt — werden in dieser kurzweiligen Ausgabe der Freak Show durch unseren Gast Letty auf hohem Niveau ausgeglichen. In der Folge sprechen wir über Datenvisualisierung, Porno, die neue Metaebene Community, Blackberry, Taschen und Klamotten, den neuen iKram von Apple, das allgemeine JavaScript-Desaster, Star Wars (Spoiler Alert), Genealogie-Dienste, Editoren und anderen Klimbim.",
   "publicationDate": "2016-04-07T05:54:14.000Z",
+  "link": "http://freakshow.fm/fs174-legacy-keystroke-importer",
   "show": {
     "title": "Freak Show",
     "subtitle": "Menschen! Technik! Sensationen!",
     "summary": "Die muntere Talk Show um Leben mit Technik, das Netz und Technikkultur. Bisweilen Apple-lastig aber selten einseitig. Wir leben und lieben Technologie und reden darüber. Mit Tim, hukl, roddi, Clemens und Denis. Freak Show hieß irgendwann mal mobileMacs.",
     "poster": "http://freakshow.fm/wp-content/cache/podlove/04/662a9d4edcf77ea2abe3c74681f509/freak-show_original.jpg",
-    "url": "http://freakshow.fm"
+    "link": "http://freakshow.fm"
   },
   "duration": "03:34:01",
   "chapters": [
@@ -104,11 +105,12 @@
   "audio": [
     "https://tracking.feedpress.it/link/13453/3021920/fs174-legacy-keystroke-importer.m4a"
   ],
-  "theme": {
-    "main": "#79D4F2"
-  },
   "reference": {
     "share": "//podlove-player.surge.sh/share",
-    "config": "//podlove-player.surge.sh/fixtures/cb7c7f9e.json"
+    "config": "//podlove-player.surge.sh/fixtures/cb7c7f9e.json",
+    "origin": "http://freakshow.fm/fs174-legacy-keystroke-importer"
+  },
+  "theme": {
+    "main": "rgb(251,237,186)"
   }
 }

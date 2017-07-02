@@ -3,12 +3,13 @@
   "subtitle": "BKA — Datenschutz — Videoüberwachung — Martin Schulz — Ramstein — Trump — Anwerbungsversuche",
   "summary": "In Ermangelung eines Tims hat Linus dieses Mal Constanze Kurz zu Gast. Wir sprechen über 3 deutsche Verbesserungsgesetze und den neuen Kanzlerkandidaten der SPD, Martin Schulz. Außerdem sprechen wir über die etwas ältere \"Neuigkeit,\" dass die US-Basis in Ramstein eine zentrale Rolle im Drohnenkrieg spielt. Von diesem Thema gleiten wir dann wieder in Richtung Trump ab – aber ihr habt ja Kapitelmarken ;-) Zuletzt versuchen wir, uns gegenseitig für verschiedene Geheimdienste zu rekrutieren.",
   "publicationDate": "2017-02-04T20:01:42.000Z",
+  "link": "http://logbuch-netzpolitik.de/lnp208-verbesserungsgesetz",
   "show": {
     "title": "Logbuch:Netzpolitik",
     "subtitle": "Einblicke und Ausblicke in das netzpolitische Geschehen",
     "summary": "Logbuch:Netzpolitik ist ein in der Regel wöchentlich erscheinender Podcast, der im Dialog zwischen Linus Neumann und Tim Pritlove die wichtigsten Themen und Ereignisse mit netzpolitischem Bezug aufgreift und diskutiert.",
     "poster": "http://logbuch-netzpolitik.de/wp-content/cache/podlove/92/de7e775cef6431203e4666e628294b/logbuchnetzpolitik_original.jpg",
-    "url": "http://logbuch-netzpolitik.de"
+    "link": "http://logbuch-netzpolitik.de"
   },
   "duration": "02:22:09",
   "chapters": [
@@ -60,11 +61,12 @@
   "audio": [
     "https://tracking.feedpress.it/link/13476/5262071/lnp208-verbesserungsgesetz.m4a"
   ],
-  "theme": {
-    "main": "#7987F2"
-  },
   "reference": {
     "share": "//podlove-player.surge.sh/share",
-    "config": "//podlove-player.surge.sh/fixtures/b6788169.json"
+    "config": "//podlove-player.surge.sh/fixtures/b6788169.json",
+    "origin": "http://logbuch-netzpolitik.de/lnp208-verbesserungsgesetz"
+  },
+  "theme": {
+    "main": "rgb(218,207,164)"
   }
 }

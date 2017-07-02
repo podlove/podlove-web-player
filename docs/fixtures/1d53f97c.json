@@ -4,12 +4,13 @@
   "summary": "Die Filmbranche ist fasziniert von Hackern und ihrer Kultur, doch ist das Bild des Hackers in der Öffentlichkeit auch stark geprägt von der Art, wie Hacker in Filmen der Traumfabriken präsentiert werden. Dabei ist es interessant anzusehen, wie das Bild des technisch versierten Experten, der komplexe Systeme unter seiner Kontrolle sich über die Zeit gewandelt hat und immer noch wandelt.\n\nCaspar Clemens Mierau ist Medienkulturwissenschaftler und Cineast und hat sich intensiv mit Filmen beschäftigt, die in den letzten 30 Jahren das Bild des Hackers genutzt und geprägt haben. Im Gespräch mit Tim Pritlove stellt Caspar eine Reihe von Filmen vor, die repräsentativ für den Auseinandersetzung der Filmschaffenden mit der Hackerkultur sind.",
   "publicationDate": "2013-03-29T23:21:21.000Z",
   "poster": "http://cre.fm/wp-content/cache/podlove/f5/41d7745fa6610c7dd6835e554dd265/cre202-hackerfilme_original.jpg",
+  "link": "http://cre.fm/cre202-hackerfilme",
   "show": {
     "title": "CRE: Technik, Kultur, Gesellschaft",
     "subtitle": "Der Interview-Podcast mit Tim Pritlove",
     "summary": "Intensive und ausführliche Gespräche über Themen aus Technik, Kultur und Gesellschaft, das ist CRE. Interessante Gesprächspartner stehen Rede und Antwort zu Fragen, die man normalerweise selten gestellt bekommt. CRE möchte  aufklären, weiterbilden und unterhalten.",
     "poster": "http://cre.fm/wp-content/cache/podlove/6b/8074d85b886d8dedb4945715694ba7/cre-technik-kultur-gesellschaft_original.jpg",
-    "url": "http://cre.fm"
+    "link": "http://cre.fm"
   },
   "duration": "03:10:15",
   "chapters": [
@@ -141,11 +142,9 @@
   "audio": [
     "https://tracking.feedpress.it/link/13440/1885492/cre202-hackerfilme.m4a"
   ],
-  "theme": {
-    "main": "#D8F279"
-  },
   "reference": {
     "share": "//podlove-player.surge.sh/share",
-    "config": "//podlove-player.surge.sh/fixtures/1d53f97c.json"
+    "config": "//podlove-player.surge.sh/fixtures/1d53f97c.json",
+    "origin": "http://cre.fm/cre202-hackerfilme"
   }
 }

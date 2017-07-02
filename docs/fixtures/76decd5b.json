@@ -3,12 +3,13 @@
   "subtitle": "LNP200 — SUBSCRIBE 8 — Jobsuche — Exploding Phones — WLAN in Zügen — FreeBSD 11 — Ethernet — iOS 10 — CA Fuckups — Flughäfen",
   "summary": "Nach langer Zeit ist Clemens mal wieder da und die alte Stammcrew beisammen. Nur Letty turnt gerade in anderen Ländern herum. Zu Beginn klären wir zunächst mal die Sache mit der Aussprache in bestem Denglisch und kullern ansonsten durch die Themen wie sie uns auf die Füße fallen. Also alles wie immer.",
   "publicationDate": "2016-10-20T19:59:54.000Z",
+  "link": "http://freakshow.fm/fs185-haltbares-wasser",
   "show": {
     "title": "Freak Show",
     "subtitle": "Menschen! Technik! Sensationen!",
     "summary": "Die muntere Talk Show um Leben mit Technik, das Netz und Technikkultur. Bisweilen Apple-lastig aber selten einseitig. Wir leben und lieben Technologie und reden darüber. Mit Tim, hukl, roddi, Clemens und Denis. Freak Show hieß irgendwann mal mobileMacs.",
     "poster": "http://freakshow.fm/wp-content/cache/podlove/04/662a9d4edcf77ea2abe3c74681f509/freak-show_original.jpg",
-    "url": "http://freakshow.fm"
+    "link": "http://freakshow.fm"
   },
   "duration": "04:05:39",
   "chapters": [
@@ -108,11 +109,12 @@
   "audio": [
     "https://tracking.feedpress.it/link/13453/4671005/fs185-haltbares-wasser.m4a"
   ],
-  "theme": {
-    "main": "#F279BA"
-  },
   "reference": {
     "share": "//podlove-player.surge.sh/share",
-    "config": "//podlove-player.surge.sh/fixtures/76decd5b.json"
+    "config": "//podlove-player.surge.sh/fixtures/76decd5b.json",
+    "origin": "http://freakshow.fm/fs185-haltbares-wasser"
+  },
+  "theme": {
+    "main": "rgb(251,237,186)"
   }
 }

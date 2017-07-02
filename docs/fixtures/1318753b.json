@@ -3,12 +3,13 @@
   "subtitle": "Terrorteil — Vorratsdatenspeicherung — Cyber — 33C3",
   "summary": "Noch nicht ganz erholt vom jährlichen Congress treten wir wieder an und versuchen einen ersten Blick auf das Zeitgeschehen und den zurückliegenden 33C3. Letzterer fällt noch etwas dünne aus, da werden wir in der nächsten Woche noch mal nachlegen. Dafür gibt es eine ausführlichere Metadiskussion rund um den Wahlcyber, der uns in diesem Jahr erwartet.",
   "publicationDate": "2017-01-09T14:52:26.000Z",
+  "link": "http://logbuch-netzpolitik.de/lnp205-wir-haben-cyber-gemacht-bevor-es-cool-war-und-so-hiess",
   "show": {
     "title": "Logbuch:Netzpolitik",
     "subtitle": "Einblicke und Ausblicke in das netzpolitische Geschehen",
     "summary": "Logbuch:Netzpolitik ist ein in der Regel wöchentlich erscheinender Podcast, der im Dialog zwischen Linus Neumann und Tim Pritlove die wichtigsten Themen und Ereignisse mit netzpolitischem Bezug aufgreift und diskutiert.",
     "poster": "http://logbuch-netzpolitik.de/wp-content/cache/podlove/92/de7e775cef6431203e4666e628294b/logbuchnetzpolitik_original.jpg",
-    "url": "http://logbuch-netzpolitik.de"
+    "link": "http://logbuch-netzpolitik.de"
   },
   "duration": "01:31:49",
   "chapters": [
@@ -44,11 +45,12 @@
   "audio": [
     "https://tracking.feedpress.it/link/13476/5107978/lnp205-wir-haben-cyber-gemacht-bevor-es-cool-war-und-so-hiess.m4a"
   ],
-  "theme": {
-    "main": "#79F279"
-  },
   "reference": {
     "share": "//podlove-player.surge.sh/share",
-    "config": "//podlove-player.surge.sh/fixtures/1318753b.json"
+    "config": "//podlove-player.surge.sh/fixtures/1318753b.json",
+    "origin": "http://logbuch-netzpolitik.de/lnp205-wir-haben-cyber-gemacht-bevor-es-cool-war-und-so-hiess"
+  },
+  "theme": {
+    "main": "rgb(218,207,164)"
   }
 }

@@ -3,12 +3,13 @@
   "subtitle": "MacBook Pro — USB-C — Pimp My Mac — HomeKit — Reaper — Bitcoin — Zcoin — Energie — Spiele — Beats Solo 3 Wireless — Blade Runner — Rouge One",
   "summary": "Zum letzten mal in diesem Jahr kommen wir in der Metaebene zusammen und sprechen noch mal ausführlich über jüngste Erfahrungen mit dem MacBook Pro, USB-C, HomeKit-Equipment und Bluetooth Kopfhörern. Dazu noch ein paar Spieleempfehlungen und Filmempfehlungen, fertig ist die Freak Show. Nächste Woche sind wieder allerdings noch mal da: wir senden eine kurze Sendung live vom 33C3 direkt von der Bühne des Sendezentrums.",
   "publicationDate": "2016-12-22T02:28:36.000Z",
+  "link": "http://freakshow.fm/fs189-mahatma-mahatma-nich",
   "show": {
     "title": "Freak Show",
     "subtitle": "Menschen! Technik! Sensationen!",
     "summary": "Die muntere Talk Show um Leben mit Technik, das Netz und Technikkultur. Bisweilen Apple-lastig aber selten einseitig. Wir leben und lieben Technologie und reden darüber. Mit Tim, hukl, roddi, Clemens und Denis. Freak Show hieß irgendwann mal mobileMacs.",
     "poster": "http://freakshow.fm/wp-content/cache/podlove/04/662a9d4edcf77ea2abe3c74681f509/freak-show_original.jpg",
-    "url": "http://freakshow.fm"
+    "link": "http://freakshow.fm"
   },
   "duration": "04:42:07",
   "chapters": [
@@ -116,11 +117,12 @@
   "audio": [
     "https://tracking.feedpress.it/link/13453/5013768/fs189-mahatma-mahatma-nich.m4a"
   ],
-  "theme": {
-    "main": "#8D79F2"
-  },
   "reference": {
     "share": "//podlove-player.surge.sh/share",
-    "config": "//podlove-player.surge.sh/fixtures/b9bfcf20.json"
+    "config": "//podlove-player.surge.sh/fixtures/b9bfcf20.json",
+    "origin": "http://freakshow.fm/fs189-mahatma-mahatma-nich"
+  },
+  "theme": {
+    "main": "rgb(251,237,186)"
   }
 }

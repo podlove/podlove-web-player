@@ -4,12 +4,13 @@
   "summary": "Jeder will ins Netz und trotz des Aufkommens der Mobilfunknetze sind die Festnetze immer noch die schnellste und zuverlässigste Methode, am Internet teilzunehmen. Doch so richtig zufrieden scheint niemand zu sein: komplizierte Tarife, unechte \"Flatrates\" und unklare Versorgungsrealitäten in Stadt und Land machen den Zugang zur \"Datenautobahn\" knifflig bis unmöglich. Dies hat natürlich auch Gründe, nur sind diese wenig bekannt.\n\nIm Gespräch mit Tim Pritlove gibt Clemens Schrimpe einen Einblick in die Geschichte der Netzversorgung, die heutige Technik und die Gründe, warum die DSL-Anschlüsse häufig nicht das liefern, was sie könnten und was in der Zukunft für neue Probleme hinsichtlich der Dienstgüte und Netzneutralität zu erwarten ist.\n\nThemen: DFÜ in den 80ern; X.25; Telefontarife in Berlin; Tarife nach Mondphase; Dortmund und Karlsruhe als Quellorte des deutschen Internets; der ISP-Boom des Web 1.0; Ausbaugarantien des Festnetzes; Internetversorgung in Island; die Einführung von ISDN nach der Wiedervereinigung; Irrweg Glasfaser; Aufkommen der DSL-Technik; Struktur eines DSL-Anschlusses; die ATM-Infrastruktur; Transfer-Hierarchien durch Multiplexing; Sinn und Unsinn der Regionaltarife; der Vormarsch von Gigabit Ethernet; Warum es in kleinen Orten kein schnelles Internet gibt und warum Telekom-Konkurrenten meistens keine Chance haben; der Niedergang des ISDN-Netzes; Upstream vs. Downstream; DSL-Profile; Symmetrisches DSL; feste Bandbreitenberechnung vs. technischer Machbarkeit schnellerer DSL-Verbindungen; Untervermietung der DSL-Infrastruktur; DSL Training; Umfang der Kupferleitung-Infrastruktur; Glasfasern im Boden, U-Bahn-Schächten, Flüssen und Kanälen; Regulierung und Deregulierung des Netzmarkts; Provider-Kooperation verboten; die Datenautobahn; volkswirtschaftlicher Nutzen von hohen Bandbreiten; Internet über Kabelfernsehnetze; LTE als Ergänzung des Festnetzes; Netzneutralität und Dienstgüte; Zwangsproxies und der Eingriff in den Datenstrom; bezahlte Bevorzugung einzelner Datendienste oder Anbieter.",
   "publicationDate": "2012-01-22T01:44:51.000Z",
   "poster": "http://cre.fm/wp-content/cache/podlove/05/a1794bbe9af91d18652ab653eb1a04/cre191-internet-im-festnetz_original.jpg",
+  "link": "http://cre.fm/cre191-internet-im-festnetz",
   "show": {
     "title": "CRE: Technik, Kultur, Gesellschaft",
     "subtitle": "Der Interview-Podcast mit Tim Pritlove",
     "summary": "Intensive und ausführliche Gespräche über Themen aus Technik, Kultur und Gesellschaft, das ist CRE. Interessante Gesprächspartner stehen Rede und Antwort zu Fragen, die man normalerweise selten gestellt bekommt. CRE möchte  aufklären, weiterbilden und unterhalten.",
     "poster": "http://cre.fm/wp-content/cache/podlove/6b/8074d85b886d8dedb4945715694ba7/cre-technik-kultur-gesellschaft_original.jpg",
-    "url": "http://cre.fm"
+    "link": "http://cre.fm"
   },
   "duration": "03:07:20",
   "chapters": [
@@ -125,11 +126,9 @@
   "audio": [
     "https://tracking.feedpress.it/link/13440/1885503/cre191-internet-im-festnetz.m4a"
   ],
-  "theme": {
-    "main": "#F28379"
-  },
   "reference": {
     "share": "//podlove-player.surge.sh/share",
-    "config": "//podlove-player.surge.sh/fixtures/99c8bdb6.json"
+    "config": "//podlove-player.surge.sh/fixtures/99c8bdb6.json",
+    "origin": "http://cre.fm/cre191-internet-im-festnetz"
   }
 }

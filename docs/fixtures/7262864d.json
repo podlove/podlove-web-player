@@ -3,12 +3,13 @@
   "subtitle": "Telefonnetze — Messenger — Mac Onboarding — macOS Sierra — I/O Ports — ApplePay — Blitzschutz — iOS 10 — iTunes Match — Brexit",
   "summary": "Für unsere heutige Sendung haben wir uns Tobias Engel eingeladen, der seit Äonen die Telefonnetze erforscht und jüngst auf dem Chaos Communication Congress das \"Sicherheitsmodell\" des Telefonnetz-Protokolls SS7 zerlegt und für viel Aufruhr gesorgt hat. Wir reden über die aktuellen Trends in dem Bereich und über seine Erfahrungen als relativ neuer OSX-Nutzer. Im weiteren lassen wir noch mal die I/O-Port-Diskussion aufflammen und sprechen über ApplePay und seinen Nutzen.",
   "publicationDate": "2016-07-13T23:31:53.000Z",
+  "link": "http://freakshow.fm/fs181-und-ich-hab-selten-hals",
   "show": {
     "title": "Freak Show",
     "subtitle": "Menschen! Technik! Sensationen!",
     "summary": "Die muntere Talk Show um Leben mit Technik, das Netz und Technikkultur. Bisweilen Apple-lastig aber selten einseitig. Wir leben und lieben Technologie und reden darüber. Mit Tim, hukl, roddi, Clemens und Denis. Freak Show hieß irgendwann mal mobileMacs.",
     "poster": "http://freakshow.fm/wp-content/cache/podlove/04/662a9d4edcf77ea2abe3c74681f509/freak-show_original.jpg",
-    "url": "http://freakshow.fm"
+    "link": "http://freakshow.fm"
   },
   "duration": "03:29:00",
   "chapters": [
@@ -84,11 +85,12 @@
   "audio": [
     "https://tracking.feedpress.it/link/13453/3869520/fs181-und-ich-hab-selten-hals.m4a"
   ],
-  "theme": {
-    "main": "#F29379"
-  },
   "reference": {
     "share": "//podlove-player.surge.sh/share",
-    "config": "//podlove-player.surge.sh/fixtures/7262864d.json"
+    "config": "//podlove-player.surge.sh/fixtures/7262864d.json",
+    "origin": "http://freakshow.fm/fs181-und-ich-hab-selten-hals"
+  },
+  "theme": {
+    "main": "rgb(251,237,186)"
   }
 }

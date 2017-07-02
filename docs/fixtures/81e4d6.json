@@ -3,12 +3,13 @@
   "subtitle": "",
   "summary": "Holgi hat nichts erlebt und Tim nur schlechte Veranstaltungen besucht. Die besten Voraussetzungen für eine Unterhaltsgala, die ihren eigenen Schatten jagt. Dafür ist sie auch nicht so lang. Bitte weitergehen! Hier gibt es nichts zu sehen! Und schon gar nicht zu hören! Lauft! Lauft! LAUFT!!!",
   "publicationDate": "2012-09-03T14:48:42.000Z",
+  "link": "http://not-safe-for-work.de/nsfw056-regensburg-ist-ueberall/",
   "show": {
     "title": "Not Safe For Work",
     "subtitle": "Die Internationale Unterhaltungsgala mit Tim Pritlove und Holger Klein",
     "summary": "NSFW ist unkonventionell, unregelmäßig, unsinnig und ungemein unanständig. Garantiert mindestens zwei Worte pro Sendung, die man nicht auf der Arbeit sagen sollte. NSFW sollte nicht zu ernst genommen werden und selbstverständlich als Richtlinie aller Eurer künftigen Handlungen gelten.",
     "poster": "http://not-safe-for-work.de/wp-content/cache/podlove/0f/63751ecd7feba0789d91d4f9a45191/not-safe-for-work_original.jpg",
-    "url": "http://not-safe-for-work.de"
+    "link": "http://not-safe-for-work.de"
   },
   "duration": "02:37:20",
   "chapters": [
@@ -78,13 +79,14 @@
     }
   ],
   "audio": [
-    "http://tracking.feedpress.it/link/13444/1886719/nsfw056-regensburg-ist-ueberall.m4a"
+    "https://tracking.feedpress.it/link/13444/1886719/nsfw056-regensburg-ist-ueberall.m4a"
   ],
-  "theme": {
-    "main": "#79EAF2"
-  },
   "reference": {
     "share": "//podlove-player.surge.sh/share",
-    "config": "//podlove-player.surge.sh/fixtures/81e4d6.json"
+    "config": "//podlove-player.surge.sh/fixtures/81e4d6.json",
+    "origin": "http://not-safe-for-work.de/nsfw056-regensburg-ist-ueberall/"
+  },
+  "theme": {
+    "main": "rgb(242,156,148)"
   }
 }

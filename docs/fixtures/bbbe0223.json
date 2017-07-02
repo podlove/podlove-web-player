@@ -3,12 +3,13 @@
   "subtitle": "Feedback — Clean Install — Apple vs. FBI — Filme — Systemisches Versagen — Bitcoin — Podcasts Connect — Gravitationswellen — Star Wars — Crowdfunding — 23 im Theater — GWSW — Ok Go — Vector Networks",
   "summary": "Diese Sendung widmen wir Peter Lustig, der diese Woche verstarb. Viel Spaß in der Cloud. Wir Zurückgebliebenen reden dafür wie gewohnt über allerlei Kram mit Lob (Privacy) und Tadel (Podcasts) für Apple und für unsere Verhältnisse reden wir viel über Theater. Das muss als Zusammenfassung reichen, die Sendung soll ja schließlich auch bald mal erscheinen.",
   "publicationDate": "2016-02-25T02:25:17.000Z",
+  "link": "http://freakshow.fm/fs172-sendeeinsatzkommando",
   "show": {
     "title": "Freak Show",
     "subtitle": "Menschen! Technik! Sensationen!",
     "summary": "Die muntere Talk Show um Leben mit Technik, das Netz und Technikkultur. Bisweilen Apple-lastig aber selten einseitig. Wir leben und lieben Technologie und reden darüber. Mit Tim, hukl, roddi, Clemens und Denis. Freak Show hieß irgendwann mal mobileMacs.",
     "poster": "http://freakshow.fm/wp-content/cache/podlove/04/662a9d4edcf77ea2abe3c74681f509/freak-show_original.jpg",
-    "url": "http://freakshow.fm"
+    "link": "http://freakshow.fm"
   },
   "duration": "04:31:30",
   "chapters": [
@@ -132,11 +133,12 @@
   "audio": [
     "https://tracking.feedpress.it/link/13453/2683090/fs172-sendeeinsatzkommando.m4a"
   ],
-  "theme": {
-    "main": "#7993F2"
-  },
   "reference": {
     "share": "//podlove-player.surge.sh/share",
-    "config": "//podlove-player.surge.sh/fixtures/bbbe0223.json"
+    "config": "//podlove-player.surge.sh/fixtures/bbbe0223.json",
+    "origin": "http://freakshow.fm/fs172-sendeeinsatzkommando"
+  },
+  "theme": {
+    "main": "rgb(251,237,186)"
   }
 }

@@ -4,12 +4,13 @@
   "summary": "Das Brot war einer der Schlüssel zur Entwicklung des Menschen zur dominanten Spezies auf diesem Planeten und bis heute ist es ein unverzichtbares Grundnahrungsmittel. Doch wie mit vielen grundlegenden Dingen geht das Wissen und Handwerk rund um diese Kulturtechnik langsam verloren bzw. wird sie durch industrielle Trends verzerrt. Ich spreche mit Lutz Geißler, der sich selbst das Brot backen als Hobby erarbeitet und mittlerweile zu seinem Beruf gemacht hat über das Wesen des Brots, die Herstellung von Sauer- und Hefeteigen und was alles dazugehört, ein rundum vollwertiges Brot herzustellen.",
   "publicationDate": "2016-11-19T01:09:57.000Z",
   "poster": "http://cre.fm/wp-content/cache/podlove/d4/066b2fd809eb200edb814ce4c99011/cre213-brot_original.jpg",
+  "link": "http://cre.fm/cre213-brot",
   "show": {
     "title": "CRE: Technik, Kultur, Gesellschaft",
     "subtitle": "Der Interview-Podcast mit Tim Pritlove",
     "summary": "Intensive und ausführliche Gespräche über Themen aus Technik, Kultur und Gesellschaft, das ist CRE. Interessante Gesprächspartner stehen Rede und Antwort zu Fragen, die man normalerweise selten gestellt bekommt. CRE möchte  aufklären, weiterbilden und unterhalten.",
     "poster": "http://cre.fm/wp-content/cache/podlove/6b/8074d85b886d8dedb4945715694ba7/cre-technik-kultur-gesellschaft_original.jpg",
-    "url": "http://cre.fm"
+    "link": "http://cre.fm"
   },
   "duration": "02:55:53",
   "chapters": [
@@ -101,11 +102,9 @@
   "audio": [
     "https://tracking.feedpress.it/link/13440/4816854/cre213-brot.m4a"
   ],
-  "theme": {
-    "main": "#D2F279"
-  },
   "reference": {
     "share": "//podlove-player.surge.sh/share",
-    "config": "//podlove-player.surge.sh/fixtures/7ff8290a.json"
+    "config": "//podlove-player.surge.sh/fixtures/7ff8290a.json",
+    "origin": "http://cre.fm/cre213-brot"
   }
 }
