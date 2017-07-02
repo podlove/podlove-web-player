@@ -6,7 +6,7 @@ navigation: 3
 
 # Theming
 
-<div id="example"></div>
+<p id="example"></p>
 <script type="text/javascript" src="https://cdn.rawgit.com/DavidDurman/FlexiColorPicker/ed85fa3c/colorpicker.min.js"></script>
 <link rel="stylesheet" href="https://cdn.rawgit.com/DavidDurman/FlexiColorPicker/ed85fa3c/themes.css">
 <script src="{{ 'embed.js' | relative_url }}"></script>
@@ -17,8 +17,8 @@ navigation: 3
 
   function setThemeConfig(theme) {
       var themeConfig = document.getElementById('theme-config');
-      var config = ['{\n',
-          '   theme: {\n'
+      var config = [{\n',
+          '    theme: {\n'
       ];
 
       if (theme.main) {
@@ -31,8 +31,8 @@ navigation: 3
       }
 
       config.push('\n');
-      config.push('   }\n');
-      config.push('}')
+      config.push('    }\n');
+      config.push('  }');
 
       themeConfig.textContent = config.join('');
   }
@@ -74,14 +74,24 @@ navigation: 3
     <div class="row">
         <div class="column">
             <h4>Main Color:</h4>
-            <div id="main-picker" class="cp-default color-picker"></div>
+            <div id="main-picker" class="cp-small color-picker"></div>
         </div>
         <div class="column">
             <h4>Highlight Color:</h4>
-            <div id="highlight-picker" class="cp-default color-picker"></div>
+            <div id="highlight-picker" class="cp-small color-picker"></div>
         </div>
     </div>
 </div>
+
+<p>
+<pre id="theme-config">
+  {
+    theme: {
+      main: "#2B8AC6"
+    }
+  }
+</pre>
+</p>
 
 ## Color Calculation
 
