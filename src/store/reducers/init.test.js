@@ -1,5 +1,5 @@
 import test from 'ava'
-import { poster, subtitle, title, reference, mode, showTitle, audio } from './init'
+import { reference, display, audio } from './init'
 
 let testAction
 
@@ -57,147 +57,13 @@ test.beforeEach(t => {
   }
 })
 
-// POSTER TESTS
-test(`poster: it is a reducer function`, t => {
-  t.is(typeof poster, 'function')
-})
-
-test(`poster: it extracts the episode poster`, t => {
-  const result = poster('', testAction)
-  t.is(result, '//episode/poster')
-})
-
-test(`poster: it extracts the show poster if episode is not available`, t => {
-  delete testAction.payload.poster
-  const result = poster('', testAction)
-  t.is(result, '//show/poster')
-})
-
-test(`poster: it does nothing if not the init action is dispatched`, t => {
-  const result = poster('foobar', {
-    type: 'NOT_A_REAL_TYPE'
-  })
-  t.is(result, 'foobar')
-})
-
-test(`poster: it has a default fallback if a missing state is provided`, t => {
-  const result = poster(undefined, {
-    type: 'NOT_A_REAL_TYPE'
-  })
-  t.is(result, '')
-})
-
-test(`poster: it returns null if neither an episode poster nor an show poster is defined`, t => {
-  const result = poster('', {
-    type: 'INIT',
-    payload: {}
-  })
-  t.is(result, null)
-})
-
-// SUBTITLE TESTS
-test(`subtitle: it is a reducer function`, t => {
-  t.is(typeof subtitle, 'function')
-})
-
-test(`subtitle: it extracts the subtitle`, t => {
-  const result = subtitle('', testAction)
-  t.is(result, 'subtitle')
-})
-
-test(`subtitle: it returns null if no subtitle is available`, t => {
-  const result = subtitle('foo', {
-    type: 'INIT',
-    payload: {}
-  })
-  t.is(result, null)
-})
-
-test(`subtitle: it does nothing if not the init action is dispatched`, t => {
-  const result = subtitle('foobar', {
-    type: 'NOT_A_REAL_TYPE'
-  })
-  t.is(result, 'foobar')
-})
-
-test(`subtitle: it has a default fallback if a missing state is provided`, t => {
-  const result = subtitle(undefined, {
-    type: 'NOT_A_REAL_TYPE'
-  })
-  t.is(result, '')
-})
-
-// TITLE TESTS
-test(`title: it is a reducer function`, t => {
-  t.is(typeof title, 'function')
-})
-
-test(`title: it extracts the title`, t => {
-  const result = title('', testAction)
-  t.is(result, 'title')
-})
-
-test(`title: it returns null if no title is available`, t => {
-  const result = title('foo', {
-    type: 'INIT',
-    payload: {}
-  })
-  t.is(result, null)
-})
-
-test(`title: it does nothing if not the init action is dispatched`, t => {
-  const result = title('foobar', {
-    type: 'NOT_A_REAL_TYPE'
-  })
-  t.is(result, 'foobar')
-})
-
-test(`title: it has a default fallback if a missing state is provided`, t => {
-  const result = title(undefined, {
-    type: 'NOT_A_REAL_TYPE'
-  })
-  t.is(result, '')
-})
-
-// SHOW TITLE TESTS
-test(`showTitle: it is a reducer function`, t => {
-  t.is(typeof showTitle, 'function')
-})
-
-test(`showTitle: it extracts the showTitle`, t => {
-  const result = showTitle('', testAction)
-  t.is(result, 'showTitle')
-})
-
-test(`showTitle: it returns null if no showTitle is available`, t => {
-  const result = showTitle('foo', {
-    type: 'INIT',
-    payload: {}
-  })
-  t.is(result, null)
-})
-
-test(`showTitle: it does nothing if not the init action is dispatched`, t => {
-  const result = showTitle('foobar', {
-    type: 'NOT_A_REAL_TYPE'
-  })
-  t.is(result, 'foobar')
-})
-
-test(`showTitle: it has a default fallback if a missing state is provided`, t => {
-  const result = showTitle(undefined, {
-    type: 'NOT_A_REAL_TYPE'
-  })
-  t.is(result, '')
-})
-
 // REFERENCE TESTS
 test(`reference: it is a reducer function`, t => {
   t.is(typeof reference, 'function')
 })
 
 test(`reference: it extracts the references`, t => {
-  const result = reference('', testAction)
+  const result = reference({}, testAction)
   t.deepEqual(result, {
     config: '//config/reference',
     share: '//share/reference',
@@ -207,7 +73,7 @@ test(`reference: it extracts the references`, t => {
 
 test(`reference: it returns null if a reference is available`, t => {
   delete testAction.payload.reference.share
-  let result = reference('foo', testAction)
+  let result = reference({}, testAction)
   t.deepEqual(result, {
     config: '//config/reference',
     origin: '//origin/reference',
@@ -215,7 +81,7 @@ test(`reference: it returns null if a reference is available`, t => {
   })
 
   delete testAction.payload.reference.config
-  result = reference('foo', testAction)
+  result = reference({}, testAction)
   t.deepEqual(result, {
     origin: '//origin/reference',
     config: null,
@@ -223,7 +89,7 @@ test(`reference: it returns null if a reference is available`, t => {
   })
 
   delete testAction.payload.reference.origin
-  result = reference('foo', testAction)
+  result = reference({}, testAction)
   t.deepEqual(result, {
     origin: null,
     config: null,
@@ -245,24 +111,24 @@ test(`reference: it has a default fallback if a missing state is provided`, t =>
   t.deepEqual(result, {})
 })
 
-// MODE TESTS
-test(`mode: it is a reducer function`, t => {
-  t.is(typeof mode, 'function')
+// display TESTS
+test(`display: it is a reducer function`, t => {
+  t.is(typeof display, 'function')
 })
 
-test(`mode: it extracts the mode`, t => {
-  testAction.payload.mode = 'shared'
-  const result = mode('', testAction)
-  t.is(result, 'shared')
+test(`display: it extracts the display`, t => {
+  testAction.payload.display = 'embed'
+  const result = display('', testAction)
+  t.is(result, 'embed')
 })
 
-test(`mode: it returns native if a mode is not available`, t => {
-  let result = mode(undefined, testAction)
+test(`display: it returns native if a display is not available`, t => {
+  let result = display(undefined, testAction)
   t.is(result, 'native')
 })
 
-test(`mode: it does nothing if not the init action is dispatched`, t => {
-  const result = mode('foobar', {
+test(`display: it does nothing if not the init action is dispatched`, t => {
+  const result = display('foobar', {
     type: 'NOT_A_REAL_TYPE'
   })
   t.is(result, 'foobar')

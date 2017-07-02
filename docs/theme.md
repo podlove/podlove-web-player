@@ -70,6 +70,16 @@ navigation: 3
 
 </script>
 
+<p>
+<pre id="theme-config">
+  {
+    theme: {
+      main: "#2B8AC6"
+    }
+  }
+</pre>
+</p>
+
 <div class="container">
     <div class="row">
         <div class="column">
@@ -83,18 +93,8 @@ navigation: 3
     </div>
 </div>
 
-<p>
-<pre id="theme-config">
-  {
-    theme: {
-      main: "#2B8AC6"
-    }
-  }
-</pre>
-</p>
-
 ## Color Calculation
 
 The player requires at least one main color. If not provided the default color will be used.
-Without setting a highlight color the essential control elements are colored black or white depending on a calculated <a href="https://www.w3.org/TR/WCAG20/#contrast-ratiodef">WCGA contrast ratio</a>.
+Without setting a highlight color the essential control elements are colored black or white depending on a calculated [WCGA contrast ratio](https://www.w3.org/TR/WCAG20/#contrast-ratiodef).
 With a highlight color in place these control elements will be colored accordingly.

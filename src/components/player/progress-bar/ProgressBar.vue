@@ -1,7 +1,7 @@
 <template>
   <div class="progress-bar">
-    <ProgressComponent />
-    <TimerComponent />
+    <ProgressComponent></ProgressComponent>
+    <TimerComponent></TimerComponent>
   </div>
 </template>
 

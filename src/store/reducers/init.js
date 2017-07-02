@@ -1,45 +1,9 @@
 import { get } from 'lodash'
 
-const subtitle = (state = '', action) => {
+const display = (state = 'native', action) => {
   switch (action.type) {
     case 'INIT':
-      return action.payload.subtitle || null
-    default:
-      return state
-  }
-}
-
-const mode = (state = 'native', action) => {
-  switch (action.type) {
-    case 'INIT':
-      return action.payload.mode || state
-    default:
-      return state
-  }
-}
-
-const poster = (state = '', action) => {
-  switch (action.type) {
-    case 'INIT':
-      return get(action.payload, 'poster') || get(action.payload, ['show', 'poster']) || null
-    default:
-      return state
-  }
-}
-
-const title = (state = '', action) => {
-  switch (action.type) {
-    case 'INIT':
-      return action.payload.title || null
-    default:
-      return state
-  }
-}
-
-const showTitle = (state = '', action) => {
-  switch (action.type) {
-    case 'INIT':
-      return get(action.payload, ['show', 'title']) || null
+      return action.payload.display || state
     default:
       return state
   }
@@ -48,11 +12,12 @@ const showTitle = (state = '', action) => {
 const reference = (state = {}, action) => {
   switch (action.type) {
     case 'INIT':
-      return Object.assign({}, {
+      return {
+        ...state,
         config: get(action.payload, ['reference', 'config'], null),
         share: get(action.payload, ['reference', 'share'], null),
         origin: get(action.payload, ['reference', 'origin'], null)
-      })
+      }
     default:
       return state
   }
@@ -68,11 +33,7 @@ const audio = (state = {}, action) => {
 }
 
 export {
-  poster,
-  subtitle,
-  title,
-  showTitle,
   reference,
-  mode,
+  display,
   audio
 }
