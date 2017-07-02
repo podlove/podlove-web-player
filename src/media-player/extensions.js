@@ -17,11 +17,16 @@ export default (player, { onLoad }) => {
 
   // Safe Play
   player.play = (sprite, internal) => {
-    if (!loading) {
-      loadPlayer()
-    } else {
-      howlerPlay(sprite, internal)
+    // honestly, this should be part of core functionality, prevents nasty race conditions...
+    if (player.playing(sprite)) {
+      return
     }
+
+    if (!loading) {
+      return loadPlayer()
+    }
+
+    howlerPlay(sprite, internal)
   }
 
   // Load Hooks
