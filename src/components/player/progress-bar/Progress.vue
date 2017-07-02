@@ -8,7 +8,7 @@
       @input="onInput"
       @mousemove="onMouseMove"
       @mouseout="onMouseOut"
-    />
+    >
     <span class="progress-range" :style="rangeStyle(theme)"></span>
     <span class="progress-buffer" :style="bufferStyle(theme, buffer, duration)"></span>
     <span v-for="(quantile, index) in quantiles" class="progress-track" :style="trackStyle(theme, duration, quantile)" :key="index"></span>
@@ -55,25 +55,29 @@
       let playtime = this.$select('playtime')
       let duration = this.$select('duration')
       let theme = this.$select('theme')
+      let ghost = this.$select('ghost')
 
       return {
         playtime,
         duration,
         theme,
+        ghost,
 
         buffer: this.$select('buffer'),
         playstate: this.$select('playstate'),
         thumbPosition: relativePosition(playtime, duration),
         quantiles: this.$select('quantiles'),
 
-        ghost: this.$select('ghost'),
-        ghostPosition: 0,
+        ghostPosition: relativePosition(ghost.time, duration),
         thumbActive: false
       }
     },
     watch: {
       playtime: function (time) {
         this.thumbPosition = relativePosition(time, this.duration)
+      },
+      ghost: function (ghost) {
+        this.ghostPosition = relativePosition(ghost.time, this.duration)
       }
     },
     methods: {
@@ -97,7 +101,7 @@
 
         this.thumbAnimated = true
         this.thumbActive = true
-        this.ghostPosition = relativePosition(event.offsetX, event.target.clientWidth)
+
         store.dispatch(store.actions.simulatePlaytime(this.duration * event.offsetX / event.target.clientWidth))
         store.dispatch(store.actions.enableGhostMode())
       },

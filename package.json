@@ -26,7 +26,8 @@
   ],
   "scripts": {
     "dist:clean": "mkdir -p dist && rm -rf dist/*",
-    "docs": "cd docs && bundle install && jekyll build && cd .. && cp -R docs/fixtures/* dist/fixtures",
+    "postinstall": "cd docs && bundle install",
+    "docs": "jekyll build --source docs --destination dist && cp -R docs/fixtures/* dist/fixtures",
     "webpack:dev": "webpack-dashboard -- webpack-dev-server --content-base dist/ --progress --hot --inline --config src/webpack.config.js",
     "webpack:build": "NODE_ENV='production' webpack --config src/webpack.config.js",
     "build": "npm run webpack:build",

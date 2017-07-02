@@ -11,8 +11,14 @@ const setChapter = (chapterIndex) => ({
   payload: chapterIndex
 })
 
+const updateChapter = (playtime) => ({
+  type: 'UPDATE_CHAPTER',
+  payload: playtime
+})
+
 export {
   setChapter,
   nextChapter,
-  previousChapter
+  previousChapter,
+  updateChapter
 }

@@ -8,30 +8,30 @@
             components.controls.button.variant.retry
     }">
       <span class="inner" v-if="components.controls.button.variant.loading">
-        <LoadingIndicator />
+        <LoadingIndicator></LoadingIndicator>
       </span>
 
-      <PauseIcon :color="theme.player.actions.icon" v-if="components.controls.button.variant.playing" />
+      <PauseIcon :color="theme.player.actions.icon" v-if="components.controls.button.variant.playing"></PauseIcon>
 
-      <PlayIcon :color="theme.player.actions.icon" class="reset" v-if="components.controls.button.variant.pause" />
+      <PlayIcon size="21" :color="theme.player.actions.icon" class="reset" v-if="components.controls.button.variant.pause"></PlayIcon>
 
       <span class="inner" v-if="components.controls.button.variant.remaining">
-        <PlayIcon :color="theme.player.actions.icon" />
+        <PlayIcon size="21" :color="theme.player.actions.icon"></PlayIcon>
         <span class="label" :style="textStyle(theme)">{{ secondsToTime(playtime) }}</span>
       </span>
 
       <span class="inner" v-if="components.controls.button.variant.duration">
-        <PlayIcon :color="theme.player.actions.icon" />
+        <PlayIcon size="21" :color="theme.player.actions.icon"></PlayIcon>
         <span class="label" :style="textStyle(theme)">{{ secondsToTime(duration) }}</span>
       </span>
 
       <span class="inner" v-if="components.controls.button.variant.replay">
-        <PlayIcon :color="theme.player.actions.icon" />
+        <PlayIcon size="21" :color="theme.player.actions.icon"></PlayIcon>
         <span class="label" :style="textStyle(theme)">{{ $t('PLAYER.REPLAY') }}</span>
       </span>
 
       <span class="inner" v-if="components.controls.button.variant.retry">
-        <ReloadIcon :color="theme.player.actions.icon" />
+        <ReloadIcon :color="theme.player.actions.icon"></ReloadIcon>
         <span class="label" :style="textStyle(theme)">{{ $t('PLAYER.RETRY') }}</span>
       </span>
     </span>

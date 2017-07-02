@@ -6,19 +6,22 @@ export default (player, { onLoad }) => {
   // Maybe this could be a useful plugin
   const howlerPlay = player.play.bind(player)
   const howlerSeek = player.seek.bind(player)
-  let initialPlay = false
 
-  player.once('play', () => {
-    initialPlay = true
-  })
+  let loading = false
+
+  const loadPlayer = (sprite, internal) => {
+    onLoad()
+    howlerPlay(sprite, internal)
+    loading = true
+  }
 
   // Safe Play
   player.play = (sprite, internal) => {
-    if (!initialPlay) {
-      onLoad()
+    if (!loading) {
+      loadPlayer()
+    } else {
+      howlerPlay(sprite, internal)
     }
-
-    howlerPlay(sprite, internal)
   }
 
   // Load Hooks
