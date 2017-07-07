@@ -3,12 +3,13 @@
   "subtitle": "Chelsea Manning — Trump — Höcke — Botnetze",
   "summary": "In einer recht langen und vor allem recht nachdenklichen Folge eröffnen wir die Sendung mit einer Auseinandersetzung mit unserem Projekt selbst - was wir wollen, wo wir uns sehen und welche Grundhaltung wir für  unseren Podcast (und für die aktuelle Zeit) für angemessen halten. Danach müssen wir uns dem Unausweichlichen stellen und reflektieren das ganze Trump-Drama, das sich in den USA jetzt langsam abspielt. Zum Schluß blicken wir auf vergleichbare Tendenzen in Deutschland. Damit wir unseren eigentlichen Schwerpunkt noch halbwegs gerecht werden, blicken wir noch kurz auf ein paar Nachrichten über Botnetze.",
   "publicationDate": "2017-01-25T00:42:34.000Z",
+  "link": "http://logbuch-netzpolitik.de/lnp207-pressebrecher",
   "show": {
     "title": "Logbuch:Netzpolitik",
     "subtitle": "Einblicke und Ausblicke in das netzpolitische Geschehen",
     "summary": "Logbuch:Netzpolitik ist ein in der Regel wöchentlich erscheinender Podcast, der im Dialog zwischen Linus Neumann und Tim Pritlove die wichtigsten Themen und Ereignisse mit netzpolitischem Bezug aufgreift und diskutiert.",
     "poster": "http://logbuch-netzpolitik.de/wp-content/cache/podlove/92/de7e775cef6431203e4666e628294b/logbuchnetzpolitik_original.jpg",
-    "url": "http://logbuch-netzpolitik.de"
+    "link": "http://logbuch-netzpolitik.de"
   },
   "duration": "02:26:49",
   "chapters": [
@@ -76,11 +77,12 @@
   "audio": [
     "https://tracking.feedpress.it/link/13476/5202004/lnp207-pressebrecher.m4a"
   ],
-  "theme": {
-    "main": "#F2798B"
-  },
   "reference": {
     "share": "//podlove-player.surge.sh/share",
-    "config": "//podlove-player.surge.sh/fixtures/71f10c9.json"
+    "config": "//podlove-player.surge.sh/fixtures/71f10c9.json",
+    "origin": "http://logbuch-netzpolitik.de/lnp207-pressebrecher"
+  },
+  "theme": {
+    "main": "rgb(218,207,164)"
   }
 }

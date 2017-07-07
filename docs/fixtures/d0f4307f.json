@@ -3,12 +3,13 @@
   "subtitle": "",
   "summary": "Die zwei hoch sechste Sendung kommt ganz binär mit unterschiedlichen Meinungen der beiden Protagonisten zu nahezu allen Aspekten und lässt dabei kein Langweilerthema aus. Wir fachsimpeln über Piraten, Radio, Pferdepizza, Meteore und sprechende Schafe. Viel Spaß dabei.",
   "publicationDate": "2013-02-25T23:49:09.000Z",
+  "link": "http://not-safe-for-work.de/nsfw064-stuhl-im-hals/",
   "show": {
     "title": "Not Safe For Work",
     "subtitle": "Die Internationale Unterhaltungsgala mit Tim Pritlove und Holger Klein",
     "summary": "NSFW ist unkonventionell, unregelmäßig, unsinnig und ungemein unanständig. Garantiert mindestens zwei Worte pro Sendung, die man nicht auf der Arbeit sagen sollte. NSFW sollte nicht zu ernst genommen werden und selbstverständlich als Richtlinie aller Eurer künftigen Handlungen gelten.",
     "poster": "http://not-safe-for-work.de/wp-content/cache/podlove/0f/63751ecd7feba0789d91d4f9a45191/not-safe-for-work_original.jpg",
-    "url": "http://not-safe-for-work.de"
+    "link": "http://not-safe-for-work.de"
   },
   "duration": "03:27:31",
   "chapters": [
@@ -42,13 +43,14 @@
     }
   ],
   "audio": [
-    "http://tracking.feedpress.it/link/13444/1886711/nsfw064-stuhl-im-hals.m4a"
+    "https://tracking.feedpress.it/link/13444/1886711/nsfw064-stuhl-im-hals.m4a"
   ],
-  "theme": {
-    "main": "#79C2F2"
-  },
   "reference": {
     "share": "//podlove-player.surge.sh/share",
-    "config": "//podlove-player.surge.sh/fixtures/d0f4307f.json"
+    "config": "//podlove-player.surge.sh/fixtures/d0f4307f.json",
+    "origin": "http://not-safe-for-work.de/nsfw064-stuhl-im-hals/"
+  },
+  "theme": {
+    "main": "rgb(242,156,148)"
   }
 }

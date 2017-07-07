@@ -4,12 +4,13 @@
   "summary": "Geocaching ist ein Breitensport, der sich erst mit Hilfe von moderner Technologie – GPS und Internet – hat entwickeln können, der aber immer mehr Freunde findet. Erfahrende Geocacher verstecken teils auf knifflige Art und Weise kleine Schätze und viele machen sich auf, diese Ort zu finden. Der ferne Betrachter wundert sich dabei über Leute, die an den unmöglichsten Stellen nach Dingen suchen und der Teilnehmer verbindet den Ausflug ins Grüne mit einer ganz besonderen Aufgabe.\n\nRegine Heidorn ist eine erfahrene Geocacherin und hat schon mehr als tausend Verstecken ihr Geheimnis entlocken können. Im Gespräch mit Tim Pritlove gibt sie einen breiten Einblick in Entwicklung und Wesen des Geocachings, was den Reiz des Suchens und Versteckens ausmacht und welche besonderen Belohnungsmomente besonders für den gemeinen Nerd im Angebot sind.",
   "publicationDate": "2013-11-05T12:49:58.000Z",
   "poster": "http://cre.fm/wp-content/cache/podlove/4d/6d24bf65918945b7debdee7f42b9bb/cre204-geocaching_original.jpg",
+  "link": "http://cre.fm/cre204-geocaching",
   "show": {
     "title": "CRE: Technik, Kultur, Gesellschaft",
     "subtitle": "Der Interview-Podcast mit Tim Pritlove",
     "summary": "Intensive und ausführliche Gespräche über Themen aus Technik, Kultur und Gesellschaft, das ist CRE. Interessante Gesprächspartner stehen Rede und Antwort zu Fragen, die man normalerweise selten gestellt bekommt. CRE möchte  aufklären, weiterbilden und unterhalten.",
     "poster": "http://cre.fm/wp-content/cache/podlove/6b/8074d85b886d8dedb4945715694ba7/cre-technik-kultur-gesellschaft_original.jpg",
-    "url": "http://cre.fm"
+    "link": "http://cre.fm"
   },
   "duration": "02:55:04",
   "chapters": [
@@ -89,11 +90,9 @@
   "audio": [
     "https://tracking.feedpress.it/link/13440/1885490/cre204-geocaching.m4a"
   ],
-  "theme": {
-    "main": "#798DF2"
-  },
   "reference": {
     "share": "//podlove-player.surge.sh/share",
-    "config": "//podlove-player.surge.sh/fixtures/632c9ae3.json"
+    "config": "//podlove-player.surge.sh/fixtures/632c9ae3.json",
+    "origin": "http://cre.fm/cre204-geocaching"
   }
 }

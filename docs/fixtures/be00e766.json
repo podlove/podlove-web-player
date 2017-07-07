@@ -4,12 +4,13 @@
   "summary": "Das akustische Wahrnehmungssystem ist eines dieser unfassbaren Wunder der Evolution, das vom Menschen noch lange nicht vollständig verstanden ist. Trotzdem hat die Forschung in der Medizin, Biologie und Hirnforschung bereits eine so umfangreiche Vorstellung der Mechanismen erarbeitet, dass mittlerweile auch schwere Schädigungen des Hörsystems behoben oder zumindest teilweise umgangen werden können. Das Cochlea-Implantat stellt in diesem Zusammenhang die weitesten reichende Entwicklung dar, da hier akustische Signale direkt in der Hörschnecke elektrisch abgebildet werden können.\n\nAudiologe und Softwareentwickler Stefan Brill entwickelt entsprechende Algorithmen für die Signalverarbeitung und -erzeugung für solche Implantate und berichtet im Gespräch mit Tim Pritlove von der Funktionsweise des Gehörsystems vom Außenohr bis zum Hörnerv und mit welchen technischen Maßnahmen auch taube Menschen wieder zum Hören gebracht werden können.",
   "publicationDate": "2014-06-02T15:54:39.000Z",
   "poster": "http://cre.fm/wp-content/cache/podlove/49/d9563b86541b8dd8acc9625c31d580/cre206-das-ohr_original.jpg",
+  "link": "http://cre.fm/cre206-das-ohr",
   "show": {
     "title": "CRE: Technik, Kultur, Gesellschaft",
     "subtitle": "Der Interview-Podcast mit Tim Pritlove",
     "summary": "Intensive und ausführliche Gespräche über Themen aus Technik, Kultur und Gesellschaft, das ist CRE. Interessante Gesprächspartner stehen Rede und Antwort zu Fragen, die man normalerweise selten gestellt bekommt. CRE möchte  aufklären, weiterbilden und unterhalten.",
     "poster": "http://cre.fm/wp-content/cache/podlove/6b/8074d85b886d8dedb4945715694ba7/cre-technik-kultur-gesellschaft_original.jpg",
-    "url": "http://cre.fm"
+    "link": "http://cre.fm"
   },
   "duration": "04:09:15",
   "chapters": [
@@ -77,11 +78,12 @@
   "audio": [
     "https://tracking.feedpress.it/link/13440/1885488/cre206-das-ohr.m4a"
   ],
-  "theme": {
-    "main": "#79F2D4"
-  },
   "reference": {
     "share": "//podlove-player.surge.sh/share",
-    "config": "//podlove-player.surge.sh/fixtures/be00e766.json"
+    "config": "//podlove-player.surge.sh/fixtures/be00e766.json",
+    "origin": "http://cre.fm/cre206-das-ohr"
+  },
+  "theme": {
+    "main": "rgb(84,216,176)"
   }
 }

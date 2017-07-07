@@ -3,12 +3,13 @@
   "subtitle": "Diaabende — Currywurstbrunnen — EMF — CSD und Love Parade — IPv6 bei T-Mobile — re:publica — Malware und Ad-Networks — Flattr Plus — Podcasts und Werbung — Spiele — Audio — Bier",
   "summary": "Eine verrückte Sendung, in der wir nicht über Macs reden, dafür aber über viele andere lebenswichtige Dinge wie Currywurstbrunnen und Diaabende, Podcasting und Werbung berühren. Leider ohne Denis dafür aber wieder mit Letty! Aufnahme dieses Mal nicht so gut wie gewohnt, da vom Backup geholt. Die Festplatte hat mal wieder Streiche gespielt.",
   "publicationDate": "2016-05-12T17:13:39.000Z",
+  "link": "http://freakshow.fm/fs176-sein-deutsch-deterioriert-zunehmend",
   "show": {
     "title": "Freak Show",
     "subtitle": "Menschen! Technik! Sensationen!",
     "summary": "Die muntere Talk Show um Leben mit Technik, das Netz und Technikkultur. Bisweilen Apple-lastig aber selten einseitig. Wir leben und lieben Technologie und reden darüber. Mit Tim, hukl, roddi, Clemens und Denis. Freak Show hieß irgendwann mal mobileMacs.",
     "poster": "http://freakshow.fm/wp-content/cache/podlove/04/662a9d4edcf77ea2abe3c74681f509/freak-show_original.jpg",
-    "url": "http://freakshow.fm"
+    "link": "http://freakshow.fm"
   },
   "duration": "03:52:44",
   "chapters": [
@@ -108,11 +109,12 @@
   "audio": [
     "https://tracking.feedpress.it/link/13453/3313704/fs176-sein-deutsch-deterioriert-zunehmend.m4a"
   ],
-  "theme": {
-    "main": "#F279F2"
-  },
   "reference": {
     "share": "//podlove-player.surge.sh/share",
-    "config": "//podlove-player.surge.sh/fixtures/e761c5b.json"
+    "config": "//podlove-player.surge.sh/fixtures/e761c5b.json",
+    "origin": "http://freakshow.fm/fs176-sein-deutsch-deterioriert-zunehmend"
+  },
+  "theme": {
+    "main": "rgb(251,237,186)"
   }
 }

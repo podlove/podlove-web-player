@@ -1,7 +1,7 @@
 @import 'variables';
 
 .podlove {
-   &.share {
+   &.embed {
       height: 100%;
 
       .header {
@@ -28,8 +28,8 @@
           .close {
             display: block;
             position: fixed;
-            top: $padding / 2;
-            right: $padding / 2;
+            top: $padding / 1.5;
+            right: $padding / 1.5;
           }
         }
 
@@ -42,7 +42,8 @@
         .tab-body.active {
           top: $tabs-header-height;
           width: 100%;
-          height: calc(100% - #{$tabs-header-height})
+          height: calc(100% - #{$tabs-header-height});
+          background: $background-color;
         }
       }
     }

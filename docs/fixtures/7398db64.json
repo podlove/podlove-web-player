@@ -3,12 +3,13 @@
   "subtitle": "Bitcoin Economy — Nokia — Tastaturen — Google IO — Server — Damen und Herren — Towel Day — Kopfhörer — Das Geständnis — Dateisysteme — Star Wars",
   "summary": "Eine Sendung ohne hukl und Clemens, dafür begrüßen wir wieder einmal Letty in unserer Runde. Ein Internet-Mem bringt Star Wars wieder auf den Thementisch und auch der heutige Towel Day muss diskutiert werden. Wir quatschen ein wenig über Googles neueste Ankündigungen und Tim legt ein Geständnis ab.",
   "publicationDate": "2016-05-26T00:37:55.000Z",
+  "link": "http://freakshow.fm/fs177-talk-nerdy-to-me",
   "show": {
     "title": "Freak Show",
     "subtitle": "Menschen! Technik! Sensationen!",
     "summary": "Die muntere Talk Show um Leben mit Technik, das Netz und Technikkultur. Bisweilen Apple-lastig aber selten einseitig. Wir leben und lieben Technologie und reden darüber. Mit Tim, hukl, roddi, Clemens und Denis. Freak Show hieß irgendwann mal mobileMacs.",
     "poster": "http://freakshow.fm/wp-content/cache/podlove/04/662a9d4edcf77ea2abe3c74681f509/freak-show_original.jpg",
-    "url": "http://freakshow.fm"
+    "link": "http://freakshow.fm"
   },
   "duration": "04:00:20",
   "chapters": [
@@ -132,11 +133,12 @@
   "audio": [
     "https://tracking.feedpress.it/link/13453/3441719/fs177-talk-nerdy-to-me.m4a"
   ],
-  "theme": {
-    "main": "#79ACF2"
-  },
   "reference": {
     "share": "//podlove-player.surge.sh/share",
-    "config": "//podlove-player.surge.sh/fixtures/7398db64.json"
+    "config": "//podlove-player.surge.sh/fixtures/7398db64.json",
+    "origin": "http://freakshow.fm/fs177-talk-nerdy-to-me"
+  },
+  "theme": {
+    "main": "rgb(251,237,186)"
   }
 }

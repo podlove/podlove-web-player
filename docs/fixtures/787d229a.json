@@ -3,12 +3,13 @@
   "subtitle": "Musikcover – 30C3 – Falträder – Podlove – Geschenke",
   "summary": "Wir starten ins neue Jahr mit einem Exkurs über Covermusik und tauchen irgendwann in die Nachlese des 30. Chaos Communication Congress ab, den Holgi nach Jahren dann sich auch mal gegeben hat. In dem Zuge schwadronieren wir wie gehabt  über dieses jenes. So sind wir halt, ne?",
   "publicationDate": "2014-01-13T20:51:03.000Z",
+  "link": "http://not-safe-for-work.de/nsfw080-realitaetsabstandsmanagement/",
   "show": {
     "title": "Not Safe For Work",
     "subtitle": "Die Internationale Unterhaltungsgala mit Tim Pritlove und Holger Klein",
     "summary": "NSFW ist unkonventionell, unregelmäßig, unsinnig und ungemein unanständig. Garantiert mindestens zwei Worte pro Sendung, die man nicht auf der Arbeit sagen sollte. NSFW sollte nicht zu ernst genommen werden und selbstverständlich als Richtlinie aller Eurer künftigen Handlungen gelten.",
     "poster": "http://not-safe-for-work.de/wp-content/cache/podlove/0f/63751ecd7feba0789d91d4f9a45191/not-safe-for-work_original.jpg",
-    "url": "http://not-safe-for-work.de"
+    "link": "http://not-safe-for-work.de"
   },
   "duration": "03:06:31",
   "chapters": [
@@ -46,13 +47,14 @@
     }
   ],
   "audio": [
-    "http://tracking.feedpress.it/link/13444/1886695/nsfw080-realitaetsabstandsmanagement.m4a"
+    "https://tracking.feedpress.it/link/13444/1886695/nsfw080-realitaetsabstandsmanagement.m4a"
   ],
-  "theme": {
-    "main": "#B6F279"
-  },
   "reference": {
     "share": "//podlove-player.surge.sh/share",
-    "config": "//podlove-player.surge.sh/fixtures/787d229a.json"
+    "config": "//podlove-player.surge.sh/fixtures/787d229a.json",
+    "origin": "http://not-safe-for-work.de/nsfw080-realitaetsabstandsmanagement/"
+  },
+  "theme": {
+    "main": "rgb(242,156,148)"
   }
 }

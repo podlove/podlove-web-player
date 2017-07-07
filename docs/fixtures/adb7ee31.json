@@ -3,12 +3,13 @@
   "subtitle": "Die Live-Show aus dem Sendezentrum auf dem 33C3",
   "summary": "Es war wieder Congress und wir entschlossen uns, eine weitere Freak Show auf der Bühne des Sendezentrums durchzuführen. Es geht um allerlei Belangloses und im Kern machen wir uns nur zum Horst. Aber das muss ja auch mal sein. Wir danken allen, die gekommen sind.",
   "publicationDate": "2017-01-03T16:12:54.000Z",
+  "link": "http://freakshow.fm/fs190-bitte-werfen-sie-eine-muenze-ein",
   "show": {
     "title": "Freak Show",
     "subtitle": "Menschen! Technik! Sensationen!",
     "summary": "Die muntere Talk Show um Leben mit Technik, das Netz und Technikkultur. Bisweilen Apple-lastig aber selten einseitig. Wir leben und lieben Technologie und reden darüber. Mit Tim, hukl, roddi, Clemens und Denis. Freak Show hieß irgendwann mal mobileMacs.",
     "poster": "http://freakshow.fm/wp-content/cache/podlove/04/662a9d4edcf77ea2abe3c74681f509/freak-show_original.jpg",
-    "url": "http://freakshow.fm"
+    "link": "http://freakshow.fm"
   },
   "duration": "01:34:15",
   "chapters": [
@@ -112,11 +113,12 @@
   "audio": [
     "https://tracking.feedpress.it/link/13453/5074213/fs190-bitte-werfen-sie-eine-muenze-ein.m4a"
   ],
-  "theme": {
-    "main": "#F2DA79"
-  },
   "reference": {
     "share": "//podlove-player.surge.sh/share",
-    "config": "//podlove-player.surge.sh/fixtures/adb7ee31.json"
+    "config": "//podlove-player.surge.sh/fixtures/adb7ee31.json",
+    "origin": "http://freakshow.fm/fs190-bitte-werfen-sie-eine-muenze-ein"
+  },
+  "theme": {
+    "main": "rgb(251,237,186)"
   }
 }

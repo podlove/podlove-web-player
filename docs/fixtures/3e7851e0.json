@@ -3,12 +3,13 @@
   "subtitle": "Langeweile auf extrem hohen Niveau",
   "summary": "Wir sind dann endlich mal wieder gemeinsam in Berlin und müssen wie gewohnt erst mal wieder in Form geraten. Daher gehen wir dann auch gleich mal einem Fake auf dem Leim und sind bei lokalen politischen Ereignissen weitgehend uninformiert. Kein Grund für uns, uns nicht als kompetent und besserwissend in Szene zu setzen und so schafft es eine weitere Ausgabe der Internationalen Unterhaltungsgala auf eure mobilen Abspielgeräte.",
   "publicationDate": "2013-10-21T17:58:41.000Z",
+  "link": "http://not-safe-for-work.de/nsfw076-blattfisch/",
   "show": {
     "title": "Not Safe For Work",
     "subtitle": "Die Internationale Unterhaltungsgala mit Tim Pritlove und Holger Klein",
     "summary": "NSFW ist unkonventionell, unregelmäßig, unsinnig und ungemein unanständig. Garantiert mindestens zwei Worte pro Sendung, die man nicht auf der Arbeit sagen sollte. NSFW sollte nicht zu ernst genommen werden und selbstverständlich als Richtlinie aller Eurer künftigen Handlungen gelten.",
     "poster": "http://not-safe-for-work.de/wp-content/cache/podlove/0f/63751ecd7feba0789d91d4f9a45191/not-safe-for-work_original.jpg",
-    "url": "http://not-safe-for-work.de"
+    "link": "http://not-safe-for-work.de"
   },
   "duration": "02:35:44",
   "chapters": [
@@ -74,13 +75,14 @@
     }
   ],
   "audio": [
-    "http://tracking.feedpress.it/link/13444/1886699/nsfw076-blattfisch.m4a"
+    "https://tracking.feedpress.it/link/13444/1886699/nsfw076-blattfisch.m4a"
   ],
-  "theme": {
-    "main": "#83F279"
-  },
   "reference": {
     "share": "//podlove-player.surge.sh/share",
-    "config": "//podlove-player.surge.sh/fixtures/3e7851e0.json"
+    "config": "//podlove-player.surge.sh/fixtures/3e7851e0.json",
+    "origin": "http://not-safe-for-work.de/nsfw076-blattfisch/"
+  },
+  "theme": {
+    "main": "rgb(242,156,148)"
   }
 }

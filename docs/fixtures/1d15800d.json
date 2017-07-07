@@ -85,7 +85,7 @@
     "https://tracking.feedpress.it/link/13476/4425887/lnp195-wlan-fahrtenbuch.m4a"
   ],
   "theme": {
-    "main": "#9779F2"
+    "primary": "#79BAF2"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

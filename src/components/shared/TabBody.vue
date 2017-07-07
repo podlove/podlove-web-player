@@ -1,5 +1,5 @@
 <template>
-  <div class="tab-body" :class="{active}" :style="bodyStyle(theme)">
+  <div class="tab-body" :class="{active}" :style="display === 'native' ? bodyStyle(theme) : {}">
     <slot></slot>
   </div>
 </template>
@@ -12,7 +12,8 @@
     props: ['active'],
     data () {
       return {
-        theme: this.$select('theme')
+        theme: this.$select('theme'),
+        display: this.$select('display')
       }
     },
     methods: {

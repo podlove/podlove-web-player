@@ -89,7 +89,7 @@
     "https://tracking.feedpress.it/link/13476/4912160/lnp203-unglueck-im-glueck-im-unglueck.m4a"
   ],
   "theme": {
-    "main": "#F279C4"
+    "primary": "#799BF2"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

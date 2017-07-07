@@ -3,12 +3,13 @@
   "subtitle": "",
   "summary": "Da sind wir wieder. Und während live während der Sendung die Bitcoin-Blase zumindest anplatzt unterhalten wir uns seelenruhig über James Bond, den Zeitschriftenmarkt, gratulieren Raul zum Bundesverdienstkreuz und über allerlei Befindlichkeiten.",
   "publicationDate": "2013-04-10T21:46:42.000Z",
+  "link": "http://not-safe-for-work.de/nsfw067-these-go-to-eleven/",
   "show": {
     "title": "Not Safe For Work",
     "subtitle": "Die Internationale Unterhaltungsgala mit Tim Pritlove und Holger Klein",
     "summary": "NSFW ist unkonventionell, unregelmäßig, unsinnig und ungemein unanständig. Garantiert mindestens zwei Worte pro Sendung, die man nicht auf der Arbeit sagen sollte. NSFW sollte nicht zu ernst genommen werden und selbstverständlich als Richtlinie aller Eurer künftigen Handlungen gelten.",
     "poster": "http://not-safe-for-work.de/wp-content/cache/podlove/0f/63751ecd7feba0789d91d4f9a45191/not-safe-for-work_original.jpg",
-    "url": "http://not-safe-for-work.de"
+    "link": "http://not-safe-for-work.de"
   },
   "duration": "02:35:50",
   "chapters": [
@@ -50,13 +51,14 @@
     }
   ],
   "audio": [
-    "http://tracking.feedpress.it/link/13444/1886708/nsfw067-these-go-to-eleven.m4a"
+    "https://tracking.feedpress.it/link/13444/1886708/nsfw067-these-go-to-eleven.m4a"
   ],
-  "theme": {
-    "main": "#F27D79"
-  },
   "reference": {
     "share": "//podlove-player.surge.sh/share",
-    "config": "//podlove-player.surge.sh/fixtures/c518fcd5.json"
+    "config": "//podlove-player.surge.sh/fixtures/c518fcd5.json",
+    "origin": "http://not-safe-for-work.de/nsfw067-these-go-to-eleven/"
+  },
+  "theme": {
+    "main": "rgb(242,156,148)"
   }
 }

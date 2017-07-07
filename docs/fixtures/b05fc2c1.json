@@ -3,12 +3,13 @@
   "subtitle": "",
   "summary": "Wir setzen unsere erotische Auseinandersetzung mit teutschen Dialekten fort und setzen uns intensiv mit neuen Bewerbungen für ein Hörerinnengrillen in Deutschland und aller Welt auseinander. Daneben versuchen wir die übermäßigen Bierlieferungen der letzten Zeit zu vertilgen und uns über die Sinnhaftigkeit der von uns bevölkerten sozialen Netze klar zu werden. Und wir analysieren die Effekte vergangener Crowdfunding-Aktionen und die Zwischenergebnisse aktueller Projekte.",
   "publicationDate": "2013-03-11T17:36:23.000Z",
+  "link": "http://not-safe-for-work.de/nsfw065-vollkornteutonen/",
   "show": {
     "title": "Not Safe For Work",
     "subtitle": "Die Internationale Unterhaltungsgala mit Tim Pritlove und Holger Klein",
     "summary": "NSFW ist unkonventionell, unregelmäßig, unsinnig und ungemein unanständig. Garantiert mindestens zwei Worte pro Sendung, die man nicht auf der Arbeit sagen sollte. NSFW sollte nicht zu ernst genommen werden und selbstverständlich als Richtlinie aller Eurer künftigen Handlungen gelten.",
     "poster": "http://not-safe-for-work.de/wp-content/cache/podlove/0f/63751ecd7feba0789d91d4f9a45191/not-safe-for-work_original.jpg",
-    "url": "http://not-safe-for-work.de"
+    "link": "http://not-safe-for-work.de"
   },
   "duration": "03:16:16",
   "chapters": [
@@ -42,13 +43,14 @@
     }
   ],
   "audio": [
-    "http://tracking.feedpress.it/link/13444/1886710/nsfw065-vollkornteutonen.m4a"
+    "https://tracking.feedpress.it/link/13444/1886710/nsfw065-vollkornteutonen.m4a"
   ],
-  "theme": {
-    "main": "#7BF279"
-  },
   "reference": {
     "share": "//podlove-player.surge.sh/share",
-    "config": "//podlove-player.surge.sh/fixtures/b05fc2c1.json"
+    "config": "//podlove-player.surge.sh/fixtures/b05fc2c1.json",
+    "origin": "http://not-safe-for-work.de/nsfw065-vollkornteutonen/"
+  },
+  "theme": {
+    "main": "rgb(242,156,148)"
   }
 }

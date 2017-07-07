@@ -3,12 +3,13 @@
   "subtitle": "",
   "summary": "In Erwartung unserer 63. Sendung hat der Papst pünktlich seinen Abgang erklärt und lässt uns mit Spekulationen über unsere Tauglichkeit für das Amt zurück. Da macht der Rosenmontag auch keinen Spaß, zumal wir uns mit den rheinischen Freuden ohnehin nicht identifizieren können. Also reden wir lieber über File Sharing, den Genitiv, alte Computer in England und künftige GEMA-Alternativen.",
   "publicationDate": "2013-02-11T20:53:39.000Z",
+  "link": "http://not-safe-for-work.de/nsfw063-pontifex-interruptus/",
   "show": {
     "title": "Not Safe For Work",
     "subtitle": "Die Internationale Unterhaltungsgala mit Tim Pritlove und Holger Klein",
     "summary": "NSFW ist unkonventionell, unregelmäßig, unsinnig und ungemein unanständig. Garantiert mindestens zwei Worte pro Sendung, die man nicht auf der Arbeit sagen sollte. NSFW sollte nicht zu ernst genommen werden und selbstverständlich als Richtlinie aller Eurer künftigen Handlungen gelten.",
     "poster": "http://not-safe-for-work.de/wp-content/cache/podlove/0f/63751ecd7feba0789d91d4f9a45191/not-safe-for-work_original.jpg",
-    "url": "http://not-safe-for-work.de"
+    "link": "http://not-safe-for-work.de"
   },
   "duration": "02:52:28",
   "chapters": [
@@ -38,13 +39,14 @@
     }
   ],
   "audio": [
-    "http://tracking.feedpress.it/link/13444/1886712/nsfw063-pontifex-interruptus.m4a"
+    "https://tracking.feedpress.it/link/13444/1886712/nsfw063-pontifex-interruptus.m4a"
   ],
-  "theme": {
-    "main": "#E4F279"
-  },
   "reference": {
     "share": "//podlove-player.surge.sh/share",
-    "config": "//podlove-player.surge.sh/fixtures/2b35214a.json"
+    "config": "//podlove-player.surge.sh/fixtures/2b35214a.json",
+    "origin": "http://not-safe-for-work.de/nsfw063-pontifex-interruptus/"
+  },
+  "theme": {
+    "main": "rgb(242,156,148)"
   }
 }

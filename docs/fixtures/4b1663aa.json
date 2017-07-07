@@ -3,12 +3,13 @@
   "subtitle": "Pokémon Go — Podcast Apps — Bloggen — Urlaub — Health Tracking — EMF — Windows — Kopfhörerbuchsen — Fahrstühle — Per Anhalter durch die Galaxis — Passwörter — Python — Emerging Technology",
   "summary": "Nach einer sechswöchigen Auszeit meldet sich das Team zurück aus zahlreichen Urlauben von denen wir auch wechselseitig berichten. Außerdem reden wir über neue Podcast Apps und wie sie eigentlich sein sollten, Bloggen, Fahrstühle und das Elend mit den Passwörtern.",
   "publicationDate": "2016-09-01T00:31:01.000Z",
+  "link": "http://freakshow.fm/fs182-britzelpieps",
   "show": {
     "title": "Freak Show",
     "subtitle": "Menschen! Technik! Sensationen!",
     "summary": "Die muntere Talk Show um Leben mit Technik, das Netz und Technikkultur. Bisweilen Apple-lastig aber selten einseitig. Wir leben und lieben Technologie und reden darüber. Mit Tim, hukl, roddi, Clemens und Denis. Freak Show hieß irgendwann mal mobileMacs.",
     "poster": "http://freakshow.fm/wp-content/cache/podlove/04/662a9d4edcf77ea2abe3c74681f509/freak-show_original.jpg",
-    "url": "http://freakshow.fm"
+    "link": "http://freakshow.fm"
   },
   "duration": "04:13:51",
   "chapters": [
@@ -120,11 +121,12 @@
   "audio": [
     "https://tracking.feedpress.it/link/13453/4302962/fs182-britzelpieps.m4a"
   ],
-  "theme": {
-    "main": "#79C4F2"
-  },
   "reference": {
     "share": "//podlove-player.surge.sh/share",
-    "config": "//podlove-player.surge.sh/fixtures/4b1663aa.json"
+    "config": "//podlove-player.surge.sh/fixtures/4b1663aa.json",
+    "origin": "http://freakshow.fm/fs182-britzelpieps"
+  },
+  "theme": {
+    "main": "rgb(251,237,186)"
   }
 }

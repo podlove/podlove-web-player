@@ -1,7 +1,7 @@
 <template>
   <div class="header" :style="backgroundStyle(theme)">
-    <PodloveError v-if="components.error"/>
-    <PodloveInfo v-if="components.info"/>
+    <PodloveError v-if="components.error"></PodloveError>
+    <PodloveInfo v-if="components.info"></PodloveInfo>
   </div>
 
 </template>

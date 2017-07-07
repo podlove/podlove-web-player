@@ -4,12 +4,13 @@
   "summary": "Miriam ist Islamwissenschaftlerin und ist auf mehreren längeren Reisen und Tätigkeiten in arabischen Ländern und zuletzt vor allem in Saudi Arabien unterwegs. Wir sprechen über Politik, Kultur, Religion und die Zerrissenheit des Landes und die Wechselwirkungen der westlichen und arabischen Welt.",
   "publicationDate": "2016-05-27T09:50:51.000Z",
   "poster": "http://cre.fm/wp-content/cache/podlove/af/0a01d7f5886e614ed9da00d4b7afa1/cre212-saudi-arabien_original.jpg",
+  "link": "http://cre.fm/cre212-saudi-arabien",
   "show": {
     "title": "CRE: Technik, Kultur, Gesellschaft",
     "subtitle": "Der Interview-Podcast mit Tim Pritlove",
     "summary": "Intensive und ausführliche Gespräche über Themen aus Technik, Kultur und Gesellschaft, das ist CRE. Interessante Gesprächspartner stehen Rede und Antwort zu Fragen, die man normalerweise selten gestellt bekommt. CRE möchte  aufklären, weiterbilden und unterhalten.",
     "poster": "http://cre.fm/wp-content/cache/podlove/6b/8074d85b886d8dedb4945715694ba7/cre-technik-kultur-gesellschaft_original.jpg",
-    "url": "http://cre.fm"
+    "link": "http://cre.fm"
   },
   "duration": "02:33:49",
   "chapters": [
@@ -89,11 +90,9 @@
   "audio": [
     "https://tracking.feedpress.it/link/13440/3454075/cre212-saudi-arabien.m4a"
   ],
-  "theme": {
-    "main": "#F27F79"
-  },
   "reference": {
     "share": "//podlove-player.surge.sh/share",
-    "config": "//podlove-player.surge.sh/fixtures/f9333878.json"
+    "config": "//podlove-player.surge.sh/fixtures/f9333878.json",
+    "origin": "http://cre.fm/cre212-saudi-arabien"
   }
 }

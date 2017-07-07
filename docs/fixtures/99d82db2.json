@@ -3,12 +3,13 @@
   "subtitle": "Kabel — Apple TV — 10 Jahre Metaebene — Finanzplanung — Grundeinkommen — Elektromobilität — Zustand der Welt",
   "summary": "Nun ist es also wieder soweit: die erste richtige Sendung aus der Metaebene nach einem anderthalb Jahr Pause. Die haben wir gebraucht (von unseren Live-Auftritten mal abgesehen, die auch sehr lustig waren). Unsere alte Form müssen wir wohl erst mal wiederfinden, aber dafür versuchen wir es mal mit einer etwas nachdenklicheren Sendung. Gibt ja genug zu reflektieren.",
   "publicationDate": "2015-11-11T13:47:10.000Z",
+  "link": "http://not-safe-for-work.de/nsfw093-barschwund/",
   "show": {
     "title": "Not Safe For Work",
     "subtitle": "Die Internationale Unterhaltungsgala mit Tim Pritlove und Holger Klein",
     "summary": "NSFW ist unkonventionell, unregelmäßig, unsinnig und ungemein unanständig. Garantiert mindestens zwei Worte pro Sendung, die man nicht auf der Arbeit sagen sollte. NSFW sollte nicht zu ernst genommen werden und selbstverständlich als Richtlinie aller Eurer künftigen Handlungen gelten.",
     "poster": "http://not-safe-for-work.de/wp-content/cache/podlove/0f/63751ecd7feba0789d91d4f9a45191/not-safe-for-work_original.jpg",
-    "url": "http://not-safe-for-work.de"
+    "link": "http://not-safe-for-work.de"
   },
   "duration": "03:42:23",
   "chapters": [
@@ -90,13 +91,14 @@
     }
   ],
   "audio": [
-    "http://tracking.feedpress.it/link/13444/2015357/nsfw093-barschwund.m4a"
+    "https://tracking.feedpress.it/link/13444/2015357/nsfw093-barschwund.m4a"
   ],
-  "theme": {
-    "main": "#F2799B"
-  },
   "reference": {
     "share": "//podlove-player.surge.sh/share",
-    "config": "//podlove-player.surge.sh/fixtures/99d82db2.json"
+    "config": "//podlove-player.surge.sh/fixtures/99d82db2.json",
+    "origin": "http://not-safe-for-work.de/nsfw093-barschwund/"
+  },
+  "theme": {
+    "main": "rgb(242,156,148)"
   }
 }

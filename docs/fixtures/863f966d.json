@@ -113,7 +113,7 @@
     "https://tracking.feedpress.it/link/13453/1949996/fs164-die-sendung-ohne-maus.m4a"
   ],
   "theme": {
-    "main": "#F279E8"
+    "primary": "#9B79F2"
   },
   "reference": {
     "share": "//podlove-player.surge.sh/share",

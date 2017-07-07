@@ -1,24 +1,26 @@
 <template>
   <div class="info" >
-    <div class="poster" v-if="poster">
-      <div class="poster-container" :style="posterStyle(theme)">
-          <img class="poster-image" :src="poster" />
+    <div class="poster" v-if="episode.poster || show.poster">
+      <div class="poster-container">
+        <img class="poster-image" :src="episode.poster || show.poster">
       </div>
     </div>
     <div class="description">
-      <h2 class="show-title truncate" :style="titleStyle(theme)">{{showTitle}}</h2>
-      <h1 class="title truncate" :style="titleStyle(theme)">{{title}}</h1>
-      <div class="subtitle" :style="subtitleStyle(theme)">{{subtitle}}</div>
+      <h2 class="show-title truncate" :style="titleStyle(theme)" v-if="show.title">
+        <a :href="show.link" target="_blank" v-if="display === 'embed' && show.link">{{show.title}}</a>
+        <span v-else>{{show.title}}</span>
+      </h2>
+      <h1 class="title truncate" :style="titleStyle(theme)" v-if="episode.title">
+        <a :href="episode.link" target="_blank" v-if="display === 'embed' && episode.link">{{episode.title}}</a>
+        <span v-else>{{episode.title}}</span>
+      </h1>
+      <div class="subtitle" :style="subtitleStyle(theme)" v-if="episode.subtitle">{{episode.subtitle}}</div>
     </div>
   </div>
 </template>
 
 <script>
   import color from 'color'
-
-  const posterStyle = theme => ({
-    'border-color': theme.player.poster
-  })
 
   const titleStyle = theme => ({
     color: theme.player.title
@@ -31,15 +33,13 @@
   export default {
     data () {
       return {
-        poster: this.$select('poster'),
-        title: this.$select('title'),
-        showTitle: this.$select('showTitle'),
-        subtitle: this.$select('subtitle'),
-        theme: this.$select('theme')
+        episode: this.$select('episode'),
+        show: this.$select('show'),
+        theme: this.$select('theme'),
+        display: this.$select('display')
       }
     },
     methods: {
-      posterStyle,
       titleStyle,
       subtitleStyle
     }
@@ -63,7 +63,6 @@
 
     .poster-container {
       width: $poster-size;
-      border: 2px solid;
       line-height: 0;
     }
 

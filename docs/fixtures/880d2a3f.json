@@ -3,12 +3,13 @@
   "subtitle": "Veröffentlichungen der Metaebene seit Dezember 2016 — 32C3 — Sendegate",
   "summary": "Ich habe für Euch wieder eine kleine Zusammenfassung gemacht, was in den letzten knapp zwei Monaten so alles aus der Metaebene rausgekullert ist, in welche Sendungen ihr vielleicht mal reinschnuppern solltet und was für mich und Euch in der nächsten Zeit so alles im Busche ist.",
   "publicationDate": "2016-01-21T11:05:07.000Z",
+  "link": "http://metaebene.me/blog/2016/01/21/me004-januar-2016/",
   "show": {
     "title": "Metaebene",
     "subtitle": "Aktuelles, Interessantes und Irrelevantes aus der Metaebene",
     "summary": "Willkommen auf der Metaebene. Dies ist der Meta-Kanal von Tim Pritlove, auf dem ihr in unregelmäßigen Abständen über Neuigkeiten, Unregelmäßigkeiten, Abschweifungen und andere Dinge rund um das kleine Podcast-Universum aus Berlin informiert werdet.",
     "poster": "http://metaebene.me/wp-content/cache/podlove/21/f0a792e5086d91026e8329ff106b67/metaebene_original.jpg",
-    "url": "http://metaebene.me"
+    "link": "http://metaebene.me"
   },
   "duration": "00:14:20",
   "chapters": [
@@ -60,11 +61,9 @@
   "audio": [
     "https://tracking.feedpress.it/link/11988/2389648/me004-januar-2016.mp3"
   ],
-  "theme": {
-    "main": "#F279CE"
-  },
   "reference": {
     "share": "//podlove-player.surge.sh/share",
-    "config": "//podlove-player.surge.sh/fixtures/880d2a3f.json"
+    "config": "//podlove-player.surge.sh/fixtures/880d2a3f.json",
+    "origin": "http://metaebene.me/blog/2016/01/21/me004-januar-2016/"
   }
 }
