@@ -27,9 +27,6 @@ export default (store, action) => {
     case 'SET_CHAPTER':
       store.dispatch(actions.updatePlaytime(current.start))
       break
-    case 'SIMULATE_PLAYTIME':
-      store.dispatch(actions.updateChapter(action.payload))
-      break
     case 'SET_PLAYTIME':
     case 'UPDATE_PLAYTIME':
       if (!ghost.active) {

@@ -1,5 +1,5 @@
 <template>
-  <div class="chapters--entry"
+  <div class="chapters--entry" :class="{active: chapter.active}"
     :style="chapterStyle(theme, chapter, hover)"
     @mouseover="onMouseOver"
     @mouseleave="onMouseLeave">
@@ -10,10 +10,11 @@
     <div class="chapter--progress"
       @mouseout="onMouseOut"
       @mousemove="onMouseMove"
-      @click="onChapterClick(ghost)">
+      @click="onChapterClick(index, ghost)">
       <span class="title truncate">{{chapter.title}}</span>
-      <span class="timer">{{remainingTime(chapter, ghost.active ? ghost.time : playtime)}}</span>
-      <span class="progress" :style="progressStyle(theme, chapter, ghost, playtime)"></span>
+      <span class="timer">{{remainingTime(chapter, ghost, playtime)}}</span>
+      <span class="progress" :style="progressStyle(theme, chapter, playtime)"></span>
+      <span class="progress" :style="progressGhostStyle(theme, chapter, ghost)"></span>
     </div>
   </div>
 </template>
@@ -38,14 +39,12 @@
     return {}
   }
 
-  const progressStyle = (theme, chapter, ghost, playtime) => {
-    let time = ghost.active ? ghost.time : playtime
-
-    if (!chapter.active || time > chapter.end) {
+  const progressStyle = (theme, chapter, playtime) => {
+    if (!chapter.active || playtime > chapter.end) {
       return {}
     }
 
-    let progress = ((time - chapter.start) * 100) / (chapter.end - chapter.start)
+    let progress = ((playtime - chapter.start) * 100) / (chapter.end - chapter.start)
 
     return {
       'width': progress + '%',
@@ -53,15 +52,33 @@
     }
   }
 
-  const remainingTime = (chapter, playtime) => {
+  const progressGhostStyle = (theme, chapter, ghost) => {
+    if (!ghost.active || ghost.time > chapter.end || ghost.time < chapter.start) {
+      return {}
+    }
+
+    let progress = ((ghost.time - chapter.start) * 100) / (chapter.end - chapter.start)
+
+    return {
+      'width': progress + '%',
+      'background-color': color(theme.tabs.body.progress).fade(0.6)
+    }
+  }
+
+  const remainingTime = (chapter, ghost, playtime) => {
     if (chapter.active) {
       return `-${secondsToTime(chapter.end - playtime)}`
+    }
+
+    if (ghost.active && ghost.time > chapter.start && ghost.time < chapter.end) {
+      return `-${secondsToTime(chapter.end - ghost.time)}`
     }
 
     return secondsToTime(chapter.end - chapter.start)
   }
 
-  const onChapterClick = ghost => {
+  const onChapterClick = (index, ghost) => {
+    store.dispatch(store.actions.setChapter(index))
     store.dispatch(store.actions.updatePlaytime(ghost.time))
     store.dispatch(store.actions.play())
   }
@@ -83,6 +100,8 @@
     methods: {
       chapterStyle,
       progressStyle,
+      progressGhostStyle,
+
       remainingTime,
       onChapterClick,
       onChapterPlayClick,
@@ -125,6 +144,10 @@
     cursor: pointer;
 
     transition: background $animation-duration, color $animation-duration;
+
+    &.active {
+      font-weight: 500;
+    }
 
     .index {
       display: flex;
