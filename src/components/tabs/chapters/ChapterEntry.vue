@@ -1,16 +1,18 @@
 <template>
-  <div class="chapters--entry" :class="{active: chapter.active}"
+  <div class="chapters--entry"
+    :class="{active: chapter.active}"
     :style="chapterStyle(theme, chapter, hover)"
     @mouseover="onMouseOver"
     @mouseleave="onMouseLeave">
-    <span class="index" v-if="hover" @click="onChapterPlayClick(index)">
+    <span class="index" v-if="hover" @click="onChapterPlayClick" @touchstart="onChapterPlayClick">
       <PlayIcon size="12" :color="theme.tabs.body.icon"></PlayIcon>
     </span>
     <span class="index" v-else>{{index + 1}}</span>
     <div class="chapter--progress"
       @mouseout="onMouseOut"
       @mousemove="onMouseMove"
-      @click="onChapterClick(index, ghost)">
+      @click="onChapterClick"
+      @touchstart="onChapterPlayClick">
       <span class="title truncate">{{chapter.title}}</span>
       <span class="timer">{{remainingTime(chapter, ghost, playtime)}}</span>
       <span class="progress" :style="progressStyle(theme, chapter, playtime)"></span>
@@ -77,17 +79,6 @@
     return secondsToTime(chapter.end - chapter.start)
   }
 
-  const onChapterClick = (index, ghost) => {
-    store.dispatch(store.actions.setChapter(index))
-    store.dispatch(store.actions.updatePlaytime(ghost.time))
-    store.dispatch(store.actions.play())
-  }
-
-  const onChapterPlayClick = index => {
-    store.dispatch(store.actions.setChapter(index))
-    store.dispatch(store.actions.play())
-  }
-
   export default {
     data () {
       return {
@@ -103,8 +94,6 @@
       progressGhostStyle,
 
       remainingTime,
-      onChapterClick,
-      onChapterPlayClick,
 
       onMouseOut () {
         store.dispatch(store.actions.disableGhostMode())
@@ -121,6 +110,21 @@
 
       onMouseLeave () {
         this.hover = false
+      },
+
+      onChapterClick(event) {
+        store.dispatch(store.actions.setChapter(this.index))
+        store.dispatch(store.actions.updatePlaytime(this.ghost.time))
+        store.dispatch(store.actions.play())
+        event.preventDefault()
+        return false
+      },
+
+      onChapterPlayClick(event) {
+        store.dispatch(store.actions.setChapter(this.index))
+        store.dispatch(store.actions.play())
+        event.preventDefault()
+        return false
       }
     },
     components: {
