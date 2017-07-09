@@ -2,20 +2,13 @@
   <div class="chapters-progress">
     <span class="indicator"
       v-for="(chapter, index) in chapters"
-      :style="indicatorStyle(theme, chapter, duration)"
-      :class="{ last: isLast(chapters, index) }"></span>
+      v-bind:key="index"
+      :style="indicatorStyle(chapter)"
+      :class="{ last: isLast(index) }"></span>
   </div>
 </template>
 
 <script>
-  const indicatorStyle = (theme, chapter, duration) => ({
-    left: ((chapter.end * 100) / duration) + '%',
-    background: theme.player.progress.seperator
-  })
-
-  const isLast = (chapters, index) =>
-    chapters.length - 1 === index
-
   export default {
     data () {
       return {
@@ -25,8 +18,15 @@
       }
     },
     methods: {
-      indicatorStyle,
-      isLast
+      isLast (index) {
+        return this.chapters.length - 1 === index
+      },
+      indicatorStyle (chapter) {
+        return {
+          left: ((chapter.end * 100) / this.duration) + '%',
+          background: this.theme.player.progress.seperator
+        }
+      }
     }
   }
 </script>

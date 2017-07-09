@@ -1,13 +1,9 @@
 <template>
-  <div class="tab-body" :class="{active}" :style="display === 'native' ? bodyStyle(theme) : {}">
+  <div class="tab-body" :class="{active}" :style="display === 'native' ? bodyStyle : {}">
     <slot></slot>
   </div>
 </template>
 <script>
-  const bodyStyle = theme => ({
-    'background-color': theme.tabs.body.background
-  })
-
   export default {
     props: ['active'],
     data () {
@@ -16,8 +12,12 @@
         display: this.$select('display')
       }
     },
-    methods: {
-      bodyStyle
+    computed: {
+      bodyStyle () {
+        return {
+          'background-color': this.theme.tabs.body.background
+        }
+      }
     }
   }
 </script>

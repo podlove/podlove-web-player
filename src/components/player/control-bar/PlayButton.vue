@@ -1,6 +1,6 @@
 <template>
   <ButtonComponent :click="onButtonClick">
-    <span class="play-button" :style="wrapperStyle(theme)" :class="{
+    <span class="play-button" :style="wrapperStyle" :class="{
       wide: components.controls.button.variant.loading ||
             components.controls.button.variant.remaining ||
             components.controls.button.variant.duration ||
@@ -17,22 +17,22 @@
 
       <span class="inner" v-if="components.controls.button.variant.remaining">
         <PlayIcon size="21" :color="theme.player.actions.icon"></PlayIcon>
-        <span class="label" :style="textStyle(theme)">{{ secondsToTime(playtime) }}</span>
+        <span class="label" :style="textStyle">{{ secondsToTime(playtime) }}</span>
       </span>
 
       <span class="inner" v-if="components.controls.button.variant.duration">
         <PlayIcon size="21" :color="theme.player.actions.icon"></PlayIcon>
-        <span class="label" :style="textStyle(theme)">{{ secondsToTime(duration) }}</span>
+        <span class="label" :style="textStyle">{{ secondsToTime(duration) }}</span>
       </span>
 
       <span class="inner" v-if="components.controls.button.variant.replay">
         <PlayIcon size="21" :color="theme.player.actions.icon"></PlayIcon>
-        <span class="label" :style="textStyle(theme)">{{ $t('PLAYER.REPLAY') }}</span>
+        <span class="label" :style="textStyle">{{ $t('PLAYER.REPLAY') }}</span>
       </span>
 
       <span class="inner" v-if="components.controls.button.variant.retry">
         <ReloadIcon :color="theme.player.actions.icon"></ReloadIcon>
-        <span class="label" :style="textStyle(theme)">{{ $t('PLAYER.RETRY') }}</span>
+        <span class="label" :style="textStyle">{{ $t('PLAYER.RETRY') }}</span>
       </span>
     </span>
   </ButtonComponent>
@@ -49,14 +49,6 @@
 
   import ButtonComponent from 'shared/Button.vue'
   import LoadingIndicator from './LoadingIndicator.vue'
-
-  const wrapperStyle = theme => ({
-    'background-color': theme.player.actions.background
-  })
-
-  const textStyle = theme => ({
-    color: theme.player.actions.icon
-  })
 
   export default {
     components: {
@@ -76,10 +68,21 @@
         playstate: this.$select('playstate')
       }
     },
+    computed: {
+      wrapperStyle () {
+        return {
+          'background-color': this.theme.player.actions.background
+        }
+      },
+      textStyle () {
+        return {
+          color: this.theme.player.actions.icon
+        }
+      }
+    },
     methods: {
       secondsToTime,
-      wrapperStyle,
-      textStyle,
+
       onButtonClick () {
         switch (this.playstate) {
           case 'start':

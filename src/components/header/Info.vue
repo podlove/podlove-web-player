@@ -1,34 +1,26 @@
 <template>
   <div class="info" >
     <div class="poster" v-if="episode.poster || show.poster">
-      <div class="poster-container">
+      <div class="poster-container" :style="posterStyle">
         <img class="poster-image" :src="episode.poster || show.poster">
       </div>
     </div>
     <div class="description">
-      <h2 class="show-title truncate" :style="titleStyle(theme)" v-if="show.title">
+      <h2 class="show-title truncate" :style="titleStyle" v-if="show.title">
         <a :href="show.link" target="_blank" v-if="display === 'embed' && show.link">{{show.title}}</a>
         <span v-else>{{show.title}}</span>
       </h2>
-      <h1 class="title truncate" :style="titleStyle(theme)" v-if="episode.title">
+      <h1 class="title truncate" :style="titleStyle" v-if="episode.title">
         <a :href="episode.link" target="_blank" v-if="display === 'embed' && episode.link">{{episode.title}}</a>
         <span v-else>{{episode.title}}</span>
       </h1>
-      <div class="subtitle" :style="subtitleStyle(theme)" v-if="episode.subtitle">{{episode.subtitle}}</div>
+      <div class="subtitle" :style="subtitleStyle" v-if="episode.subtitle">{{episode.subtitle}}</div>
     </div>
   </div>
 </template>
 
 <script>
   import color from 'color'
-
-  const titleStyle = theme => ({
-    color: theme.player.title
-  })
-
-  const subtitleStyle = theme => ({
-    color: color(theme.player.text).fade(0.25)
-  })
 
   export default {
     data () {
@@ -39,9 +31,22 @@
         display: this.$select('display')
       }
     },
-    methods: {
-      titleStyle,
-      subtitleStyle
+    computed: {
+      titleStyle () {
+        return {
+          color: this.theme.player.title
+        }
+      },
+      posterStyle () {
+        return {
+          'border-color': this.theme.player.poster
+        }
+      },
+      subtitleStyle() {
+        return {
+          color: color(this.theme.player.text).fade(0.25)
+        }
+      }
     }
   }
 </script>
@@ -64,6 +69,8 @@
     .poster-container {
       width: $poster-size;
       line-height: 0;
+      border-width: 2px;
+      border-style: solid;
     }
 
     .title {

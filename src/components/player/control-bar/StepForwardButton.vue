@@ -3,7 +3,7 @@
     <StepForwardIcon
       :main-color="theme.player.actions.icon"
       :highlight-color="theme.player.actions.background"
-    />
+    ></StepForwardIcon>
   </ButtonComponent>
 </template>
 

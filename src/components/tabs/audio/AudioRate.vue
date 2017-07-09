@@ -5,8 +5,8 @@
       <span class="rate">{{ toPercent(rate) }}%</span>
     </h4>
     <div class="input-slider">
-      <ButtonComponent class="slider-button" :click="changeRate(-5, rate)" :style="buttonStyle(theme)">-</ButtonComponent>
-      <ButtonComponent class="slider-button" :click="changeRate(5, rate)" :style="buttonStyle(theme)">+</ButtonComponent>
+      <ButtonComponent class="slider-button" :click="changeRate(-5, rate)" :style="buttonStyle">-</ButtonComponent>
+      <ButtonComponent class="slider-button" :click="changeRate(5, rate)" :style="buttonStyle">+</ButtonComponent>
       <SliderComponent class="input-slider"
         min="0" max="1" step="0.001"
         :value="sliderRate" :onInput="toStateRate" :thumbBorder="theme.tabs.input.border" :thumbColor="theme.tabs.slider.thumb"></SliderComponent>
@@ -22,12 +22,6 @@
 
   import SliderComponent from 'shared/Slider.vue'
   import ButtonComponent from 'shared/Button.vue'
-
-  const buttonStyle = (theme) => ({
-    color: theme.tabs.button.text,
-    background: theme.tabs.button.background,
-    'border-color': theme.tabs.input.border
-  })
 
   // Speed Modifiers
   const normalizeSliderValue = (value = 0) => {
@@ -95,6 +89,13 @@
     computed: {
       sliderRate: function () {
         return toSliderRate(this.rate)
+      },
+      buttonStyle () {
+        return {
+          color: this.theme.tabs.button.text,
+          background: this.theme.tabs.button.background,
+          'border-color': this.theme.tabs.input.border
+        }
       }
     },
     methods: {
@@ -102,7 +103,6 @@
       toStateRate,
       toSliderRate,
       changeRate,
-      buttonStyle,
       toPercent
     },
     components: {

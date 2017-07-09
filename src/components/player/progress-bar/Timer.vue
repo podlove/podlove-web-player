@@ -1,5 +1,5 @@
 <template>
-  <div class="timer-progress" :class="playstate" :style="timerStyle(theme)">
+  <div class="timer-progress" :class="playstate" :style="timerStyle">
     <span class="current">{{ secondsToTime(ghost.active ? ghost.time : playtime) }}</span>
     <CurrentChapter class="chapter" />
     <span class="time">-{{ secondsToTime(duration - (ghost.active ? ghost.time : playtime)) }}</span>
@@ -12,10 +12,6 @@ import color from 'color'
 import { secondsToTime } from 'utils/time'
 import CurrentChapter from './CurrentChapter.vue'
 
-const timerStyle = theme => ({
-  color: color(theme.player.timer.text).fade(0.5)
-})
-
 export default {
   data () {
     return {
@@ -27,9 +23,15 @@ export default {
       chapters: this.$select('chapters')
     }
   },
+  computed: {
+    timerStyle () {
+      return {
+        color: color(this.theme.player.timer.text).fade(0.5)
+      }
+    }
+  },
   methods: {
-    secondsToTime,
-    timerStyle
+    secondsToTime
   },
   components: {
     CurrentChapter

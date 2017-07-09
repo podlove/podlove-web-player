@@ -5,7 +5,7 @@
       <span class="volume">{{ toPercent(volume) }}%</span>
     </h4>
     <div class="input-slider">
-      <ButtonComponent class="slider-button mute-control" :style="buttonStyle(theme)" :click="toggleMute">
+      <ButtonComponent class="slider-button mute-control" :style="buttonStyle" :click="toggleMute">
         <SpeakerMuteIcon :color="theme.tabs.button.text" v-if="muted"/>
         <SpeakerIcon :color="theme.tabs.button.text" v-else />
       </ButtonComponent>
@@ -25,13 +25,6 @@
   import ButtonComponent from 'shared/Button.vue'
   import SpeakerIcon from 'icons/SpeakerIcon.vue'
   import SpeakerMuteIcon from 'icons/SpeakerMuteIcon.vue'
-
-  // Template Functions
-  const buttonStyle = (theme) => ({
-    color: theme.tabs.button.text,
-    background: theme.tabs.button.background,
-    'border-color': theme.tabs.input.border
-  })
 
   // State Changers
   const setVolume = compose(store.dispatch.bind(store), store.actions.setVolume)
@@ -54,9 +47,17 @@
         muted: this.$select('muted')
       }
     },
+    computed: {
+      buttonStyle () {
+        return {
+          color: this.theme.tabs.button.text,
+          background: this.theme.tabs.button.background,
+          'border-color': this.theme.tabs.input.border
+        }
+      }
+    },
     methods: {
       setVolume,
-      buttonStyle,
       toPercent,
       toggleMute
     },

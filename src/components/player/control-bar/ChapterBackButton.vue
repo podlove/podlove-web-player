@@ -1,6 +1,6 @@
 <template>
   <ButtonComponent class="chapter-control" :click="onButtonClick" :disabled="playtime === 0">
-    <ChapterBackIcon :color="theme.player.actions.background" />
+    <ChapterBackIcon :color="theme.player.actions.background"></ChapterBackIcon>
   </ButtonComponent>
 </template>
 
@@ -27,6 +27,7 @@
       onButtonClick () {
         const current = currentChapter(this.chapters)
         const currentIndex = currentChapterIndex(this.chapters)
+
         if (this.playtime - current.start <= 2) {
           store.dispatch(store.actions.previousChapter())
         } else {

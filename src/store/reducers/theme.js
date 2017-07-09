@@ -23,7 +23,7 @@ const themeColors = (colors = {}) => {
   return {
     player: {
       background: main,
-      poster: light,
+      poster: negative ? light : dark,
       title: fallbackColor(highlight, negative ? light : dark),
       text: negative ? light : dark,
       progress: {

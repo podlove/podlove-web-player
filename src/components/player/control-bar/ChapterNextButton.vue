@@ -1,6 +1,6 @@
 <template>
   <ButtonComponent class="chapter-control" :click="onButtonClick" :disabled="playtime === duration">
-    <ChapterNextIcon :color="theme.player.actions.background" />
+    <ChapterNextIcon :color="theme.player.actions.background"></ChapterNextIcon>
   </ButtonComponent>
 </template>
 

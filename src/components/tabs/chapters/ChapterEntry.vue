@@ -1,7 +1,7 @@
 <template>
   <div class="chapters--entry"
     :class="{active: chapter.active}"
-    :style="chapterStyle(theme, chapter, hover)"
+    :style="chapterStyle"
     @mouseover="onMouseOver"
     @mouseleave="onMouseLeave">
     <span class="index" v-if="hover" @click="onChapterPlayClick" @touchstart="onChapterPlayClick">
@@ -14,9 +14,9 @@
       @click="onChapterClick"
       @touchstart="onChapterPlayClick">
       <span class="title truncate">{{chapter.title}}</span>
-      <span class="timer">{{remainingTime(chapter, ghost, playtime)}}</span>
-      <span class="progress" :style="progressStyle(theme, chapter, playtime)"></span>
-      <span class="progress" :style="progressGhostStyle(theme, chapter, ghost)"></span>
+      <span class="timer">{{remainingTime}}</span>
+      <span class="progress" :style="progressStyle"></span>
+      <span class="progress" :style="progressGhostStyle"></span>
     </div>
   </div>
 </template>
@@ -28,57 +28,6 @@
 
   import PlayIcon from 'icons/PlayIcon.vue'
 
-  const activeChapter = theme => ({
-    'background-color': color(theme.tabs.body.backgroundActive).fade(0.9),
-    color: theme.tabs.body.textActive
-  })
-
-  const chapterStyle = (theme, chapter, hover, even) => {
-    if (chapter.active || hover) {
-      return activeChapter(theme)
-    }
-
-    return {}
-  }
-
-  const progressStyle = (theme, chapter, playtime) => {
-    if (!chapter.active || playtime > chapter.end) {
-      return {}
-    }
-
-    let progress = ((playtime - chapter.start) * 100) / (chapter.end - chapter.start)
-
-    return {
-      'width': progress + '%',
-      'background-color': theme.tabs.body.progress
-    }
-  }
-
-  const progressGhostStyle = (theme, chapter, ghost) => {
-    if (!ghost.active || ghost.time > chapter.end || ghost.time < chapter.start) {
-      return {}
-    }
-
-    let progress = ((ghost.time - chapter.start) * 100) / (chapter.end - chapter.start)
-
-    return {
-      'width': progress + '%',
-      'background-color': color(theme.tabs.body.progress).fade(0.6)
-    }
-  }
-
-  const remainingTime = (chapter, ghost, playtime) => {
-    if (chapter.active) {
-      return `-${secondsToTime(chapter.end - playtime)}`
-    }
-
-    if (ghost.active && ghost.time > chapter.start && ghost.time < chapter.end) {
-      return `-${secondsToTime(chapter.end - ghost.time)}`
-    }
-
-    return secondsToTime(chapter.end - chapter.start)
-  }
-
   export default {
     data () {
       return {
@@ -88,13 +37,61 @@
         hover: false
       }
     },
+    computed: {
+      remainingTime () {
+        if (this.chapter.active) {
+          return `-${secondsToTime(this.chapter.end - this.playtime)}`
+        }
+
+        if (this.ghost.active && this.ghost.time > this.chapter.start && this.ghost.time < this.chapter.end) {
+          return `-${secondsToTime(this.chapter.end - this.ghost.time)}`
+        }
+
+        return secondsToTime(this.chapter.end - this.chapter.start)
+      },
+
+      activeChapter () {
+        return {
+          'background-color': color(this.theme.tabs.body.backgroundActive).fade(0.9),
+          color: this.theme.tabs.body.textActive
+        }
+      },
+
+      chapterStyle () {
+        if (this.chapter.active || this.hover) {
+          return this.activeChapter
+        }
+
+        return {}
+      },
+
+      progressStyle () {
+        if (!this.chapter.active || this.playtime > this.chapter.end) {
+          return {}
+        }
+
+        let progress = ((this.playtime - this.chapter.start) * 100) / (this.chapter.end - this.chapter.start)
+
+        return {
+          'width': progress + '%',
+          'background-color': this.theme.tabs.body.progress
+        }
+      },
+
+      progressGhostStyle () {
+        if (!this.ghost.active || this.ghost.time > this.chapter.end || this.ghost.time < this.chapter.start) {
+          return {}
+        }
+
+        let progress = ((this.ghost.time - this.chapter.start) * 100) / (this.chapter.end - this.chapter.start)
+
+        return {
+          'width': progress + '%',
+          'background-color': color(this.theme.tabs.body.progress).fade(0.6)
+        }
+      }
+    },
     methods: {
-      chapterStyle,
-      progressStyle,
-      progressGhostStyle,
-
-      remainingTime,
-
       onMouseOut () {
         store.dispatch(store.actions.disableGhostMode())
       },

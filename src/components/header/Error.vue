@@ -1,7 +1,7 @@
 <template>
   <div class="error">
-    <h2 class="title" :style="titleStyle(theme)">{{ $t(error.title) }}</h2>
-    <div class="description" :style="descriptionStyle(theme)">{{ $t(error.message) }}</div>
+    <h2 class="title" :style="titleStyle">{{ $t(error.title) }}</h2>
+    <div class="description" :style="descriptionStyle">{{ $t(error.message) }}</div>
   </div>
 </template>
 
@@ -9,14 +9,6 @@
   import color from 'color'
 
   import ErrorIcon from 'icons/ErrorIcon.vue'
-
-  const titleStyle = theme => ({
-    color: theme.player.title
-  })
-
-  const descriptionStyle = theme => ({
-    color: color(theme.player.text).fade(0.25)
-  })
 
   export default {
     data () {
@@ -29,9 +21,17 @@
         error: this.$select('error')
       }
     },
-    methods: {
-      titleStyle,
-      descriptionStyle
+    computed: {
+      titleStyle () {
+        return {
+          color: this.theme.player.title
+        }
+      },
+      descriptionStyle () {
+        return {
+          color: color(this.theme.player.text).fade(0.25)
+        }
+      }
     },
     components: {
       ErrorIcon
