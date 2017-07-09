@@ -12,10 +12,6 @@
   import get from 'lodash/get'
   import { currentChapter, currentChapterIndex } from 'utils/chapters'
 
-  const chapterTitle = chapters => {
-    const current = currentChapter(chapters)
-  }
-
   export default {
     data () {
       return {

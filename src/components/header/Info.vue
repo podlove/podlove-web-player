@@ -42,7 +42,7 @@
           'border-color': this.theme.player.poster
         }
       },
-      subtitleStyle() {
+      subtitleStyle () {
         return {
           color: color(this.theme.player.text).fade(0.25)
         }

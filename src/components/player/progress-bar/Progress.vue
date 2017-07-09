@@ -1,6 +1,6 @@
 <template>
   <div class="progress">
-    <input
+    <input v-if="runtime.platform === 'desktop'"
       type="range"
       min="0" :max="interpolate(duration)" step="0.1"
       :value="interpolate(playtime)"
@@ -8,6 +8,13 @@
       @input="onInput"
       @mousemove="onMouseMove"
       @mouseout="onMouseOut"
+    >
+    <input v-else
+      type="range"
+      min="0" :max="interpolate(duration)" step="0.1"
+      :value="interpolate(playtime)"
+      @change="onChange"
+      @input="onInput"
     >
     <span class="progress-range" :style="rangeStyle"></span>
     <span class="progress-buffer" :style="bufferStyle"></span>
@@ -20,6 +27,7 @@
 
 <script>
   import store from 'store'
+  import runtime from 'utils/runtime'
   import { interpolate, relativePosition } from 'utils/math'
 
   import ChaptersIndicator from './ChapterIndicator.vue'
@@ -43,7 +51,8 @@
         quantiles: this.$select('quantiles'),
 
         ghostPosition: relativePosition(ghost.time, duration),
-        thumbActive: false
+        thumbActive: false,
+        runtime
       }
     },
     watch: {

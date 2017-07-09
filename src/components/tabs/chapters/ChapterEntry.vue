@@ -4,15 +4,22 @@
     :style="chapterStyle"
     @mouseover="onMouseOver"
     @mouseleave="onMouseLeave">
-    <span class="index" v-if="hover" @click="onChapterPlayClick" @touchstart="onChapterPlayClick">
+    <span class="index" v-if="hover" @click="onChapterPlayClick">
       <PlayIcon size="12" :color="theme.tabs.body.icon"></PlayIcon>
     </span>
     <span class="index" v-else>{{index + 1}}</span>
-    <div class="chapter--progress"
+    <div class="chapter--progress" v-if="runtime.browser === 'desktop'"
       @mouseout="onMouseOut"
       @mousemove="onMouseMove"
-      @click="onChapterClick"
-      @touchstart="onChapterPlayClick">
+      @click="onChapterClick">
+      <span class="title truncate">{{chapter.title}}</span>
+      <span class="timer">{{remainingTime}}</span>
+      <span class="progress" :style="progressStyle"></span>
+      <span class="progress" :style="progressGhostStyle"></span>
+    </div>
+
+    <div class="chapter--progress" v-else
+      @click="onChapterPlayClick">
       <span class="title truncate">{{chapter.title}}</span>
       <span class="timer">{{remainingTime}}</span>
       <span class="progress" :style="progressStyle"></span>
@@ -24,6 +31,8 @@
 <script>
   import color from 'color'
   import store from 'store'
+  import runtime from 'utils/runtime'
+
   import { secondsToTime } from 'utils/time'
 
   import PlayIcon from 'icons/PlayIcon.vue'
@@ -34,7 +43,8 @@
         theme: this.$select('theme'),
         playtime: this.$select('playtime'),
         ghost: this.$select('ghost'),
-        hover: false
+        hover: false,
+        runtime
       }
     },
     computed: {
@@ -109,7 +119,7 @@
         this.hover = false
       },
 
-      onChapterClick(event) {
+      onChapterClick (event) {
         store.dispatch(store.actions.setChapter(this.index))
         store.dispatch(store.actions.updatePlaytime(this.ghost.time))
         store.dispatch(store.actions.play())
@@ -117,7 +127,7 @@
         return false
       },
 
-      onChapterPlayClick(event) {
+      onChapterPlayClick (event) {
         store.dispatch(store.actions.setChapter(this.index))
         store.dispatch(store.actions.play())
         event.preventDefault()

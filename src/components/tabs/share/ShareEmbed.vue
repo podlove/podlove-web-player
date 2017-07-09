@@ -29,7 +29,7 @@
 </template>
 
 <script>
-  import { debounce, get } from 'lodash'
+  import { debounce } from 'lodash'
   import { addQueryParameter } from 'utils/url'
 
   import store from 'store'
@@ -89,7 +89,7 @@
       },
 
       setStarttime (input) {
-        const setTime = debounce(() => {
+        debounce(() => {
           let time = timeToSeconds(input.target.value)
 
           if (!time) {

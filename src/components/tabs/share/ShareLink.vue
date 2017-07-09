@@ -23,7 +23,7 @@
 </template>
 
 <script>
-  import { debounce, get } from 'lodash'
+  import { debounce } from 'lodash'
   import store from 'store'
 
   import ButtonComponent from 'shared/Button.vue'
@@ -71,18 +71,18 @@
 
       setStarttime (input) {
         debounce(() => {
-            let time = timeToSeconds(input.target.value)
+          let time = timeToSeconds(input.target.value)
 
-            if (!time) {
-              return
-            }
+          if (!time) {
+            return
+          }
 
-            if (time > this.duration) {
-              time = this.duration
-            }
+          if (time > this.duration) {
+            time = this.duration
+          }
 
-            store.dispatch(store.actions.setShareLinkStarttime(time))
-          }, 1000)()
+          store.dispatch(store.actions.setShareLinkStarttime(time))
+        }, 1000)()
       },
 
       toggleStart (time) {

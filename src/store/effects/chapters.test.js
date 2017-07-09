@@ -8,7 +8,7 @@ test.beforeEach(t => {
   state = {
     chapters: [{
       start: 0,
-      end: 1000,
+      end: 1000
     }, {
       start: 1000,
       end: 2000
