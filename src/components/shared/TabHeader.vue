@@ -1,15 +1,11 @@
 <template>
   <ul class="tab-header">
-    <span class="header-shadow" :style="headerShadowStyle(theme)"></span>
+    <span class="header-shadow" :style="headerShadowStyle"></span>
     <slot></slot>
   </ul>
 </template>
 <script>
   import color from 'color'
-
-  const headerShadowStyle = theme => ({
-    background: `linear-gradient(to bottom, ${color(theme.tabs.header.backgroundActive).fade(0)} 0%, ${color(theme.tabs.header.backgroundActive).fade(1)} 100%)`
-  })
 
   export default {
     data () {
@@ -17,8 +13,12 @@
         theme: this.$select('theme')
       }
     },
-    methods: {
-      headerShadowStyle
+    computed: {
+      headerShadowStyle () {
+        return {
+          background: `linear-gradient(to bottom, ${color(this.theme.tabs.header.backgroundActive).fade(0)} 0%, ${color(this.theme.tabs.header.backgroundActive).fade(1)} 100%)`
+        }
+      }
     }
   }
 </script>

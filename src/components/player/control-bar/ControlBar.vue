@@ -1,19 +1,19 @@
 <template>
   <div class="control-bar">
     <transition name="button">
-      <ChapterBackButton v-if="components.controls.chapters && chapters.length > 0" />
+      <ChapterBackButton v-if="components.controls.chapters && chapters.length > 0"></ChapterBackButton>
     </transition>
     <transition name="button">
-      <StepBackButton v-if="components.controls.steppers" />
+      <StepBackButton v-if="components.controls.steppers"></StepBackButton>
     </transition>
     <transition name="button">
-      <PlayButton v-if="components.controls.button.visible" />
+      <PlayButton v-if="components.controls.button.visible"></PlayButton>
     </transition>
     <transition name="button">
-      <StepForwardButton v-if="components.controls.steppers" />
+      <StepForwardButton v-if="components.controls.steppers"></StepForwardButton>
     </transition>
     <transition name="button">
-      <ChapterNextButton v-if="components.controls.chapters && chapters.length > 0" />
+      <ChapterNextButton v-if="components.controls.chapters && chapters.length > 0"></ChapterNextButton>
     </transition>
   </div>
 </template>

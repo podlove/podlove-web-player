@@ -9,6 +9,8 @@ const round = (input = 0) => {
   return Math.ceil(input * 100) / 100
 }
 
+const interpolate = (num = 0) => Math.round(num * 100) / 100
+
 const roundUp = curry((base, number) => {
   number = Math.ceil(number * 100)
 
@@ -19,8 +21,13 @@ const roundUp = curry((base, number) => {
   return (number + (base - number % base)) / 100
 })
 
+const relativePosition = (current = 0, maximum = 0) =>
+    ((current * 100) / maximum) + '%'
+
 export {
   toPercent,
   roundUp,
-  round
+  round,
+  interpolate,
+  relativePosition
 }

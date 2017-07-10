@@ -1,48 +1,15 @@
 <template>
-  <li class="tab-header-item" :style="tabStyle(theme, active, display)" :class="{active}">
+  <li class="tab-header-item" :style="tabStyle" :class="{active}">
     <a href="javascript:void(0);" @click.prevent="click()" class="caption">
-      <span class="icon" :style="{fill: iconColor(theme, active, display)}"><slot name="icon"></slot></span>
+      <span class="icon" :style="{fill: iconColor(active)}"><slot name="icon"></slot></span>
       <span class="title"><slot name="title"></slot></span>
-      <CloseIcon class="close" :color="iconColor(theme, true, display)" v-if="active"></CloseIcon>
+      <CloseIcon class="close" :color="iconColor(true)" v-if="active"></CloseIcon>
     </a>
   </li>
 </template>
 
 <script>
   import CloseIcon from 'icons/CloseIcon.vue'
-
-  const tabStyle = (theme, active, display) => {
-    const style = {
-      color: theme.tabs.header.color,
-      background: theme.tabs.header.background
-    }
-
-    if (active) {
-      style.color = theme.tabs.header.colorActive
-      style.background = theme.tabs.header.backgroundActive
-    }
-
-    if (display === 'embed') {
-      style.color = theme.tabs.header.color
-      style.background = theme.tabs.header.background
-    }
-
-    return style
-  }
-
-  const iconColor = (theme, active, display) => {
-    let color = theme.tabs.header.color
-
-    if (active) {
-      color = theme.tabs.header.colorActive
-    }
-
-    if (display === 'embed') {
-      color = theme.tabs.header.color
-    }
-
-    return color
-  }
 
   export default {
     props: ['click', 'active'],
@@ -52,12 +19,43 @@
         display: this.$select('display')
       }
     },
-    components: {
-      CloseIcon
+    computed: {
+      tabStyle () {
+        const style = {
+          color: this.theme.tabs.header.color,
+          background: this.theme.tabs.header.background
+        }
+
+        if (this.active) {
+          style.color = this.theme.tabs.header.colorActive
+          style.background = this.theme.tabs.header.backgroundActive
+        }
+
+        if (this.display === 'embed') {
+          style.color = this.theme.tabs.header.color
+          style.background = this.theme.tabs.header.background
+        }
+
+        return style
+      }
     },
     methods: {
-      tabStyle,
-      iconColor
+      iconColor (active) {
+        let color = this.theme.tabs.header.color
+
+        if (active) {
+          color = this.theme.tabs.header.colorActive
+        }
+
+        if (this.display === 'embed') {
+          color = this.theme.tabs.header.color
+        }
+
+        return color
+      }
+    },
+    components: {
+      CloseIcon
     }
   }
 </script>

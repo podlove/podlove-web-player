@@ -1,5 +1,5 @@
 <template>
-  <div class="tabs" :style="containerStyle(theme)">
+  <div class="tabs" :style="containerStyle">
     <TabHeaderComponent>
       <TabHeaderItemComponent :active="tabs.chapters" :click="toggleTab('chapters')" v-if="components.tabs.chapters">
         <ChaptersIcon slot="icon"></ChaptersIcon>
@@ -43,14 +43,6 @@ import ChaptersTab from './chapters/Chapters.vue'
 import ShareTab from './share/Share.vue'
 import AudioTab from './audio/Audio.vue'
 
-const containerStyle = theme => ({
-  'background-color': theme.tabs.body.background
-})
-
-const toggleTab = tab => () => {
-  store.dispatch(store.actions.toggleTab(tab))
-}
-
 export default {
   data () {
     return {
@@ -62,9 +54,20 @@ export default {
       muted: this.$select('muted')
     }
   },
+  computed: {
+    containerStyle () {
+      return {
+        'background-color': this.theme.tabs.body.background
+      }
+    }
+
+  },
   methods: {
-    containerStyle,
-    toggleTab
+    toggleTab (tab) {
+      return () => {
+        store.dispatch(store.actions.toggleTab(tab))
+      }
+    }
   },
   components: {
     TabHeaderComponent,

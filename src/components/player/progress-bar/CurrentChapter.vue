@@ -1,9 +1,9 @@
 <template>
   <div class="timer-chapter truncate">
     <span class="chapter-title" v-marquee
-      :style="chapterStyle(theme)"
+      :style="chapterStyle"
       v-if="currentChapterIndex(chapters) > -1">
-        {{chapterTitle(chapters)}}
+        {{chapterTitle}}
     </span>
   </div>
 </template>
@@ -12,15 +12,6 @@
   import get from 'lodash/get'
   import { currentChapter, currentChapterIndex } from 'utils/chapters'
 
-  const chapterStyle = theme => ({
-    color: theme.player.timer.chapter
-  })
-
-  const chapterTitle = chapters => {
-    const current = currentChapter(chapters)
-    return `${get(current, 'title', '')}`
-  }
-
   export default {
     data () {
       return {
@@ -28,9 +19,19 @@
         theme: this.$select('theme')
       }
     },
+    computed: {
+      chapterStyle () {
+        return {
+          color: this.theme.player.timer.chapter
+        }
+      },
+
+      chapterTitle () {
+        const current = currentChapter(this.chapters)
+        return get(current, 'title', '')
+      }
+    },
     methods: {
-      chapterStyle,
-      chapterTitle,
       currentChapterIndex
     }
   }

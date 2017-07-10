@@ -1,6 +1,6 @@
 <template>
   <div class="progress">
-    <input
+    <input v-if="runtime.platform === 'desktop'"
       type="range"
       min="0" :max="interpolate(duration)" step="0.1"
       :value="interpolate(playtime)"
@@ -9,46 +9,28 @@
       @mousemove="onMouseMove"
       @mouseout="onMouseOut"
     >
-    <span class="progress-range" :style="rangeStyle(theme)"></span>
-    <span class="progress-buffer" :style="bufferStyle(theme, buffer, duration)"></span>
-    <span v-for="(quantile, index) in quantiles" class="progress-track" :style="trackStyle(theme, duration, quantile)" :key="index"></span>
+    <input v-else
+      type="range"
+      min="0" :max="interpolate(duration)" step="0.1"
+      :value="interpolate(playtime)"
+      @change="onChange"
+      @input="onInput"
+    >
+    <span class="progress-range" :style="rangeStyle"></span>
+    <span class="progress-buffer" :style="bufferStyle"></span>
+    <span v-for="(quantile, index) in quantiles" class="progress-track" :style="trackStyle(quantile)" :key="index"></span>
     <ChaptersIndicator></ChaptersIndicator>
-    <span class="ghost-thumb" :style="thumbStyle(theme, ghostPosition, ghost.active)"></span>
-    <span class="progress-thumb" :class="{ active: thumbActive }" :style="thumbStyle(theme, thumbPosition)"></span>
+    <span class="ghost-thumb" :style="thumbStyle(ghostPosition, ghost.active)"></span>
+    <span class="progress-thumb" :class="{ active: thumbActive }" :style="thumbStyle(thumbPosition, true)"></span>
   </div>
 </template>
 
 <script>
   import store from 'store'
+  import runtime from 'utils/runtime'
+  import { interpolate, relativePosition } from 'utils/math'
 
   import ChaptersIndicator from './ChapterIndicator.vue'
-
-  const interpolate = (num = 0) => Math.round(num * 100) / 100
-
-  const relativePosition = (current = 0, maximum = 0) =>
-    ((current * 100) / maximum) + '%'
-
-  const rangeStyle = (theme) => ({
-    'background-color': theme.player.progress.range
-  })
-
-  const bufferStyle = (theme, buffer = 0, duration = 1) => ({
-    width: relativePosition(buffer, duration),
-    'background-color': theme.player.progress.buffer
-  })
-
-  const thumbStyle = (theme, position, active = true) => ({
-    display: active ? 'block' : 'none',
-    left: position,
-    'background-color': theme.player.progress.thumb,
-    'border-color': theme.player.progress.border
-  })
-
-  const trackStyle = (theme, duration, [start, end]) => ({
-    left: relativePosition(start, duration),
-    width: relativePosition(end - start, duration),
-    'background-color': theme.player.progress.track
-  })
 
   export default {
     data () {
@@ -69,7 +51,8 @@
         quantiles: this.$select('quantiles'),
 
         ghostPosition: relativePosition(ghost.time, duration),
-        thumbActive: false
+        thumbActive: false,
+        runtime
       }
     },
     watch: {
@@ -78,6 +61,20 @@
       },
       ghost: function (ghost) {
         this.ghostPosition = relativePosition(ghost.time, this.duration)
+      }
+    },
+    computed: {
+      rangeStyle () {
+        return {
+          'background-color': this.theme.player.progress.range
+        }
+      },
+
+      bufferStyle () {
+        return {
+          width: relativePosition(this.buffer, this.duration),
+          'background-color': this.theme.player.progress.buffer
+        }
       }
     },
     methods: {
@@ -96,7 +93,7 @@
         if ((event.offsetY < 13 && event.offsetY > 31) || event.offsetX < 0 || event.offsetX > event.target.clientWidth) {
           this.thumbActive = false
           store.dispatch(store.actions.disableGhostMode())
-          return
+          return false
         }
 
         this.thumbAnimated = true
@@ -104,19 +101,37 @@
 
         store.dispatch(store.actions.simulatePlaytime(this.duration * event.offsetX / event.target.clientWidth))
         store.dispatch(store.actions.enableGhostMode())
+
+        event.preventDefault()
+        return false
       },
 
       onMouseOut (event) {
         this.thumbActive = false
         store.dispatch(store.actions.disableGhostMode())
         store.dispatch(store.actions.simulatePlaytime(this.playtime))
+        event.preventDefault()
+        return false
       },
 
-      interpolate,
-      rangeStyle,
-      bufferStyle,
-      thumbStyle,
-      trackStyle
+      thumbStyle (position, active) {
+        return {
+          display: active ? 'block' : 'none',
+          left: position,
+          'background-color': this.theme.player.progress.thumb,
+          'border-color': this.theme.player.progress.border
+        }
+      },
+
+      trackStyle ([start, end]) {
+        return {
+          left: relativePosition(start, this.duration),
+          width: relativePosition(end - start, this.duration),
+          'background-color': this.theme.player.progress.track
+        }
+      },
+
+      interpolate
     },
     components: {
       ChaptersIndicator

@@ -4,21 +4,21 @@
       <div class="input-row input-group">
         <ButtonComponent
           class="input-button truncate"
-          :data-clipboard-text="clipboardContent(reference, share.embed, playtime)"
+          :data-clipboard-text="clipboardContent"
           v-clipboard
-          :style="buttonStyle(theme)">
+          :style="buttonStyle">
           {{ $t('SHARE.ACTIONS.COPY') }}
         </ButtonComponent>
-        <input type="text" class="input-text" :style="inputStyle(theme)" disabled :value="clipboardContent(reference, share.embed, playtime)" />
+        <input type="text" class="input-text" :style="inputStyle" disabled :value="clipboardContent" />
       </div>
       <div class="input-row">
         <div class="share-config--time">
           <label class="input-label"><input type="checkbox" class="input-checkbox" :value="share.embed.start" v-on:change="toggleEmbedStart(playtime)"/> {{ $t('SHARE.LABELS.START') }}</label>
-          <input type="text" class="input-text" :style="inputStyle(theme)" :value="secondsToTime(share.embed.starttime)" v-on:input="setStarttime"/>
+          <input type="text" class="input-text" :style="inputStyle" :value="secondsToTime(share.embed.starttime)" v-on:input="setStarttime"/>
         </div>
         <div class="share-config--size">
           <label class="input-label">{{ $t('SHARE.LABELS.SIZE') }}</label>
-          <select class="input-select" :style="inputStyle(theme)" v-model="share.embed.size" v-on:change="setEmbedSize(share.embed.size)">
+          <select class="input-select" :style="inputStyle" v-model="share.embed.size" v-on:change="setEmbedSize(share.embed.size)">
             <option v-for="option in share.embed.availableSizes" v-bind:value="option">
               {{ option }}
             </option>
@@ -29,62 +29,13 @@
 </template>
 
 <script>
-  import { debounce, get } from 'lodash'
+  import { debounce } from 'lodash'
   import { addQueryParameter } from 'utils/url'
 
   import store from 'store'
   import { secondsToTime, timeToSeconds } from 'utils/time'
 
   import ButtonComponent from 'shared/Button.vue'
-
-  const buttonStyle = (theme) => ({
-    color: theme.tabs.button.text,
-    background: theme.tabs.button.background,
-    'border-color': theme.tabs.input.border
-  })
-
-  const inputStyle = (theme) => ({
-    'border-color': theme.tabs.input.border
-  })
-
-  // Embed
-  const clipboardContent = (reference, embed, playtime) => {
-    const [width, height] = embed.size.split('x')
-
-    const parameters = {
-      episode: reference.config
-    }
-
-    if (embed.start) {
-      parameters.t = secondsToTime(embed.starttime)
-    }
-
-    return `<iframe width="${width}" height="${height}" src="${addQueryParameter(reference.share, parameters)}" frameborder="0" scrolling="no"></iframe>`
-  }
-
-  const setEmbedSize = size => {
-    store.dispatch(store.actions.setShareEmbedSize(size))
-  }
-
-  const toggleEmbedStart = time => {
-    store.dispatch(store.actions.toggleShareEmbedStart())
-    store.dispatch(store.actions.setShareEmbedStarttime(time))
-  }
-
-  const setStarttime = debounce(input => {
-    const duration = get(store.store.getState(), 'duration')
-    let time = timeToSeconds(input.target.value)
-
-    if (!time) {
-      return
-    }
-
-    if (time > duration) {
-      time = duration
-    }
-
-    store.dispatch(store.actions.setShareEmbedStarttime(time))
-  }, 1000)
 
   export default {
     data () {
@@ -96,15 +47,62 @@
         theme: this.$select('theme')
       }
     },
+    computed: {
+      buttonStyle () {
+        return {
+          color: this.theme.tabs.button.text,
+          background: this.theme.tabs.button.background,
+          'border-color': this.theme.tabs.input.border
+        }
+      },
+
+      inputStyle () {
+        return {
+          'border-color': this.theme.tabs.input.border
+        }
+      },
+
+      clipboardContent () {
+        const [width, height] = this.share.embed.size.split('x')
+
+        const parameters = {
+          episode: this.reference.config
+        }
+
+        if (this.share.embed.start) {
+          parameters.t = secondsToTime(this.share.embed.starttime)
+        }
+
+        return `<iframe width="${width}" height="${height}" src="${addQueryParameter(this.reference.share, parameters)}" frameborder="0" scrolling="no"></iframe>`
+      }
+    },
     methods: {
       secondsToTime,
-      buttonStyle,
-      inputStyle,
 
-      setEmbedSize,
-      clipboardContent,
-      toggleEmbedStart,
-      setStarttime
+      setEmbedSize (size) {
+        store.dispatch(store.actions.setShareEmbedSize(size))
+      },
+
+      toggleEmbedStart (time) {
+        store.dispatch(store.actions.toggleShareEmbedStart())
+        store.dispatch(store.actions.setShareEmbedStarttime(time))
+      },
+
+      setStarttime (input) {
+        debounce(() => {
+          let time = timeToSeconds(input.target.value)
+
+          if (!time) {
+            return
+          }
+
+          if (time > this.duration) {
+            time = this.duration
+          }
+
+          store.dispatch(store.actions.setShareEmbedStarttime(time))
+        }, 1000)()
+      }
     },
     components: {
       ButtonComponent

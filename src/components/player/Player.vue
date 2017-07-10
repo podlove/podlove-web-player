@@ -1,5 +1,5 @@
 <template>
-  <div class="player" :style="backgroundStyle(theme)">
+  <div class="player" :style="backgroundStyle">
     <ControlBar />
     <transition name="progressbar">
       <ProgressBar v-if="components.progressbar" />
@@ -11,10 +11,6 @@
   import ControlBar from './control-bar/ControlBar.vue'
   import ProgressBar from './progress-bar/ProgressBar.vue'
 
-  const backgroundStyle = theme => ({
-    'background-color': theme.player.background
-  })
-
   export default {
     data () {
       return {
@@ -24,12 +20,16 @@
         components: this.$select('components')
       }
     },
+    computed: {
+      backgroundStyle () {
+        return {
+          'background-color': this.theme.player.background
+        }
+      }
+    },
     components: {
       ControlBar,
       ProgressBar
-    },
-    methods: {
-      backgroundStyle
     }
   }
 </script>

@@ -3,7 +3,7 @@
     <AudioVolumeComponent class="seperator"></AudioVolumeComponent>
     <AudioRateComponent class="seperator"></AudioRateComponent>
     <div class="footer">
-      <a class="version" title="Export Debug" :href="exportStore()" download="web-player-debug.json">Podlove Web Player v{{version}}</a>
+      <a class="version" title="Export Debug" :href="exportStore" download="web-player-debug.json">Podlove Web Player v{{version}}</a>
     </div>
   </div>
 </template>
@@ -14,18 +14,16 @@
   import AudioRateComponent from './AudioRate.vue'
   import AudioVolumeComponent from './AudioVolume.vue'
 
-  // Template Functions
-  const exportStore = () =>
-    `data:text/json;charset=utf-8,${encodeURIComponent(JSON.stringify(store.store.getState()))}`
-
   export default {
     data () {
       return {
         version: this.$select('runtime.version')
       }
     },
-    methods: {
-      exportStore
+    computed: {
+      exportStore () {
+        return `data:text/json;charset=utf-8,${encodeURIComponent(JSON.stringify(store.store.getState()))}`
+      }
     },
     components: {
       AudioRateComponent,

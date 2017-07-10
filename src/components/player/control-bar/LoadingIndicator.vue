@@ -1,24 +1,24 @@
 <template>
   <div class="podlove-player--loading-indicator">
-    <div class="loading-bubble first" :style="indicatorStyle(theme)"></div>
-    <div class="loading-bubble second" :style="indicatorStyle(theme)"></div>
-    <div class="loading-bubble third" :style="indicatorStyle(theme)"></div>
+    <div class="loading-bubble first" :style="indicatorStyle"></div>
+    <div class="loading-bubble second" :style="indicatorStyle"></div>
+    <div class="loading-bubble third" :style="indicatorStyle"></div>
   </div>
 </template>
 
 <script>
-const indicatorStyle = theme => ({
-  background: theme.player.actions.icon
-})
-
 export default {
   data () {
     return {
       theme: this.$select('theme')
     }
   },
-  methods: {
-    indicatorStyle
+  computed: {
+    indicatorStyle () {
+      return {
+        background: this.theme.player.actions.icon
+      }
+    }
   }
 }
 </script>
