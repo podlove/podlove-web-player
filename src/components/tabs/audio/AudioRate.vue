@@ -5,8 +5,12 @@
       <span class="rate">{{ toPercent(rate) }}%</span>
     </h4>
     <div class="input-slider">
-      <ButtonComponent class="slider-button" :click="changeRate(-5, rate)" :style="buttonStyle">-</ButtonComponent>
-      <ButtonComponent class="slider-button" :click="changeRate(5, rate)" :style="buttonStyle">+</ButtonComponent>
+      <ButtonComponent class="slider-button" :click="changeRate(-5, rate)" :style="buttonStyle">
+        <MinusIcon :color="theme.tabs.button.text"></MinusIcon>
+      </ButtonComponent>
+      <ButtonComponent class="slider-button" :click="changeRate(5, rate)" :style="buttonStyle">
+        <PlusIcon :color="theme.tabs.button.text"></PlusIcon>
+      </ButtonComponent>
       <SliderComponent class="input-slider"
         min="0" max="1" step="0.001"
         :value="sliderRate" :onInput="toStateRate" :thumbBorder="theme.tabs.input.border" :thumbColor="theme.tabs.slider.thumb"></SliderComponent>
@@ -22,6 +26,9 @@
 
   import SliderComponent from 'shared/Slider.vue'
   import ButtonComponent from 'shared/Button.vue'
+
+  import PlusIcon from 'icons/PlusIcon.vue'
+  import MinusIcon from 'icons/MinusIcon.vue'
 
   // Speed Modifiers
   const normalizeSliderValue = (value = 0) => {
@@ -107,7 +114,9 @@
     },
     components: {
       SliderComponent,
-      ButtonComponent
+      ButtonComponent,
+      PlusIcon,
+      MinusIcon
     }
   }
 </script>

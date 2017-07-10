@@ -67,7 +67,7 @@ const timerMode = (state = 'remaining', action) => {
 
 const volume = (state = 1, action) => {
   if (action.type !== 'SET_VOLUME') {
-    return state
+    return parseFloat(state)
   }
 
   switch (true) {

@@ -161,13 +161,6 @@ test(`volume: is a reducer function`, t => {
   t.is(typeof volume, 'function')
 })
 
-test(`volume: it does nothing if a unknown action is dispatched`, t => {
-  const result = volume('CUSTOM', {
-    type: 'NOT_A_REAL_TYPE'
-  })
-  t.is(result, 'CUSTOM')
-})
-
 test(`volume: it returns the correct volume`, t => {
   t.is(volume(undefined, {
     type: 'SET_RATE',

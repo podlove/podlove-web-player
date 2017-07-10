@@ -2,14 +2,13 @@
   <div class="input-element">
     <h4 class="title">
       <span class="label">{{ $t('AUDIO.VOLUME') }}</span>
-      <span class="volume">{{ toPercent(volume) }}%</span>
+      <span class="volume">{{ toPercent(visualVolume) }}%</span>
     </h4>
     <div class="input-slider">
       <ButtonComponent class="slider-button mute-control" :style="buttonStyle" :click="toggleMute">
-        <SpeakerMuteIcon :color="theme.tabs.button.text" v-if="muted"/>
-        <SpeakerIcon :color="theme.tabs.button.text" v-else />
+        <AudioIcon :color="theme.tabs.button.text" :volume="visualVolume * 100" :muted="muted"></AudioIcon>
       </ButtonComponent>
-      <SliderComponent class="input-slider" min="0" max="1" :value="volume" step="0.001" :onInput="setVolume" :thumbBorder="theme.tabs.input.border" :thumbColor="theme.tabs.slider.thumb"></SliderComponent>
+      <SliderComponent class="input-slider" min="0" max="1" :value="visualVolume" step="0.001" :onInput="setVolume" :thumbBorder="theme.tabs.input.border" :thumbColor="theme.tabs.slider.thumb"></SliderComponent>
     </div>
   </div>
 </template>
@@ -23,8 +22,7 @@
 
   import SliderComponent from 'shared/Slider.vue'
   import ButtonComponent from 'shared/Button.vue'
-  import SpeakerIcon from 'icons/SpeakerIcon.vue'
-  import SpeakerMuteIcon from 'icons/SpeakerMuteIcon.vue'
+  import AudioIcon from 'icons/AudioIcon.vue'
 
   // State Changers
   const setVolume = compose(store.dispatch.bind(store), store.actions.setVolume)
@@ -54,6 +52,13 @@
           background: this.theme.tabs.button.background,
           'border-color': this.theme.tabs.input.border
         }
+      },
+      visualVolume () {
+        if (this.muted) {
+          return 0
+        }
+
+        return this.volume
       }
     },
     methods: {
@@ -64,8 +69,7 @@
     components: {
       SliderComponent,
       ButtonComponent,
-      SpeakerIcon,
-      SpeakerMuteIcon
+      AudioIcon
     }
   }
 </script>

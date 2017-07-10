@@ -27,7 +27,7 @@ export function secondsToTime (time = 0) {
   let result = `${leadingZero(minutes)}:${leadingZero(seconds)}`
 
   if (hours > 0) {
-    result = `${leadingZero(hours)}:${result}`
+    result = `${hours}:${result}`
   }
 
   return result
