@@ -1,4 +1,42 @@
 <a name="4.0.0-alpha"></a>
+# [4.0.0-alpha](https://github.com/podlove/podlove-web-player/compare/v4.0.0-alpha.5...v4.0.0-alpha) (2017-07-10)
+
+
+### Bug Fixes
+
+* **chapters:** Fixing various bugs related to chapters control ([2d5e061](https://github.com/podlove/podlove-web-player/commit/2d5e061)), closes [#390](https://github.com/podlove/podlove-web-player/issues/390) [#389](https://github.com/podlove/podlove-web-player/issues/389)
+* **linting:** fix linter errors ([311f324](https://github.com/podlove/podlove-web-player/commit/311f324))
+* **play-button:** Dynamic width play button with text mode ([778fc03](https://github.com/podlove/podlove-web-player/commit/778fc03))
+
+
+### Features
+
+* **chapter:** Add hover effect to chapters ([6bdb5ae](https://github.com/podlove/podlove-web-player/commit/6bdb5ae))
+* **chapters:** Rework chapter interaction, introduce play icon in chapter ([9e17747](https://github.com/podlove/podlove-web-player/commit/9e17747))
+* **chapters:** Start chapter on touch always from beginning ([6997b64](https://github.com/podlove/podlove-web-player/commit/6997b64))
+* **chapters:** Use chapter entries to navigate through playtime ([1fbd4bf](https://github.com/podlove/podlove-web-player/commit/1fbd4bf))
+* **chapters:** Use chapter entries to navigate through playtime ([847d69b](https://github.com/podlove/podlove-web-player/commit/847d69b))
+* **error-monitor:** Add sentry support with release control ([58ea3c7](https://github.com/podlove/podlove-web-player/commit/58ea3c7))
+* **font-face:** Use Fira sans and Fira mono ([935a132](https://github.com/podlove/podlove-web-player/commit/935a132))
+* **ghost-chapter:** Add ghost mode to chapters ([0202f50](https://github.com/podlove/podlove-web-player/commit/0202f50))
+* **info:** Set links in embed mode ([05b8778](https://github.com/podlove/podlove-web-player/commit/05b8778))
+* **keyboard:** Add keyboard effects to control volume ([ba7b88b](https://github.com/podlove/podlove-web-player/commit/ba7b88b))
+* **playtime:** Prefix running progress and chapters with minus ([ae23ba2](https://github.com/podlove/podlove-web-player/commit/ae23ba2))
+* **progress-track:** Add ghost mode to progress slider ([401c032](https://github.com/podlove/podlove-web-player/commit/401c032))
+* **settings-tab:** Add mute/unmute button ([df9eafd](https://github.com/podlove/podlove-web-player/commit/df9eafd))
+* **settings-tab:** Add mute/unmute button ([8aacb7b](https://github.com/podlove/podlove-web-player/commit/8aacb7b))
+* **speed-slider:** Use two linear functions for better speed sliding ([c37ef85](https://github.com/podlove/podlove-web-player/commit/c37ef85))
+* **tab-refinement:** Update color calculation to match also highly saturated colours. ([cec77fb](https://github.com/podlove/podlove-web-player/commit/cec77fb))
+
+
+### BREAKING CHANGES
+
+* **tab-refinement:** - theme.primary is now called theme.main
+- theme.secondary is now called theme.highlight
+
+
+
+<a name="4.0.0-alpha"></a>
 # [4.0.0-alpha](https://github.com/podlove/podlove-web-player/compare/v4.0.0-alpha.5...v4.0.0-alpha) (2017-06-16)
 
 
