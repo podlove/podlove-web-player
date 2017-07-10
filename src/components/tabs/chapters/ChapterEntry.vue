@@ -8,7 +8,7 @@
       <PlayIcon size="12" :color="theme.tabs.body.icon"></PlayIcon>
     </span>
     <span class="index" v-else>{{index + 1}}</span>
-    <div class="chapter--progress" v-if="runtime.browser === 'desktop'"
+    <div class="chapter--progress" v-if="runtime.platform === 'desktop'"
       @mouseout="onMouseOut"
       @mousemove="onMouseMove"
       @click="onChapterClick">
@@ -173,10 +173,10 @@
       align-items: center;
       position: relative;
       padding: ($padding / 2) 0;
-      width: 100%;
+      width: calc(100% - #{$index-width});
 
       .title {
-        width: calc(100% -   #{$index-width});
+        width: calc(100% - #{$index-width});
         pointer-events: none;
       }
 

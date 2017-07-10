@@ -51,6 +51,16 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
+    .button {
+      margin: 0 $margin / 3;
+    }
+
+    @media screen and (max-width: $width-s) {
+      .button {
+        margin: 0;
+      }
+    }
   }
 
   .player-control {

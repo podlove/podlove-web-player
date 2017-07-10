@@ -10,8 +10,7 @@
         <span slot="title">{{ $t('SHARE.TITLE') }}</span>
       </TabHeaderItemComponent>
       <TabHeaderItemComponent :active="tabs.audio" v-if="components.tabs.audio" :click="toggleTab('audio')">
-        <SpeakerMuteIcon slot="icon" v-if="muted"></SpeakerMuteIcon>
-        <SpeakerIcon slot="icon" v-else></SpeakerIcon>
+        <AudioIcon slot="icon" :volume="volume * 100" :muted="muted"></AudioIcon>
         <span slot="title">{{ $t('AUDIO.TITLE') }}</span>
       </TabHeaderItemComponent>
     </TabHeaderComponent>
@@ -36,7 +35,7 @@ import TabBodyComponent from 'shared/TabBody.vue'
 
 import ChaptersIcon from 'icons/ChaptersIcon.vue'
 import ShareIcon from 'icons/ShareIcon.vue'
-import SpeakerIcon from 'icons/SpeakerIcon.vue'
+import AudioIcon from 'icons/AudioIcon.vue'
 import SpeakerMuteIcon from 'icons/SpeakerMuteIcon.vue'
 
 import ChaptersTab from './chapters/Chapters.vue'
@@ -51,6 +50,7 @@ export default {
       chapters: this.$select('chapters'),
       reference: this.$select('reference'),
       components: this.$select('components'),
+      volume: this.$select('volume'),
       muted: this.$select('muted')
     }
   },
@@ -77,7 +77,7 @@ export default {
     ChaptersTab,
     ShareIcon,
     ShareTab,
-    SpeakerIcon,
+    AudioIcon,
     SpeakerMuteIcon,
     AudioTab
   }

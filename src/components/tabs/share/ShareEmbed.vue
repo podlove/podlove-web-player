@@ -19,7 +19,7 @@
         <div class="share-config--size">
           <label class="input-label">{{ $t('SHARE.LABELS.SIZE') }}</label>
           <select class="input-select" :style="inputStyle" v-model="share.embed.size" v-on:change="setEmbedSize(share.embed.size)">
-            <option v-for="option in share.embed.availableSizes" v-bind:value="option">
+            <option v-for="(option, index) in share.embed.availableSizes" v-bind:key="index" v-bind:value="option">
               {{ option }}
             </option>
           </select>
