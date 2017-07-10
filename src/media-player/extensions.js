@@ -6,16 +6,24 @@ export default (player, { onLoad }) => {
   // Maybe this could be a useful plugin
   const howlerPlay = player.play.bind(player)
   const howlerSeek = player.seek.bind(player)
-  let initialPlay = false
 
-  player.once('play', () => {
-    initialPlay = true
-  })
+  let loading = false
+
+  const loadPlayer = (sprite, internal) => {
+    onLoad()
+    howlerPlay(sprite, internal)
+    loading = true
+  }
 
   // Safe Play
   player.play = (sprite, internal) => {
-    if (!initialPlay) {
-      onLoad()
+    // honestly, this should be part of core functionality, prevents nasty race conditions...
+    if (player.playing(sprite)) {
+      return
+    }
+
+    if (!loading) {
+      return loadPlayer()
     }
 
     howlerPlay(sprite, internal)

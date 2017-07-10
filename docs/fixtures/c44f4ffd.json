@@ -3,12 +3,13 @@
   "subtitle": "Das große WWDC Roundup",
   "summary": "Tim, Denis und Roddi nehmen sich der Neuigkeiten von Apples WWDC an. Natürlich mit einem extragroßen Block zum Thema APFS. Wir wünschen viel Spaß. Die nächste Sendung dann schon in einer Woche.",
   "publicationDate": "2016-06-23T00:46:26.000Z",
+  "link": "http://freakshow.fm/fs179-sticker-sind-wichtig-fuer-die-fortpflanzung",
   "show": {
     "title": "Freak Show",
     "subtitle": "Menschen! Technik! Sensationen!",
     "summary": "Die muntere Talk Show um Leben mit Technik, das Netz und Technikkultur. Bisweilen Apple-lastig aber selten einseitig. Wir leben und lieben Technologie und reden darüber. Mit Tim, hukl, roddi, Clemens und Denis. Freak Show hieß irgendwann mal mobileMacs.",
     "poster": "http://freakshow.fm/wp-content/cache/podlove/04/662a9d4edcf77ea2abe3c74681f509/freak-show_original.jpg",
-    "url": "http://freakshow.fm"
+    "link": "http://freakshow.fm"
   },
   "duration": "03:50:08",
   "chapters": [
@@ -100,11 +101,12 @@
   "audio": [
     "https://tracking.feedpress.it/link/13453/3688435/fs179-sticker-sind-wichtig-fuer-die-fortpflanzung.m4a"
   ],
-  "theme": {
-    "primary": "#79EEF2"
-  },
   "reference": {
     "share": "//podlove-player.surge.sh/share",
-    "config": "//podlove-player.surge.sh/fixtures/c44f4ffd.json"
+    "config": "//podlove-player.surge.sh/fixtures/c44f4ffd.json",
+    "origin": "http://freakshow.fm/fs179-sticker-sind-wichtig-fuer-die-fortpflanzung"
+  },
+  "theme": {
+    "main": "rgb(251,237,186)"
   }
 }

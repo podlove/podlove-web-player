@@ -4,14 +4,15 @@ import runtime from 'utils/runtime'
 import { Renderer } from 'core'
 import i18n from 'lang'
 
-// Import share static page
-require('file-loader?name=share.html!./statics/share.html')
-
 // Store
 import store from 'store'
 
 // UI Components
 import App from './components/App.vue'
+
+// Import share static page
+// eslint-disable-next-line
+require('file-loader?name=share.html!./statics/share.html')
 
 export default config => {
   // Enhance config with app debug information

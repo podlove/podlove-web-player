@@ -1,0 +1,50 @@
+@import 'variables';
+
+.podlove {
+   &.embed {
+      height: 100%;
+
+      .header {
+        height: calc(100% - #{$player-height} - #{$tabs-header-height})
+      }
+
+      .player {
+        height: $player-height;
+      }
+
+      // Share mode
+      .tabs {
+        .tab-header-item.active {
+          position: fixed;
+          top: 0;
+          border-color: rgba(0,0,0, 0.1);
+          border-style: solid;
+          border-width: 1px 1px 0 1px;
+
+          .title {
+            display: block;
+          }
+
+          .close {
+            display: block;
+            position: fixed;
+            top: $padding / 1.5;
+            right: $padding / 1.5;
+          }
+        }
+
+        .tab-body {
+          top: 100%;
+          position: fixed;
+          transition: top $animation-duration;
+        }
+
+        .tab-body.active {
+          top: $tabs-header-height;
+          width: 100%;
+          height: calc(100% - #{$tabs-header-height});
+          background: $background-color;
+        }
+      }
+    }
+}

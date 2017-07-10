@@ -1,11 +1,11 @@
 <template>
-  <ButtonComponent class="chapter-control" :click="onButtonClick">
-    <ChapterBackIcon :color="theme.player.actions.background" />
+  <ButtonComponent class="chapter-control" :click="onButtonClick" :disabled="playtime === 0">
+    <ChapterBackIcon :color="theme.player.actions.background"></ChapterBackIcon>
   </ButtonComponent>
 </template>
 
 <script>
-  import { previousChapterPlaytime } from 'utils/chapters'
+  import { currentChapter, currentChapterIndex } from 'utils/chapters'
 
   import store from 'store'
   import ButtonComponent from 'shared/Button.vue'
@@ -19,16 +19,20 @@
     data () {
       return {
         chapters: this.$select('chapters'),
-        theme: this.$select('theme')
+        theme: this.$select('theme'),
+        playtime: this.$select('playtime')
       }
     },
     methods: {
       onButtonClick () {
-        const chapters = this.$select('chapters')
-        const playtime = this.$select('playtime')
-        const previousChapter = previousChapterPlaytime(chapters, playtime)
+        const current = currentChapter(this.chapters)
+        const currentIndex = currentChapterIndex(this.chapters)
 
-        store.dispatch(store.actions.updatePlaytime(previousChapter || 0))
+        if (this.playtime - current.start <= 2) {
+          store.dispatch(store.actions.previousChapter())
+        } else {
+          store.dispatch(store.actions.setChapter(currentIndex))
+        }
       }
     }
   }

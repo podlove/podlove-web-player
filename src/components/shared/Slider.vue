@@ -6,11 +6,11 @@
         :max="maxValue"
         :value="value"
         :step="sliderSteps"
-        v-on:input="onSliderInput"
-        v-on:change="onSliderChange"
+        @input="onSliderInput"
+        @change="onSliderChange"
       />
     <span class="slider--track"></span>
-    <span class="slider--thumb" :style="thumbStyle(thumbPosition, thumbColor, thumbBorder)"></span>
+    <span class="slider--thumb" :style="thumbStyle"></span>
     <slot></slot>
   </div>
 </template>
@@ -19,32 +19,30 @@
   import color from 'color'
   import { isUndefined } from 'lodash'
 
-  const defaultThumbColor = color('#000').fade(0.1)
-  const defaultThumbBorder = color('#fff')
-
   const relativePosition = (current = 0, minimum = 0, maximum = 0) =>
     (((parseFloat(current, 10) - parseFloat(minimum, 10)) * 100) / (parseFloat(maximum, 10) - parseFloat(minimum, 10))) + '%'
-
-  const thumbStyle = (left, backgroundColor, borderColor) => ({
-    left,
-    'background-color': backgroundColor || defaultThumbColor,
-    'border-color': borderColor || defaultThumbBorder
-  })
 
   export default {
     props: ['min', 'max', 'step', 'value', 'onChange', 'onInput', 'thumbColor', 'thumbBorder'],
     computed: {
-      minValue: function () {
+      minValue () {
         return isUndefined(this.min) ? 0 : this.min
       },
-      maxValue: function () {
+      maxValue () {
         return isUndefined(this.max) ? 100 : this.max
       },
-      sliderSteps: function () {
+      sliderSteps () {
         return isUndefined(this.step) ? 0.1 : this.step
       },
-      thumbPosition: function () {
+      thumbPosition () {
         return relativePosition(this.value, this.minValue, this.maxValue)
+      },
+      thumbStyle () {
+        return {
+          left: this.thumbPosition,
+          'background-color': this.thumbColor || color('#000').fade(0.1),
+          'border-color': this.thumbBorder || color('#fff')
+        }
       }
     },
     mounted: function () {
@@ -57,8 +55,7 @@
       },
       onSliderChange: function (event) {
         this.onChange && this.onChange(event.target.value)
-      },
-      thumbStyle
+      }
     }
   }
 </script>

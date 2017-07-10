@@ -68,11 +68,10 @@ const toggleShareTab = visibility => ({
   payload: visibility
 })
 
-const toggleSettingsTab = visibility => ({
-  type: 'TOGGLE_COMPONENT_TABS_SETTINGS',
+const toggleAudioTab = visibility => ({
+  type: 'TOGGLE_COMPONENT_TABS_AUDIO',
   payload: visibility
 })
-
 
 export {
   toggleInfo,
@@ -82,6 +81,7 @@ export {
   toggleChapterControls,
   toggleSteppersControls,
   toggleButtonControl,
+
   showLoadingButton,
   showReplayButton,
   showRemainingButton,
@@ -92,5 +92,5 @@ export {
 
   toggleChaptersTab,
   toggleShareTab,
-  toggleSettingsTab
+  toggleAudioTab
 }

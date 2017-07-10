@@ -3,12 +3,13 @@
   "subtitle": "",
   "summary": "Nach einer krankheitsbedingten längeren Auszeit nehmen wir wieder die Mikrofone in Betrieb und widmen uns unter anderem den in den letzten vier Wochen freigesetzten Memen, sinnieren über allerlei Zeug und das Bekleidungs-Shopping der Zukunft.",
   "publicationDate": "2012-10-01T22:28:36.000Z",
+  "link": "http://not-safe-for-work.de/nsfw057-gangnam-style/",
   "show": {
     "title": "Not Safe For Work",
     "subtitle": "Die Internationale Unterhaltungsgala mit Tim Pritlove und Holger Klein",
     "summary": "NSFW ist unkonventionell, unregelmäßig, unsinnig und ungemein unanständig. Garantiert mindestens zwei Worte pro Sendung, die man nicht auf der Arbeit sagen sollte. NSFW sollte nicht zu ernst genommen werden und selbstverständlich als Richtlinie aller Eurer künftigen Handlungen gelten.",
     "poster": "http://not-safe-for-work.de/wp-content/cache/podlove/0f/63751ecd7feba0789d91d4f9a45191/not-safe-for-work_original.jpg",
-    "url": "http://not-safe-for-work.de"
+    "link": "http://not-safe-for-work.de"
   },
   "duration": "03:13:55",
   "chapters": [
@@ -66,13 +67,14 @@
     }
   ],
   "audio": [
-    "http://tracking.feedpress.it/link/13444/1886718/nsfw057-gangnam-style.m4a"
+    "https://tracking.feedpress.it/link/13444/1886718/nsfw057-gangnam-style.m4a"
   ],
-  "theme": {
-    "primary": "#F279C6"
-  },
   "reference": {
     "share": "//podlove-player.surge.sh/share",
-    "config": "//podlove-player.surge.sh/fixtures/c355b4c1.json"
+    "config": "//podlove-player.surge.sh/fixtures/c355b4c1.json",
+    "origin": "http://not-safe-for-work.de/nsfw057-gangnam-style/"
+  },
+  "theme": {
+    "main": "rgb(242,156,148)"
   }
 }

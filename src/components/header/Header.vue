@@ -1,21 +1,14 @@
 <template>
-  <div class="header" :style="backgroundStyle(theme)">
-    <PodloveError v-if="components.error"/>
-    <PodloveInfo v-if="components.info"/>
+  <div class="header" :style="backgroundStyle">
+    <PodloveError v-if="components.error"></PodloveError>
+    <PodloveInfo v-if="components.info"></PodloveInfo>
   </div>
 
 </template>
 
 <script>
-  import store from 'store'
-  import color from 'color'
-
   import PodloveInfo from './Info.vue'
   import PodloveError from './Error.vue'
-
-  const backgroundStyle = theme => ({
-    'background-color': theme.player.background
-  })
 
   export default {
     data () {
@@ -24,8 +17,12 @@
         components: this.$select('components')
       }
     },
-    methods: {
-      backgroundStyle
+    computed: {
+      backgroundStyle () {
+        return {
+          'background-color': this.theme.player.background
+        }
+      }
     },
     components: {
       PodloveInfo,

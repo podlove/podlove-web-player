@@ -3,12 +3,13 @@
   "subtitle": "Audiosoftware — Getränkedosen — Mate — Bitcoin — Neuseeland — Schoki — Unperfekthaus u.v.m.",
   "summary": "Nach einer schier endlos langen Pause — Holgis Terminkalender ist schuld und er bittet um Nachsicht — nehmen wir wieder das Gespräch auf und kurven uns durch private Erlebnisse und eine umfangreiche Liste von interessanten Zusendungen aus aller Welt - von Kanada über Weißrußland und Neuseeland scheint mal wieder fast jeder Kontinent vertreten zu sein.",
   "publicationDate": "2014-02-24T23:02:01.000Z",
+  "link": "http://not-safe-for-work.de/nsfw081-spermafleck-auf-union-jack/",
   "show": {
     "title": "Not Safe For Work",
     "subtitle": "Die Internationale Unterhaltungsgala mit Tim Pritlove und Holger Klein",
     "summary": "NSFW ist unkonventionell, unregelmäßig, unsinnig und ungemein unanständig. Garantiert mindestens zwei Worte pro Sendung, die man nicht auf der Arbeit sagen sollte. NSFW sollte nicht zu ernst genommen werden und selbstverständlich als Richtlinie aller Eurer künftigen Handlungen gelten.",
     "poster": "http://not-safe-for-work.de/wp-content/cache/podlove/0f/63751ecd7feba0789d91d4f9a45191/not-safe-for-work_original.jpg",
-    "url": "http://not-safe-for-work.de"
+    "link": "http://not-safe-for-work.de"
   },
   "duration": "03:51:58",
   "chapters": [
@@ -62,13 +63,14 @@
     }
   ],
   "audio": [
-    "http://tracking.feedpress.it/link/13444/1886694/nsfw081-spermafleck-auf-union-jack.m4a"
+    "https://tracking.feedpress.it/link/13444/1886694/nsfw081-spermafleck-auf-union-jack.m4a"
   ],
-  "theme": {
-    "primary": "#CA79F2"
-  },
   "reference": {
     "share": "//podlove-player.surge.sh/share",
-    "config": "//podlove-player.surge.sh/fixtures/d9f054ad.json"
+    "config": "//podlove-player.surge.sh/fixtures/d9f054ad.json",
+    "origin": "http://not-safe-for-work.de/nsfw081-spermafleck-auf-union-jack/"
+  },
+  "theme": {
+    "main": "rgb(242,156,148)"
   }
 }

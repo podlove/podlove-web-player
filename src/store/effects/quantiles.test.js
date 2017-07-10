@@ -68,6 +68,16 @@ test(`quantileEffect: it resets the start time if UPDATE_PLAYTIME is triggered`,
   })
 
   quantiles(store, {
+    type: 'NEXT_CHAPTER',
+    payload: 1000
+  })
+
+  quantiles(store, {
+    type: 'PREVIOUS_CHAPTER',
+    payload: 1000
+  })
+
+  quantiles(store, {
     type: 'SET_PLAYTIME',
     payload: 1000
   })

@@ -3,12 +3,13 @@
   "subtitle": "33C3 — Tesla — E-Mobilität",
   "summary": "Die erste Folge im neuen Jahr hat einen klaren Schwerpunkt: den 33C3. Wir blicken zurück und besprechen einige Talks, die uns aufgefallen sind. Dazu begrüßen wir als Gast Thorsten Philip, mit dem wir noch mal das E-Mobilitätsthema aufgreifen.",
   "publicationDate": "2017-01-12T02:31:54.000Z",
+  "link": "http://freakshow.fm/fs191-sendungslaengenangst",
   "show": {
     "title": "Freak Show",
     "subtitle": "Menschen! Technik! Sensationen!",
     "summary": "Die muntere Talk Show um Leben mit Technik, das Netz und Technikkultur. Bisweilen Apple-lastig aber selten einseitig. Wir leben und lieben Technologie und reden darüber. Mit Tim, hukl, roddi, Clemens und Denis. Freak Show hieß irgendwann mal mobileMacs.",
     "poster": "http://freakshow.fm/wp-content/cache/podlove/04/662a9d4edcf77ea2abe3c74681f509/freak-show_original.jpg",
-    "url": "http://freakshow.fm"
+    "link": "http://freakshow.fm"
   },
   "duration": "04:25:52",
   "chapters": [
@@ -152,11 +153,12 @@
   "audio": [
     "https://tracking.feedpress.it/link/13453/5123589/fs191-sendungslaengenangst.m4a"
   ],
-  "theme": {
-    "primary": "#79F2BC"
-  },
   "reference": {
     "share": "//podlove-player.surge.sh/share",
-    "config": "//podlove-player.surge.sh/fixtures/9329d4ff.json"
+    "config": "//podlove-player.surge.sh/fixtures/9329d4ff.json",
+    "origin": "http://freakshow.fm/fs191-sendungslaengenangst"
+  },
+  "theme": {
+    "main": "rgb(251,237,186)"
   }
 }

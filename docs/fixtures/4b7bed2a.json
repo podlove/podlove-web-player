@@ -4,12 +4,13 @@
   "summary": "Der zivile Luftverkehr hat in den letzten Jahrzehnten enorm zugenommen und ist für unsere Mobilität in ähnlichem Maße von Bedeutung wie die Telekommunikation. Entsprechend groß sind die Herausforderungen an die hochtechnisierte Branche, für eine verläßliche technische Basis und ein gut funktionierendes Personalkarussell zu sorgen, das bei niedrigen Preisen eine Vielzahl an Verbindungen sicher durchführen kann.\n\nIch spreche mit dem Boeing- und Airbus-Piloten Stefan Müller über diese Welt mit einem besonderen Fokus auf die Rolle der Piloten, die natürlich eine zentrale Rolle im Geschehen einnehmen und einen ungewöhnlichen und anspruchsvollen Beruf ausüben. Wir reden darüber wie man Pilot wird, über die die Sprachkakophonie im Luftraum, Ausbildung und Weiterbildung, die Arbeit von Fluglotsen und Flughafenpersonal, die Aufgaben von Luftfahrtbehörden, den Regeln der Lüfte, die Start-, Flug- und Landephase eines Fluges und wie man seine Crew und Passagiere bei Laune hält.",
   "publicationDate": "2016-01-21T20:45:16.000Z",
   "poster": "http://cre.fm/wp-content/cache/podlove/14/f3ed6eba911a10ed15577679407d4e/cre211-ziviler-luftverkehr_original.jpg",
+  "link": "http://cre.fm/cre211-ziviler-luftverkehr",
   "show": {
     "title": "CRE: Technik, Kultur, Gesellschaft",
     "subtitle": "Der Interview-Podcast mit Tim Pritlove",
     "summary": "Intensive und ausführliche Gespräche über Themen aus Technik, Kultur und Gesellschaft, das ist CRE. Interessante Gesprächspartner stehen Rede und Antwort zu Fragen, die man normalerweise selten gestellt bekommt. CRE möchte  aufklären, weiterbilden und unterhalten.",
     "poster": "http://cre.fm/wp-content/cache/podlove/6b/8074d85b886d8dedb4945715694ba7/cre-technik-kultur-gesellschaft_original.jpg",
-    "url": "http://cre.fm"
+    "link": "http://cre.fm"
   },
   "duration": "03:53:09",
   "chapters": [
@@ -153,11 +154,9 @@
   "audio": [
     "https://tracking.feedpress.it/link/13440/2393358/cre211-ziviler-luftverkehr.m4a"
   ],
-  "theme": {
-    "primary": "#9D79F2"
-  },
   "reference": {
     "share": "//podlove-player.surge.sh/share",
-    "config": "//podlove-player.surge.sh/fixtures/4b7bed2a.json"
+    "config": "//podlove-player.surge.sh/fixtures/4b7bed2a.json",
+    "origin": "http://cre.fm/cre211-ziviler-luftverkehr"
   }
 }

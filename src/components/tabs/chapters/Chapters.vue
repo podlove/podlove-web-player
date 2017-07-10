@@ -1,6 +1,11 @@
 <template>
   <div class="chapters">
-    <ChapterEntryComponent v-for="(chapter, index) in chapters" :chapter="chapter" :index="index" :key="index"/>
+    <ChapterEntryComponent
+      v-for="(chapter, index) in chapters"
+      :chapter="chapter"
+      :index="index"
+      :key="index">
+    </ChapterEntryComponent>
   </div>
 </template>
 
@@ -8,7 +13,7 @@
   import ChapterEntryComponent from './ChapterEntry.vue'
 
   export default {
-    data() {
+    data () {
       return {
         theme: this.$select('theme'),
         chapters: this.$select('chapters')

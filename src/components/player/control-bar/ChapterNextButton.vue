@@ -1,12 +1,10 @@
 <template>
-  <ButtonComponent class="chapter-control" :click="onButtonClick">
-    <ChapterNextIcon :color="theme.player.actions.background" />
+  <ButtonComponent class="chapter-control" :click="onButtonClick" :disabled="playtime === duration">
+    <ChapterNextIcon :color="theme.player.actions.background"></ChapterNextIcon>
   </ButtonComponent>
 </template>
 
 <script>
-  import { nextChapterPlaytime } from 'utils/chapters'
-
   import store from 'store'
   import ButtonComponent from 'shared/Button.vue'
   import ChapterNextIcon from 'icons/ChapterNextIcon.vue'
@@ -19,16 +17,14 @@
     data () {
       return {
         chapters: this.$select('chapters'),
-        theme: this.$select('theme')
+        theme: this.$select('theme'),
+        playtime: this.$select('playtime'),
+        duration: this.$select('duration')
       }
     },
     methods: {
       onButtonClick () {
-        const chapters = this.$select('chapters')
-        const duration = this.$select('duration')
-        const nextChapter = nextChapterPlaytime(chapters)
-
-        store.dispatch(store.actions.updatePlaytime(nextChapter || duration))
+        store.dispatch(store.actions.nextChapter())
       }
     }
   }

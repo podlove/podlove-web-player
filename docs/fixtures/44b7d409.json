@@ -3,12 +3,13 @@
   "subtitle": "",
   "summary": "Holgi war in England und Tim in Frankfurt. Das ergibt schon mal eine Menge Gesprächsstoff. So ergibt sich wieder ein mal ein illustres Potpourri Eurer Internationalen Unterhaltungsgala der Extraklasse.",
   "publicationDate": "2013-04-22T18:22:03.000Z",
+  "link": "http://not-safe-for-work.de/nsfw068-viele-auslaender-benutzen-linux/",
   "show": {
     "title": "Not Safe For Work",
     "subtitle": "Die Internationale Unterhaltungsgala mit Tim Pritlove und Holger Klein",
     "summary": "NSFW ist unkonventionell, unregelmäßig, unsinnig und ungemein unanständig. Garantiert mindestens zwei Worte pro Sendung, die man nicht auf der Arbeit sagen sollte. NSFW sollte nicht zu ernst genommen werden und selbstverständlich als Richtlinie aller Eurer künftigen Handlungen gelten.",
     "poster": "http://not-safe-for-work.de/wp-content/cache/podlove/0f/63751ecd7feba0789d91d4f9a45191/not-safe-for-work_original.jpg",
-    "url": "http://not-safe-for-work.de"
+    "link": "http://not-safe-for-work.de"
   },
   "duration": "02:38:00",
   "chapters": [
@@ -50,13 +51,14 @@
     }
   ],
   "audio": [
-    "http://tracking.feedpress.it/link/13444/1886707/nsfw068-viele-auslaender-benutzen-linux.m4a"
+    "https://tracking.feedpress.it/link/13444/1886707/nsfw068-viele-auslaender-benutzen-linux.m4a"
   ],
-  "theme": {
-    "primary": "#F2E679"
-  },
   "reference": {
     "share": "//podlove-player.surge.sh/share",
-    "config": "//podlove-player.surge.sh/fixtures/44b7d409.json"
+    "config": "//podlove-player.surge.sh/fixtures/44b7d409.json",
+    "origin": "http://not-safe-for-work.de/nsfw068-viele-auslaender-benutzen-linux/"
+  },
+  "theme": {
+    "main": "rgb(242,156,148)"
   }
 }

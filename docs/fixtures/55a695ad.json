@@ -3,12 +3,13 @@
   "subtitle": "Heizungen — HomeKit — Telekom-Router — USB-C — MacBook Pro mit TouchBar — Bier brauen — Bluetooth Headsets — T-Mobile — Google Fi — WLAN Call — iPhone 7 — Apple 2FA — WLAN in ICEs — Podcasts und Tesla — Ladestationen",
   "summary": "Nach drei Wochen gab es dann doch wieder etwas mehr zu berichten und wir knacken mal wieder die 5-Stunden-Marke. Viel Spaß damit.",
   "publicationDate": "2016-12-08T13:23:34.000Z",
+  "link": "http://freakshow.fm/fs188-gas-wasser-freak-show",
   "show": {
     "title": "Freak Show",
     "subtitle": "Menschen! Technik! Sensationen!",
     "summary": "Die muntere Talk Show um Leben mit Technik, das Netz und Technikkultur. Bisweilen Apple-lastig aber selten einseitig. Wir leben und lieben Technologie und reden darüber. Mit Tim, hukl, roddi, Clemens und Denis. Freak Show hieß irgendwann mal mobileMacs.",
     "poster": "http://freakshow.fm/wp-content/cache/podlove/04/662a9d4edcf77ea2abe3c74681f509/freak-show_original.jpg",
-    "url": "http://freakshow.fm"
+    "link": "http://freakshow.fm"
   },
   "duration": "05:05:12",
   "chapters": [
@@ -100,11 +101,12 @@
   "audio": [
     "https://tracking.feedpress.it/link/13453/4928304/fs188-gas-wasser-freak-show.m4a"
   ],
-  "theme": {
-    "primary": "#79F2AC"
-  },
   "reference": {
     "share": "//podlove-player.surge.sh/share",
-    "config": "//podlove-player.surge.sh/fixtures/55a695ad.json"
+    "config": "//podlove-player.surge.sh/fixtures/55a695ad.json",
+    "origin": "http://freakshow.fm/fs188-gas-wasser-freak-show"
+  },
+  "theme": {
+    "main": "rgb(251,237,186)"
   }
 }

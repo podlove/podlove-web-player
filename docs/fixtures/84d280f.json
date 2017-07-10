@@ -3,12 +3,13 @@
   "subtitle": "Feedback — NSA-UA — BND-Satellitenüberwachung — Wahlsoftware — Trojaner-Regulierung — IP-Speicherung — CETA — Prototype Fund",
   "summary": "Am Tag der letzten Sitzung des NSA-Untersuchungsausschusses kommen wir zusammen und sprechen über Eindrücke bei den letzten Sitzungen. Wir schauen außerdem auf Pläne des BND zur Überwachung von Inmarsat, räudige Software für Wahlen, eine Blaupause für eine Trojaner-Regulierung, CETA und anderes.",
   "publicationDate": "2017-02-16T19:32:20.000Z",
+  "link": "http://logbuch-netzpolitik.de/lnp210-netzpolitische-suedkurve",
   "show": {
     "title": "Logbuch:Netzpolitik",
     "subtitle": "Einblicke und Ausblicke in das netzpolitische Geschehen",
     "summary": "Logbuch:Netzpolitik ist ein in der Regel wöchentlich erscheinender Podcast, der im Dialog zwischen Linus Neumann und Tim Pritlove die wichtigsten Themen und Ereignisse mit netzpolitischem Bezug aufgreift und diskutiert.",
     "poster": "http://logbuch-netzpolitik.de/wp-content/cache/podlove/92/de7e775cef6431203e4666e628294b/logbuchnetzpolitik_original.jpg",
-    "url": "http://logbuch-netzpolitik.de"
+    "link": "http://logbuch-netzpolitik.de"
   },
   "duration": "01:33:18",
   "chapters": [
@@ -64,11 +65,12 @@
   "audio": [
     "https://tracking.feedpress.it/link/13476/5328844/lnp210-netzpolitische-suedkurve.m4a"
   ],
-  "theme": {
-    "primary": "#79F2B2"
-  },
   "reference": {
     "share": "//podlove-player.surge.sh/share",
-    "config": "//podlove-player.surge.sh/fixtures/84d280f.json"
+    "config": "//podlove-player.surge.sh/fixtures/84d280f.json",
+    "origin": "http://logbuch-netzpolitik.de/lnp210-netzpolitische-suedkurve"
+  },
+  "theme": {
+    "main": "rgb(218,207,164)"
   }
 }

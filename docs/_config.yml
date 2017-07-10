@@ -1,0 +1,15 @@
+title: Podlove Web Player
+description: The fast, flexible and responsive podcast player powered by podlove meta data.
+theme: millidocs
+
+destination: ../dist
+
+markdown: kramdown
+kramdown:
+  syntax_highlighter_opts:
+    disable : true
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md

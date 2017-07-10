@@ -1,48 +1,52 @@
 <template>
   <div class="info" >
-    <div class="poster" v-if="poster">
-      <div class="poster-container" :style="posterStyle(theme)">
-          <img class="poster-image" :src="poster" />
+    <div class="poster" v-if="episode.poster || show.poster">
+      <div class="poster-container" :style="posterStyle">
+        <img class="poster-image" :src="episode.poster || show.poster">
       </div>
     </div>
     <div class="description">
-      <h2 class="show-title truncate" :style="titleStyle(theme)">{{showTitle}}</h2>
-      <h1 class="title truncate" :style="titleStyle(theme)">{{title}}</h1>
-      <div class="subtitle" :style="subtitleStyle(theme)">{{subtitle}}</div>
+      <h2 class="show-title truncate" :style="titleStyle" v-if="show.title">
+        <a :href="show.link" target="_blank" v-if="display === 'embed' && show.link">{{show.title}}</a>
+        <span v-else>{{show.title}}</span>
+      </h2>
+      <h1 class="title truncate" :style="titleStyle" v-if="episode.title">
+        <a :href="episode.link" target="_blank" v-if="display === 'embed' && episode.link">{{episode.title}}</a>
+        <span v-else>{{episode.title}}</span>
+      </h1>
+      <div class="subtitle" :style="subtitleStyle" v-if="episode.subtitle">{{episode.subtitle}}</div>
     </div>
   </div>
 </template>
 
 <script>
-  import store from 'store'
   import color from 'color'
-
-  const posterStyle = theme => ({
-    'border-color': theme.player.poster
-  })
-
-  const titleStyle = theme => ({
-    color: theme.player.title
-  })
-
-  const subtitleStyle = theme => ({
-    color: color(theme.player.text).fade(0.25)
-  })
 
   export default {
     data () {
       return {
-        poster: this.$select('poster'),
-        title: this.$select('title'),
-        showTitle: this.$select('showTitle'),
-        subtitle: this.$select('subtitle'),
-        theme: this.$select('theme')
+        episode: this.$select('episode'),
+        show: this.$select('show'),
+        theme: this.$select('theme'),
+        display: this.$select('display')
       }
     },
-    methods: {
-      posterStyle,
-      titleStyle,
-      subtitleStyle
+    computed: {
+      titleStyle () {
+        return {
+          color: this.theme.player.title
+        }
+      },
+      posterStyle () {
+        return {
+          'border-color': this.theme.player.poster
+        }
+      },
+      subtitleStyle () {
+        return {
+          color: color(this.theme.player.text).fade(0.25)
+        }
+      }
     }
   }
 </script>
@@ -64,8 +68,9 @@
 
     .poster-container {
       width: $poster-size;
-      border: 2px solid;
       line-height: 0;
+      border-width: 2px;
+      border-style: solid;
     }
 
     .title {
@@ -88,7 +93,7 @@
     }
   }
 
-  @media screen and (max-width: $width-l) {
+  @media screen and (max-width: $width-m) {
     .info {
       flex-direction: column;
       text-align: center;
@@ -98,6 +103,10 @@
         display: flex;
         margin: 0 0 $margin 0;
         justify-content: center;
+      }
+
+      .poster-container {
+        width: calc(100px + 3em); // Height of description
       }
     }
   }

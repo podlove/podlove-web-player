@@ -1,8 +1,8 @@
 <template>
-  <div class="podlove" :class="{[mode]: mode, [runtime.platform]: runtime.platform}">
-    <HeaderComponent />
-    <PlayerComponent />
-    <TabsComponent />
+  <div class="podlove" :class="{[display]: display, [runtime.platform]: runtime.platform}">
+    <HeaderComponent></HeaderComponent>
+    <PlayerComponent></PlayerComponent>
+    <TabsComponent></TabsComponent>
   </div>
 </template>
 
@@ -18,7 +18,7 @@
       this.$i18n.locale = this.$select('runtime.language')
 
       return {
-        mode: this.$select('mode'),
+        display: this.$select('display'),
         runtime: this.$select('runtime')
       }
     },
@@ -41,7 +41,7 @@
   @import 'global';
   @import 'font';
 
-  @import 'share';
+  @import 'embed';
   @import 'utils';
   @import 'grid';
 

@@ -3,12 +3,13 @@
   "subtitle": "Autos — Mars — Sport — zStandard — ZFS — Sierra — iOS 10 — KLF",
   "summary": "Eine etwas dünne Themenlage legt sich wie Mehltau auf die Sendung, die nicht nur etwas kürzer als sonst ausfällt sondern auch etwas schlapper als gewohnt. Da ist das Previously am Anfang irgendwie Programm geworden. Muss auch mal sein. Wir hoffen Ihr habt trotzdem Spaß mit der Runde ansonsten machen wir das später bestimmt wieder gut, wenn wir unsere geistigen Lymphtrainingshosen angezogen haben.",
   "publicationDate": "2016-09-29T08:41:08.000Z",
+  "link": "http://freakshow.fm/fs184-dringendes-klickbeduerfnis",
   "show": {
     "title": "Freak Show",
     "subtitle": "Menschen! Technik! Sensationen!",
     "summary": "Die muntere Talk Show um Leben mit Technik, das Netz und Technikkultur. Bisweilen Apple-lastig aber selten einseitig. Wir leben und lieben Technologie und reden darüber. Mit Tim, hukl, roddi, Clemens und Denis. Freak Show hieß irgendwann mal mobileMacs.",
     "poster": "http://freakshow.fm/wp-content/cache/podlove/04/662a9d4edcf77ea2abe3c74681f509/freak-show_original.jpg",
-    "url": "http://freakshow.fm"
+    "link": "http://freakshow.fm"
   },
   "duration": "02:50:59",
   "chapters": [
@@ -84,11 +85,12 @@
   "audio": [
     "https://tracking.feedpress.it/link/13453/4526790/fs184-dringendes-klickbeduerfnis.m4a"
   ],
-  "theme": {
-    "primary": "#F27979"
-  },
   "reference": {
     "share": "//podlove-player.surge.sh/share",
-    "config": "//podlove-player.surge.sh/fixtures/85de509b.json"
+    "config": "//podlove-player.surge.sh/fixtures/85de509b.json",
+    "origin": "http://freakshow.fm/fs184-dringendes-klickbeduerfnis"
+  },
+  "theme": {
+    "main": "rgb(251,237,186)"
   }
 }

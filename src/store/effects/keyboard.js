@@ -1,5 +1,5 @@
-import get from 'lodash/get'
-import { nextChapterPlaytime, previousChapterPlaytime } from 'utils/chapters'
+import { get } from 'lodash'
+import { currentChapter, currentChapterIndex } from 'utils/chapters'
 
 import actions from '../actions'
 
@@ -46,21 +46,39 @@ const playPause = store => () => {
 }
 
 const nextChapter = store => () => {
-  const state = store.getState()
-  const chapters = get(state, 'chapters')
-  const duration = get(state, 'duration')
-  const nextChapter = nextChapterPlaytime(chapters) || duration
-
-  store.dispatch(actions.updatePlaytime(nextChapter))
+  store.dispatch(actions.nextChapter())
 }
 
 const previousChapter = store => () => {
   const state = store.getState()
   const chapters = get(state, 'chapters')
   const playtime = get(state, 'playtime')
-  const previousChapter = previousChapterPlaytime(chapters, playtime) || 0
+  const current = currentChapter(chapters)
+  const currentIndex = currentChapterIndex(chapters)
 
-  store.dispatch(actions.updatePlaytime(previousChapter))
+  if (playtime - current.start <= 2) {
+    store.dispatch(actions.previousChapter())
+  } else {
+    store.dispatch(actions.setChapter(currentIndex))
+  }
+}
+
+const changeVolume = (store, modifier) => () => {
+  const state = store.getState()
+  const volume = get(state, 'volume', 0)
+
+  store.dispatch(actions.setVolume(parseFloat(volume) + modifier))
+}
+
+const mute = (store) => () => {
+  const state = store.getState()
+  const muted = get(state, 'muted', false)
+
+  if (muted) {
+    store.dispatch(actions.unmute())
+  } else {
+    store.dispatch(actions.mute())
+  }
 }
 
 export default keyhandler => store => {
@@ -69,4 +87,7 @@ export default keyhandler => store => {
   keyhandler('space', playPause(store))
   keyhandler('alt+right', nextChapter(store))
   keyhandler('alt+left', previousChapter(store))
+  keyhandler('up', changeVolume(store, 0.05))
+  keyhandler('down', changeVolume(store, -0.05))
+  keyhandler('m', mute(store))
 }

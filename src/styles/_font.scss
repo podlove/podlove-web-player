@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:100,300,400,400i,500');
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans:300,400,500|Fira+Mono');
 
 @mixin font() {
-  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
+  font-family: 'Fira Sans', sans-serif;
 }
 
 @mixin font-monospace() {
-  font-family: 'Roboto Mono', monospace;
+  font-family: 'Fira Mono', monospace;
 }
 
 .podlove {

@@ -3,12 +3,13 @@
   "subtitle": "Kinder und die Jugend von Heute — Nazis — Rap — Podcasting — Electronic Sex Toys — Trump",
   "summary": "Wir sind wieder da und sind beide der Meinung, dass fünf Monate Pause dann doch etwas zu viel sind. Man will ja nicht ganz aus der Übung geraten. So gelingen die Albernheiten nur begrenzt und widmen einen Großteil der Sendung den Fragen der Zeit, ob die Jugend von heute die Idioten von heute zurückfahren kann, wie es mit der Finanzierung von kulturellen Inhalten im Netz weitergeht und wie man in einem Businessmeeting die vernetzten dauerhaft installierten Sexspielzeug fernkontrollieren kann. Wir wünschen Euch viel Spaß.",
   "publicationDate": "2016-05-24T23:01:34.000Z",
+  "link": "http://not-safe-for-work.de/nsfw095-orgasmusfernuebertragung/",
   "show": {
     "title": "Not Safe For Work",
     "subtitle": "Die Internationale Unterhaltungsgala mit Tim Pritlove und Holger Klein",
     "summary": "NSFW ist unkonventionell, unregelmäßig, unsinnig und ungemein unanständig. Garantiert mindestens zwei Worte pro Sendung, die man nicht auf der Arbeit sagen sollte. NSFW sollte nicht zu ernst genommen werden und selbstverständlich als Richtlinie aller Eurer künftigen Handlungen gelten.",
     "poster": "http://not-safe-for-work.de/wp-content/cache/podlove/0f/63751ecd7feba0789d91d4f9a45191/not-safe-for-work_original.jpg",
-    "url": "http://not-safe-for-work.de"
+    "link": "http://not-safe-for-work.de"
   },
   "duration": "03:55:56",
   "chapters": [
@@ -110,13 +111,14 @@
     }
   ],
   "audio": [
-    "http://tracking.feedpress.it/link/13444/3431774/nsfw095-orgasmusfernuebertragung.m4a"
+    "https://tracking.feedpress.it/link/13444/3431774/nsfw095-orgasmusfernuebertragung.m4a"
   ],
-  "theme": {
-    "primary": "#79B0F2"
-  },
   "reference": {
     "share": "//podlove-player.surge.sh/share",
-    "config": "//podlove-player.surge.sh/fixtures/283130fc.json"
+    "config": "//podlove-player.surge.sh/fixtures/283130fc.json",
+    "origin": "http://not-safe-for-work.de/nsfw095-orgasmusfernuebertragung/"
+  },
+  "theme": {
+    "main": "rgb(242,156,148)"
   }
 }

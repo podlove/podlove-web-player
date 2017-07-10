@@ -4,6 +4,8 @@ import keyboardEffectsFactory from './keyboard'
 import componentsEffects from './components'
 import idleEffects from './idle'
 import quantileEffects from './quantiles'
+import chapterEffects from './chapters'
+import volumeEffects from './volume'
 
 import storage from 'utils/storage'
 import keyhandler from 'utils/keyboard'
@@ -19,10 +21,12 @@ export default store => {
 
   return next => action => {
     next(action)
+    chapterEffects(store, action)
     mediaEffects(store, action)
     componentsEffects(store, action)
     storageEffects(store, action)
     idleEffects(store, action)
     quantileEffects(store, action)
+    volumeEffects(store, action)
   }
 }

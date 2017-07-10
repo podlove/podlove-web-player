@@ -3,12 +3,13 @@
   "subtitle": "Apple Keynote — Apple Watch — iPhone 7 — iOS 10 — Slack — Pimp My Mac — Jobsuche",
   "summary": "Wie zu erwarten war stützen wir uns im ersten Teil der Sendung auf die Verlautbarungen der letzten großen Apple Keynote und kauen uns durch die Neuigkeiten und Spezifikationen. Das wird aber irgendwann langweilig, so dass wir uns mit Zukunftsthemen wie der Inbetriebnahme alter Macs und der Jobsuche für hukl auseinandersetzen.",
   "publicationDate": "2016-09-15T12:48:00.000Z",
+  "link": "http://freakshow.fm/fs183-zukunftstechnologie-spreizblatt",
   "show": {
     "title": "Freak Show",
     "subtitle": "Menschen! Technik! Sensationen!",
     "summary": "Die muntere Talk Show um Leben mit Technik, das Netz und Technikkultur. Bisweilen Apple-lastig aber selten einseitig. Wir leben und lieben Technologie und reden darüber. Mit Tim, hukl, roddi, Clemens und Denis. Freak Show hieß irgendwann mal mobileMacs.",
     "poster": "http://freakshow.fm/wp-content/cache/podlove/04/662a9d4edcf77ea2abe3c74681f509/freak-show_original.jpg",
-    "url": "http://freakshow.fm"
+    "link": "http://freakshow.fm"
   },
   "duration": "03:52:46",
   "chapters": [
@@ -116,11 +117,12 @@
   "audio": [
     "https://tracking.feedpress.it/link/13453/4417382/fs183-zukunftstechnologie-spreizblatt.m4a"
   ],
-  "theme": {
-    "primary": "#C0F279"
-  },
   "reference": {
     "share": "//podlove-player.surge.sh/share",
-    "config": "//podlove-player.surge.sh/fixtures/591f2aaf.json"
+    "config": "//podlove-player.surge.sh/fixtures/591f2aaf.json",
+    "origin": "http://freakshow.fm/fs183-zukunftstechnologie-spreizblatt"
+  },
+  "theme": {
+    "main": "rgb(251,237,186)"
   }
 }

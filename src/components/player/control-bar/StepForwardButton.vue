@@ -1,9 +1,9 @@
 <template>
   <ButtonComponent class="podlove-player--player-control" :class="playstate" :click="onButtonClick" :disabled="isDisabled(playtime, duration)">
     <StepForwardIcon
-      :primary-color="theme.player.actions.icon"
-      :secondary-color="theme.player.actions.background"
-    />
+      :main-color="theme.player.actions.icon"
+      :highlight-color="theme.player.actions.background"
+    ></StepForwardIcon>
   </ButtonComponent>
 </template>
 

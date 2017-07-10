@@ -3,12 +3,13 @@
   "subtitle": "",
   "summary": "Die Hitze drückt und unsere Hirne schmolzen. Nicht ganz einfach bei so einem Wetter noch einen klaren Gedanken zu fassen. Also haben wir es auch erst gar nicht versucht.",
   "publicationDate": "2012-08-20T14:34:05.000Z",
+  "link": "http://not-safe-for-work.de/nsfw055-troll-comfort/",
   "show": {
     "title": "Not Safe For Work",
     "subtitle": "Die Internationale Unterhaltungsgala mit Tim Pritlove und Holger Klein",
     "summary": "NSFW ist unkonventionell, unregelmäßig, unsinnig und ungemein unanständig. Garantiert mindestens zwei Worte pro Sendung, die man nicht auf der Arbeit sagen sollte. NSFW sollte nicht zu ernst genommen werden und selbstverständlich als Richtlinie aller Eurer künftigen Handlungen gelten.",
     "poster": "http://not-safe-for-work.de/wp-content/cache/podlove/0f/63751ecd7feba0789d91d4f9a45191/not-safe-for-work_original.jpg",
-    "url": "http://not-safe-for-work.de"
+    "link": "http://not-safe-for-work.de"
   },
   "duration": "02:50:43",
   "chapters": [
@@ -58,13 +59,14 @@
     }
   ],
   "audio": [
-    "http://tracking.feedpress.it/link/13444/1886720/nsfw055-troll-comfort.m4a"
+    "https://tracking.feedpress.it/link/13444/1886720/nsfw055-troll-comfort.m4a"
   ],
-  "theme": {
-    "primary": "#F2D879"
-  },
   "reference": {
     "share": "//podlove-player.surge.sh/share",
-    "config": "//podlove-player.surge.sh/fixtures/71bea59e.json"
+    "config": "//podlove-player.surge.sh/fixtures/71bea59e.json",
+    "origin": "http://not-safe-for-work.de/nsfw055-troll-comfort/"
+  },
+  "theme": {
+    "main": "rgb(242,156,148)"
   }
 }

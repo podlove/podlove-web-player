@@ -18,6 +18,8 @@ const leadingZero = (time) => time > 9 ? `${time}` : `0${time}`
 
 // Transforms seconds to (hh:)mm:ss
 export function secondsToTime (time = 0) {
+  time = time < 0 ? 0 : time
+
   let hours = compose(calcHours, enforceNumber)(time)
   let minutes = compose(calcMinutes, enforceNumber)(time)
   let seconds = compose(calcSeconds, enforceNumber)(time)
@@ -25,7 +27,7 @@ export function secondsToTime (time = 0) {
   let result = `${leadingZero(minutes)}:${leadingZero(seconds)}`
 
   if (hours > 0) {
-    result = `${leadingZero(hours)}:${result}`
+    result = `${hours}:${result}`
   }
 
   return result

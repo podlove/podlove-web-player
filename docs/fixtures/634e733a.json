@@ -3,12 +3,13 @@
   "subtitle": "USVs – Jahresrückblick 1983 — Zigarettenrauchende Fussballer — Iran — Vibratoren — Bitcoins — Elektromobilität",
   "summary": "Zur letzten Sendung in diesem Jahr nehmen wir die schwere Bürde des Jahresrückblicks auf uns und schauen einfach mal in die unmittelbare Vergangenheit: 1983. Das mischen wir mit Skepsis über den Finanzmarkt und Hoffnung für die Politik, Klappmessern, zigarettenrauchende Fußballern, die politische Gesamtlage und überhaupt so viel unterschiedliches Zeug, dass wir mehr als nur glücklich sind, dass so viele Leute live die Shownotes mitführen.\n\nWir bedanken uns bei allen Unterstützern für ein tolles Podcast-Jahr und wünschen Euch einen guten Rutsch und was man sonst noch so braucht. Es macht viel Spaß mit Euch und wir sehen zu, Euch auch im nächsten Jahr angemessene Unterhaltung bereitzustellen.",
   "publicationDate": "2013-12-11T19:38:28.000Z",
+  "link": "http://not-safe-for-work.de/nsfw079-die-gruene-elke/",
   "show": {
     "title": "Not Safe For Work",
     "subtitle": "Die Internationale Unterhaltungsgala mit Tim Pritlove und Holger Klein",
     "summary": "NSFW ist unkonventionell, unregelmäßig, unsinnig und ungemein unanständig. Garantiert mindestens zwei Worte pro Sendung, die man nicht auf der Arbeit sagen sollte. NSFW sollte nicht zu ernst genommen werden und selbstverständlich als Richtlinie aller Eurer künftigen Handlungen gelten.",
     "poster": "http://not-safe-for-work.de/wp-content/cache/podlove/0f/63751ecd7feba0789d91d4f9a45191/not-safe-for-work_original.jpg",
-    "url": "http://not-safe-for-work.de"
+    "link": "http://not-safe-for-work.de"
   },
   "duration": "03:20:22",
   "chapters": [
@@ -70,13 +71,14 @@
     }
   ],
   "audio": [
-    "http://tracking.feedpress.it/link/13444/1886696/nsfw079-die-gruene-elke.m4a"
+    "https://tracking.feedpress.it/link/13444/1886696/nsfw079-die-gruene-elke.m4a"
   ],
-  "theme": {
-    "primary": "#F27997"
-  },
   "reference": {
     "share": "//podlove-player.surge.sh/share",
-    "config": "//podlove-player.surge.sh/fixtures/634e733a.json"
+    "config": "//podlove-player.surge.sh/fixtures/634e733a.json",
+    "origin": "http://not-safe-for-work.de/nsfw079-die-gruene-elke/"
+  },
+  "theme": {
+    "main": "rgb(242,156,148)"
   }
 }

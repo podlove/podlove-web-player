@@ -1,18 +1,23 @@
 import { get, head, isString } from 'lodash'
 import Bluebird from 'bluebird'
+import browser from 'detect-browser'
 
 import { findNode, createNode, appendNode, tag } from 'utils/dom'
 import requestConfig from 'utils/request'
 import { params } from 'utils/url'
 
 import { iframeResizer } from 'iframe-resizer'
+// eslint-disable-next-line
 import iframeResizerContentWindow from 'raw-loader!iframe-resizer/js/iframeResizer.contentWindow.min.js'
 
 // Player renderer
 const playerSandbox = anchor => {
   const frame = createNode('iframe')
 
-  frame.setAttribute('width', '100%')
+  if (browser.name !== 'ios') {
+    frame.setAttribute('width', '100%')
+  }
+
   frame.setAttribute('seamless', '')
   frame.setAttribute('scrolling', 'no')
   frame.setAttribute('frameborder', '0')
@@ -48,6 +53,8 @@ const getPodloveStore = sandbox =>
 const preloader = sandbox => ({
   init: () => {
     sandbox.style.opacity = 0
+    // maximum width player
+    sandbox.style['max-width'] = '768px'
     sandbox.style.transition = 'all 500ms'
   },
   done: () => {

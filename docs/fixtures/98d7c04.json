@@ -3,12 +3,13 @@
   "subtitle": "Chemtrails verhageln uns das Hirn und wir tragen unangemessene Kopfbedeckungen",
   "summary": "Durch eine planerische Verzögerung eine Woche später als geplant, dafür geordnet und pflichtbewusst treten wir mit der 74. Sendung rechtzeitig zur Chemtrail-Demo in Berlin wieder ans Mikrofon und beschäftigen uns ausführlich mit intellektuell überforderten Menschen, den Nichtwahlen in Deutschland, Fußball, empfehlen eine ganze Reihe von Podcasts und nennen fünf Fahrradtypen, die jeder in seiner Garage stehen haben sollte.",
   "publicationDate": "2013-08-26T17:39:52.000Z",
+  "link": "http://not-safe-for-work.de/nsfw074-das-wetter-muss-weg/",
   "show": {
     "title": "Not Safe For Work",
     "subtitle": "Die Internationale Unterhaltungsgala mit Tim Pritlove und Holger Klein",
     "summary": "NSFW ist unkonventionell, unregelmäßig, unsinnig und ungemein unanständig. Garantiert mindestens zwei Worte pro Sendung, die man nicht auf der Arbeit sagen sollte. NSFW sollte nicht zu ernst genommen werden und selbstverständlich als Richtlinie aller Eurer künftigen Handlungen gelten.",
     "poster": "http://not-safe-for-work.de/wp-content/cache/podlove/0f/63751ecd7feba0789d91d4f9a45191/not-safe-for-work_original.jpg",
-    "url": "http://not-safe-for-work.de"
+    "link": "http://not-safe-for-work.de"
   },
   "duration": "03:27:04",
   "chapters": [
@@ -46,13 +47,14 @@
     }
   ],
   "audio": [
-    "http://tracking.feedpress.it/link/13444/1886701/nsfw074-das-wetter-muss-weg.m4a"
+    "https://tracking.feedpress.it/link/13444/1886701/nsfw074-das-wetter-muss-weg.m4a"
   ],
-  "theme": {
-    "primary": "#F28D79"
-  },
   "reference": {
     "share": "//podlove-player.surge.sh/share",
-    "config": "//podlove-player.surge.sh/fixtures/98d7c04.json"
+    "config": "//podlove-player.surge.sh/fixtures/98d7c04.json",
+    "origin": "http://not-safe-for-work.de/nsfw074-das-wetter-muss-weg/"
+  },
+  "theme": {
+    "main": "rgb(242,156,148)"
   }
 }

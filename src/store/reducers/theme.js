@@ -2,59 +2,71 @@ import get from 'lodash/get'
 import color from 'color'
 
 const themeColors = (colors = {}) => {
-  const primary = get(colors, 'primary', '#2B8AC6')
-  const secondary = get(colors, 'secondary')
+  const main = get(colors, 'main', '#2B8AC6')
+  const highlight = get(colors, 'highlight')
 
   const light = '#fff'
   const dark = '#000'
   const grey = '#333'
 
-  const negative = color(primary).dark()
+  const luminosity = color(main).luminosity()
+  const negative = luminosity < 0.25
+
+  const fallbackColor = (first, second) => {
+    if (first) {
+      return first
+    }
+
+    return second
+  }
 
   return {
     player: {
-      background: primary,
-      poster: light,
-      title: secondary ? secondary : negative ? light : dark,
+      background: main,
+      poster: negative ? light : dark,
+      title: fallbackColor(highlight, negative ? light : dark),
       text: negative ? light : dark,
       progress: {
         bar: negative ? light : dark,
-        thumb: secondary ? secondary : negative ? light : dark,
-        border: primary,
-        seperator: primary
+        thumb: fallbackColor(highlight, negative ? light : dark),
+        border: main,
+        seperator: main,
+        track: negative ? light : dark,
+        buffer: color(main).fade(0.5),
+        range: luminosity < 0.05 ? color(light).fade(0.25) : color(dark).fade(0.75)
       },
       actions: {
-        background: secondary ? secondary : negative ? light : dark,
-        icon: primary
+        background: fallbackColor(highlight, negative ? light : dark),
+        icon: main
       },
       timer: {
         text: negative ? light : dark,
-        chapter: secondary ? secondary : negative ? light : dark
+        chapter: fallbackColor(highlight, negative ? light : dark)
       }
     },
     tabs: {
       header: {
-        background: primary,
-        backgroundActive: light,
+        background: luminosity < 0.15 ? color(main).lighten(0.6 - luminosity) : color(main).darken(0.2),
+        backgroundActive: color(main).fade(0.9),
         color: negative ? light : dark,
-        colorActive: secondary ? secondary : negative ? primary : dark
+        colorActive: fallbackColor(highlight, negative ? main : dark)
       },
       body: {
-        background: light,
-        backgroundActive: secondary ? secondary : primary,
+        background: color(main).fade(0.9),
         text: grey,
-        textActive: negative ? primary : dark,
-        progress: secondary ? secondary : negative ? primary : dark
+        textActive: dark,
+        progress: fallbackColor(highlight, negative ? main : dark),
+        icon: negative ? main : dark
       },
       slider: {
-        thumb: primary
+        thumb: main
       },
       button: {
-        background: primary,
+        background: main,
         text: negative ? light : dark
       },
       input: {
-        border: negative ? primary: dark
+        border: negative ? main : dark
       }
     },
     overlay: {

@@ -4,12 +4,13 @@
   "summary": "Die Wikipedia hat es geschafft, binnen eines Jahrzehnts nahezu alle Enzyklopädien abzulösen und zum universellen Nachschlagewerk der Menschheit zu werden. Doch stößt das bisherige System der Erfassung von Informationen in Fließtext an seine Grenzen, wenn es um die einfache Wiederverwertbarkeit und maschinelle Abfragen geht. Das jüngste Projekt der Wikimedia Foundation will hier Abhilfe schaffen: Wikidata tritt an, die Erfassung formal beschreibbarer Metadaten auf eine neue Grundlage zu stellen und verbindet dabei erstmals auch alle Sprachvarianten der Wikipedia.\n\nJens Ohlig hat Wikidata mit entwickelt und im Gespräch mit Tim Pritlove erläutert er, wie es zu diesem Projekt kam, welche Notwendigkeiten und Motivationen das Design beeinflusst haben, wie Wikidata technisch aufgebaut ist und welche Probleme damit künftig gelöst werden sollen.",
   "publicationDate": "2013-12-09T11:41:17.000Z",
   "poster": "http://cre.fm/wp-content/cache/podlove/ac/2dc582f359c30d4c0120c1f782f241/cre205-wikidata_original.jpg",
+  "link": "http://cre.fm/cre205-wikidata",
   "show": {
     "title": "CRE: Technik, Kultur, Gesellschaft",
     "subtitle": "Der Interview-Podcast mit Tim Pritlove",
     "summary": "Intensive und ausführliche Gespräche über Themen aus Technik, Kultur und Gesellschaft, das ist CRE. Interessante Gesprächspartner stehen Rede und Antwort zu Fragen, die man normalerweise selten gestellt bekommt. CRE möchte  aufklären, weiterbilden und unterhalten.",
     "poster": "http://cre.fm/wp-content/cache/podlove/6b/8074d85b886d8dedb4945715694ba7/cre-technik-kultur-gesellschaft_original.jpg",
-    "url": "http://cre.fm"
+    "link": "http://cre.fm"
   },
   "duration": "02:40:58",
   "chapters": [
@@ -81,11 +82,12 @@
   "audio": [
     "https://tracking.feedpress.it/link/13440/1885489/cre205-wikidata.m4a"
   ],
-  "theme": {
-    "primary": "#79CEF2"
-  },
   "reference": {
     "share": "//podlove-player.surge.sh/share",
-    "config": "//podlove-player.surge.sh/fixtures/bd40ff6a.json"
+    "config": "//podlove-player.surge.sh/fixtures/bd40ff6a.json",
+    "origin": "http://cre.fm/cre205-wikidata"
+  },
+  "theme": {
+    "main": "rgb(220,128,64)"
   }
 }

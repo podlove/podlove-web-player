@@ -3,12 +3,13 @@
   "subtitle": "",
   "summary": "Nach der langen Winterpause eröffnet die Metaebene mit einer neuen Ausgabe der Internationalen Unterhaltungsgala und versucht ein wenig zurück und voraus zu blicken. Dabei schrammen wir den 29C3, Pakistanische Ein-Tag-Pop-Stars, das Bahnfahren im Allgemeinen und im Besonderen, bringen die ARD zum weinen und preisen die Kommunität.",
   "publicationDate": "2013-01-07T20:51:38.000Z",
+  "link": "http://not-safe-for-work.de/nsfw061-keks-ist-fortschritt/",
   "show": {
     "title": "Not Safe For Work",
     "subtitle": "Die Internationale Unterhaltungsgala mit Tim Pritlove und Holger Klein",
     "summary": "NSFW ist unkonventionell, unregelmäßig, unsinnig und ungemein unanständig. Garantiert mindestens zwei Worte pro Sendung, die man nicht auf der Arbeit sagen sollte. NSFW sollte nicht zu ernst genommen werden und selbstverständlich als Richtlinie aller Eurer künftigen Handlungen gelten.",
     "poster": "http://not-safe-for-work.de/wp-content/cache/podlove/0f/63751ecd7feba0789d91d4f9a45191/not-safe-for-work_original.jpg",
-    "url": "http://not-safe-for-work.de"
+    "link": "http://not-safe-for-work.de"
   },
   "duration": "03:39:04",
   "chapters": [
@@ -70,13 +71,14 @@
     }
   ],
   "audio": [
-    "http://tracking.feedpress.it/link/13444/1886714/nsfw061-keks-ist-fortschritt.m4a"
+    "https://tracking.feedpress.it/link/13444/1886714/nsfw061-keks-ist-fortschritt.m4a"
   ],
-  "theme": {
-    "primary": "#79F2BA"
-  },
   "reference": {
     "share": "//podlove-player.surge.sh/share",
-    "config": "//podlove-player.surge.sh/fixtures/a08336ea.json"
+    "config": "//podlove-player.surge.sh/fixtures/a08336ea.json",
+    "origin": "http://not-safe-for-work.de/nsfw061-keks-ist-fortschritt/"
+  },
+  "theme": {
+    "main": "rgb(242,156,148)"
   }
 }

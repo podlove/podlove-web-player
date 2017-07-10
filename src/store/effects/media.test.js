@@ -6,7 +6,7 @@ import mediaEffectFactory from './media'
 let store
 let mediaEffect
 let mediaPlayer
-let playStub, pauseStub, seekStub, volumeStub, rateStub
+let playStub, pauseStub, seekStub, volumeStub, rateStub, muteStub
 
 test.beforeEach(t => {
   playStub = sinon.stub()
@@ -14,13 +14,15 @@ test.beforeEach(t => {
   seekStub = sinon.stub()
   volumeStub = sinon.stub()
   rateStub = sinon.stub()
+  muteStub = sinon.stub()
 
   mediaPlayer = sinon.stub().returns({
     play: playStub,
     pause: pauseStub,
     seek: seekStub,
     volume: volumeStub,
-    rate: rateStub
+    rate: rateStub,
+    mute: muteStub
   })
 
   store = {
@@ -170,4 +172,34 @@ test(`mediaEffect: it calls rate on SET_RATE`, t => {
   })
 
   t.is(rateStub.getCall(0).args[0], 100)
+})
+
+test(`mediaEffect: it calls mute on MUTE`, t => {
+  mediaEffect(store, {
+    type: 'INIT',
+    payload: {
+      audio: 'foo'
+    }
+  })
+
+  mediaEffect(store, {
+    type: 'MUTE'
+  })
+
+  t.is(muteStub.getCall(0).args[0], true)
+})
+
+test(`mediaEffect: it calls unmute on UNMUTE`, t => {
+  mediaEffect(store, {
+    type: 'INIT',
+    payload: {
+      audio: 'foo'
+    }
+  })
+
+  mediaEffect(store, {
+    type: 'UNMUTE'
+  })
+
+  t.is(muteStub.getCall(0).args[0], false)
 })

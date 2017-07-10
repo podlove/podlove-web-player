@@ -3,7 +3,7 @@
 
 $input-group-height: 35px;
 $input-height: 25px;
-$input-secondary-height: 1em;
+$input-highlight-height: 1em;
 $addon-button-width: 80px;
 $share-width: 80px;
 $slider-button-size: 35px;
@@ -49,6 +49,8 @@ $slider-button-size: 35px;
   border-style: solid;
   opacity: 1;
   font-size: 0.9em;
+  font-variant: small-caps;
+
   &:hover {
     opacity: 0.8;
   }

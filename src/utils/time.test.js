@@ -18,7 +18,7 @@ test('secondsToTime tolerates invalid inputs', t => {
 
 test('secondsToTime transforms given seconds to a time string', t => {
   t.is(secondsToTime(60), '01:00')
-  t.is(secondsToTime(3600), '01:00:00')
+  t.is(secondsToTime(3600), '1:00:00')
 })
 
 test('timeToSeconds tolarets invalid inputs', t => {

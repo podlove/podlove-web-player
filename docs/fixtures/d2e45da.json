@@ -4,12 +4,13 @@
   "summary": "Die Städte spielen seit dem Übergang des Menschen von Jäger und Sammler zum Ackerbau die entscheidende Rolle in der Entwicklung der Menschheit und ihre Bedeutung nimmt im 21. Jahrhundert weiter zu.\n\nStädte stehen heute vor der Herausforderung, die großen ökologischen, ökonomischen und gesellschaftlichen Probleme der Zeit abzufedern und neue Innovationen zu gebären, um das Wachstum und den Klimawandel zu bewältigen.\n\nIm Gespräch mit Tim Pritlove erzählt der Architekt und Stadtplaner Thomas Stellmach von der Geschichte der Städte seit dem Alten Orient über die Antike, dem Römischen Reich, dem Mittelalter, dem Barock, der Renaissance bis zur Moderne und schildert die aktuellen Herausforderungen der Stadtplanung.",
   "publicationDate": "2013-02-05T00:16:12.000Z",
   "poster": "http://cre.fm/wp-content/cache/podlove/eb/58370a26439a271ee12d5802e2f375/cre200-stadtplanung_original.jpg",
+  "link": "http://cre.fm/cre200-stadtplanung",
   "show": {
     "title": "CRE: Technik, Kultur, Gesellschaft",
     "subtitle": "Der Interview-Podcast mit Tim Pritlove",
     "summary": "Intensive und ausführliche Gespräche über Themen aus Technik, Kultur und Gesellschaft, das ist CRE. Interessante Gesprächspartner stehen Rede und Antwort zu Fragen, die man normalerweise selten gestellt bekommt. CRE möchte  aufklären, weiterbilden und unterhalten.",
     "poster": "http://cre.fm/wp-content/cache/podlove/6b/8074d85b886d8dedb4945715694ba7/cre-technik-kultur-gesellschaft_original.jpg",
-    "url": "http://cre.fm"
+    "link": "http://cre.fm"
   },
   "duration": "03:16:38",
   "chapters": [
@@ -97,11 +98,9 @@
   "audio": [
     "https://tracking.feedpress.it/link/13440/1885494/cre200-stadtplanung.m4a"
   ],
-  "theme": {
-    "primary": "#F2BC79"
-  },
   "reference": {
     "share": "//podlove-player.surge.sh/share",
-    "config": "//podlove-player.surge.sh/fixtures/d2e45da.json"
+    "config": "//podlove-player.surge.sh/fixtures/d2e45da.json",
+    "origin": "http://cre.fm/cre200-stadtplanung"
   }
 }

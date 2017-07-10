@@ -12,7 +12,7 @@
   import ShareDownloadComponent from './ShareDownload.vue'
 
   export default {
-    data() {
+    data () {
       return {
         share: this.$select('share'),
         reference: this.$select('reference'),

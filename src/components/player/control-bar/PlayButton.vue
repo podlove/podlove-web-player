@@ -1,6 +1,6 @@
 <template>
   <ButtonComponent :click="onButtonClick">
-    <span class="play-button" :style="wrapperStyle(theme)" :class="{
+    <span class="play-button" :style="wrapperStyle" :class="{
       wide: components.controls.button.variant.loading ||
             components.controls.button.variant.remaining ||
             components.controls.button.variant.duration ||
@@ -8,31 +8,31 @@
             components.controls.button.variant.retry
     }">
       <span class="inner" v-if="components.controls.button.variant.loading">
-        <LoadingIndicator />
+        <LoadingIndicator></LoadingIndicator>
       </span>
 
-      <PauseIcon :color="theme.player.actions.icon" v-if="components.controls.button.variant.playing" />
+      <PauseIcon :color="theme.player.actions.icon" v-if="components.controls.button.variant.playing"></PauseIcon>
 
-      <PlayIcon :color="theme.player.actions.icon" class="reset" v-if="components.controls.button.variant.pause" />
+      <PlayIcon size="21" :color="theme.player.actions.icon" class="reset" v-if="components.controls.button.variant.pause"></PlayIcon>
 
       <span class="inner" v-if="components.controls.button.variant.remaining">
-        <PlayIcon :color="theme.player.actions.icon" />
-        <span class="label" :style="textStyle(theme)">{{ secondsToTime(playtime) }}</span>
+        <PlayIcon size="21" :color="theme.player.actions.icon"></PlayIcon>
+        <span class="label" :style="textStyle">{{ secondsToTime(playtime) }}</span>
       </span>
 
       <span class="inner" v-if="components.controls.button.variant.duration">
-        <PlayIcon :color="theme.player.actions.icon" />
-        <span class="label" :style="textStyle(theme)">{{ secondsToTime(duration) }}</span>
+        <PlayIcon size="21" :color="theme.player.actions.icon"></PlayIcon>
+        <span class="label" :style="textStyle">{{ secondsToTime(duration) }}</span>
       </span>
 
       <span class="inner" v-if="components.controls.button.variant.replay">
-        <PlayIcon :color="theme.player.actions.icon" />
-        <span class="label" :style="textStyle(theme)">{{ $t('PLAYER.REPLAY') }}</span>
+        <PlayIcon size="21" :color="theme.player.actions.icon"></PlayIcon>
+        <span class="label" :style="textStyle">{{ $t('PLAYER.REPLAY') }}</span>
       </span>
 
       <span class="inner" v-if="components.controls.button.variant.retry">
-        <ReloadIcon :color="theme.player.actions.icon" />
-        <span class="label" :style="textStyle(theme)">{{ $t('PLAYER.RETRY') }}</span>
+        <ReloadIcon :color="theme.player.actions.icon"></ReloadIcon>
+        <span class="label" :style="textStyle">{{ $t('PLAYER.RETRY') }}</span>
       </span>
     </span>
   </ButtonComponent>
@@ -50,14 +50,6 @@
   import ButtonComponent from 'shared/Button.vue'
   import LoadingIndicator from './LoadingIndicator.vue'
 
-  const wrapperStyle = theme => ({
-    'background-color': theme.player.actions.background
-  })
-
-  const textStyle = theme => ({
-    color: theme.player.actions.icon
-  })
-
   export default {
     components: {
       ButtonComponent,
@@ -67,7 +59,7 @@
       ErrorIcon,
       ReloadIcon
     },
-    data() {
+    data () {
       return {
         duration: this.$select('duration'),
         playtime: this.$select('playtime'),
@@ -76,10 +68,21 @@
         playstate: this.$select('playstate')
       }
     },
+    computed: {
+      wrapperStyle () {
+        return {
+          'background-color': this.theme.player.actions.background
+        }
+      },
+      textStyle () {
+        return {
+          color: this.theme.player.actions.icon
+        }
+      }
+    },
     methods: {
       secondsToTime,
-      wrapperStyle,
-      textStyle,
+
       onButtonClick () {
         switch (this.playstate) {
           case 'start':
@@ -110,9 +113,10 @@
 
     height: $button-width;
     width: $button-width;
+    min-width: $button-width;
 
     border-radius: $button-width / 2;
-    transition: width $animation-duration * 2;
+    transition: min-width $animation-duration * 2;
 
     .inner {
       display: flex;
@@ -122,7 +126,8 @@
     }
 
     &.wide {
-      width: ($button-width * 2) + 30px;
+      min-width: ($button-width * 2) + 30px;
+      width: auto;
     }
 
     .label{

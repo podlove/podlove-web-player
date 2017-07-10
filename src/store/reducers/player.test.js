@@ -1,55 +1,5 @@
 import test from 'ava'
-import { playtime, duration, buffer, playstate, timerMode, volume, rate } from './player'
-
-// PLAYTIME TESTS
-test(`playtime: is a reducer function`, t => {
-  t.is(typeof playtime, 'function')
-})
-
-test(`playtime: parses the playtime on INIT`, t => {
-  let result = playtime(undefined, {
-    type: 'INIT',
-    payload: {
-      playtime: '01:00'
-    }
-  })
-
-  t.is(result, 60)
-
-  result = playtime(10, {
-    type: 'INIT',
-    payload: {
-      playtime: '01:00'
-    }
-  })
-
-  t.is(result, 10)
-})
-
-test(`playtime: parses playtime on UPDATE_PLAYTIME`, t => {
-  let result = playtime(undefined, {
-    type: 'UPDATE_PLAYTIME',
-    payload: '60'
-  })
-
-  t.is(result, 60)
-})
-
-test(`playtime: parses playtime on SET_PLAYTIME`, t => {
-  let result = playtime(undefined, {
-    type: 'SET_PLAYTIME',
-    payload: 60
-  })
-
-  t.is(result, 60)
-})
-
-test(`playtime: it does nothing if a unknown action is dispatched`, t => {
-  const result = playtime(10, {
-    type: 'NOT_A_REAL_TYPE'
-  })
-  t.is(result, 10)
-})
+import { duration, buffer, playstate, timerMode, volume, rate, muted } from './player'
 
 // DURATION TESTS
 test(`duration: is a reducer function`, t => {
@@ -153,7 +103,8 @@ const playstates = {
   PAUSE: 'pause',
   STOP: 'end',
   IDLE: 'idle',
-  LOADING: 'loading'
+  LOADING: 'loading',
+  'ERROR_LOAD': 'error'
 }
 
 Object.keys(playstates).forEach(state => {
@@ -210,13 +161,6 @@ test(`volume: is a reducer function`, t => {
   t.is(typeof volume, 'function')
 })
 
-test(`volume: it does nothing if a unknown action is dispatched`, t => {
-  const result = volume('CUSTOM', {
-    type: 'NOT_A_REAL_TYPE'
-  })
-  t.is(result, 'CUSTOM')
-})
-
 test(`volume: it returns the correct volume`, t => {
   t.is(volume(undefined, {
     type: 'SET_RATE',
@@ -239,7 +183,7 @@ test(`volume: it returns the correct volume`, t => {
   }), 0.2)
 })
 
-// VOLUME
+// RATE
 test(`rate: is a reducer function`, t => {
   t.is(typeof rate, 'function')
 })
@@ -266,4 +210,26 @@ test(`rate: it returns the correct rate`, t => {
     type: 'SET_RATE',
     payload: 5
   }), 4)
+})
+
+// MUTED
+test(`muted: is a reducer function`, t => {
+  t.is(typeof muted, 'function')
+})
+
+test(`muted: it does nothing if a unknown action is dispatched`, t => {
+  const result = muted('CUSTOM', {
+    type: 'NOT_A_REAL_TYPE'
+  })
+  t.is(result, 'CUSTOM')
+})
+
+test(`muted: it returns the correct rate`, t => {
+  t.is(muted(undefined, {
+    type: 'MUTE'
+  }), true)
+
+  t.is(muted(undefined, {
+    type: 'UNMUTE'
+  }), false)
 })

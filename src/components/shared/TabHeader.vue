@@ -1,22 +1,24 @@
 <template>
-  <ul class="tab-header" :style="headerStyle(theme)">
+  <ul class="tab-header">
+    <span class="header-shadow" :style="headerShadowStyle"></span>
     <slot></slot>
   </ul>
 </template>
 <script>
   import color from 'color'
-  const headerStyle = theme => ({
-    'background-color': color(theme.tabs.header.background).darken(0.1)
-  })
 
   export default {
-    data() {
+    data () {
       return {
         theme: this.$select('theme')
       }
     },
-    methods: {
-      headerStyle
+    computed: {
+      headerShadowStyle () {
+        return {
+          background: `linear-gradient(to bottom, ${color(this.theme.tabs.header.backgroundActive).fade(0)} 0%, ${color(this.theme.tabs.header.backgroundActive).fade(1)} 100%)`
+        }
+      }
     }
   }
 </script>
@@ -36,15 +38,14 @@
     text-transform: uppercase;
     height: $tabs-header-height;
 
-    &::after {
-      position: absolute;
-      top: $tabs-header-height;
-      left: 1px;
-      right: 1px;
-      content: ' ';
+    .header-shadow {
       display: block;
+      position: absolute;
+      pointer-events: none;
+      top: $tabs-header-height;
+      left: 0;
+      right: 0;
       height: $padding;
-      background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
       z-index: 100;
     }
   }

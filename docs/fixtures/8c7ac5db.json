@@ -3,12 +3,13 @@
   "subtitle": "",
   "summary": "Heute auf den Tag genau haben wir vor vier Jahren die erste Sendung von NSFW in die Welt gesetzt. Und heute erzählen wir immer noch den gleichen Mist. Aber IHR habt es ja so gewollt. Und der Kunde ist König. Daher jetzt frisch eine neue Ausgabe für Euch.",
   "publicationDate": "2013-06-12T16:16:42.000Z",
+  "link": "http://not-safe-for-work.de/nsfw071-togglewarnung/",
   "show": {
     "title": "Not Safe For Work",
     "subtitle": "Die Internationale Unterhaltungsgala mit Tim Pritlove und Holger Klein",
     "summary": "NSFW ist unkonventionell, unregelmäßig, unsinnig und ungemein unanständig. Garantiert mindestens zwei Worte pro Sendung, die man nicht auf der Arbeit sagen sollte. NSFW sollte nicht zu ernst genommen werden und selbstverständlich als Richtlinie aller Eurer künftigen Handlungen gelten.",
     "poster": "http://not-safe-for-work.de/wp-content/cache/podlove/0f/63751ecd7feba0789d91d4f9a45191/not-safe-for-work_original.jpg",
-    "url": "http://not-safe-for-work.de"
+    "link": "http://not-safe-for-work.de"
   },
   "duration": "03:21:49",
   "chapters": [
@@ -46,13 +47,14 @@
     }
   ],
   "audio": [
-    "http://tracking.feedpress.it/link/13444/1886704/nsfw071-togglewarnung.m4a"
+    "https://tracking.feedpress.it/link/13444/1886704/nsfw071-togglewarnung.m4a"
   ],
-  "theme": {
-    "primary": "#D4F279"
-  },
   "reference": {
     "share": "//podlove-player.surge.sh/share",
-    "config": "//podlove-player.surge.sh/fixtures/8c7ac5db.json"
+    "config": "//podlove-player.surge.sh/fixtures/8c7ac5db.json",
+    "origin": "http://not-safe-for-work.de/nsfw071-togglewarnung/"
+  },
+  "theme": {
+    "main": "rgb(242,156,148)"
   }
 }

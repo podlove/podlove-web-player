@@ -3,12 +3,13 @@
   "subtitle": "",
   "summary": "Endlich! Nach 5 Wochen Zwangspause geht die internationale Unterhaltungsgala wieder on air und versucht es wieder allen recht zu machen.",
   "publicationDate": "2012-11-30T18:59:14.000Z",
+  "link": "http://not-safe-for-work.de/nsfw059-der-titel-dieser-sendung/",
   "show": {
     "title": "Not Safe For Work",
     "subtitle": "Die Internationale Unterhaltungsgala mit Tim Pritlove und Holger Klein",
     "summary": "NSFW ist unkonventionell, unregelmäßig, unsinnig und ungemein unanständig. Garantiert mindestens zwei Worte pro Sendung, die man nicht auf der Arbeit sagen sollte. NSFW sollte nicht zu ernst genommen werden und selbstverständlich als Richtlinie aller Eurer künftigen Handlungen gelten.",
     "poster": "http://not-safe-for-work.de/wp-content/cache/podlove/0f/63751ecd7feba0789d91d4f9a45191/not-safe-for-work_original.jpg",
-    "url": "http://not-safe-for-work.de"
+    "link": "http://not-safe-for-work.de"
   },
   "duration": "03:32:54",
   "chapters": [
@@ -50,13 +51,14 @@
     }
   ],
   "audio": [
-    "http://tracking.feedpress.it/link/13444/1886716/nsfw059-der-titel-dieser-sendung.m4a"
+    "https://tracking.feedpress.it/link/13444/1886716/nsfw059-der-titel-dieser-sendung.m4a"
   ],
-  "theme": {
-    "primary": "#797FF2"
-  },
   "reference": {
     "share": "//podlove-player.surge.sh/share",
-    "config": "//podlove-player.surge.sh/fixtures/d23e958a.json"
+    "config": "//podlove-player.surge.sh/fixtures/d23e958a.json",
+    "origin": "http://not-safe-for-work.de/nsfw059-der-titel-dieser-sendung/"
+  },
+  "theme": {
+    "main": "rgb(242,156,148)"
   }
 }

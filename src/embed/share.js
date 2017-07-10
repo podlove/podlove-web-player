@@ -5,5 +5,5 @@ import app from '../app'
 
 remoteConfig(params.episode)
   .then(config => Object.assign({}, config, params))
-  .then(config => Object.assign({}, config, {mode: 'share'}))
+  .then(config => Object.assign({}, config, {display: 'embed'}))
   .then(app)

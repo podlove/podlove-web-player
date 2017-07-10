@@ -3,12 +3,13 @@
   "subtitle": "",
   "summary": "Wir sind wieder da und sprechen über Sprachverhinderer, merkwürdige Audioanwendungen, Winterurlaub und die Verschwendung von überdimensionierten Computerresourcen zur Berechnung von Rezepturbestandteilen. Alles ganz normal also. Move along!",
   "publicationDate": "2013-03-25T23:49:59.000Z",
+  "link": "http://not-safe-for-work.de/nsfw066-schnackenpfefferhausen/",
   "show": {
     "title": "Not Safe For Work",
     "subtitle": "Die Internationale Unterhaltungsgala mit Tim Pritlove und Holger Klein",
     "summary": "NSFW ist unkonventionell, unregelmäßig, unsinnig und ungemein unanständig. Garantiert mindestens zwei Worte pro Sendung, die man nicht auf der Arbeit sagen sollte. NSFW sollte nicht zu ernst genommen werden und selbstverständlich als Richtlinie aller Eurer künftigen Handlungen gelten.",
     "poster": "http://not-safe-for-work.de/wp-content/cache/podlove/0f/63751ecd7feba0789d91d4f9a45191/not-safe-for-work_original.jpg",
-    "url": "http://not-safe-for-work.de"
+    "link": "http://not-safe-for-work.de"
   },
   "duration": "02:56:00",
   "chapters": [
@@ -58,13 +59,14 @@
     }
   ],
   "audio": [
-    "http://tracking.feedpress.it/link/13444/1886709/nsfw066-schnackenpfefferhausen.m4a"
+    "https://tracking.feedpress.it/link/13444/1886709/nsfw066-schnackenpfefferhausen.m4a"
   ],
-  "theme": {
-    "primary": "#F279E0"
-  },
   "reference": {
     "share": "//podlove-player.surge.sh/share",
-    "config": "//podlove-player.surge.sh/fixtures/b2e4776d.json"
+    "config": "//podlove-player.surge.sh/fixtures/b2e4776d.json",
+    "origin": "http://not-safe-for-work.de/nsfw066-schnackenpfefferhausen/"
+  },
+  "theme": {
+    "main": "rgb(242,156,148)"
   }
 }

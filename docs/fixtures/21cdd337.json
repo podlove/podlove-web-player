@@ -4,12 +4,13 @@
   "summary": "Planetarien waren Anfang des 20. Jahrhunderts die Kathedralen der modernen Wissenschaft. Der Blick in das Universum vermittelt einer staunenden Öffentlichkeit die Erkenntnisse der Zeit und erlaubte einen Blick auf das Weltall, wie er sich in den staubigen Städten nur selten bot. Tim Florian Horn ist der neue Leiter des Zeiss-Großplanatariums in Berlin, dass derzeit zum modernsten digitalen Planetarium der Welt ausgebaut wird. Im Gespräch mit Tim Pritlove erzählt er die Geschichte der Planetarien, die Funktionsweise der Projektoren und welche Ideen er hat, um wissenschaftliche Inhalte in modernen Planetarien neu zur Geltung zu bringen.",
   "publicationDate": "2015-02-13T22:38:52.000Z",
   "poster": "http://cre.fm/wp-content/cache/podlove/cc/ddf942b284e556b2a17542e5aafbb9/cre207-planetarien_original.jpg",
+  "link": "http://cre.fm/cre207-planetarien",
   "show": {
     "title": "CRE: Technik, Kultur, Gesellschaft",
     "subtitle": "Der Interview-Podcast mit Tim Pritlove",
     "summary": "Intensive und ausführliche Gespräche über Themen aus Technik, Kultur und Gesellschaft, das ist CRE. Interessante Gesprächspartner stehen Rede und Antwort zu Fragen, die man normalerweise selten gestellt bekommt. CRE möchte  aufklären, weiterbilden und unterhalten.",
     "poster": "http://cre.fm/wp-content/cache/podlove/6b/8074d85b886d8dedb4945715694ba7/cre-technik-kultur-gesellschaft_original.jpg",
-    "url": "http://cre.fm"
+    "link": "http://cre.fm"
   },
   "duration": "01:36:29",
   "chapters": [
@@ -73,11 +74,12 @@
   "audio": [
     "https://tracking.feedpress.it/link/13440/1885487/cre207-planetarien.m4a"
   ],
-  "theme": {
-    "primary": "#79A6F2"
-  },
   "reference": {
     "share": "//podlove-player.surge.sh/share",
-    "config": "//podlove-player.surge.sh/fixtures/21cdd337.json"
+    "config": "//podlove-player.surge.sh/fixtures/21cdd337.json",
+    "origin": "http://cre.fm/cre207-planetarien"
+  },
+  "theme": {
+    "main": "rgb(220,128,64)"
   }
 }

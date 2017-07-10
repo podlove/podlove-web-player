@@ -8,10 +8,13 @@ machine:
     PATH: "${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin"
   node:
     version: 6.2.1
+  ruby:
+    version: 2.3.1
 
 dependencies:
   override:
     - yarn
+    - gem install bundler
   pre:
     - yarn global add publish-release
   cache_directories:
@@ -23,6 +26,7 @@ compile:
 
 test:
   override:
+    - yarn lint
     - yarn test
   post:
     - bash <(curl -s https://codecov.io/bash)
@@ -32,11 +36,20 @@ deployment:
     branch: development
     commands:
       - yarn docs
+      - yarn build
       - yarn deploy:surge
 
   production:
+    branch: master
+    commands:
+      - yarn docs
+      - yarn build
+      - yarn deploy:gh-pages
+
+  release:
     tag: /v.*/
     commands:
-      # - yarn deploy:gh-pages
+      - yarn dist:clean
+      - yarn build
       - yarn deploy:release
       - yarn deploy:cdn

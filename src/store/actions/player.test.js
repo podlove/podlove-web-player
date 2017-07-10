@@ -1,7 +1,5 @@
 import test from 'ava'
 import {
-  setPlaytime,
-  updatePlaytime,
   setDuration,
   setBuffer,
   play,
@@ -14,22 +12,10 @@ import {
   toggleTimerMode,
   loading,
   setVolume,
-  setRate
+  setRate,
+  mute,
+  unmute
 } from './player'
-
-test(`setPlaytimeAction: creates the SET_PLAYTIME action`, t => {
-  t.deepEqual(setPlaytime(10), {
-    type: 'SET_PLAYTIME',
-    payload: 10
-  })
-})
-
-test(`updatePlaytimeAction: creates the UPDATE_PLAYTIME action`, t => {
-  t.deepEqual(updatePlaytime(10), {
-    type: 'UPDATE_PLAYTIME',
-    payload: 10
-  })
-})
 
 test(`setDurationAction: creates the SET_DURATION action`, t => {
   t.deepEqual(setDuration(10), {
@@ -110,5 +96,17 @@ test(`rateAction: creates the SET_RATE action`, t => {
   t.deepEqual(setRate(1), {
     type: 'SET_RATE',
     payload: 1
+  })
+})
+
+test(`muteAction: creates the MUTE action`, t => {
+  t.deepEqual(mute(), {
+    type: 'MUTE'
+  })
+})
+
+test(`unmuteAction: creates the UNMUTE action`, t => {
+  t.deepEqual(unmute(), {
+    type: 'UNMUTE'
   })
 })

@@ -1,5 +1,5 @@
 <template>
-  <div class="tabs" :style="containerStyle(theme)">
+  <div class="tabs" :style="containerStyle">
     <TabHeaderComponent>
       <TabHeaderItemComponent :active="tabs.chapters" :click="toggleTab('chapters')" v-if="components.tabs.chapters">
         <ChaptersIcon slot="icon"></ChaptersIcon>
@@ -9,26 +9,25 @@
         <ShareIcon slot="icon"></ShareIcon>
         <span slot="title">{{ $t('SHARE.TITLE') }}</span>
       </TabHeaderItemComponent>
-      <TabHeaderItemComponent :active="tabs.settings" v-if="components.tabs.settings" :click="toggleTab('settings')">
-        <SettingsIcon slot="icon"></SettingsIcon>
-        <span slot="title">{{ $t('SETTINGS.TITLE') }}</span>
+      <TabHeaderItemComponent :active="tabs.audio" v-if="components.tabs.audio" :click="toggleTab('audio')">
+        <AudioIcon slot="icon" :volume="volume * 100" :muted="muted"></AudioIcon>
+        <span slot="title">{{ $t('AUDIO.TITLE') }}</span>
       </TabHeaderItemComponent>
     </TabHeaderComponent>
     <TabBodyComponent :active="tabs.chapters" v-if="components.tabs.chapters">
-      <ChaptersTab />
+      <ChaptersTab></ChaptersTab>
     </TabBodyComponent>
     <TabBodyComponent :active="tabs.share" v-if="components.tabs.share">
-      <ShareTab />
+      <ShareTab></ShareTab>
     </TabBodyComponent>
-    <TabBodyComponent :active="tabs.settings" v-if="components.tabs.settings">
-      <SettingsTab />
+    <TabBodyComponent :active="tabs.audio" v-if="components.tabs.audio">
+      <AudioTab></AudioTab>
     </TabBodyComponent>
   </div>
 </template>
 
 <script>
 import store from 'store'
-import { translate } from 'core'
 
 import TabHeaderComponent from 'shared/TabHeader.vue'
 import TabHeaderItemComponent from 'shared/TabHeaderItem.vue'
@@ -36,33 +35,39 @@ import TabBodyComponent from 'shared/TabBody.vue'
 
 import ChaptersIcon from 'icons/ChaptersIcon.vue'
 import ShareIcon from 'icons/ShareIcon.vue'
-import SettingsIcon from 'icons/SettingsIcon.vue'
+import AudioIcon from 'icons/AudioIcon.vue'
+import SpeakerMuteIcon from 'icons/SpeakerMuteIcon.vue'
 
 import ChaptersTab from './chapters/Chapters.vue'
 import ShareTab from './share/Share.vue'
-import SettingsTab from './settings/Settings.vue'
-
-const containerStyle = theme => ({
-  'background-color': theme.tabs.body.background
-})
-
-const toggleTab = tab => () => {
-  store.dispatch(store.actions.toggleTab(tab))
-}
+import AudioTab from './audio/Audio.vue'
 
 export default {
-  data() {
+  data () {
     return {
       theme: this.$select('theme'),
       tabs: this.$select('tabs'),
       chapters: this.$select('chapters'),
       reference: this.$select('reference'),
-      components: this.$select('components')
+      components: this.$select('components'),
+      volume: this.$select('volume'),
+      muted: this.$select('muted')
     }
   },
+  computed: {
+    containerStyle () {
+      return {
+        'background-color': this.theme.tabs.body.background
+      }
+    }
+
+  },
   methods: {
-    containerStyle,
-    toggleTab
+    toggleTab (tab) {
+      return () => {
+        store.dispatch(store.actions.toggleTab(tab))
+      }
+    }
   },
   components: {
     TabHeaderComponent,
@@ -72,8 +77,9 @@ export default {
     ChaptersTab,
     ShareIcon,
     ShareTab,
-    SettingsIcon,
-    SettingsTab
+    AudioIcon,
+    SpeakerMuteIcon,
+    AudioTab
   }
 }
 </script>
