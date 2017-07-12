@@ -18,6 +18,7 @@ const playerSandbox = anchor => {
     frame.setAttribute('width', '100%')
   }
 
+  frame.setAttribute('min-width', '100%')
   frame.setAttribute('seamless', '')
   frame.setAttribute('scrolling', 'no')
   frame.setAttribute('frameborder', '0')

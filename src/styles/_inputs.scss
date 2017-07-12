@@ -1,5 +1,6 @@
 @import 'variables';
 @import 'utils';
+@import 'font';
 
 $input-group-height: 35px;
 $input-height: 25px;
@@ -48,7 +49,9 @@ $slider-button-size: 35px;
   border-radius: 3px;
   border-style: solid;
   opacity: 1;
-  font-size: 0.9em;
+
+  @include font();
+  font-size: 1.1em;
   font-variant: small-caps;
 
   &:hover {

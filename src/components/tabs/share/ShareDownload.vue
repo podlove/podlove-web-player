@@ -14,8 +14,9 @@
           <div>
             <label class="input-label">{{ $t('SHARE.LABELS.TYPE') }}</label>
             <select class="input-select" v-on:change="switchAudioType" :style="inputStyle">
-              <option v-for="option in share.download.files"
+              <option v-for="(option, index) in share.download.files"
                 v-bind:value="option.file"
+                v-bind:key="index"
                 :selected="activeAudioType(share.download.files) === option.type">
                 {{ option.type }}
               </option>

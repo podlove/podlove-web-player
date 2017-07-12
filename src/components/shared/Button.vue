@@ -23,6 +23,7 @@
 
 <style lang="scss">
   @import 'variables';
+  @import 'font';
 
   .button {
     display: flex;

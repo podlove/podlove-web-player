@@ -35,14 +35,14 @@ deployment:
   staging:
     branch: development
     commands:
-      - yarn docs
+      - yarn docs:dev
       - yarn build
       - yarn deploy:surge
 
   production:
     branch: master
     commands:
-      - yarn docs
+      - yarn docs:prod
       - yarn build
       - yarn deploy:gh-pages
 
