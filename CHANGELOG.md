@@ -1,4 +1,14 @@
 <a name="4.0.0-alpha"></a>
+# [4.0.0-alpha](https://github.com/podlove/podlove-web-player/compare/v4.0.0-alpha.6...v4.0.0-alpha) (2017-07-12)
+
+
+### Bug Fixes
+
+* **responsive, input-button, docs:** Fixes several bugs ([d8f32da](https://github.com/podlove/podlove-web-player/commit/d8f32da))
+
+
+
+<a name="4.0.0-alpha"></a>
 # [4.0.0-alpha](https://github.com/podlove/podlove-web-player/compare/v4.0.0-alpha.5...v4.0.0-alpha) (2017-07-10)
 
 
