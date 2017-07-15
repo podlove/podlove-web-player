@@ -6,7 +6,7 @@ navigation: 1
 # Podlove Web Player 4.0
 ### The fast, flexible and responsive podcast player powered by podlove meta data.
 
-<div id="example"></div>
+<p id="example"></p>
 <script src="{{ 'embed.js' | relative_url }}"></script>
 <script>
     var examples = [
@@ -217,3 +217,8 @@ navigation: 1
 - Sharing
 - State Persistance
 - Deep Linking
+
+## Previous Versions
+
+- [Podlove Web Player v3 Docs](docs.podlove.org/podlove-web-player-v3/)
+- [Podlove Web Player v2 Docs](docs.podlove.org/podlove-web-player-v3/versions/v2.html)
