@@ -6,7 +6,7 @@ navigation: 7
 
 # Playground
 
-<div id="player"></div>
+<p id="player"></p>
 <div id="editor"></div>
 <script src="{{ 'embed.js' | relative_url }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/5.5.11/jsoneditor.min.js"></script>
@@ -18,7 +18,7 @@ navigation: 7
         summary: 'Wir haben eine wie wir finden abwechslungsreiche Sendung produziert, die wir Euch wie immer mit Freude bereitstellen. Während die Live-Hörer Freak-Show-Bingo spielen, greifen wir das Wikipedia-Thema der letzten Sendung auf und liefern auch noch weitere Aspekte des optimalen Star-Wars-Medienkonsums frei Haus. Dazu viel Nerderei rund um die Kommandozeile, eine Einschätzung der Perspektive der Apple Watch, ein Rant über die mangelhafte Security  im Internet of Things (and Buildings) und allerlei anderer Kram.  Roddi setzt dieses Mal aus, sonst Vollbesetzung.',
         publicationDate: '2016-02-11T03:13:55+00:00',
         poster: 'https://freakshow.fm/wp-content/cache/podlove/04/662a9d4edcf77ea2abe3c74681f509/freak-show_200x200.jpg',
-        link: 'https://freakshow.fm/fs171-invasion'
+        link: 'https://freakshow.fm/fs171-invasion',
         show: {
             title: 'Freak Show',
             subtitle: 'Menschen! Technik! Sensationen!',

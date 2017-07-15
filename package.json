@@ -29,7 +29,7 @@
     "postinstall": "cd docs && bundle install",
     "docs:dev": "jekyll build --source docs --destination dist && cp -R docs/fixtures/* dist/fixtures",
     "docs:prod": "jekyll build --source docs --destination dist --config docs/_config_prd.yml && cp -R docs/fixtures/* dist/fixtures",
-    "webpack:dev": "webpack-dashboard -- webpack-dev-server --content-base dist/ --progress --hot --inline --config src/webpack.config.js --host 192.168.178.42",
+    "webpack:dev": "webpack-dashboard -- webpack-dev-server --content-base dist/ --progress --hot --inline --config src/webpack.config.js",
     "webpack:build": "NODE_ENV='production' webpack --config src/webpack.config.js",
     "build": "npm run webpack:build",
     "dev": "npm run dist:clean && npm run docs:dev && npm run webpack:dev",

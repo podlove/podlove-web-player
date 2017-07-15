@@ -6,7 +6,7 @@ navigation: 2
 
 # Embedding
 
-<div id="example" class="section"></div>
+<p id="example" class="section"></p>
 <script src="{{ 'embed.js' | relative_url }}"></script>
 <script>
     podlovePlayer('#example', './fixtures/example.json');

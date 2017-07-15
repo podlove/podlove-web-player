@@ -6,7 +6,7 @@ navigation: 5
 
 # Persistence
 
-<div id="example" class="section"></div>
+<p id="example"></p>
 <script src="{{ 'embed.js' | relative_url }}"></script>
 <script>
     podlovePlayer('#example', './fixtures/example.json');

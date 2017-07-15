@@ -47,6 +47,7 @@ deployment:
       - yarn deploy:gh-pages
 
   release:
+    branch: master
     tag: /v.*/
     commands:
       - yarn dist:clean
