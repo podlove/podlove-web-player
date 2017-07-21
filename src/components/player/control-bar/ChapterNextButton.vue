@@ -1,17 +1,15 @@
 <template>
-  <ButtonComponent class="chapter-control" :click="onButtonClick" :disabled="playtime === duration">
+  <button class="control-button" @click="onButtonClick()" :disabled="playtime === duration">
     <ChapterNextIcon :color="theme.player.actions.background"></ChapterNextIcon>
-  </ButtonComponent>
+  </button>
 </template>
 
 <script>
   import store from 'store'
-  import ButtonComponent from 'shared/Button.vue'
   import ChapterNextIcon from 'icons/ChapterNextIcon.vue'
 
   export default {
     components: {
-      ButtonComponent,
       ChapterNextIcon
     },
     data () {

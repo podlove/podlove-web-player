@@ -1,78 +1,18 @@
-import { reduce } from 'lodash'
-
 const INITIAL = {
-  open: false,
+  content: 'show',
   embed: {
-    size: '250x400',
-    availableSizes: ['250x400', '320x400', '375x400', '600x290', '768x290'],
-    start: false,
-    starttime: 0
-  },
-  link: {
-    start: false,
-    starttime: 0
-  },
-  download: {
-    files: []
+    visible: false,
+    available: ['250x400', '320x400', '375x400', '600x290', '768x290'],
+    size: '320x400'
   }
 }
 
-const transformDownloadFiles = audio => reduce(audio, (result, file, index) => {
-  let item = {
-    file,
-    active: index === 0,
-    type: file.split('.').pop()
-  }
-
-  return [
-    ...result,
-    item
-  ]
-}, [])
-
-const switchDownloadFile = (files, activeFile) => reduce(files, (result, item) => {
-  if (item.file === activeFile) {
-    item.active = true
-  } else {
-    item.active = false
-  }
-
-  return [
-    ...result,
-    item
-  ]
-}, [])
-
 const share = (state = INITIAL, action) => {
   switch (action.type) {
-    case 'INIT':
+    case 'SET_SHARE_CONTENT':
       return {
         ...state,
-        download: {
-          ...state.download,
-          files: transformDownloadFiles(action.payload.audio)
-        }
-      }
-    case 'TOGGLE_SHARE':
-      return {
-        ...state,
-        open: !state.open
-      }
-    case 'TOGGLE_SHARE_EMBED_START':
-      return {
-        ...state,
-        embed: {
-          ...state.embed,
-          start: !state.embed.start
-        }
-      }
-    case 'TOGGLE_SHARE_LINK_START':
-      return {
-        ...state,
-        link: {
-          ...state.link,
-          start: !state.link.start
-        }
+        content: action.payload
       }
     case 'SET_SHARE_EMBED_SIZE':
       return {
@@ -82,28 +22,20 @@ const share = (state = INITIAL, action) => {
           size: action.payload
         }
       }
-    case 'SET_SHARE_EMBED_STARTTIME':
+    case 'SHOW_SHARE_EMBED':
       return {
         ...state,
         embed: {
           ...state.embed,
-          starttime: action.payload
+          visible: true
         }
       }
-    case 'SET_SHARE_LINK_STARTTIME':
+    case 'HIDE_SHARE_EMBED':
       return {
         ...state,
-        link: {
-          ...state.link,
-          starttime: action.payload
-        }
-      }
-    case 'SWITCH_DOWNLOAD_FILE':
-      return {
-        ...state,
-        download: {
-          ...state.download,
-          files: switchDownloadFile(state.download.files, action.payload)
+        embed: {
+          ...state.embed,
+          visible: false
         }
       }
     default:

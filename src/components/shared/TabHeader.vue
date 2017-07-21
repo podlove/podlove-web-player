@@ -46,7 +46,7 @@
       left: 0;
       right: 0;
       height: $padding;
-      z-index: 100;
+      z-index: $tab-shadow;
     }
   }
 </style>

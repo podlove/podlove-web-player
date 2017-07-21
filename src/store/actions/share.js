@@ -1,47 +1,24 @@
-const toggleShare = () => ({
-  type: 'TOGGLE_SHARE'
+const setShareContent = type => ({
+  type: 'SET_SHARE_CONTENT',
+  payload: type
 })
 
-// Embed
+const showShareEmbed = () => ({
+  type: 'SHOW_SHARE_EMBED'
+})
+
+const hideShareEmbed = () => ({
+  type: 'HIDE_SHARE_EMBED'
+})
+
 const setShareEmbedSize = size => ({
   type: 'SET_SHARE_EMBED_SIZE',
   payload: size
 })
 
-const toggleShareEmbedStart = () => ({
-  type: 'TOGGLE_SHARE_EMBED_START'
-})
-
-const setShareEmbedStarttime = time => ({
-  type: 'SET_SHARE_EMBED_STARTTIME',
-  payload: time
-})
-
-// Link
-const toggleShareLinkStart = () => ({
-  type: 'TOGGLE_SHARE_LINK_START'
-})
-
-const setShareLinkStarttime = time => ({
-  type: 'SET_SHARE_LINK_STARTTIME',
-  payload: time
-})
-
-// Download
-const switchDownloadFile = file => ({
-  type: 'SWITCH_DOWNLOAD_FILE',
-  payload: file
-})
-
 export {
-  toggleShare,
-
-  setShareEmbedSize,
-  toggleShareEmbedStart,
-  setShareEmbedStarttime,
-
-  toggleShareLinkStart,
-  setShareLinkStarttime,
-
-  switchDownloadFile
+  setShareContent,
+  showShareEmbed,
+  hideShareEmbed,
+  setShareEmbedSize
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="control-bar">
+  <div class="control-bar centered">
     <transition name="button">
       <ChapterBackButton v-if="components.controls.chapters && chapters.length > 0"></ChapterBackButton>
     </transition>
@@ -48,17 +48,13 @@
   .control-bar {
     width: 100%;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    .button {
-      margin: 0 $margin / 3;
+    .control-button {
+      margin: 0 ($margin / 2);
     }
 
     @media screen and (max-width: $width-s) {
-      .button {
-        margin: 0;
+      .input-button {
+        margin: 0 ($margin / 3);
       }
     }
   }

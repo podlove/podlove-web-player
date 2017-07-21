@@ -1,20 +1,18 @@
 <template>
-  <PodloveButton class="podlove-player--player-control" :class="playstate" :click="onButtonClick" :disabled="isDisabled(playtime)">
+  <button class="control-button" :class="playstate" @click="onButtonClick()" :disabled="isDisabled(playtime)">
     <StepBackIcon
       :main-color="theme.player.actions.icon"
       :highlight-color="theme.player.actions.background"
     ></StepBackIcon>
-  </PodloveButton>
+  </button>
 </template>
 
 <script>
   import store from 'store'
-  import PodloveButton from 'shared/Button.vue'
   import StepBackIcon from 'icons/StepBackIcon.vue'
 
   export default {
     components: {
-      PodloveButton,
       StepBackIcon
     },
     data () {

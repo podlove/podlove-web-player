@@ -58,19 +58,35 @@ const themeColors = (colors = {}) => {
         progress: fallbackColor(highlight, negative ? main : dark),
         icon: negative ? main : dark
       },
-      slider: {
-        thumb: main
-      },
-      button: {
-        background: main,
-        text: negative ? light : dark
-      },
-      input: {
-        border: negative ? main : dark
+      share: {
+        content: {
+          active: {
+            background: color(main).fade(0.2),
+            color: negative ? light : dark
+          }
+        },
+        platform: {
+          background: color(main).fade(0.8),
+          icon: negative ? light : dark,
+          color: negative ? light : dark,
+          input: color(main).fade(0.2),
+          button: main
+        }
       }
     },
     overlay: {
-      button: negative ? light : dark
+      button: negative ? light : dark,
+      background: color(main).lighten(0.9)
+    },
+    input: {
+      border: negative ? main : dark,
+      background: light,
+      color: dark
+    },
+    button: {
+      background: main,
+      color: negative ? light : dark,
+      border: negative ? main : dark
     }
   }
 }

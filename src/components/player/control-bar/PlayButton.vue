@@ -1,5 +1,5 @@
 <template>
-  <ButtonComponent :click="onButtonClick">
+  <button class="control-button" @click="onButtonClick()">
     <span class="play-button" :style="wrapperStyle" :class="{
       wide: components.controls.button.variant.loading ||
             components.controls.button.variant.remaining ||
@@ -35,7 +35,7 @@
         <span class="label" :style="textStyle">{{ $t('PLAYER.RETRY') }}</span>
       </span>
     </span>
-  </ButtonComponent>
+  </button>
 </template>
 
 <script>
@@ -47,12 +47,10 @@
   import ErrorIcon from 'icons/ErrorIcon.vue'
   import ReloadIcon from 'icons/ReloadIcon.vue'
 
-  import ButtonComponent from 'shared/Button.vue'
   import LoadingIndicator from './LoadingIndicator.vue'
 
   export default {
     components: {
-      ButtonComponent,
       LoadingIndicator,
       PlayIcon,
       PauseIcon,
