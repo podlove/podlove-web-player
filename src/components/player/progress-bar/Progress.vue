@@ -141,7 +141,6 @@
 
 <style lang="scss">
   @import 'variables';
-  @import 'range-resets';
 
   $progress-height: 44px;
 

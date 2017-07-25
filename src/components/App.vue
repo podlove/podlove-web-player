@@ -38,12 +38,13 @@
 
 <style lang="scss">
   @import 'variables';
+  @import 'resets/resets';
   @import 'global';
   @import 'font';
 
   @import 'embed';
   @import 'utils';
-  @import 'grid';
+
 
   @import 'transitions';
 

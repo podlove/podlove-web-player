@@ -66,8 +66,8 @@
     "redux": "3.5.2",
     "revue": "3.0.0",
     "superagent": "3.4.1",
-    "vue": "2.2.6",
-    "vue-i18n": "6.1.1"
+    "vue": "2.4.2",
+    "vue-i18n": "7.0.5"
   },
   "devDependencies": {
     "ava": "0.18.2",
@@ -106,8 +106,8 @@
     "standard-changelog": "1.0.1",
     "surge": "0.18.0",
     "transform-runtime": "0.0.0",
-    "vue-loader": "11.3.4",
-    "vue-template-compiler": "2.2.6",
+    "vue-loader": "^12.2.2",
+    "vue-template-compiler": "^2.4.2",
     "webpack": "2.3.2",
     "webpack-bundle-analyzer": "2.4.0",
     "webpack-dashboard": "0.3.0",

@@ -2,21 +2,6 @@
   "CHAPTERS": {
     "TITLE": "Chapters"
   },
-  "SHARE": {
-    "TITLE": "Share",
-    "LINK": "Link",
-    "EMBED": "Embed",
-    "DOWNLOAD": "Download",
-    "LABELS": {
-      "TYPE": "Type:",
-      "START": "Start:",
-      "SIZE": "Size:"
-    },
-    "ACTIONS": {
-      "COPY": "copy",
-      "DOWNLOAD": "download"
-    }
-  },
   "AUDIO": {
     "TITLE": "Audio",
     "VOLUME": "Volume",
@@ -35,6 +20,36 @@
     "MISSING_FILES": {
       "TITLE": "Required information missing",
       "MESSAGE": "To play the podcast important references to audio files are missing."
+    }
+  },
+  "SHARE": {
+    "TITLE": "Share",
+    "CONTENT": {
+      "SHOW": "Show",
+      "EPISODE": "Episode",
+      "CHAPTER": "Chapter",
+      "TIME": "Playtime"
+    },
+    "SHARE_CHANNEL": "Share in...",
+    "SHARE_LINK": "Link",
+    "ACTIONS": {
+      "COPY": "copy"
+    },
+    "EPISODE": {
+      "TEXT": {
+        "BEGINNING": "Share text for episode \"{title}\" with link {link} starting at beginning",
+        "CHAPTER": "Share text for episode \"{title}\" with link {link} for chapter \"{chapter}\"",
+        "PLAYTIME": "Share text for episode \"{title}\" with link {link} beginning at {playtime}"
+      },
+      "SUBJECT": {
+        "BEGINNING": "Share subject for episode \"{title}\" with link {link} starting at beginning",
+        "CHAPTER": "Share subject for episode \"{title}\" with link {link} for chapter \"{chapter}\"",
+        "PLAYTIME": "Share subject for episode \"{title}\" with link {link} beginning at {playtime}"
+      }
+    },
+    "SHOW": {
+      "TEXT": "Share text for show \"{title}\" with link {link}",
+      "SUBJECT": "Share subject for show \"{title}\" with link {link}"
     }
   }
 }

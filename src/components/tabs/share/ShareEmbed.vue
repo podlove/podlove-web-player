@@ -1,50 +1,42 @@
 <template>
-    <div class="embed input-element">
-      <h4 class="title">{{ $t('SHARE.EMBED') }}</h4>
-      <div class="input-row input-group">
-        <ButtonComponent
-          class="input-button truncate"
-          :data-clipboard-text="clipboardContent"
-          v-clipboard
-          :style="buttonStyle">
-          {{ $t('SHARE.ACTIONS.COPY') }}
-        </ButtonComponent>
-        <input type="text" class="input-text" :style="inputStyle" disabled :value="clipboardContent" />
+    <OverlayComponent :visible="share.embed.visible" :onClose="closeEmbedOverlay" class="embed-overlay">
+      <h3 name="header" class="title text-center">Embed Episode</h3>
+      <div class="input-element">
+        <label class="input-label">Embed Size</label>
+        <InputSelectComponent :model="share.embed.size" :options="share.embed.available"></InputSelectComponent>
       </div>
-      <div class="input-row">
-        <div class="share-config--time">
-          <label class="input-label"><input type="checkbox" class="input-checkbox" :value="share.embed.start" v-on:change="toggleEmbedStart(playtime)"/> {{ $t('SHARE.LABELS.START') }}</label>
-          <input type="text" class="input-text" :style="inputStyle" :value="secondsToTime(share.embed.starttime)" v-on:input="setStarttime"/>
-        </div>
-        <div class="share-config--size">
-          <label class="input-label">{{ $t('SHARE.LABELS.SIZE') }}</label>
-          <select class="input-select" :style="inputStyle" v-model="share.embed.size" v-on:change="setEmbedSize(share.embed.size)">
-            <option v-for="(option, index) in share.embed.availableSizes" v-bind:key="index" v-bind:value="option">
-              {{ option }}
-            </option>
-          </select>
-        </div>
+      <div class="input-element">
+        <label class="input-label">Embed Code</label>
+        <InputTextComponent class="block" disabled="true" :value="embedCode"></InputTextComponent>
       </div>
-    </div>
+      <div class="input-element">
+        <ButtonComponent class="block action" :data-clipboard-text="embedCode" v-clipboard>Copy EmbedCode</ButtonComponent>
+      </div>
+    </OverlayComponent>
 </template>
 
 <script>
-  import { debounce } from 'lodash'
+  import { compose } from 'lodash/fp'
   import { addQueryParameter } from 'utils/url'
+  import { secondsToTime } from 'utils/time'
+  import { currentChapter } from 'utils/chapters'
 
   import store from 'store'
-  import { secondsToTime, timeToSeconds } from 'utils/time'
 
+  import OverlayComponent from 'shared/Overlay.vue'
   import ButtonComponent from 'shared/Button.vue'
+  import InputSelectComponent from 'shared/InputSelect.vue'
+  import InputTextComponent from 'shared/InputText.vue'
 
   export default {
+    props: ['type'],
     data () {
       return {
         share: this.$select('share'),
         reference: this.$select('reference'),
-        playtime: this.$select('playtime'),
-        duration: this.$select('duration'),
-        theme: this.$select('theme')
+        theme: this.$select('theme'),
+        chapters: this.$select('chapters'),
+        playtime: this.$select('playtime')
       }
     },
     computed: {
@@ -52,7 +44,15 @@
         return {
           color: this.theme.tabs.button.text,
           background: this.theme.tabs.button.background,
-          'border-color': this.theme.tabs.input.border
+          'border-color': this.theme.tabs.button.background
+        }
+      },
+
+      buttonActiveStyle () {
+        return {
+          color: this.theme.tabs.button.background,
+          background: this.theme.tabs.button.text,
+          'border-color': this.theme.tabs.button.background
         }
       },
 
@@ -62,15 +62,20 @@
         }
       },
 
-      clipboardContent () {
+      embedCode () {
         const [width, height] = this.share.embed.size.split('x')
 
         const parameters = {
           episode: this.reference.config
         }
 
-        if (this.share.embed.start) {
-          parameters.t = secondsToTime(this.share.embed.starttime)
+        if (this.type === 'chapter') {
+          const chapter = currentChapter(this.chapters)
+          parameters.t = `${secondsToTime(chapter.start)},${secondsToTime(chapter.end)}`
+        }
+
+        if (this.type === 'time') {
+          parameters.t = secondsToTime(this.playtime)
         }
 
         return `<iframe width="${width}" height="${height}" src="${addQueryParameter(this.reference.share, parameters)}" frameborder="0" scrolling="no"></iframe>`
@@ -78,34 +83,14 @@
     },
     methods: {
       secondsToTime,
-
-      setEmbedSize (size) {
-        store.dispatch(store.actions.setShareEmbedSize(size))
-      },
-
-      toggleEmbedStart (time) {
-        store.dispatch(store.actions.toggleShareEmbedStart())
-        store.dispatch(store.actions.setShareEmbedStarttime(time))
-      },
-
-      setStarttime (input) {
-        debounce(() => {
-          let time = timeToSeconds(input.target.value)
-
-          if (!time) {
-            return
-          }
-
-          if (time > this.duration) {
-            time = this.duration
-          }
-
-          store.dispatch(store.actions.setShareEmbedStarttime(time))
-        }, 1000)()
-      }
+      setEmbedSize: (size) => () => store.dispatch(store.actions.setShareEmbedSize(size)),
+      closeEmbedOverlay: compose(store.dispatch.bind(store), store.actions.hideShareEmbed)
     },
     components: {
-      ButtonComponent
+      OverlayComponent,
+      ButtonComponent,
+      InputSelectComponent,
+      InputTextComponent
     }
   }
 </script>
@@ -115,14 +100,16 @@
   @import 'utils';
   @import 'inputs';
 
-  .embed {
-    @media screen and (max-width: $width-m) {
-      .share-config--time, .share-config--size {
-        .input-label {
-          display: block;
-          height: auto;
-        }
-      }
+  .embed-code {
+    width: 100%;
+    display: block;
+    margin: ($margin / 2) 0;
+  }
+
+  .embed-overlay {
+    .overlay {
+      width: 250px;
     }
   }
+
 </style>

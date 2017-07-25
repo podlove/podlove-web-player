@@ -1,19 +1,19 @@
 <template>
   <div class="input-element">
-    <h4 class="title">
-      <span class="label">{{ $t('AUDIO.SPEED') }}</span>
-      <span class="rate">{{ toPercent(rate) }}%</span>
-    </h4>
-    <div class="input-slider">
-      <ButtonComponent class="slider-button" :click="changeRate(-5, rate)" :style="buttonStyle">
-        <MinusIcon :color="theme.tabs.button.text"></MinusIcon>
+    <label class="spaced">
+      <span class="input-label">{{ $t('AUDIO.SPEED') }}</span>
+      <span class="input-label">{{ toPercent(rate) }}%</span>
+    </label>
+    <div class="rate-slider centered">
+      <ButtonComponent class="slider-button" :click="changeRate(-5, rate)">
+        <MinusIcon :color="theme.button.color"></MinusIcon>
       </ButtonComponent>
-      <ButtonComponent class="slider-button" :click="changeRate(5, rate)" :style="buttonStyle">
-        <PlusIcon :color="theme.tabs.button.text"></PlusIcon>
+      <ButtonComponent class="slider-button" :click="changeRate(5, rate)">
+        <PlusIcon :color="theme.button.color"></PlusIcon>
       </ButtonComponent>
-      <SliderComponent class="input-slider"
+      <InputSliderComponent
         min="0" max="1" step="0.001"
-        :value="sliderRate" :onInput="toStateRate" :thumbBorder="theme.tabs.input.border" :thumbColor="theme.tabs.slider.thumb"></SliderComponent>
+        :value="sliderRate" :onInput="toStateRate"></InputSliderComponent>
     </div>
   </div>
 </template>
@@ -24,7 +24,7 @@
   import { compose } from 'lodash/fp'
   import { toPercent, roundUp, round } from 'utils/math'
 
-  import SliderComponent from 'shared/Slider.vue'
+  import InputSliderComponent from 'shared/InputSlider.vue'
   import ButtonComponent from 'shared/Button.vue'
 
   import PlusIcon from 'icons/PlusIcon.vue'
@@ -96,13 +96,6 @@
     computed: {
       sliderRate: function () {
         return toSliderRate(this.rate)
-      },
-      buttonStyle () {
-        return {
-          color: this.theme.tabs.button.text,
-          background: this.theme.tabs.button.background,
-          'border-color': this.theme.tabs.input.border
-        }
       }
     },
     methods: {
@@ -113,7 +106,7 @@
       toPercent
     },
     components: {
-      SliderComponent,
+      InputSliderComponent,
       ButtonComponent,
       PlusIcon,
       MinusIcon
@@ -124,11 +117,4 @@
 <style lang="scss">
   @import 'variables';
   @import 'inputs';
-
-  .audio {
-    .title {
-      display: flex;
-      justify-content: space-between;
-    }
-  }
 </style>

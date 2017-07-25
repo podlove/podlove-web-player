@@ -1,4 +1,3 @@
-
 @import 'variables';
 
 .truncate {
@@ -12,12 +11,16 @@
   animation: stop-and-scroll 15s linear infinite;
 }
 
-.align-left {
+.text-left {
   text-align: left;
 }
 
-.align-right {
+.text-right {
   text-align: right;
+}
+
+.text-center {
+  text-align: center;
 }
 
 .seperator {
@@ -25,8 +28,13 @@
   padding-bottom: $padding * 2;
 }
 
-.center {
+.centered {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.spaced {
+  display: flex;
+  justify-content: space-between;
 }

@@ -38,6 +38,7 @@
 
   .audio {
     width: 100%;
+    padding-top: $padding;
 
     .footer {
       margin: $margin;

@@ -1,62 +1,33 @@
 import test from 'ava'
 import {
-    toggleShare,
-    setShareEmbedSize,
-    toggleShareEmbedStart,
-    setShareEmbedStarttime,
-    toggleShareLinkStart,
-    setShareLinkStarttime,
-    switchDownloadFile
+  setShareContent,
+  showShareEmbed,
+  hideShareEmbed,
+  setShareEmbedSize
 } from './share'
 
-test(`toggleShareAction: creates the TOGGLE_SHARE action`, t => {
-  t.deepEqual(toggleShare(), {
-    type: 'TOGGLE_SHARE'
+test(`setShareContentAction: creates the SET_SHARE_CONTENT action`, t => {
+  t.deepEqual(setShareContent('episode'), {
+    type: 'SET_SHARE_CONTENT',
+    payload: 'episode'
   })
 })
 
-test(`setShareEmbedDimensionsAction: creates the SET_SHARE_EMBED_SIZE action`, t => {
-  t.deepEqual(setShareEmbedSize('100x100'), {
+test(`setShareEmbedSizeAction: creates the SET_SHARE_EMBED_SIZE action`, t => {
+  t.deepEqual(setShareEmbedSize('250x400'), {
     type: 'SET_SHARE_EMBED_SIZE',
-    payload: '100x100'
+    payload: '250x400'
   })
 })
 
-test(`toggleShareEmbedStartAction: creates the TOGGLE_SHARE_EMBED_START action`, t => {
-  t.deepEqual(toggleShareEmbedStart(), {
-    type: 'TOGGLE_SHARE_EMBED_START'
+test(`showShareEmbedAction: creates the SHOW_SHARE_EMBED action`, t => {
+  t.deepEqual(showShareEmbed(), {
+    type: 'SHOW_SHARE_EMBED'
   })
 })
 
-test(`setShareEmbedStarttimeAction: creates the SET_SHARE_EMBED_STARTTIME action`, t => {
-  t.deepEqual(setShareEmbedStarttime(100), {
-    type: 'SET_SHARE_EMBED_STARTTIME',
-    payload: 100
-  })
-})
-
-test(`toggleShareEmbedStartAction: creates the TOGGLE_SHARE_EMBED_START action`, t => {
-  t.deepEqual(toggleShareEmbedStart(), {
-    type: 'TOGGLE_SHARE_EMBED_START'
-  })
-})
-
-test(`toggleShareLinkStartAction: creates the TOGGLE_SHARE_LINK_START action`, t => {
-  t.deepEqual(toggleShareLinkStart(), {
-    type: 'TOGGLE_SHARE_LINK_START'
-  })
-})
-
-test(`setShareLinkStarttimeAction: creates the SET_SHARE_LINK_STARTTIME action`, t => {
-  t.deepEqual(setShareLinkStarttime(100), {
-    type: 'SET_SHARE_LINK_STARTTIME',
-    payload: 100
-  })
-})
-
-test(`switchDownloadFileAction: creates the SWITCH_DOWNLOAD_FILE action`, t => {
-  t.deepEqual(switchDownloadFile('fooobar'), {
-    type: 'SWITCH_DOWNLOAD_FILE',
-    payload: 'fooobar'
+test(`hideShareEmbedAction: creates the HIDE_SHARE_EMBED action`, t => {
+  t.deepEqual(hideShareEmbed(), {
+    type: 'HIDE_SHARE_EMBED'
   })
 })

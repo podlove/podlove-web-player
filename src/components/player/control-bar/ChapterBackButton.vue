@@ -1,19 +1,17 @@
 <template>
-  <ButtonComponent class="chapter-control" :click="onButtonClick" :disabled="playtime === 0">
+  <button class="control-button" @click="onButtonClick()" :disabled="playtime === 0">
     <ChapterBackIcon :color="theme.player.actions.background"></ChapterBackIcon>
-  </ButtonComponent>
+  </button>
 </template>
 
 <script>
   import { currentChapter, currentChapterIndex } from 'utils/chapters'
 
   import store from 'store'
-  import ButtonComponent from 'shared/Button.vue'
   import ChapterBackIcon from 'icons/ChapterBackIcon.vue'
 
   export default {
     components: {
-      ButtonComponent,
       ChapterBackIcon
     },
     data () {

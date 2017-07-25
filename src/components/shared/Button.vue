@@ -1,22 +1,38 @@
 <template>
-  <button :style="buttonStyle(color)" class="button" @click="click && click()"><slot></slot></button>
+  <button :style="active ? activeStyle : style" class="input-button centered" :disabled="disabled" @click="click ? click() : noop()">
+    <slot></slot>
+  </button>
 </template>
 
 <script>
-  const buttonStyle = color => {
-    if (!color) {
-      return {}
-    }
-
-    return {
-      'background-color': color
-    }
-  }
+  import { noop } from 'lodash'
 
   export default {
-    props: ['click', 'color'],
+    props: ['click', 'disabled', 'active'],
+    data () {
+      return {
+        theme: this.$select('theme')
+      }
+    },
+    computed: {
+      style () {
+        return {
+          color: this.theme.button.color,
+          background: this.theme.button.background,
+          'border-color': this.theme.button.border
+        }
+      },
+
+      activeStyle () {
+        return {
+          color: this.theme.button.background,
+          background: this.theme.button.color,
+          'border-color': this.theme.button.background
+        }
+      }
+    },
     methods: {
-      buttonStyle
+      noop
     }
   }
 </script>
@@ -25,36 +41,38 @@
   @import 'variables';
   @import 'font';
 
-  .button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .input-button {
+    opacity: 1;
+    transition: opacity $animation-duration;
+
+    font-size: 1em;
+
     cursor: pointer;
 
     background: transparent;
-
-    border-radius: 0;
-    border: 0;
     outline: none;
 
     &[disabled] {
       opacity: 0.5;
     }
 
-    &.solid {
-      color: $background-color;
-      background: $accent-color;
-      border-radius: 4px;
-      border: 2px solid $accent-color;
+    border-radius: 4px;
+    border-width: 2px;
+    border-style: solid;
 
-      &:hover, &.active {
-        color: $accent-color;
-        background: $background-color;
-      }
+    &:hover {
+      opacity: 0.8;
     }
 
-    &.labeled {
-      font-size: 0.8em;
+    &.block {
+      display: block;
+      width: 100%;
+    }
+
+    &.action {
+      text-transform: uppercase;
+      padding: $padding / 2;
+      line-height: $padding + $padding / 2
     }
   }
 </style>

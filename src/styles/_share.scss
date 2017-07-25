@@ -1,0 +1,19 @@
+@import 'variables';
+$button-size: 60px;
+
+.channel-link {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: $margin / 2;
+  cursor: pointer;
+
+  .channel-icon {
+    width: $button-size;
+    height: $button-size;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+  }
+}

@@ -17,8 +17,9 @@ navigation: 3
 
   function setThemeConfig(theme) {
       var themeConfig = document.getElementById('theme-config');
-      var config = [{\n',
-          '    theme: {\n'
+      var config = [
+        '{\n',
+        '    theme: {\n'
       ];
 
       if (theme.main) {
