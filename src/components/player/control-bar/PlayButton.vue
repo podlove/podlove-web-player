@@ -102,7 +102,6 @@
 
 <style lang="scss">
   @import 'variables';
-  $button-width: 50px;
 
   .play-button {
     display: flex;

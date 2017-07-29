@@ -97,8 +97,6 @@
 
 <style lang="scss">
   @import 'variables';
-  @import 'utils';
-  @import 'inputs';
 
   .embed-code {
     width: 100%;
@@ -108,7 +106,7 @@
 
   .embed-overlay {
     .overlay {
-      width: 250px;
+      width: $share-embed-width;
     }
   }
 

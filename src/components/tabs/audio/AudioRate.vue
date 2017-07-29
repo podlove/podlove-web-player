@@ -113,8 +113,3 @@
     }
   }
 </script>
-
-<style lang="scss">
-  @import 'variables';
-  @import 'inputs';
-</style>

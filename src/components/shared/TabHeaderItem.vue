@@ -64,14 +64,14 @@
   @import 'variables';
 
   .tab-header-item {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: ($padding / 2) $padding;
-      width: 100%;
-      margin: 0;
-      height: $tabs-header-height;
-      transition: all $animation-duration;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: ($padding / 2) $padding;
+    width: 100%;
+    margin: 0;
+    height: $tabs-header-height;
+    transition: all $animation-duration;
 
     .caption {
       display: flex;

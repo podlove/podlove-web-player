@@ -1,6 +1,7 @@
 const webpack = require('webpack')
 const DashboardPlugin = require('webpack-dashboard/plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 const path = require('path')
 
@@ -22,8 +23,20 @@ const config = {
       options: {
         loaders: {
           js: 'babel-loader',
-          scss: 'vue-style-loader!css-loader!sass-loader',
-          sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax'
+          scss: ExtractTextPlugin.extract({
+            fallback: 'vue-style-loader',
+            use: [{
+              loader: 'css-loader'
+            }, {
+              loader: 'sass-loader',
+              options: {
+                sourceMap: true,
+                includePaths: [
+                  path.resolve(__dirname, 'styles')
+                ]
+              }
+            }]
+          })
         }
       }
     }, {
@@ -60,17 +73,7 @@ const config = {
   },
   devtool: '#eval-source-map',
   plugins: [
-    new webpack.LoaderOptionsPlugin({
-      minimize: true,
-      options: {
-        sassLoader: {
-          includePaths: [
-            path.resolve(__dirname, 'styles'),
-            path.resolve(__dirname, '..', 'node_modules', 'foundation-sites', 'scss')
-          ]
-        }
-      }
-    })
+    new ExtractTextPlugin('style.css')
   ]
 }
 

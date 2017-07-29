@@ -34,7 +34,6 @@
 
 <style lang="scss">
   @import 'variables';
-  @import 'inputs';
 
   .audio {
     width: 100%;

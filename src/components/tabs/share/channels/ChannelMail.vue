@@ -24,8 +24,6 @@
 </script>
 
 <style lang="scss">
-  @import 'share';
-
   $channel-color: #888;
 
   .channel-icon.mail {

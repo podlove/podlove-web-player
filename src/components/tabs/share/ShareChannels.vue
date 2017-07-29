@@ -1,8 +1,8 @@
 <template>
   <ul class="channel-list">
     <li><ChannelTwitterComponent :text="shareText"></ChannelTwitterComponent></li>
-    <li><ChannelFacebookComponent :link="link"></ChannelFacebookComponent></li>
-    <li><ChannelGooglePlusComponent :link="link"></ChannelGooglePlusComponent></li>
+    <li><ChannelFacebookComponent :link="shareLink"></ChannelFacebookComponent></li>
+    <li><ChannelGooglePlusComponent :link="shareLink"></ChannelGooglePlusComponent></li>
     <li><ChannelMailComponent :text="shareText" :subject="shareSubject"></ChannelMailComponent></li>
     <li v-if="type !== 'show'"><ChannelEmbedComponent :color="theme.tabs.share.platform.button"></ChannelEmbedComponent></li>
   </ul>
@@ -126,8 +126,6 @@
 
 <style lang="scss">
   @import 'variables';
-
-  $button-size: 60px;
 
   .channel-list {
     display: flex;

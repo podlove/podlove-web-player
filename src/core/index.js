@@ -9,8 +9,4 @@ const createRenderer = instance => {
   return instance
 }
 
-const Renderer = createRenderer(Vue)
-
-export {
-  Renderer
-}
+export const Renderer = createRenderer(Vue)

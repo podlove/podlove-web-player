@@ -38,15 +38,17 @@
 
 <style lang="scss">
   @import 'variables';
-  @import 'resets/resets';
   @import 'global';
-  @import 'font';
-
-  @import 'embed';
   @import 'utils';
+  @import 'font';
+  @import 'resets/resets';
 
+  @import 'inputs';
+  @import 'embed';
+  @import 'share';
 
   @import 'transitions';
+  @import 'animations';
 
   .podlove {
     display: block;

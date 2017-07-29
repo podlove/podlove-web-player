@@ -38,8 +38,6 @@
 </script>
 
 <style lang="scss">
-  @import 'animations';
-
   .timer-chapter {
     width: 100%;
     text-align: center;

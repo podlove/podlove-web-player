@@ -142,15 +142,6 @@
 <style lang="scss">
   @import 'variables';
 
-  $progress-height: 44px;
-
-  $progress-track-height: 2px;
-
-  $progress-thumb-height: 14px;
-  $progress-thumb-width: 6px;
-  $progress-thumb-active-height: 18px;
-  $progress-thumb-active-width: 8px;
-
   .progress {
     width: 100%;
     position: relative;

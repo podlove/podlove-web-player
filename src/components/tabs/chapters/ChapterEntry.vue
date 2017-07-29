@@ -145,8 +145,6 @@
   @import 'variables';
   @import 'font';
 
-  $index-width: 40px;
-
   .chapters--entry {
     width: 100%;
     position: relative;

@@ -29,15 +29,14 @@
 <style lang="scss">
   @import 'variables';
 
-.input-select {
-  display: block;
-  width: 100%;
+  .input-select {
+    display: block;
+    width: 100%;
 
-  border-width: 1px;
-  border-style: solid;
-  border-radius: 0;
-  padding: $padding / 4;
-  height: $input-height;
-}
-
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 0;
+    padding: $padding / 4;
+    height: $input-height;
+  }
 </style>

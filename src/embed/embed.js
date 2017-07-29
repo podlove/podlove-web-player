@@ -93,6 +93,7 @@ const configNode = (config = {}) =>
     .then(config => tag('script', `window.PODLOVE = ${JSON.stringify(config)}`))
 
 // Player Logic
+const styleBundle = config => tag('link', '', {rel: 'stylesheet', href: `${get(config.reference, 'base', '.')}/style.css`})
 const vendorBundle = config => tag('script', '', {type: 'text/javascript', src: `${get(config.reference, 'base', '.')}/vendor.js`})
 const appBundle = config => tag('script', '', {type: 'text/javascript', src: `${get(config.reference, 'base', '.')}/window.js`})
 
@@ -108,6 +109,7 @@ window.podlovePlayer = (selector, config) => {
   return Bluebird.all([
     playerEntry,
     configNode(config),
+    styleBundle(config),
     vendorBundle(config),
     appBundle(config),
     dynamicResizer

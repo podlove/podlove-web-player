@@ -49,8 +49,6 @@
 <style lang="scss">
   @import 'variables';
 
-  $content-meta-height: 75px;
-
   .share {
     padding: $padding 0 0 0;
 

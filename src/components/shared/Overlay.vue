@@ -41,7 +41,6 @@
 
 <style lang="scss">
   @import 'variables';
-  @import 'animations';
 
   .overlay-container {
     position: absolute;

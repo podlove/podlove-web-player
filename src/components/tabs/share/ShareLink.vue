@@ -58,7 +58,3 @@
     }
   }
 </script>
-
-<style lang="scss">
-    @import 'inputs';
-</style>

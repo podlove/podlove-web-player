@@ -76,7 +76,6 @@
 
 <style lang="scss">
   @import 'variables';
-  @import 'inputs';
 
   .audio {
     .mute-control {
