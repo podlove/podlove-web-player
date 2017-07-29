@@ -12,13 +12,7 @@ const themeColors = (colors = {}) => {
   const luminosity = color(main).luminosity()
   const negative = luminosity < 0.25
 
-  const fallbackColor = (first, second) => {
-    if (first) {
-      return first
-    }
-
-    return second
-  }
+  const fallbackColor = (first, second) => first || second
 
   return {
     player: {

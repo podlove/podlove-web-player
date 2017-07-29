@@ -21,7 +21,8 @@ const INITIAL = {
   tabs: {
     chapters: false,
     share: false,
-    audio: true
+    audio: true,
+    download: false
   }
 }
 
@@ -135,6 +136,14 @@ const components = (state = INITIAL, action) => {
         tabs: {
           ...state.tabs,
           audio: action.payload
+        }
+      }
+    case 'TOGGLE_COMPONENT_TABS_DOWNLOAD':
+      return {
+        ...state,
+        tabs: {
+          ...state.tabs,
+          download: action.payload
         }
       }
     default:

@@ -30,6 +30,7 @@ export default (store, action) => {
       const state = store.getState()
       const chapters = get(state, 'chapters', [])
       const reference = get(state, 'reference', {})
+      const audioFiles = get(state, 'audio', [])
 
       if (chapters.length > 0) {
         store.dispatch(actions.toggleChaptersTab(true))
@@ -37,6 +38,10 @@ export default (store, action) => {
 
       if ((reference.config && reference.share) || reference.origin) {
         store.dispatch(actions.toggleShareTab(true))
+      }
+
+      if (audioFiles.length > 0) {
+        store.dispatch(actions.toggleDownloadTab(true))
       }
 
       break

@@ -22,6 +22,9 @@
       "MESSAGE": "Zum abspielen des Podcasts fehlen die Referenzen zu den Audiodateien."
     }
   },
+  "DOWNLOAD": {
+    "TITLE": "Download"
+  },
   "SHARE": {
     "TITLE": "Teilen",
     "CONTENT": {

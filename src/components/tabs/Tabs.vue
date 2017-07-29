@@ -9,6 +9,10 @@
         <ShareIcon slot="icon"></ShareIcon>
         <span slot="title">{{ $t('SHARE.TITLE') }}</span>
       </TabHeaderItemComponent>
+      <TabHeaderItemComponent  v-if="components.tabs.download" :active="tabs.download" :click="toggleTab('download')">
+        <ShareIcon slot="icon"></ShareIcon>
+        <span slot="title">{{ $t('DOWNLOAD.TITLE') }}</span>
+      </TabHeaderItemComponent>
       <TabHeaderItemComponent :active="tabs.audio" v-if="components.tabs.audio" :click="toggleTab('audio')">
         <AudioIcon slot="icon" :volume="volume * 100" :muted="muted"></AudioIcon>
         <span slot="title">{{ $t('AUDIO.TITLE') }}</span>
@@ -19,6 +23,9 @@
     </TabBodyComponent>
     <TabBodyComponent :active="tabs.share" v-if="components.tabs.share">
       <ShareTab></ShareTab>
+    </TabBodyComponent>
+    <TabBodyComponent :active="tabs.download" v-if="components.tabs.download">
+      FOOOO
     </TabBodyComponent>
     <TabBodyComponent :active="tabs.audio" v-if="components.tabs.audio">
       <AudioTab></AudioTab>

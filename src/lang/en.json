@@ -22,6 +22,9 @@
       "MESSAGE": "To play the podcast important references to audio files are missing."
     }
   },
+  "DOWNLOAD": {
+    "TITLE": "Download"
+  },
   "SHARE": {
     "TITLE": "Share",
     "CONTENT": {
