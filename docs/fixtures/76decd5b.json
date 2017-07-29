@@ -107,7 +107,12 @@
     }
   ],
   "audio": [
-    "https://tracking.feedpress.it/link/13453/4671005/fs185-haltbares-wasser.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13453/4671005/fs185-haltbares-wasser.m4a",
+      "mimeType": "audio/mp4",
+      "size": 91241124,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

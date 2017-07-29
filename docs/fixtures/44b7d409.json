@@ -51,7 +51,12 @@
     }
   ],
   "audio": [
-    "https://tracking.feedpress.it/link/13444/1886707/nsfw068-viele-auslaender-benutzen-linux.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13444/1886707/nsfw068-viele-auslaender-benutzen-linux.m4a",
+      "mimeType": "audio/mp4",
+      "size": 59174725,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

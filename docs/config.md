@@ -85,16 +85,31 @@ _Not providing chapters will disable all chapter related functions._
 }
 ```
 
-#### Audio Nodes Chapters
+#### Audio Files
 
 ```javascript
 {
-    audio: [
-      'http://freakshow.fm/podlove/file/4468/s/download/c/select-show/fs171-invasion.m4a',
-      'http://freakshow.fm/podlove/file/4467/s/download/c/select-show/fs171-invasion.mp3',
-      'http://freakshow.fm/podlove/file/4466/s/download/c/select-show/fs171-invasion.oga',
-      'http://freakshow.fm/podlove/file/4465/s/download/c/select-show/fs171-invasion.opus'
-    ]
+  audio: [{
+    url: 'http://freakshow.fm/podlove/file/4468/s/download/c/select-show/fs171-invasion.m4a',
+    mimeType: 'audio/mp4',
+    size: 93260000,
+    title: 'Audio MP4'
+  }, {
+    url: 'http://freakshow.fm/podlove/file/4467/s/download/c/select-show/fs171-invasion.mp3',
+    mimeType: 'audio/mp3',
+    size: 14665000,
+    title: 'Audio MP3'
+  }, {
+    url: 'http://freakshow.fm/podlove/file/4467/s/download/c/select-show/fs171-invasion.oga',
+    mimeType: 'audio/ogg',
+    size: 94400000,
+    title: 'Audio Ogg'
+  }, {
+    url: 'http://freakshow.fm/podlove/file/4467/s/download/c/select-show/fs171-invasion.opus',
+    mimeType: 'audio/opus',
+    size: 94400000,
+    title: 'Audio Opus'
+  }]
 }
 ```
 

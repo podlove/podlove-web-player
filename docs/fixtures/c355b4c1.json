@@ -67,7 +67,12 @@
     }
   ],
   "audio": [
-    "https://tracking.feedpress.it/link/13444/1886718/nsfw057-gangnam-style.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13444/1886718/nsfw057-gangnam-style.m4a",
+      "mimeType": "audio/mp4",
+      "size": 72610731,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

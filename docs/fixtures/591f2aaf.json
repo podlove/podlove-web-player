@@ -115,7 +115,12 @@
     }
   ],
   "audio": [
-    "https://tracking.feedpress.it/link/13453/4417382/fs183-zukunftstechnologie-spreizblatt.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13453/4417382/fs183-zukunftstechnologie-spreizblatt.m4a",
+      "mimeType": "audio/mp4",
+      "size": 88198435,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

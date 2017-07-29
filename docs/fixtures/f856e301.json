@@ -15,7 +15,12 @@
   "duration": "01:34:16",
   "chapters": [],
   "audio": [
-    "https://tracking.feedpress.it/link/13440/1885668/cre168-wheelmap.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13440/1885668/cre168-wheelmap.m4a",
+      "mimeType": "audio/mp4",
+      "size": 35408359,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

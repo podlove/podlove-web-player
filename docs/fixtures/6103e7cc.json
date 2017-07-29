@@ -59,7 +59,12 @@
     }
   ],
   "audio": [
-    "https://tracking.feedpress.it/link/12319/3632930/ls017-podcastverzeichnisse.mp3"
+    {
+      "url": "https://tracking.feedpress.it/link/12319/3632930/ls017-podcastverzeichnisse.mp3",
+      "mimeType": "audio/mpeg",
+      "size": 76973318,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

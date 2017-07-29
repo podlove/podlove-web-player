@@ -55,7 +55,12 @@
     }
   ],
   "audio": [
-    "https://tracking.feedpress.it/link/13476/5701979/lnp218-wahlsicherheit-durch-obskuritaet.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13476/5701979/lnp218-wahlsicherheit-durch-obskuritaet.m4a",
+      "mimeType": "audio/mp4",
+      "size": 27445125,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

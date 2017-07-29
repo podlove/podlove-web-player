@@ -39,7 +39,12 @@
     }
   ],
   "audio": [
-    "https://tracking.feedpress.it/link/12319/1327926/ls015-der-sender-bin-ich.mp3"
+    {
+      "url": "https://tracking.feedpress.it/link/12319/1327926/ls015-der-sender-bin-ich.mp3",
+      "mimeType": "audio/mpeg",
+      "size": 50610825,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

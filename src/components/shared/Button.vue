@@ -1,5 +1,8 @@
 <template>
-  <button :style="active ? activeStyle : style" class="input-button centered" :disabled="disabled" @click="click ? click() : noop()">
+  <a v-if="type === 'link'" :href="href" class="input-button centered" :style="active ? activeStyle : style">
+    <slot></slot>
+  </a>
+  <button v-else :style="active ? activeStyle : style" class="input-button centered" :disabled="disabled" @click="click ? click() : noop()">
     <slot></slot>
   </button>
 </template>
@@ -8,7 +11,7 @@
   import { noop } from 'lodash'
 
   export default {
-    props: ['click', 'disabled', 'active'],
+    props: ['click', 'disabled', 'active', 'type', 'href'],
     data () {
       return {
         theme: this.$select('theme')

@@ -23,7 +23,8 @@
     }
   },
   "DOWNLOAD": {
-    "TITLE": "Download"
+    "TITLE": "Download",
+    "PUBLICATION_DATE": "Veröffentlicht: {day}.{month}.year"
   },
   "SHARE": {
     "TITLE": "Teilen",

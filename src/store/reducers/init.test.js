@@ -1,5 +1,5 @@
 import test from 'ava'
-import { reference, display, audio } from './init'
+import { reference, display } from './init'
 
 let testAction
 
@@ -132,30 +132,4 @@ test(`display: it does nothing if not the init action is dispatched`, t => {
     type: 'NOT_A_REAL_TYPE'
   })
   t.is(result, 'foobar')
-})
-
-// AUDIO TESTS
-test(`audio: it is a reducer function`, t => {
-  t.is(typeof audio, 'function')
-})
-
-test(`audio: it extracts the audio urls`, t => {
-  const result = audio('', testAction)
-  t.deepEqual(result, [
-    'my/audio/url.mp4'
-  ])
-})
-
-test(`audio: it does nothing if not the init action is dispatched`, t => {
-  const result = audio('foobar', {
-    type: 'NOT_A_REAL_TYPE'
-  })
-  t.is(result, 'foobar')
-})
-
-test(`audio: it has a default fallback if a missing state is provided`, t => {
-  const result = audio(undefined, {
-    type: 'NOT_A_REAL_TYPE'
-  })
-  t.deepEqual(result, {})
 })

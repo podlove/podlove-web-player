@@ -43,7 +43,12 @@
     }
   ],
   "audio": [
-    "https://tracking.feedpress.it/link/13444/1886698/nsfw077-schmeckt-wie-weihnachten.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13444/1886698/nsfw077-schmeckt-wie-weihnachten.m4a",
+      "mimeType": "audio/mp4",
+      "size": 59111392,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

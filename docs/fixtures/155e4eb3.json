@@ -14,7 +14,12 @@
   "duration": "02:17:56",
   "chapters": [],
   "audio": [
-    "https://tracking.feedpress.it/link/13440/1885671/cre165-privatsphaere.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13440/1885671/cre165-privatsphaere.m4a",
+      "mimeType": "audio/mp4",
+      "size": 51626051,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

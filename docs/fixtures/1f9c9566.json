@@ -31,7 +31,12 @@
     }
   ],
   "audio": [
-    "https://tracking.feedpress.it/link/11988/2116273/me003-raumzeit-update.mp3"
+    {
+      "url": "https://tracking.feedpress.it/link/11988/2116273/me003-raumzeit-update.mp3",
+      "mimeType": "audio/mpeg",
+      "size": 4992261,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

@@ -14,7 +14,12 @@
   "duration": "04:01:19",
   "chapters": [],
   "audio": [
-    "https://tracking.feedpress.it/link/13444/1886725/nsfw050-relativistische-atomhaubitzen.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13444/1886725/nsfw050-relativistische-atomhaubitzen.m4a",
+      "mimeType": "audio/mp4",
+      "size": 121569896,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

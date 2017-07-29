@@ -71,7 +71,12 @@
     }
   ],
   "audio": [
-    "https://tracking.feedpress.it/link/13444/1886691/nsfw084-der-fuehrer-ist-in-europa-vorerst-gescheitert.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13444/1886691/nsfw084-der-fuehrer-ist-in-europa-vorerst-gescheitert.m4a",
+      "mimeType": "audio/mp4",
+      "size": 74649025,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

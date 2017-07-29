@@ -71,7 +71,12 @@
     }
   ],
   "audio": [
-    "https://tracking.feedpress.it/link/13444/1886714/nsfw061-keks-ist-fortschritt.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13444/1886714/nsfw061-keks-ist-fortschritt.m4a",
+      "mimeType": "audio/mp4",
+      "size": 82017478,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

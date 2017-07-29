@@ -15,7 +15,12 @@
   "duration": "01:31:48",
   "chapters": [],
   "audio": [
-    "https://tracking.feedpress.it/link/13440/1885505/cre189-chaos-macht-schule.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13440/1885505/cre189-chaos-macht-schule.m4a",
+      "mimeType": "audio/mp4",
+      "size": 34452679,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

@@ -4,8 +4,8 @@ import actions from '../actions'
 
 let mediaElement = null
 
-const initMediaPlayer = (mediaPlayer, dispatch, config) => {
-  return mediaPlayer(config.audio, {
+const initMediaPlayer = (mediaPlayer, dispatch, audioFiles) => {
+  return mediaPlayer(audioFiles, {
     setPlaytime: playtime => dispatch(actions.setPlaytime(playtime)),
     setBufferState: buffer => dispatch(actions.setBuffer(buffer)),
     setDuration: duration => dispatch(actions.setDuration(duration)),
@@ -22,12 +22,17 @@ export default mediaPlayer => (store, action) => {
 
   switch (action.type) {
     case 'INIT':
-      const audioFiles = get(action.payload, 'audio', [])
+      const audioFiles = get(action.payload, 'audio', []).reduce((result, file) => {
+        return [
+          ...result,
+          file.url
+        ]
+      }, [])
 
       if (audioFiles.length === 0) {
         store.dispatch(actions.errorMissingAudioFiles())
       } else {
-        mediaElement = initMediaPlayer(mediaPlayer, store.dispatch, action.payload)
+        mediaElement = initMediaPlayer(mediaPlayer, store.dispatch, audioFiles)
       }
 
       break

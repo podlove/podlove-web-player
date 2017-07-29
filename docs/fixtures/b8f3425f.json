@@ -14,7 +14,12 @@
   "duration": "02:09:29",
   "chapters": [],
   "audio": [
-    "https://tracking.feedpress.it/link/12319/1327932/ls009-sendungsplanung.mp3"
+    {
+      "url": "https://tracking.feedpress.it/link/12319/1327932/ls009-sendungsplanung.mp3",
+      "mimeType": "audio/mpeg",
+      "size": 62208427,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

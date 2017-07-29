@@ -15,7 +15,12 @@
   "duration": "02:42:33",
   "chapters": [],
   "audio": [
-    "https://tracking.feedpress.it/link/13440/1885659/cre177-commodore-64.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13440/1885659/cre177-commodore-64.m4a",
+      "mimeType": "audio/mp4",
+      "size": 60871320,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

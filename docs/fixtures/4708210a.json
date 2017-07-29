@@ -15,7 +15,12 @@
   "duration": "02:11:23",
   "chapters": [],
   "audio": [
-    "https://tracking.feedpress.it/link/13440/1885666/cre170-arcade-games.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13440/1885666/cre170-arcade-games.m4a",
+      "mimeType": "audio/mp4",
+      "size": 49226128,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

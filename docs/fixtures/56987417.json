@@ -15,7 +15,12 @@
   "duration": "02:24:30",
   "chapters": [],
   "audio": [
-    "https://tracking.feedpress.it/link/13440/1885674/cre162-brettspiele.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13440/1885674/cre162-brettspiele.m4a",
+      "mimeType": "audio/mp4",
+      "size": 54157219,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

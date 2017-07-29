@@ -63,7 +63,12 @@
     }
   ],
   "audio": [
-    "https://tracking.feedpress.it/link/13444/1886694/nsfw081-spermafleck-auf-union-jack.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13444/1886694/nsfw081-spermafleck-auf-union-jack.m4a",
+      "mimeType": "audio/mp4",
+      "size": 87172329,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

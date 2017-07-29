@@ -50,7 +50,8 @@ const themeColors = (colors = {}) => {
         text: grey,
         textActive: dark,
         progress: fallbackColor(highlight, negative ? main : dark),
-        icon: negative ? main : dark
+        icon: negative ? main : dark,
+        section: color(main).fade(0.8)
       },
       share: {
         content: {

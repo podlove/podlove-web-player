@@ -23,17 +23,7 @@ const reference = (state = {}, action) => {
   }
 }
 
-const audio = (state = {}, action) => {
-  switch (action.type) {
-    case 'INIT':
-      return get(action.payload, 'audio', [])
-    default:
-      return state
-  }
-}
-
 export {
   reference,
-  display,
-  audio
+  display
 }

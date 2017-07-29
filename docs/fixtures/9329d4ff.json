@@ -151,7 +151,12 @@
     }
   ],
   "audio": [
-    "https://tracking.feedpress.it/link/13453/5123589/fs191-sendungslaengenangst.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13453/5123589/fs191-sendungslaengenangst.m4a",
+      "mimeType": "audio/mp4",
+      "size": 101815297,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

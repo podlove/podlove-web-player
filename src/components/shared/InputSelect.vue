@@ -1,8 +1,11 @@
 <template>
-  <select :style="style" class="input-select" :disabled="disabled" v-model="model">
-    <option v-for="(option, index) in options" v-bind:key="index">
+  <select v-if="options" :style="style" class="input-select" :disabled="disabled" @change="changeEvent">
+    <option v-for="(option, index) in options" v-bind:key="index" :selected="option === model">
       {{ option }}
     </option>
+  </select>
+  <select v-else :style="style" class="input-select" :disabled="disabled" @change="changeEvent">
+    <slot></slot>
   </select>
 </template>
 
@@ -21,6 +24,11 @@
           background: this.theme.input.background,
           'border-color': this.theme.input.border
         }
+      }
+    },
+    methods: {
+      changeEvent (event) {
+        this.change && this.change(event.target.value)
       }
     }
   }

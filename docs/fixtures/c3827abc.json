@@ -14,7 +14,12 @@
   "duration": "03:30:59",
   "chapters": [],
   "audio": [
-    "https://tracking.feedpress.it/link/13444/1886727/nsfw048-der-fnord-im-keksglas.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13444/1886727/nsfw048-der-fnord-im-keksglas.m4a",
+      "mimeType": "audio/mp4",
+      "size": 78986784,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

@@ -30,7 +30,7 @@ export default (store, action) => {
       const state = store.getState()
       const chapters = get(state, 'chapters', [])
       const reference = get(state, 'reference', {})
-      const audioFiles = get(state, 'audio', [])
+      const downloadFiles = get(state, 'download.files', [])
 
       if (chapters.length > 0) {
         store.dispatch(actions.toggleChaptersTab(true))
@@ -40,7 +40,7 @@ export default (store, action) => {
         store.dispatch(actions.toggleShareTab(true))
       }
 
-      if (audioFiles.length > 0) {
+      if (downloadFiles.length > 0) {
         store.dispatch(actions.toggleDownloadTab(true))
       }
 

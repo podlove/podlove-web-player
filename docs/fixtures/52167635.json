@@ -71,7 +71,12 @@
     }
   ],
   "audio": [
-    "https://tracking.feedpress.it/link/13444/1886688/nsfw087-jesus-hat-mir-eine-stereoanlage-gekauft.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13444/1886688/nsfw087-jesus-hat-mir-eine-stereoanlage-gekauft.m4a",
+      "mimeType": "audio/mp4",
+      "size": 79525491,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

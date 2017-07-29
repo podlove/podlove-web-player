@@ -71,7 +71,12 @@
     }
   ],
   "audio": [
-    "https://tracking.feedpress.it/link/13453/3752501/fs180-hypershitloop.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13453/3752501/fs180-hypershitloop.m4a",
+      "mimeType": "audio/mp4",
+      "size": 102987457,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

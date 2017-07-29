@@ -14,20 +14,22 @@ import * as error from './error'
 import * as ghost from './ghost'
 import * as show from './show'
 import * as episode from './episode'
+import * as download from './download'
 
-export default combineReducers(Object.assign({},
-  init,
-  components,
-  player,
-  playtime,
-  chapters,
-  tabs,
-  theme,
-  share,
-  quantiles,
-  runtime,
-  error,
-  ghost,
-  show,
-  episode
-))
+export default combineReducers({
+  ...init,
+  ...components,
+  ...player,
+  ...playtime,
+  ...chapters,
+  ...tabs,
+  ...theme,
+  ...share,
+  ...quantiles,
+  ...runtime,
+  ...error,
+  ...ghost,
+  ...show,
+  ...episode,
+  ...download
+})

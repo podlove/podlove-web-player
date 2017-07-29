@@ -1,8 +1,5 @@
-import { head } from 'lodash'
-
 import runtime from 'utils/runtime'
-import { Renderer } from 'core'
-import i18n from 'lang'
+import { createApp } from 'core'
 
 // Store
 import store from 'store'
@@ -23,9 +20,5 @@ export default config => {
 
   window.PODLOVE_STORE = store
 
-  return new Renderer({
-    i18n,
-    el: head(document.getElementsByTagName('PodlovePlayer')),
-    render: h => h(App)
-  })
+  return createApp('PodlovePlayer', App)
 }

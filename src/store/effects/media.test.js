@@ -43,7 +43,7 @@ test(`mediaEffect: it creates the media element on INIT`, t => {
   mediaEffect(store, {
     type: 'INIT',
     payload: {
-      audio: 'foo'
+      audio: [{url: 'foo'}]
     }
   })
 
@@ -53,8 +53,7 @@ test(`mediaEffect: it creates the media element on INIT`, t => {
 test(`mediaEffect: it doesn't creates the media element on INIT on invalid config`, t => {
   mediaEffect(store, {
     type: 'INIT',
-    payload: {
-    }
+    payload: {}
   })
 
   t.falsy(mediaPlayer.called)
@@ -64,7 +63,7 @@ test(`mediaEffect: it calls setPlaytime and play on UI_PLAY`, t => {
   mediaEffect(store, {
     type: 'INIT',
     payload: {
-      audio: 'foo'
+      audio: [{url: 'foo'}]
     }
   })
 
@@ -80,7 +79,7 @@ test(`mediaEffect: it calls pause on UI_PAUSE`, t => {
   mediaEffect(store, {
     type: 'INIT',
     payload: {
-      audio: 'foo'
+      audio: [{url: 'foo'}]
     }
   })
 
@@ -95,7 +94,7 @@ test(`mediaEffect: it calls setPlaytime and play on UI_RESTART`, t => {
   mediaEffect(store, {
     type: 'INIT',
     payload: {
-      audio: 'foo'
+      audio: [{url: 'foo'}]
     }
   })
 
@@ -111,7 +110,7 @@ test(`mediaEffect: it calls setPlaytime on UPDATE_PLAYTIME`, t => {
   mediaEffect(store, {
     type: 'INIT',
     payload: {
-      audio: 'foo'
+      audio: [{url: 'foo'}]
     }
   })
 
@@ -146,7 +145,7 @@ test(`mediaEffect: it calls volume on SET_VOLUME`, t => {
   mediaEffect(store, {
     type: 'INIT',
     payload: {
-      audio: 'foo'
+      audio: [{url: 'foo'}]
     }
   })
 
@@ -162,7 +161,7 @@ test(`mediaEffect: it calls rate on SET_RATE`, t => {
   mediaEffect(store, {
     type: 'INIT',
     payload: {
-      audio: 'foo'
+      audio: [{url: 'foo'}]
     }
   })
 
@@ -178,7 +177,7 @@ test(`mediaEffect: it calls mute on MUTE`, t => {
   mediaEffect(store, {
     type: 'INIT',
     payload: {
-      audio: 'foo'
+      audio: [{url: 'foo'}]
     }
   })
 
@@ -193,7 +192,7 @@ test(`mediaEffect: it calls unmute on UNMUTE`, t => {
   mediaEffect(store, {
     type: 'INIT',
     payload: {
-      audio: 'foo'
+      audio: [{url: 'foo'}]
     }
   })
 

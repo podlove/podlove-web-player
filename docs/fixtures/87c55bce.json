@@ -14,7 +14,12 @@
   "duration": "02:00:27",
   "chapters": [],
   "audio": [
-    "https://tracking.feedpress.it/link/12319/1327935/ls006-open-source-tools.mp3"
+    {
+      "url": "https://tracking.feedpress.it/link/12319/1327935/ls006-open-source-tools.mp3",
+      "mimeType": "audio/mpeg",
+      "size": 57868552,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

@@ -15,7 +15,12 @@
   "duration": "02:26:35",
   "chapters": [],
   "audio": [
-    "https://tracking.feedpress.it/link/13440/1885660/cre176-cloud-computing.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13440/1885660/cre176-cloud-computing.m4a",
+      "mimeType": "audio/mp4",
+      "size": 54907057,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

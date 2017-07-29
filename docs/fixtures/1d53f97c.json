@@ -140,7 +140,12 @@
     }
   ],
   "audio": [
-    "https://tracking.feedpress.it/link/13440/1885492/cre202-hackerfilme.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13440/1885492/cre202-hackerfilme.m4a",
+      "mimeType": "audio/mp4",
+      "size": 71290427,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

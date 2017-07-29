@@ -115,7 +115,12 @@
     }
   ],
   "audio": [
-    "https://tracking.feedpress.it/link/13453/5013768/fs189-mahatma-mahatma-nich.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13453/5013768/fs189-mahatma-mahatma-nich.m4a",
+      "mimeType": "audio/mp4",
+      "size": 107860642,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

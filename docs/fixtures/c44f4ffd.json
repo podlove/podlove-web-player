@@ -99,7 +99,12 @@
     }
   ],
   "audio": [
-    "https://tracking.feedpress.it/link/13453/3688435/fs179-sticker-sind-wichtig-fuer-die-fortpflanzung.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13453/3688435/fs179-sticker-sind-wichtig-fuer-die-fortpflanzung.m4a",
+      "mimeType": "audio/mp4",
+      "size": 88358034,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

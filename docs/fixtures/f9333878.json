@@ -88,7 +88,12 @@
     }
   ],
   "audio": [
-    "https://tracking.feedpress.it/link/13440/3454075/cre212-saudi-arabien.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13440/3454075/cre212-saudi-arabien.m4a",
+      "mimeType": "audio/mp4",
+      "size": 58605413,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

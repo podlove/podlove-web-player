@@ -66,7 +66,11 @@ const config = {
   },
   devServer: {
     historyApiFallback: true,
-    noInfo: true
+    noInfo: true,
+    overlay: true,
+    inline: true,
+    hotOnly: true,
+    contentBase: path.resolve(__dirname, '..', 'dist')
   },
   performance: {
     hints: false
@@ -105,6 +109,7 @@ if (process.env.NODE_ENV === 'production') {
 } else {
   config.plugins = [...config.plugins,
     new DashboardPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
     new BundleAnalyzerPlugin({
       analyzerMode: 'static',
       openAnalyzer: false

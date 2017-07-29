@@ -23,7 +23,11 @@
     }
   },
   "DOWNLOAD": {
-    "TITLE": "Download"
+    "TITLE": "Download",
+    "PUBLICATION_DATE": "Published: {month}/{day}/{year}",
+    "DURATION_WITH_HOURS": "Duration: {hours} hours {minutes} minutes",
+    "DURATION": "Duration: {minutes} minutes",
+    "DOWNLOAD_EPISODE": "Download Episode"
   },
   "SHARE": {
     "TITLE": "Share",

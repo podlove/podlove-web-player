@@ -11,9 +11,10 @@ export function timeToSeconds (time) {
     enforceNumber(prev) + enforceNumber(curr) * Math.pow(60, i), 0)
 }
 
-const calcSeconds = (time = 0) => parseInt(time % 60)
-const calcMinutes = (time = 0) => parseInt(time / 60) % 60
-const calcHours = (time = 0) => parseInt(time / 3600) % 24
+export const calcSeconds = (time = 0) => parseInt(time % 60)
+export const calcMinutes = (time = 0) => parseInt(time / 60) % 60
+export const calcHours = (time = 0) => parseInt(time / 3600) % 24
+
 const leadingZero = (time) => time > 9 ? `${time}` : `0${time}`
 
 // Transforms seconds to (hh:)mm:ss

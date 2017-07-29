@@ -47,7 +47,12 @@
     }
   ],
   "audio": [
-    "https://tracking.feedpress.it/link/13444/1886705/nsfw070-die-eifel-ist-ein-feuchtgebiet.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13444/1886705/nsfw070-die-eifel-ist-ein-feuchtgebiet.m4a",
+      "mimeType": "audio/mp4",
+      "size": 71520836,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

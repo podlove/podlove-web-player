@@ -3,7 +3,7 @@
       <h3 name="header" class="title text-center">Embed Episode</h3>
       <div class="input-element">
         <label class="input-label">Embed Size</label>
-        <InputSelectComponent :model="share.embed.size" :options="share.embed.available"></InputSelectComponent>
+        <InputSelectComponent :model="share.embed.size" :options="share.embed.available" :change="setEmbedSize"></InputSelectComponent>
       </div>
       <div class="input-element">
         <label class="input-label">Embed Code</label>
@@ -83,7 +83,7 @@
     },
     methods: {
       secondsToTime,
-      setEmbedSize: (size) => () => store.dispatch(store.actions.setShareEmbedSize(size)),
+      setEmbedSize: compose(store.dispatch.bind(store), store.actions.setShareEmbedSize),
       closeEmbedOverlay: compose(store.dispatch.bind(store), store.actions.hideShareEmbed)
     },
     components: {
