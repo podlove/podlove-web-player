@@ -41,7 +41,7 @@ const injectPlayer = (sandbox, player) => new Bluebird(resolve => {
   sandboxDoc.open()
   sandboxDoc.write('<!DOCTYPE html>')
   sandboxDoc.write('<html>')
-  sandboxDoc.write('<head></head>')
+  sandboxDoc.write('<head><meta charset="utf-8" /></head>')
   sandboxDoc.write(player)
   sandboxDoc.close()
 
