@@ -12,15 +12,10 @@ const themeColors = (colors = {}) => {
   const luminosity = color(main).luminosity()
   const negative = luminosity < 0.25
 
-  const fallbackColor = (first, second) => {
-    if (first) {
-      return first
-    }
-
-    return second
-  }
+  const fallbackColor = (first, second) => first || second
 
   return {
+    background: light,
     player: {
       background: main,
       poster: negative ? light : dark,
@@ -56,7 +51,8 @@ const themeColors = (colors = {}) => {
         text: grey,
         textActive: dark,
         progress: fallbackColor(highlight, negative ? main : dark),
-        icon: negative ? main : dark
+        icon: negative ? main : dark,
+        section: color(main).fade(0.8)
       },
       share: {
         content: {

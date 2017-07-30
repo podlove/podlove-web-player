@@ -15,7 +15,12 @@
   "duration": "01:40:16",
   "chapters": [],
   "audio": [
-    "https://tracking.feedpress.it/link/13440/1885506/cre188-telecomix.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13440/1885506/cre188-telecomix.m4a",
+      "mimeType": "audio/mp4",
+      "size": 37757338,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

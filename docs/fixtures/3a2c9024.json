@@ -43,7 +43,12 @@
     }
   ],
   "audio": [
-    "https://tracking.feedpress.it/link/13476/5960396/lnp223-was-damals-unrecht-war-muss-heute-recht-sein.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13476/5960396/lnp223-was-damals-unrecht-war-muss-heute-recht-sein.m4a",
+      "mimeType": "audio/mp4",
+      "size": 37753042,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

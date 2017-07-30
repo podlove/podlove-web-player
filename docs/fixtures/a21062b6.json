@@ -67,7 +67,12 @@
     }
   ],
   "audio": [
-    "https://tracking.feedpress.it/link/12319/4310139/ls018-audioformate-fuer-podcasts.mp3"
+    {
+      "url": "https://tracking.feedpress.it/link/12319/4310139/ls018-audioformate-fuer-podcasts.mp3",
+      "mimeType": "audio/mpeg",
+      "size": 67613365,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

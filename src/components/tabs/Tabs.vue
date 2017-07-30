@@ -9,16 +9,24 @@
         <ShareIcon slot="icon"></ShareIcon>
         <span slot="title">{{ $t('SHARE.TITLE') }}</span>
       </TabHeaderItemComponent>
+      <TabHeaderItemComponent  v-if="components.tabs.download" :active="tabs.download" :click="toggleTab('download')">
+        <DownloadIcon slot="icon"></DownloadIcon>
+        <span slot="title">{{ $t('DOWNLOAD.TITLE') }}</span>
+      </TabHeaderItemComponent>
       <TabHeaderItemComponent :active="tabs.audio" v-if="components.tabs.audio" :click="toggleTab('audio')">
         <AudioIcon slot="icon" :volume="volume * 100" :muted="muted"></AudioIcon>
         <span slot="title">{{ $t('AUDIO.TITLE') }}</span>
       </TabHeaderItemComponent>
     </TabHeaderComponent>
+
     <TabBodyComponent :active="tabs.chapters" v-if="components.tabs.chapters">
       <ChaptersTab></ChaptersTab>
     </TabBodyComponent>
     <TabBodyComponent :active="tabs.share" v-if="components.tabs.share">
       <ShareTab></ShareTab>
+    </TabBodyComponent>
+    <TabBodyComponent :active="tabs.download" v-if="components.tabs.download">
+      <DownloadTab></DownloadTab>
     </TabBodyComponent>
     <TabBodyComponent :active="tabs.audio" v-if="components.tabs.audio">
       <AudioTab></AudioTab>
@@ -35,12 +43,13 @@ import TabBodyComponent from 'shared/TabBody.vue'
 
 import ChaptersIcon from 'icons/ChaptersIcon.vue'
 import ShareIcon from 'icons/ShareIcon.vue'
+import DownloadIcon from 'icons/DownloadIcon.vue'
 import AudioIcon from 'icons/AudioIcon.vue'
-import SpeakerMuteIcon from 'icons/SpeakerMuteIcon.vue'
 
 import ChaptersTab from './chapters/Chapters.vue'
 import ShareTab from './share/Share.vue'
 import AudioTab from './audio/Audio.vue'
+import DownloadTab from './download/Download.vue'
 
 export default {
   data () {
@@ -73,13 +82,16 @@ export default {
     TabHeaderComponent,
     TabHeaderItemComponent,
     TabBodyComponent,
+
     ChaptersIcon,
-    ChaptersTab,
     ShareIcon,
-    ShareTab,
+    DownloadIcon,
     AudioIcon,
-    SpeakerMuteIcon,
-    AudioTab
+
+    ShareTab,
+    ChaptersTab,
+    AudioTab,
+    DownloadTab
   }
 }
 </script>

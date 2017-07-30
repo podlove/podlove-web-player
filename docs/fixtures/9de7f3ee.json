@@ -47,7 +47,12 @@
     }
   ],
   "audio": [
-    "https://tracking.feedpress.it/link/13476/5518012/lnp213-judasgeraet.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13476/5518012/lnp213-judasgeraet.m4a",
+      "mimeType": "audio/mp4",
+      "size": 30917190,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

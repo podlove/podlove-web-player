@@ -39,7 +39,12 @@
     }
   ],
   "audio": [
-    "https://tracking.feedpress.it/link/13476/5530216/lnp214-abstrakte-gefaehrder.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13476/5530216/lnp214-abstrakte-gefaehrder.m4a",
+      "mimeType": "audio/mp4",
+      "size": 28615421,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

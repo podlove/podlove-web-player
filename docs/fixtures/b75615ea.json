@@ -14,7 +14,12 @@
   "duration": "01:18:58",
   "chapters": [],
   "audio": [
-    "https://tracking.feedpress.it/link/12319/1327937/ls004-mischpulte.mp3"
+    {
+      "url": "https://tracking.feedpress.it/link/12319/1327937/ls004-mischpulte.mp3",
+      "mimeType": "audio/mpeg",
+      "size": 37957171,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

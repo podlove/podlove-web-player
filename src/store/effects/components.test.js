@@ -10,6 +10,13 @@ test.beforeEach(t => {
     dispatch: sinon.stub(),
     getState: sinon.stub().returns({
       chapters: ['chapter 1', 'chapter 2'],
+      download: {
+        files: [{
+          url: 'http://foo.bar'
+        }, {
+          url: 'http://foo.baz'
+        }]
+      },
       reference: {
         config: 'reference-config',
         share: 'reference-share',
@@ -111,6 +118,10 @@ test(`componentsEffect: it shows correct ui components for restore INIT action`,
   })
   t.deepEqual(store.dispatch.getCall(1).args[0], {
     type: 'TOGGLE_COMPONENT_TABS_SHARE',
+    payload: true
+  })
+  t.deepEqual(store.dispatch.getCall(2).args[0], {
+    type: 'TOGGLE_COMPONENT_TABS_DOWNLOAD',
     payload: true
   })
 })

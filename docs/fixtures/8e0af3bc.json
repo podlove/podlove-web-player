@@ -63,7 +63,12 @@
     }
   ],
   "audio": [
-    "https://tracking.feedpress.it/link/11988/2111214/me002-stand-der-dinge-herbst-2015.mp3"
+    {
+      "url": "https://tracking.feedpress.it/link/11988/2111214/me002-stand-der-dinge-herbst-2015.mp3",
+      "mimeType": "audio/mpeg",
+      "size": 7953694,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

@@ -88,7 +88,12 @@
     }
   ],
   "audio": [
-    "https://tracking.feedpress.it/link/13440/1885496/cre198-pornographie.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13440/1885496/cre198-pornographie.m4a",
+      "mimeType": "audio/mp4",
+      "size": 48930267,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

@@ -14,7 +14,12 @@
   "duration": "01:48:47",
   "chapters": [],
   "audio": [
-    "https://tracking.feedpress.it/link/12319/1327936/ls005-aufnahmekonzepte.mp3"
+    {
+      "url": "https://tracking.feedpress.it/link/12319/1327936/ls005-aufnahmekonzepte.mp3",
+      "mimeType": "audio/mpeg",
+      "size": 52275420,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

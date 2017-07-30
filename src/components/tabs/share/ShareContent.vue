@@ -10,9 +10,9 @@
       <span class="title truncate">{{ episode.title }}</span>
       <span class="active-indicator" :style="triangleStyle"></span>
     </div>
-    <div class="content-option" :class="{active: isActive('chapter')}" :style="isActive('chapter') ? activeContentStyle : {}" @click="setContent('chapter')">
+    <div class="content-option" v-if="currentChapter" :class="{active: isActive('chapter')}" :style="isActive('chapter') ? activeContentStyle : {}" @click="setContent('chapter')">
       <span class="type">{{ $t('SHARE.CONTENT.CHAPTER') }}</span>
-      <span class="title truncate">{{ currentChapter(chapters).title }}</span>
+      <span class="title truncate">{{ currentChapter }}</span>
       <span class="active-indicator" :style="triangleStyle"></span>
     </div>
     <div class="content-option" :class="{active: isActive('time')}" :style="isActive('time') ? activeContentStyle : {}" @click="setContent('time')">
@@ -25,6 +25,7 @@
 
 <script>
   import store from 'store'
+  import { get } from 'lodash'
   import { compose } from 'lodash/fp'
   import { currentChapter } from 'utils/chapters'
   import { secondsToTime } from 'utils/time'
@@ -52,6 +53,10 @@
         return {
           'border-color': `${this.theme.tabs.share.content.active.background} transparent transparent transparent`
         }
+      },
+
+      currentChapter () {
+        return get(currentChapter(this.chapters), 'title', false)
       }
     },
     methods: {
@@ -65,7 +70,6 @@
         return false
       },
 
-      currentChapter,
       secondsToTime
     }
   }

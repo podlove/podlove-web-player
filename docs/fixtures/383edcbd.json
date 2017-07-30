@@ -51,7 +51,12 @@
     }
   ],
   "audio": [
-    "https://tracking.feedpress.it/link/12319/2339553/ls016-studio-link.mp3"
+    {
+      "url": "https://tracking.feedpress.it/link/12319/2339553/ls016-studio-link.mp3",
+      "mimeType": "audio/mpeg",
+      "size": 56414751,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

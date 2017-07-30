@@ -59,7 +59,12 @@
     }
   ],
   "audio": [
-    "https://tracking.feedpress.it/link/13444/1886720/nsfw055-troll-comfort.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13444/1886720/nsfw055-troll-comfort.m4a",
+      "mimeType": "audio/mp4",
+      "size": 63929378,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

@@ -15,7 +15,12 @@
   "duration": "01:37:44",
   "chapters": [],
   "audio": [
-    "https://tracking.feedpress.it/link/13440/1885661/cre175-hackerbrausen.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13440/1885661/cre175-hackerbrausen.m4a",
+      "mimeType": "audio/mp4",
+      "size": 36665009,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

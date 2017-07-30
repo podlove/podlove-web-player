@@ -63,7 +63,7 @@ navigation: 7
     };
 
     podlovePlayer('#load-error', Object.assign({}, config, {
-        audio: ['http://invalid.url']
+        audio: [{url: 'http://invalid.url'}]
     }))
 
     podlovePlayer('#reference-error', Object.assign({}, config))

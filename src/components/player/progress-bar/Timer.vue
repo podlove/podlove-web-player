@@ -43,9 +43,6 @@ export default {
   @import 'variables';
   @import 'font';
 
-  $timer-width: 80px;
-  $timer-height: 20px;
-
   // Timer
   .timer-progress {
     display: flex;

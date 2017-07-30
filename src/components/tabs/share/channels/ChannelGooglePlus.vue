@@ -24,8 +24,6 @@
 </script>
 
 <style lang="scss">
-  @import 'share';
-
   $channel-color: #dd4b39;
 
   .channel-icon.google-plus {

@@ -83,7 +83,12 @@
     }
   ],
   "audio": [
-    "https://tracking.feedpress.it/link/13453/4526790/fs184-dringendes-klickbeduerfnis.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13453/4526790/fs184-dringendes-klickbeduerfnis.m4a",
+      "mimeType": "audio/mp4",
+      "size": 63512334,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

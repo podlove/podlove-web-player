@@ -15,7 +15,12 @@
   "duration": "02:18:14",
   "chapters": [],
   "audio": [
-    "https://tracking.feedpress.it/link/13440/1885512/cre182-elektronisches-geld.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13440/1885512/cre182-elektronisches-geld.m4a",
+      "mimeType": "audio/mp4",
+      "size": 51839199,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

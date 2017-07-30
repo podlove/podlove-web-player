@@ -14,7 +14,12 @@
   "duration": "01:34:47",
   "chapters": [],
   "audio": [
-    "https://tracking.feedpress.it/link/12319/1327929/ls012-das-sendezentrum.mp3"
+    {
+      "url": "https://tracking.feedpress.it/link/12319/1327929/ls012-das-sendezentrum.mp3",
+      "mimeType": "audio/mpeg",
+      "size": 56940143,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

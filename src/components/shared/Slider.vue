@@ -62,7 +62,6 @@
 
 <style lang="scss">
   @import 'variables';
-  $slider-height: 44px;
 
   .podlove-player--slider {
     height: $slider-height;

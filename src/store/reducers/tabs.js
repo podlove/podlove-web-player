@@ -3,7 +3,8 @@ const get = require('lodash/get')
 const INITIAL = {
   'chapters': false,
   'audio': false,
-  'share': false
+  'share': false,
+  'download': false
 }
 
 const tabs = (state = INITIAL, action) => {

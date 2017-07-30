@@ -59,7 +59,12 @@
     }
   ],
   "audio": [
-    "https://tracking.feedpress.it/link/13476/5625798/lnp216-ein-leuchten-in-den-augen.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13476/5625798/lnp216-ein-leuchten-in-den-augen.m4a",
+      "mimeType": "audio/mp4",
+      "size": 26191225,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

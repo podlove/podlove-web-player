@@ -4,7 +4,7 @@
       <ShareContentComponent></ShareContentComponent>
     </div>
 
-    <div class="channel-select" :style="channelStyle">
+    <div class="channel-select" :style="sectionStyle">
       <span class="label">{{ $t('SHARE.SHARE_CHANNEL') }}</span>
       <ShareChannelsComponent :type="share.content"></ShareChannelsComponent>
 
@@ -31,9 +31,9 @@
       }
     },
     computed: {
-      channelStyle () {
+      sectionStyle () {
         return {
-          background: this.theme.tabs.share.platform.background
+          background: this.theme.tabs.body.section
         }
       }
     },
@@ -48,8 +48,6 @@
 
 <style lang="scss">
   @import 'variables';
-
-  $content-meta-height: 75px;
 
   .share {
     padding: $padding 0 0 0;

@@ -59,7 +59,12 @@
     }
   ],
   "audio": [
-    "https://tracking.feedpress.it/link/11988/2389648/me004-januar-2016.mp3"
+    {
+      "url": "https://tracking.feedpress.it/link/11988/2389648/me004-januar-2016.mp3",
+      "mimeType": "audio/mpeg",
+      "size": 13962804,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

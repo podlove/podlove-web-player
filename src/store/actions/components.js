@@ -73,6 +73,11 @@ const toggleAudioTab = visibility => ({
   payload: visibility
 })
 
+const toggleDownloadTab = visibility => ({
+  type: 'TOGGLE_COMPONENT_TABS_DOWNLOAD',
+  payload: visibility
+})
+
 export {
   toggleInfo,
   toggleError,
@@ -92,5 +97,6 @@ export {
 
   toggleChaptersTab,
   toggleShareTab,
-  toggleAudioTab
+  toggleAudioTab,
+  toggleDownloadTab
 }

@@ -100,7 +100,12 @@
     }
   ],
   "audio": [
-    "https://tracking.feedpress.it/link/13440/4816854/cre213-brot.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13440/4816854/cre213-brot.m4a",
+      "mimeType": "audio/mp4",
+      "size": 66939590,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

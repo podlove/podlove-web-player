@@ -59,7 +59,12 @@
     }
   ],
   "audio": [
-    "https://tracking.feedpress.it/link/13476/5770622/lnp220-street-clickability.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13476/5770622/lnp220-street-clickability.m4a",
+      "mimeType": "audio/mp4",
+      "size": 31802259,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

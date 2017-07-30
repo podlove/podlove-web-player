@@ -1,0 +1,129 @@
+{
+  "title": "FS202 Dauerregensendung",
+  "subtitle": "Live-Podcasting — Mückenstiche und Klimazombiekalypse — Dieselgate und Verkehr — Evakuierungskapseln für Hipster — Pimp My Mac — Geld verdienen und die Gesellschaft ärgern mit Kryptowährungen",
+  "summary": "Ach immer diese Sendungen, wo es die ganze Zeit regnet und kurz vor der Sendung fast nichts im Sendungsplan steht. Dieses Mal wird es wirklich meta, wenn wir die Klimazombiekalypse durchsprechen und wie man sich da am besten vorbereitet und welche Auswirkungen Kryptowährungen darauf haben. Denis erläutert dazu noch die ganze komplizierte Scheiße, die gerade bei Bitcoin abgeht und Tim meldet Vollzug im Durchpimpen seines Mac Pro. Also alles wie gehabt.",
+  "publicationDate": "2017-07-27T12:47:59.000Z",
+  "link": "http://freakshow.fm/fs202-dauerregensendung",
+  "show": {
+    "title": "Freak Show",
+    "subtitle": "Menschen! Technik! Sensationen!",
+    "summary": "Die muntere Talk Show um Leben mit Technik, das Netz und Technikkultur. Bisweilen Apple-lastig aber selten einseitig. Wir leben und lieben Technologie und reden darüber. Mit Tim, hukl, roddi, Clemens und Denis. Freak Show hieß irgendwann mal mobileMacs.",
+    "poster": "http://freakshow.fm/wp-content/cache/podlove/04/662a9d4edcf77ea2abe3c74681f509/freak-show_original.jpg",
+    "link": "http://freakshow.fm"
+  },
+  "duration": "03:42:16",
+  "chapters": [
+    {
+      "start": "00:00:00.000",
+      "title": "Intro"
+    },
+    {
+      "start": "00:00:46.464",
+      "title": "Status Codes"
+    },
+    {
+      "start": "00:08:01.590",
+      "title": "Vorstellungsrunde"
+    },
+    {
+      "start": "00:11:23.490",
+      "title": "StudioLink OnAir und Podlive"
+    },
+    {
+      "start": "00:21:38.385",
+      "title": "Mückenstiche"
+    },
+    {
+      "start": "00:24:59.580",
+      "title": "Klimazombiekalypse"
+    },
+    {
+      "start": "00:28:29.439",
+      "title": "Sommerpartybeteiligungsstrategien"
+    },
+    {
+      "start": "00:41:06.986",
+      "title": "Klimakatastrophe"
+    },
+    {
+      "start": "00:56:49.930",
+      "title": "Dieselgate und Verkehr"
+    },
+    {
+      "start": "01:13:04.010",
+      "title": "ecocapsule"
+    },
+    {
+      "start": "01:23:21.086",
+      "title": "solarstrom-Flatrate"
+    },
+    {
+      "start": "01:34:41.717",
+      "title": "Podcasts für Elektromobiltät"
+    },
+    {
+      "start": "01:37:49.760",
+      "title": "Pimp My Mac"
+    },
+    {
+      "start": "01:56:03.592",
+      "title": "Probleme mit Kryptowährungen"
+    },
+    {
+      "start": "02:11:36.725",
+      "title": "Bitcoin Umstellung"
+    },
+    {
+      "start": "02:30:50.464",
+      "title": "Bitcoin-based ICOs"
+    },
+    {
+      "start": "02:36:19.360",
+      "title": "Ethische Aspekte der Kryptowährungen"
+    },
+    {
+      "start": "02:59:08.061",
+      "title": "Blockchain für andere Dinge?"
+    },
+    {
+      "start": "03:18:41.269",
+      "title": "Machine Learning on a stick"
+    },
+    {
+      "start": "03:21:54.048",
+      "title": "ZFS und SSDs"
+    },
+    {
+      "start": "03:29:43.306",
+      "title": "JAXA Int-Ball"
+    },
+    {
+      "start": "03:37:12.659",
+      "title": "Kyritzer Mord- und Totschlag"
+    },
+    {
+      "start": "03:38:34.927",
+      "title": "Flash is dead"
+    },
+    {
+      "start": "03:40:33.616",
+      "title": "Ausklang"
+    }
+  ],
+  "audio": [
+    {
+      "url": "https://tracking.feedpress.it/link/13453/6340842/fs202-dauerregensendung.m4a",
+      "mimeType": "audio/mp4",
+      "size": 85224375,
+      "title": "Audio MP4"
+    }
+  ],
+  "reference": {
+    "share": "//podlove-player.surge.sh/share",
+    "config": "//podlove-player.surge.sh/fixtures/340abe1c.json",
+    "origin": "http://freakshow.fm/fs202-dauerregensendung"
+  },
+  "theme": {
+    "main": "rgb(251,237,186)"
+  }
+}

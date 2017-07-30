@@ -7,7 +7,8 @@ test.beforeEach(t => {
   testState = {
     chapters: false,
     audio: false,
-    share: false
+    share: false,
+    download: false
   }
 })
 

@@ -99,7 +99,12 @@
     }
   ],
   "audio": [
-    "https://tracking.feedpress.it/link/13453/5476348/fs194-cloudschmerzen.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13453/5476348/fs194-cloudschmerzen.m4a",
+      "mimeType": "audio/mp4",
+      "size": 81901468,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

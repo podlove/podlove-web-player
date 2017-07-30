@@ -60,7 +60,6 @@
 
 <style lang="scss">
   @import 'variables';
-  $slider-height: 44px;
 
   .input-slider {
     height: $slider-height;

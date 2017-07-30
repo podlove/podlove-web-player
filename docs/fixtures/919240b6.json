@@ -15,7 +15,12 @@
   "duration": "02:20:21",
   "chapters": [],
   "audio": [
-    "https://tracking.feedpress.it/link/13440/1885511/cre183-tetra-buendelfunk.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13440/1885511/cre183-tetra-buendelfunk.m4a",
+      "mimeType": "audio/mp4",
+      "size": 52686318,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

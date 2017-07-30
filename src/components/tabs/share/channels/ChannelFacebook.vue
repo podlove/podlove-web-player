@@ -24,8 +24,6 @@
 </script>
 
 <style lang="scss">
-  @import 'share';
-
   $channel-color: #3b5998;
 
   .channel-icon.facebook {

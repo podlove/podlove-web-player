@@ -1,16 +1,16 @@
 <template>
     <OverlayComponent :visible="share.embed.visible" :onClose="closeEmbedOverlay" class="embed-overlay">
-      <h3 name="header" class="title text-center">Embed Episode</h3>
+      <h3 name="header" class="title text-center">{{ $t('SHARE.EMBED.TITLE') }}</h3>
       <div class="input-element">
-        <label class="input-label">Embed Size</label>
-        <InputSelectComponent :model="share.embed.size" :options="share.embed.available"></InputSelectComponent>
+        <label class="input-label">{{ $t('SHARE.EMBED.LABEL.SIZE') }}</label>
+        <InputSelectComponent :model="share.embed.size" :options="share.embed.available" :change="setEmbedSize"></InputSelectComponent>
       </div>
       <div class="input-element">
-        <label class="input-label">Embed Code</label>
+        <label class="input-label">{{ $t('SHARE.EMBED.LABEL.CODE') }}</label>
         <InputTextComponent class="block" disabled="true" :value="embedCode"></InputTextComponent>
       </div>
       <div class="input-element">
-        <ButtonComponent class="block action" :data-clipboard-text="embedCode" v-clipboard>Copy EmbedCode</ButtonComponent>
+        <ButtonComponent class="block action" :data-clipboard-text="embedCode" v-clipboard>{{ $t('SHARE.EMBED.ACTIONS.COPY') }}</ButtonComponent>
       </div>
     </OverlayComponent>
 </template>
@@ -83,7 +83,7 @@
     },
     methods: {
       secondsToTime,
-      setEmbedSize: (size) => () => store.dispatch(store.actions.setShareEmbedSize(size)),
+      setEmbedSize: compose(store.dispatch.bind(store), store.actions.setShareEmbedSize),
       closeEmbedOverlay: compose(store.dispatch.bind(store), store.actions.hideShareEmbed)
     },
     components: {
@@ -97,8 +97,6 @@
 
 <style lang="scss">
   @import 'variables';
-  @import 'utils';
-  @import 'inputs';
 
   .embed-code {
     width: 100%;
@@ -108,7 +106,7 @@
 
   .embed-overlay {
     .overlay {
-      width: 250px;
+      width: $share-embed-width;
     }
   }
 
