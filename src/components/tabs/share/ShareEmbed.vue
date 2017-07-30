@@ -1,16 +1,16 @@
 <template>
     <OverlayComponent :visible="share.embed.visible" :onClose="closeEmbedOverlay" class="embed-overlay">
-      <h3 name="header" class="title text-center">Embed Episode</h3>
+      <h3 name="header" class="title text-center">{{ $t('SHARE.EMBED.TITLE') }}</h3>
       <div class="input-element">
-        <label class="input-label">Embed Size</label>
+        <label class="input-label">{{ $t('SHARE.EMBED.LABEL.SIZE') }}</label>
         <InputSelectComponent :model="share.embed.size" :options="share.embed.available" :change="setEmbedSize"></InputSelectComponent>
       </div>
       <div class="input-element">
-        <label class="input-label">Embed Code</label>
+        <label class="input-label">{{ $t('SHARE.EMBED.LABEL.CODE') }}</label>
         <InputTextComponent class="block" disabled="true" :value="embedCode"></InputTextComponent>
       </div>
       <div class="input-element">
-        <ButtonComponent class="block action" :data-clipboard-text="embedCode" v-clipboard>Copy EmbedCode</ButtonComponent>
+        <ButtonComponent class="block action" :data-clipboard-text="embedCode" v-clipboard>{{ $t('SHARE.EMBED.ACTIONS.COPY') }}</ButtonComponent>
       </div>
     </OverlayComponent>
 </template>

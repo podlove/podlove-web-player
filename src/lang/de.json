@@ -24,7 +24,13 @@
   },
   "DOWNLOAD": {
     "TITLE": "Download",
-    "PUBLICATION_DATE": "Veröffentlicht: {day}.{month}.year"
+    "PUBLICATION_DATE": "Veröffentlicht: {day}.{month}.{year}",
+    "DURATION_WITH_HOURS": "Dauer: {hours} Stunden {minutes} Minuten",
+    "DURATION": "Dauer: {minutes} Minuten",
+    "ACTIONS": {
+      "DOWNLOAD": "Download Episode",
+      "COPY": "Url kopieren"
+    }
   },
   "SHARE": {
     "TITLE": "Teilen",
@@ -59,6 +65,16 @@
     "SHOW": {
       "TEXT": "Share text for show \"{title}\" with link {link}",
       "SUBJECT": "Share subject for show \"{title}\" with link {link}"
+    }
+  },
+  "EMBED": {
+    "TITLE": "Embed Episode",
+    "LABEL": {
+      "SIZE": "Embed Size",
+      "CODE": "Embed Code"
+    },
+    "ACTIONS": {
+      "COPY": "Code kopieren"
     }
   }
 }

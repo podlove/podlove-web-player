@@ -9,7 +9,8 @@
       </ul>
     </div>
     <div class="file-selection centered column" :style="sectionStyle">
-      <ButtonComponent class="action download-button" :href="download.selected" type="link">{{ $t('DOWNLOAD.DOWNLOAD_EPISODE') }}</ButtonComponent>
+      <ButtonComponent class="action download-button" :href="download.selected" type="link">{{ $t('DOWNLOAD.ACTIONS.DOWNLOAD') }}</ButtonComponent>
+      <ButtonComponent class="action copy-button" :data-clipboard-text="download.selected" v-clipboard>{{ $t('DOWNLOAD.ACTIONS.COPY') }}</ButtonComponent>
       <InputSelectComponent class="download-select" :change="setDownloadFile">
         <option v-for="(option, index) in download.files" v-bind:key="index" v-bind:value="option.url" :selected="download.selected === option.url">
           {{ option.title }} • {{ toMegabyte(option.size) }} MB
@@ -106,7 +107,7 @@
     .file-selection {
       padding: $padding;
 
-      .download-button, .download-select {
+      .download-button, .download-select, .copy-button {
         margin: ($margin / 2) $margin;
         width: $download-interaction-size;
       }
