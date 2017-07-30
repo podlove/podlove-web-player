@@ -2,7 +2,7 @@
   <li class="tab-header-item" :style="tabStyle" :class="{active}">
     <a href="javascript:void(0);" @click.prevent="click()" class="caption">
       <span class="icon" :style="{fill: iconColor(active)}"><slot name="icon"></slot></span>
-      <span class="title"><slot name="title"></slot></span>
+      <span class="title truncate"><slot name="title"></slot></span>
       <CloseIcon class="close" :color="iconColor(true)" v-if="active"></CloseIcon>
     </a>
   </li>
@@ -72,6 +72,7 @@
     margin: 0;
     height: $tabs-header-height;
     transition: all $animation-duration;
+    overflow: hidden;
 
     .caption {
       display: flex;
