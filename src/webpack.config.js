@@ -69,7 +69,7 @@ const config = {
     noInfo: true,
     overlay: true,
     inline: true,
-    hotOnly: true,
+    hot: true,
     contentBase: path.resolve(__dirname, '..', 'dist')
   },
   performance: {

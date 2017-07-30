@@ -15,6 +15,7 @@ const themeColors = (colors = {}) => {
   const fallbackColor = (first, second) => first || second
 
   return {
+    background: light,
     player: {
       background: main,
       poster: negative ? light : dark,
