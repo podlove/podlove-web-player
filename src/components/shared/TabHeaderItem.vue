@@ -67,7 +67,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: ($padding / 2) $padding;
     width: 100%;
     margin: 0;
     height: $tabs-header-height;
@@ -83,6 +82,7 @@
       vertical-align: middle;
       text-align: center;
       width: 100%;
+      height: 100%;
     }
 
     .title {
