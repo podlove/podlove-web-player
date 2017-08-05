@@ -15,6 +15,7 @@ import * as ghost from './ghost'
 import * as show from './show'
 import * as episode from './episode'
 import * as download from './download'
+import * as contributors from './contributors'
 
 export default combineReducers({
   ...init,
@@ -31,5 +32,6 @@ export default combineReducers({
   ...ghost,
   ...show,
   ...episode,
-  ...download
+  ...download,
+  ...contributors
 })

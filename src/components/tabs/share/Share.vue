@@ -1,5 +1,5 @@
 <template>
-  <div class="share">
+  <div class="share-tab">
     <div class="content-select">
       <ShareContentComponent></ShareContentComponent>
     </div>
@@ -47,9 +47,9 @@
 </script>
 
 <style lang="scss">
-  @import 'variables';
+  @import '~styles/variables';
 
-  .share {
+  .share-tab {
     padding: $padding 0 0 0;
 
     .title {

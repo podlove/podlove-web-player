@@ -32,7 +32,7 @@
 </script>
 
 <style lang="scss">
-  @import 'variables';
+  @import '~styles/variables';
 
   .header {
     padding: $padding $padding 0 $padding;

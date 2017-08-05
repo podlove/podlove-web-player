@@ -23,7 +23,7 @@
   }
 </script>
 <style lang="scss">
-  @import 'variables';
+  @import '~styles/variables';
 
   .tab-header {
     position: relative;

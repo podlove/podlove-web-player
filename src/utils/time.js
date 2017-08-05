@@ -15,6 +15,8 @@ export const calcSeconds = (time = 0) => parseInt(time % 60)
 export const calcMinutes = (time = 0) => parseInt(time / 60) % 60
 export const calcHours = (time = 0) => parseInt(time / 3600) % 24
 
+export const localeTime = (timestamp, locale) => new Date(timestamp).toLocaleDateString(locale)
+
 const leadingZero = (time) => time > 9 ? `${time}` : `0${time}`
 
 // Transforms seconds to (hh:)mm:ss

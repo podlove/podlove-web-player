@@ -40,7 +40,7 @@
 </script>
 
 <style lang="scss">
-  @import 'variables';
+  @import '~styles/variables';
 
   $error-height: 100px;
 

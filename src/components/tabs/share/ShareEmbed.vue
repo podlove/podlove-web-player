@@ -96,7 +96,7 @@
 </script>
 
 <style lang="scss">
-  @import 'variables';
+  @import '~styles/variables';
 
   .embed-code {
     width: 100%;

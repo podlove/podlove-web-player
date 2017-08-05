@@ -140,7 +140,7 @@
 </script>
 
 <style lang="scss">
-  @import 'variables';
+  @import '~styles/variables';
 
   .progress {
     width: 100%;

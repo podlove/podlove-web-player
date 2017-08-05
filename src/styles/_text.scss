@@ -1,0 +1,9 @@
+h1, h2, h3, h4 {
+  &.title {
+    margin: 0 0 ($margin / 2) 0;
+  }
+}
+
+p {
+  margin: 0 0 $margin 0;
+}

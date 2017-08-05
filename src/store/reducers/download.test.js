@@ -45,7 +45,7 @@ test(`download: it sets the audio url on SET_DOWNLOAD_FILE`, t => {
   })
 })
 
-test(`episode: it does nothing if not a registered action is dispatched`, t => {
+test(`download: it does nothing if not a registered action is dispatched`, t => {
   const result = download('foobar', {
     type: 'NOT_A_REAL_TYPE'
   })

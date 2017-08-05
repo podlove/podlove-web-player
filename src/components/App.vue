@@ -45,18 +45,18 @@
 </script>
 
 <style lang="scss">
-  @import 'variables';
-  @import 'global';
-  @import 'utils';
-  @import 'font';
-  @import 'resets/resets';
+  @import '~styles/variables';
+  @import '~styles/global';
+  @import '~styles/utils';
+  @import '~styles/font';
+  @import '~styles/text';
+  @import '~styles/resets/resets';
 
-  @import 'inputs';
-  @import 'embed';
-  @import 'share';
+  @import '~styles/inputs';
+  @import '~styles/share';
 
-  @import 'transitions';
-  @import 'animations';
+  @import '~styles/transitions';
+  @import '~styles/animations';
 
   .podlove {
     display: block;

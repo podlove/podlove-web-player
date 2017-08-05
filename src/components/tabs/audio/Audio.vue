@@ -1,5 +1,5 @@
 <template>
-  <div class="audio">
+  <div class="audio-tab">
     <AudioVolumeComponent class="seperator"></AudioVolumeComponent>
     <AudioRateComponent class="seperator"></AudioRateComponent>
     <div class="footer">
@@ -33,9 +33,9 @@
 </script>
 
 <style lang="scss">
-  @import 'variables';
+  @import '~styles/variables';
 
-  .audio {
+  .audio-tab {
     width: 100%;
     padding-top: $padding;
 

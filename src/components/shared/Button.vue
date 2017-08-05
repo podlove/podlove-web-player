@@ -41,8 +41,8 @@
 </script>
 
 <style lang="scss">
-  @import 'variables';
-  @import 'font';
+  @import '~styles/variables';
+  @import '~styles/font';
 
   .input-button {
     opacity: 1;

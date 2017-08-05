@@ -1,5 +1,5 @@
 <template>
-  <div class="podlove-player--slider">
+  <div class="slider">
     <input
         type="range"
         :min="minValue"
@@ -61,9 +61,9 @@
 </script>
 
 <style lang="scss">
-  @import 'variables';
+  @import '~styles/variables';
 
-  .podlove-player--slider {
+  .slider {
     height: $slider-height;
     margin: ($margin / 3) 0;
     position: relative;

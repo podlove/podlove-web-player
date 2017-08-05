@@ -13,8 +13,12 @@
         <DownloadIcon slot="icon"></DownloadIcon>
         <span slot="title">{{ $t('DOWNLOAD.TITLE') }}</span>
       </TabHeaderItemComponent>
+      <TabHeaderItemComponent :active="tabs.info" v-if="components.tabs.info" :click="toggleTab('info')">
+        <InfoIcon slot="icon"></InfoIcon>
+        <span slot="title">{{ $t('INFO.TITLE') }}</span>
+      </TabHeaderItemComponent>
       <TabHeaderItemComponent :active="tabs.audio" v-if="components.tabs.audio" :click="toggleTab('audio')">
-        <AudioIcon slot="icon" :volume="volume * 100" :muted="muted"></AudioIcon>
+        <AudioIcon slot="icon"></AudioIcon>
         <span slot="title">{{ $t('AUDIO.TITLE') }}</span>
       </TabHeaderItemComponent>
     </TabHeaderComponent>
@@ -27,6 +31,9 @@
     </TabBodyComponent>
     <TabBodyComponent :active="tabs.download" v-if="components.tabs.download">
       <DownloadTab></DownloadTab>
+    </TabBodyComponent>
+    <TabBodyComponent :active="tabs.info" v-if="components.tabs.info">
+      <InfoTab></InfoTab>
     </TabBodyComponent>
     <TabBodyComponent :active="tabs.audio" v-if="components.tabs.audio">
       <AudioTab></AudioTab>
@@ -44,11 +51,13 @@ import TabBodyComponent from 'shared/TabBody.vue'
 import ChaptersIcon from 'icons/ChaptersIcon.vue'
 import ShareIcon from 'icons/ShareIcon.vue'
 import DownloadIcon from 'icons/DownloadIcon.vue'
+import InfoIcon from 'icons/InfoIcon.vue'
 import AudioIcon from 'icons/AudioIcon.vue'
 
 import ChaptersTab from './chapters/Chapters.vue'
 import ShareTab from './share/Share.vue'
 import AudioTab from './audio/Audio.vue'
+import InfoTab from './info/Info.vue'
 import DownloadTab from './download/Download.vue'
 
 export default {
@@ -58,9 +67,7 @@ export default {
       tabs: this.$select('tabs'),
       chapters: this.$select('chapters'),
       reference: this.$select('reference'),
-      components: this.$select('components'),
-      volume: this.$select('volume'),
-      muted: this.$select('muted')
+      components: this.$select('components')
     }
   },
   computed: {
@@ -69,7 +76,6 @@ export default {
         'background-color': this.theme.tabs.body.background
       }
     }
-
   },
   methods: {
     toggleTab (tab) {
@@ -86,18 +92,20 @@ export default {
     ChaptersIcon,
     ShareIcon,
     DownloadIcon,
+    InfoIcon,
     AudioIcon,
 
     ShareTab,
     ChaptersTab,
     AudioTab,
+    InfoTab,
     DownloadTab
   }
 }
 </script>
 
 <style lang="scss">
-  @import 'variables';
+  @import '~styles/variables';
 
   .tabs {
     width: 100%;

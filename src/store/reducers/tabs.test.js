@@ -8,6 +8,7 @@ test.beforeEach(t => {
     chapters: false,
     audio: false,
     share: false,
+    info: false,
     download: false
   }
 })

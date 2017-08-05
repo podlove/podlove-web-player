@@ -28,7 +28,8 @@ test.beforeEach(() => {
       chapters: false,
       share: false,
       audio: true,
-      download: false
+      download: false,
+      info: false
     }
   }
 

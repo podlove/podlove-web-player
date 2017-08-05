@@ -24,9 +24,8 @@
   },
   "DOWNLOAD": {
     "TITLE": "Download",
-    "PUBLICATION_DATE": "Veröffentlicht: {day}.{month}.{year}",
-    "DURATION_WITH_HOURS": "Dauer: {hours} Stunden {minutes} Minuten",
-    "DURATION": "Dauer: {minutes} Minuten",
+    "DURATION_WITH_HOURS": "{hours} Stunden {minutes} Minuten",
+    "DURATION": "{minutes} Minuten",
     "ACTIONS": {
       "DOWNLOAD": "Download Episode",
       "COPY": "Url kopieren"
@@ -76,5 +75,11 @@
     "ACTIONS": {
       "COPY": "Code kopieren"
     }
+  },
+  "INFO": {
+    "TITLE": "Info",
+    "PUBLICATION_DATE": "Veröffentlicht: {day}.{month}.{year}",
+    "ON_AIR": "On Air",
+    "LINK": "Link:"
   }
 }

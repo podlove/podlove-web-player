@@ -24,7 +24,7 @@
 </script>
 
 <style lang="scss">
-  @import 'share';
+  @import '~styles/share';
 
   $channel-color: #1da1f2;
 

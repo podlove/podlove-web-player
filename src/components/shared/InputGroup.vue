@@ -10,7 +10,7 @@
 </script>
 
 <style lang="scss">
-  @import 'variables';
+  @import '~styles/variables';
 
   .input-group {
     display: flex;

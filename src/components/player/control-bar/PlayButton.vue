@@ -101,7 +101,7 @@
 </script>
 
 <style lang="scss">
-  @import 'variables';
+  @import '~styles/variables';
 
   .play-button {
     display: flex;

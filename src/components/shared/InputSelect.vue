@@ -35,7 +35,7 @@
 </script>
 
 <style lang="scss">
-  @import 'variables';
+  @import '~styles/variables';
 
   .input-select {
     display: block;

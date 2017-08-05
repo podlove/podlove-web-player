@@ -125,7 +125,7 @@
 </script>
 
 <style lang="scss">
-  @import 'variables';
+  @import '~styles/variables';
 
   .channel-list {
     display: flex;

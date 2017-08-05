@@ -24,11 +24,7 @@ test(`episode: it is a reducer function`, t => {
 test(`episode: it extracts the episode meta information`, t => {
   const result = episode({}, testAction)
 
-  testAction.payload.publicationDate = {
-    day: 11,
-    month: 2,
-    year: 2016
-  }
+  testAction.payload.publicationDate = new Date('2016-02-11T03:13:55+00:00').getTime()
 
   t.deepEqual(result, testAction.payload)
 })

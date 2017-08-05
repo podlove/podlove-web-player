@@ -14,13 +14,7 @@ const parseDate = (utcDate) => {
     return null
   }
 
-  const date = new Date(utcDate)
-
-  return {
-    day: date.getDate(),
-    month: date.getMonth() + 1,
-    year: date.getFullYear()
-  }
+  return new Date(utcDate).getTime()
 }
 
 const episode = (state = INIT_STATE, action) => {

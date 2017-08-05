@@ -1,11 +1,11 @@
 <template>
-  <div class="download">
+  <div class="download-tab">
     <div class="show-info centered column">
-      <img class="episode-poster" v-if="episode.poster || show.poster" :src="episode.poster || show.poster">
+      <img class="episode-poster shadowed" v-if="episode.poster || show.poster" :src="episode.poster || show.poster">
       <ul class="episode-meta centered">
-        <li class="meta" v-if="episode.publicationDate">{{ $t('DOWNLOAD.PUBLICATION_DATE', episode.publicationDate) }}</li>
-        <li class="meta" v-if="episodeDuration.hours > 0">{{ $t('DOWNLOAD.DURATION_WITH_HOURS', episodeDuration) }}</li>
-        <li class="meta" v-if="episodeDuration.hours === 0">{{ $t('DOWNLOAD.DURATION', episodeDuration) }}</li>
+        <li class="meta centered" v-if="episode.publicationDate"><CalendarIcon class="icon"></CalendarIcon>{{ publicationDate }}</li>
+        <li class="meta centered" v-if="episodeDuration.hours > 0"><ClockIcon class="icon" size="15px"></ClockIcon>{{ $t('DOWNLOAD.DURATION_WITH_HOURS', episodeDuration) }}</li>
+        <li class="meta centered" v-if="episodeDuration.hours === 0"><ClockIcon class="icon" size="15px"></ClockIcon>{{ $t('DOWNLOAD.DURATION', episodeDuration) }}</li>
       </ul>
     </div>
     <div class="file-selection centered column" :style="sectionStyle">
@@ -23,10 +23,13 @@
 <script>
   import { compose } from 'lodash'
   import store from 'store'
-  import { calcHours, calcMinutes } from 'utils/time'
+  import { calcHours, calcMinutes, localeTime } from 'utils/time'
 
   import ButtonComponent from 'shared/Button.vue'
   import InputSelectComponent from 'shared/InputSelect.vue'
+
+  import ClockIcon from 'icons/ClockIcon.vue'
+  import CalendarIcon from 'icons/CalendarIcon.vue'
 
   export default {
     data () {
@@ -36,7 +39,8 @@
         show: this.$select('show'),
         duration: this.$select('duration'),
         download: this.$select('download'),
-        audio: this.$select('audio')
+        audio: this.$select('audio'),
+        runtime: this.$select('runtime')
       }
     },
     computed: {
@@ -50,6 +54,9 @@
         return {
           background: this.theme.tabs.body.section
         }
+      },
+      publicationDate () {
+        return localeTime(this.episode.publicationDate, this.runtime.locale)
       }
     },
     methods: {
@@ -60,15 +67,17 @@
     },
     components: {
       ButtonComponent,
-      InputSelectComponent
+      InputSelectComponent,
+      ClockIcon,
+      CalendarIcon
     }
   }
 </script>
 
 <style lang="scss">
-  @import 'variables';
+  @import '~styles/variables';
 
-  .download {
+  .download-tab {
     .show-info {
       padding: $padding;
     }
@@ -84,23 +93,10 @@
       .meta {
         margin: 0 ($margin / 2);
         position: relative;
-
-        &:after {
-          content: '•';
-          font-weight: 700;
-          position: absolute;
-          right: $margin / -2 + $margin / -6;
-        }
-
-        &:last-child:after {
-          content: '';
-        }
       }
 
-      @media screen and (max-width: $width-s) {
-        .meta:after {
-          content: '';
-        }
+      .icon {
+        margin-right: $margin / 2;
       }
     }
 

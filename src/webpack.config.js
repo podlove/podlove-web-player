@@ -14,32 +14,11 @@ const config = {
   },
   output: {
     path: path.resolve('dist'),
-    filename: '[name].js'
+    filename: '[name].js',
+    publicPath: ''
   },
   module: {
     rules: [{
-      test: /\.vue$/,
-      loader: 'vue-loader',
-      options: {
-        loaders: {
-          js: 'babel-loader',
-          scss: ExtractTextPlugin.extract({
-            fallback: 'vue-style-loader',
-            use: [{
-              loader: 'css-loader'
-            }, {
-              loader: 'sass-loader',
-              options: {
-                sourceMap: true,
-                includePaths: [
-                  path.resolve(__dirname, 'styles')
-                ]
-              }
-            }]
-          })
-        }
-      }
-    }, {
       test: /\.js$/,
       loader: 'babel-loader',
       query: {
@@ -61,7 +40,8 @@ const config = {
       shared: path.resolve(__dirname, 'components', 'shared'),
       icons: path.resolve(__dirname, 'components', 'icons'),
       lang: path.resolve(__dirname, 'lang'),
-      core: path.resolve(__dirname, 'core')
+      core: path.resolve(__dirname, 'core'),
+      styles: path.resolve(__dirname, 'styles')
     }
   },
   devServer: {
@@ -83,7 +63,25 @@ const config = {
 
 if (process.env.NODE_ENV === 'production') {
   config.devtool = '#source-map'
-  // http://vue-loader.vuejs.org/en/workflow/production.html
+
+  config.module.rules = [...config.module.rules, {
+    test: /\.vue$/,
+    loader: 'vue-loader',
+    options: {
+      loaders: {
+        js: 'babel-loader',
+        scss: ExtractTextPlugin.extract({
+          fallback: 'vue-style-loader',
+          use: [{
+            loader: 'css-loader'
+          }, {
+            loader: 'sass-loader'
+          }]
+        })
+      }
+    }
+  }]
+
   config.plugins = [...config.plugins,
     new webpack.DefinePlugin({
       'process.env': {
@@ -107,6 +105,17 @@ if (process.env.NODE_ENV === 'production') {
     })
   ]
 } else {
+  config.module.rules = [...config.module.rules, {
+    test: /\.vue$/,
+    loader: 'vue-loader',
+    options: {
+      loaders: {
+        js: 'babel-loader',
+        scss: 'vue-style-loader!css-loader!sass-loader'
+      }
+    }
+  }]
+
   config.plugins = [...config.plugins,
     new DashboardPlugin(),
     new webpack.HotModuleReplacementPlugin(),
