@@ -235,3 +235,14 @@ test(`tabs: it controls the download tabs component`, t => {
 
   t.deepEqual(result, compareState)
 })
+
+test(`tabs: it controls the info tabs component`, t => {
+  const result = components(uiState, {
+    type: 'TOGGLE_COMPONENT_TABS_INFO',
+    payload: true
+  })
+
+  compareState.tabs.info = true
+
+  t.deepEqual(result, compareState)
+})

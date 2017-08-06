@@ -1,5 +1,5 @@
 import test from 'ava'
-import { secondsToTime, timeToSeconds } from './time'
+import { secondsToTime, timeToSeconds, localeTime } from './time'
 
 test('exports a method called secondsToTime', t => {
   t.truthy(typeof secondsToTime === 'function')
@@ -26,4 +26,8 @@ test('timeToSeconds tolarets invalid inputs', t => {
   t.is(timeToSeconds(undefined), 0)
   t.is(timeToSeconds(null), 0)
   t.is(timeToSeconds('foo:oo'), 0)
+})
+
+test('localeTime transforms a date to a locale string', t => {
+  t.is(localeTime(0, 'en-US'), '1/1/1970')
 })
