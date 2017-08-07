@@ -22,7 +22,7 @@
   }
 </script>
 <style lang="scss">
-  @import 'variables';
+  @import '~styles/variables';
 
   .tab-body {
     max-height: 0;

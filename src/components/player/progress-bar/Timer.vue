@@ -40,8 +40,8 @@ export default {
 </script>
 
 <style lang="scss">
-  @import 'variables';
-  @import 'font';
+  @import '~styles/variables';
+  @import '~styles/font';
 
   // Timer
   .timer-progress {

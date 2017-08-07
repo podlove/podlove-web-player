@@ -4,7 +4,8 @@ const INITIAL = {
   'chapters': false,
   'audio': false,
   'share': false,
-  'download': false
+  'download': false,
+  'info': false
 }
 
 const tabs = (state = INITIAL, action) => {

@@ -52,7 +52,7 @@
 </script>
 
 <style lang="scss">
-  @import 'variables';
+  @import '~styles/variables';
 
   $poster-size: 100px;
   $description-height: 100px;

@@ -134,7 +134,11 @@ test(`componentsEffect: it shows correct ui components for INIT action`, t => {
   store.getState = sinon.stub().returns({})
 
   components(store, testAction)
-  t.is(store.dispatch.getCalls().length, 0)
+  t.is(store.dispatch.getCalls().length, 1)
+  t.deepEqual(store.dispatch.getCall(0).args[0], {
+    type: 'TOGGLE_COMPONENT_TABS_INFO',
+    payload: true
+  })
 })
 
 test(`componentsEffect: it shows correct ui components for STOP action`, t => {

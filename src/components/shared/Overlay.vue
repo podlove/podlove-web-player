@@ -40,7 +40,7 @@
 </script>
 
 <style lang="scss">
-  @import 'variables';
+  @import '~styles/variables';
 
   .overlay-container {
     position: absolute;

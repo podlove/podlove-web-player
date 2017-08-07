@@ -61,7 +61,7 @@
 </script>
 
 <style lang="scss">
-  @import 'variables';
+  @import '~styles/variables';
 
   .tab-header-item {
     display: flex;
@@ -77,6 +77,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      padding: 0 ($padding / 2);
 
       overflow: hidden;
       vertical-align: middle;
@@ -98,7 +99,7 @@
       display: none;
     }
 
-    @media screen and (max-width: $width-s) {
+    @media screen and (max-width: $width-m) {
       .title {
         display: none;
       }

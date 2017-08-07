@@ -6,7 +6,7 @@
     </label>
     <div class="volume-slider centered">
       <ButtonComponent class="slider-button mute-control" :click="toggleMute">
-        <AudioIcon :color="theme.button.text" :volume="visualVolume * 100" :muted="muted"></AudioIcon>
+        <SpeakerIcon :color="theme.button.text" :volume="visualVolume * 100" :muted="muted"></SpeakerIcon>
       </ButtonComponent>
       <InputSliderComponent min="0" max="1" :value="visualVolume" step="0.001" :onInput="setVolume"></InputSliderComponent>
     </div>
@@ -22,7 +22,7 @@
 
   import InputSliderComponent from 'shared/InputSlider.vue'
   import ButtonComponent from 'shared/Button.vue'
-  import AudioIcon from 'icons/AudioIcon.vue'
+  import SpeakerIcon from 'icons/SpeakerIcon.vue'
 
   // State Changers
   const setVolume = compose(store.dispatch.bind(store), store.actions.setVolume)
@@ -69,15 +69,15 @@
     components: {
       InputSliderComponent,
       ButtonComponent,
-      AudioIcon
+      SpeakerIcon
     }
   }
 </script>
 
 <style lang="scss">
-  @import 'variables';
+  @import '~styles/variables';
 
-  .audio {
+  .audio-tab {
     .mute-control {
       width: $mute-control-width;
     }

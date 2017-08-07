@@ -1,5 +1,5 @@
 <template>
-  <div class="chapters">
+  <div class="chapters-tab">
     <ChapterEntryComponent
       v-for="(chapter, index) in chapters"
       :chapter="chapter"
@@ -26,9 +26,9 @@
 </script>
 
 <style lang="scss">
-  @import 'variables';
+  @import '~styles/variables';
 
-  .chapters {
+  .chapters-tab {
     width: 100%;
     padding: $padding 0;
   }

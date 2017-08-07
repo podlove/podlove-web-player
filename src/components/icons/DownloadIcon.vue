@@ -1,6 +1,8 @@
 <template>
-  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
-    <path :fill="color" d="M16 11h5l-9 10-9-10h5v-11h8v11zm1 11h-10v2h10v-2z"/>
+  <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 20 20">
+    <path fill="none" :stroke="color || 'currentColor'" stroke-width="1.1" d="M6.5,14.61 L3.75,14.61 C1.96,14.61 0.5,13.17 0.5,11.39 C0.5,9.76 1.72,8.41 3.3,8.2 C3.38,5.31 5.75,3 8.68,3 C11.19,3 13.31,4.71 13.89,7.02 C14.39,6.8 14.93,6.68 15.5,6.68 C17.71,6.68 19.5,8.45 19.5,10.64 C19.5,12.83 17.71,14.6 15.5,14.6 L12.5,14.6"></path>
+    <polyline fill="none" :stroke="color || 'currentColor'" points="11.75 16 9.5 18.25 7.25 16"></polyline>
+    <path fill="none" :stroke="color || 'currentColor'" d="M9.5,18 L9.5,9.5"></path>
   </svg>
 </template>
 

@@ -44,6 +44,7 @@ export default (store, action) => {
         store.dispatch(actions.toggleDownloadTab(true))
       }
 
+      store.dispatch(actions.toggleInfoTab(true))
       break
     case 'STOP':
       store.dispatch(actions.showReplayButton())

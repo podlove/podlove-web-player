@@ -41,18 +41,22 @@ const themeColors = (colors = {}) => {
     },
     tabs: {
       header: {
-        background: luminosity < 0.15 ? color(main).lighten(0.6 - luminosity) : color(main).darken(0.2),
+        background: luminosity < 0.15 ? color(main).lighten(0.2 - luminosity) : color(main).darken(0.2),
         backgroundActive: color(main).fade(0.9),
         color: negative ? light : dark,
-        colorActive: fallbackColor(highlight, negative ? main : dark)
+        colorActive: negative ? main : dark
       },
       body: {
         background: color(main).fade(0.9),
         text: grey,
         textActive: dark,
-        progress: fallbackColor(highlight, negative ? main : dark),
         icon: negative ? main : dark,
         section: color(main).fade(0.8)
+      },
+      chapters: {
+        progress: color(negative ? main : dark).fade(0.1),
+        active: fallbackColor(highlight ? color(highlight).fade(0.5) : undefined, negative ? color(main).fade(0.8) : color(dark).fade(0.9)),
+        ghost: color(negative ? main : dark).fade(0.7)
       },
       share: {
         content: {

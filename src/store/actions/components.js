@@ -78,6 +78,11 @@ const toggleDownloadTab = visibility => ({
   payload: visibility
 })
 
+const toggleInfoTab = visibility => ({
+  type: 'TOGGLE_COMPONENT_TABS_INFO',
+  payload: visibility
+})
+
 export {
   toggleInfo,
   toggleError,
@@ -98,5 +103,6 @@ export {
   toggleChaptersTab,
   toggleShareTab,
   toggleAudioTab,
-  toggleDownloadTab
+  toggleDownloadTab,
+  toggleInfoTab
 }

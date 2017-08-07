@@ -1,9 +1,13 @@
 <template>
-  <a v-if="type === 'link'" :href="href" class="input-button centered" :style="active ? activeStyle : style">
-    <slot></slot>
+  <a v-if="type === 'link'" :href="href" class="input-button" :style="active ? activeStyle : style">
+    <span class="inner centered">
+      <slot></slot>
+    </span>
   </a>
-  <button v-else :style="active ? activeStyle : style" class="input-button centered" :disabled="disabled" @click="click ? click() : noop()">
-    <slot></slot>
+  <button v-else :style="active ? activeStyle : style" class="input-button" :disabled="disabled" @click="click ? click() : noop()">
+    <span class="inner centered">
+      <slot></slot>
+    </span>
   </button>
 </template>
 
@@ -41,8 +45,8 @@
 </script>
 
 <style lang="scss">
-  @import 'variables';
-  @import 'font';
+  @import '~styles/variables';
+  @import '~styles/font';
 
   .input-button {
     opacity: 1;
@@ -63,6 +67,11 @@
     border-width: 2px;
     border-style: solid;
 
+    .inner {
+      width: 100%;
+      height: 100%;
+    }
+
     &:hover {
       opacity: 0.8;
     }
@@ -72,10 +81,16 @@
       width: 100%;
     }
 
-    &.action {
+    text-align: center;
+
+    svg {
+      display: inline;
+    }
+
+    &.action .inner {
       text-transform: uppercase;
       padding: $padding / 2;
-      line-height: $padding + $padding / 2
+      line-height: $padding + $padding / 2;
     }
   }
 </style>

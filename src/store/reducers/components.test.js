@@ -28,7 +28,8 @@ test.beforeEach(() => {
       chapters: false,
       share: false,
       audio: true,
-      download: false
+      download: false,
+      info: false
     }
   }
 
@@ -231,6 +232,17 @@ test(`tabs: it controls the download tabs component`, t => {
   })
 
   compareState.tabs.download = true
+
+  t.deepEqual(result, compareState)
+})
+
+test(`tabs: it controls the info tabs component`, t => {
+  const result = components(uiState, {
+    type: 'TOGGLE_COMPONENT_TABS_INFO',
+    payload: true
+  })
+
+  compareState.tabs.info = true
 
   t.deepEqual(result, compareState)
 })

@@ -6,14 +6,16 @@ import { version } from '../../package.json'
 
 const platform = new MobileDetect(window.navigator.userAgent)
 
+const locale = navigator.language || navigator.userLanguage
+
 const currentLanguage = (() => {
-  const browserLang = navigator.language || navigator.userLanguage
-  return head(browserLang.split('-'))
+  return head(locale.split('-'))
 })()
 
 export default {
   version,
   browser: `${browser.name}:${browser.version}`,
   platform: (platform.tablet() || platform.mobile()) ? 'mobile' : 'desktop',
-  language: currentLanguage
+  language: currentLanguage,
+  locale
 }

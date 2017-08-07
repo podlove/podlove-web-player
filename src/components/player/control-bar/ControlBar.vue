@@ -43,18 +43,18 @@
 </script>
 
 <style lang="scss">
-  @import 'variables';
+  @import '~styles/variables';
 
   .control-bar {
     width: 100%;
 
     .control-button {
-      margin: 0 ($margin / 2);
+      margin: 0 $margin;
     }
 
     @media screen and (max-width: $width-s) {
-      .input-button {
-        margin: 0 ($margin / 3);
+      .control-button {
+        margin: 0 ($margin / 2);
       }
     }
   }

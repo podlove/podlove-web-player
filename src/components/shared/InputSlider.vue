@@ -19,7 +19,9 @@
   import { isUndefined } from 'lodash'
 
   const relativePosition = (current = 0, minimum = 0, maximum = 0) =>
-    (((parseFloat(current, 10) - parseFloat(minimum, 10)) * 100) / (parseFloat(maximum, 10) - parseFloat(minimum, 10))) + '%'
+    (((parseFloat(current, 1000) - parseFloat(minimum, 1000)) * 100) / (parseFloat(maximum, 1000) - parseFloat(minimum, 1000)))
+
+  const relativeThumb = (current = 0) => current * -0.1
 
   export default {
     props: ['min', 'max', 'step', 'value', 'onChange', 'onInput'],
@@ -40,8 +42,10 @@
       },
 
       thumbStyle () {
+        const left = relativePosition(this.value, this.minValue, this.maxValue)
         return {
-          left: relativePosition(this.value, this.minValue, this.maxValue),
+          left: `${left}%`,
+          'margin-left': `${relativeThumb(left)}px`,
           'background-color': this.theme.button.background,
           'border-color': this.theme.button.border
         }
@@ -59,11 +63,12 @@
 </script>
 
 <style lang="scss">
-  @import 'variables';
+  @import '~styles/variables';
 
   .input-slider {
-    height: $slider-height;
+    width: 100%;
     position: relative;
+    height: $slider-height;
 
     .track {
       display: block;
@@ -82,7 +87,6 @@
       border: 1px solid;
       height: 20px;
       width: 10px;
-      margin-left: -5px;
       pointer-events: none;
       border-width: 1px;
       border-style: solid;

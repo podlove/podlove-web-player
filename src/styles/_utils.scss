@@ -38,6 +38,10 @@
   }
 }
 
+.shadowed {
+  box-shadow: 0px 1px 5px rgba(0, 0 ,0 , 0.1);
+}
+
 .spaced {
   display: flex;
   justify-content: space-between;
