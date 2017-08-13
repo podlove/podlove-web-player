@@ -5,7 +5,7 @@ let uiState, compareState
 
 test.beforeEach(() => {
   uiState = {
-    info: true,
+    info: false,
     error: false,
     controls: {
       button: {
@@ -27,10 +27,11 @@ test.beforeEach(() => {
     tabs: {
       chapters: false,
       share: false,
-      audio: true,
+      audio: false,
       download: false,
       info: false
-    }
+    },
+    visibleTabs: ['chapters', 'share', 'audio', 'download', 'info']
   }
 
   compareState = Object.assign({}, uiState)

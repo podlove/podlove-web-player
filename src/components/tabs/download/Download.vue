@@ -1,6 +1,6 @@
 <template>
   <div class="download-tab">
-    <div class="show-info centered column">
+    <div class="show-info centered column" v-if="episode.poster || show.poster">
       <img class="episode-poster shadowed" v-if="episode.poster || show.poster" :src="episode.poster || show.poster">
       <ul class="episode-meta centered">
         <li class="meta centered" v-if="episode.publicationDate"><CalendarIcon class="icon"></CalendarIcon>{{ publicationDate }}</li>

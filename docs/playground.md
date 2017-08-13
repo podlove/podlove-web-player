@@ -89,14 +89,22 @@ navigation: 7
             name: 'Tim Pritlove'
         }, {
             avatar: 'https://freakshow.fm/wp-content/cache/podlove/0f/9c18f5e825496b9060337f92814142/clemens-schrimpe_50x50.jpg',
-            name: '	Clemens Schrimpe'
+            name: 'Clemens Schrimpe'
         }, {
             avatar: 'https://freakshow.fm/wp-content/cache/podlove/8e/f30cbe274c3f5e43dc4a7219676f50/hukl_50x50.jpg',
             name: 'hukl'
         }, {
             avatar: 'https://freakshow.fm/wp-content/cache/podlove/b2/425e5c8f180ddf548c95be1c2d7bcf/denis-ahrens_50x50.jpg',
             name: 'Denis Ahrens'
-        }]
+        }],
+        tabs: {
+          chapters: false,
+          audio: false,
+          share: false,
+          download: false,
+          info: false
+        },
+        visibleTabs: ['chapters', 'audio', 'share', 'download', 'info']
     };
 
     function loadEditor(store) {

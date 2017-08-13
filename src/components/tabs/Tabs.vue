@@ -1,5 +1,5 @@
 <template>
-  <div class="tabs" :style="containerStyle">
+  <div class="tabs" :style="containerStyle" v-if="components.visibleTabs.length > 0">
     <TabHeaderComponent>
       <TabHeaderItemComponent :active="tabs.chapters" :click="toggleTab('chapters')" v-if="components.tabs.chapters">
         <ChaptersIcon slot="icon"></ChaptersIcon>
