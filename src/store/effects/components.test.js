@@ -3,26 +3,39 @@ import sinon from 'sinon'
 
 import components from './components'
 
-let store
+let store, state
 
 test.beforeEach(t => {
+  state = {
+    chapters: ['chapter 1', 'chapter 2'],
+    download: {
+      files: [{
+        url: 'http://foo.bar'
+      }, {
+        url: 'http://foo.baz'
+      }]
+    },
+    episode: {
+      url: 'http://foo.bar/episode',
+      poster: './img/src'
+    },
+    show: {
+      url: 'http://foo.bar',
+      poster: './img/src'
+    },
+    reference: {
+      config: 'reference-config',
+      share: 'reference-share',
+      origin: 'reference-origin'
+    },
+    components: {
+      visibleTabs: ['chapters', 'share', 'info', 'download', 'audio']
+    }
+  }
+
   store = {
     dispatch: sinon.stub(),
-    getState: sinon.stub().returns({
-      chapters: ['chapter 1', 'chapter 2'],
-      download: {
-        files: [{
-          url: 'http://foo.bar'
-        }, {
-          url: 'http://foo.baz'
-        }]
-      },
-      reference: {
-        config: 'reference-config',
-        share: 'reference-share',
-        origin: 'reference-origin'
-      }
-    })
+    getState: sinon.stub().returns(state)
   }
 })
 
@@ -106,7 +119,7 @@ test(`componentsEffect: it shows correct ui components for IDLE action`, t => {
   })
 })
 
-test(`componentsEffect: it shows correct ui components for restore INIT action`, t => {
+test(`componentsEffect: it shows correct ui components for INIT action`, t => {
   const testAction = {
     type: 'INIT'
   }
@@ -121,24 +134,80 @@ test(`componentsEffect: it shows correct ui components for restore INIT action`,
     payload: true
   })
   t.deepEqual(store.dispatch.getCall(2).args[0], {
+    type: 'TOGGLE_COMPONENT_TABS_INFO',
+    payload: true
+  })
+  t.deepEqual(store.dispatch.getCall(3).args[0], {
     type: 'TOGGLE_COMPONENT_TABS_DOWNLOAD',
+    payload: true
+  })
+  t.deepEqual(store.dispatch.getCall(4).args[0], {
+    type: 'TOGGLE_COMPONENT_TABS_AUDIO',
+    payload: true
+  })
+  t.deepEqual(store.dispatch.getCall(5).args[0], {
+    type: 'TOGGLE_COMPONENT_INFO',
     payload: true
   })
 })
 
-test(`componentsEffect: it shows correct ui components for INIT action`, t => {
+test(`componentsEffect: it respects the visibleTabs on INIT`, t => {
   const testAction = {
     type: 'INIT'
   }
 
-  store.getState = sinon.stub().returns({})
+  state.components.visibleTabs = []
+  store.getState = sinon.stub().returns(state)
 
   components(store, testAction)
-  t.is(store.dispatch.getCalls().length, 1)
   t.deepEqual(store.dispatch.getCall(0).args[0], {
-    type: 'TOGGLE_COMPONENT_TABS_INFO',
+    type: 'TOGGLE_COMPONENT_INFO',
     payload: true
   })
+})
+
+test(`componentsEffect: it shows the chapters tab only when chapters are available on INIT`, t => {
+  const testAction = {
+    type: 'INIT'
+  }
+
+  state.chapters = []
+  store.getState = sinon.stub().returns(state)
+
+  components(store, testAction)
+  t.deepEqual(store.dispatch.getCall(0).args[0], {
+    type: 'TOGGLE_COMPONENT_TABS_SHARE',
+    payload: true
+  })
+})
+
+test(`componentsEffect: it shows the download tab only when audio files are available on INIT`, t => {
+  const testAction = {
+    type: 'INIT'
+  }
+
+  state.download = []
+  store.getState = sinon.stub().returns(state)
+
+  components(store, testAction)
+  t.deepEqual(store.dispatch.getCall(3).args[0], {
+    type: 'TOGGLE_COMPONENT_TABS_AUDIO',
+    payload: true
+  })
+})
+
+test(`componentsEffect: it shows the info section only when meta available on INIT`, t => {
+  const testAction = {
+    type: 'INIT'
+  }
+
+  state.components.visibleTabs = []
+  state.show = {}
+  state.episode = {}
+  store.getState = sinon.stub().returns(state)
+
+  components(store, testAction)
+  t.is(store.dispatch.getCalls().length, 0)
 })
 
 test(`componentsEffect: it shows correct ui components for STOP action`, t => {

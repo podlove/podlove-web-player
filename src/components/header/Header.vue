@@ -1,5 +1,5 @@
 <template>
-  <div class="header" :style="backgroundStyle">
+  <div class="header" :style="backgroundStyle" v-if="components.error || components.info">
     <PodloveError v-if="components.error"></PodloveError>
     <PodloveInfo v-if="components.info"></PodloveInfo>
   </div>

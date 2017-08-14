@@ -4,7 +4,9 @@
     <li><ChannelFacebookComponent :link="shareLink"></ChannelFacebookComponent></li>
     <li><ChannelGooglePlusComponent :link="shareLink"></ChannelGooglePlusComponent></li>
     <li><ChannelMailComponent :text="shareText" :subject="shareSubject"></ChannelMailComponent></li>
-    <li v-if="type !== 'show'"><ChannelEmbedComponent :color="theme.tabs.share.platform.button"></ChannelEmbedComponent></li>
+    <li v-if="type !== 'show' && ((reference.config && reference.share) || reference.origin)">
+      <ChannelEmbedComponent :color="theme.tabs.share.platform.button"></ChannelEmbedComponent>
+    </li>
   </ul>
 </template>
 
@@ -27,7 +29,8 @@
         episode: this.$select('episode'),
         playtime: this.$select('playtime'),
         chapters: this.$select('chapters'),
-        theme: this.$select('theme')
+        theme: this.$select('theme'),
+        reference: this.$select('reference')
       }
     },
     computed: {

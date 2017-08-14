@@ -1,5 +1,7 @@
+import { get } from 'lodash'
+
 const INITIAL = {
-  info: true,
+  info: false,
   error: false,
   controls: {
     button: {
@@ -21,10 +23,11 @@ const INITIAL = {
   tabs: {
     chapters: false,
     share: false,
-    audio: true,
+    audio: false,
     download: false,
     info: false
-  }
+  },
+  visibleTabs: ['chapters', 'share', 'audio', 'download', 'info']
 }
 
 const buttonVariant = (state, variant, active) => {
@@ -55,6 +58,11 @@ const buttonVariant = (state, variant, active) => {
 
 const components = (state = INITIAL, action) => {
   switch (action.type) {
+    case 'INIT':
+      return {
+        ...INITIAL,
+        visibleTabs: get(action.payload, 'visibleTabs', INITIAL.visibleTabs)
+      }
     case 'TOGGLE_COMPONENT_INFO':
       return {
         ...state,

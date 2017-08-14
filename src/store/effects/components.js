@@ -1,6 +1,10 @@
 import { get } from 'lodash'
 import actions from '../actions'
 
+const hasChapters = chapters => chapters.length > 0
+const hasMeta = (show, episode) => episode.poster || show.poster || show.title || episode.title || episode.subtitle
+const hasFiles = files => files.length > 0
+
 export default (store, action) => {
   switch (action.type) {
     case 'LOADING':
@@ -29,22 +33,37 @@ export default (store, action) => {
     case 'INIT':
       const state = store.getState()
       const chapters = get(state, 'chapters', [])
-      const reference = get(state, 'reference', {})
       const downloadFiles = get(state, 'download.files', [])
+      const episode = get(state, 'episode', {})
+      const show = get(state, 'show', {})
+      const tabs = get(state, 'components.visibleTabs', [])
 
-      if (chapters.length > 0) {
+      // Tabs
+      if (tabs.includes('chapters') && hasChapters(chapters)) {
         store.dispatch(actions.toggleChaptersTab(true))
       }
 
-      if ((reference.config && reference.share) || reference.origin) {
+      if (tabs.includes('share')) {
         store.dispatch(actions.toggleShareTab(true))
       }
 
-      if (downloadFiles.length > 0) {
+      if (tabs.includes('info')) {
+        store.dispatch(actions.toggleInfoTab(true))
+      }
+
+      if (tabs.includes('download') && hasFiles(downloadFiles)) {
         store.dispatch(actions.toggleDownloadTab(true))
       }
 
-      store.dispatch(actions.toggleInfoTab(true))
+      if (tabs.includes('audio')) {
+        store.dispatch(actions.toggleAudioTab(true))
+      }
+
+      // Meta
+      if (hasMeta(show, episode)) {
+        store.dispatch(actions.toggleInfo(true))
+      }
+
       break
     case 'STOP':
       store.dispatch(actions.showReplayButton())
