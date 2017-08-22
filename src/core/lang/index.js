@@ -2,7 +2,8 @@ import VueI18n from 'vue-i18n'
 
 const messages = {
   en: require('../../lang/en.json'),
-  de: require('../../lang/de.json')
+  de: require('../../lang/de.json'),
+  eo: require('../../lang/eo.json')
 }
 
 export const registerLang = context => {
