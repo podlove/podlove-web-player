@@ -54,6 +54,7 @@
 
   @import '~styles/inputs';
   @import '~styles/share';
+  @import '~styles/embed';
 
   @import '~styles/transitions';
   @import '~styles/animations';

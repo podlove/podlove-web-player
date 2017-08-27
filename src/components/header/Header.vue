@@ -1,14 +1,14 @@
 <template>
-  <div class="header" :style="backgroundStyle" v-if="components.error || components.info">
-    <PodloveError v-if="components.error"></PodloveError>
-    <PodloveInfo v-if="components.info"></PodloveInfo>
+  <div class="header" :style="backgroundStyle" v-if="components.header.error || components.header.info">
+    <ErrorComponent v-if="components.header.error"></ErrorComponent>
+    <InfoComponent v-if="components.header.info"></InfoComponent>
   </div>
 
 </template>
 
 <script>
-  import PodloveInfo from './Info.vue'
-  import PodloveError from './Error.vue'
+  import InfoComponent from './Info.vue'
+  import ErrorComponent from './Error.vue'
 
   export default {
     data () {
@@ -25,8 +25,8 @@
       }
     },
     components: {
-      PodloveInfo,
-      PodloveError
+      InfoComponent,
+      ErrorComponent
     }
   }
 </script>

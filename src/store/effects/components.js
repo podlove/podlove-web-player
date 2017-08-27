@@ -10,6 +10,13 @@ export default (store, action) => {
     case 'LOADING':
       store.dispatch(actions.showLoadingButton())
       break
+    case 'LOADED':
+      if (action.payload.paused) {
+        store.dispatch(actions.showPauseButton())
+      } else {
+        store.dispatch(actions.showPlayingButton())
+      }
+      break
     case 'PLAY':
       // Default behaviour
       store.dispatch(actions.showPlayingButton())
@@ -36,27 +43,15 @@ export default (store, action) => {
       const downloadFiles = get(state, 'download.files', [])
       const episode = get(state, 'episode', {})
       const show = get(state, 'show', {})
-      const tabs = get(state, 'components.visibleTabs', [])
+      const runtime = get(state, 'runtime', {})
 
       // Tabs
-      if (tabs.includes('chapters') && hasChapters(chapters)) {
+      if (hasChapters(chapters)) {
         store.dispatch(actions.toggleChaptersTab(true))
       }
 
-      if (tabs.includes('share')) {
-        store.dispatch(actions.toggleShareTab(true))
-      }
-
-      if (tabs.includes('info')) {
-        store.dispatch(actions.toggleInfoTab(true))
-      }
-
-      if (tabs.includes('download') && hasFiles(downloadFiles)) {
+      if (hasFiles(downloadFiles)) {
         store.dispatch(actions.toggleDownloadTab(true))
-      }
-
-      if (tabs.includes('audio')) {
-        store.dispatch(actions.toggleAudioTab(true))
       }
 
       // Meta
@@ -64,8 +59,18 @@ export default (store, action) => {
         store.dispatch(actions.toggleInfo(true))
       }
 
+      // Audio Modifiers
+      if (runtime.platform === 'desktop') {
+        store.dispatch(actions.toggleVolumeSlider(true))
+      }
+
+      // Everything else without conditions
+      store.dispatch(actions.toggleShareTab(true))
+      store.dispatch(actions.toggleInfoTab(true))
+      store.dispatch(actions.toggleAudioTab(true))
+      store.dispatch(actions.toggleRateSlider(true))
       break
-    case 'STOP':
+    case 'END':
       store.dispatch(actions.showReplayButton())
       break
     case 'ERROR_LOAD':

@@ -1,8 +1,8 @@
 <template>
   <div class="player" :style="backgroundStyle">
-    <ControlBar />
+    <ControlBar></ControlBar>
     <transition name="progressbar">
-      <ProgressBar v-if="components.progressbar" />
+      <ProgressBar v-if="components.progressbar.visible" />
     </transition>
   </div>
 </template>

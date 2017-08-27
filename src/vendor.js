@@ -1,2 +1,4 @@
 import 'vue'
-import 'howler'
+import 'html5-audio-driver'
+import 'lodash'
+import 'ramda'

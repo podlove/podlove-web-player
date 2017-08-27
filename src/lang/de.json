@@ -51,19 +51,19 @@
     },
     "EPISODE": {
       "TEXT": {
-        "BEGINNING": "Share text for episode \"{title}\" with link {link} starting at beginning",
-        "CHAPTER": "Share text for episode \"{title}\" with link {link} for chapter \"{chapter}\"",
-        "PLAYTIME": "Share text for episode \"{title}\" with link {link} beginning at {playtime}"
+        "BEGINNING": "\"{title}\" ({link})",
+        "CHAPTER": "\"{chapter}\" von \"{title}\" ({link})",
+        "PLAYTIME": "\"{title}\" ({link})"
       },
       "SUBJECT": {
-        "BEGINNING": "Share subject for episode \"{title}\" with link {link} starting at beginning",
-        "CHAPTER": "Share subject for episode \"{title}\" with link {link} for chapter \"{chapter}\"",
-        "PLAYTIME": "Share subject for episode \"{title}\" with link {link} beginning at {playtime}"
+        "BEGINNING": "{title}",
+        "CHAPTER": "{title}",
+        "PLAYTIME": "{title}"
       }
     },
     "SHOW": {
-      "TEXT": "Share text for show \"{title}\" with link {link}",
-      "SUBJECT": "Share subject for show \"{title}\" with link {link}"
+      "TEXT": "\"{title}\" ({link})",
+      "SUBJECT": "{title}"
     }
   },
   "EMBED": {

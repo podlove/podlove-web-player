@@ -83,6 +83,17 @@ const toggleInfoTab = visibility => ({
   payload: visibility
 })
 
+// Audio Controls
+const toggleVolumeSlider = visibility => ({
+  type: 'TOGGLE_COMPONENT_VOLUME_SLIDER',
+  payload: visibility
+})
+
+const toggleRateSlider = visibility => ({
+  type: 'TOGGLE_COMPONENT_RATE_SLIDER',
+  payload: visibility
+})
+
 export {
   toggleInfo,
   toggleError,
@@ -104,5 +115,8 @@ export {
   toggleShareTab,
   toggleAudioTab,
   toggleDownloadTab,
-  toggleInfoTab
+  toggleInfoTab,
+
+  toggleVolumeSlider,
+  toggleRateSlider
 }

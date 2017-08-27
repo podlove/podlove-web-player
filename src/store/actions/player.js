@@ -20,6 +20,10 @@ const restart = () => ({
   type: 'UI_RESTART'
 })
 
+const load = () => ({
+  type: 'LOAD'
+})
+
 const idle = () => ({
   type: 'IDLE'
 })
@@ -32,16 +36,22 @@ const pauseEvent = () => ({
   type: 'PAUSE'
 })
 
-const stopEvent = () => ({
-  type: 'STOP'
+const endEvent = () => ({
+  type: 'END'
 })
 
 const toggleTimerMode = () => ({
   type: 'TOGGLE_TIMERMODE'
 })
 
-const loading = () => ({
-  type: 'LOADING'
+const loading = playerProps => ({
+  type: 'LOADING',
+  payload: playerProps
+})
+
+const loaded = playerProps => ({
+  type: 'LOADED',
+  payload: playerProps
 })
 
 const setVolume = volume => ({
@@ -69,13 +79,15 @@ export {
   playEvent,
   pause,
   pauseEvent,
-  stopEvent,
+  endEvent,
   restart,
   idle,
   toggleTimerMode,
   loading,
+  loaded,
   setVolume,
   setRate,
   mute,
-  unmute
+  unmute,
+  load
 }

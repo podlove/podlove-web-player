@@ -104,7 +104,51 @@ navigation: 7
           download: false,
           info: false
         },
-        visibleTabs: ['chapters', 'audio', 'share', 'download', 'info']
+        components: {
+          header: {
+            info: false,
+            error: false
+          },
+          controls: {
+            button: {
+              visible:true, 
+              variant: {
+                loading: false, 
+                replay: false,
+                duration: true,
+                remaining: false,
+                retry: false,
+                playing: false,
+                pause: false
+              }
+            },
+            chapters: false,
+            steppers: false
+          },
+          progressbar: {
+            visible: false
+          },
+          tabs: {
+            chapters: {
+              visible: false
+            },
+            share: {
+              visible: false
+            }, 
+            audio: {
+              visible: false, 
+              volume: false,
+              rate: false
+            },
+            download: {
+              visible: false
+            },
+            info: {
+              visible:false
+            }
+          }
+        }
+        
     };
 
     function loadEditor(store) {

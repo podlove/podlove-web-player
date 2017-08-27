@@ -7,9 +7,9 @@ const playtime = (state = 0, action) => {
       const playtime = state > 0 ? state : get(action.payload, 'playtime', state)
       return timeToSeconds(playtime)
     case 'UPDATE_PLAYTIME':
-      return parseFloat(action.payload)
+      return parseInt(action.payload, 10)
     case 'SET_PLAYTIME':
-      return action.payload
+      return parseInt(action.payload, 10)
     default:
       return state
   }

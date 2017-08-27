@@ -27,7 +27,7 @@ const themeColors = (colors = {}) => {
         border: main,
         seperator: main,
         track: negative ? light : dark,
-        buffer: color(main).fade(0.5),
+        buffer: negative ? color(light).fade(0.5) : color(dark).fade(0.7),
         range: luminosity < 0.05 ? color(light).fade(0.25) : color(dark).fade(0.75)
       },
       actions: {
