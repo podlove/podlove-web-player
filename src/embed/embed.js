@@ -1,3 +1,4 @@
+import 'babel-polyfill'
 import { get, head, isString } from 'lodash'
 import Bluebird from 'bluebird'
 import browser from 'detect-browser'

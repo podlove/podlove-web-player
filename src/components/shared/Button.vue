@@ -64,7 +64,7 @@
     }
 
     border-radius: 4px;
-    border-width: 2px;
+    border-width: 1px;
     border-style: solid;
 
     .inner {

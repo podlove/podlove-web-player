@@ -1,6 +1,10 @@
 <template>
   <div class="tabs" :style="containerStyle" v-if="visibleTabs">
     <TabHeaderComponent>
+      <TabHeaderItemComponent v-if="components.tabs.info && components.tabs.info.visible" :active="tabs.info" :click="toggleTab('info')">
+        <InfoIcon slot="icon"></InfoIcon>
+        <span slot="title">{{ $t('INFO.TITLE') }}</span>
+      </TabHeaderItemComponent>
       <TabHeaderItemComponent v-if="components.tabs.chapters && components.tabs.chapters.visible" :active="tabs.chapters" :click="toggleTab('chapters')">
         <ChaptersIcon slot="icon"></ChaptersIcon>
         <span slot="title">{{ $t('CHAPTERS.TITLE') }}</span>
@@ -13,16 +17,15 @@
         <DownloadIcon slot="icon"></DownloadIcon>
         <span slot="title">{{ $t('DOWNLOAD.TITLE') }}</span>
       </TabHeaderItemComponent>
-      <TabHeaderItemComponent v-if="components.tabs.info && components.tabs.info.visible" :active="tabs.info" :click="toggleTab('info')">
-        <InfoIcon slot="icon"></InfoIcon>
-        <span slot="title">{{ $t('INFO.TITLE') }}</span>
-      </TabHeaderItemComponent>
       <TabHeaderItemComponent v-if="components.tabs.audio && components.tabs.audio.visible" :active="tabs.audio" :click="toggleTab('audio')">
         <AudioIcon slot="icon"></AudioIcon>
         <span slot="title">{{ $t('AUDIO.TITLE') }}</span>
       </TabHeaderItemComponent>
     </TabHeaderComponent>
 
+    <TabBodyComponent :active="tabs.info" v-if="components.tabs.info && components.tabs.info.visible">
+      <InfoTab></InfoTab>
+    </TabBodyComponent>
     <TabBodyComponent :active="tabs.chapters" v-if="components.tabs.chapters && components.tabs.chapters.visible">
       <ChaptersTab></ChaptersTab>
     </TabBodyComponent>
@@ -31,9 +34,6 @@
     </TabBodyComponent>
     <TabBodyComponent :active="tabs.download" v-if="components.tabs.download && components.tabs.download.visible">
       <DownloadTab></DownloadTab>
-    </TabBodyComponent>
-    <TabBodyComponent :active="tabs.info" v-if="components.tabs.info && components.tabs.info.visible">
-      <InfoTab></InfoTab>
     </TabBodyComponent>
     <TabBodyComponent :active="tabs.audio" v-if="components.tabs.audio && components.tabs.audio.visible">
       <AudioTab></AudioTab>

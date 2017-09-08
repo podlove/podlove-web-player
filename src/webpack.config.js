@@ -70,7 +70,7 @@ const config = {
 }
 
 if (process.env.NODE_ENV === 'production') {
-  config.devtool = '#source-map'
+  config.devtool = 'none'
 
   config.module.rules = [...config.module.rules, {
     test: /\.vue$/,
@@ -105,7 +105,11 @@ if (process.env.NODE_ENV === 'production') {
     new webpack.optimize.UglifyJsPlugin({
       sourceMap: false,
       compress: {
-        warnings: false
+        warnings: false,
+        dead_code: true
+      },
+      output: {
+        comments: false
       }
     }),
     new webpack.DefinePlugin({
