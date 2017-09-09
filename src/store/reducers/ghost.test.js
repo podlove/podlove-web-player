@@ -49,25 +49,3 @@ test(`ghost: it disables the ghost mode on DISABLE_GHOST_MODE`, t => {
     active: false
   })
 })
-
-// test(`error: it sets the message and title on ERROR_LOAD`, t => {
-//   const result = error(undefined, {
-//     type: 'ERROR_LOAD'
-//   })
-
-//   t.deepEqual(result, {
-//     title: 'ERROR.LOADING.TITLE',
-//     message: 'ERROR.LOADING.MESSAGE'
-//   })
-// })
-
-// test(`error: it sets the message and title on ERROR_MISSING_AUDIO_FILES`, t => {
-//   const result = error(undefined, {
-//     type: 'ERROR_MISSING_AUDIO_FILES'
-//   })
-
-//   t.deepEqual(result, {
-//     title: 'ERROR.MISSING_FILES.TITLE',
-//     message: 'ERROR.MISSING_FILES.MESSAGE'
-//   })
-// })

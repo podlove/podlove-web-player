@@ -1,3 +1,4 @@
+import 'babel-polyfill'
 import { params } from 'utils/url'
 import remoteConfig from 'utils/request'
 

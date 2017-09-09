@@ -1,7 +1,7 @@
 <template>
   <div class="audio-tab">
-    <AudioVolumeComponent class="seperator"></AudioVolumeComponent>
-    <AudioRateComponent class="seperator"></AudioRateComponent>
+    <AudioVolumeComponent class="seperator" v-if="components.tabs.audio && components.tabs.audio.volume"></AudioVolumeComponent>
+    <AudioRateComponent class="seperator" v-if="components.tabs.audio && components.tabs.audio.rate"></AudioRateComponent>
     <div class="footer">
       <a class="version" title="Export Debug" :href="exportStore" download="web-player-debug.json">Podlove Web Player v{{version}}</a>
     </div>
@@ -17,7 +17,8 @@
   export default {
     data () {
       return {
-        version: this.$select('runtime.version')
+        version: this.$select('runtime.version'),
+        components: this.$select('components')
       }
     },
     computed: {

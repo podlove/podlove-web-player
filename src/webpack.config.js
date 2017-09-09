@@ -4,22 +4,6 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 const path = require('path')
-const { isArray, head } = require('lodash')
-const devIp = require('dev-ip')
-
-const getLocalIp = () => {
-  const ip = devIp()
-
-  if (isArray(ip)) {
-    return head(ip)
-  }
-
-  if (ip) {
-    return ip
-  }
-
-  return '0.0.0.0'
-}
 
 const config = {
   entry: {
@@ -46,6 +30,12 @@ const config = {
       options: {
         name: '[name].[ext]?[hash]'
       }
+    }, {
+      test: /\.(eot|svg|ttf|woff|woff2)$/,
+      loader: 'file-loader',
+      options: {
+        name: 'fonts/[name].[ext]?[hash]'
+      }
     }]
   },
   resolve: {
@@ -66,7 +56,8 @@ const config = {
     overlay: true,
     inline: true,
     hot: true,
-    host: getLocalIp(),
+    disableHostCheck: true,
+    host: '0.0.0.0',
     contentBase: path.resolve(__dirname, '..', 'dist')
   },
   performance: {
@@ -79,7 +70,7 @@ const config = {
 }
 
 if (process.env.NODE_ENV === 'production') {
-  config.devtool = '#source-map'
+  config.devtool = 'none'
 
   config.module.rules = [...config.module.rules, {
     test: /\.vue$/,
@@ -114,7 +105,11 @@ if (process.env.NODE_ENV === 'production') {
     new webpack.optimize.UglifyJsPlugin({
       sourceMap: false,
       compress: {
-        warnings: false
+        warnings: false,
+        dead_code: true
+      },
+      output: {
+        comments: false
       }
     }),
     new webpack.DefinePlugin({

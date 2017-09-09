@@ -1,2 +1,6 @@
+// Vue
 import 'vue'
-import 'howler'
+import 'vue-i18n'
+import 'revue'
+
+import 'html5-audio-driver'

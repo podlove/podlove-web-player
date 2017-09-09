@@ -1,8 +1,7 @@
 <template>
   <button class="control-button" :class="playstate" @click="onButtonClick()" :disabled="isDisabled(playtime)">
     <StepBackIcon
-      :main-color="theme.player.actions.icon"
-      :highlight-color="theme.player.actions.background"
+      :color="theme.player.actions.background"
     ></StepBackIcon>
   </button>
 </template>

@@ -15,7 +15,7 @@ button {
     background: none;
     border: 0;
     color: inherit;
-    /* cursor: default; */
+    cursor: pointer;
     font: inherit;
     line-height: normal;
     overflow: visible;
@@ -28,7 +28,9 @@ button::-moz-focus-inner {
     border: 0;
     padding: 0;
 }
-
+button:focus {
+  outline:0;
+}
 /* Make `a` like a button */
 [role="button"] {
     color: inherit;

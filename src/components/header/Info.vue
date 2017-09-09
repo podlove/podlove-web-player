@@ -67,10 +67,16 @@
     }
 
     .poster-container {
-      width: $poster-size;
+      height: $poster-size;
       line-height: 0;
       border-width: 2px;
       border-style: solid;
+
+      .poster-image {
+        max-height: 100%;
+        max-width: none;
+        width: auto;
+      }
     }
 
     .title {
@@ -121,7 +127,7 @@
       }
 
       .poster-container {
-        width: calc(100px + 3em); // Height of description
+        height: calc(100px + 3em); // Height of description
       }
     }
   }
