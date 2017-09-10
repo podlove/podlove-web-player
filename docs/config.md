@@ -180,18 +180,15 @@ _Not providing chapters will disable all chapter related functions._
 
 #### Tabs
 
-| tabs.info     | toggle the info tab |
-| tabs.share    | toggle the share tab |
+| tabs.info     | toggle the info tab     |
+| tabs.share    | toggle the share tab    |
 | tabs.chapters | toggle the chapters tab |
-| tabs.audio    | toggle the audio tab |
+| tabs.audio    | toggle the audio tab    |
 | tabs.download | toggle the download tab |
-| visibleTabs   | List of visible tabs, available: 'chapters', 'audio', 'share', 'download', 'info' |
 
-_Note: not providing visibleTabs enables all tabs_
 
 ```javascript
   tabs: {
    info: true // will expand the info tab on load
-  },
-  visibleTabs: ['info', 'chapters'] // only info and chapter tabs are visible
+  }
 ```

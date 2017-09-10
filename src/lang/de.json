@@ -80,6 +80,7 @@
     "TITLE": "Info",
     "PUBLICATION_DATE": "Veröffentlicht: {day}.{month}.{year}",
     "ON_AIR": "On Air",
-    "LINK": "Link:"
+    "DURATION_WITH_HOURS": "{hours} Stunden {minutes} Minuten",
+    "DURATION": "{minutes} Minuten"
   }
 }

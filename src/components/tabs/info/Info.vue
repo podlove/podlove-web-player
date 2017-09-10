@@ -3,18 +3,20 @@
     <div class="description">
       <div class="episode">
         <h3 class="title" v-if="episode.title">{{ episode.title }}</h3>
-        <p class="published" v-if="episode.publicationDate">
-          <CalendarIcon class="icon"></CalendarIcon>{{ publicationDate }}
+        <p class="meta">
+          <span class="tag" v-if="episode.publicationDate"><CalendarIcon class="icon"></CalendarIcon>{{ publicationDate }}, {{ publicationTime }}</span>
+          <span class="tag" v-if="duration && episodeDuration.hours > 0"><ClockIcon class="icon"></ClockIcon>{{ $t('DOWNLOAD.DURATION_WITH_HOURS', episodeDuration) }}</span>
+          <span class="tag" v-if="duration && episodeDuration.hours === 0"><ClockIcon class="icon"></ClockIcon>{{ $t('DOWNLOAD.DURATION', episodeDuration) }}</span>
         </p>
         <p class="subtitle" v-if="episode.subtitle">{{ episode.subtitle }}</p>
         <p class="summary" v-if="episode.summary">{{ episode.summary }}</p>
-        <p class="link" v-if="episode.link">{{ $t('INFO.LINK') }} <a :href="episode.link" target="_blank">{{ episode.link }}</a></p>
+        <p class="link" v-if="episode.link"><LinkIcon class="icon"></LinkIcon><a class="info-link truncate" :href="episode.link" target="_blank">{{ episode.link }}</a></p>
       </div>
       <div class="show">
         <h3 class="title" v-if="show.title">{{ show.title }}</h3>
         <img v-if="show.poster" :src="show.poster" class="show-poster shadowed"/>
         <p class="summary" v-if="show.summary">{{ show.summary }}</p>
-        <p class="link" v-if="show.link">{{ $t('INFO.LINK') }} <a :href="show.link" target="_blank">{{ show.link }}</a></p>
+        <p class="link" v-if="show.link"><LinkIcon class="icon"></LinkIcon><a class="info-link truncate" :href="show.link" target="_blank">{{ show.link }}</a></p>
       </div>
     </div>
 
@@ -31,9 +33,11 @@
 </template>
 
 <script>
-  import { localeTime } from 'utils/time'
+  import { calcHours, calcMinutes, localeDate, localeTime } from 'utils/time'
 
   import CalendarIcon from 'icons/CalendarIcon.vue'
+  import ClockIcon from 'icons/ClockIcon.vue'
+  import LinkIcon from 'icons/LinkIcon.vue'
 
   export default {
     data () {
@@ -42,21 +46,33 @@
         show: this.$select('show'),
         episode: this.$select('episode'),
         contributors: this.$select('contributors'),
-        runtime: this.$select('runtime')
+        runtime: this.$select('runtime'),
+        duration: this.$select('duration')
       }
     },
     computed: {
+      episodeDuration () {
+        return {
+          hours: calcHours(this.duration),
+          minutes: calcMinutes(this.duration)
+        }
+      },
       sectionStyle () {
         return {
           background: this.theme.tabs.body.section
         }
       },
       publicationDate () {
+        return localeDate(this.episode.publicationDate, this.runtime.locale)
+      },
+      publicationTime () {
         return localeTime(this.episode.publicationDate, this.runtime.locale)
       }
     },
     components: {
-      CalendarIcon
+      CalendarIcon,
+      ClockIcon,
+      LinkIcon
     }
   }
 </script>
@@ -66,6 +82,10 @@
 
   .info-tab {
      padding: $padding;
+
+    .icon {
+      margin-right: $margin / 2;
+    }
 
     .description {
       display: flex;
@@ -80,17 +100,23 @@
         padding-left: $padding;
       }
 
-      .published {
+      .meta, .link {
         display: flex;
         align-items: center;
+
+        .tag {
+          display: flex;
+          align-items: center;
+          margin-right: $margin
+        }
       }
 
       .subtitle {
         font-weight: 500;
       }
 
-      .icon {
-        margin-right: $margin / 2;
+      .info-link {
+        font-weight: 700;
       }
 
       .show-poster {
@@ -133,6 +159,11 @@
     @media screen and (max-width: $width-m) {
       .description {
         display: block;
+
+        .meta {
+          flex-direction: column;
+          align-items: left;
+        }
 
         .episode, .show {
           width: 100%;

@@ -2,6 +2,8 @@
   <ul class="channel-list">
     <li><ChannelTwitterComponent :text="shareText"></ChannelTwitterComponent></li>
     <li><ChannelFacebookComponent :link="shareLink"></ChannelFacebookComponent></li>
+    <li><ChannelPinterestComponent :text="shareText" :link="shareLink" :poster="sharePoster"></ChannelPinterestComponent></li>
+    <li><ChannelRedditComponent :text="shareText" :link="shareLink"></ChannelRedditComponent></li>
     <li><ChannelGooglePlusComponent :link="shareLink"></ChannelGooglePlusComponent></li>
     <li><ChannelMailComponent :text="shareText" :subject="shareSubject"></ChannelMailComponent></li>
     <li v-if="type !== 'show' && ((reference.config && reference.share) || reference.origin)">
@@ -20,6 +22,8 @@
   import ChannelGooglePlusComponent from './channels/ChannelGooglePlus.vue'
   import ChannelMailComponent from './channels/ChannelMail.vue'
   import ChannelEmbedComponent from './channels/ChannelEmbed.vue'
+  import ChannelPinterestComponent from './channels/ChannelPinterest.vue'
+  import ChannelRedditComponent from './channels/ChannelReddit.vue'
 
   export default {
     props: ['type'],
@@ -115,6 +119,14 @@
           ...this.episode,
           link: this.shareLink
         })
+      },
+
+      sharePoster () {
+        if (this.type === 'show') {
+          return this.show.poster
+        }
+
+        return this.episode.poster
       }
     },
     components: {
@@ -122,7 +134,9 @@
       ChannelFacebookComponent,
       ChannelGooglePlusComponent,
       ChannelMailComponent,
-      ChannelEmbedComponent
+      ChannelEmbedComponent,
+      ChannelPinterestComponent,
+      ChannelRedditComponent
     }
   }
 </script>
