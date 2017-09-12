@@ -80,6 +80,7 @@
     "TITLE": "Informoj",
     "PUBLICATION_DATE": "Publikigita: {day}.{month}.{year}",
     "ON_AIR": "Aŭdebla(j)",
-    "LINK": "Ligilo:"
+    "DURATION_WITH_HOURS": "{hours} hours {minutes} minutes",
+    "DURATION": "{minutes} minutes"
   }
 }

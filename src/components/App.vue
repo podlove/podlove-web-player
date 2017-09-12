@@ -62,6 +62,7 @@
   .podlove {
     display: block;
     position: relative;
+    width: 100%;
     max-width: $width-xl;
     min-width: $width-xs;
 

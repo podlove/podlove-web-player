@@ -4,8 +4,8 @@
       <img class="episode-poster shadowed" v-if="episode.poster || show.poster" :src="episode.poster || show.poster">
       <ul class="episode-meta centered">
         <li class="meta centered" v-if="episode.publicationDate"><CalendarIcon class="icon"></CalendarIcon>{{ publicationDate }}</li>
-        <li class="meta centered" v-if="episodeDuration.hours > 0"><ClockIcon class="icon" size="15px"></ClockIcon>{{ $t('DOWNLOAD.DURATION_WITH_HOURS', episodeDuration) }}</li>
-        <li class="meta centered" v-if="episodeDuration.hours === 0"><ClockIcon class="icon" size="15px"></ClockIcon>{{ $t('DOWNLOAD.DURATION', episodeDuration) }}</li>
+        <li class="meta centered" v-if="episodeDuration.hours > 0"><ClockIcon class="icon" size="15"></ClockIcon>{{ $t('DOWNLOAD.DURATION_WITH_HOURS', episodeDuration) }}</li>
+        <li class="meta centered" v-if="episodeDuration.hours === 0"><ClockIcon class="icon" size="15"></ClockIcon>{{ $t('DOWNLOAD.DURATION', episodeDuration) }}</li>
       </ul>
     </div>
     <div class="file-selection centered column" :style="sectionStyle">
@@ -23,7 +23,7 @@
 <script>
   import { compose } from 'lodash'
   import store from 'store'
-  import { calcHours, calcMinutes, localeTime } from 'utils/time'
+  import { calcHours, calcMinutes, localeDate } from 'utils/time'
 
   import ButtonComponent from 'shared/Button.vue'
   import InputSelectComponent from 'shared/InputSelect.vue'
@@ -56,7 +56,7 @@
         }
       },
       publicationDate () {
-        return localeTime(this.episode.publicationDate, this.runtime.locale)
+        return localeDate(this.episode.publicationDate, this.runtime.locale)
       }
     },
     methods: {

@@ -74,7 +74,8 @@
   "INFO": {
     "TITLE": "Info",
     "PUBLICATION_DATE": "Published: {month}/{day}/{year}",
-    "LINK": "Link:",
+    "DURATION_WITH_HOURS": "{hours} hours {minutes} minutes",
+    "DURATION": "{minutes} minutes",
     "ON_AIR": "On Air"
   }
 }
