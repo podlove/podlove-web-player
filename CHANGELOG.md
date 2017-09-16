@@ -1,3 +1,42 @@
+<a name="4.0.0-beta.1"></a>
+# [4.0.0-beta.1](https://github.com/podlove/podlove-web-player/compare/v4.0.0-alpha.6...v4.0.0-beta.1) (2017-09-16)
+
+
+### Bug Fixes
+
+* **button:** Use inner element for buttons with flexbox ([b4aee42](https://github.com/podlove/podlove-web-player/commit/b4aee42))
+* **embedding:** Enable width resizing for iOS ([44b9a80](https://github.com/podlove/podlove-web-player/commit/44b9a80))
+* **encoding:** Add UTF-8 encoding meta to embed frame ([24c3f66](https://github.com/podlove/podlove-web-player/commit/24c3f66)), closes [#422](https://github.com/podlove/podlove-web-player/issues/422)
+* **header:** Enable truncation for title, subtile and description ([d526db9](https://github.com/podlove/podlove-web-player/commit/d526db9))
+* **internet-explorer:** Add babel polyfills ([59c1744](https://github.com/podlove/podlove-web-player/commit/59c1744))
+* **responsive, input-button, docs:** Fixes several bugs ([d8f32da](https://github.com/podlove/podlove-web-player/commit/d8f32da))
+* **share-tab:** Don't try to display chapter selector if no chapters available. ([3126b60](https://github.com/podlove/podlove-web-player/commit/3126b60))
+* **tab-headers:** truncate headers if no space available ([86897b8](https://github.com/podlove/podlove-web-player/commit/86897b8))
+
+
+### Features
+
+* **app-background:** Use white background to cover alpha levels ([162a980](https://github.com/podlove/podlove-web-player/commit/162a980))
+* **download-tab:** Add copy url button ([898264f](https://github.com/podlove/podlove-web-player/commit/898264f))
+* **download-tab:** Add download tab ([336cee5](https://github.com/podlove/podlove-web-player/commit/336cee5))
+* **info-tab:** Add info tab ([bb32e41](https://github.com/podlove/podlove-web-player/commit/bb32e41))
+* **minimal-version:** Harden player for minimal configuration ([5d970f0](https://github.com/podlove/podlove-web-player/commit/5d970f0))
+* **share:** Streamline sharing tab ([5a5bf8c](https://github.com/podlove/podlove-web-player/commit/5a5bf8c))
+* **tabs:** Increase click areas on tab headers ([1615cfa](https://github.com/podlove/podlove-web-player/commit/1615cfa))
+
+
+### upgrade
+
+* **styles:** Outsource CSS in dedicated file ([51a0a72](https://github.com/podlove/podlove-web-player/commit/51a0a72))
+
+
+### BREAKING CHANGES
+
+* **download-tab:** audio files reference format changed, see docs
+* **styles:** new file style.css
+
+
+
 <a name="4.0.0-alpha"></a>
 # [4.0.0-alpha](https://github.com/podlove/podlove-web-player/compare/v4.0.0-alpha.5...v4.0.0-alpha) (2017-07-10)
 

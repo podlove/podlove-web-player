@@ -1,6 +1,6 @@
 #!/bin/sh
 
-ASSETS_DIRECTORY=dist/*.*
+ASSETS_DIRECTORY=dist/**/*.*
 
 FILES=$(ls -m $ASSETS_DIRECTORY | sed -e "s/, /,/g")
 
