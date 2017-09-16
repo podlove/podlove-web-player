@@ -1,0 +1,69 @@
+{
+  "title": "LNP226 Merkelsche Rück",
+  "subtitle": "Nachtrag G20 — Mexiko — Türkei — Katar — Venezuela",
+  "summary": "Nach einer kleinen Zusammenfassung des Nachhalls zu unserer letzten Sendung, die sich ausführlich mit den Einschränkungen des Demonstrationsrechts zum G20-Gipfel beschäftigt hat, wird es dieses Mal eher international. Wir blicken kurz auf allerlei Beunruhigendes in Mexiko, der Türkei, Katar und Venezuela.",
+  "publicationDate": "2017-07-17T13:43:53.000Z",
+  "link": "http://logbuch-netzpolitik.de/lnp226-merkelsche-rueck",
+  "show": {
+    "title": "Logbuch:Netzpolitik",
+    "subtitle": "Einblicke und Ausblicke in das netzpolitische Geschehen",
+    "summary": "Logbuch:Netzpolitik ist ein in der Regel wöchentlich erscheinender Podcast, der im Dialog zwischen Linus Neumann und Tim Pritlove die wichtigsten Themen und Ereignisse mit netzpolitischem Bezug aufgreift und diskutiert.",
+    "poster": "http://logbuch-netzpolitik.de/wp-content/cache/podlove/92/de7e775cef6431203e4666e628294b/logbuchnetzpolitik_original.jpg",
+    "link": "http://logbuch-netzpolitik.de"
+  },
+  "duration": "01:05:30",
+  "chapters": [
+    {
+      "start": "00:00:00.000",
+      "title": "Intro"
+    },
+    {
+      "start": "00:00:36.181",
+      "title": "Prolog"
+    },
+    {
+      "start": "00:01:13.763",
+      "title": "Feedback: G20"
+    },
+    {
+      "start": "00:32:55.743",
+      "title": "Malware in Mexiko"
+    },
+    {
+      "start": "00:47:11.615",
+      "title": "Erdoğan klinkt sich ins Telefonnetz ein"
+    },
+    {
+      "start": "00:50:18.250",
+      "title": "Inhaftierte Menschenrechtler in der Türkei"
+    },
+    {
+      "start": "00:52:01.119",
+      "title": "Katar Hack"
+    },
+    {
+      "start": "01:02:00.917",
+      "title": "Venezuela"
+    },
+    {
+      "start": "01:04:41.764",
+      "title": "Epilog"
+    }
+  ],
+  "audio": [
+    {
+      "url": "https://tracking.feedpress.it/link/13476/6253680/lnp226-merkelsche-rueck.m4a",
+      "mimeType": "audio/mp4",
+      "size": 24674696,
+      "title": "Audio MP4"
+    }
+  ],
+  "reference": {
+    "share": "//podlove-player.surge.sh/share",
+    "config": "//podlove-player.surge.sh/fixtures/dfb386e2.json",
+    "origin": "http://logbuch-netzpolitik.de/lnp226-merkelsche-rueck"
+  },
+  "theme": {
+    "main": "rgb(218,207,164)"
+  }
+}

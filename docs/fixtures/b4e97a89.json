@@ -51,7 +51,12 @@
     }
   ],
   "audio": [
-    "https://tracking.feedpress.it/link/11988/2939400/me005-februar-maerz-2016.mp3"
+    {
+      "url": "https://tracking.feedpress.it/link/11988/2939400/me005-februar-maerz-2016.mp3",
+      "mimeType": "audio/mpeg",
+      "size": 20759590,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

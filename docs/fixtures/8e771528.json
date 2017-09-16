@@ -15,7 +15,12 @@
   "duration": "02:56:34",
   "chapters": [],
   "audio": [
-    "https://tracking.feedpress.it/link/13440/1885664/cre172-holland-und-die-hacker.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13440/1885664/cre172-holland-und-die-hacker.m4a",
+      "mimeType": "audio/mp4",
+      "size": 66172248,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

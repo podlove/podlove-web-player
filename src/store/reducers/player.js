@@ -6,7 +6,7 @@ const duration = (state = 0, action) => {
     case 'INIT':
       return timeToSeconds(action.payload.duration) || state
     case 'SET_DURATION':
-      return action.payload
+      return parseInt(action.payload, 10)
     default:
       return state
   }

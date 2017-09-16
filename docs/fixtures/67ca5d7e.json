@@ -64,7 +64,12 @@
     }
   ],
   "audio": [
-    "https://tracking.feedpress.it/link/13440/1885495/cre199-nethack.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13440/1885495/cre199-nethack.m4a",
+      "mimeType": "audio/mp4",
+      "size": 45055691,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

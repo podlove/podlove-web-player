@@ -59,7 +59,12 @@
     }
   ],
   "audio": [
-    "https://tracking.feedpress.it/link/13476/5300004/lnp209-das-juengste-geruecht.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13476/5300004/lnp209-das-juengste-geruecht.m4a",
+      "mimeType": "audio/mp4",
+      "size": 33214344,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

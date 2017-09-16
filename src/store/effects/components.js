@@ -1,10 +1,21 @@
 import { get } from 'lodash'
 import actions from '../actions'
 
+const hasChapters = chapters => chapters.length > 0
+const hasMeta = (show, episode) => episode.poster || show.poster || show.title || episode.title || episode.subtitle
+const hasFiles = files => files.length > 0
+
 export default (store, action) => {
   switch (action.type) {
     case 'LOADING':
       store.dispatch(actions.showLoadingButton())
+      break
+    case 'LOADED':
+      if (action.payload.paused) {
+        store.dispatch(actions.showPauseButton())
+      } else {
+        store.dispatch(actions.showPlayingButton())
+      }
       break
     case 'PLAY':
       // Default behaviour
@@ -29,18 +40,37 @@ export default (store, action) => {
     case 'INIT':
       const state = store.getState()
       const chapters = get(state, 'chapters', [])
-      const reference = get(state, 'reference', {})
+      const downloadFiles = get(state, 'download.files', [])
+      const episode = get(state, 'episode', {})
+      const show = get(state, 'show', {})
+      const runtime = get(state, 'runtime', {})
 
-      if (chapters.length > 0) {
+      // Tabs
+      if (hasChapters(chapters)) {
         store.dispatch(actions.toggleChaptersTab(true))
       }
 
-      if ((reference.config && reference.share) || reference.origin) {
-        store.dispatch(actions.toggleShareTab(true))
+      if (hasFiles(downloadFiles)) {
+        store.dispatch(actions.toggleDownloadTab(true))
       }
 
+      // Meta
+      if (hasMeta(show, episode)) {
+        store.dispatch(actions.toggleInfo(true))
+      }
+
+      // Audio Modifiers
+      if (runtime.platform === 'desktop') {
+        store.dispatch(actions.toggleVolumeSlider(true))
+      }
+
+      // Everything else without conditions
+      store.dispatch(actions.toggleShareTab(true))
+      store.dispatch(actions.toggleInfoTab(true))
+      store.dispatch(actions.toggleAudioTab(true))
+      store.dispatch(actions.toggleRateSlider(true))
       break
-    case 'STOP':
+    case 'END':
       store.dispatch(actions.showReplayButton())
       break
     case 'ERROR_LOAD':

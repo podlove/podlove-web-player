@@ -1,5 +1,5 @@
 import test from 'ava'
-import { toPercent, roundUp, round } from './math'
+import { toPercent, roundUp, round, interpolate, relativePosition } from './math'
 
 test('exports a method called toPercent', t => {
   t.is(typeof toPercent, 'function')
@@ -28,4 +28,14 @@ test(`roundUp: rounds to next full float quantile`, t => {
   t.is(roundUp(5)(1), 1.05)
   t.is(roundUp(5)(1.05), 1.10)
   t.is(roundUp(5)(1.06), 1.10)
+})
+
+test(`interpolate: interpolates a given number`, t => {
+  t.is(interpolate(12.555), 12.56)
+  t.is(interpolate(10), 10)
+})
+
+test(`relativePosition: returns position in percent relative to a maximum value`, t => {
+  t.is(relativePosition(50, 100), '50%')
+  t.is(relativePosition(40, 160), '25%')
 })

@@ -1,0 +1,109 @@
+{
+  "title": "FS201 Multidimensionale Fisimatentendynamik",
+  "subtitle": "Elektroautos — Verbrennerkomplexität — Schärfe — Hörerpost — Exploding Kitten — Pimp My Mac — iOS 11 — CarPlay — Maps — Augmented Reality — To Do Lists — Powerbanks — Teambuilding — Byteballs",
+  "summary": "Tims Stimme kommt langsam wieder zurück und wir starten mal wieder in eine Sendung mit wenig Sendungsnotizen und einer Menge Hörerpost. Mit 6,4 Millionen Scoville im Mail wird die Moderation stellenweise knifflig, aber wir stellen uns der Herausforderung. Metadiskussionen über AR und Team Building.",
+  "publicationDate": "2017-07-06T23:30:28.000Z",
+  "link": "http://freakshow.fm/fs201-multidimensionale-fisimatentendynamik",
+  "show": {
+    "title": "Freak Show",
+    "subtitle": "Menschen! Technik! Sensationen!",
+    "summary": "Die muntere Talk Show um Leben mit Technik, das Netz und Technikkultur. Bisweilen Apple-lastig aber selten einseitig. Wir leben und lieben Technologie und reden darüber. Mit Tim, hukl, roddi, Clemens und Denis. Freak Show hieß irgendwann mal mobileMacs.",
+    "poster": "http://freakshow.fm/wp-content/cache/podlove/04/662a9d4edcf77ea2abe3c74681f509/freak-show_original.jpg",
+    "link": "http://freakshow.fm"
+  },
+  "duration": "03:58:18",
+  "chapters": [
+    {
+      "start": "00:00:00.000",
+      "title": "Intro"
+    },
+    {
+      "start": "00:01:11.858",
+      "title": "Begrüßung"
+    },
+    {
+      "start": "00:09:20.952",
+      "title": "Elektroautos"
+    },
+    {
+      "start": "00:46:21.801",
+      "title": "Verbrennerkomplexität"
+    },
+    {
+      "start": "00:51:42.197",
+      "title": "Notfall in Scoville"
+    },
+    {
+      "start": "01:01:39.724",
+      "title": "Hörerpost"
+    },
+    {
+      "start": "01:13:08.138",
+      "title": "Exploding Kitten"
+    },
+    {
+      "start": "01:25:00.027",
+      "title": "Pimp My Mac"
+    },
+    {
+      "start": "01:44:36.273",
+      "title": "iOS 11"
+    },
+    {
+      "start": "02:02:49.608",
+      "title": "CarPlay und Maps"
+    },
+    {
+      "start": "02:19:47.534",
+      "title": "Augmented Reality"
+    },
+    {
+      "start": "02:36:16.514",
+      "title": "To Do Lists"
+    },
+    {
+      "start": "02:59:34.282",
+      "title": "Profiwerkzeug"
+    },
+    {
+      "start": "03:03:40.832",
+      "title": "12V Powerbanks"
+    },
+    {
+      "start": "03:19:45.898",
+      "title": "Slack Shortcut"
+    },
+    {
+      "start": "03:23:05.582",
+      "title": "Was macht ein gutes Team aus?"
+    },
+    {
+      "start": "03:39:34.794",
+      "title": "Byteballs"
+    },
+    {
+      "start": "03:54:25.440",
+      "title": "4D Toys"
+    },
+    {
+      "start": "03:56:46.553",
+      "title": "Ausklang"
+    }
+  ],
+  "audio": [
+    {
+      "url": "https://tracking.feedpress.it/link/13453/6170864/fs201-multidimensionale-fisimatentendynamik.m4a",
+      "mimeType": "audio/mp4",
+      "size": 91187393,
+      "title": "Audio MP4"
+    }
+  ],
+  "reference": {
+    "share": "//podlove-player.surge.sh/share",
+    "config": "//podlove-player.surge.sh/fixtures/2cd67476.json",
+    "origin": "http://freakshow.fm/fs201-multidimensionale-fisimatentendynamik"
+  },
+  "theme": {
+    "main": "rgb(251,237,186)"
+  }
+}

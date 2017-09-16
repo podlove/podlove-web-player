@@ -15,7 +15,12 @@
   "duration": "01:48:19",
   "chapters": [],
   "audio": [
-    "https://tracking.feedpress.it/link/13440/1885514/cre180-passivhaeuser.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13440/1885514/cre180-passivhaeuser.m4a",
+      "mimeType": "audio/mp4",
+      "size": 40672644,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

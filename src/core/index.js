@@ -1,16 +1,23 @@
 import Vue from 'vue'
+import { compose } from 'lodash/fp'
+import { head } from 'lodash'
+import { registerDirectives } from './directives'
+import { registerLang } from './lang'
 
-import clipboard from './directives/clipboard'
-import marquee from './directives/marquee'
-
-const createRenderer = instance => {
-  instance.directive('clipboard', clipboard)
-  instance.directive('marquee', marquee)
-  return instance
+const registerApp = context => {
+  return new context.Renderer({
+    i18n: context.i18n,
+    el: head(document.getElementsByTagName(context.selector)),
+    render: h => h(context.App)
+  })
 }
 
-const Renderer = createRenderer(Vue)
+const boot = compose(registerApp, registerLang, registerDirectives)
 
-export {
-  Renderer
+export const createApp = (selector, App) => {
+  return boot({
+    Renderer: Vue,
+    App,
+    selector
+  })
 }

@@ -75,7 +75,12 @@
     }
   ],
   "audio": [
-    "https://tracking.feedpress.it/link/13476/5202004/lnp207-pressebrecher.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13476/5202004/lnp207-pressebrecher.m4a",
+      "mimeType": "audio/mp4",
+      "size": 54932322,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

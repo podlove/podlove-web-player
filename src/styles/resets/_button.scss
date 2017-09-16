@@ -1,0 +1,43 @@
+/* Base */
+[role="button"],
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+button {
+  box-sizing: border-box;
+}
+
+/* Reset `button` and button-style `input` default styles */
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+button {
+    background: none;
+    border: 0;
+    color: inherit;
+    cursor: pointer;
+    font: inherit;
+    line-height: normal;
+    overflow: visible;
+    padding: 0;
+    appearance: button; /* for input */
+    user-select: none; /* for button */
+}
+input::-moz-focus-inner,
+button::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+button:focus {
+  outline:0;
+}
+/* Make `a` like a button */
+[role="button"] {
+    color: inherit;
+    cursor: default;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    white-space: pre;
+    user-select: none;
+}

@@ -17,8 +17,44 @@ $accent-color: #000;
 $background-color: #fff;
 $overlay-color: #32424C;
 
-// heights
+// Sizes
 $tabs-header-height: 35px;
-$tabs-body-max-height: 550px;
+$tabs-body-max-height: 575px;
 $player-height: 135px;
 $progress-bar-height: 50px;
+$input-height: 35px;
+$addon-button-width: 80px;
+$mute-control-width: calc(60px + #{$padding});
+$content-option-width: 175px;
+$button-width: 50px;
+$slider-height: 44px;
+$index-width: 40px;
+
+$progress-height: 44px;
+$progress-track-height: 2px;
+$progress-thumb-height: 14px;
+$progress-thumb-width: 6px;
+$progress-thumb-active-height: 18px;
+$progress-thumb-active-width: 8px;
+
+$timer-width: 80px;
+$timer-height: 20px;
+
+$content-meta-height: 75px;
+$share-embed-width: 250px;
+
+$download-episode-poster-size: 200px;
+$download-interaction-size: 200px;
+
+$info-cover-width: 175px;
+$info-contributor-avatar-size: 50px;
+
+// levels
+$tab-shadow: 100;
+$overlay-level: 110;
+
+// Inputs
+$range-input-height: 44px;
+$thumb-width-desktop: 6px;
+$thumb-width-desktop-hover: 8px;
+$thumb-width-mobile: 44px;

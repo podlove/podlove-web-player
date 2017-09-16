@@ -73,6 +73,27 @@ const toggleAudioTab = visibility => ({
   payload: visibility
 })
 
+const toggleDownloadTab = visibility => ({
+  type: 'TOGGLE_COMPONENT_TABS_DOWNLOAD',
+  payload: visibility
+})
+
+const toggleInfoTab = visibility => ({
+  type: 'TOGGLE_COMPONENT_TABS_INFO',
+  payload: visibility
+})
+
+// Audio Controls
+const toggleVolumeSlider = visibility => ({
+  type: 'TOGGLE_COMPONENT_VOLUME_SLIDER',
+  payload: visibility
+})
+
+const toggleRateSlider = visibility => ({
+  type: 'TOGGLE_COMPONENT_RATE_SLIDER',
+  payload: visibility
+})
+
 export {
   toggleInfo,
   toggleError,
@@ -92,5 +113,10 @@ export {
 
   toggleChaptersTab,
   toggleShareTab,
-  toggleAudioTab
+  toggleAudioTab,
+  toggleDownloadTab,
+  toggleInfoTab,
+
+  toggleVolumeSlider,
+  toggleRateSlider
 }

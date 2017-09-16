@@ -29,7 +29,6 @@
 </template>
 
 <script>
-  import color from 'color'
   import store from 'store'
   import runtime from 'utils/runtime'
 
@@ -62,7 +61,7 @@
 
       activeChapter () {
         return {
-          'background-color': color(this.theme.tabs.body.backgroundActive).fade(0.9),
+          'background-color': this.theme.tabs.chapters.active,
           color: this.theme.tabs.body.textActive
         }
       },
@@ -84,7 +83,7 @@
 
         return {
           'width': progress + '%',
-          'background-color': this.theme.tabs.body.progress
+          'background-color': this.theme.tabs.chapters.progress
         }
       },
 
@@ -97,7 +96,7 @@
 
         return {
           'width': progress + '%',
-          'background-color': color(this.theme.tabs.body.progress).fade(0.6)
+          'background-color': this.theme.tabs.chapters.ghost
         }
       }
     },
@@ -142,10 +141,8 @@
 </script>
 
 <style lang="scss">
-  @import 'variables';
-  @import 'font';
-
-  $index-width: 40px;
+  @import '~styles/variables';
+  @import '~styles/font';
 
   .chapters--entry {
     width: 100%;

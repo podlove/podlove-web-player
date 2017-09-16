@@ -1,28 +1,74 @@
 <template>
-  <div class="share">
-    <ShareLinkComponent class="seperator" v-if="reference.origin"></ShareLinkComponent>
-    <ShareEmbedComponent class="seperator" v-if="reference.config && reference.share"></ShareEmbedComponent>
-    <ShareDownloadComponent v-if="share.download.files.length > 0"></ShareDownloadComponent>
+  <div class="share-tab">
+    <div class="content-select">
+      <ShareContentComponent></ShareContentComponent>
+    </div>
+
+    <div class="channel-select" :style="sectionStyle">
+      <span class="label">{{ $t('SHARE.SHARE_CHANNEL') }}</span>
+      <ShareChannelsComponent :type="share.content"></ShareChannelsComponent>
+
+      <span class="label">{{ $t('SHARE.SHARE_LINK') }}</span>
+      <ShareLinkComponent :type="share.content"></ShareLinkComponent>
+    </div>
+
+    <ShareEmbedComponent :type="share.content"></ShareEmbedComponent>
   </div>
 </template>
 
 <script>
+  import ShareChannelsComponent from './ShareChannels.vue'
+  import ShareContentComponent from './ShareContent.vue'
   import ShareLinkComponent from './ShareLink.vue'
+
   import ShareEmbedComponent from './ShareEmbed.vue'
-  import ShareDownloadComponent from './ShareDownload.vue'
 
   export default {
     data () {
       return {
-        share: this.$select('share'),
-        reference: this.$select('reference'),
-        theme: this.$select('theme')
+        theme: this.$select('theme'),
+        share: this.$select('share')
+      }
+    },
+    computed: {
+      sectionStyle () {
+        return {
+          background: this.theme.tabs.body.section
+        }
       }
     },
     components: {
-      ShareLinkComponent,
+      ShareContentComponent,
+      ShareChannelsComponent,
       ShareEmbedComponent,
-      ShareDownloadComponent
+      ShareLinkComponent
     }
   }
 </script>
+
+<style lang="scss">
+  @import '~styles/variables';
+
+  .share-tab {
+    padding: $padding 0 0 0;
+
+    .title {
+      font-weight: 500;
+      margin: ($margin / 2) 0 $margin 0;
+    }
+  }
+
+  .content-select {
+    padding: $padding $padding 0 $padding;
+  }
+
+  .channel-select {
+    padding: $padding ($padding * 2) ($padding * 2) $padding;
+    text-align: center;
+
+    .label {
+      display: block;
+      font-weight: 400;
+    }
+  }
+</style>

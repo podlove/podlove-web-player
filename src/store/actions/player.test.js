@@ -6,7 +6,7 @@ import {
   playEvent,
   pause,
   pauseEvent,
-  stopEvent,
+  endEvent,
   restart,
   idle,
   toggleTimerMode,
@@ -14,7 +14,9 @@ import {
   setVolume,
   setRate,
   mute,
-  unmute
+  unmute,
+  load,
+  loaded
 } from './player'
 
 test(`setDurationAction: creates the SET_DURATION action`, t => {
@@ -55,9 +57,9 @@ test(`pauseEventAction: creates the PAUSE action`, t => {
   })
 })
 
-test(`stopEventAction: creates the STOP action`, t => {
-  t.deepEqual(stopEvent(), {
-    type: 'STOP'
+test(`endEvent: creates the STOP action`, t => {
+  t.deepEqual(endEvent(), {
+    type: 'END'
   })
 })
 
@@ -80,8 +82,9 @@ test(`toggleTimerModeAction: creates the TOGGLE_TIMERMODE action`, t => {
 })
 
 test(`loadingAction: creates the LOADING action`, t => {
-  t.deepEqual(loading(), {
-    type: 'LOADING'
+  t.deepEqual(loading('foo'), {
+    type: 'LOADING',
+    payload: 'foo'
   })
 })
 
@@ -108,5 +111,18 @@ test(`muteAction: creates the MUTE action`, t => {
 test(`unmuteAction: creates the UNMUTE action`, t => {
   t.deepEqual(unmute(), {
     type: 'UNMUTE'
+  })
+})
+
+test(`loadAction: creates the LOAD action`, t => {
+  t.deepEqual(load(), {
+    type: 'LOAD'
+  })
+})
+
+test(`loadedAction: creates the LOAD action`, t => {
+  t.deepEqual(loaded('foo'), {
+    type: 'LOADED',
+    payload: 'foo'
   })
 })

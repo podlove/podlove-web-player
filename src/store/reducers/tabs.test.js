@@ -7,12 +7,28 @@ test.beforeEach(t => {
   testState = {
     chapters: false,
     audio: false,
-    share: false
+    share: false,
+    info: false,
+    download: false
   }
 })
 
 test(`tabs: is a reducer function`, t => {
   t.is(typeof tabs, 'function')
+})
+
+test(`tabs: it initialises the tabs on INIT`, t => {
+  const result = tabs(testState, {
+    type: 'INIT',
+    payload: {
+      tabs: {
+        chapters: true
+      }
+    }
+  })
+
+  testState.chapters = true
+  t.deepEqual(result, testState)
 })
 
 test(`tabs: it toggles the tabs on TOGGLE_TAB`, t => {

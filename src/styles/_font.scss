@@ -1,4 +1,26 @@
-@import url('https://fonts.googleapis.com/css?family=Fira+Sans:300,400,500|Fira+Mono');
+@font-face {
+  font-family: Fira Sans;
+  src: url('~styles/fonts/FiraSans-Light.eot') format('eot'),
+       url('~styles/fonts/FiraSans-Light.woff') format('woff'),
+       url('~styles/fonts/FiraSans-Light.woff2') format('woff2');
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: Fira Sans;
+  src: url('~styles/fonts/FiraSans-Regular.eot') format('eot'),
+       url('~styles/fonts/FiraSans-Regular.woff') format('woff'),
+       url('~styles/fonts/FiraSans-Regular.woff2') format('woff2');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: Fira Mono;
+  src: url('~styles/fonts/FiraMono-Regular.eot') format('eot'),
+       url('~styles/fonts/FiraMono-Regular.woff') format('woff'),
+       url('~styles/fonts/FiraMono-Regular.woff2') format('woff2');
+  font-weight: 500;
+}
 
 @mixin font() {
   font-family: 'Fira Sans', sans-serif;

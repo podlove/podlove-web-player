@@ -11,7 +11,8 @@ test.beforeEach(t => {
       subtitle: 'subtitle',
       poster: '//episode/poster',
       summary: 'Die muntere Talk Show um Leben mit Technik, das Netz und Technikkultur. Bisweilen Apple-lastig aber selten einseitig. Wir leben und lieben Technologie und reden darüber. Mit Tim, hukl, roddi, Clemens und Denis. Freak Show hieß irgendwann mal mobileMacs.',
-      link: 'https://freakshow.fm/fs171-invasion'
+      link: 'https://freakshow.fm/fs171-invasion',
+      publicationDate: '2016-02-11T03:13:55+00:00'
     }
   }
 })
@@ -22,6 +23,9 @@ test(`episode: it is a reducer function`, t => {
 
 test(`episode: it extracts the episode meta information`, t => {
   const result = episode({}, testAction)
+
+  testAction.payload.publicationDate = new Date('2016-02-11T03:13:55+00:00').getTime()
+
   t.deepEqual(result, testAction.payload)
 })
 
@@ -32,7 +36,8 @@ test(`episode: it falls back to default state`, t => {
     subtitle: null,
     poster: null,
     summary: null,
-    link: null
+    link: null,
+    publicationDate: null
   })
 })
 

@@ -71,7 +71,12 @@
     }
   ],
   "audio": [
-    "https://tracking.feedpress.it/link/13476/5589797/lnp215-ich-mach-mir-ne-tomate-warm.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13476/5589797/lnp215-ich-mach-mir-ne-tomate-warm.m4a",
+      "mimeType": "audio/mp4",
+      "size": 38126940,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

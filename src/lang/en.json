@@ -2,21 +2,6 @@
   "CHAPTERS": {
     "TITLE": "Chapters"
   },
-  "SHARE": {
-    "TITLE": "Share",
-    "LINK": "Link",
-    "EMBED": "Embed",
-    "DOWNLOAD": "Download",
-    "LABELS": {
-      "TYPE": "Type:",
-      "START": "Start:",
-      "SIZE": "Size:"
-    },
-    "ACTIONS": {
-      "COPY": "copy",
-      "DOWNLOAD": "download"
-    }
-  },
   "AUDIO": {
     "TITLE": "Audio",
     "VOLUME": "Volume",
@@ -36,5 +21,61 @@
       "TITLE": "Required information missing",
       "MESSAGE": "To play the podcast important references to audio files are missing."
     }
+  },
+  "DOWNLOAD": {
+    "TITLE": "Download",
+    "DURATION_WITH_HOURS": "{hours} hours {minutes} minutes",
+    "DURATION": "{minutes} minutes",
+    "ACTIONS": {
+      "DOWNLOAD": "Download Episode",
+      "COPY": "Copy Url"
+    }
+  },
+  "SHARE": {
+    "TITLE": "Share",
+    "CONTENT": {
+      "SHOW": "Show",
+      "EPISODE": "Episode",
+      "CHAPTER": "Chapter",
+      "TIME": "Playtime"
+    },
+    "SHARE_CHANNEL": "Share in...",
+    "SHARE_LINK": "Link",
+    "ACTIONS": {
+      "COPY": "copy"
+    },
+    "EPISODE": {
+      "TEXT": {
+        "BEGINNING": "\"{title}\" ({link})",
+        "CHAPTER": "\"{chapter}\" of \"{title}\" ({link})",
+        "PLAYTIME": "\"{title}\" ({link})"
+      },
+      "SUBJECT": {
+        "BEGINNING": "{title}",
+        "CHAPTER": "{title} - {chapter}",
+        "PLAYTIME": "{title}"
+      }
+    },
+    "SHOW": {
+      "TEXT": "\"{title}\" ({link})",
+      "SUBJECT": "{title}"
+    },
+    "EMBED": {
+      "TITLE": "Embed Episode",
+      "LABEL": {
+        "SIZE": "Embed Size",
+        "CODE": "Embed Code"
+      },
+      "ACTIONS": {
+        "COPY": "Copy Code"
+      }
+    }
+  },
+  "INFO": {
+    "TITLE": "Info",
+    "PUBLICATION_DATE": "Published: {month}/{day}/{year}",
+    "DURATION_WITH_HOURS": "{hours} hours {minutes} minutes",
+    "DURATION": "{minutes} minutes",
+    "ON_AIR": "On Air"
   }
 }

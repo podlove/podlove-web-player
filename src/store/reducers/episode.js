@@ -5,7 +5,16 @@ const INIT_STATE = {
   subtitle: null,
   summary: null,
   poster: null,
-  link: null
+  link: null,
+  publicationDate: null
+}
+
+const parseDate = (utcDate) => {
+  if (!utcDate) {
+    return null
+  }
+
+  return new Date(utcDate).getTime()
 }
 
 const episode = (state = INIT_STATE, action) => {
@@ -17,7 +26,8 @@ const episode = (state = INIT_STATE, action) => {
         subtitle: get(action.payload, ['subtitle'], null),
         summary: get(action.payload, ['summary'], null),
         link: get(action.payload, ['link'], null),
-        poster: get(action.payload, ['poster'], null)
+        poster: get(action.payload, ['poster'], null),
+        publicationDate: parseDate(get(action.payload, ['publicationDate'], null))
       }
     default:
       return state

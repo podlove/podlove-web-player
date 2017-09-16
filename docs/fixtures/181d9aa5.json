@@ -15,7 +15,12 @@
   "duration": "02:50:39",
   "chapters": [],
   "audio": [
-    "https://tracking.feedpress.it/link/13440/1885499/cre195-das-gehirn.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13440/1885499/cre195-das-gehirn.m4a",
+      "mimeType": "audio/mp4",
+      "size": 63901945,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

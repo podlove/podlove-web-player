@@ -51,7 +51,12 @@
     }
   ],
   "audio": [
-    "https://tracking.feedpress.it/link/13444/1886549/nsfw089-spitzbuebisch-feixend.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13444/1886549/nsfw089-spitzbuebisch-feixend.m4a",
+      "mimeType": "audio/mp4",
+      "size": 92148987,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

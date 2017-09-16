@@ -1,4 +1,4 @@
-import { get } from 'lodash'
+import { get, findIndex } from 'lodash'
 import { timeToSeconds } from 'utils/time'
 import { currentChapterIndex } from 'utils/chapters'
 
@@ -35,6 +35,16 @@ const setActiveByPlaytime = playtime => chapter => {
   return activeChapter(chapter)
 }
 
+const fallbackToLastChapter = (chapters = [], playtime = 0) => {
+  const index = findIndex(chapters, { active: true })
+
+  if (index > 0 || playtime === 0) {
+    return chapters
+  } else {
+    return chapters.map(setActiveByIndex(chapters.length - 1))
+  }
+}
+
 const setActiveByIndex = chapterIndex => (chapter, index) => {
   if (chapterIndex === index) {
     return activeChapter(chapter)
@@ -55,7 +65,6 @@ const nextChapter = chapters => {
 
 const previousChapter = chapters => {
   let previous = currentChapterIndex(chapters) - 1
-
   if (previous <= 0) {
     previous = 0
   }
@@ -67,10 +76,12 @@ const chapters = (state = [], action) => {
   switch (action.type) {
     case 'INIT':
       const chapters = get(action.payload, 'chapters') || []
-
-      return chapters
+      const activeChapters = chapters
         .reduce(parseChapters(action.payload.duration), [])
         .map(setActiveByPlaytime(action.payload.playtime || 0))
+
+      return fallbackToLastChapter(activeChapters, action.payload.playtime || 0)
+
     case 'UPDATE_CHAPTER':
       const nextChapters = state.map(setActiveByPlaytime(action.payload))
 

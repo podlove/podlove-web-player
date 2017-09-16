@@ -15,7 +15,12 @@
   "duration": "01:59:10",
   "chapters": [],
   "audio": [
-    "https://tracking.feedpress.it/link/13440/1885667/cre169-bluetooth.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13440/1885667/cre169-bluetooth.m4a",
+      "mimeType": "audio/mp4",
+      "size": 44636548,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

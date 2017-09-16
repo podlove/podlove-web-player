@@ -119,7 +119,12 @@
     }
   ],
   "audio": [
-    "https://tracking.feedpress.it/link/13453/4302962/fs182-britzelpieps.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13453/4302962/fs182-britzelpieps.m4a",
+      "mimeType": "audio/mp4",
+      "size": 97169536,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

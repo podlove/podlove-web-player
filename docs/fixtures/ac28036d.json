@@ -14,7 +14,12 @@
   "duration": "03:05:25",
   "chapters": [],
   "audio": [
-    "https://tracking.feedpress.it/link/13444/1886722/nsfw053-spucki-muss-ins-heim.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13444/1886722/nsfw053-spucki-muss-ins-heim.m4a",
+      "mimeType": "audio/mp4",
+      "size": 69427438,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

@@ -15,7 +15,12 @@
   "duration": "01:42:41",
   "chapters": [],
   "audio": [
-    "https://tracking.feedpress.it/link/13440/1885501/cre193-old-school-computing.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13440/1885501/cre193-old-school-computing.m4a",
+      "mimeType": "audio/mp4",
+      "size": 38509384,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

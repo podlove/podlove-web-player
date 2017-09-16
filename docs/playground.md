@@ -6,7 +6,7 @@ navigation: 7
 
 # Playground
 
-<div id="player"></div>
+<p id="player"></p>
 <div id="editor"></div>
 <script src="{{ 'embed.js' | relative_url }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/5.5.11/jsoneditor.min.js"></script>
@@ -18,7 +18,7 @@ navigation: 7
         summary: 'Wir haben eine wie wir finden abwechslungsreiche Sendung produziert, die wir Euch wie immer mit Freude bereitstellen. Während die Live-Hörer Freak-Show-Bingo spielen, greifen wir das Wikipedia-Thema der letzten Sendung auf und liefern auch noch weitere Aspekte des optimalen Star-Wars-Medienkonsums frei Haus. Dazu viel Nerderei rund um die Kommandozeile, eine Einschätzung der Perspektive der Apple Watch, ein Rant über die mangelhafte Security  im Internet of Things (and Buildings) und allerlei anderer Kram.  Roddi setzt dieses Mal aus, sonst Vollbesetzung.',
         publicationDate: '2016-02-11T03:13:55+00:00',
         poster: 'https://freakshow.fm/wp-content/cache/podlove/04/662a9d4edcf77ea2abe3c74681f509/freak-show_200x200.jpg',
-        link: 'https://freakshow.fm/fs171-invasion'
+        link: 'https://freakshow.fm/fs171-invasion',
         show: {
             title: 'Freak Show',
             subtitle: 'Menschen! Technik! Sensationen!',
@@ -55,12 +55,27 @@ navigation: 7
             { start:"03:56:11", title: 'That One Privacy Guy\'s VPN Comparison Chart'},
             { start:"04:10:00", title: 'Ausklang'}
         ],
-        audio: [
-            "http://freakshow.fm/podlove/file/4468/s/download/c/select-show/fs171-invasion.m4a",
-            "http://freakshow.fm/podlove/file/4467/s/download/c/select-show/fs171-invasion.mp3",
-            "http://freakshow.fm/podlove/file/4466/s/download/c/select-show/fs171-invasion.oga",
-            "http://freakshow.fm/podlove/file/4465/s/download/c/select-show/fs171-invasion.opus"
-        ],
+        audio: [{
+          url: 'http://freakshow.fm/podlove/file/4468/s/download/c/select-show/fs171-invasion.m4a',
+          mimeType: 'audio/mp4',
+          size: 93260000,
+          title: 'Audio MP4'
+        }, {
+          url: 'http://freakshow.fm/podlove/file/4467/s/download/c/select-show/fs171-invasion.mp3',
+          mimeType: 'audio/mp3',
+          size: 14665000,
+          title: 'Audio MP3'
+        }, {
+          url: 'http://freakshow.fm/podlove/file/4467/s/download/c/select-show/fs171-invasion.oga',
+          mimeType: 'audio/ogg',
+          size: 94400000,
+          title: 'Audio Ogg'
+        }, {
+          url: 'http://freakshow.fm/podlove/file/4467/s/download/c/select-show/fs171-invasion.opus',
+          mimeType: 'audio/opus',
+          size: 94400000,
+          title: 'Audio Opus'
+        }],
         reference: {
             config: '//podlove-player.surge.sh/fixtures/example.json',
             share: '//podlove-player.surge.sh/share',
@@ -68,7 +83,72 @@ navigation: 7
         },
         runtime: {
             language: 'en'
+        },
+        contributors: [{
+            avatar: 'https://freakshow.fm/wp-content/cache/podlove/47/08928e3c26dcb1141d67ad75869619/tim-pritlove_50x50.jpg',
+            name: 'Tim Pritlove'
+        }, {
+            avatar: 'https://freakshow.fm/wp-content/cache/podlove/0f/9c18f5e825496b9060337f92814142/clemens-schrimpe_50x50.jpg',
+            name: 'Clemens Schrimpe'
+        }, {
+            avatar: 'https://freakshow.fm/wp-content/cache/podlove/8e/f30cbe274c3f5e43dc4a7219676f50/hukl_50x50.jpg',
+            name: 'hukl'
+        }, {
+            avatar: 'https://freakshow.fm/wp-content/cache/podlove/b2/425e5c8f180ddf548c95be1c2d7bcf/denis-ahrens_50x50.jpg',
+            name: 'Denis Ahrens'
+        }],
+        tabs: {
+          chapters: false,
+          audio: false,
+          share: false,
+          download: false,
+          info: false
+        },
+        components: {
+          header: {
+            info: false,
+            error: false
+          },
+          controls: {
+            button: {
+              visible:true, 
+              variant: {
+                loading: false, 
+                replay: false,
+                duration: true,
+                remaining: false,
+                retry: false,
+                playing: false,
+                pause: false
+              }
+            },
+            chapters: false,
+            steppers: false
+          },
+          progressbar: {
+            visible: false
+          },
+          tabs: {
+            chapters: {
+              visible: false
+            },
+            share: {
+              visible: false
+            }, 
+            audio: {
+              visible: false, 
+              volume: false,
+              rate: false
+            },
+            download: {
+              visible: false
+            },
+            info: {
+              visible:false
+            }
+          }
         }
+        
     };
 
     function loadEditor(store) {

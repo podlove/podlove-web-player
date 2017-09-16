@@ -14,7 +14,12 @@
   "duration": "00:22:21",
   "chapters": [],
   "audio": [
-    "https://tracking.feedpress.it/link/13551/1926867/tlf003.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13551/1926867/tlf003.m4a",
+      "mimeType": "audio/mp4",
+      "size": 14036667,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

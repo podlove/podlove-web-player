@@ -1,3 +1,4 @@
+import 'babel-polyfill'
 import { get, head, isString } from 'lodash'
 import Bluebird from 'bluebird'
 import browser from 'detect-browser'
@@ -14,7 +15,9 @@ import iframeResizerContentWindow from 'raw-loader!iframe-resizer/js/iframeResiz
 const playerSandbox = anchor => {
   const frame = createNode('iframe')
 
-  if (browser.name !== 'ios') {
+  if (browser.name === 'ios') {
+    frame.setAttribute('width', anchor.offsetWidth)
+  } else {
     frame.setAttribute('width', '100%')
   }
 
@@ -41,7 +44,7 @@ const injectPlayer = (sandbox, player) => new Bluebird(resolve => {
   sandboxDoc.open()
   sandboxDoc.write('<!DOCTYPE html>')
   sandboxDoc.write('<html>')
-  sandboxDoc.write('<head></head>')
+  sandboxDoc.write('<head><meta charset="utf-8" /></head>')
   sandboxDoc.write(player)
   sandboxDoc.close()
 
@@ -72,11 +75,12 @@ const renderPlayer = anchor => player => {
 
   return injectPlayer(sandbox, player)
     .then(sandbox => {
-      loader.done()
       iframeResizer({
         checkOrigin: false,
         log: false
       }, sandbox)
+
+      loader.done()
     })
     .return(sandbox)
     .then(getPodloveStore)
@@ -93,6 +97,7 @@ const configNode = (config = {}) =>
     .then(config => tag('script', `window.PODLOVE = ${JSON.stringify(config)}`))
 
 // Player Logic
+const styleBundle = config => tag('link', '', {rel: 'stylesheet', href: `${get(config.reference, 'base', '.')}/style.css`})
 const vendorBundle = config => tag('script', '', {type: 'text/javascript', src: `${get(config.reference, 'base', '.')}/vendor.js`})
 const appBundle = config => tag('script', '', {type: 'text/javascript', src: `${get(config.reference, 'base', '.')}/window.js`})
 
@@ -108,6 +113,7 @@ window.podlovePlayer = (selector, config) => {
   return Bluebird.all([
     playerEntry,
     configNode(config),
+    styleBundle(config),
     vendorBundle(config),
     appBundle(config),
     dynamicResizer

@@ -83,7 +83,12 @@
     }
   ],
   "audio": [
-    "https://tracking.feedpress.it/link/13444/1886693/nsfw082-erfahrungskohorte-nsfw.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13444/1886693/nsfw082-erfahrungskohorte-nsfw.m4a",
+      "mimeType": "audio/mp4",
+      "size": 80869507,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

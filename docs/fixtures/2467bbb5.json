@@ -14,7 +14,12 @@
   "duration": "02:18:52",
   "chapters": [],
   "audio": [
-    "https://tracking.feedpress.it/link/13440/1885672/cre164-urheberrecht.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13440/1885672/cre164-urheberrecht.m4a",
+      "mimeType": "audio/mp4",
+      "size": 51976030,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

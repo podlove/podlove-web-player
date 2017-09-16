@@ -1,0 +1,86 @@
+{
+  "CHAPTERS": {
+    "TITLE": "Ĉapitroj"
+  },
+  "AUDIO": {
+    "TITLE": "Sono",
+    "VOLUME": "Laŭteco",
+    "SPEED": "Rapideco",
+    "DEBUG_STATE": "Elporti sencimigan staton"
+  },
+  "PLAYER": {
+    "REPLAY": "Ripeti",
+    "RETRY": "Reprovi"
+  },
+  "ERROR": {
+    "LOADING": {
+      "TITLE": "Eraro pri ŝargado de sondosiero",
+      "MESSAGE": "La sondosioro ne povis esti ŝargata, la servilo ne estas atingebla. Bonvolu reprovi pli poste."
+    },
+    "MISSING_FILES": {
+      "TITLE": "Necesaj informoj mankas",
+      "MESSAGE": "Por aŭdigi la podkaston mankas la referencoj al la sondosieroj."
+    }
+  },
+  "DOWNLOAD": {
+    "TITLE": "Elŝuti",
+    "DURATION_WITH_HOURS": "{hours} horoj {minutes} minutoj",
+    "DURATION": "{minutes} minutoj",
+    "ACTIONS": {
+      "DOWNLOAD": "Elŝuti epizodon",
+      "COPY": "Kopii URLn"
+    }
+  },
+  "SHARE": {
+    "TITLE": "Konigi",
+    "CONTENT": {
+      "SHOW": "Serio",
+      "EPISODE": "Epizodo",
+      "CHAPTER": "Ĉapitro",
+      "TIME": "Ludtempo"
+    },
+    "REFERENCE": {
+      "BEGINNING": "Komenco",
+      "CHAPTER": "Ĉapitro",
+      "TIME": "Ludtempo"
+    },
+    "SHARE_CHANNEL": "Konigi per...",
+    "SHARE_LINK": "Ligilo",
+    "ACTIONS": {
+      "COPY": "kopii"
+    },
+    "EPISODE": {
+      "TEXT": {
+        "BEGINNING": "Konigi tekston de epizodo \"{title}\" per ligilo {link} ekde komenco",
+        "CHAPTER": "Konigi tekston de epizodo \"{title}\" per ligilo {link}  por ĉapitro \"{chapter}\"",
+        "PLAYTIME": "Konigi tekston de epizodo \"{title}\" per ligilo {link} ekde {playtime}"
+      },
+    "SUBJECT": {
+	"BEGINNING": "Konigi titolon de epizodo \"{title}\" per ligilo {link} ekde komenco",
+        "CHAPTER": "Konigi titolon de epizodo \"{title}\" per ligilo {link}  por ĉapitro \"{chapter}\"",
+        "PLAYTIME": "Konigi titolon de  epizodo \"{title}\" per ligilo {link} ekde {playtime}"
+      }
+    },
+    "SHOW": {
+      "TEXT": "Konigi tekston de serio \"{title}\" per ligilo {link}",
+      "SUBJECT": "Konigi tekston de serio \"{title}\" per ligilo {link}"
+    }
+  },
+  "EMBED": {
+    "TITLE": "Enigi epizodon",
+    "LABEL": {
+      "SIZE": "Eniga grandeco",
+      "CODE": "Eniga kodo"
+    },
+    "ACTIONS": {
+      "COPY": "Kopii kodon"
+    }
+  },
+  "INFO": {
+    "TITLE": "Informoj",
+    "PUBLICATION_DATE": "Publikigita: {day}.{month}.{year}",
+    "ON_AIR": "Aŭdebla(j)",
+    "DURATION_WITH_HOURS": "{hours} hours {minutes} minutes",
+    "DURATION": "{minutes} minutes"
+  }
+}

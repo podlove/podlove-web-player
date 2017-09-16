@@ -14,7 +14,12 @@
   "duration": "02:49:06",
   "chapters": [],
   "audio": [
-    "https://tracking.feedpress.it/link/13444/1886721/nsfw054-click-shabbat.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13444/1886721/nsfw054-click-shabbat.m4a",
+      "mimeType": "audio/mp4",
+      "size": 63324910,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

@@ -15,7 +15,12 @@
   "duration": "02:10:08",
   "chapters": [],
   "audio": [
-    "https://tracking.feedpress.it/link/13440/1885662/cre174-kunst-kultur-gesellschaft.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13440/1885662/cre174-kunst-kultur-gesellschaft.m4a",
+      "mimeType": "audio/mp4",
+      "size": 48910551,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

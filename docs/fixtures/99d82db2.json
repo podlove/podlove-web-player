@@ -91,7 +91,12 @@
     }
   ],
   "audio": [
-    "https://tracking.feedpress.it/link/13444/2015357/nsfw093-barschwund.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13444/2015357/nsfw093-barschwund.m4a",
+      "mimeType": "audio/mp4",
+      "size": 83370888,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

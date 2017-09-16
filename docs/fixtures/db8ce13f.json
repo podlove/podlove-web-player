@@ -15,7 +15,12 @@
   "duration": "02:18:45",
   "chapters": [],
   "audio": [
-    "https://tracking.feedpress.it/link/13440/1885665/cre171-die-eisenbahn.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13440/1885665/cre171-die-eisenbahn.m4a",
+      "mimeType": "audio/mp4",
+      "size": 51972852,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

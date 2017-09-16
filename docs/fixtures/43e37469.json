@@ -87,7 +87,12 @@
     }
   ],
   "audio": [
-    "https://tracking.feedpress.it/link/13453/5554460/fs195-dein-butler-ist-ein-zombie.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13453/5554460/fs195-dein-butler-ist-ein-zombie.m4a",
+      "mimeType": "audio/mp4",
+      "size": 93627212,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

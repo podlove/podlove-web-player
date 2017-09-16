@@ -1,5 +1,5 @@
 <template>
-  <div class="podlove" :class="{[display]: display, [runtime.platform]: runtime.platform}">
+  <div class="podlove" :class="{[display]: display, [runtime.platform]: runtime.platform}" :style="appStyle">
     <HeaderComponent></HeaderComponent>
     <PlayerComponent></PlayerComponent>
     <TabsComponent></TabsComponent>
@@ -19,13 +19,21 @@
 
       return {
         display: this.$select('display'),
-        runtime: this.$select('runtime')
+        runtime: this.$select('runtime'),
+        theme: this.$select('theme')
       }
     },
     watch: {
       runtime (runtime) {
         // i18n integration
         this.$i18n.locale = runtime.language
+      }
+    },
+    computed: {
+      appStyle () {
+        return {
+          background: this.theme.background
+        }
       }
     },
     components: {
@@ -37,19 +45,24 @@
 </script>
 
 <style lang="scss">
-  @import 'variables';
-  @import 'global';
-  @import 'font';
+  @import '~styles/variables';
+  @import '~styles/global';
+  @import '~styles/utils';
+  @import '~styles/font';
+  @import '~styles/text';
+  @import '~styles/resets/resets';
 
-  @import 'embed';
-  @import 'utils';
-  @import 'grid';
+  @import '~styles/inputs';
+  @import '~styles/share';
+  @import '~styles/embed';
 
-  @import 'transitions';
+  @import '~styles/transitions';
+  @import '~styles/animations';
 
   .podlove {
     display: block;
     position: relative;
+    width: 100%;
     max-width: $width-xl;
     min-width: $width-xs;
 

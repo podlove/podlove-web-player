@@ -2,7 +2,7 @@
   <div class="progress">
     <input v-if="runtime.platform === 'desktop'"
       type="range"
-      min="0" :max="interpolate(duration)" step="0.1"
+      min="0" :max="interpolate(duration)"
       :value="interpolate(playtime)"
       @change="onChange"
       @input="onInput"
@@ -11,13 +11,13 @@
     >
     <input v-else
       type="range"
-      min="0" :max="interpolate(duration)" step="0.1"
+      min="0" :max="interpolate(duration)"
       :value="interpolate(playtime)"
       @change="onChange"
       @input="onInput"
     >
     <span class="progress-range" :style="rangeStyle"></span>
-    <span class="progress-buffer" :style="bufferStyle"></span>
+    <span class="progress-buffer" v-for="(buffering, index) in buffer" :style="bufferStyle(buffering)" :key="index"></span>
     <span v-for="(quantile, index) in quantiles" class="progress-track" :style="trackStyle(quantile)" :key="index"></span>
     <ChaptersIndicator></ChaptersIndicator>
     <span class="ghost-thumb" :style="thumbStyle(ghostPosition, ghost.active)"></span>
@@ -68,13 +68,6 @@
         return {
           'background-color': this.theme.player.progress.range
         }
-      },
-
-      bufferStyle () {
-        return {
-          width: relativePosition(this.buffer, this.duration),
-          'background-color': this.theme.player.progress.buffer
-        }
       }
     },
     methods: {
@@ -102,7 +95,6 @@
         store.dispatch(store.actions.simulatePlaytime(this.duration * event.offsetX / event.target.clientWidth))
         store.dispatch(store.actions.enableGhostMode())
 
-        event.preventDefault()
         return false
       },
 
@@ -110,7 +102,7 @@
         this.thumbActive = false
         store.dispatch(store.actions.disableGhostMode())
         store.dispatch(store.actions.simulatePlaytime(this.playtime))
-        event.preventDefault()
+
         return false
       },
 
@@ -131,6 +123,14 @@
         }
       },
 
+      bufferStyle ([start, end]) {
+        return {
+          left: relativePosition(start, this.duration),
+          width: relativePosition(end - start, this.duration),
+          'background-color': this.theme.player.progress.buffer
+        }
+      },
+
       interpolate
     },
     components: {
@@ -140,17 +140,7 @@
 </script>
 
 <style lang="scss">
-  @import 'variables';
-  @import 'range-resets';
-
-  $progress-height: 44px;
-
-  $progress-track-height: 2px;
-
-  $progress-thumb-height: 14px;
-  $progress-thumb-width: 6px;
-  $progress-thumb-active-height: 18px;
-  $progress-thumb-active-width: 8px;
+  @import '~styles/variables';
 
   .progress {
     width: 100%;

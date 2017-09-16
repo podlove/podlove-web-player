@@ -14,7 +14,12 @@
   "duration": "03:39:50",
   "chapters": [],
   "audio": [
-    "https://tracking.feedpress.it/link/13444/1886724/nsfw051-nicht-in-meiner-timeline.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13444/1886724/nsfw051-nicht-in-meiner-timeline.m4a",
+      "mimeType": "audio/mp4",
+      "size": 82297146,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

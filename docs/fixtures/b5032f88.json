@@ -15,7 +15,12 @@
   "duration": "02:43:53",
   "chapters": [],
   "audio": [
-    "https://tracking.feedpress.it/link/13440/1885678/cre158-liquidfeedback.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13440/1885678/cre158-liquidfeedback.m4a",
+      "mimeType": "audio/mp4",
+      "size": 61332768,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

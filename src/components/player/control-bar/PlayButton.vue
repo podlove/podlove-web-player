@@ -1,5 +1,5 @@
 <template>
-  <ButtonComponent :click="onButtonClick">
+  <button class="control-button" @click="onButtonClick()">
     <span class="play-button" :style="wrapperStyle" :class="{
       wide: components.controls.button.variant.loading ||
             components.controls.button.variant.remaining ||
@@ -27,15 +27,15 @@
 
       <span class="inner" v-if="components.controls.button.variant.replay">
         <PlayIcon size="21" :color="theme.player.actions.icon"></PlayIcon>
-        <span class="label" :style="textStyle">{{ $t('PLAYER.REPLAY') }}</span>
+        <span class="label truncate" :style="textStyle">{{ $t('PLAYER.REPLAY') }}</span>
       </span>
 
       <span class="inner" v-if="components.controls.button.variant.retry">
         <ReloadIcon :color="theme.player.actions.icon"></ReloadIcon>
-        <span class="label" :style="textStyle">{{ $t('PLAYER.RETRY') }}</span>
+        <span class="label truncate" :style="textStyle">{{ $t('PLAYER.RETRY') }}</span>
       </span>
     </span>
-  </ButtonComponent>
+  </button>
 </template>
 
 <script>
@@ -47,12 +47,10 @@
   import ErrorIcon from 'icons/ErrorIcon.vue'
   import ReloadIcon from 'icons/ReloadIcon.vue'
 
-  import ButtonComponent from 'shared/Button.vue'
   import LoadingIndicator from './LoadingIndicator.vue'
 
   export default {
     components: {
-      ButtonComponent,
       LoadingIndicator,
       PlayIcon,
       PauseIcon,
@@ -88,11 +86,13 @@
           case 'start':
           case 'idle':
           case 'pause':
-          case 'error':
             store.dispatch(store.actions.play())
             break
           case 'end':
             store.dispatch(store.actions.restart())
+            break
+          case 'error':
+            store.dispatch(store.actions.load())
             break
           default:
             store.dispatch(store.actions.pause())
@@ -103,8 +103,7 @@
 </script>
 
 <style lang="scss">
-  @import 'variables';
-  $button-width: 50px;
+  @import '~styles/variables';
 
   .play-button {
     display: flex;
@@ -116,7 +115,7 @@
     min-width: $button-width;
 
     border-radius: $button-width / 2;
-    transition: min-width $animation-duration * 2;
+    transition: width $animation-duration * 2;
 
     .inner {
       display: flex;
@@ -126,8 +125,8 @@
     }
 
     &.wide {
-      min-width: ($button-width * 2) + 30px;
-      width: auto;
+      width: calc(#{$button-width * 2} + #{$padding * 2});
+      max-width: calc(#{$button-width * 2} + #{$padding * 2});
     }
 
     .label{
@@ -135,6 +134,7 @@
       font-size: 1rem;
       font-weight: 200;
       text-transform: uppercase;
+      width: $button-width;
     }
 
     .reset {

@@ -14,7 +14,12 @@
   "duration": "00:04:38",
   "chapters": [],
   "audio": [
-    "https://tracking.feedpress.it/link/12319/1327941/ls000-der-lautsprecher.mp3"
+    {
+      "url": "https://tracking.feedpress.it/link/12319/1327941/ls000-der-lautsprecher.mp3",
+      "mimeType": "audio/mpeg",
+      "size": 2278515,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

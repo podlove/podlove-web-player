@@ -27,7 +27,7 @@ GEM
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
     mercenary (0.3.6)
-    millidocs (0.2.2)
+    millidocs (0.2.4)
       jekyll (~> 3.4)
     pathutil (0.14.0)
       forwardable-extended (~> 2.6)
@@ -44,7 +44,7 @@ PLATFORMS
 
 DEPENDENCIES
   jekyll (= 3.5.0)
-  millidocs (~> 0.2.2)
+  millidocs (~> 0.2.4)
 
 BUNDLED WITH
    1.15.1

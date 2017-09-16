@@ -14,7 +14,12 @@
   "duration": "02:10:33",
   "chapters": [],
   "audio": [
-    "https://tracking.feedpress.it/link/12319/1327931/ls010-podlove.mp3"
+    {
+      "url": "https://tracking.feedpress.it/link/12319/1327931/ls010-podlove.mp3",
+      "mimeType": "audio/mpeg",
+      "size": 62726981,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

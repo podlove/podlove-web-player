@@ -7,7 +7,7 @@ const parseParameters = parameters => {
   const parsed = {}
 
   if (parameters.t) {
-    parsed.playtime = timeToSeconds(parameters.t)
+    parsed.playtime = timeToSeconds(parameters.t.split(','))
   }
 
   if (parameters.episode) {

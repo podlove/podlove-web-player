@@ -1,5 +1,5 @@
 <template>
-  <div class="podlove-player--loading-indicator">
+  <div class="loading-indicator">
     <div class="loading-bubble first" :style="indicatorStyle"></div>
     <div class="loading-bubble second" :style="indicatorStyle"></div>
     <div class="loading-bubble third" :style="indicatorStyle"></div>
@@ -26,7 +26,7 @@ export default {
 <style lang="scss">
 $bubbles-height: 12px;
 
-.podlove-player--loading-indicator {
+.loading-indicator {
   width: 65px;
   text-align: center;
 

@@ -15,7 +15,12 @@
   "duration": "01:32:11",
   "chapters": [],
   "audio": [
-    "https://tracking.feedpress.it/link/13440/1885513/cre181-aram-bartholl.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13440/1885513/cre181-aram-bartholl.m4a",
+      "mimeType": "audio/mp4",
+      "size": 34635415,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

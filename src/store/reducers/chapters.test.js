@@ -46,6 +46,22 @@ test(`INIT: it initializes the state without playtime`, t => {
   t.deepEqual(result, chaptersExpectedResult)
 })
 
+test(`INIT: it sets the last chapter active if nothing is active and the playtime is not null`, t => {
+  const result = chapters([], {
+    type: 'INIT',
+    payload: {
+      chapters: chaptersTestData,
+      duration: 7200,
+      playtime: 7200
+    }
+  })
+
+  chaptersExpectedResult[0].active = false
+  chaptersExpectedResult[1].active = true
+
+  t.deepEqual(result, chaptersExpectedResult)
+})
+
 test(`INIT: it initializes the state with playtime`, t => {
   const result = chapters([], {
     type: 'INIT',

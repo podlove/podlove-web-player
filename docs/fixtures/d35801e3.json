@@ -15,7 +15,12 @@
   "duration": "02:19:39",
   "chapters": [],
   "audio": [
-    "https://tracking.feedpress.it/link/13440/1885677/cre159-nachrichtendienste.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13440/1885677/cre159-nachrichtendienste.m4a",
+      "mimeType": "audio/mp4",
+      "size": 52342978,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

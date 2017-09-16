@@ -68,7 +68,12 @@
     }
   ],
   "audio": [
-    "https://tracking.feedpress.it/link/13440/1910154/cre208-neuronale-netze.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13440/1910154/cre208-neuronale-netze.m4a",
+      "mimeType": "audio/mp4",
+      "size": 65001009,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

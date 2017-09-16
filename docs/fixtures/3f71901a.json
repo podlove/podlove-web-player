@@ -39,7 +39,12 @@
     }
   ],
   "audio": [
-    "https://tracking.feedpress.it/link/13444/1886706/nsfw069-stereo-macht-doppelt-froh.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13444/1886706/nsfw069-stereo-macht-doppelt-froh.m4a",
+      "mimeType": "audio/mp4",
+      "size": 65720224,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

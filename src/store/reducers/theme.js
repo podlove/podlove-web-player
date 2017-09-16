@@ -12,15 +12,10 @@ const themeColors = (colors = {}) => {
   const luminosity = color(main).luminosity()
   const negative = luminosity < 0.25
 
-  const fallbackColor = (first, second) => {
-    if (first) {
-      return first
-    }
-
-    return second
-  }
+  const fallbackColor = (first, second) => first || second
 
   return {
+    background: light,
     player: {
       background: main,
       poster: negative ? light : dark,
@@ -32,7 +27,7 @@ const themeColors = (colors = {}) => {
         border: main,
         seperator: main,
         track: negative ? light : dark,
-        buffer: color(main).fade(0.5),
+        buffer: negative ? color(light).fade(0.5) : color(dark).fade(0.7),
         range: luminosity < 0.05 ? color(light).fade(0.25) : color(dark).fade(0.75)
       },
       actions: {
@@ -46,31 +41,52 @@ const themeColors = (colors = {}) => {
     },
     tabs: {
       header: {
-        background: luminosity < 0.15 ? color(main).lighten(0.6 - luminosity) : color(main).darken(0.2),
+        background: luminosity < 0.15 ? color(main).lighten(0.2 - luminosity) : color(main).darken(0.2),
         backgroundActive: color(main).fade(0.9),
         color: negative ? light : dark,
-        colorActive: fallbackColor(highlight, negative ? main : dark)
+        colorActive: negative ? main : dark
       },
       body: {
         background: color(main).fade(0.9),
         text: grey,
         textActive: dark,
-        progress: fallbackColor(highlight, negative ? main : dark),
-        icon: negative ? main : dark
+        icon: negative ? main : dark,
+        section: color(main).fade(0.8)
       },
-      slider: {
-        thumb: main
+      chapters: {
+        progress: color(negative ? main : dark).fade(0.1),
+        active: fallbackColor(highlight ? color(highlight).fade(0.5) : undefined, negative ? color(main).fade(0.8) : color(dark).fade(0.9)),
+        ghost: color(negative ? main : dark).fade(0.7)
       },
-      button: {
-        background: main,
-        text: negative ? light : dark
-      },
-      input: {
-        border: negative ? main : dark
+      share: {
+        content: {
+          active: {
+            background: color(main).fade(0.2),
+            color: negative ? light : dark
+          }
+        },
+        platform: {
+          background: color(main).fade(0.8),
+          icon: negative ? light : dark,
+          color: negative ? light : dark,
+          input: color(main).fade(0.2),
+          button: main
+        }
       }
     },
     overlay: {
-      button: negative ? light : dark
+      button: negative ? light : dark,
+      background: color(main).lighten(0.9)
+    },
+    input: {
+      border: negative ? main : dark,
+      background: light,
+      color: dark
+    },
+    button: {
+      background: main,
+      color: negative ? light : dark,
+      border: negative ? main : dark
     }
   }
 }

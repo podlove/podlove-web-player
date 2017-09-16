@@ -14,6 +14,7 @@ machine:
 dependencies:
   override:
     - yarn
+    - npm rebuild node-sass
     - gem install bundler
   pre:
     - yarn global add publish-release
@@ -47,6 +48,7 @@ deployment:
       - yarn deploy:gh-pages
 
   release:
+    branch: master
     tag: /v.*/
     commands:
       - yarn dist:clean

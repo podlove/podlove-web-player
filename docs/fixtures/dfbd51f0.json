@@ -83,7 +83,12 @@
     }
   ],
   "audio": [
-    "https://tracking.feedpress.it/link/13453/5961033/fs199-dieses-wochenende-naechstes-wochenende.m4a"
+    {
+      "url": "https://tracking.feedpress.it/link/13453/5961033/fs199-dieses-wochenende-naechstes-wochenende.m4a",
+      "mimeType": "audio/mp4",
+      "size": 78451047,
+      "title": "Audio MP4"
+    }
   ],
   "reference": {
     "share": "//podlove-player.surge.sh/share",

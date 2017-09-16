@@ -1,4 +1,4 @@
-import mediaEffectsFactory from './media'
+import playerEffectsFactory from './player'
 import storageEffectsFactory from './storage'
 import keyboardEffectsFactory from './keyboard'
 import componentsEffects from './components'
@@ -9,12 +9,11 @@ import volumeEffects from './volume'
 
 import storage from 'utils/storage'
 import keyhandler from 'utils/keyboard'
+import mediaPlayer from '../../media'
 
-import mediaPlayer from '../../media-player'
-
-const mediaEffects = mediaEffectsFactory(mediaPlayer)
 const storageEffects = storageEffectsFactory(storage)
 const keyboardEffects = keyboardEffectsFactory(keyhandler)
+const playerEffects = playerEffectsFactory(mediaPlayer)
 
 export default store => {
   keyboardEffects(store)
@@ -22,11 +21,11 @@ export default store => {
   return next => action => {
     next(action)
     chapterEffects(store, action)
-    mediaEffects(store, action)
-    componentsEffects(store, action)
     storageEffects(store, action)
     idleEffects(store, action)
     quantileEffects(store, action)
     volumeEffects(store, action)
+    componentsEffects(store, action)
+    playerEffects(store, action)
   }
 }
