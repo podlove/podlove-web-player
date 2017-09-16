@@ -15,7 +15,9 @@ import iframeResizerContentWindow from 'raw-loader!iframe-resizer/js/iframeResiz
 const playerSandbox = anchor => {
   const frame = createNode('iframe')
 
-  if (browser.name !== 'ios') {
+  if (browser.name === 'ios') {
+    frame.setAttribute('width', anchor.offsetWidth)
+  } else {
     frame.setAttribute('width', '100%')
   }
 
@@ -73,11 +75,12 @@ const renderPlayer = anchor => player => {
 
   return injectPlayer(sandbox, player)
     .then(sandbox => {
-      loader.done()
       iframeResizer({
         checkOrigin: false,
         log: false
       }, sandbox)
+
+      loader.done()
     })
     .return(sandbox)
     .then(getPodloveStore)
