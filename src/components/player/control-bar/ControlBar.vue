@@ -1,19 +1,19 @@
 <template>
   <div class="control-bar centered">
     <transition name="button">
-      <ChapterBackButton v-if="components.controls.chapters && chapters.length > 0"></ChapterBackButton>
+      <ChapterBackButton v-if="components.controls.chapters && visibleComponents.controlChapters"></ChapterBackButton>
     </transition>
     <transition name="button">
-      <StepBackButton v-if="components.controls.steppers"></StepBackButton>
+      <StepBackButton v-if="components.controls.steppers && visibleComponents.controlSteppers"></StepBackButton>
     </transition>
     <transition name="button">
-      <PlayButton v-if="components.controls.button.visible"></PlayButton>
+      <PlayButton></PlayButton>
     </transition>
     <transition name="button">
-      <StepForwardButton v-if="components.controls.steppers"></StepForwardButton>
+      <StepForwardButton v-if="components.controls.steppers && visibleComponents.controlSteppers"></StepForwardButton>
     </transition>
     <transition name="button">
-      <ChapterNextButton v-if="components.controls.chapters && chapters.length > 0"></ChapterNextButton>
+      <ChapterNextButton v-if="components.controls.chapters && visibleComponents.controlChapters"></ChapterNextButton>
     </transition>
   </div>
 </template>
@@ -29,7 +29,8 @@
     data () {
       return {
         chapters: this.$select('chapters'),
-        components: this.$select('components')
+        components: this.$select('components'),
+        visibleComponents: this.$select('visibleComponents')
       }
     },
     components: {

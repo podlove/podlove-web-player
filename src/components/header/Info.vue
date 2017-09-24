@@ -1,20 +1,20 @@
 <template>
   <div class="info" >
-    <div class="poster" v-if="episode.poster || show.poster">
+    <div class="poster" v-if="(episode.poster || show.poster) && visibleComponents.poster">
       <div class="poster-container" :style="posterStyle">
         <img class="poster-image" :src="episode.poster || show.poster">
       </div>
     </div>
     <div class="description">
-      <h2 class="show-title" :style="titleStyle" v-if="show.title">
+      <h2 class="show-title" :style="titleStyle" v-if="show.title && visibleComponents.showTitle">
         <a :href="show.link" target="_blank" class="truncate" v-if="display === 'embed' && show.link">{{show.title}}</a>
         <span class="truncate" v-else>{{show.title}}</span>
       </h2>
-      <h1 class="title" :style="titleStyle" v-if="episode.title">
+      <h1 class="title" :style="titleStyle" v-if="episode.title && visibleComponents.episodeTitle">
         <a :href="episode.link" target="_blank" class="truncate" v-if="display === 'embed' && episode.link">{{episode.title}}</a>
         <span class="truncate" v-else>{{episode.title}}</span>
       </h1>
-      <div class="subtitle" :style="subtitleStyle" v-if="episode.subtitle">{{episode.subtitle}}</div>
+      <div class="subtitle" :style="subtitleStyle" v-if="episode.subtitle && visibleComponents.subtitle">{{episode.subtitle}}</div>
     </div>
   </div>
 </template>
@@ -28,7 +28,8 @@
         episode: this.$select('episode'),
         show: this.$select('show'),
         theme: this.$select('theme'),
-        display: this.$select('display')
+        display: this.$select('display'),
+        visibleComponents: this.$select('visibleComponents')
       }
     },
     computed: {

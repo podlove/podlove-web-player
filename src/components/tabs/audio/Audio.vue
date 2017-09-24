@@ -1,7 +1,7 @@
 <template>
   <div class="audio-tab">
-    <AudioVolumeComponent class="seperator" v-if="components.tabs.audio && components.tabs.audio.volume"></AudioVolumeComponent>
-    <AudioRateComponent class="seperator" v-if="components.tabs.audio && components.tabs.audio.rate"></AudioRateComponent>
+    <AudioVolumeComponent class="seperator" v-if="components.audio.volume"></AudioVolumeComponent>
+    <AudioRateComponent class="seperator" v-if="components.audio.rate"></AudioRateComponent>
     <FooterComponent></FooterComponent>
   </div>
 </template>

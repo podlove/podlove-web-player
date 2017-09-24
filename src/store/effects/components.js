@@ -47,11 +47,11 @@ export default (store, action) => {
 
       // Tabs
       if (hasChapters(chapters)) {
-        store.dispatch(actions.toggleChaptersTab(true))
+        store.dispatch(actions.toggleComponentTab('chapters', true))
       }
 
       if (hasFiles(downloadFiles)) {
-        store.dispatch(actions.toggleDownloadTab(true))
+        store.dispatch(actions.toggleComponentTab('download', true))
       }
 
       // Meta
@@ -65,9 +65,9 @@ export default (store, action) => {
       }
 
       // Everything else without conditions
-      store.dispatch(actions.toggleShareTab(true))
-      store.dispatch(actions.toggleInfoTab(true))
-      store.dispatch(actions.toggleAudioTab(true))
+      store.dispatch(actions.toggleComponentTab('share', true))
+      store.dispatch(actions.toggleComponentTab('info', true))
+      store.dispatch(actions.toggleComponentTab('audio', true))
       store.dispatch(actions.toggleRateSlider(true))
       break
     case 'END':

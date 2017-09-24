@@ -1,36 +1,36 @@
 <template>
   <button class="control-button" @click="onButtonClick()">
     <span class="play-button" :style="wrapperStyle" :class="{
-      wide: components.controls.button.variant.loading ||
-            components.controls.button.variant.remaining ||
-            components.controls.button.variant.duration ||
-            components.controls.button.variant.replay ||
-            components.controls.button.variant.retry
+      wide: components.controls.button.loading ||
+            components.controls.button.remaining ||
+            components.controls.button.duration ||
+            components.controls.button.replay ||
+            components.controls.button.retry
     }">
-      <span class="inner" v-if="components.controls.button.variant.loading">
+      <span class="inner" v-if="components.controls.button.loading">
         <LoadingIndicator></LoadingIndicator>
       </span>
 
-      <PauseIcon :color="theme.player.actions.icon" v-if="components.controls.button.variant.playing"></PauseIcon>
+      <PauseIcon :color="theme.player.actions.icon" v-if="components.controls.button.playing"></PauseIcon>
 
-      <PlayIcon size="21" :color="theme.player.actions.icon" class="reset" v-if="components.controls.button.variant.pause"></PlayIcon>
+      <PlayIcon size="21" :color="theme.player.actions.icon" class="reset" v-if="components.controls.button.pause"></PlayIcon>
 
-      <span class="inner" v-if="components.controls.button.variant.remaining">
+      <span class="inner" v-if="components.controls.button.remaining">
         <PlayIcon size="21" :color="theme.player.actions.icon"></PlayIcon>
         <span class="label" :style="textStyle">{{ secondsToTime(playtime) }}</span>
       </span>
 
-      <span class="inner" v-if="components.controls.button.variant.duration">
+      <span class="inner" v-if="components.controls.button.duration">
         <PlayIcon size="21" :color="theme.player.actions.icon"></PlayIcon>
         <span class="label" :style="textStyle">{{ secondsToTime(duration) }}</span>
       </span>
 
-      <span class="inner" v-if="components.controls.button.variant.replay">
+      <span class="inner" v-if="components.controls.button.replay">
         <PlayIcon size="21" :color="theme.player.actions.icon"></PlayIcon>
         <span class="label truncate" :style="textStyle">{{ $t('PLAYER.REPLAY') }}</span>
       </span>
 
-      <span class="inner" v-if="components.controls.button.variant.retry">
+      <span class="inner" v-if="components.controls.button.retry">
         <ReloadIcon :color="theme.player.actions.icon"></ReloadIcon>
         <span class="label truncate" :style="textStyle">{{ $t('PLAYER.RETRY') }}</span>
       </span>
