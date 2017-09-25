@@ -69,6 +69,8 @@ export default (store, action) => {
       store.dispatch(actions.toggleComponentTab('info', true))
       store.dispatch(actions.toggleComponentTab('audio', true))
       store.dispatch(actions.toggleRateSlider(true))
+      store.dispatch(actions.toggleRateSlider(true))
+      store.dispatch(actions.toggleInfoPoster(true))
       break
     case 'END':
       store.dispatch(actions.showReplayButton())

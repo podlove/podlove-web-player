@@ -13,6 +13,11 @@ const toggleProgressBar = visibility => ({
   payload: visibility
 })
 
+const toggleInfoPoster = visibility => ({
+  type: 'TOGGLE_COMPONENT_INFO_POSTER',
+  payload: visibility
+})
+
 // Controls
 const toggleChapterControls = visibility => ({
   type: 'TOGGLE_COMPONENT_CONTROLS_CHAPTERS',
@@ -79,6 +84,7 @@ const toggleRateSlider = visibility => ({
 
 export {
   toggleInfo,
+  toggleInfoPoster,
   toggleError,
   toggleProgressBar,
 

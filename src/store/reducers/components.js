@@ -2,7 +2,8 @@ import { get } from 'lodash'
 
 const INITIAL_HEADER = {
   info: false,
-  error: false
+  error: false,
+  poster: false
 }
 
 const INITIAL_BUTTON = {
@@ -71,6 +72,14 @@ const components = (state = componentsState(), action) => {
         header: {
           ...state.header,
           info: action.payload
+        }
+      }
+    case 'TOGGLE_COMPONENT_INFO_POSTER':
+      return {
+        ...state,
+        header: {
+          ...state.header,
+          poster: action.payload
         }
       }
     case 'TOGGLE_COMPONENT_ERROR':

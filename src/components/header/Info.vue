@@ -1,8 +1,8 @@
 <template>
   <div class="info" >
-    <div class="poster" v-if="(episode.poster || show.poster) && visibleComponents.poster">
+    <div class="poster" v-if="(episode.poster || show.poster) && visibleComponents.poster && components.header.poster">
       <div class="poster-container" :style="posterStyle">
-        <img class="poster-image" :src="episode.poster || show.poster">
+        <img class="poster-image" :src="episode.poster || show.poster" @error="onImageLoad">
       </div>
     </div>
     <div class="description">
@@ -20,6 +20,7 @@
 </template>
 
 <script>
+  import store from 'store'
   import color from 'color'
 
   export default {
@@ -29,7 +30,8 @@
         show: this.$select('show'),
         theme: this.$select('theme'),
         display: this.$select('display'),
-        visibleComponents: this.$select('visibleComponents')
+        visibleComponents: this.$select('visibleComponents'),
+        components: this.$select('components')
       }
     },
     computed: {
@@ -47,6 +49,11 @@
         return {
           color: color(this.theme.player.text).fade(0.25)
         }
+      }
+    },
+    methods: {
+      onImageLoad () {
+        store.dispatch(store.actions.toggleInfoPoster(false))
       }
     }
   }
