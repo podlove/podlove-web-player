@@ -7,7 +7,13 @@ test.beforeEach(t => {
   testAction = {
     type: 'INIT',
     payload: {
-      contributors: ['foo', 'bar']
+      contributors: [{
+        name: 'foo',
+        group: { slug: 'onair' }
+      }, {
+        name: 'bar',
+        group: { slug: 'team' }
+      }]
     }
   }
 })
@@ -16,10 +22,13 @@ test(`contributors: it is a reducer function`, t => {
   t.is(typeof contributors, 'function')
 })
 
-test(`contributors: it sets the contributors on INIT`, t => {
+test(`contributors: it sets the onair contributors on INIT`, t => {
   const result = contributors(undefined, testAction)
 
-  t.deepEqual(result, ['foo', 'bar'])
+  t.deepEqual(result, [{
+    name: 'foo',
+    group: { slug: 'onair' }
+  }])
 })
 
 test(`contributors: it does nothing if not a registered action is dispatched`, t => {

@@ -84,18 +84,42 @@ navigation: 7
         runtime: {
             language: 'en'
         },
-        contributors: [{
-            avatar: 'https://freakshow.fm/wp-content/cache/podlove/47/08928e3c26dcb1141d67ad75869619/tim-pritlove_50x50.jpg',
-            name: 'Tim Pritlove'
+         contributors: [{
+          name: 'Tim Pritlove',
+          avatar: 'https:\/\/freakshow.fm\/wp-content\/cache\/podlove\/47\/08928e3c26dcb1141d67ad75869619\/tim-pritlove_150x150.jpg',
+          role: { id: '9', slug: 'team', title: 'Team' },
+          group: { id: '1', slug: 'onair', title: 'On Air' },
+          comment: null
         }, {
-            avatar: 'https://freakshow.fm/wp-content/cache/podlove/0f/9c18f5e825496b9060337f92814142/clemens-schrimpe_50x50.jpg',
-            name: 'Clemens Schrimpe'
+          name: 'Clemens Schrimpe',
+          avatar: 'https:\/\/freakshow.fm\/wp-content\/cache\/podlove\/0f\/9c18f5e825496b9060337f92814142\/clemens-schrimpe_150x150.jpg',
+          role: { id: '9', slug: 'team', title: 'Team' },
+          group: { id: '1', slug: 'onair', title: 'On Air' },
+          comment: null
         }, {
-            avatar: 'https://freakshow.fm/wp-content/cache/podlove/8e/f30cbe274c3f5e43dc4a7219676f50/hukl_50x50.jpg',
-            name: 'hukl'
+          name: 'hukl',
+          avatar: 'https:\/\/freakshow.fm\/wp-content\/cache\/podlove\/8e\/f30cbe274c3f5e43dc4a7219676f50\/hukl_150x150.jpg',
+          role: { id: '9', slug: 'team', title: 'Team' },
+          group: { id: '1', slug: 'onair', title: 'On Air' },
+          comment: null
         }, {
-            avatar: 'https://freakshow.fm/wp-content/cache/podlove/b2/425e5c8f180ddf548c95be1c2d7bcf/denis-ahrens_50x50.jpg',
-            name: 'Denis Ahrens'
+          name: 'Denis Ahrens',
+          avatar: 'https:\/\/freakshow.fm\/wp-content\/cache\/podlove\/b2\/425e5c8f180ddf548c95be1c2d7bcf\/denis-ahrens_150x150.jpg',
+          role: { id: '9', slug: 'team', title: 'Team' },
+          group: { id: '1', slug: 'onair', title: 'On Air' },
+          comment: null
+        }, {
+          name: 'David Scribane',
+          avatar: 'https:\/\/freakshow.fm\/wp-content\/cache\/podlove\/b3\/c8cc8a1989aa0fc4488d473517b1ee\/david-scribane_150x150.jpg',
+          role: { id: '7', slug: 'composition', title: 'Komposition' },
+          group: { id: '3', slug: 'support', title: 'Support' },
+          comment: null
+        }, {
+          name: 'Xenim Streaming Network',
+          avatar: 'https:\/\/freakshow.fm\/podlove\/image\/687474703a2f2f6d6574612e6d6574616562656e652e6d652f6d656469612f6d6574616562656e652f636f6e7472696275746f72732f78656e696d2d73747265616d696e672d6e6574776f726b2e706e67\/150\/150\/0\/xenim-streaming-network',
+          role: { id: '10', slug: 'streaming', title: 'Streaming' },
+          group: { id: '3', slug: 'support', title: 'Support' },
+          comment: null
         }],
         tabs: {
           chapters: false,
@@ -104,51 +128,20 @@ navigation: 7
           download: false,
           info: false
         },
-        components: {
-          header: {
-            info: false,
-            error: false
-          },
-          controls: {
-            button: {
-              visible:true, 
-              variant: {
-                loading: false, 
-                replay: false,
-                duration: true,
-                remaining: false,
-                retry: false,
-                playing: false,
-                pause: false
-              }
-            },
-            chapters: false,
-            steppers: false
-          },
-          progressbar: {
-            visible: false
-          },
-          tabs: {
-            chapters: {
-              visible: false
-            },
-            share: {
-              visible: false
-            }, 
-            audio: {
-              visible: false, 
-              volume: false,
-              rate: false
-            },
-            download: {
-              visible: false
-            },
-            info: {
-              visible:false
-            }
-          }
-        }
-        
+        visibleComponents: [
+          'tabInfo',
+          'tabChapters',
+          'tabDownload',
+          'tabAudio',
+          'tabShare',
+          'poster',
+          'showTitle',
+          'episodeTitle',
+          'subtitle',
+          'progressbar',
+          'controlSteppers',
+          'controlChapters'
+        ]        
     };
 
     function loadEditor(store) {

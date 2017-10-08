@@ -7,7 +7,8 @@ test.beforeEach(() => {
   uiState = {
     header: {
       info: false,
-      error: false
+      error: false,
+      poster: false
     },
     controls: {
       button: {
@@ -314,13 +315,17 @@ test(`visibleComponents: it loads all visibleComponents on default`, t => {
   })
 
   t.deepEqual(result, {
-    'tabInfo': true,
-    'tabChapters': true,
-    'tabDownload': true,
-    'tabAudio': true,
-    'tabShare': true,
-    'progressbar': true,
-    'controlSteppers': true,
-    'controlChapters': true
+    tabInfo: true,
+    tabChapters: true,
+    tabDownload: true,
+    tabAudio: true,
+    tabShare: true,
+    progressbar: true,
+    controlSteppers: true,
+    controlChapters: true,
+    episodeTitle: true,
+    poster: true,
+    showTitle: true,
+    subtitle: true
   })
 })
