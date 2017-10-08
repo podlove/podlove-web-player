@@ -43,7 +43,6 @@
 
 <script>
 import store from 'store'
-import { get } from 'lodash'
 
 import TabHeaderComponent from 'shared/TabHeader.vue'
 import TabHeaderItemComponent from 'shared/TabHeaderItem.vue'

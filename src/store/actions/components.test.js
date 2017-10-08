@@ -99,7 +99,7 @@ voidActions.forEach(action => {
   })
 })
 
-test(`toggleComponentTabAction: creates the TOGGLE_COMPONENT_TAB action`, t=> {
+test(`toggleComponentTabAction: creates the TOGGLE_COMPONENT_TAB action`, t => {
   t.deepEqual(toggleComponentTab('foo', true), {
     type: 'TOGGLE_COMPONENT_TAB',
     payload: {

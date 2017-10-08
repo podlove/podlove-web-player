@@ -192,3 +192,37 @@ _Not providing chapters will disable all chapter related functions._
    info: true // will expand the info tab on load
   }
 ```
+
+#### Visible Components
+
+List of components that are visible in the player. if nothing is provided all components are visible.
+
+| showTitle         | Header show title     |
+| episodeTitle      | Header episode title  |
+| subtitle          | Header subtitle       |
+| progressbar       | Play progress         |
+| controlSteppers   | Steppers controls     |
+| controlChapters   | Chapters controls     |
+| poster            | Poster in Head        |
+| tabChapters       | Chapters Tab          |
+| tabDownload       | Download Tab          |
+| tabAudio          | Audio Tab             |
+| tabShare          | Share Tab             |
+
+
+```javascript
+  visualComponents: [
+    'tabInfo',
+    'tabChapters',
+    'tabDownload',
+    'tabAudio',
+    'tabShare',
+    'poster',
+    'showTitle',
+    'episodeTitle',
+    'subtitle',
+    'progressbar',
+    'controlSteppers',
+    'controlChapters'
+  ]
+```

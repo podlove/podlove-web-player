@@ -39,8 +39,9 @@
         }
       },
       hasLink () {
-        return (this.share.content === 'show' && this.show.link) ||
-        (this.share.content !== 'show') && this.episode.link
+        const hasShowLink = this.share.content === 'show' && this.show.link
+        const hasShareLink = this.share.content !== 'show' && this.episode.link
+        return hasShowLink || hasShareLink
       }
     },
     components: {

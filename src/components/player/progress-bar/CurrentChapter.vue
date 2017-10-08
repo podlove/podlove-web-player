@@ -1,6 +1,6 @@
 <template>
   <div class="timer-chapter truncate">
-    <span class="chapter-title" v-marquee
+    <span class="chapter-title"
       :style="chapterStyle"
       v-if="currentChapterIndex(chapters) > -1">
         {{chapterTitle}}
