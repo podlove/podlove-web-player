@@ -16,7 +16,7 @@ export const calcMinutes = (time = 0) => parseInt(time / 60) % 60
 export const calcHours = (time = 0) => parseInt(time / 3600) % 24
 
 export const localeDate = (timestamp, locale) => new Date(timestamp).toLocaleDateString(locale)
-export const localeTime = (timestamp, locale) => new Date(timestamp).toLocaleTimeString(locale)
+export const localeTime = (timestamp, locale) => new Date(timestamp).toLocaleTimeString(locale, {hour: '2-digit', minute: '2-digit'})
 
 const leadingZero = (time) => time > 9 ? `${time}` : `0${time}`
 

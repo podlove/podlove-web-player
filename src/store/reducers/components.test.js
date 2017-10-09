@@ -1,5 +1,5 @@
 import test from 'ava'
-import { components } from './components'
+import { components, visibleComponents } from './components'
 
 let uiState, compareState
 
@@ -7,45 +7,33 @@ test.beforeEach(() => {
   uiState = {
     header: {
       info: false,
-      error: false
+      error: false,
+      poster: false
     },
     controls: {
       button: {
-        visible: true,
-        variant: {
-          loading: false,
-          replay: false,
-          duration: true,
-          remaining: false,
-          retry: false,
-          playing: false,
-          pause: false
-        }
+        loading: false,
+        replay: false,
+        duration: true,
+        remaining: false,
+        retry: false,
+        playing: false,
+        pause: false
       },
       chapters: false,
       steppers: false
     },
-    progressbar: {
-      visible: false
-    },
+    progressbar: false,
     tabs: {
-      chapters: {
-        visible: false
-      },
-      share: {
-        visible: false
-      },
-      audio: {
-        visible: false,
-        rate: false,
-        volume: false
-      },
-      download: {
-        visible: false
-      },
-      info: {
-        visible: false
-      }
+      chapters: false,
+      share: false,
+      audio: false,
+      info: false,
+      download: false
+    },
+    audio: {
+      rateControl: false,
+      volumeControl: false
     }
   }
 
@@ -72,19 +60,6 @@ test(`init: it creates the initial state`, t => {
   t.deepEqual(result, uiState)
 })
 
-test(`info: it doesn't toggles the info component if undfined`, t => {
-  uiState.header.info = undefined
-
-  const result = components(uiState, {
-    type: 'TOGGLE_COMPONENT_INFO',
-    payload: false
-  })
-
-  compareState.header.info = undefined
-
-  t.deepEqual(result, compareState)
-})
-
 test(`info: it toggles the info component`, t => {
   const result = components(uiState, {
     type: 'TOGGLE_COMPONENT_INFO',
@@ -92,19 +67,6 @@ test(`info: it toggles the info component`, t => {
   })
 
   compareState.header.info = false
-
-  t.deepEqual(result, compareState)
-})
-
-test(`error: it toggles the error component if undefined`, t => {
-  uiState.header.error = undefined
-
-  const result = components(uiState, {
-    type: 'TOGGLE_COMPONENT_ERROR',
-    payload: false
-  })
-
-  compareState.header.error = undefined
 
   t.deepEqual(result, compareState)
 })
@@ -120,39 +82,13 @@ test(`error: it toggles the error component`, t => {
   t.deepEqual(result, compareState)
 })
 
-test(`progressbar: it doesn't toggles the progressbar component if undefined`, t => {
-  uiState.progressbar = {}
-
-  const result = components(uiState, {
-    type: 'TOGGLE_COMPONENT_PROGRESSBAR',
-    payload: true
-  })
-
-  compareState.progressbar = {}
-
-  t.deepEqual(result, compareState)
-})
-
 test(`progressbar: it toggles the progressbar component`, t => {
   const result = components(uiState, {
     type: 'TOGGLE_COMPONENT_PROGRESSBAR',
     payload: true
   })
 
-  compareState.progressbar.visible = true
-
-  t.deepEqual(result, compareState)
-})
-
-test(`control chapters: it doesn't toggles the chapters control component if undefined`, t => {
-  uiState.controls.chapters = undefined
-
-  const result = components(uiState, {
-    type: 'TOGGLE_COMPONENT_CONTROLS_CHAPTERS',
-    payload: true
-  })
-
-  compareState.controls.chapters = undefined
+  compareState.progressbar = true
 
   t.deepEqual(result, compareState)
 })
@@ -168,19 +104,6 @@ test(`control chapters: it toggles the chapters control component`, t => {
   t.deepEqual(result, compareState)
 })
 
-test(`control steppers: it doesn't toggles the steppers control component if undefined`, t => {
-  uiState.controls.steppers = undefined
-
-  const result = components(uiState, {
-    type: 'TOGGLE_COMPONENT_CONTROLS_STEPPERS',
-    payload: true
-  })
-
-  compareState.controls.steppers = undefined
-
-  t.deepEqual(result, compareState)
-})
-
 test(`control steppers: it toggles the steppers control component`, t => {
   const result = components(uiState, {
     type: 'TOGGLE_COMPONENT_CONTROLS_STEPPERS',
@@ -192,26 +115,13 @@ test(`control steppers: it toggles the steppers control component`, t => {
   t.deepEqual(result, compareState)
 })
 
-test(`control button visibility: it doesn't toggles the button control component if undefined`, t => {
-  uiState.controls.button = undefined
-
-  const result = components(uiState, {
-    type: 'TOGGLE_COMPONENT_CONTROLS_BUTTON',
-    payload: true
-  })
-
-  compareState.controls.button = undefined
-
-  t.deepEqual(result, compareState)
-})
-
 test(`control button visibility: it toggles the button control component`, t => {
   const result = components(uiState, {
     type: 'TOGGLE_COMPONENT_CONTROLS_BUTTON',
     payload: true
   })
 
-  compareState.controls.button.visible = true
+  compareState.controls.button = true
 
   t.deepEqual(result, compareState)
 })
@@ -221,8 +131,8 @@ test(`play button: it controls the play button component loading state`, t => {
     type: 'SHOW_COMPONENT_CONTROLS_BUTTON_LOADING'
   })
 
-  compareState.controls.button.variant.loading = true
-  compareState.controls.button.variant.duration = false
+  compareState.controls.button.loading = true
+  compareState.controls.button.duration = false
 
   t.deepEqual(result, compareState)
 })
@@ -232,8 +142,8 @@ test(`play button: it controls the play button component replay state`, t => {
     type: 'SHOW_COMPONENT_CONTROLS_BUTTON_REPLAY'
   })
 
-  compareState.controls.button.variant.duration = false
-  compareState.controls.button.variant.replay = true
+  compareState.controls.button.duration = false
+  compareState.controls.button.replay = true
 
   t.deepEqual(result, compareState)
 })
@@ -243,20 +153,20 @@ test(`play button: it controls the play button component remaining state`, t => 
     type: 'SHOW_COMPONENT_CONTROLS_BUTTON_REMAINING'
   })
 
-  compareState.controls.button.variant.duration = false
-  compareState.controls.button.variant.remaining = true
+  compareState.controls.button.duration = false
+  compareState.controls.button.remaining = true
 
   t.deepEqual(result, compareState)
 })
 
 test(`play button: it controls the play button component duration state`, t => {
-  uiState.controls.button.variant.duration = false
+  uiState.controls.button.duration = false
 
   const result = components(uiState, {
     type: 'SHOW_COMPONENT_CONTROLS_BUTTON_DURATION'
   })
 
-  compareState.controls.button.variant.duration = true
+  compareState.controls.button.duration = true
 
   t.deepEqual(result, compareState)
 })
@@ -266,8 +176,8 @@ test(`play button: it controls the play button component retry state`, t => {
     type: 'SHOW_COMPONENT_CONTROLS_BUTTON_RETRY'
   })
 
-  compareState.controls.button.variant.duration = false
-  compareState.controls.button.variant.retry = true
+  compareState.controls.button.duration = false
+  compareState.controls.button.retry = true
 
   t.deepEqual(result, compareState)
 })
@@ -277,8 +187,8 @@ test(`play button: it controls the play button component playing state`, t => {
     type: 'SHOW_COMPONENT_CONTROLS_BUTTON_PLAYING'
   })
 
-  compareState.controls.button.variant.duration = false
-  compareState.controls.button.variant.playing = true
+  compareState.controls.button.duration = false
+  compareState.controls.button.playing = true
 
   t.deepEqual(result, compareState)
 })
@@ -288,141 +198,77 @@ test(`play button: it controls the play button component pause state`, t => {
     type: 'SHOW_COMPONENT_CONTROLS_BUTTON_PAUSE'
   })
 
-  compareState.controls.button.variant.duration = false
-  compareState.controls.button.variant.pause = true
-
-  t.deepEqual(result, compareState)
-})
-
-test(`tabs: it doesn't controls the chapters tabs component if undefined`, t => {
-  uiState.tabs.chapters = undefined
-
-  const result = components(uiState, {
-    type: 'TOGGLE_COMPONENT_TABS_CHAPTERS',
-    payload: true
-  })
-
-  compareState.tabs.chapters = undefined
+  compareState.controls.button.duration = false
+  compareState.controls.button.pause = true
 
   t.deepEqual(result, compareState)
 })
 
 test(`tabs: it controls the chapters tabs component`, t => {
   const result = components(uiState, {
-    type: 'TOGGLE_COMPONENT_TABS_CHAPTERS',
-    payload: true
+    type: 'TOGGLE_COMPONENT_TAB',
+    payload: {
+      tab: 'chapters',
+      visibility: true
+    }
   })
 
-  compareState.tabs.chapters.visible = true
-
-  t.deepEqual(result, compareState)
-})
-
-test(`tabs: it doesn't controls the share tabs component if undefined`, t => {
-  uiState.tabs.share = undefined
-
-  const result = components(uiState, {
-    type: 'TOGGLE_COMPONENT_TABS_SHARE',
-    payload: true
-  })
-
-  compareState.tabs.share = undefined
+  compareState.tabs.chapters = true
 
   t.deepEqual(result, compareState)
 })
 
 test(`tabs: it controls the share tabs component`, t => {
   const result = components(uiState, {
-    type: 'TOGGLE_COMPONENT_TABS_SHARE',
-    payload: true
+    type: 'TOGGLE_COMPONENT_TAB',
+    payload: {
+      tab: 'share',
+      visibility: true
+    }
   })
 
-  compareState.tabs.share.visible = true
-
-  t.deepEqual(result, compareState)
-})
-
-test(`tabs: it doesn't controls the audio tabs component if undefined`, t => {
-  uiState.tabs.audio = undefined
-
-  const result = components(uiState, {
-    type: 'TOGGLE_COMPONENT_TABS_AUDIO',
-    payload: true
-  })
-
-  compareState.tabs.audio = undefined
+  compareState.tabs.share = true
 
   t.deepEqual(result, compareState)
 })
 
 test(`tabs: it controls the audio tabs component`, t => {
   const result = components(uiState, {
-    type: 'TOGGLE_COMPONENT_TABS_AUDIO',
-    payload: true
+    type: 'TOGGLE_COMPONENT_TAB',
+    payload: {
+      visibility: true,
+      tab: 'audio'
+    }
   })
 
-  compareState.tabs.audio.visible = true
-
-  t.deepEqual(result, compareState)
-})
-
-test(`tabs: it doesn't controls the download tabs component if undefined`, t => {
-  uiState.tabs.download = undefined
-
-  const result = components(uiState, {
-    type: 'TOGGLE_COMPONENT_TABS_DOWNLOAD',
-    payload: true
-  })
-
-  compareState.tabs.download = undefined
+  compareState.tabs.audio = true
 
   t.deepEqual(result, compareState)
 })
 
 test(`tabs: it controls the download tabs component`, t => {
   const result = components(uiState, {
-    type: 'TOGGLE_COMPONENT_TABS_DOWNLOAD',
-    payload: true
+    type: 'TOGGLE_COMPONENT_TAB',
+    payload: {
+      tab: 'download',
+      visibility: true
+    }
   })
 
-  compareState.tabs.download.visible = true
-
-  t.deepEqual(result, compareState)
-})
-
-test(`tabs: it doesn't controls the info tabs component if undefined`, t => {
-  uiState.tabs.info = undefined
-
-  const result = components(uiState, {
-    type: 'TOGGLE_COMPONENT_TABS_INFO',
-    payload: true
-  })
-
-  compareState.tabs.info = undefined
+  compareState.tabs.download = true
 
   t.deepEqual(result, compareState)
 })
 
 test(`tabs: it controls the info tabs component`, t => {
   const result = components(uiState, {
-    type: 'TOGGLE_COMPONENT_TABS_INFO',
-    payload: true
+    type: 'TOGGLE_COMPONENT_TAB',
+    payload: {
+      tab: 'info',
+      visibility: true
+    }
   })
-
-  compareState.tabs.info.visible = true
-
-  t.deepEqual(result, compareState)
-})
-
-test(`volumeSlider: it doesn't toggle the volume slider if undefined`, t => {
-  uiState.tabs.audio = undefined
-
-  const result = components(uiState, {
-    type: 'TOGGLE_COMPONENT_VOLUME_SLIDER',
-    payload: true
-  })
-
-  compareState.tabs.audio = undefined
+  compareState.tabs.info = true
 
   t.deepEqual(result, compareState)
 })
@@ -433,19 +279,7 @@ test(`volumeSlider: it toggle the volume slider`, t => {
     payload: true
   })
 
-  compareState.tabs.audio.volume = true
-
-  t.deepEqual(result, compareState)
-})
-test(`rateSlider: it doesn't toggle the rate slider if undefined`, t => {
-  uiState.tabs.audio = undefined
-
-  const result = components(uiState, {
-    type: 'TOGGLE_COMPONENT_RATE_SLIDER',
-    payload: true
-  })
-
-  compareState.tabs.audio = undefined
+  compareState.audio.volumeControl = true
 
   t.deepEqual(result, compareState)
 })
@@ -456,7 +290,42 @@ test(`rateSlider: it toggle the rate slider`, t => {
     payload: true
   })
 
-  compareState.tabs.audio.rate = true
+  compareState.audio.rateControl = true
 
   t.deepEqual(result, compareState)
+})
+
+test(`visibleComponents: it loads the visibleComponents on INIT`, t => {
+  const result = visibleComponents(undefined, {
+    type: 'INIT',
+    payload: {
+      visibleComponents: ['tabInfo', 'tabChapters']
+    }
+  })
+
+  t.deepEqual(result, {
+    tabInfo: true,
+    tabChapters: true
+  })
+})
+
+test(`visibleComponents: it loads all visibleComponents on default`, t => {
+  const result = visibleComponents(undefined, {
+    type: 'FOOBAR'
+  })
+
+  t.deepEqual(result, {
+    tabInfo: true,
+    tabChapters: true,
+    tabDownload: true,
+    tabAudio: true,
+    tabShare: true,
+    progressbar: true,
+    controlSteppers: true,
+    controlChapters: true,
+    episodeTitle: true,
+    poster: true,
+    showTitle: true,
+    subtitle: true
+  })
 })

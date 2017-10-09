@@ -2,7 +2,7 @@
   <div class="player" :style="backgroundStyle">
     <ControlBar></ControlBar>
     <transition name="progressbar">
-      <ProgressBar v-if="components.progressbar.visible" />
+      <ProgressBar v-if="components.progressbar && visibleComponents.progressbar" />
     </transition>
   </div>
 </template>
@@ -17,6 +17,7 @@
         playstate: this.$select('playstate'),
         reference: this.$select('reference'),
         theme: this.$select('theme'),
+        visibleComponents: this.$select('visibleComponents'),
         components: this.$select('components')
       }
     },

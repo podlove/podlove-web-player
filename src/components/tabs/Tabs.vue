@@ -1,41 +1,41 @@
 <template>
-  <div class="tabs" :style="containerStyle" v-if="visibleTabs">
+  <div class="tabs" :style="containerStyle" v-if="hasTabs">
     <TabHeaderComponent>
-      <TabHeaderItemComponent v-if="components.tabs.info && components.tabs.info.visible" :active="tabs.info" :click="toggleTab('info')">
+      <TabHeaderItemComponent v-if="isVisibleTab.info" :active="tabs.info" :click="toggleTab('info')">
         <InfoIcon slot="icon"></InfoIcon>
         <span slot="title">{{ $t('INFO.TITLE') }}</span>
       </TabHeaderItemComponent>
-      <TabHeaderItemComponent v-if="components.tabs.chapters && components.tabs.chapters.visible" :active="tabs.chapters" :click="toggleTab('chapters')">
+      <TabHeaderItemComponent v-if="isVisibleTab.chapters" :active="tabs.chapters" :click="toggleTab('chapters')">
         <ChaptersIcon slot="icon"></ChaptersIcon>
         <span slot="title">{{ $t('CHAPTERS.TITLE') }}</span>
       </TabHeaderItemComponent>
-      <TabHeaderItemComponent v-if="components.tabs.share && components.tabs.share.visible" :active="tabs.share" :click="toggleTab('share')">
+      <TabHeaderItemComponent v-if="isVisibleTab.share" :active="tabs.share" :click="toggleTab('share')">
         <ShareIcon slot="icon"></ShareIcon>
         <span slot="title">{{ $t('SHARE.TITLE') }}</span>
       </TabHeaderItemComponent>
-      <TabHeaderItemComponent v-if="components.tabs.download && components.tabs.download.visible" :active="tabs.download" :click="toggleTab('download')">
+      <TabHeaderItemComponent v-if="isVisibleTab.download" :active="tabs.download" :click="toggleTab('download')">
         <DownloadIcon slot="icon"></DownloadIcon>
         <span slot="title">{{ $t('DOWNLOAD.TITLE') }}</span>
       </TabHeaderItemComponent>
-      <TabHeaderItemComponent v-if="components.tabs.audio && components.tabs.audio.visible" :active="tabs.audio" :click="toggleTab('audio')">
+      <TabHeaderItemComponent v-if="isVisibleTab.audio" :active="tabs.audio" :click="toggleTab('audio')">
         <AudioIcon slot="icon"></AudioIcon>
         <span slot="title">{{ $t('AUDIO.TITLE') }}</span>
       </TabHeaderItemComponent>
     </TabHeaderComponent>
 
-    <TabBodyComponent :active="tabs.info" v-if="components.tabs.info && components.tabs.info.visible">
+    <TabBodyComponent v-if="isVisibleTab.info" :active="tabs.info">
       <InfoTab></InfoTab>
     </TabBodyComponent>
-    <TabBodyComponent :active="tabs.chapters" v-if="components.tabs.chapters && components.tabs.chapters.visible">
+    <TabBodyComponent v-if="isVisibleTab.chapters" :active="tabs.chapters">
       <ChaptersTab></ChaptersTab>
     </TabBodyComponent>
-    <TabBodyComponent :active="tabs.share" v-if="components.tabs.share && components.tabs.share.visible">
+    <TabBodyComponent v-if="isVisibleTab.share" :active="tabs.share">
       <ShareTab></ShareTab>
     </TabBodyComponent>
-    <TabBodyComponent :active="tabs.download" v-if="components.tabs.download && components.tabs.download.visible">
+    <TabBodyComponent v-if="isVisibleTab.download" :active="tabs.download">
       <DownloadTab></DownloadTab>
     </TabBodyComponent>
-    <TabBodyComponent :active="tabs.audio" v-if="components.tabs.audio && components.tabs.audio.visible">
+    <TabBodyComponent v-if="isVisibleTab.audio" :active="tabs.audio">
       <AudioTab></AudioTab>
     </TabBodyComponent>
   </div>
@@ -43,7 +43,6 @@
 
 <script>
 import store from 'store'
-import { get } from 'lodash'
 
 import TabHeaderComponent from 'shared/TabHeader.vue'
 import TabHeaderItemComponent from 'shared/TabHeaderItem.vue'
@@ -68,6 +67,7 @@ export default {
       tabs: this.$select('tabs'),
       chapters: this.$select('chapters'),
       reference: this.$select('reference'),
+      visibleComponents: this.$select('visibleComponents'),
       components: this.$select('components')
     }
   },
@@ -77,14 +77,23 @@ export default {
         'background-color': this.theme.tabs.body.background
       }
     },
-    visibleTabs () {
-      return Object.keys(this.components.tabs)
+    isVisibleTab () {
+      return {
+        info: this.components.tabs.info && this.visibleComponents.tabInfo,
+        chapters: this.components.tabs.chapters && this.visibleComponents.tabChapters,
+        share: this.components.tabs.share && this.visibleComponents.tabShare,
+        download: this.components.tabs.download && this.visibleComponents.tabDownload,
+        audio: this.components.tabs.audio && this.visibleComponents.tabAudio
+      }
+    },
+    hasTabs () {
+      return Object.keys(this.isVisibleTab)
         .reduce((result, tab) => {
           if (result) {
             return true
           }
 
-          return get(this.components.tabs, [tab, 'visible'], false)
+          return this.isVisibleTab[tab]
         }, false)
     }
   },

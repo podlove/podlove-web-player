@@ -154,12 +154,18 @@ test(`componentsEffect: it shows correct ui components for INIT action`, t => {
 
   components(store, testAction)
   t.deepEqual(store.dispatch.getCall(0).args[0], {
-    type: 'TOGGLE_COMPONENT_TABS_CHAPTERS',
-    payload: true
+    type: 'TOGGLE_COMPONENT_TAB',
+    payload: {
+      tab: 'chapters',
+      visibility: true
+    }
   })
   t.deepEqual(store.dispatch.getCall(1).args[0], {
-    type: 'TOGGLE_COMPONENT_TABS_DOWNLOAD',
-    payload: true
+    type: 'TOGGLE_COMPONENT_TAB',
+    payload: {
+      tab: 'download',
+      visibility: true
+    }
   })
   t.deepEqual(store.dispatch.getCall(2).args[0], {
     type: 'TOGGLE_COMPONENT_INFO',
@@ -170,16 +176,25 @@ test(`componentsEffect: it shows correct ui components for INIT action`, t => {
     payload: true
   })
   t.deepEqual(store.dispatch.getCall(4).args[0], {
-    type: 'TOGGLE_COMPONENT_TABS_SHARE',
-    payload: true
+    type: 'TOGGLE_COMPONENT_TAB',
+    payload: {
+      tab: 'share',
+      visibility: true
+    }
   })
   t.deepEqual(store.dispatch.getCall(5).args[0], {
-    type: 'TOGGLE_COMPONENT_TABS_INFO',
-    payload: true
+    type: 'TOGGLE_COMPONENT_TAB',
+    payload: {
+      tab: 'info',
+      visibility: true
+    }
   })
   t.deepEqual(store.dispatch.getCall(6).args[0], {
-    type: 'TOGGLE_COMPONENT_TABS_AUDIO',
-    payload: true
+    type: 'TOGGLE_COMPONENT_TAB',
+    payload: {
+      tab: 'audio',
+      visibility: true
+    }
   })
   t.deepEqual(store.dispatch.getCall(7).args[0], {
     type: 'TOGGLE_COMPONENT_RATE_SLIDER',
@@ -197,8 +212,11 @@ test(`componentsEffect: it shows the chapters tab only when chapters are availab
 
   components(store, testAction)
   t.deepEqual(store.dispatch.getCall(0).args[0], {
-    type: 'TOGGLE_COMPONENT_TABS_DOWNLOAD',
-    payload: true
+    type: 'TOGGLE_COMPONENT_TAB',
+    payload: {
+      tab: 'download',
+      visibility: true
+    }
   })
 })
 

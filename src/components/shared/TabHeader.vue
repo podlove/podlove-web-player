@@ -1,5 +1,5 @@
 <template>
-  <ul class="tab-header">
+  <ul class="tab-header" :class="{ overflows }">
     <span class="header-shadow" :style="headerShadowStyle"></span>
     <slot></slot>
   </ul>
@@ -10,6 +10,7 @@
   export default {
     data () {
       return {
+        overflows: false,
         theme: this.$select('theme')
       }
     },
@@ -19,6 +20,18 @@
           background: `linear-gradient(to bottom, ${color(this.theme.tabs.header.backgroundActive).fade(0)} 0%, ${color(this.theme.tabs.header.backgroundActive).fade(1)} 100%)`
         }
       }
+    },
+    mounted (el) {
+      const resizeHandler = () => {
+        if (this.$el.scrollWidth > this.$el.clientWidth) {
+          this.overflows = true
+        } else {
+          this.overflows = false
+        }
+      }
+
+      window.addEventListener('resize', resizeHandler)
+      resizeHandler()
     }
   }
 </script>
@@ -28,6 +41,8 @@
   .tab-header {
     position: relative;
     width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -47,6 +62,10 @@
       right: 0;
       height: $padding;
       z-index: $tab-shadow;
+    }
+
+    &.overflows .tab-header-item .title {
+      display: none;
     }
   }
 </style>

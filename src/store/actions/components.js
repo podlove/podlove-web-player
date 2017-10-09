@@ -13,6 +13,11 @@ const toggleProgressBar = visibility => ({
   payload: visibility
 })
 
+const toggleInfoPoster = visibility => ({
+  type: 'TOGGLE_COMPONENT_INFO_POSTER',
+  payload: visibility
+})
+
 // Controls
 const toggleChapterControls = visibility => ({
   type: 'TOGGLE_COMPONENT_CONTROLS_CHAPTERS',
@@ -58,29 +63,12 @@ const showPauseButton = visibility => ({
 })
 
 // Tabs
-const toggleChaptersTab = visibility => ({
-  type: 'TOGGLE_COMPONENT_TABS_CHAPTERS',
-  payload: visibility
-})
-
-const toggleShareTab = visibility => ({
-  type: 'TOGGLE_COMPONENT_TABS_SHARE',
-  payload: visibility
-})
-
-const toggleAudioTab = visibility => ({
-  type: 'TOGGLE_COMPONENT_TABS_AUDIO',
-  payload: visibility
-})
-
-const toggleDownloadTab = visibility => ({
-  type: 'TOGGLE_COMPONENT_TABS_DOWNLOAD',
-  payload: visibility
-})
-
-const toggleInfoTab = visibility => ({
-  type: 'TOGGLE_COMPONENT_TABS_INFO',
-  payload: visibility
+const toggleComponentTab = (tab, visibility) => ({
+  type: 'TOGGLE_COMPONENT_TAB',
+  payload: {
+    tab,
+    visibility
+  }
 })
 
 // Audio Controls
@@ -96,6 +84,7 @@ const toggleRateSlider = visibility => ({
 
 export {
   toggleInfo,
+  toggleInfoPoster,
   toggleError,
   toggleProgressBar,
 
@@ -111,11 +100,7 @@ export {
   showPlayingButton,
   showPauseButton,
 
-  toggleChaptersTab,
-  toggleShareTab,
-  toggleAudioTab,
-  toggleDownloadTab,
-  toggleInfoTab,
+  toggleComponentTab,
 
   toggleVolumeSlider,
   toggleRateSlider

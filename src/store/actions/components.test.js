@@ -16,9 +16,7 @@ import {
   showPlayingButton,
   showPauseButton,
 
-  toggleChaptersTab,
-  toggleShareTab,
-  toggleAudioTab
+  toggleComponentTab
 } from './components'
 
 const toggleActions = [{
@@ -45,18 +43,6 @@ const toggleActions = [{
   name: 'toggleButtonControlAction',
   method: toggleButtonControl,
   type: 'TOGGLE_COMPONENT_CONTROLS_BUTTON'
-}, {
-  name: 'toggleChaptersTabAction',
-  method: toggleChaptersTab,
-  type: 'TOGGLE_COMPONENT_TABS_CHAPTERS'
-}, {
-  name: 'toggleShareTabAction',
-  method: toggleShareTab,
-  type: 'TOGGLE_COMPONENT_TABS_SHARE'
-}, {
-  name: 'toggleSettingsTabAction',
-  method: toggleAudioTab,
-  type: 'TOGGLE_COMPONENT_TABS_AUDIO'
 }]
 
 const voidActions = [{
@@ -110,5 +96,15 @@ voidActions.forEach(action => {
     t.deepEqual(action.method(), {
       type: action.type
     })
+  })
+})
+
+test(`toggleComponentTabAction: creates the TOGGLE_COMPONENT_TAB action`, t => {
+  t.deepEqual(toggleComponentTab('foo', true), {
+    type: 'TOGGLE_COMPONENT_TAB',
+    payload: {
+      tab: 'foo',
+      visibility: true
+    }
   })
 })

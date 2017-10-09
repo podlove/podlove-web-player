@@ -1,45 +1,32 @@
-import { get, isUndefined } from 'lodash'
+import { get } from 'lodash'
 
 const INITIAL_HEADER = {
   info: false,
-  error: false
+  error: false,
+  poster: false
 }
 
 const INITIAL_BUTTON = {
-  visible: true,
-  variant: {
-    loading: false,
-    replay: false,
-    duration: true,
-    remaining: false,
-    retry: false,
-    playing: false,
-    pause: false
-  }
+  loading: false,
+  replay: false,
+  duration: true,
+  remaining: false,
+  retry: false,
+  playing: false,
+  pause: false
 }
 
-const INITIAL_PROGRESSBAR = {
-  visible: false
+const INITIAL_AUDIO_CONTROLS = {
+  volumeControl: false,
+  rateControl: false
 }
 
 const INITIAL_TABS = {
-  chapters: {
-    visible: false
-  },
-  share: {
-    visible: false
-  },
-  audio: {
-    visible: false,
-    volume: false,
-    rate: false
-  },
-  download: {
-    visible: false
-  },
-  info: {
-    visible: false
-  }
+  info: false,
+  audio: false,
+  download: false,
+  share: false,
+  chapters: false
 }
 
 const componentsState = (state) => ({
@@ -49,7 +36,8 @@ const componentsState = (state) => ({
     chapters: get(state, 'controls.chapters', false),
     steppers: get(state, 'controls.steppers', false)
   },
-  progressbar: get(state, 'progressbar', INITIAL_PROGRESSBAR),
+  progressbar: get(state, 'progressbar', false),
+  audio: get(state, 'audio', INITIAL_AUDIO_CONTROLS),
   tabs: get(state, 'tabs', INITIAL_TABS)
 })
 
@@ -69,28 +57,8 @@ const buttonVariant = (state, variant, active) => {
     controls: {
       ...state.controls,
       button: {
-        ...state.controls.button,
-        variant: {
-          ...defaultVariants,
-          [variant]: active
-        }
-      }
-    }
-  }
-}
-
-const setTabsVisibility = (state, tab, visible) => {
-  if (isUndefined(state.tabs[tab])) {
-    return state
-  }
-
-  return {
-    ...state,
-    tabs: {
-      ...state.tabs,
-      [tab]: {
-        ...state.tabs[tab],
-        visible
+        ...defaultVariants,
+        [variant]: active
       }
     }
   }
@@ -98,13 +66,7 @@ const setTabsVisibility = (state, tab, visible) => {
 
 const components = (state = componentsState(), action) => {
   switch (action.type) {
-    case 'INIT':
-      return componentsState(get(action.payload, 'components', {}))
     case 'TOGGLE_COMPONENT_INFO':
-      if (isUndefined(state.header.info)) {
-        return state
-      }
-
       return {
         ...state,
         header: {
@@ -112,11 +74,15 @@ const components = (state = componentsState(), action) => {
           info: action.payload
         }
       }
-    case 'TOGGLE_COMPONENT_ERROR':
-      if (isUndefined(state.header.error)) {
-        return state
+    case 'TOGGLE_COMPONENT_INFO_POSTER':
+      return {
+        ...state,
+        header: {
+          ...state.header,
+          poster: action.payload
+        }
       }
-
+    case 'TOGGLE_COMPONENT_ERROR':
       return {
         ...state,
         header: {
@@ -124,23 +90,7 @@ const components = (state = componentsState(), action) => {
           error: action.payload
         }
       }
-    case 'TOGGLE_COMPONENT_PROGRESSBAR':
-      if (isUndefined(state.progressbar.visible)) {
-        return state
-      }
-
-      return {
-        ...state,
-        progressbar: {
-          ...state.progressbar,
-          visible: action.payload
-        }
-      }
     case 'TOGGLE_COMPONENT_CONTROLS_CHAPTERS':
-      if (isUndefined(state.controls.chapters)) {
-        return state
-      }
-
       return {
         ...state,
         controls: {
@@ -149,10 +99,6 @@ const components = (state = componentsState(), action) => {
         }
       }
     case 'TOGGLE_COMPONENT_CONTROLS_STEPPERS':
-      if (isUndefined(state.controls.steppers)) {
-        return state
-      }
-
       return {
         ...state,
         controls: {
@@ -162,21 +108,6 @@ const components = (state = componentsState(), action) => {
       }
 
     // Central Play Button
-    case 'TOGGLE_COMPONENT_CONTROLS_BUTTON':
-      if (isUndefined(state.controls.button)) {
-        return state
-      }
-
-      return {
-        ...state,
-        controls: {
-          ...state.controls,
-          button: {
-            ...state.controls.button,
-            visible: action.payload
-          }
-        }
-      }
     case 'SHOW_COMPONENT_CONTROLS_BUTTON_LOADING':
       return buttonVariant(state, 'loading', true)
     case 'SHOW_COMPONENT_CONTROLS_BUTTON_REPLAY':
@@ -192,54 +123,77 @@ const components = (state = componentsState(), action) => {
     case 'SHOW_COMPONENT_CONTROLS_BUTTON_PAUSE':
       return buttonVariant(state, 'pause', true)
 
-    // Tabs
-    case 'TOGGLE_COMPONENT_TABS_CHAPTERS':
-      return setTabsVisibility(state, 'chapters', action.payload)
-    case 'TOGGLE_COMPONENT_TABS_SHARE':
-      return setTabsVisibility(state, 'share', action.payload)
-    case 'TOGGLE_COMPONENT_TABS_AUDIO':
-      return setTabsVisibility(state, 'audio', action.payload)
-    case 'TOGGLE_COMPONENT_TABS_DOWNLOAD':
-      return setTabsVisibility(state, 'download', action.payload)
-    case 'TOGGLE_COMPONENT_TABS_INFO':
-      return setTabsVisibility(state, 'info', action.payload)
+    // Tab Modifiers
+    case 'TOGGLE_COMPONENT_TAB':
+      return {
+        ...state,
+        tabs: {
+          ...state.tabs,
+          [action.payload.tab]: action.payload.visibility
+        }
+      }
 
     // Audio Modifiers
     case 'TOGGLE_COMPONENT_VOLUME_SLIDER':
-      if (isUndefined(state.tabs.audio)) {
-        return state
-      }
-
       return {
         ...state,
-        tabs: {
-          ...state.tabs,
-          audio: {
-            ...state.tabs.audio,
-            volume: action.payload
-          }
+        audio: {
+          ...state.audio,
+          volumeControl: action.payload
         }
       }
     case 'TOGGLE_COMPONENT_RATE_SLIDER':
-      if (isUndefined(state.tabs.audio)) {
-        return state
-      }
-
       return {
         ...state,
-        tabs: {
-          ...state.tabs,
-          audio: {
-            ...state.tabs.audio,
-            rate: action.payload
-          }
+        audio: {
+          ...state.audio,
+          rateControl: action.payload
         }
       }
+
+      // Progressbar
+    case 'TOGGLE_COMPONENT_PROGRESSBAR':
+      return {
+        ...state,
+        progressbar: action.payload
+      }
+
+    default:
+      return state
+  }
+}
+
+const INITIAL_VISIBLE_COMPONENTS = [
+  'tabInfo',
+  'tabChapters',
+  'tabDownload',
+  'tabAudio',
+  'tabShare',
+  'poster',
+  'showTitle',
+  'episodeTitle',
+  'subtitle',
+  'progressbar',
+  'controlSteppers',
+  'controlChapters'
+]
+
+const toVisibleComponentState = (components) =>
+  components.reduce((result, component) => ({
+    ...result,
+    [component]: true
+  }), {})
+
+const visibleComponents = (state = toVisibleComponentState(INITIAL_VISIBLE_COMPONENTS), action) => {
+  switch (action.type) {
+    case 'INIT':
+      return toVisibleComponentState(get(action.payload, 'visibleComponents', INITIAL_VISIBLE_COMPONENTS))
     default:
       return state
   }
 }
 
 export {
-  components
+  components,
+  visibleComponents
 }

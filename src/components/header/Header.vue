@@ -37,5 +37,9 @@
   .header {
     padding: $padding $padding 0 $padding;
     overflow: hidden;
+
+    &:empty {
+      padding: 0;
+    }
   }
 </style>

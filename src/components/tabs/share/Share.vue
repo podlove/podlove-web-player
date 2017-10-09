@@ -8,8 +8,8 @@
       <span class="label">{{ $t('SHARE.SHARE_CHANNEL') }}</span>
       <ShareChannelsComponent :type="share.content"></ShareChannelsComponent>
 
-      <span class="label">{{ $t('SHARE.SHARE_LINK') }}</span>
-      <ShareLinkComponent :type="share.content"></ShareLinkComponent>
+      <span class="label" v-if="hasLink">{{ $t('SHARE.SHARE_LINK') }}</span>
+      <ShareLinkComponent :type="share.content" v-if="hasLink"></ShareLinkComponent>
     </div>
 
     <ShareEmbedComponent :type="share.content"></ShareEmbedComponent>
@@ -27,7 +27,9 @@
     data () {
       return {
         theme: this.$select('theme'),
-        share: this.$select('share')
+        share: this.$select('share'),
+        show: this.$select('show'),
+        episode: this.$select('episode')
       }
     },
     computed: {
@@ -35,6 +37,11 @@
         return {
           background: this.theme.tabs.body.section
         }
+      },
+      hasLink () {
+        const hasShowLink = this.share.content === 'show' && this.show.link
+        const hasShareLink = this.share.content !== 'show' && this.episode.link
+        return hasShowLink || hasShareLink
       }
     },
     components: {
