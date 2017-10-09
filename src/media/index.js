@@ -1,4 +1,4 @@
-import { audio, events as audioEvents, actions as audioActions } from 'html5-audio-driver'
+import { audio, events as audioEvents, actions as audioActions } from '@podlove/html5-audio-driver'
 
 export default (audioFiles) => {
   const audioElement = audio(audioFiles)

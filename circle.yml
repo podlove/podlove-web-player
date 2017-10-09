@@ -17,7 +17,7 @@ dependencies:
     - npm rebuild node-sass
     - gem install bundler
   pre:
-    - yarn global add publish-release
+    - echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
   cache_directories:
     - ~/.cache/yarn
 
@@ -53,5 +53,5 @@ deployment:
     commands:
       - yarn dist:clean
       - yarn build
-      - yarn deploy:release
+      - npm publish --access public
       - yarn deploy:cdn

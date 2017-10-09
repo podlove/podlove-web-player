@@ -1,10 +1,9 @@
 import test from 'ava'
 import sinon from 'sinon'
 
-import storageEffectsFactory from './storage'
+import storageEffects from './storage.episode'
 
 let storage, store
-let storageEffects
 let setStub, getStub
 
 test.beforeEach(t => {
@@ -31,8 +30,6 @@ test.beforeEach(t => {
       }
     })
   }
-
-  storageEffects = storageEffectsFactory(storage)
 })
 
 test(`storageEffects: it exports a effect factory`, t => {
@@ -40,7 +37,7 @@ test(`storageEffects: it exports a effect factory`, t => {
 })
 
 test(`storageEffects: it sets the playtime on INIT if stored`, t => {
-  storageEffects(store, {
+  storageEffects(storage, store, {
     type: 'INIT',
     payload: {
       foo: 'bar'
@@ -58,7 +55,7 @@ test(`storageEffects: it sets the playtime on INIT if stored`, t => {
 })
 
 test(`storageEffects: it sets the tabs on INIT if stored`, t => {
-  storageEffects(store, {
+  storageEffects(storage, store, {
     type: 'INIT',
     payload: {
       foo: 'bar'
@@ -73,7 +70,7 @@ test(`storageEffects: it sets the tabs on INIT if stored`, t => {
 })
 
 test(`storageEffects: it sets the volume on INIT if stored`, t => {
-  storageEffects(store, {
+  storageEffects(storage, store, {
     type: 'INIT',
     payload: {
       foo: 'bar'
@@ -88,7 +85,7 @@ test(`storageEffects: it sets the volume on INIT if stored`, t => {
 })
 
 test(`storageEffects: it sets the rate on INIT if stored`, t => {
-  storageEffects(store, {
+  storageEffects(storage, store, {
     type: 'INIT',
     payload: {
       foo: 'bar'
@@ -103,7 +100,7 @@ test(`storageEffects: it sets the rate on INIT if stored`, t => {
 })
 
 test(`storageEffects: it sets the quantiles on INIT if stored`, t => {
-  storageEffects(store, {
+  storageEffects(storage, store, {
     type: 'INIT',
     payload: {
       foo: 'bar'
@@ -120,7 +117,7 @@ test(`storageEffects: it sets the quantiles on INIT if stored`, t => {
 test(`storageEffects: it doesn't sets the playtime on INIT if not stored`, t => {
   getStub = sinon.stub().returns(undefined)
 
-  storageEffects(store, {
+  storageEffects(storage, store, {
     type: 'INIT',
     payload: {
       foo: 'bar'
@@ -132,14 +129,14 @@ test(`storageEffects: it doesn't sets the playtime on INIT if not stored`, t => 
 })
 
 test(`storageEffects: it persists the playtime on SET_PLAYTIME`, t => {
-  storageEffects(store, {
+  storageEffects(storage, store, {
     type: 'INIT',
     payload: {
       foo: 'bar'
     }
   })
 
-  storageEffects(store, {
+  storageEffects(storage, store, {
     type: 'SET_PLAYTIME',
     payload: 50
   })
@@ -149,14 +146,14 @@ test(`storageEffects: it persists the playtime on SET_PLAYTIME`, t => {
 })
 
 test(`storageEffects: it persists the volumen on SET_VOLUME`, t => {
-  storageEffects(store, {
+  storageEffects(storage, store, {
     type: 'INIT',
     payload: {
       foo: 'bar'
     }
   })
 
-  storageEffects(store, {
+  storageEffects(storage, store, {
     type: 'SET_VOLUME',
     payload: 0.5
   })
@@ -166,14 +163,14 @@ test(`storageEffects: it persists the volumen on SET_VOLUME`, t => {
 })
 
 test(`storageEffects: it persists the rate on SET_RATE`, t => {
-  storageEffects(store, {
+  storageEffects(storage, store, {
     type: 'INIT',
     payload: {
       foo: 'bar'
     }
   })
 
-  storageEffects(store, {
+  storageEffects(storage, store, {
     type: 'SET_RATE',
     payload: 1
   })
@@ -183,14 +180,14 @@ test(`storageEffects: it persists the rate on SET_RATE`, t => {
 })
 
 test(`storageEffects: it persists the tabs on TOGGLE_TAB`, t => {
-  storageEffects(store, {
+  storageEffects(storage, store, {
     type: 'INIT',
     payload: {
       foo: 'bar'
     }
   })
 
-  storageEffects(store, {
+  storageEffects(storage, store, {
     type: 'TOGGLE_TAB'
   })
 
@@ -202,14 +199,14 @@ test(`storageEffects: it persists the tabs on TOGGLE_TAB`, t => {
 })
 
 test(`storageEffects: it persists the quantiles on SET_QUANTILE`, t => {
-  storageEffects(store, {
+  storageEffects(storage, store, {
     type: 'INIT',
     payload: {
       foo: 'bar'
     }
   })
 
-  storageEffects(store, {
+  storageEffects(storage, store, {
     type: 'SET_QUANTILE',
     payload: {
       start: 0,
