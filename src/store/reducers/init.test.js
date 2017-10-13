@@ -1,5 +1,5 @@
 import test from 'ava'
-import { reference, display } from './init'
+import { reference, display, mode } from './init'
 
 let testAction
 
@@ -18,6 +18,7 @@ test.beforeEach(t => {
         poster: '//show/poster',
         url: 'https://freakshow.fm'
       },
+      mode: 'episode',
       duration: '04:15:32',
       chapters: [
         { start: '00:00:00', title: 'Intro' },
@@ -104,11 +105,45 @@ test(`reference: it does nothing if not the init action is dispatched`, t => {
   t.is(result, 'foobar')
 })
 
-test(`reference: it has a default fallback if a missing state is provided`, t => {
+test(`mode: it has a default fallback if a missing state is provided`, t => {
   const result = reference(undefined, {
     type: 'NOT_A_REAL_TYPE'
   })
   t.deepEqual(result, {})
+})
+
+test(`mode: it falls back to default mode if not live`, t => {
+  const result = mode(undefined, {
+    type: 'INIT',
+    payload: {
+      mode: 'foobar'
+    }
+  })
+  t.deepEqual(result, 'episode')
+})
+
+test(`mode: it sets the provided mode to live`, t => {
+  const result = mode(undefined, {
+    type: 'INIT',
+    payload: {
+      mode: 'live'
+    }
+  })
+  t.deepEqual(result, 'live')
+})
+
+test(`mode: it does nothing if not the init action is dispatched`, t => {
+  const result = mode('foo', {
+    type: 'NOT_A_REAL_TYPE'
+  })
+  t.deepEqual(result, 'foo')
+})
+
+test(`mode: it has a default fallback if a missing state is provided`, t => {
+  const result = mode(undefined, {
+    type: 'NOT_A_REAL_TYPE'
+  })
+  t.deepEqual(result, 'episode')
 })
 
 // display TESTS

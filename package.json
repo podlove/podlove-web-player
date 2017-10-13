@@ -47,6 +47,9 @@
     "deploy:surge": "surge --project ./dist --domain podlove-player.surge.sh",
     "changelog": "standard-changelog"
   },
+  "files": [
+    "dist/"
+  ],
   "dependencies": {
     "babel-polyfill": "6.26.0",
     "bluebird": "3.5.0",
@@ -55,8 +58,7 @@
     "detect-browser": "1.6.2",
     "foundation-sites": "6.3.1",
     "hashcode": "1.0.3",
-    "howler": "2.0.3",
-    "html5-audio-driver": "0.6.3",
+    "@podlove/html5-audio-driver": "0.6.3",
     "iframe-resizer": "3.5.7",
     "keyboardjs": "2.3.3",
     "lodash": "4.17.4",

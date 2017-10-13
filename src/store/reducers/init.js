@@ -9,6 +9,19 @@ const display = (state = 'native', action) => {
   }
 }
 
+const mode = (state = 'episode', action) => {
+  switch (action.type) {
+    case 'INIT':
+      if (action.payload.mode === 'live') {
+        return 'live'
+      } else {
+        return 'episode'
+      }
+    default:
+      return state
+  }
+}
+
 const reference = (state = {}, action) => {
   switch (action.type) {
     case 'INIT':
@@ -25,5 +38,6 @@ const reference = (state = {}, action) => {
 
 export {
   reference,
-  display
+  display,
+  mode
 }
