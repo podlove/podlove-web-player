@@ -1,8 +1,8 @@
 {
-  "name": "podlove-web-player",
+  "name": "@podlove/podlove-web-player",
   "title": "Podlove Web Player",
   "description": "a Podcast-optimized, HTML5-based video and audio player with Flash fallback. It can be used as a WordPress plugin or within a static HTML/JavaScript context.",
-  "version": "4.0.0-beta.2",
+  "version": "4.0.0-beta.3",
   "homepage": "https://github.com/podlove/podlove-web-player",
   "contributors": [],
   "repository": "https://github.com/podlove/podlove-web-player.git",
@@ -26,9 +26,9 @@
   ],
   "scripts": {
     "dist:clean": "mkdir -p dist && rm -rf dist/*",
-    "postinstall": "cd docs && bundle install",
-    "docs:dev": "jekyll build --source docs --destination dist && cp -R docs/fixtures/* dist/fixtures",
-    "docs:prod": "jekyll build --source docs --destination dist --config docs/_config_prd.yml && cp -R docs/fixtures/* dist/fixtures",
+    "docs:install": "cd docs && bundle install",
+    "docs:dev": "npm run docs:install && jekyll build --source docs --destination dist && cp -R docs/fixtures/* dist/fixtures",
+    "docs:prod": "npm run docs:install && jekyll build --source docs --destination dist --config docs/_config_prd.yml && cp -R docs/fixtures/* dist/fixtures",
     "webpack:dev": "webpack-dashboard -- webpack-dev-server --config src/webpack.config.js",
     "webpack:build": "NODE_ENV='production' webpack --config src/webpack.config.js",
     "build": "npm run webpack:build",
