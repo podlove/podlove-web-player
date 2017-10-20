@@ -86,15 +86,15 @@ const renderPlayer = anchor => player => {
     .then(getPodloveStore)
 }
 
-// Config Node
-const configNode = (config = {}) =>
-  Bluebird.resolve(config)
+const mergeConfig = (episode) =>
+  Bluebird.resolve(episode)
     // If the config is a string, lets assume that this will point to the remote config json
     .then(config => isString(config) ? requestConfig(config) : config)
     // Load parameters from url
     .then(config => Object.assign({}, config, params))
-    // Finally return the node
-    .then(config => tag('script', `window.PODLOVE = ${JSON.stringify(config)}`))
+
+// Config Node
+const configNode = (config = {}) => tag('script', `window.PODLOVE = ${JSON.stringify(config)}`)
 
 // Player Logic
 const styleBundle = config => tag('link', '', {rel: 'stylesheet', href: `${get(config.reference, 'base', '.')}/style.css`})
@@ -108,16 +108,18 @@ const dynamicResizer = tag('script', iframeResizerContentWindow)
 const playerEntry = tag('PodlovePlayer')
 
 // Bootstrap
-window.podlovePlayer = (selector, config) => {
+window.podlovePlayer = (selector, episode) => {
   const anchor = typeof selector === 'string' ? head(findNode(selector)) : selector
-  return Bluebird.all([
-    playerEntry,
-    configNode(config),
-    styleBundle(config),
-    vendorBundle(config),
-    appBundle(config),
-    dynamicResizer
-  ])
-  .then(result => result.join(''))
-  .then(renderPlayer(anchor))
+
+  return mergeConfig(episode)
+    .then(config => Bluebird.all([
+      playerEntry,
+      configNode(config),
+      styleBundle(config),
+      vendorBundle(config),
+      appBundle(config),
+      dynamicResizer
+    ]))
+    .then(result => result.join(''))
+    .then(renderPlayer(anchor))
 }
