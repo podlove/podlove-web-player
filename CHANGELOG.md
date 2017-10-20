@@ -1,5 +1,5 @@
-<a name="4.0.0-beta.2"></a>
-# [4.0.0-beta.2](https://github.com/podlove/podlove-web-player/compare/v4.0.0-alpha.6...v4.0.0-beta.2) (2017-10-13)
+<a name="4.0.0-beta.4"></a>
+# [4.0.0-beta.4](https://github.com/podlove/podlove-web-player/compare/v4.0.0-alpha.6...v4.0.0-beta.4) (2017-10-20)
 
 
 ### Bug Fixes
@@ -21,6 +21,7 @@
 * **download-tab:** Add copy url button ([898264f](https://github.com/podlove/podlove-web-player/commit/898264f))
 * **download-tab:** Add download tab ([336cee5](https://github.com/podlove/podlove-web-player/commit/336cee5))
 * **info-tab:** Add info tab ([bb32e41](https://github.com/podlove/podlove-web-player/commit/bb32e41))
+* **last-action:** Add last action reducer ([1f35ca0](https://github.com/podlove/podlove-web-player/commit/1f35ca0))
 * **live-mode:** Add live mode ([c24a817](https://github.com/podlove/podlove-web-player/commit/c24a817))
 * **minimal-version:** Harden player for minimal configuration ([5d970f0](https://github.com/podlove/podlove-web-player/commit/5d970f0))
 * **share:** Streamline sharing tab ([5a5bf8c](https://github.com/podlove/podlove-web-player/commit/5a5bf8c))
