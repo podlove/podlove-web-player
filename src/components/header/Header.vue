@@ -1,5 +1,6 @@
 <template>
-  <div class="header" :style="backgroundStyle" v-if="components.header.error || components.header.info">
+  <div class="header" :style="backgroundStyle"
+    v-if="components.header.error || components.header.info">
     <ErrorComponent v-if="components.header.error"></ErrorComponent>
     <InfoComponent v-if="components.header.info"></InfoComponent>
   </div>
@@ -35,11 +36,7 @@
   @import '~styles/variables';
 
   .header {
-    padding: $padding $padding 0 $padding;
+    padding: 0 $padding;
     overflow: hidden;
-
-    &:empty {
-      padding: 0;
-    }
   }
 </style>
