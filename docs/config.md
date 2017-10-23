@@ -211,7 +211,7 @@ List of components that are visible in the player. if nothing is provided all co
 
 
 ```javascript
-  visualComponents: [
+  visibleComponents: [
     'tabInfo',
     'tabChapters',
     'tabDownload',
