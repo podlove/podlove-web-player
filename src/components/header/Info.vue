@@ -1,20 +1,20 @@
 <template>
-  <div class="info" >
-    <div class="poster" v-if="(episode.poster || show.poster) && visibleComponents.poster && components.header.poster">
+  <div class="info" v-if="hasPoster || hasShowTitle || hasEpisodeTitle || hasDescription">
+    <div class="poster" v-if="hasPoster">
       <div class="poster-container" :style="posterStyle">
         <img class="poster-image" :src="episode.poster || show.poster" @error="onImageLoad">
       </div>
     </div>
     <div class="description">
-      <h2 class="show-title" :style="titleStyle" v-if="show.title && visibleComponents.showTitle">
+      <h2 class="show-title" :style="titleStyle" v-if="hasShowTitle">
         <a :href="show.link" target="_blank" class="truncate" v-if="display === 'embed' && show.link">{{show.title}}</a>
         <span class="truncate" v-else>{{show.title}}</span>
       </h2>
-      <h1 class="title" :style="titleStyle" v-if="episode.title && visibleComponents.episodeTitle">
+      <h1 class="title" :style="titleStyle" v-if="hasEpisodeTitle">
         <a :href="episode.link" target="_blank" class="truncate" v-if="display === 'embed' && episode.link">{{episode.title}}</a>
         <span class="truncate" v-else>{{episode.title}}</span>
       </h1>
-      <div class="subtitle" :style="subtitleStyle" v-if="episode.subtitle && visibleComponents.subtitle">{{episode.subtitle}}</div>
+      <div class="subtitle" :style="subtitleStyle" v-if="hasDescription">{{episode.subtitle}}</div>
     </div>
   </div>
 </template>
@@ -49,6 +49,19 @@
         return {
           color: color(this.theme.player.text).fade(0.25)
         }
+      },
+      hasPoster () {
+        return (this.episode.poster || this.show.poster) &&
+          this.visibleComponents.poster && this.components.header.poster
+      },
+      hasShowTitle () {
+        return this.show.title && this.visibleComponents.showTitle
+      },
+      hasEpisodeTitle () {
+        return this.episode.title && this.visibleComponents.episodeTitle
+      },
+      hasDescription () {
+        return this.episode.subtitle && this.visibleComponents.subtitle
       }
     },
     methods: {
@@ -69,6 +82,7 @@
     width: 100%;
     display: flex;
     flex-direction: row;
+    padding-top: $padding;
 
     .poster {
       margin: 0 $margin 0 0;
