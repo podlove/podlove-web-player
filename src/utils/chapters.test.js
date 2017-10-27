@@ -1,21 +1,24 @@
 import test from 'ava'
-import { currentChapter, currentChapterIndex } from './chapters'
+import { currentChapter, currentChapterIndex, currentChapterByPlaytime } from './chapters'
 
 test.beforeEach(t => {
   t.context.inactiveChapter = {
-    start: 10,
+    start: 0,
+    end: 3600,
     title: 'Inactive Chapter',
     active: false
   }
 
   t.context.activeChapter = {
     start: 3600,
+    end: 7200,
     title: 'Active Chapter',
     active: true
   }
 
   t.context.additionalChapter = {
     start: 7200,
+    end: 9000,
     title: 'Additional Chapter',
     active: false
   }
@@ -43,4 +46,10 @@ test('currentChapterIndex should return undefined if no matches', t => {
 
 test('currentChapterIndex should find the active chapter index in a list', t => {
   t.is(currentChapterIndex([t.context.inactiveChapter, t.context.activeChapter]), 1)
+})
+
+test('currentChapterByPlaytime should find the active chapter by playtime', t => {
+  t.is(currentChapterByPlaytime([t.context.inactiveChapter, t.context.activeChapter, t.context.additionalChapter])(11), t.context.inactiveChapter)
+  t.is(currentChapterByPlaytime([t.context.inactiveChapter, t.context.activeChapter, t.context.additionalChapter])(4000), t.context.activeChapter)
+  t.is(currentChapterByPlaytime([t.context.activeChapter, t.context.additionalChapter, t.context.inactiveChapter])(3500), t.context.inactiveChapter)
 })
