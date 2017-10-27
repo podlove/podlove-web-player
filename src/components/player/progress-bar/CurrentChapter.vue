@@ -10,12 +10,13 @@
 
 <script>
   import get from 'lodash/get'
-  import { currentChapter, currentChapterIndex } from 'utils/chapters'
+  import { currentChapter, currentChapterIndex, currentChapterByPlaytime } from 'utils/chapters'
 
   export default {
     data () {
       return {
         chapters: this.$select('chapters'),
+        ghost: this.$select('ghost'),
         theme: this.$select('theme')
       }
     },
@@ -27,7 +28,14 @@
       },
 
       chapterTitle () {
-        const current = currentChapter(this.chapters)
+        let current
+
+        if (!this.ghost.active) {
+          current = currentChapter(this.chapters)
+        } else {
+          current = currentChapterByPlaytime(this.chapters)(this.ghost.time)
+        }
+
         return get(current, 'title', '')
       }
     },
