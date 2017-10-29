@@ -1,5 +1,5 @@
 const INITIAL = {
-  content: 'show',
+  content: 'episode',
   embed: {
     visible: false,
     available: ['250x400', '320x400', '375x400', '600x290', '768x290'],

@@ -1,3 +1,13 @@
+<a name="4.0.0"></a>
+# [4.0.0](https://github.com/podlove/podlove-web-player/compare/v4.0.0-beta.5...v4.0.0) (2017-10-29)
+
+
+### Bug Fixes
+
+* **current-chapter:** Enable current chapter preview ([9c9b91c](https://github.com/podlove/podlove-web-player/commit/9c9b91c))
+
+
+
 <a name="4.0.0-beta.4"></a>
 # [4.0.0-beta.4](https://github.com/podlove/podlove-web-player/compare/v4.0.0-alpha.6...v4.0.0-beta.4) (2017-10-20)
 
