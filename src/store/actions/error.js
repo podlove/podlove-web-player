@@ -1,5 +1,5 @@
-const errorLoad = () => ({
-  type: 'ERROR_LOAD'
+const errorLoad = error => ({
+  type: error
 })
 
 const errorMissingAudioFiles = () => ({

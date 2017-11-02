@@ -21,15 +21,16 @@
         }
       }
     },
-    mounted (el) {
+    mounted () {
       const resizeHandler = () => {
-        if (this.$el.scrollWidth > this.$el.clientWidth) {
-          this.overflows = true
-        } else {
-          this.overflows = false
-        }
+        this.$nextTick(() => {
+          this.overflows = this.$el.scrollWidth > this.$el.clientWidth
+        })
       }
 
+      const tabsObserver = new MutationObserver(resizeHandler)
+
+      tabsObserver.observe(this.$el, { childList: true })
       window.addEventListener('resize', resizeHandler)
       resizeHandler()
     }

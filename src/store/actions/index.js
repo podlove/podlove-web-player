@@ -11,5 +11,21 @@ import * as error from './error'
 import * as chapters from './chapters'
 import * as ghost from './ghost'
 import * as download from './download'
+import * as transcripts from './transcripts'
 
-export default Object.assign({}, init, player, playtime, components, tabs, share, theme, quantiles, l10n, error, chapters, ghost, download)
+export default {
+  ...init,
+  ...player,
+  ...playtime,
+  ...components,
+  ...tabs,
+  ...share,
+  ...theme,
+  ...quantiles,
+  ...l10n,
+  ...error,
+  ...chapters,
+  ...ghost,
+  ...download,
+  ...transcripts
+}

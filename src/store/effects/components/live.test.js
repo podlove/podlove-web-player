@@ -1,7 +1,7 @@
 import test from 'ava'
 import sinon from 'sinon'
 
-import components from './components.episode'
+import components from './live'
 
 let store, state
 
@@ -92,22 +92,10 @@ test(`componentsEffect: it shows correct ui components for PLAY action`, t => {
     type: 'SHOW_COMPONENT_CONTROLS_BUTTON_PLAYING'
   })
   t.deepEqual(store.dispatch.getCall(1).args[0], {
-    type: 'TOGGLE_COMPONENT_PROGRESSBAR',
-    payload: true
-  })
-  t.deepEqual(store.dispatch.getCall(2).args[0], {
-    type: 'TOGGLE_COMPONENT_CONTROLS_CHAPTERS',
-    payload: true
-  })
-  t.deepEqual(store.dispatch.getCall(3).args[0], {
-    type: 'TOGGLE_COMPONENT_CONTROLS_STEPPERS',
-    payload: true
-  })
-  t.deepEqual(store.dispatch.getCall(4).args[0], {
     type: 'TOGGLE_COMPONENT_INFO',
     payload: true
   })
-  t.deepEqual(store.dispatch.getCall(5).args[0], {
+  t.deepEqual(store.dispatch.getCall(2).args[0], {
     type: 'TOGGLE_COMPONENT_ERROR',
     payload: false
   })
@@ -154,84 +142,33 @@ test(`componentsEffect: it shows correct ui components for INIT action`, t => {
 
   components(store, testAction)
   t.deepEqual(store.dispatch.getCall(0).args[0], {
-    type: 'TOGGLE_COMPONENT_TAB',
-    payload: {
-      tab: 'chapters',
-      visibility: true
-    }
-  })
-  t.deepEqual(store.dispatch.getCall(1).args[0], {
-    type: 'TOGGLE_COMPONENT_TAB',
-    payload: {
-      tab: 'download',
-      visibility: true
-    }
-  })
-  t.deepEqual(store.dispatch.getCall(2).args[0], {
     type: 'TOGGLE_COMPONENT_INFO',
     payload: true
   })
-  t.deepEqual(store.dispatch.getCall(3).args[0], {
+  t.deepEqual(store.dispatch.getCall(1).args[0], {
     type: 'TOGGLE_COMPONENT_VOLUME_SLIDER',
     payload: true
   })
-  t.deepEqual(store.dispatch.getCall(4).args[0], {
-    type: 'TOGGLE_COMPONENT_TAB',
-    payload: {
-      tab: 'share',
-      visibility: true
-    }
-  })
-  t.deepEqual(store.dispatch.getCall(5).args[0], {
+  t.deepEqual(store.dispatch.getCall(2).args[0], {
     type: 'TOGGLE_COMPONENT_TAB',
     payload: {
       tab: 'info',
       visibility: true
     }
   })
-  t.deepEqual(store.dispatch.getCall(6).args[0], {
+  t.deepEqual(store.dispatch.getCall(3).args[0], {
     type: 'TOGGLE_COMPONENT_TAB',
     payload: {
       tab: 'audio',
       visibility: true
     }
   })
-  t.deepEqual(store.dispatch.getCall(7).args[0], {
-    type: 'TOGGLE_COMPONENT_RATE_SLIDER',
+  t.deepEqual(store.dispatch.getCall(4).args[0], {
+    type: 'TOGGLE_COMPONENT_INFO_POSTER',
     payload: true
   })
-})
-
-test(`componentsEffect: it shows the chapters tab only when chapters are available on INIT`, t => {
-  const testAction = {
-    type: 'INIT'
-  }
-
-  state.chapters = []
-  store.getState = sinon.stub().returns(state)
-
-  components(store, testAction)
-  t.deepEqual(store.dispatch.getCall(0).args[0], {
-    type: 'TOGGLE_COMPONENT_TAB',
-    payload: {
-      tab: 'download',
-      visibility: true
-    }
-  })
-})
-
-test(`componentsEffect: it shows the download tab only when audio files are available on INIT`, t => {
-  const testAction = {
-    type: 'INIT'
-  }
-
-  state.download = []
-  store.getState = sinon.stub().returns(state)
-
-  components(store, testAction)
-  t.deepEqual(store.dispatch.getCall(1).args[0], {
-    type: 'TOGGLE_COMPONENT_INFO',
-    payload: true
+  t.deepEqual(store.dispatch.getCall(5).args[0], {
+    type: 'SHOW_COMPONENT_CONTROLS_BUTTON_PAUSE'
   })
 })
 
@@ -246,55 +183,24 @@ test(`componentsEffect: it shows the info section only when meta available on IN
 
   components(store, testAction)
   t.deepEqual(store.dispatch.getCall(2).args[0], {
-    type: 'TOGGLE_COMPONENT_VOLUME_SLIDER',
-    payload: true
+    type: 'TOGGLE_COMPONENT_TAB',
+    payload: {
+      tab: 'audio',
+      visibility: true
+    }
   })
 })
 
-test(`componentsEffect: it shows correct ui components for END action`, t => {
-  const testAction = {
-    type: 'END'
-  }
+const types = ['NETWORK_IDLE', 'NETWORK_EMPTY', 'NETWORK_NO_SOURCE']
 
-  components(store, testAction)
-  t.deepEqual(store.dispatch.getCall(0).args[0], {
-    type: 'SHOW_COMPONENT_CONTROLS_BUTTON_REPLAY'
-  })
-})
+types.forEach(type => {
+  test(`componentsEffect: it shows correct ui components for ${type} action`, t => {
+    const testAction = { type }
 
-test(`componentsEffect: it shows correct ui components for ERROR_LOAD action`, t => {
-  const testAction = {
-    type: 'ERROR_LOAD'
-  }
-
-  components(store, testAction)
-  t.deepEqual(store.dispatch.getCall(0).args[0], {
-    type: 'TOGGLE_COMPONENT_INFO',
-    payload: false
-  })
-
-  t.deepEqual(store.dispatch.getCall(1).args[0], {
-    type: 'TOGGLE_COMPONENT_ERROR',
-    payload: true
-  })
-
-  t.deepEqual(store.dispatch.getCall(2).args[0], {
-    type: 'SHOW_COMPONENT_CONTROLS_BUTTON_RETRY'
-  })
-
-  t.deepEqual(store.dispatch.getCall(3).args[0], {
-    type: 'TOGGLE_COMPONENT_PROGRESSBAR',
-    payload: false
-  })
-
-  t.deepEqual(store.dispatch.getCall(4).args[0], {
-    type: 'TOGGLE_COMPONENT_CONTROLS_CHAPTERS',
-    payload: false
-  })
-
-  t.deepEqual(store.dispatch.getCall(5).args[0], {
-    type: 'TOGGLE_COMPONENT_CONTROLS_STEPPERS',
-    payload: false
+    components(store, testAction)
+    t.deepEqual(store.dispatch.getCall(0).args[0], {
+      type: 'SHOW_COMPONENT_CONTROLS_BUTTON_RETRY'
+    })
   })
 })
 
@@ -316,21 +222,6 @@ test(`componentsEffect: it shows correct ui components for ERROR_MISSING_AUDIO_F
 
   t.deepEqual(store.dispatch.getCall(2).args[0], {
     type: 'TOGGLE_COMPONENT_CONTROLS_BUTTON',
-    payload: false
-  })
-
-  t.deepEqual(store.dispatch.getCall(3).args[0], {
-    type: 'TOGGLE_COMPONENT_PROGRESSBAR',
-    payload: false
-  })
-
-  t.deepEqual(store.dispatch.getCall(4).args[0], {
-    type: 'TOGGLE_COMPONENT_CONTROLS_CHAPTERS',
-    payload: false
-  })
-
-  t.deepEqual(store.dispatch.getCall(5).args[0], {
-    type: 'TOGGLE_COMPONENT_CONTROLS_STEPPERS',
     payload: false
   })
 })

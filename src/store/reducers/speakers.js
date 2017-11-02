@@ -1,6 +1,6 @@
 import { get } from 'lodash'
 
-const contributors = (state = [], action) => {
+const speakers = (state = [], action) => {
   switch (action.type) {
     case 'INIT':
       const available = get(action.payload, 'contributors', [])
@@ -14,5 +14,5 @@ const contributors = (state = [], action) => {
 }
 
 export {
-  contributors
+  speakers
 }

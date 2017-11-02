@@ -1,9 +1,14 @@
-import compose from 'lodash/fp/compose'
+import { isNumber } from 'lodash'
+import { compose } from 'lodash/fp'
 
 const enforceNumber = input => isNaN(parseInt(input)) ? 0 : input
 
 // Transforms a h:mm:ss or mm:ss or ss time to seconds
-export function timeToSeconds (time) {
+export const timeToSeconds = time => {
+  if (isNumber(time)) {
+    return time
+  }
+
   time = time || '0'
   const partials = time.toString().split(':').reverse()
 
@@ -18,7 +23,7 @@ export const calcHours = (time = 0) => parseInt(time / 3600) % 24
 export const localeDate = (timestamp, locale) => new Date(timestamp).toLocaleDateString(locale)
 export const localeTime = (timestamp, locale) => new Date(timestamp).toLocaleTimeString(locale, {hour: '2-digit', minute: '2-digit'})
 
-const leadingZero = (time) => time > 9 ? `${time}` : `0${time}`
+const leadingZero = time => time > 9 ? `${time}` : `0${time}`
 
 // Transforms seconds to (hh:)mm:ss
 export function secondsToTime (time = 0) {

@@ -16,14 +16,16 @@ test(`error: it returns the initial state on default`, t => {
   })
 })
 
-test(`error: it sets the message and title on ERROR_LOAD`, t => {
-  const result = error(undefined, {
-    type: 'ERROR_LOAD'
-  })
+const types = ['NETWORK_IDLE', 'NETWORK_EMPTY', 'NETWORK_NO_SOURCE']
 
-  t.deepEqual(result, {
-    title: 'ERROR.LOADING.TITLE',
-    message: 'ERROR.LOADING.MESSAGE'
+types.forEach(type => {
+  test(`error: it sets the message and title on ${type}`, t => {
+    const result = error(undefined, { type })
+
+    t.deepEqual(result, {
+      title: 'ERROR.LOADING.TITLE',
+      message: 'ERROR.LOADING.MESSAGE'
+    })
   })
 })
 

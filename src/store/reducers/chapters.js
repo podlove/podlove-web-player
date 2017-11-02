@@ -75,7 +75,7 @@ const previousChapter = chapters => {
 const chapters = (state = [], action) => {
   switch (action.type) {
     case 'INIT':
-      const chapters = get(action.payload, 'chapters') || []
+      const chapters = get(action.payload, 'chapters', [])
       const activeChapters = chapters
         .reduce(parseChapters(action.payload.duration), [])
         .map(setActiveByPlaytime(action.payload.playtime || 0))

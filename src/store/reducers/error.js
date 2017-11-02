@@ -5,7 +5,9 @@ const INITIAL = {
 
 const error = (state = INITIAL, action) => {
   switch (action.type) {
-    case 'ERROR_LOAD':
+    case 'NETWORK_IDLE':
+    case 'NETWORK_EMPTY':
+    case 'NETWORK_NO_SOURCE':
       return {
         title: 'ERROR.LOADING.TITLE',
         message: 'ERROR.LOADING.MESSAGE'

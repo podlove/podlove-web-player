@@ -1,5 +1,5 @@
-import episodeComponents from './components.episode'
-import liveComponents from './components.live'
+import episodeComponents from './episode'
+import liveComponents from './live'
 
 export default (store, action) => {
   const state = store.getState()

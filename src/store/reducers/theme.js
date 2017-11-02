@@ -72,6 +72,20 @@ const themeColors = (colors = {}) => {
           input: color(main).fade(0.2),
           button: main
         }
+      },
+      transcripts: {
+        chapter: {
+          background: color(main).fade(0.8),
+          text: color(grey)
+        },
+        active: {
+          background: color(main).fade(0.8),
+          text: negative ? main : color(grey)
+        },
+        ghost: {
+          background: color(grey).fade(0.8),
+          text: color(grey)
+        }
       }
     },
     overlay: {
@@ -79,9 +93,9 @@ const themeColors = (colors = {}) => {
       background: color(main).lighten(0.9)
     },
     input: {
-      border: negative ? main : dark,
-      background: light,
-      color: dark
+      background: color(main).lighten(0.3),
+      color: negative ? light : dark,
+      border: color(main).lighten(0.1),
     },
     button: {
       background: main,
@@ -91,7 +105,7 @@ const themeColors = (colors = {}) => {
   }
 }
 
-const theme = (state = {}, action) => {
+export const theme = (state = {}, action) => {
   switch (action.type) {
     case 'INIT':
       return Object.assign({}, state, themeColors(get(action.payload, 'theme')))
@@ -100,8 +114,4 @@ const theme = (state = {}, action) => {
     default:
       return state
   }
-}
-
-export {
-  theme
 }

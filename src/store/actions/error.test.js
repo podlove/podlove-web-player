@@ -1,9 +1,9 @@
 import test from 'ava'
 import { errorLoad, errorMissingAudioFiles } from './error'
 
-test(`errorLoad: creates the ERROR_LOAD action`, t => {
-  t.deepEqual(errorLoad(), {
-    type: 'ERROR_LOAD'
+test(`errorLoad: creates the NETWORK_NO_SOURCE action`, t => {
+  t.deepEqual(errorLoad('NETWORK_NO_SOURCE'), {
+    type: 'NETWORK_NO_SOURCE'
   })
 })
 

@@ -1,7 +1,7 @@
 import test from 'ava'
 import sinon from 'sinon'
 
-import storageEffects from './storage.episode'
+import storageEffects from './episode'
 
 let storage, store
 let setStub, getStub

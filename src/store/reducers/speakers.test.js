@@ -1,5 +1,5 @@
 import test from 'ava'
-import { contributors } from './contributors'
+import { speakers } from './speakers'
 
 let testAction
 
@@ -18,12 +18,12 @@ test.beforeEach(t => {
   }
 })
 
-test(`contributors: it is a reducer function`, t => {
-  t.is(typeof contributors, 'function')
+test(`speakers: it is a reducer function`, t => {
+  t.is(typeof speakers, 'function')
 })
 
-test(`contributors: it sets the onair contributors on INIT`, t => {
-  const result = contributors(undefined, testAction)
+test(`speakers: it sets the onair speakers on INIT`, t => {
+  const result = speakers(undefined, testAction)
 
   t.deepEqual(result, [{
     name: 'foo',
@@ -31,8 +31,8 @@ test(`contributors: it sets the onair contributors on INIT`, t => {
   }])
 })
 
-test(`contributors: it does nothing if not a registered action is dispatched`, t => {
-  const result = contributors('foobar', {
+test(`speakers: it does nothing if not a registered action is dispatched`, t => {
+  const result = speakers('foobar', {
     type: 'NOT_A_REAL_TYPE'
   })
   t.is(result, 'foobar')

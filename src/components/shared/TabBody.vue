@@ -32,5 +32,9 @@
       max-height: $tabs-body-max-height;
       overflow-y: auto;
     }
+
+    &.fixed {
+      overflow: hidden;
+    }
   }
 </style>
