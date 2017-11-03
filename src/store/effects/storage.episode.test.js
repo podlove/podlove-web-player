@@ -114,8 +114,11 @@ test(`storageEffects: it sets the quantiles on INIT if stored`, t => {
   })
 })
 
-test(`storageEffects: it doesn't sets the playtime on INIT if not stored`, t => {
-  getStub = sinon.stub().returns(undefined)
+test(`storageEffects: it doesn't sets state on INIT if nothing is stored`, t => {
+  storage = sinon.stub().returns({
+    set: setStub,
+    get: sinon.stub().returns(undefined)
+  })
 
   storageEffects(storage, store, {
     type: 'INIT',
@@ -124,8 +127,7 @@ test(`storageEffects: it doesn't sets the playtime on INIT if not stored`, t => 
     }
   })
 
-  t.truthy(storage.called)
-  t.falsy(store.called)
+  t.falsy(store.dispatch.called)
 })
 
 test(`storageEffects: it persists the playtime on SET_PLAYTIME`, t => {

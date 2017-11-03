@@ -5,7 +5,7 @@ import browser from 'detect-browser'
 
 import { findNode, createNode, appendNode, tag } from 'utils/dom'
 import requestConfig from 'utils/request'
-import { params } from 'utils/url'
+import { urlParameters } from 'utils/url'
 
 import { iframeResizer } from 'iframe-resizer'
 // eslint-disable-next-line
@@ -86,12 +86,19 @@ const renderPlayer = anchor => player => {
     .then(getPodloveStore)
 }
 
-const mergeConfig = (episode) =>
+const getConfig = (episode) =>
   Bluebird.resolve(episode)
     // If the config is a string, lets assume that this will point to the remote config json
     .then(config => isString(config) ? requestConfig(config) : config)
-    // Load parameters from url
-    .then(config => Object.assign({}, config, params))
+
+const dispatchUrlParameters = store => {
+  store.dispatch({
+    type: 'SET_URL_PARAMS',
+    payload: urlParameters
+  })
+
+  return store
+}
 
 // Config Node
 const configNode = (config = {}) => tag('script', `window.PODLOVE = ${JSON.stringify(config)}`)
@@ -111,7 +118,7 @@ const playerEntry = tag('PodlovePlayer')
 window.podlovePlayer = (selector, episode) => {
   const anchor = typeof selector === 'string' ? head(findNode(selector)) : selector
 
-  return mergeConfig(episode)
+  return getConfig(episode)
     .then(config => Bluebird.all([
       playerEntry,
       configNode(config),
@@ -122,4 +129,5 @@ window.podlovePlayer = (selector, episode) => {
     ]))
     .then(result => result.join(''))
     .then(renderPlayer(anchor))
+    .then(dispatchUrlParameters)
 }

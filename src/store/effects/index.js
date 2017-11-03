@@ -6,6 +6,7 @@ import idleEffects from './idle'
 import quantileEffects from './quantiles'
 import chapterEffects from './chapters'
 import volumeEffects from './volume'
+import urlEffects from './url'
 
 import storage from 'utils/storage'
 import keyhandler from 'utils/keyboard'
@@ -27,5 +28,6 @@ export default store => {
     volumeEffects(store, action)
     componentsEffects(store, action)
     playerEffects(store, action)
+    urlEffects(store, action)
   }
 }
