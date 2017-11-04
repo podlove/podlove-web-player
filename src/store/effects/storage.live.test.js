@@ -102,3 +102,19 @@ test(`storageEffects: it persists the tabs on TOGGLE_TAB`, t => {
     settings: true
   })
 })
+
+test(`storageEffects: it doesn't sets state on INIT if nothing is stored`, t => {
+  storage = sinon.stub().returns({
+    set: setStub,
+    get: sinon.stub().returns(undefined)
+  })
+
+  storageEffects(storage, store, {
+    type: 'INIT',
+    payload: {
+      foo: 'bar'
+    }
+  })
+
+  t.falsy(store.dispatch.called)
+})

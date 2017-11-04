@@ -41,27 +41,23 @@ export default (storage, store, action) => {
       break
     case 'SET_PLAYTIME':
     case 'UPDATE_PLAYTIME':
-      if (!podloveStorage) {
-        return
-      }
-
-      podloveStorage.set('playtime', action.payload)
+      podloveStorage && podloveStorage.set('playtime', action.payload)
       break
     case 'TOGGLE_TAB':
       const tabs = get(store.getState(), 'tabs', {})
-      podloveStorage.set('tabs', tabs)
+      podloveStorage && podloveStorage.set('tabs', tabs)
       break
     case 'SET_QUANTILE':
       const quantiles = get(store.getState(), 'quantiles', [])
-      podloveStorage.set('quantiles', quantiles)
+      podloveStorage && podloveStorage.set('quantiles', quantiles)
       break
     case 'SET_VOLUME':
       const currentVolume = get(store.getState(), 'volume', 1)
-      podloveStorage.set('volume', currentVolume)
+      podloveStorage && podloveStorage.set('volume', currentVolume)
       break
     case 'SET_RATE':
       const currentRate = get(store.getState(), 'rate', 1)
-      podloveStorage.set('rate', currentRate)
+      podloveStorage && podloveStorage.set('rate', currentRate)
       break
   }
 }
