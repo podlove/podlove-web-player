@@ -6,6 +6,7 @@
 [![Coverage](https://img.shields.io/codecov/c/github/podlove/podlove-web-player/feature/coverage.svg)](https://codecov.io/gh/podlove/podlove-web-player/branch/development)
 [![Coverage](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://github.com/feross/standard)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fpodlove%2Fpodlove-web-player.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fpodlove%2Fpodlove-web-player?ref=badge_shield)
 
 ![Preview](screenshot.jpg)
 
@@ -78,3 +79,7 @@ Have a look on the Trello board to watch the status and progress of your issues:
 ### Update the documentation
 For contributing to Podlove Web Player documentation, see:<br>
 [github.com/podlove/podlove.github.com](https://github.com/podlove/podlove.github.com)
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fpodlove%2Fpodlove-web-player.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fpodlove%2Fpodlove-web-player?ref=badge_large)
