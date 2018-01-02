@@ -15,12 +15,12 @@
 </template>
 
 <script>
-  const RENDER_BUFFER = 10
-
   import { reduce, head } from 'lodash'
   import store from 'store'
 
   import TranscriptEntry from './Entry.vue'
+
+  const RENDER_BUFFER = 10
 
   export default {
     props: ['prerender'],
@@ -81,7 +81,7 @@
         return this.transcripts.timeline.slice(start, end)
       },
       renderWindow (startIndex = -1) {
-        requestAnimationFrame(() => {
+        window.requestAnimationFrame(() => {
           let endIndex
 
           if (startIndex === -1) {
@@ -96,7 +96,7 @@
         })
       },
       scrollWindow () {
-        requestAnimationFrame(() => {
+        window.requestAnimationFrame(() => {
           // If transcript isn't in rendered slice, mostly initial or on scrub
           if (this.start > this.active || this.end < this.active) {
             this.scrollTo(this.active)

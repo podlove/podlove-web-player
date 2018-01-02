@@ -1,7 +1,6 @@
 import test from 'ava'
 import sinon from 'sinon'
 import browserEnv from 'browser-env'
-import { cloneDeep } from 'lodash'
 
 import searchEffect from './search'
 import { timeline, state } from './fixtures'

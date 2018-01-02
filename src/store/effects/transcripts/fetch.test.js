@@ -1,13 +1,11 @@
 import test from 'ava'
-import sinon from 'sinon'
 import request from 'superagent'
 import nocker from 'superagent-nock'
 
 import fetchEffects from './fetch'
 import { transcripts, chapters, contributors, timeline } from './fixtures'
 
-
-let store, nock, payload
+let nock, payload
 
 test.beforeEach(t => {
   nock = nocker(request)
@@ -43,7 +41,6 @@ test.cb(`transcripts - fetch: parses transcripts on INIT and dispatches SET_TRAN
     payload
   })
 })
-
 
 test.cb(`transcripts - fetch: falls back to empty list on INIT and dispatches SET_TRANSCRIPTS`, t => {
   t.plan(2)

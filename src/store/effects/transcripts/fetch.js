@@ -1,5 +1,5 @@
 import actions from 'store/actions'
-import { get, last, find, head, sortBy } from 'lodash'
+import { get, last, find } from 'lodash'
 import { compose, map, concat, orderBy, reduce } from 'lodash/fp'
 import request from 'utils/request'
 
@@ -50,16 +50,13 @@ const mapSpeakers = speakers =>
       return transcript
     }
 
-    const currentSpeaker = find(speakers, { id: transcript.speaker }) || {
-      name: null,
-      avatar: null
-    }
+    const { name, avatar } = find(speakers, { id: transcript.speaker })
 
     return {
       ...transcript,
       speaker: {
-        name: currentSpeaker.name,
-        avatar: currentSpeaker.avatar
+        name,
+        avatar
       }
     }
   })

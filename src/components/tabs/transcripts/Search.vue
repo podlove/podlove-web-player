@@ -42,17 +42,17 @@ export default {
     }
   },
   methods: {
-    search: (event => {
+    search (event) {
       store.dispatch(store.actions.searchTranscripts(event.target.value))
       store.dispatch(store.actions.followTranscripts(false))
-    }),
+    },
     reset () {
       store.dispatch(store.actions.resetSearchTranscription())
     },
-    previousSearchResult() {
+    previousSearchResult () {
       store.dispatch(store.actions.previousTranscriptsSearchResult())
     },
-    nextSearchResult() {
+    nextSearchResult () {
       store.dispatch(store.actions.nextTranscriptsSearchResult())
     }
   },
@@ -63,7 +63,7 @@ export default {
         color: this.theme.input.color,
         'border-color': this.theme.input.border
       }
-    },
+    }
   },
   components: {
     NextSearchIcon,

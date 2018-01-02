@@ -31,14 +31,14 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       theme: this.$select('theme')
     }
   },
   props: ['entry', 'playtime', 'ghost', 'prerender', 'query'],
   computed: {
-    chapterStyle() {
+    chapterStyle () {
       if (this.prerender) {
         return {}
       }
@@ -48,7 +48,7 @@ export default {
         color: this.theme.tabs.transcripts.chapter.color
       }
     },
-    speakerBackgroundStyle() {
+    speakerBackgroundStyle () {
       if (this.prerender) {
         return {}
       }
@@ -57,7 +57,7 @@ export default {
         background: this.theme.tabs.transcripts.chapter.background
       }
     },
-    speakerTextStyle() {
+    speakerTextStyle () {
       if (this.prerender) {
         return {}
       }
@@ -66,31 +66,28 @@ export default {
         color: this.theme.tabs.transcripts.chapter.color
       }
     },
-    searchQuery() {
+    searchQuery () {
       if (!this.query && this.query.length < 2) {
         return null
       }
 
-      return new RegExp(this.query, "ig");
+      return new RegExp(this.query, 'ig')
     }
   },
   methods: {
     // Event Bindings
-    onClick(entry) {
+    onClick (entry) {
       this.$emit('onClick', entry)
     },
-    onMouseLeave(transcript) {
+    onMouseLeave (transcript) {
       this.$emit('onMouseLeave', transcript)
     },
-    onMouseOver(transcript) {
+    onMouseOver (transcript) {
       this.$emit('onMouseOver', transcript)
     },
 
-    searchText(text) {
-      if (!this.query) {
-        return text
-      }
-      return text.toString().replace(this.searchQuery, matchedText => `<span class="highlight">${matchedText}</span>`);
+    searchText (text) {
+      return this.query ? text.toString().replace(this.searchQuery, matchedText => `<span class="highlight">${matchedText}</span>`) : text
     },
 
     // Utilities

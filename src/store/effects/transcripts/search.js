@@ -1,7 +1,7 @@
 import TextSearch from 'lunr'
 
 import { noop, sortBy } from 'lodash'
-import { compose, map, reduce } from 'lodash/fp'
+import { compose, map } from 'lodash/fp'
 
 import actions from 'store/actions'
 
@@ -23,18 +23,19 @@ const buildIndex = (data = []) => {
   })
 
   return (input = '') => {
-    let result = []
+    let result
 
     try {
       result = textIndex.search(`text:${input}`)
-    } finally {
-      return result
+    } catch (e) {
+      result = []
     }
+
+    return result
   }
 }
 
 export default ({ dispatch, getState }, { type, payload }) => {
-
   switch (type) {
     case 'SET_TRANSCRIPTS':
       updateTranscript = inAnimationFrame(

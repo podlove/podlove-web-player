@@ -336,3 +336,25 @@ test(`componentsEffect: it shows correct ui components for ERROR_MISSING_AUDIO_F
     payload: false
   })
 })
+
+test(`componentsEffect: it enables transcript tab if SET_TRANSCRIPTS is dispatched with payload`, t => {
+  const testAction = {
+    type: 'SET_TRANSCRIPTS',
+    payload: []
+  }
+
+  components(store, testAction)
+
+  testAction.payload = [1, 2]
+
+  components(store, testAction)
+
+  t.is(store.dispatch.getCalls().length, 1)
+  t.deepEqual(store.dispatch.getCall(0).args[0], {
+    type: 'TOGGLE_COMPONENT_TAB',
+    payload: {
+      tab: 'transcripts',
+      visibility: true
+    }
+  })
+})

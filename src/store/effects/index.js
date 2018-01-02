@@ -9,13 +9,11 @@ import playerEffectsFactory from './player'
 import storageEffectsFactory from './storage'
 import keyboardEffectsFactory from './keyboard'
 import componentsEffects from './components'
-import idleEffects from './idle'
 import quantileEffects from './quantiles'
 import chapterEffects from './chapters'
 import volumeEffects from './volume'
 import urlEffects from './url'
 import transcriptEffects from './transcripts'
-
 
 import mediaPlayer from '../../media'
 
@@ -38,8 +36,6 @@ let actionEffects = [
 ]
 
 export default store => {
-  const state = store.getState()
-
   dispatcherEffects.map(callWith(store))
 
   return next => action => {

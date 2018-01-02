@@ -1,6 +1,5 @@
 import { get } from 'lodash'
 import { currentChapter, currentChapterIndex } from 'utils/chapters'
-import { secondsToMilliseconds } from 'utils/time'
 
 import actions from '../actions'
 

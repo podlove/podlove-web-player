@@ -1,7 +1,6 @@
 import test from 'ava'
 import sinon from 'sinon'
 import browserEnv from 'browser-env'
-import { cloneDeep } from 'lodash'
 
 import activeEffect from './active'
 import { timeline, state } from './fixtures'
@@ -85,7 +84,6 @@ test.cb(`transcripts - active: calls interval search debounced with playtime on 
     if (calls === 2) {
       t.deepEqual({ type, payload }, { type: 'UPDATE_TRANSCRIPTS', payload: 1 })
       t.end()
-      return
     }
   }
 
@@ -118,7 +116,6 @@ test.cb(`transcripts - active: calls interval search debounced with payload on S
     if (calls === 2) {
       t.deepEqual({ type, payload }, { type: 'UPDATE_TRANSCRIPTS', payload: 5 })
       t.end()
-      return
     }
   }
 
@@ -136,4 +133,24 @@ test.cb(`transcripts - active: calls interval search debounced with payload on S
     type: 'SIMULATE_PLAYTIME',
     payload: 350
   })
+})
+
+test(`transcripts - active: falls back to empty array if no payload available`, t => {
+  activeEffect(store, {
+    type: 'SET_TRANSCRIPTS'
+  })
+
+  t.is(store.dispatch.getCalls().length, 0)
+})
+
+test(`transcripts - active: it ignores start and end is equal`, t => {
+  activeEffect(store, {
+    type: 'SET_TRANSCRIPTS',
+    payload: [{
+      start: 0,
+      end: 0
+    }]
+  })
+
+  t.is(store.dispatch.getCalls().length, 0)
 })

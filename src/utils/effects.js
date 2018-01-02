@@ -1,7 +1,7 @@
 import { noop, isArray, isString } from 'lodash'
-import { curry, compose, get } from 'lodash/fp'
+import { compose, get } from 'lodash/fp'
 
-import { isUndefinedOrNull, isDefinedAndNotNull } from './predicates'
+import { isDefinedAndNotNull } from './predicates'
 
 const truthy = input => input === true
 

@@ -176,7 +176,6 @@ test(`transcripts: it selects the results length on PREVIOUS_SEARCH_RESULT when 
   })
 })
 
-
 test(`transcripts: it resets the search on RESET_SEARCH_TRANSCRIPTS`, t => {
   const state = {
     ...INITIAL_STATE,

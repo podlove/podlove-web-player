@@ -15,8 +15,8 @@
 
 <script>
 export default {
-  props: ["backgroundColor", "textColor"]
-};
+  props: ['backgroundColor', 'textColor']
+}
 </script>
 
 <style>

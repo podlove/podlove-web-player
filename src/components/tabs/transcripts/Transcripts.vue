@@ -13,14 +13,11 @@
 
 <script>
 import { debounce } from 'lodash'
-import { get } from 'lodash/fp'
 
 import PrerenderContainer from './Prerender.vue'
 import RenderContainer from './Render.vue'
 import Search from './Search.vue'
 import Follow from './Follow.vue'
-
-import store from 'store'
 
 export default {
   data () {

@@ -1,4 +1,4 @@
-import { isNumber, get } from 'lodash'
+import { isNumber } from 'lodash'
 import { compose } from 'lodash/fp'
 
 import { toInt, toFloat } from './helper'
@@ -6,17 +6,18 @@ import { toInt, toFloat } from './helper'
 // Parses hours from hh:mm:ss, hh:mm and mm
 export const parseHours = (time = '0') => {
   const partials = time.split(':')
+  let hours, rest // eslint-disable-line
 
   if (partials.length < 3) {
     return 0
   }
 
-  const [hours, ...rest] = partials
+  [hours, ...rest] = partials // eslint-disable-line
   return toInt(hours)
 }
 
 export const parseMinutes = (time = '0') => {
-  let minutes, hours, seconds
+  let minutes, hours, seconds // eslint-disable-line
 
   const partials = time.split(':')
 
@@ -37,7 +38,7 @@ export const parseMinutes = (time = '0') => {
 }
 
 export const parseSeconds = (time = '0') => {
-  let minutes, hours, seconds
+  let minutes, hours, seconds // eslint-disable-line
 
   const partials = time.split(':')
 
@@ -62,29 +63,25 @@ export const parseSeconds = (time = '0') => {
 }
 
 export const parseMilliseconds = (time = '0') => {
-  let minutes, hours, seconds, milliseconds, multiplier
+  let minutes, hours, seconds, milliseconds // eslint-disable-line
 
   const partials = time.split(':')
 
   switch (partials.length) {
     case 3:
       [hours, minutes, seconds] = partials
-      multiplier = 100
       break
 
     case 2:
       [minutes, seconds] = partials
-      multiplier = 1
       break
 
     case 1:
       [seconds] = partials
-      multiplier = 1
       break
 
     default:
       seconds = '0'
-      multiplier = 1
   }
 
   const subpartial = seconds.split('.')
@@ -95,7 +92,7 @@ export const parseMilliseconds = (time = '0') => {
     milliseconds = '0'
   }
 
-  return toInt(milliseconds) * multiplier
+  return toInt(milliseconds)
 }
 
 // Transforms a h:mm:ss.f or mm:ss.ffff or ss time to milliseconds

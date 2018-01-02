@@ -5,6 +5,7 @@
   </ul>
 </template>
 <script>
+  /* global MutationObserver */
   import color from 'color'
 
   export default {

@@ -14,7 +14,7 @@ import store from 'store'
 import FollowIcon from 'icons/FollowIcon.vue'
 
 export default {
-  data() {
+  data () {
     return {
       transcripts: this.$select('transcripts'),
       theme: this.$select('theme')
@@ -26,7 +26,7 @@ export default {
   methods: {
     toggleFollow () {
       store.dispatch(store.actions.followTranscripts(!this.transcripts.follow))
-    },
+    }
   },
   computed: {
     followButton () {

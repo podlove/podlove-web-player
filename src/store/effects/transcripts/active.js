@@ -18,14 +18,20 @@ const buildIndex = (duration = 0, data = []) => {
       return
     }
 
-    if (start > end) {
+    if (start >= end) {
       return
     }
 
     timeIndex.add(start, end, index)
   })
 
-  return (time) => time ? timeIndex.search(time) : []
+  return time => {
+    if (time) {
+      return timeIndex.search(time)
+    }
+
+    return []
+  }
 }
 
 export default ({ dispatch, getState }, { type, payload }) => {

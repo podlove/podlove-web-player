@@ -16,7 +16,7 @@ test(`it exports a function called prohibitiveDispatch`, t => {
 })
 
 test(`hasProperty: returns true if a property exists`, t => {
-  const testData  = {
+  const testData = {
     foo: 'bar',
     bar: ['baz']
   }
@@ -26,7 +26,7 @@ test(`hasProperty: returns true if a property exists`, t => {
 })
 
 test(`hasProperty: returns false if a property doesn't exists`, t => {
-  const testData  = {
+  const testData = {
     bar: []
   }
 

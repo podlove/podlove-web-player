@@ -1,5 +1,5 @@
 import { get } from 'lodash'
-import { secondsToMilliseconds, toPlayerTime } from 'utils/time'
+import { toPlayerTime } from 'utils/time'
 import { toInt } from 'utils/helper'
 
 const playtime = (state = 0, action) => {

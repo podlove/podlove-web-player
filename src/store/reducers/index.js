@@ -36,5 +36,6 @@ export default combineReducers({
   ...episode,
   ...download,
   ...speakers,
-  ...transcripts
+  ...transcripts,
+  ...lastAction
 })

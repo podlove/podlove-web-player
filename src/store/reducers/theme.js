@@ -95,7 +95,7 @@ const themeColors = (colors = {}) => {
     input: {
       background: color(main).lighten(0.3),
       color: negative ? light : dark,
-      border: color(main).lighten(0.1),
+      border: color(main).lighten(0.1)
     },
     button: {
       background: main,
