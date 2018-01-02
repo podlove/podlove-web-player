@@ -17,7 +17,7 @@
     </div>
     <div class="content-option" :class="{active: isActive('time')}" :style="isActive('time') ? activeContentStyle : {}" @click="setContent('time')">
       <span class="type">{{ $t('SHARE.CONTENT.TIME') }}</span>
-      <span class="title truncate">{{ secondsToTime(playtime) }}</span>
+      <span class="title truncate">{{ fromPlayerTime(playtime) }}</span>
       <span class="active-indicator" :style="triangleStyle"></span>
     </div>
   </div>
@@ -28,7 +28,7 @@
   import { get } from 'lodash'
   import { compose } from 'lodash/fp'
   import { currentChapter } from 'utils/chapters'
-  import { secondsToTime } from 'utils/time'
+  import { fromPlayerTime } from 'utils/time'
 
   export default {
     data () {
@@ -70,7 +70,7 @@
         return false
       },
 
-      secondsToTime
+      fromPlayerTime
     }
   }
 </script>

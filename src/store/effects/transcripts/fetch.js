@@ -3,16 +3,16 @@ import { get, last, find, head, sortBy } from 'lodash'
 import { compose, map, concat, orderBy, reduce } from 'lodash/fp'
 import request from 'utils/request'
 
-import { timeToSeconds } from 'utils/time'
+import { toPlayerTime } from 'utils/time'
 
 const transformTranscript = reduce((transcripts, chunk) => {
   const lastChunk = last(transcripts)
   if (lastChunk && lastChunk.speaker && lastChunk.speaker === chunk.speaker) {
-    transcripts[transcripts.length - 1].end = timeToSeconds(chunk.end)
+    transcripts[transcripts.length - 1].end = toPlayerTime(chunk.end)
 
     transcripts[transcripts.length - 1].texts.push({
-      start: timeToSeconds(chunk.start),
-      end: timeToSeconds(chunk.end),
+      start: toPlayerTime(chunk.start),
+      end: toPlayerTime(chunk.end),
       text: chunk.text
     })
 
@@ -23,13 +23,13 @@ const transformTranscript = reduce((transcripts, chunk) => {
     ...transcripts,
     {
       type: 'transcript',
-      start: timeToSeconds(chunk.start),
-      end: timeToSeconds(chunk.end),
+      start: toPlayerTime(chunk.start),
+      end: toPlayerTime(chunk.end),
       speaker: chunk.speaker,
       texts: [
         {
-          start: timeToSeconds(chunk.start),
-          end: timeToSeconds(chunk.end),
+          start: toPlayerTime(chunk.start),
+          end: toPlayerTime(chunk.end),
           text: chunk.text
         }
       ]
@@ -41,7 +41,7 @@ const transformChapters = (chapter, index) => ({
   ...chapter,
   type: 'chapter',
   index: index + 1,
-  start: timeToSeconds(chapter.start)
+  start: toPlayerTime(chapter.start)
 })
 
 const mapSpeakers = speakers =>

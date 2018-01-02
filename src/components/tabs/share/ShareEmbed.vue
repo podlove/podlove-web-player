@@ -18,7 +18,7 @@
 <script>
   import { compose } from 'lodash/fp'
   import { addQueryParameter } from 'utils/url'
-  import { secondsToTime } from 'utils/time'
+  import { fromPlayerTime } from 'utils/time'
   import { currentChapter } from 'utils/chapters'
 
   import store from 'store'
@@ -71,18 +71,18 @@
 
         if (this.type === 'chapter') {
           const chapter = currentChapter(this.chapters)
-          parameters.t = `${secondsToTime(chapter.start)},${secondsToTime(chapter.end)}`
+          parameters.t = `${fromPlayerTime(chapter.start)},${fromPlayerTime(chapter.end)}`
         }
 
         if (this.type === 'time') {
-          parameters.t = secondsToTime(this.playtime)
+          parameters.t = fromPlayerTime(this.playtime)
         }
 
         return `<iframe width="${width}" height="${height}" src="${addQueryParameter(this.reference.share, parameters)}" frameborder="0" scrolling="no"></iframe>`
       }
     },
     methods: {
-      secondsToTime,
+      fromPlayerTime,
       setEmbedSize: compose(store.dispatch.bind(store), store.actions.setShareEmbedSize),
       closeEmbedOverlay: compose(store.dispatch.bind(store), store.actions.hideShareEmbed)
     },

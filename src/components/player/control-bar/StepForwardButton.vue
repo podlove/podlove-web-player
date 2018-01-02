@@ -24,7 +24,7 @@
     },
     methods: {
       onButtonClick () {
-        store.dispatch(store.actions.updatePlaytime(this.$select('playtime') + 30))
+        store.dispatch(store.actions.updatePlaytime(this.$select('playtime') + 30000))
       },
       isDisabled (playtime, duration) {
         return (Math.round(playtime, 1) + 30) > Math.round(duration, 1)

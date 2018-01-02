@@ -1,12 +1,13 @@
 import get from 'lodash/get'
-import { timeToSeconds } from 'utils/time'
+import { toPlayerTime } from 'utils/time'
+import { toInt } from 'utils/helper'
 
 const duration = (state = 0, action) => {
   switch (action.type) {
     case 'INIT':
-      return timeToSeconds(action.payload.duration) || state
+      return toPlayerTime(action.payload.duration) || state
     case 'SET_DURATION':
-      return parseInt(action.payload, 10)
+      return toInt(action.payload)
     default:
       return state
   }

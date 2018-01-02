@@ -8,13 +8,13 @@ let chaptersExpectedResult
 
 test.beforeEach(t => {
   chaptersTestData = [
-    {start: '00:00:00', title: 'First Chapter'},
-    {start: '01:00:00', title: 'Second Chapter'}
+    { start: '00:00:00', title: 'First Chapter' },
+    { start: '01:00:00', title: 'Second Chapter' }
   ]
 
   chaptersExpectedResult = [
-    { start: 0, end: 3600, title: 'First Chapter' },
-    { start: 3600, end: 7200, title: 'Second Chapter' }
+    { start: 0, end: 3600000, title: 'First Chapter' },
+    { start: 3600000, end: 7200000, title: 'Second Chapter' }
   ]
 })
 
@@ -36,7 +36,7 @@ test(`INIT: it initializes the state without playtime`, t => {
     type: 'INIT',
     payload: {
       chapters: chaptersTestData,
-      duration: 7200
+      duration: '2:00:00'
     }
   })
 
@@ -51,8 +51,8 @@ test(`INIT: it sets the last chapter active if nothing is active and the playtim
     type: 'INIT',
     payload: {
       chapters: chaptersTestData,
-      duration: 7200,
-      playtime: 7200
+      duration: '2:00:00',
+      playtime: 7200000
     }
   })
 
@@ -67,8 +67,8 @@ test(`INIT: it initializes the state with playtime`, t => {
     type: 'INIT',
     payload: {
       chapters: chaptersTestData,
-      duration: 7200,
-      playtime: 3601
+      duration: '2:00:00',
+      playtime: 3601000
     }
   })
 
@@ -118,7 +118,7 @@ test(`UPDATE_CHAPTER: returns the state if no active chapter was found`, t => {
 
   const result = chapters(chaptersExpectedResult, {
     type: 'UPDATE_CHAPTER',
-    payload: 7300
+    payload: 7300000
   })
 
   const expected = cloneDeep(chaptersExpectedResult)

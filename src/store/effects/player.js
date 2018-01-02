@@ -1,5 +1,7 @@
 import { get } from 'lodash'
-import { compose } from 'lodash/fp'
+import { compose, map } from 'lodash/fp'
+
+import { secondsToMilliseconds, millisecondsToSeconds } from 'utils/time'
 
 import actions from '../actions'
 
@@ -20,9 +22,9 @@ export default mediaPlayer => (store, action) => {
       player = mediaPlayer(audioFiles)
 
       // register events
-      player.events.onPlaytimeUpdate(compose(store.dispatch, actions.setPlaytime))
-      player.events.onDurationChange(compose(store.dispatch, actions.setDuration))
-      player.events.onBufferChange(compose(store.dispatch, actions.setBuffer))
+      player.events.onPlaytimeUpdate(compose(store.dispatch, actions.setPlaytime, secondsToMilliseconds))
+      player.events.onDurationChange(compose(store.dispatch, actions.setDuration, secondsToMilliseconds))
+      player.events.onBufferChange(compose(store.dispatch, actions.setBuffer, map(([start, stop]) => [secondsToMilliseconds(start), secondsToMilliseconds(stop)])))
       player.events.onPlay(compose(store.dispatch, actions.playEvent))
       player.events.onPause(compose(store.dispatch, actions.pauseEvent))
       player.events.onLoaded(compose(store.dispatch, actions.loaded))
@@ -31,7 +33,7 @@ export default mediaPlayer => (store, action) => {
       player.events.onEnd(compose(store.dispatch, actions.endEvent))
       break
     case 'UI_PLAY':
-      player && player.actions.setPlaytime(state.playtime)
+      player && player.actions.setPlaytime(millisecondsToSeconds(state.playtime))
       player && player.actions.play()
       break
     case 'UI_PAUSE':
@@ -42,7 +44,7 @@ export default mediaPlayer => (store, action) => {
       player && player.actions.play()
       break
     case 'UPDATE_PLAYTIME':
-      player && player.actions.setPlaytime(action.payload)
+      player && player.actions.setPlaytime(millisecondsToSeconds(action.payload))
       break
     case 'SET_VOLUME':
       player && player.actions.setVolume(action.payload)

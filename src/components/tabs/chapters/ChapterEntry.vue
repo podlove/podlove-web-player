@@ -32,7 +32,7 @@
   import store from 'store'
   import runtime from 'utils/runtime'
 
-  import { secondsToTime } from 'utils/time'
+  import { fromPlayerTime } from 'utils/time'
 
   import PlayIcon from 'icons/PlayIcon.vue'
 
@@ -49,14 +49,14 @@
     computed: {
       remainingTime () {
         if (this.chapter.active) {
-          return `-${secondsToTime(this.chapter.end - this.playtime)}`
+          return `-${fromPlayerTime(this.chapter.end - this.playtime)}`
         }
 
         if (this.ghost.active && this.ghost.time > this.chapter.start && this.ghost.time < this.chapter.end) {
-          return `-${secondsToTime(this.chapter.end - this.ghost.time)}`
+          return `-${fromPlayerTime(this.chapter.end - this.ghost.time)}`
         }
 
-        return secondsToTime(this.chapter.end - this.chapter.start)
+        return fromPlayerTime(this.chapter.end - this.chapter.start)
       },
 
       activeChapter () {

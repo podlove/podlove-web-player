@@ -1,10 +1,10 @@
 import { get, findIndex } from 'lodash'
-import { timeToSeconds } from 'utils/time'
+import { toPlayerTime } from 'utils/time'
 import { currentChapterIndex } from 'utils/chapters'
 
 const chapterMeta = (chapter, next) => ({
-  start: timeToSeconds(chapter.start),
-  end: timeToSeconds(next.start),
+  start: toPlayerTime(chapter.start),
+  end: toPlayerTime(next.start),
   title: chapter.title
 })
 
@@ -77,7 +77,7 @@ const chapters = (state = [], action) => {
     case 'INIT':
       const chapters = get(action.payload, 'chapters', [])
       const activeChapters = chapters
-        .reduce(parseChapters(action.payload.duration), [])
+        .reduce(parseChapters(toPlayerTime(action.payload.duration)), [])
         .map(setActiveByPlaytime(action.payload.playtime || 0))
 
       return fallbackToLastChapter(activeChapters, action.payload.playtime || 0)
