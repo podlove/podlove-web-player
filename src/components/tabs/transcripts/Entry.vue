@@ -1,7 +1,8 @@
 <template>
   <div class="entry" :class="{
     chapter: entry.type === 'chapter',
-    transcript: entry.type === 'transcript'
+    transcript: entry.type === 'transcript',
+    speaker: entry.speaker.avatar || entry.speaker.name
   }">
     <span class="chapter"
       v-if="entry.type === 'chapter'"
@@ -21,7 +22,6 @@
         :class="{ last: tindex === (entry.texts.length - 1), active: activePlaytime(transcript), inactive: playtime > transcript.end }"
         @mouseover="onMouseOver(transcript)"
         @mouseleave="onMouseLeave(transcript)"
-        @dblclick="onDoubleClick(transcript)"
         @click="onClick(transcript)"
         v-html="searchText(transcript.text)"
         ></span>
@@ -76,9 +76,6 @@ export default {
   },
   methods: {
     // Event Bindings
-    onDoubleClick(entry) {
-      this.$emit('onDoubleClick', entry)
-    },
     onClick(entry) {
       this.$emit('onClick', entry)
     },
@@ -159,12 +156,15 @@ export default {
 
   .entry {
     cursor: pointer;
-    padding: 0.25em 1em 0.25em 3em;
+    padding: 0.25em 1.25em;
+
+    &.speaker {
+      padding: 0.25em 1em 0.25em 3em;
+    }
 
     &.chapter {
       padding: 0.25em 0;
     }
-
 
     .transcript {
       display: block;

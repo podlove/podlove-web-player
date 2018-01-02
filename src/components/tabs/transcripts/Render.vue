@@ -7,7 +7,6 @@
           @onClick="onClick"
           @onMouseOver="onMouseOver"
           @onMouseLeave="onMouseLeave"
-          @onDoubleClick="onDoubleClick"
         >
         </TranscriptEntry>
       </div>
@@ -43,9 +42,6 @@
         store.dispatch(store.actions.disableGhostMode())
       },
       onClick ({ start }) {
-        store.dispatch(store.actions.updatePlaytime(start))
-      },
-      onDoubleClick ({ start }) {
         store.dispatch(store.actions.updatePlaytime(start))
         store.dispatch(store.actions.play())
       },
