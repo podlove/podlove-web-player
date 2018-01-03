@@ -1,4 +1,4 @@
-import actions from '../actions'
+import actions from '../../actions'
 import get from 'lodash/get'
 import { hashCode } from 'hashcode'
 

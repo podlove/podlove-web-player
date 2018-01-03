@@ -29,7 +29,8 @@ test.beforeEach(() => {
       share: false,
       audio: false,
       info: false,
-      download: false
+      download: false,
+      transcripts: false
     },
     audio: {
       rateControl: false,
@@ -320,6 +321,7 @@ test(`visibleComponents: it loads all visibleComponents on default`, t => {
     tabDownload: true,
     tabAudio: true,
     tabShare: true,
+    tabTranscripts: true,
     progressbar: true,
     controlSteppers: true,
     controlChapters: true,

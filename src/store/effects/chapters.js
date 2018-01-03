@@ -1,5 +1,6 @@
 import { get } from 'lodash'
 import { currentChapter, currentChapterIndex } from 'utils/chapters'
+
 import actions from '../actions'
 
 export default (store, action) => {
@@ -29,9 +30,7 @@ export default (store, action) => {
       break
     case 'SET_PLAYTIME':
     case 'UPDATE_PLAYTIME':
-      if (!ghost.active) {
-        store.dispatch(actions.updateChapter(action.payload))
-      }
+      !ghost.active && store.dispatch(actions.updateChapter(action.payload))
       break
   }
 }

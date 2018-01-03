@@ -26,7 +26,8 @@ const INITIAL_TABS = {
   audio: false,
   download: false,
   share: false,
-  chapters: false
+  chapters: false,
+  transcripts: false
 }
 
 const componentsState = (state) => ({
@@ -169,6 +170,7 @@ const INITIAL_VISIBLE_COMPONENTS = [
   'tabDownload',
   'tabAudio',
   'tabShare',
+  'tabTranscripts',
   'poster',
   'showTitle',
   'episodeTitle',

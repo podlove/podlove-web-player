@@ -28,13 +28,13 @@ navigation: 4
 
 #### Episode Information
 
-| title | Episode Title |
-| subtitle | Episode Description |
-| summary | Episode Summary |
-| poster | Episode Cover |
-| publicationDate | Episode Publication Date |
-| duration | Episode Duration |
-| link | Link to Episode |
+| title           | Episode Title             |
+| subtitle        | Episode Description       |
+| summary         | Episode Summary           |
+| poster          | Episode Cover             |
+| publicationDate | Episode Publication Date  |
+| duration        | Episode Duration          |
+| link            | Link to Episode           |
 
 ```javascript
 {
@@ -43,7 +43,7 @@ navigation: 4
   summary: 'Wir haben eine wie wir finden abwechslungsreiche Sendung produziert, die wir Euch wie immer mit Freude bereitstellen. Während die Live-Hörer Freak-Show-Bingo spielen, greifen wir das Wikipedia-Thema der letzten Sendung auf und liefern auch noch weitere Aspekte des optimalen Star-Wars-Medienkonsums frei Haus. Dazu viel Nerderei rund um die Kommandozeile, eine Einschätzung der Perspektive der Apple Watch, ein Rant über die mangelhafte Security  im Internet of Things (and Buildings) und allerlei anderer Kram.  Roddi setzt dieses Mal aus, sonst Vollbesetzung.',
   publicationDate: '2016-02-11T03:13:55+00:00',
   poster: 'https://freakshow.fm/wp-content/cache/podlove/04/662a9d4edcf77ea2abe3c74681f509/freak-show_200x200.jpg',
-  duration: '04:15:32',
+  duration: '04:15:32', // Simple time format
   link: 'https://freakshow.fm/fs171-invasion'
 }
 ```
@@ -164,18 +164,39 @@ _Not providing chapters will disable all chapter related functions._
 
 ```javascript
  contributors: [{
+      id: 'tim-pritlove',
       avatar: 'https://freakshow.fm/wp-content/cache/podlove/47/08928e3c26dcb1141d67ad75869619/tim-pritlove_50x50.jpg',
       name: 'Tim Pritlove'
   }, {
+      id: 'clemens-schrimpe',
       avatar: 'https://freakshow.fm/wp-content/cache/podlove/0f/9c18f5e825496b9060337f92814142/clemens-schrimpe_50x50.jpg',
-      name: '	Clemens Schrimpe'
+      name: 'Clemens Schrimpe'
   }, {
+      id: 'hukl',
       avatar: 'https://freakshow.fm/wp-content/cache/podlove/8e/f30cbe274c3f5e43dc4a7219676f50/hukl_50x50.jpg',
       name: 'hukl'
   }, {
+      id: 'denis-ahrens',
       avatar: 'https://freakshow.fm/wp-content/cache/podlove/b2/425e5c8f180ddf548c95be1c2d7bcf/denis-ahrens_50x50.jpg',
       name: 'Denis Ahrens'
   }]
+```
+
+#### Transcripts
+
+To enable transcripts provide a URI to the transcriptions file.
+
+| transcripts | `http://url.to/transcripts.json` |
+
+The transcriptions file contains transcripts in the following format:
+
+```javascript
+[{
+  "start": "00:00:43.1", // Simple Time Format
+  "end": "00:01:17.2", // Simple Time Format
+  "speaker?": "Speaker ID",
+  "test": "Transcribed text"
+}]
 ```
 
 #### Tabs
@@ -185,7 +206,6 @@ _Not providing chapters will disable all chapter related functions._
 | tabs.chapters | toggle the chapters tab |
 | tabs.audio    | toggle the audio tab    |
 | tabs.download | toggle the download tab |
-
 
 ```javascript
   tabs: {
@@ -226,3 +246,11 @@ List of components that are visible in the player. if nothing is provided all co
     'controlChapters'
   ]
 ```
+
+#### Simple Time Definitions
+
+| `01:35:52`    | 1 hour 35 minutes 52 seconds            |
+| `7:48`        | 7 minutes, 48 seconds                   |
+| `35:12.250`   | 35 minutes, 12 seconds, 250 ms          |
+| `05:12:03.5`  | 5 hours, 12 minutes, 3 seconds, 500 ms  |
+| `37`          | 37 seconds                              |

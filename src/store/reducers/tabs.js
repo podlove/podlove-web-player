@@ -5,7 +5,8 @@ const INITIAL = {
   audio: false,
   share: false,
   download: false,
-  info: false
+  info: false,
+  transcripts: false
 }
 
 const tabs = (state = INITIAL, action) => {

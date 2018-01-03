@@ -15,8 +15,9 @@ import * as ghost from './ghost'
 import * as show from './show'
 import * as episode from './episode'
 import * as download from './download'
-import * as contributors from './contributors'
+import * as speakers from './speakers'
 import * as lastAction from './last-action'
+import * as transcripts from './transcripts'
 
 export default combineReducers({
   ...init,
@@ -34,6 +35,7 @@ export default combineReducers({
   ...show,
   ...episode,
   ...download,
-  ...contributors,
+  ...speakers,
+  ...transcripts,
   ...lastAction
 })

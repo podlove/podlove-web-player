@@ -14,7 +14,7 @@
 
 <script>
   import { currentChapter } from 'utils/chapters'
-  import { secondsToTime } from 'utils/time'
+  import { fromPlayerTime } from 'utils/time'
   import { addQueryParameter } from 'utils/url'
 
   import ChannelTwitterComponent from './channels/ChannelTwitter.vue'
@@ -51,11 +51,11 @@
 
         if (this.type === 'chapter') {
           const chapter = currentChapter(this.chapters)
-          time = `${secondsToTime(chapter.start)},${secondsToTime(chapter.end)}`
+          time = `${fromPlayerTime(chapter.start)},${fromPlayerTime(chapter.end)}`
         }
 
         if (this.type === 'time') {
-          time = secondsToTime(this.playtime)
+          time = fromPlayerTime(this.playtime)
         }
 
         return addQueryParameter(this.episode.link, { t: time })
@@ -81,7 +81,7 @@
           return this.$t('SHARE.EPISODE.TEXT.PLAYTIME', {
             ...this.episode,
             link: this.shareLink,
-            playtime: secondsToTime(this.playtime)
+            playtime: fromPlayerTime(this.playtime)
           })
         }
 
@@ -111,7 +111,7 @@
           return this.$t('SHARE.EPISODE.SUBJECT.PLAYTIME', {
             ...this.episode,
             link: this.shareLink,
-            playtime: secondsToTime(this.playtime)
+            playtime: fromPlayerTime(this.playtime)
           })
         }
 

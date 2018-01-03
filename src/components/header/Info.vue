@@ -149,7 +149,7 @@
       }
 
       .poster-container {
-        height: calc(100px + 3em); // Height of description
+        height: calc(#{$poster-size} + 3em); // Height of description
       }
     }
   }

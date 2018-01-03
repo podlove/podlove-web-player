@@ -1,5 +1,5 @@
-import episodeStorage from './storage.episode'
-import liveStorage from './storage.live'
+import episodeStorage from './episode'
+import liveStorage from './live'
 
 export default storage => (store, action) => {
   const state = store.getState()

@@ -1,5 +1,5 @@
 import { get } from 'lodash'
-import actions from '../actions'
+import actions from '../../actions'
 
 const hasChapters = chapters => chapters.length > 0
 const hasMeta = (show, episode) => episode.poster || show.poster || show.title || episode.title || episode.subtitle
@@ -71,10 +71,17 @@ export default (store, action) => {
       store.dispatch(actions.toggleRateSlider(true))
       store.dispatch(actions.toggleInfoPoster(true))
       break
+    case 'SET_TRANSCRIPTS':
+      if (action.payload.length > 0) {
+        store.dispatch(actions.toggleComponentTab('transcripts', true))
+      }
+      break
     case 'END':
       store.dispatch(actions.showReplayButton())
       break
-    case 'ERROR_LOAD':
+    case 'NETWORK_IDLE':
+    case 'NETWORK_EMPTY':
+    case 'NETWORK_NO_SOURCE':
       store.dispatch(actions.toggleInfo(false))
       store.dispatch(actions.toggleError(true))
       store.dispatch(actions.showRetryButton())

@@ -1,5 +1,5 @@
 import { get } from 'lodash'
-import actions from '../actions'
+import actions from '../../actions'
 
 const hasMeta = (show, episode) => episode.poster || show.poster || show.title || episode.title || episode.subtitle
 
@@ -54,9 +54,9 @@ export default (store, action) => {
       store.dispatch(actions.toggleInfoPoster(true))
       store.dispatch(actions.showPauseButton())
       break
-    case 'ERROR_LOAD':
-      store.dispatch(actions.toggleInfo(false))
-      store.dispatch(actions.toggleError(true))
+    case 'NETWORK_IDLE':
+    case 'NETWORK_EMPTY':
+    case 'NETWORK_NO_SOURCE':
       store.dispatch(actions.showRetryButton())
       break
     case 'ERROR_MISSING_AUDIO_FILES':

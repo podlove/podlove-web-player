@@ -1,8 +1,8 @@
 import request from 'superagent'
 
-export default episode =>
+export default url =>
   request
-    .get(episode)
+    .get(url)
     .query({ format: 'json' })
     .set('Accept', 'application/json')
     .then(res => res.body)

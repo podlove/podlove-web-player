@@ -1,0 +1,743 @@
+[{
+  "start": "00:00:00.0",
+  "end": "00:00:43.1",
+  "text": "Intro"
+}, {
+  "start": "00:00:43.1",
+  "end": "00:01:17.2",
+  "speaker": "timpritlove",
+  "text": "Hallo und herzlich willkommen zu Forschergeist, dem Podcast des Stifterverbands für die deutsche Wissenschaft. Mein Name ist Tim Pritlove und ich begrüße alle hier zur 45. Gesprächsrunde in unserer Serie rund um Wissenschaft und wissenschaftliche Forschung. Und heute hat mich der Weg abermals nach Oxford geführt, wo ich an der Universität Oxford genauer an der Faculty of History angekommen bin. Und heute mich mit einer Australierin in England über deutsche Kultur unterhalten möchte. Und ich begrüße sehr herzlich Lyndal Roper, schönen guten Tag."
+}, {
+  "start": "00:01:17.2",
+  "end": "00:01:18.9",
+  "speaker": "lyndalroper",
+  "text": "Guten Tag."
+}, {
+  "start": "00:01:18.9",
+  "end": "00:01:29.8",
+  "speaker": "timpritlove",
+  "text": "Frau Roper Sie sind wie schon gesagt hier Professorin an der Faculty of History, aber Sie kommen eigentlich aus Australien, ich habe es schon angedeutet. Woher?"
+}, {
+  "start": "00:01:29.8",
+  "end": "00:01:32.1",
+  "speaker": "lyndalroper",
+  "text": "Ich komme aus Melbourne."
+}, {
+  "start": "00:01:32.1",
+  "end": "00:01:34.9",
+  "speaker": "timpritlove",
+  "text": "Aus Melbourne und dort haben Sie sich von Anfang an mit Geschichte beschäftigt?"
+}, {
+  "start": "00:01:34.9",
+  "end": "00:01:43.2",
+  "speaker": "lyndalroper",
+  "text": "Ja ziemlich. Also eigentlich zuerst mit Philosophie und Geschichte und natürlich auch mit deutsch."
+}, {
+  "start": "00:01:43.2",
+  "end": "00:01:51.2",
+  "speaker": "timpritlove",
+  "text": "Was hat denn Ihr Interesse an Deutschland so geweckt? Dass man sich jetzt entschließt, deutsch zu lernen, sich mit Deutschland zu beschäftigen?"
+}, {
+  "start": "00:01:51.2",
+  "end": "00:02:47.2",
+  "speaker": "lyndalroper",
+  "text": "Eigentlich hat mich die Nazizeit fasziniert, aber in dem Jahr, wo ich unbedingt dieses machen wollte, war der zutreffende Professor im Urlaub. Und ich konnte das nicht wählen und ich war gezwungen, Reformationsgeschichte zu machen. Und das hat mich einfach fasziniert und gefesselt und dann habe ich einfach weiter gearbeitet. Und mein Vater war auch kurze Zeit Pfarrer. Und das hieß auch, ich bin kurze Zeit in einem Pfarrhaus aufgewachsen und ich wusste … also eigentlich wollte ich wissen, woher das kommt? Ich wollte verstehen, was sind die Gendermodelle, mit dem so ein Pfarrhaus arbeitet? Wo kommen sie her? Was für einen Einfluss haben sie auf uns heute noch?"
+}, {
+  "start": "00:02:47.2",
+  "end": "00:02:56.8",
+  "speaker": "timpritlove",
+  "text": "Ein Teil Ihrer Forschung bezieht sich ja auch auf die Hexengeschichte. Sie sind ja dann auch irgendwann nach Deutschland gegangen und haben dort auch studiert?"
+}, {
+  "start": "00:02:56.8",
+  "end": "00:03:33.5",
+  "speaker": "lyndalroper",
+  "text": "Ja ich bin direkt nach dem ersten Studium in Australien nach Deutschland gegangen. Und zwar mit Hilfe vom DAAD. Ich bin in Deutschland angekommen, das war mitten im Sommer, es war der 26. Januar. Das ist eigentlich der Australiertag. Und bin dann in Stuttgart gelandet. Habe zum ersten Mal Schnee gesehen. Und er lag hoch in diesem Winter. Und dann habe ich angefangen, richtig über deutsche Geschichte zu arbeiten."
+}, {
+  "start": "00:03:33.5",
+  "end": "00:03:35.8",
+  "speaker": "timpritlove",
+  "text": "In Stuttgart dann?"
+}, {
+  "start": "00:03:35.8",
+  "end": "00:03:38.3",
+  "speaker": "lyndalroper",
+  "text": "In Tübingen."
+}, {
+  "start": "00:03:38.3",
+  "end": "00:04:06.6",
+  "speaker": "timpritlove",
+  "text": "Und heute wollen wir ja unserer Fokus legen auf Martin Luther. Es ist ja Lutherjahr, 500 Jahre sind jetzt vergangen, seitdem er seine Thesen angeschlagen hat. Deutschland ist in entsprechender medialer Aufwühlung, man kann dem Thema eigentlich kaum entgehen, nichtmal in diesem Podcast. War das dann schon in Deutschland, dass Sie sich intensiv mit Martin Luther beschäftigt haben?"
+}, {
+  "start": "00:04:06.6",
+  "end": "00:04:57.4",
+  "speaker": "lyndalroper",
+  "text": "Das kommt wahrscheinlich aus meiner Vergangenheit. Natürlich wusste ich von Luther, als ich aufgewachsen bin. Und die lutherische Kirche hatte indirekt viel Einfluss auf die presbyterianische Kirche gehabt. Und ich bin in einer presbyterianischen Kirche dann gewesen. Da bin ich groß geworden. Und ich wusste, dass diese Theologie unheimlich wichtig war auch für die Presbyterianer und ich wusste, dass Theologie in Deutschland sehr … dass das wissenschaftlich gesehen einfach ausgezeichnet war, das war klar. Und die Verbindungen zwischen Melbourne und Tübingen hat es auch damals gegeben."
+}, {
+  "start": "00:04:57.4",
+  "end": "00:05:02.1",
+  "speaker": "timpritlove",
+  "text": "Wie lange waren Sie dann in Deutschland?"
+}, {
+  "start": "00:05:02.1",
+  "end": "00:05:09.0",
+  "speaker": "lyndalroper",
+  "text": "Ach wie lange? Also insgesamt? Ich weiß nicht, also 6.7 Jahre. Ich weiß nicht wie lange."
+}, {
+  "start": "00:05:09.0",
+  "end": "00:05:10.4",
+  "speaker": "timpritlove",
+  "text": "Auf jeden Fall haben Sie das Land ganz gut kennengelernt."
+}, {
+  "start": "00:05:10.4",
+  "end": "00:05:10.7",
+  "speaker": "lyndalroper",
+  "text": "Ich bin immer wieder gekommen."
+}, {
+  "start": "00:05:10.7",
+  "end": "00:05:16.7",
+  "speaker": "timpritlove",
+  "text": "Ja. Letztlich hat es Sie nach Oxford verschlagen, wie kam es dazu?"
+}, {
+  "start": "00:05:16.7",
+  "end": "00:05:45.8",
+  "speaker": "lyndalroper",
+  "text": "Das ist eine komplizierte Geschichte, ich war lange in der University of London. Und dann gab es eine Stelle hier und ich bin einige Jahre am Balliol College gewesen und bin dort Tutor gewesen. Und dann habe ich diese Regius.Professur angenommen, als erste Frau. Und das ist in 2011 gewesen."
+}, {
+  "start": "00:05:45.8",
+  "end": "00:05:52.4",
+  "speaker": "timpritlove",
+  "text": "Am Oriel College ist das ja beheimatet. Was so ein bisschen glaube ich den Ruf hat, eher zu den konservativeren Colleges zu gehören."
+}, {
+  "start": "00:05:52.4",
+  "end": "00:06:23.1",
+  "speaker": "lyndalroper",
+  "text": "Ja, das ist eine Ironie des Schicksals. Denn Oriel war das letzte College, das Frauen überhaupt eingelassen hat als Studentinnen. Und als ich zuerst hier gewesen war als Junior Research Fellow, da war es ein reines Männercollege. Aber es hat sich inzwischen sehr geändert."
+}, {
+  "start": "00:06:23.1",
+  "end": "00:06:29.2",
+  "speaker": "timpritlove",
+  "text": "Es gibt ja glaube ich auch die Rektorin des Colleges ist eine Frau mittlerweile."
+}, {
+  "start": "00:06:29.2",
+  "end": "00:06:29.9",
+  "speaker": "lyndalroper",
+  "text": "Ja."
+}, {
+  "start": "00:06:29.9",
+  "end": "00:06:44.4",
+  "speaker": "timpritlove",
+  "text": "Ja die Dinge ändern sich in England. Man muss vielleicht dazu noch erwähnen, es ändert sich ja demnächst hier noch eine ganze Menge mehr mit dem drohenden Brexit. Sehen Sie da schon Auswirkungen auf Ihre akademische Arbeit hier in Oxford?"
+}, {
+  "start": "00:06:44.4",
+  "end": "00:07:36.9",
+  "speaker": "lyndalroper",
+  "text": "Ja viele und wir tun unser bestes, da entgegen zu wirken. Denn es ist für uns unheimlich wichtig und Brexit ist eine sehr ernste … ja es bedeutet eine sehr große Gefahr für die britische Wissenschaft. Und das aus einigen Gründen. Erstens und einfach klar ist natürlich das Problem, dass wir Forschungsgelder aus dem European Research Council, dass wir auf die sehr angewiesen sind. Und vor allem merkwürdigerweise in der Humanities. Das ist für eine sehr wichtige Quelle, aber es ist nicht nur eine Geldfrage, es ist eine Frage von Kooperation und intellektueller Bereicherung."
+}, {
+  "start": "00:07:36.9",
+  "end": "00:08:38.3",
+  "speaker": "lyndalroper",
+  "text": "Und bisher war es möglich, mit anderen in ganz Europa zusammen Projekte auszudenken und das hat für England eine sehr große Bedeutung gehabt, weil zum Beispiel Historiker, die immer nur über England gearbeitet haben oder über Gebiete, wo sie nur die englische Sprache gebraucht haben, die konnten mit ihren europäischen Kollegen zusammenarbeiten. Und das Problem ist, weil wir jetzt wahrscheinlich aus den europäischen Geldern oder die Gefahr besteht, dass wir ausgeschlossen werden, werden wir möglicherweise nicht mehr interessante Partner für sie und das ist tragisch. Denn das hat in den 10.20 Jahren so viel für die englische Forschung gebracht. Es hat den Blick geöffnet."
+}, {
+  "start": "00:08:38.3",
+  "end": "00:08:42.4",
+  "speaker": "timpritlove",
+  "text": "Und jetzt droht es sozusagen, alles wieder in die andere Richtung zu gehen?"
+}, {
+  "start": "00:08:42.4",
+  "end": "00:09:20.4",
+  "speaker": "lyndalroper",
+  "text": "Ja. Wenn wir nicht schauen, dass wir was dagegen unternehmen. Und ich hoffe, dass wir was machen werden. Zum Beispiel im Moment kooperieren wir sehr intensiv mit dem Central European University Budapest. Wir machen eine Reihe von Seminaren, we stand with CEU Budapest, weil wir zeigen wollen, dass diese Institution, gerade was Geschichte angeht, auch für uns sehr wichtig ist, dass wir sehr viele Impulse von ihnen nehmen und dass wir bei ihnen stehen wollen."
+}, {
+  "start": "00:09:20.4",
+  "end": "00:09:33.0",
+  "speaker": "timpritlove",
+  "text": "Also das CEU ist die Universität von George Soros gegründet in Ungarn, die jetzt gerade unter heftigen Attacken der ungarischen Regierung unter Orban steht und der Schließung sozusagen entgegenblickt."
+}, {
+  "start": "00:09:33.0",
+  "end": "00:09:35.0",
+  "speaker": "lyndalroper",
+  "text": "Genau."
+}, {
+  "start": "00:09:35.0",
+  "end": "00:09:42.9",
+  "speaker": "timpritlove",
+  "text": "Aber gibt es so viele Möglichkeiten, dann hier noch die Fahne hochzuhalten, wenn Großbritannien …"
+}, {
+  "start": "00:09:42.9",
+  "end": "00:10:46.3",
+  "speaker": "lyndalroper",
+  "text": "Ja sicher, man muss ein bisschen erfinderisch sein. Und wir machen Summer Schools, das werden wir weiterhin machen. Ein Problem, was ich sehe, ist, dass bisher sehr viele Graduates aus Deutschland und aus ganz Europa gekommen sind. Und für mich persönlich waren diese Studenten aus Deutschland und anderen deutschsprachigen Ländern die waren für mich extrem wichtig. Denn das waren Studenten und Studentinnen, die die deutsche Sprache beherrschten und die auch mit anderen Ideen gekommen sind und dann konnten wir eine Gruppe bilden und das war für die Briten dann auch von extremer Bedeutung. Die haben einander gut kennengelernt, die haben dann miteinander diskutiert, haben dann Projekte gemeinsam gemacht. Und solche Freundschaften, die halten sich über ein Leben lang."
+}, {
+  "start": "00:10:46.3",
+  "end": "00:10:59.4",
+  "speaker": "timpritlove",
+  "text": "Und jetzt droht es natürlich, dass viele dieser Studenten ausbleiben. Weil wenn hier die Kosten nicht mehr EU.Bürger.Status berechnet werden, sondern nach einem Ausländerstatus, dann verdoppelt sich mal eben so der Beitrag."
+}, {
+  "start": "00:10:59.4",
+  "end": "00:11:13.6",
+  "speaker": "lyndalroper",
+  "text": "Genau. Und da müssen wir schauen, dass wir andere Möglichkeiten finden. Damit das noch finanziert wird. Denn die nächste kommende Generation ist natürlich von sehr großer Bedeutung."
+}, {
+  "start": "00:11:13.6",
+  "end": "00:11:50.8",
+  "speaker": "timpritlove",
+  "text": "Kommen wir zum eigentlichen Thema, Martin Luther steht im Mittelpunkt Ihrer Forschung. Ich habe es schon angedeutet. Martin Luther ist auch jemand, der ganz unzweifelhaft auch eine größere Krise ausgelöst hat, nämlich in der katholischen Kirche, die sich auf einmal einem Widerstand gegenüber sah, den sie wahrscheinlich so nicht auf dem Zettel hatte. Wie haben Sie angefangen, sich mit Martin Luther zu beschäftigen? Was hat Ihr Interesse im besonderen dort geweckt?"
+}, {
+  "start": "00:11:50.8",
+  "end": "00:12:48.3",
+  "speaker": "lyndalroper",
+  "text": "Ja wann hat das angefangen? Ja also jemand, der sagt, dass Klugsein ein Kleid ist, was Frauen übel ansteht, mit dem muss man sich auseinandersetzen. Also Luther ist die Figur im 16. Jahrhundert, der mich immer fasziniert hatte und also jeder hat eine Meinung zu Luther. Und ich wollte verstehen, was für ein Mensch er gewesen ist. Und das war für mich auch etwas, was mich gefesselt hatte, auch als Undergraduate, als ich Reformation history studiert habe."
+}, {
+  "start": "00:12:48.3",
+  "end": "00:13:02.9",
+  "speaker": "lyndalroper",
+  "text": "Und ich habe nicht direkt über Luther geforscht, weil Biografien damals irgendwie verpönt waren, das war nicht richtige Geschichte, hat man immer wieder behauptet."
+}, {
+  "start": "00:13:02.9",
+  "end": "00:13:05.7",
+  "speaker": "timpritlove",
+  "text": "Von welchem damals reden wir da?"
+}, {
+  "start": "00:13:05.7",
+  "end": "00:13:20.7",
+  "speaker": "lyndalroper",
+  "text": "Das war in den 70er Jahren. Und man wollte Sozialgeschichte machen. Man wollte ernsthaften Fragen nachgehen. Und Biografie war irgendwie zu persönlich, nicht ernsthaft."
+}, {
+  "start": "00:13:20.7",
+  "end": "00:13:22.4",
+  "speaker": "timpritlove",
+  "text": "Nicht allgemein genug?"
+}, {
+  "start": "00:13:22.4",
+  "end": "00:14:17.1",
+  "speaker": "lyndalroper",
+  "text": "Nein. Und das war natürlich auch damit zusammen verbunden, dass man gemeint hatte, wenn man zu viel auf ein Individuum fokussiert, dann fällt man in diese alten Klischees. Man heroisiert und man nimmt den Kontext nicht wahr. Und das ist natürlich eine Gefahr, wenn man eine Biografie schreibt. Und eigentlich, wenn ich jetzt darüber nachdenke, was sind die Nachteile vom Biografieschreiben, würden ich schon meinen, dass gerade jetzt, wo wir Luther feiern – also ich finde, es ist für uns Historiker extrem schwierig, uns in diese Diskussion einzumischen und was neues und was historisches in die Diskussion zu bringen."
+}, {
+  "start": "00:14:17.1",
+  "end": "00:14:52.5",
+  "speaker": "lyndalroper",
+  "text": "es ist  zu leicht in Heroisieren, was ist das Gegenteil von Heroisieren? Dämonisierung zu fallen. Und die eigentliche historische Frage, die man auch stellen sollte, jetzt hat man die einmalige Möglichkeit, das an ein breites Publikum zu bringen, gerade die zu formulieren fällt extrem schwer, wenn man von einer Biografie ausgeht."
+}, {
+  "start": "00:14:52.5",
+  "end": "00:15:50.3",
+  "speaker": "timpritlove",
+  "text": "Jetzt ist Luther so ein bisschen als der Revolutionär bekannt, der der katholischen Kirche so die Stirn geboten hat, aus einem anderen Glaubensverständnis heraus, was er sicher auch … er kommt ja in gewisser Hinsicht nicht von außen, er war selber Augustiner Mönch, er war in diesem Prozess. Er ist in verschiedenen Positionen gewesen. Er war Teil des Systems. Trotzdem hat er irgendwie die Kraft gehabt, auf einmal Dinge anders zu sehen. Wo man ja denken würde, naja wenn dann erst mal zehn Jahre in dem System drinsteckt, dann singt man das Lied der anderen Vögel einfach so mit und hat seine Ruhe. Warum denken Sie war das jetzt bei ihm anders? Was hat bei ihm da geklickt, dass er es gewagt hat, diesem Dogmatismus etwas entgegenzuhalten?"
+}, {
+  "start": "00:15:50.3",
+  "end": "00:16:28.2",
+  "speaker": "lyndalroper",
+  "text": "Ich finde Luther war ein bisschen wie ein Spätentwickler. Man sieht, er gewinnt mehr und mehr an Selbständigkeit. Und in den ersten Jahren, als er Mönch gewesen ist, das muss eine enorme Umstellung gewesen sein, plötzlich in diesem sehr geordneten Leben, wo alles vorgeschrieben ist, wo die Zeiten angesetzt sind und wo man immer die Stunden beten muss und dafür sehr viel Zeit in Anspruch nehmen muss."
+}, {
+  "start": "00:16:28.2",
+  "end": "00:16:42.3",
+  "speaker": "timpritlove",
+  "text": "Und er hatte ja auch eigentlich gar keine entsprechende Jugend. Also sein Vater war eher Unternehmer, nichts deutete unbedingt darauf hin, dass er jetzt ein Mann Gottes werden wollen würde. Gibt es da Erkenntnisse, warum er überhaupt diesen Weg gegangen ist?"
+}, {
+  "start": "00:16:42.3",
+  "end": "00:17:38.5",
+  "speaker": "lyndalroper",
+  "text": "Es gibt, also wenn man auf die Mutter schaut, dann sieht man, dass sie eine besondere Art von Religiosität praktiziert hatte, man vermutet, dass es viel mit Mediation und Franziskanern zu tun hatte. Man sieht diese Zeit, wo er in Eisenach auf der Schule gewesen ist. Diese Zeit, wir haben kaum historische Zeugnisse über diese Zeit, aber es muss ziemlich wichtig für ihn gewesen sein und da waren die Verwandten von seiner Mutter. Und da war er in der Schule. Es gab auch einen Priester und Lehrer, die ihn offensichtlich sehr beeinflusst haben."
+}, {
+  "start": "00:17:38.5",
+  "end": "00:18:12.9",
+  "speaker": "lyndalroper",
+  "text": "Und er war in einem Ort, wo er von einer Art von franziskanischer Pietät... das lag in der Luft. Und das hat sicher einen sehr großen Einfluss auf ihn gehabt. Aber als er die 95 Thesen angeschlagen hatte oder vielleicht hat er sie einfach an die Wand mit – wie heißt Glue auf deutsch?"
+}, {
+  "start": "00:18:12.9",
+  "end": "00:18:15.7",
+  "speaker": "timpritlove",
+  "text": "Mit Klebstoff."
+}, {
+  "start": "00:18:15.7",
+  "end": "00:19:16.0",
+  "speaker": "lyndalroper",
+  "text": "Mit Klebstoff, es ist eher wahrscheinlich, dass er Klebstoff benutzt hat. Aber er hatte bis dann sehr wenig publiziert, er war unbekannt. Er war Theologieprofessor, aber in einer ganz abgelegenen neuen Universität. Und ich finde, um diese Hartnäckigkeit und Unabhängigkeit zu verstehen, da ist seine Kindheit in Mansfeld schon von großer Bedeutung. Denn Mansfeld war und das hat mich fasziniert bei der Forschung, ich bin lange in Wernigerode gesessen, habe mir viele Kopien bestellt, weil ich wollte wissen, wie haben diese Gesellschaften, wie haben diese Firmen funktioniert. Wie haben sie zusammenhalten können?"
+}, {
+  "start": "00:19:16.0",
+  "end": "00:20:22.3",
+  "speaker": "lyndalroper",
+  "text": "Was waren die Gründe von Vertrauen? Wie haben die Verträge funktioniert? Und das alles ist überhaupt nicht in dem Buch drin, aber es war für mich wichtig, um mir ein Bild zu schaffen. Was für eine Welt war das? Und ich finde es ist sehr klar, dass das eine sehr unsichere Welt war, wo man zwar Verträge machen konnte, und zwar immer mit Partnern gearbeitet hat, aber diese Partner haben dann ständig gewechselt. Also man arbeitete 3.4 Jahre zusammen und dann hat man gewechselt und hat mit jemand anders gearbeitet. Und man führte immer ein Buch zu jeder Partnerschaft. Aber die Verträge und das Recht, Bergbau zu machen, das war alles unsicher rechtlich gesehen."
+}, {
+  "start": "00:20:22.3",
+  "end": "00:20:57.7",
+  "speaker": "lyndalroper",
+  "text": "Und man musste sich immer absichern. Und wie konnte man sich absichern? Eben durch starke persönliche Bindungen und womöglich durch Verwandtschaft. Das heißt wen man heiratet war sehr wichtig. Und wenn man schaut, das sind vielleicht 40 Familien und die sind alle verschwägert. Die haben alle zusammen geheiratet. Und Luthers Geschwister haben dann in diese Elite eingeheiratet."
+}, {
+  "start": "00:20:57.7",
+  "end": "00:21:04.8",
+  "speaker": "timpritlove",
+  "text": "Das heißt so im Prinzip genauso hat es in der Wirtschaft funktioniert, wie es vorher schon unter Königen und Herzögen auch funktioniert hat."
+}, {
+  "start": "00:21:04.8",
+  "end": "00:21:05.9",
+  "speaker": "lyndalroper",
+  "text": "Das ist genau dieselbe Funktion."
+}, {
+  "start": "00:21:05.9",
+  "end": "00:21:40.5",
+  "speaker": "timpritlove",
+  "text": "Wenn ich das richtig sehe, ist ja eine seiner Kernkritiken bzw. auch ein Anlass, dass er sich überhaupt der Kirche so kritisch gegenüber gestellt hat, dieser florierende Ablasshandel, dieses gebt uns Geld und eure Sünden sind erlassen, kann man da vielleicht eine Parallele sehen, dass er so einen Einblick gewonnen hat durch seine Familie in diese wirtschaftlichen Verflechtungen und die Bedeutung von Geld und Beziehung an der Stelle und dass er das dann in dem Glaubenssystem auf einmal auch vorgefunden hat und dass ihm das verdächtig vorkam?"
+}, {
+  "start": "00:21:40.5",
+  "end": "00:22:40.6",
+  "speaker": "lyndalroper",
+  "text": "Das ist sicher wichtig. Denn gerade in Bergbaugebieten habe diese Prediger sehr gewirkt und haben dann viele indulgences Verkaufen können. Das war ein gutes Geschäft. Und ich finde, es ist auch was anderes dabei. In einer Welt groß zu werden, wo alles unsicher ist, und wo nichts zwischen dir und Bankrott steht, nur Glück, das ist irgendwie eine direkte und unvermittelte Beziehung zu Schicksal. Und gerade diese Erfahrung meine ich in Luthers Beziehung zu Gott wieder zu erkennen."
+}, {
+  "start": "00:22:40.6",
+  "end": "00:22:55.8",
+  "speaker": "lyndalroper",
+  "text": "Also kein Vermittler, nichts zwischen dir und Gott, eine direkte Beziehung, wo alles auf dem Spiel steht. Und ich glaube, das kommt aus seiner Vergangenheit im Bergbau ein bisschen."
+}, {
+  "start": "00:22:55.8",
+  "end": "00:23:28.7",
+  "speaker": "timpritlove",
+  "text": "Er hat ja dann im Prinzip den Glauben neu aufgearbeitet. Er hat die Interpretation der katholischen Kirche, der Bibel in Frage gestellt und hat dem offenbar ein ganz eigenes Modell entgegengestellt. Was war der Kern dieser Erkenntnis, die er dort gehabt hat? Was hat ihn sozusagen auf den Weg gebracht, sich in zunehmendem Maße gegen die Kirche zu stellen?"
+}, {
+  "start": "00:23:28.7",
+  "end": "00:23:52.6",
+  "speaker": "lyndalroper",
+  "text": "Er war sicher nicht der erste, der den Ablass kritisiert hatte. Auch Friedrich der Weise, also sein Kurfürst, hatte dem Ablasspredigern nicht erlaubt, innerhalb seines Bezirks zu predigen und Ablass zu verkünden. Denn die waren auch …"
+}, {
+  "start": "00:23:52.6",
+  "end": "00:23:53.4",
+  "speaker": "timpritlove",
+  "text": "Wettbewerber."
+}, {
+  "start": "00:23:53.4",
+  "end": "00:24:15.2",
+  "speaker": "lyndalroper",
+  "text": "Ja die waren auch Wettbewerber. Und Friedrich der Weise hatte eine große Sammlung von Reliquien. Und das war auch natürlich ein riesiges Geschäft. Und die Universität speiste aus diesen Profiten. Also insofern …"
+}, {
+  "start": "00:24:15.2",
+  "end": "00:24:22.2",
+  "speaker": "timpritlove",
+  "text": "War das alles wirtschaftliche Beziehung. Friedrich der Weise war ja auch jemand, der Martin Luther dann extrem bestärkt und beschützt hat in diesem ganzen Prozess."
+}, {
+  "start": "00:24:22.2",
+  "end": "00:24:34.5",
+  "speaker": "lyndalroper",
+  "text": "Genau und ohne ihn und ohne die Freundschaft mit Spalatin, der sein Sekretär war, wäre Luther sicher nicht davon weggekommen."
+}, {
+  "start": "00:24:34.5",
+  "end": "00:25:17.8",
+  "speaker": "timpritlove",
+  "text": "Was hat Luther dann gemacht? Also er hat diese Erkenntnis gehabt. Er hat gesagt, ich kritisiere das, ich definiere auch den Glauben anders. Im Prinzip hat er ja ein komplett neues Bild des Christentums an die Wand geworfen und gesagt, so wie ihr das interpretiert, so sehe ich das nicht. Was war der Kern dieser Thesen, die er dann letzten Endes aufgestellt hat? Ich meine für eine Revolution braucht man ja eigentlich immer kurze Sätze. So das ist falsch und deswegen müssen wir das jetzt so machen. Dann gleich so mit 95 Thesen, ich weiß gar nicht wie lang die waren, daher zu kommen, ist ja schon recht komplex für die damalige Gesellschaft."
+}, {
+  "start": "00:25:17.8",
+  "end": "00:25:35.7",
+  "speaker": "lyndalroper",
+  "text": "Ja und nein. Also die 95 Thesen sind ein faszinierendes Dokument und man wundert sich, wenn man die liest. Also wie hätte so was eine Reformation auslösen können? Und die Antwort dazu ist sehr komplex."
+}, {
+  "start": "00:25:35.7",
+  "end": "00:25:40.5",
+  "speaker": "timpritlove",
+  "text": "Was stand denn so drin? Was waren denn so die Hauptthemen?"
+}, {
+  "start": "00:25:40.5",
+  "end": "00:26:38.9",
+  "speaker": "lyndalroper",
+  "text": "Eigentlich sind es eine Reihe von Punkten. Das sind scholastische Thesen. Es kommt aus dieser Vorstellung, dass man an die Wahrheit durch eine Debatte kommt. Dass man eine These aufstellt und dass es um Argumentation geht und Diskussion. Es ist eine Auffassung von Wissenschaft und wie man lernt. Und gerade diese Form nimmt Luther und macht daraus etwas, was ein bisschen anders ist. Denn er fängt an und es sind Sätze drin, die einfach prägnant sind und worüber man nachdenken muss. Und wenn er anfängt mit der Erklärung, also wenn unser Herr Jesus Christus gesagt hat, tu Buße, dann meinte er, dass das ganze Leben von den Christenmenschen ein Leben von Buße sein soll."
+}, {
+  "start": "00:26:38.9",
+  "end": "00:27:26.8",
+  "speaker": "lyndalroper",
+  "text": "Also Buße heißt nicht, dass man einen Ablass kauft. Buße heißt, dass man sich Gedanken macht über die Sünde und dass man eine Beziehung zu Gott entwickelt. Und wenn man die 95 Thesen liest, da ist kein ausgearbeitetes Programm da drin. Das faszinierende ist, das kam nach und nach. Das hat sich entwickelt. Und diese Jahre zwischen 1517 und 1520, wo man Luthers Theologie vor sich hat, das sind Jahre von unwahrscheinlich schneller Kreativität."
+}, {
+  "start": "00:27:26.8",
+  "end": "00:28:14.9",
+  "speaker": "timpritlove",
+  "text": "Was waren denn so die wichtigsten Thesen? Weil ich höre jetzt so ein bisschen raus, dass er im Prinzip ja das erste Mal ein wissenschaftliches Prinzip eigentlich formuliert hat. Ich meine zu dem Zeitpunkt gab es ja den Beruf eines Wissenschaftlers in dem Sinne noch gar nicht. Das ist ja eher eine Erfindung oder Entwicklung vielleicht der letzten 100.150 Jahre. Dass man im Prinzip sagt, wir müssen argumentieren, wir müssen debattieren, wir müssen tatsächlich in dem Fall halt in der Bibel, also in den Dokumenten, worauf auch immer man sich bezieht, wir müssen Fakten finden und wir müssen irgendwie uns daran orientieren vs. Wir haben hier eine Kirche, die diese Regeln einfach festsetzt und dann ist das so und im Wesentlichen haben sich alle Angestellten damit zu beschäftigen. Das ist ja im Prinzip so eine Vorformulierung von Wissenschaft."
+}, {
+  "start": "00:28:14.9",
+  "end": "00:29:13.7",
+  "speaker": "lyndalroper",
+  "text": "Ach ich finde, also Theologie war die Königin der Wissenschaften damals. Theologie war wie Soziologie in den 70er Jahren. Das war die Wissenschaft, wo die besten Köpfe gearbeitet haben und wo es neue Erkenntnisse gegeben hat. Und wo was los war. Und diese Art, wie sie Unterricht betrieben haben, bestand zum Teil aus eben Disputation. Und Disputation ist eine Form von Denken, was Luther sein ganzes Leben lang immer wieder benutzt hat und sehr geschätzt hat. Und das war die Methode, einem Doktorand Wissenschaft beizubringen."
+}, {
+  "start": "00:29:13.7",
+  "end": "00:29:39.4",
+  "speaker": "lyndalroper",
+  "text": "Durch Erstellung von Thesen. Thesen auseinandernehmen, kritisch durchschauen, kritisch diskutieren und auseinandernehmen. Und insofern ist die Playmobil.Figur genau richtig. Man nimmt alles auseinander, man nimmt Luther auseinander, man nimmt Thesen auseinander und man argumentiert."
+}, {
+  "start": "00:29:39.4",
+  "end": "00:30:03.9",
+  "speaker": "timpritlove",
+  "text": "Er hat ja ich habe gelesen, dass es damals so klar war, wie man den Familiennamen Luther eigentlich schreibt, dass es es zahlreiche Varianten gab, Luder etc. und dass er eigentlich selber diese Schreibweise Luther mit TH ganz bewusst genommen hat, weil es so klingt wie ich glaube Eleutherios, was der Freier heißt."
+}, {
+  "start": "00:30:03.9",
+  "end": "00:30:06.8",
+  "speaker": "lyndalroper",
+  "text": "Ja der Befreite."
+}, {
+  "start": "00:30:06.8",
+  "end": "00:30:25.5",
+  "speaker": "timpritlove",
+  "text": "Der Befreite. Also wovon wollte er sich denn befreien? Weil ich meine, dass man die Kirche und den Glauben gleichsetzt oder zumindest in Konfrontation bringt mit einem Freiheitsgedanken, war glaube ich auch nicht so normal oder?"
+}, {
+  "start": "00:30:25.5",
+  "end": "00:31:21.6",
+  "speaker": "lyndalroper",
+  "text": "Es sind eine Reihe von Gedanken, die zusammenkommen, zusammenfließen. Und eins davon ist etwas, was in Disputation mit Johannes Eck in Leipzig zuerst formuliert wird und wahrgenommen wird. Und zwar ist das dieses Prinzip, dass die Tradition der Kirche nicht das bedeutende ist, sondern die Schrift, die heilige Schrift, die Bibel, die ist die einzige Autorität. Und es geht nicht darum, die verschiedenen Kanones der Kirche nachzuforschen und da die Autorität zu finden, sondern die Schrift allein ist die Autorität. Und diese Ansicht ist für Luther extrem wichtig. "
+}, {
+  "start": "00:31:21.6",
+  "end": "00:32:24.1",
+  "speaker": "lyndalroper",
+  "text": "Und dann ist die Erfahrung, dass man durch Gottes Gnade erlöst wird. Das ist für Luther auch sehr sehr wichtig gewesen. Und das hängt mit seinem Augustinismus zusammen. Und diese Ansicht, dass wir Sünder sind, dass wir alle Sünder sind und dass wir die Gnade Gottes niemals verdienen können. Wir können nicht gute Werke tun und so unser Heil dann durch diese Werke verdienen. Das geht einfach nicht. Sondern Gnade ist eine Gabe, die von Gott kommt. Und wir werden es nie wert sein. Wir werden es nie verdienen können."
+}, {
+  "start": "00:32:24.1",
+  "end": "00:33:12.4",
+  "speaker": "lyndalroper",
+  "text": "Und diese Ansicht war, also hing für Luther mit seinen Anfechtungen zusammen. Er behauptete, er sei ein guter Mönch gewesen, er war sehr papsttreu, er hat gefastet, er hat sehr viele gute Werke getan. Aber er war ständig von Anfechtungen geplagt. Und es ist sehr interessant diese Beziehung, die er zu seinem Beichtvater gehabt hat, Johannes Staupitz, der seine Anfechtungen verstanden hat und ein bisschen darüber lachen konnte."
+}, {
+  "start": "00:33:12.4",
+  "end": "00:33:15.4",
+  "speaker": "timpritlove",
+  "text": "Also  Anfechtungen jetzt von außen oder Anfechtungen, die er selber bringt?"
+}, {
+  "start": "00:33:15.4",
+  "end": "00:33:57.2",
+  "speaker": "lyndalroper",
+  "text": "Also die Anfechtungen sind nicht sexueller Art, soviel wir wissen. Luther sagt, er wäre von solchen Gedanken – das war für ihn nicht problematisch. Worum es eigentlich geht, ist, die Sicherheit, dass Gott dich liebt und dass man Glauben hat. Und Glaube zu haben ist für Luther immer ein Ringen, sein ganzes Leben lang. Und diese Anfechtungen kreisen immer um diese Sachen."
+}, {
+  "start": "00:33:57.2",
+  "end": "00:34:28.9",
+  "speaker": "timpritlove",
+  "text": "Er hat ja sich ja einerseits hatten wir ja schon diesen Ablasshandel, das war dann aber glaube ich so ein externer Auslöser, aber in der Theorie sich ja im Prinzip auch gegen diese Angst der Bestrafung durch einen Gott gestellt. Sehe ich das richtig? Dass der quasi so aus dieser inneren Sichtweise heraus das so entwickelt hat und damit ja im Prinzip das ganze Handeln der Kirche auch in zunehmendem Maße in Frage gestellt hat."
+}, {
+  "start": "00:34:28.9",
+  "end": "00:35:20.5",
+  "speaker": "lyndalroper",
+  "text": "Ja, aber das ist ein langer Prozess. Das ist nicht auf einmal geschehen. Und ich glaube das ist wichtig, weil wir sind immer geneigt zu meinen, dass es eine Bekehrung gewesen ist. Das ist etwas, was in einem Moment geschehen ist. Und wenn Luther über sein Leben zurückschaut, dann beschreibt er einen Moment, wo ihm das passiert, wo er in der Kloake sitzt oder im Kloaketurm und plötzlich diese Stelle im Römerbrief entdeckt und sagt, wie er sich befreit fühlt."
+}, {
+  "start": "00:35:20.5",
+  "end": "00:35:22.3",
+  "speaker": "timpritlove",
+  "text": "Das ist dieses Turmerlebnis oder?"
+}, {
+  "start": "00:35:22.3",
+  "end": "00:36:19.3",
+  "speaker": "lyndalroper",
+  "text": "Ja. Aber gab es ein Turmerlebnis? Dieses Erlebnis setzt Luther in 1519 ein. Wenn man die Reihe von den Ereignissen nachliest und eigentlich hätte es in 1515/16 stattfinden müssen, als er die Vorlesungen über die Römerbriefe gehalten hat. Und genau das ist es nicht. Und natürlich ist das eine Stilisierung. Er will wie Augustinus sein spirituelles Leben beschreiben. Und die Geschichte von einer Bekehrung hat natürlich einen Kern von Wahrheit. Aber wir sind manchmal denke ich geneigt, das als ein Bekehrungsmoment verstehen zu wollen, wo es um etwas emotionales geht."
+}, {
+  "start": "00:36:19.3",
+  "end": "00:36:33.1",
+  "speaker": "lyndalroper",
+  "text": "Aber ich finde, es ist eigentlich ein langer intellektueller und emotionaler Prozess, was nicht plötzlich in einer Sekunde passiert ist."
+}, {
+  "start": "00:36:33.1",
+  "end": "00:36:55.6",
+  "speaker": "timpritlove",
+  "text": "Ja dem ging ja auch noch so eine längere Reise voraus. Er war ja dann glaube ich 1510 in Rom für eine längere Zeit, was ja für damalige Verhältnisse, da steigt man nicht mal eben in den Flieger und fährt nach Rom. Dort hat er dann quasi ja Papst und das ganze kirchliche System in Rom quasi live miterlebt. Welche Rolle hat das gespielt?"
+}, {
+  "start": "00:36:55.6",
+  "end": "00:37:25.5",
+  "speaker": "lyndalroper",
+  "text": "Da muss man sehr unterscheiden zwischen dem, was Luther damals gedacht hat und erlebt hat und wie er dann zurückblickt. Und das sind zwei verschiedene Dinge. Er war natürlich sehr fromm damals. Er beschreibt, wie es ihn gestört hatte, dass die Messpriester die Messe sehr schnell gelesen haben und dann sofort die nächste Messe angefangen hat."
+}, {
+  "start": "00:37:25.5",
+  "end": "00:37:27.0",
+  "speaker": "timpritlove",
+  "text": "Fließbandarbeit?"
+}, {
+  "start": "00:37:27.0",
+  "end": "00:37:46.0",
+  "speaker": "lyndalroper",
+  "text": "Ja Messefließband. Aber war das damals oder ist das als er zurückblickt? Es ist schwer zu sagen. Er hat alles mögliche gemacht, um für seine Eltern und Großeltern zu beten und Ablass für sie zu bekommen."
+}, {
+  "start": "00:37:46.0",
+  "end": "00:37:51.7",
+  "speaker": "timpritlove",
+  "text": "Und später hat er dann andere Schlüsse daraus gezogen?"
+}, {
+  "start": "00:37:51.7",
+  "end": "00:38:02.4",
+  "speaker": "lyndalroper",
+  "text": "Ja natürlich sah er das später als sehr negativ und als nutzlos und als eine falsche Art von Religiosität."
+}, {
+  "start": "00:38:02.4",
+  "end": "00:38:04.0",
+  "speaker": "timpritlove",
+  "text": "Sündig fast."
+}, {
+  "start": "00:38:04.0",
+  "end": "00:38:05.1",
+  "speaker": "lyndalroper",
+  "text": "Ja."
+}, {
+  "start": "00:38:05.1",
+  "end": "00:39:09.1",
+  "speaker": "timpritlove",
+  "text": "Er hat dann, um das nochmal in den Kontext zu setzen, also 1517, deswegen haben wir ja jetzt auch gerade das Lutherjahr, da kamen seine Thesen, und wie wir jetzt gehört haben, erst in den Folgejahren kam es dann erst richtig zu dem Bruch mit der Kirche, die ja dann auch immer stärker gegen ihn vorgegangen ist. Wo er sich wahrscheinlich nur hat retten können – er musste ja dann glaube ich auch flüchten oder versteckt werden, um dort nicht entsprechend eingesammelt zu werden von den katholischen Häschern. In der Folge aber hatte er einen interessanten Erfolg, weil er dann ja selber angefangen hat, die Bibel zu übersetzen, in seiner eigenen Interpretation und anders als es bisher war, nicht wortwörtlich durch eine schlechte und vielleicht auch teilweise doppelte Übersetzung. Aus dem Griechischen kam es ins Lateinische, vom Lateinischen wurde es ins Deutsche übersetzt und man hat sich nicht so sehr viel Mühe gegeben."
+}, {
+  "start": "00:39:09.1",
+  "end": "00:39:31.3",
+  "speaker": "timpritlove",
+  "text": "Sich darüber Gedanken zu machen, wie vielleicht das ursprüngliche Wort mal war, geschweige denn, wie das, was es denn damals wirklich bedeutet hat. Also ist das eine große Leistung, dass er hier bereit war aufgrund seines eigenen Neuverständnisses, so weit zurück zu den Quellen zurückzugehen, um im Prinzip eine komplett andere Interpretation in die Welt zu setzen?"
+}, {
+  "start": "00:39:31.3",
+  "end": "00:39:58.8",
+  "speaker": "lyndalroper",
+  "text": "Es ist eine enorme Leistung. Natürlich hat es die deutsche Sprache sehr geformt, nicht nur beeinflusst. Und es ist ein wunderbares Deutsch, was er schreibt. Es ist musikalisch, es ist direkt und es ist einfach. Und das ist eine enorme Leistung."
+}, {
+  "start": "00:39:58.8",
+  "end": "00:40:30.0",
+  "speaker": "timpritlove",
+  "text": "Dem verdanken wir auch heute noch viele populäre Worte. Ich habe hier eine kleine Liste „Feuertaufe“, „Bluthund“, „Machtwort“, all das sind so Begriffe. Ein „Lockvogel“, ein „Lästermaul“ und dann halt auch solche Redewendungen wie „das Buch mit den sieben Siegeln“, „Perlen vor die Säuen“ etc., es nimmt gar kein Ende, „der Wolf im Schafspelz. Das sind alles Begriffe, die er im Rahmen seiner Bibelübersetzung geschaffen hat, um die eigentliche Interpretation der Texte neu zu greifen."
+}, {
+  "start": "00:40:30.0",
+  "end": "00:40:53.5",
+  "speaker": "lyndalroper",
+  "text": "Und er macht auch Vorworte zu den Büchern der Bibel. Und da erklärt er, wie das Buch verstanden werden soll. Also es ist eine sehr lutherische Bibel. Denn seine Interpretation formt das Ganze."
+}, {
+  "start": "00:40:53.5",
+  "end": "00:41:29.3",
+  "speaker": "timpritlove",
+  "text": "Er war ja auch Nutznießer eigentlich einer technischen Revolution. Weil genau zu diesem Zeitpunkt war der Buchdruck durch Gutenberg am Werden und ich weiß nicht, ob ich das richtig gelesen habe, aber es wurden dann so viele Exemplare von seiner Bibel gedruckt durch diese neue Technik, dass ein Drittel aller Lesekundigen tatsächlich im Besitz dieses Exemplars waren. Im Prinzip ist er ja dann das erste Massenmedium geworden?"
+}, {
+  "start": "00:41:29.3",
+  "end": "00:41:52.8",
+  "speaker": "lyndalroper",
+  "text": "Ja und auch seine eigenen Schriften, die hatten extrem hohe und es gab auch viele Auflagen. Die wurden überall gedruckt. Und Luther ist allein verantwortlich für die Mehrheit der Drucke, die es überhaupt gegeben hat im 16. Jahrhundert."
+}, {
+  "start": "00:41:52.8",
+  "end": "00:41:55.9",
+  "speaker": "timpritlove",
+  "text": "Verantwortlich inwiefern? Also er hat das organisiert?"
+}, {
+  "start": "00:41:55.9",
+  "end": "00:42:04.1",
+  "speaker": "lyndalroper",
+  "text": "Er hat es geschrieben. Seine Schriften waren überall gekauft."
+}, {
+  "start": "00:42:04.1",
+  "end": "00:42:06.2",
+  "speaker": "timpritlove",
+  "text": "Hat er davon auch profitiert?"
+}, {
+  "start": "00:42:06.2",
+  "end": "00:42:14.5",
+  "speaker": "lyndalroper",
+  "text": "Nein das ist das interessante. Nein er hatte nicht daran verdient."
+}, {
+  "start": "00:42:14.5",
+  "end": "00:42:17.9",
+  "speaker": "timpritlove",
+  "text": "Weil er nicht wollte oder weil er nicht konnte?"
+}, {
+  "start": "00:42:17.9",
+  "end": "00:42:20.7",
+  "speaker": "lyndalroper",
+  "text": "Weil er nicht wollte."
+}, {
+  "start": "00:42:20.7",
+  "end": "00:42:24.8",
+  "speaker": "timpritlove",
+  "text": "Sondern die Verbreitung war ihm wichtiger als der Profit an der Stelle?"
+}, {
+  "start": "00:42:24.8",
+  "end": "00:42:46.5",
+  "speaker": "lyndalroper",
+  "text": "Ja. Er ist einer, der Kontrolle über seine Sachen nicht ausüben wollte. Zum Beispiel er hat nie Kopien von seinen Briefen gemacht. Und das ist einfach unglaublich."
+}, {
+  "start": "00:42:46.5",
+  "end": "00:42:47.4",
+  "speaker": "timpritlove",
+  "text": "Wieso, war das so normal?"
+}, {
+  "start": "00:42:47.4",
+  "end": "00:42:55.2",
+  "speaker": "lyndalroper",
+  "text": "Normalerweise soll man ja wissen, was man geschrieben hat. Und man macht einen Entwurf."
+}, {
+  "start": "00:42:55.2",
+  "end": "00:42:56.3",
+  "speaker": "timpritlove",
+  "text": "Ach so von den Briefen, die er selber verschickt hat?"
+}, {
+  "start": "00:42:56.3",
+  "end": "00:43:08.6",
+  "speaker": "lyndalroper",
+  "text": "Ja. Aber anscheinend war das nicht sein Prinzip. Also immer einen Entwurf zu machen und das zu behalten."
+}, {
+  "start": "00:43:08.6",
+  "end": "00:43:09.9",
+  "speaker": "timpritlove",
+  "text": "Sondern er hat immer gleich ins Reine geschrieben?"
+}, {
+  "start": "00:43:09.9",
+  "end": "00:43:13.6",
+  "speaker": "lyndalroper",
+  "text": "Ja. Und sie fortgeschickt."
+}, {
+  "start": "00:43:13.6",
+  "end": "00:44:13.6",
+  "speaker": "timpritlove",
+  "text": "Diese Konfrontation mit der Kirche hat er dann im Prinzip durch seine Bibelübersetzung, kann man sagen, gewonnen. Also es kam ja dann zu einer Spaltung. Letztlich Gründung der evangelisch lutherischen Kirche, wie sie ja heute noch heißt. Wie muss man die Auswirkung in der Gesellschaft aus heutiger Sicht interpretieren? Also war das etwas, was nur in kleinen Kirchenkreisen eine Rolle speilte oder war das etwas, was auf die gesamte Gesellschaft eine unmittelbare Auswirkung hatte? Wie groß war das Ding? Machen wir da heute so ein großes Ding draus, so als gäbe es kein anderes Thema auf den Straßen oder war das etwas, was sich eher in elitären gebildeten Kreisen entwickelte?"
+}, {
+  "start": "00:44:13.6",
+  "end": "00:45:12.0",
+  "speaker": "lyndalroper",
+  "text": "Es war nicht die Bibelübersetzung glaube ich, die das alles irgendwie in die Wege geleitet hatte. Sondern das waren die theologischen Ansichten und die Art, wie er geschrieben hat in seinen polemischen Schriften. Und vor allem was für Worte er benutzt hat. Denn wenn man ein Wort wie zum Beispiel Freiheit benutzt, das ist ein Wort mit sehr viel Resonanz. Und man sagt, die Bauern haben das falsch verstanden und haben es dann auf die Leibeigenschaft angewandt. Und das hat Luther nicht gemeint. Aber ich glaube diese Jahre vor 1524, die waren Jahre, wo viel in Bewegung war."
+}, {
+  "start": "00:45:12.0",
+  "end": "00:46:19.3",
+  "speaker": "lyndalroper",
+  "text": "Das war eine historische Situation von Umbruch. Und wenn man zurückschaut, das ist faszinierend, wie bereit man war, alte Sachen in Frage zu stellen. Und das kam nicht nur von Luther, sondern von vielen, die von ihm beeinflusst worden sind. Und ich finde auch, das waren nicht nur seine Schriften, die so eine große Wirkung gehabt haben, sondern auch was er in Worms gemacht hat mit dem Erscheinen in Worms und einfach auf das beharren, was er geschrieben hat. Dieses Beispiel von Resistence und von Mut das war ein Vorbild, was extrem wichtig war. Genauso wichtig vielleicht wie seine Schriften."
+}, {
+  "start": "00:46:19.3",
+  "end": "00:46:25.7",
+  "speaker": "timpritlove",
+  "text": "Also in Worms hat er welche Rolle ausgefüllt?"
+}, {
+  "start": "00:46:25.7",
+  "end": "00:47:27.4",
+  "speaker": "lyndalroper",
+  "text": "Da wurde er gefragt, ob er nachgeben wollte. Ob er zurückrufen würde. Und es ist eine fantastische Begegnung. Man muss sich eine Halle mit dem Kaiser und sämtlichen Reichsständen vorstellen. Eine volle Halle, voll mit Menschen, die alle extrem elaboriert angezogen sind und da erscheint Luther in einer einfachen Kutte. Und am ersten Tag wird er gefragt und er sagt, ach darf ich heute /gemeint morgen?/ wiederkommen, ich brauche Bedenkzeit. Wenn man bedenkt, plötzlich."
+}, {
+  "start": "00:47:27.4",
+  "end": "00:48:23.4",
+  "speaker": "lyndalroper",
+  "text": "Dann kam er dann am zweiten Tag wieder und erklärt, was seine Schriften waren und welche auch nicht. Und was für Arten seine Schriften waren, dass sie nicht alle von derselben Art gewesen sind. Einige sind Erbauungsschriften, andere sind so und so und so. Und dann hat der Befrager einfach seine Geduld verloren und hat gesagt, dass er einen Antwort ohne Zähne und Hörner geben soll. Also das heißt ohne akademischen Jargon. Und dann sagt Luther, ich kann nicht anders, mein Gewissen ist an das Wort Gottes gebunden."
+}, {
+  "start": "00:48:23.4",
+  "end": "00:48:30.4",
+  "speaker": "timpritlove",
+  "text": "Das ist so der berühmte Ausspruch, der ihm immer in den Mund gelegt wird, wo glaube ich auch nicht so ganz klar, ob er es genauso gesagt hat."
+}, {
+  "start": "00:48:30.4",
+  "end": "00:48:37.8",
+  "speaker": "lyndalroper",
+  "text": "Ja ob er das wirklich gesagt hat. Ja aber auch wenn er das nicht gesagt hat, es war in den Sätzen, die vorhergehen, schon beinhaltet."
+}, {
+  "start": "00:48:37.8",
+  "end": "00:49:07.5",
+  "speaker": "timpritlove",
+  "text": "Damit geht er ja eigentlich ein riesiges Risiko ein. Ich meine, das war ja wirklich klar, dass die Kirche sich das eigentlich nicht gefallen lassen wollte. Und wir hatten es ja schon erwähnt, dass er eigentlich dann nur durch seine „Schutzheiligen“ hätte ich fast gesagt, die schützend über ihm stehenden Könige dem Ganzen dann entgangen ist. Und 1924 /gemeint 1524/ ist er dann auch komplett aus diesem Mönchsorden rausgegangen und hat sich diesem ganzen System nicht länger hingegeben."
+}, {
+  "start": "00:49:07.5",
+  "end": "00:49:48.2",
+  "speaker": "lyndalroper",
+  "text": "Ja das ist ein langer Prozess. Und dann hat er dann 1525 geheiratet. Und das ist der absolut endgültige Bruch. Aber es dauert eine Weile. 1522 hat er dann eine Schrift entwickelt, wo er befürwortet, dass Mönche ihre Gelübde brechen und dass sie heiraten dürfen. Aber er ist nicht bereit, selbst zu heiraten. Er brauchte noch drei Jahre, bis er soweit war."
+}, {
+  "start": "00:49:48.2",
+  "end": "00:49:48.5",
+  "speaker": "timpritlove",
+  "text": "Aber hat er gemacht."
+}, {
+  "start": "00:49:48.5",
+  "end": "00:49:59.3",
+  "speaker": "lyndalroper",
+  "text": "Hat er gemacht. Und die Begründung ist unglaublich. Er heiratet, um dem Teufel zu trotzen."
+}, {
+  "start": "00:49:59.3",
+  "end": "00:50:02.3",
+  "speaker": "timpritlove",
+  "text": "Wie muss man das verstehen?"
+}, {
+  "start": "00:50:02.3",
+  "end": "00:51:01.4",
+  "speaker": "lyndalroper",
+  "text": "Das ist eine ganz bestimmte Zeit gewesen. Das ist nach dem Höhepunkt des Bauernkriegs und kurz nachdem Friedrich der Weise gestorben ist. Alles ist im Umbruch, aber die alte Ordnung ist wiederhergestellt. Und in dem Moment, nach all diesem Wirrwarr, heiratet Luther. Und er meint, er heiratet, um dem Teufel zu trotzen, dass er das macht, um dem Teufel zu zeigen, dass er die größte Sünde begehen kann, aber das hält ihn nicht von Gottes Liebe ab. Denn die größte Sünde ist, wenn ein Mönch und eine Nonne heiraten. Man hätte sich nichts schlimmeres vorstellen können."
+}, {
+  "start": "00:51:01.4",
+  "end": "00:51:24.0",
+  "speaker": "lyndalroper",
+  "text": "Gerade das macht Luther und ist befreit. Und die Anfechtungen kommen in dem ersten Jahr nach der Hochzeit nicht. Und das muss für ihn eine sehr große Erleichterung gewesen sein und das ist auch ein Zeichen, dass Gott eben diese Ehe wollte und segnet."
+}, {
+  "start": "00:51:24.0",
+  "end": "00:51:27.6",
+  "speaker": "timpritlove",
+  "text": "Heißt das, dass die katholische Kirche einfach so aufgegeben hat?"
+}, {
+  "start": "00:51:27.6",
+  "end": "00:52:29.7",
+  "speaker": "lyndalroper",
+  "text": "Natürlich nicht. Und die Publizistik gegen Luther hat sehr viel mit Pornografie und es hat das bewusst eingesetzt. Es gibt Stücke, wo Luthers Ehe mit Katharina dargestellt wird und man macht sich lustig über sie und über ihre vermeintliche Nichtjungfräulichkeit, als sie geheiratet haben. Also es sind sehr krude Sachen, die in diesen katholischen Polemiken vorkommen, und zwar als Stücke, als Spiele. Oder es gibt auch Flugblätter, wo das thematisiert wird. Und es ist oft recht obszön."
+}, {
+  "start": "00:52:29.7",
+  "end": "00:52:52.3",
+  "speaker": "timpritlove",
+  "text": "Was bleibt denn jetzt aus den Erkenntnissen, die wir über Luther und seine Zeit und seine Wirkung gewonnen haben? Was hätte ein Luther gemacht, der in der heutigen Zeit lebt, wogegen hätte er sich gestellt oder wäre alles so gewesen, wie er es haben wollte?"
+}, {
+  "start": "00:52:52.3",
+  "end": "00:53:42.2",
+  "speaker": "lyndalroper",
+  "text": "Für mich als Forscherin war das schwierigste Problem, wie verstehe ich Luthers … also Luther besteht darauf, dass die reale Präsenz in der Eucharistie, dass es das gibt. Für ihn ist es absolut unabdinglich, dass Christus in dem Brot und Wein präsent sein muss und das war für mich sehr schwer zu verstehen. Denn wenn Luther das nicht behauptet hätte, dann hätte es diese Kluft zwischen Kalvinismus und Luthertum wahrscheinlich nicht gegeben."
+}, {
+  "start": "00:53:42.2",
+  "end": "00:53:42.7",
+  "speaker": "timpritlove",
+  "text": "Warum, warum war das so wichtig?"
+}, {
+  "start": "00:53:42.7",
+  "end": "00:54:51.1",
+  "speaker": "lyndalroper",
+  "text": "Weil die Kalvinisten bestehen darauf, dass das Abendmahl eigentlich eine Erinnerung ist. Das ist nicht etwas, wo man Gottes Blut und Leib eigentlich isst. Und die wollen nicht Gottfresser sein, wie sie die anderen beschimpfen. Denn das ist für uns, also für die, die Protestanten von heute sind oder die, die nichts am Hut mit Religion haben, das ist einfach man kann das nicht verstehen. Warum war das für Luther so unheimlich wichtig, dass er bereit war, die Bewegung zersplittern zu lassen. Dass er bereit war, mit Freunden zu brechen. Und dass er eigentlich die meiste Kraft und die meiste Energie seines Lebens eben in dieses Dogma investiert hatte."
+}, {
+  "start": "00:54:51.1",
+  "end": "00:55:42.6",
+  "speaker": "lyndalroper",
+  "text": "Das war für mich schwer zu erklären. Aber es war genau das, was mich als Forscher fasziniert hatte. Wie kann ich das erklären? Wie soll ich das verstehen? Das ist offenbar für Luther sehr wichtig gewesen. Und ich finde, wenn man das ernst nimmt, dann hängt es damit zusammen, dass Luther einer von den Theologen ist, die diese Unterscheidung zwischen Fleisch und Geist eben nicht so streng macht wie die meisten Theologen im Westen. Dass er eher einer ist, der versucht, Fleisch und Geist zusammenzubringen und der eine erstaunlich positive Einstellung zum Körper gehabt hat."
+}, {
+  "start": "00:55:42.6",
+  "end": "00:56:42.6",
+  "speaker": "timpritlove",
+  "text": "Ihr Buch über Martin Luther die Biografie haben Sie ja auch genannt, der Mensch Martin Luther. Und man merkt schon, das ist ein Fokus hier. Hier geht es nicht nur um Geschichte als solche, sondern Sie haben schon sehr auf die Person geschaut. Deswegen frage ich nochmal nach. Das ist ein absurdes Bild, aber wenn man sich sozusagen die Persönlichkeit, die sich abzeichnet, in die heutige Zeit übersetzen würde, wie würde er die heutige zeit reflektieren, wohin würde er sich orientieren? Wäre in der heutigen wissenschaftsaufgeladenen Zeit Gott überhaupt noch ein Thema für ihn oder würde er sich weltlichen Dingen zuwenden oder war er tatsächlich jemand, der so sehr von Glauben und Religion geprägt war, dass er das auch in der heutigen Zeit gewesen wäre?"
+}, {
+  "start": "00:56:42.6",
+  "end": "00:56:55.6",
+  "speaker": "timpritlove",
+  "text": "Weil damals, haben wir ja auch am Anfang schon gemacht, war einfach Kirche sehr präsent und ein sehr inhärenter Teil der Gesellschaft. Das ist sie natürlich heute auch noch in Teilen, aber nicht in demselben Maße wie damals?"
+}, {
+  "start": "00:56:55.6",
+  "end": "00:57:57.9",
+  "speaker": "lyndalroper",
+  "text": "Ach das ist ein Glaubensbekenntnis, ein Glaubensdogma für Historiker, dass man eben Menschen nicht aus ihrer Zeit herausnehmen darf. Und dass sie so sehr von ihrer Gesellschaft und von ihrer Zeit geprägt sind, dass man sie sich ohne das überhaupt nicht vorstellen kann. Also das ist mein Ausweg. Ich finde, man ist immer geneigt, Luther mit Trump oder irgendjemandem gleichsetzen zu wollen und das finde ich das hilft uns nicht weiter. Und es verkleinert Luther. Er ist viel interessanter und viel wichtiger. Und seine Zeit ist einfach sehr wichtig, um ihn richtig verstehen zu können. Und wir sind zu geneigt, ihn übersetzen zu wollen oder zu vereinfachen oder in irgendeinen anderen Zusammenhang bringen zu wollen."
+}, {
+  "start": "00:57:57.9",
+  "end": "00:58:54.9",
+  "speaker": "lyndalroper",
+  "text": "Aber es gibt Sachen, die er getan und gemacht hat, die uns heute noch inspirieren können. Und ich sage das wohlwissend, dass es sehr viele Facetten von seiner Persönlichkeit gibt, die man also nicht mehr akzeptieren kann. Wie zum Beispiel seinen Antisemitismus. Das war viel schlimmer als ich mir vorgestellt hatte, viel körperlicher, viel kruder und lag auch viel tiefer und ist auch Teil seiner Theologie. Aber er ist auch einer, der die Übersetzung von dem Koran befürwortet hat. Und er hat sich auch eingesetzt beim Basler Rat, dass der Koran gedruckt werden sollte."
+}, {
+  "start": "00:58:54.9",
+  "end": "00:59:53.2",
+  "speaker": "lyndalroper",
+  "text": "Und ich finde, das ist etwas, wo wir uns Gedanken machen sollen. Denn ich finde, die Frage, mit der wir konfrontiert sind im Moment, die Fragen, sind nicht so sehr, wie kommen Katholiken und Protestanten miteinander aus? Was würde der Papst zu Luther meinen? Natürlich diese ökumenische Entwicklung ist natürlich eine gute und positive. Aber wenn wir es dabei belassen, ist das nicht so gut. Denn die eigentliche Frage, was unserer Gesellschaft jetzt bevorsteht, ist, wie verstehen wir Islam, wie können wir Islam besser verstehen? Wie gehen wir miteinander um? Und diese ist die Frage, die wir uns in diesem Jahr stellen sollen."
+}, {
+  "start": "00:59:53.2",
+  "end": "01:00:14.4",
+  "speaker": "timpritlove",
+  "text": "Bzw. wie gehen wir überhaupt mit Religion und Glauben um, insbesondere aus einer wissenschaftlichen Perspektive, die ja eher so mit naja Gott wissen wir jetzt nicht, ob es da genug Anhaltspunkte gibt. Aber nichts desto trotz sind ja viele Leute davon geprägt und bewegt und stellen von daher eine gesellschaftliche Realität dar. "
+}, {
+  "start": "01:00:14.4",
+  "end": "01:00:42.0",
+  "speaker": "lyndalroper",
+  "text": "Und wie können wir Deutschsein öffnen und nicht schließen? Wie können wir damit umgehen, dass sehr viele in Deutschland nicht in Deutschland geboren sind? Wie können wir ein Deutschtum entwickeln, was für sie offen ist? Und ich finde, da hilft uns Luther denken. Aber wir müssen das weiter entwickeln und weiter öffnen."
+}, {
+  "start": "01:00:42.0",
+  "end": "01:00:44.7",
+  "speaker": "timpritlove",
+  "text": "Und unsere eigenen Thesen an die Wand schlagen."
+}, {
+  "start": "01:00:44.7",
+  "end": "01:00:45.6",
+  "speaker": "lyndalroper",
+  "text": "Ja."
+}, {
+  "start": "01:00:45.6",
+  "end": "01:00:50.1",
+  "speaker": "timpritlove",
+  "text": "Frau Roper vielen Dank für die Ausführungen über Martin Luther und Ihre Einblicke aus Ihrer Forschung."
+}, {
+  "start": "01:00:50.1",
+  "end": "01:00:51.1",
+  "speaker": "lyndalroper",
+  "text": "Ich bedanke mich."
+}, {
+  "start": "01:00:51.1",
+  "end": "01:00:58.6",
+  "speaker": "timpritlove",
+  "text": "Und vielen Dank fürs Zuhören hier bei Forschergeist, bald geht es wieder weiter und bis dahin sage ich, tschüss und bis bald."
+}, {
+  "start": "01:00:58.6",
+  "text": "Outro"
+}]

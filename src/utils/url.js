@@ -1,5 +1,5 @@
 import queryString from 'query-string'
-import { timeToSeconds } from 'utils/time'
+import { toPlayerTime } from 'utils/time'
 
 export const locationParams = queryString.parse(window.location.search)
 
@@ -7,7 +7,7 @@ const parseParameters = parameters => {
   const parsed = {}
 
   if (parameters.t) {
-    parsed.playtime = timeToSeconds(parameters.t.split(','))
+    parsed.playtime = toPlayerTime(parameters.t.split(','))
   }
 
   if (parameters.episode) {

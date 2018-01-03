@@ -20,12 +20,12 @@
       </div>
     </div>
 
-    <div class="contributors" v-if="contributors.length > 0">
+    <div class="speakers" v-if="speakers.length > 0">
       <h3 class="title">{{ $t('INFO.ON_AIR') }}</h3>
       <ul class="list">
-        <li class="contributor" v-for="(contributor, index) in contributors" v-bind:key="index">
-          <img :src="contributor.avatar" class="shadowed avatar" :title="contributor.name" />
-          <span class="name">{{ contributor.name }}</span>
+        <li class="speaker" v-for="(speaker, index) in speakers" v-bind:key="index">
+          <img :src="speaker.avatar" class="shadowed avatar" :title="speaker.name" />
+          <span class="name">{{ speaker.name }}</span>
         </li>
       </ul>
     </div>
@@ -45,7 +45,7 @@
         theme: this.$select('theme'),
         show: this.$select('show'),
         episode: this.$select('episode'),
-        contributors: this.$select('contributors'),
+        speakers: this.$select('speakers'),
         runtime: this.$select('runtime'),
         duration: this.$select('duration')
       }
@@ -128,13 +128,13 @@
       }
     }
 
-    .contributors {
+    .speakers {
       .list {
         display: flex;
         flex-wrap: wrap;
       }
 
-      .contributor {
+      .speaker {
         display: flex;
         width: 33%;
         padding: ($padding / 2);
@@ -144,7 +144,7 @@
 
       .avatar {
         border-radius: 4px;
-        width: $info-contributor-avatar-size;
+        width: $info-speaker-avatar-size;
         height: auto;
         margin: $margin / 4;
       }
@@ -175,16 +175,16 @@
         }
       }
 
-      .contributors {
-        .contributor {
+      .speakers {
+        .speaker {
           width: 100%;
         }
       }
     }
 
     @media screen and (min-width: $width-m) and (max-width: $width-l) {
-      .contributors {
-        .contributor {
+      .speakers {
+        .speaker {
           width: 50%;
         }
       }

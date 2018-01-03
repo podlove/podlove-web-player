@@ -14,7 +14,7 @@ test(`playtime: parses the playtime on INIT`, t => {
     }
   })
 
-  t.is(result, 60)
+  t.is(result, 60000)
 
   result = playtime(10, {
     type: 'INIT',

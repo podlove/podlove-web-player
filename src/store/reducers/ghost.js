@@ -1,3 +1,5 @@
+import { toInt } from 'utils/helper'
+
 const INITIAL = {
   time: 0,
   active: false
@@ -8,7 +10,7 @@ const ghost = (state = INITIAL, action) => {
     case 'SIMULATE_PLAYTIME':
       return {
         ...state,
-        time: parseFloat(action.payload)
+        time: toInt(action.payload)
       }
     case 'ENABLE_GHOST_MODE':
       return {

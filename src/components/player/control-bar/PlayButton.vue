@@ -17,12 +17,12 @@
 
       <span class="inner" v-if="components.controls.button.remaining">
         <PlayIcon size="21" :color="theme.player.actions.icon"></PlayIcon>
-        <span class="label" :style="textStyle">{{ secondsToTime(playtime) }}</span>
+        <span class="label" :style="textStyle">{{ fromPlayerTime(playtime) }}</span>
       </span>
 
       <span class="inner" v-if="components.controls.button.duration">
         <PlayIcon size="21" :color="theme.player.actions.icon"></PlayIcon>
-        <span class="label" :style="textStyle">{{ secondsToTime(duration) }}</span>
+        <span class="label" :style="textStyle">{{ fromPlayerTime(duration) }}</span>
       </span>
 
       <span class="inner" v-if="components.controls.button.replay">
@@ -40,7 +40,7 @@
 
 <script>
   import store from 'store'
-  import { secondsToTime } from 'utils/time'
+  import { fromPlayerTime } from 'utils/time'
 
   import PlayIcon from 'icons/PlayIcon.vue'
   import PauseIcon from 'icons/PauseIcon.vue'
@@ -79,7 +79,7 @@
       }
     },
     methods: {
-      secondsToTime,
+      fromPlayerTime,
 
       onButtonClick () {
         switch (this.playstate) {

@@ -14,7 +14,7 @@ test(`duration: parses the duration on INIT`, t => {
     }
   })
 
-  t.is(result, 60)
+  t.is(result, 60000)
 
   result = duration(10, {
     type: 'INIT',

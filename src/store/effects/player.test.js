@@ -92,7 +92,7 @@ test(`playerEffect: it calls setPlaytime and play on UI_PLAY`, t => {
   })
 
   t.truthy(playStub.called)
-  t.is(playtimeStub.getCall(0).args[0], 100)
+  t.is(playtimeStub.getCall(0).args[0], 0.1)
 })
 
 test(`playerEffect: it calls pause on UI_PAUSE`, t => {
@@ -139,7 +139,7 @@ test(`playerEffect: it calls setPlaytime on UPDATE_PLAYTIME`, t => {
     payload: 100
   })
 
-  t.is(playtimeStub.getCall(0).args[0], 100)
+  t.is(playtimeStub.getCall(0).args[0], 0.1)
 })
 
 test(`playerEffect: it does nothing if mediaElement is not initialized`, t => {
