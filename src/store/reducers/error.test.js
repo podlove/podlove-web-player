@@ -16,7 +16,7 @@ test(`error: it returns the initial state on default`, t => {
   })
 })
 
-const types = ['NETWORK_IDLE', 'NETWORK_EMPTY', 'NETWORK_NO_SOURCE']
+const types = ['NETWORK_EMPTY', 'NETWORK_NO_SOURCE']
 
 types.forEach(type => {
   test(`error: it sets the message and title on ${type}`, t => {
