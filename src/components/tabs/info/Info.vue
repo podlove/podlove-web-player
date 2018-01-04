@@ -111,6 +111,10 @@
         }
       }
 
+      .summary {
+        white-space: pre-line;
+      }
+
       .subtitle {
         font-weight: 500;
       }
