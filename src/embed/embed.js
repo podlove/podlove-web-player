@@ -9,7 +9,7 @@ import { urlParameters } from 'utils/url'
 
 import { iframeResizer } from 'iframe-resizer'
 // eslint-disable-next-line
-import iframeResizerContentWindow from 'raw-loader!iframe-resizer/js/iframeResizer.contentWindow.min.js'
+import iframeResizerContentWindow from 'raw-loader!iframe-resizer/js/iframeResizer.contentWindow.js'
 
 // Player renderer
 const playerSandbox = anchor => {
