@@ -47,6 +47,7 @@ export default mediaPlayer => (store, action) => {
       player && player.actions.setPlaytime(millisecondsToSeconds(action.payload))
       break
     case 'SET_VOLUME':
+      console.log(player)
       player && player.actions.setVolume(action.payload)
       break
     case 'SET_RATE':
