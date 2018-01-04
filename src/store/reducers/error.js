@@ -5,7 +5,6 @@ const INITIAL = {
 
 const error = (state = INITIAL, action) => {
   switch (action.type) {
-    case 'NETWORK_IDLE':
     case 'NETWORK_EMPTY':
     case 'NETWORK_NO_SOURCE':
       return {

@@ -79,7 +79,6 @@ export default (store, action) => {
     case 'END':
       store.dispatch(actions.showReplayButton())
       break
-    case 'NETWORK_IDLE':
     case 'NETWORK_EMPTY':
     case 'NETWORK_NO_SOURCE':
       store.dispatch(actions.toggleInfo(false))

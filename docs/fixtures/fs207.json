@@ -266,5 +266,5 @@
     },
     "comment": null
   }],
-  "transcripts": "fixtures/transcripts/fs207.json"
+  "transcripts": "http://podlove-player.surge.sh/fixtures/transcripts/fs207.json"
 }

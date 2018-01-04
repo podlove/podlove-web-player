@@ -6440,14 +6440,6 @@ range-parser@^1.0.3, range-parser@~1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/range-parser/-/range-parser-1.2.0.tgz#f49be6b487894ddc40dcc94a322f611092e00d5e"
 
-raven-for-redux@1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/raven-for-redux/-/raven-for-redux-1.0.0.tgz#3671c2fd39b155b92e7013895806ff75ff2d5e96"
-
-raven-js@3.16.0:
-  version "3.16.0"
-  resolved "https://registry.yarnpkg.com/raven-js/-/raven-js-3.16.0.tgz#a799da4fdd04c63943f67deb93daa0ecfe101eab"
-
 raw-body@2.3.2:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/raw-body/-/raw-body-2.3.2.tgz#bcd60c77d3eb93cde0050295c3f379389bc88f89"

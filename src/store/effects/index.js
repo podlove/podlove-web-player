@@ -25,13 +25,12 @@ const dispatcherEffects = [keyboardEffects]
 
 let actionEffects = [
   compose(effect(chapterEffects), hasProperty('chapters')),
-  effect(storageEffects),
+  effect(playerEffects),
   effect(storageEffects),
   effect(quantileEffects),
   effect(volumeEffects),
   effect(componentsEffects),
   effect(urlEffects),
-  effect(playerEffects),
   compose(effect(transcriptEffects), hasProperty('transcripts'))
 ]
 

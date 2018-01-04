@@ -1,7 +1,6 @@
 import 'babel-polyfill'
 import { get, head, isString } from 'lodash'
 import Bluebird from 'bluebird'
-import browser from 'detect-browser'
 
 import { findNode, createNode, appendNode, tag } from 'utils/dom'
 import requestConfig from 'utils/request'
@@ -9,22 +8,23 @@ import { urlParameters } from 'utils/url'
 
 import { iframeResizer } from 'iframe-resizer'
 // eslint-disable-next-line
-import iframeResizerContentWindow from 'raw-loader!iframe-resizer/js/iframeResizer.contentWindow.min.js'
+import iframeResizerContentWindow from 'raw-loader!iframe-resizer/js/iframeResizer.contentWindow.js'
 
 // Player renderer
 const playerSandbox = anchor => {
   const frame = createNode('iframe')
 
-  if (browser.name === 'ios') {
-    frame.setAttribute('width', anchor.offsetWidth)
-  } else {
-    frame.setAttribute('width', '100%')
-  }
+  frame.setAttribute('width', anchor.offsetWidth)
 
   frame.setAttribute('min-width', '100%')
   frame.setAttribute('seamless', '')
   frame.setAttribute('scrolling', 'no')
   frame.setAttribute('frameborder', '0')
+
+  // Reset the width on viewport resize
+  window.addEventListener('resize', () => {
+    frame.setAttribute('width', anchor.offsetWidth)
+  })
 
   appendNode(anchor, frame)
   return frame

@@ -54,7 +54,6 @@ export default (store, action) => {
       store.dispatch(actions.toggleInfoPoster(true))
       store.dispatch(actions.showPauseButton())
       break
-    case 'NETWORK_IDLE':
     case 'NETWORK_EMPTY':
     case 'NETWORK_NO_SOURCE':
       store.dispatch(actions.showRetryButton())

@@ -191,7 +191,7 @@ test(`componentsEffect: it shows the info section only when meta available on IN
   })
 })
 
-const types = ['NETWORK_IDLE', 'NETWORK_EMPTY', 'NETWORK_NO_SOURCE']
+const types = ['NETWORK_EMPTY', 'NETWORK_NO_SOURCE']
 
 types.forEach(type => {
   test(`componentsEffect: it shows correct ui components for ${type} action`, t => {
