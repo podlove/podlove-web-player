@@ -50,13 +50,13 @@ const mapSpeakers = speakers =>
       return transcript
     }
 
-    const { name, avatar } = find(speakers, { id: transcript.speaker })
+    const result = find(speakers, { id: transcript.speaker })
 
     return {
       ...transcript,
       speaker: {
-        name,
-        avatar
+        name: get(result, 'name', null),
+        avatar: get(result, 'avatar', null)
       }
     }
   })
