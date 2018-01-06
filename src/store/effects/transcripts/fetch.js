@@ -54,10 +54,7 @@ const mapSpeakers = speakers =>
 
     return {
       ...transcript,
-      speaker: {
-        name: get(result, 'name', null),
-        avatar: get(result, 'avatar', null)
-      }
+      speaker: result
     }
   })
 
