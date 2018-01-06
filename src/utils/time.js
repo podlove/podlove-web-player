@@ -98,7 +98,7 @@ export const parseMilliseconds = (time = '0') => {
 // Transforms a h:mm:ss.f or mm:ss.ffff or ss time to milliseconds
 export const toPlayerTime = (time = '0') => {
   if (isNumber(time)) {
-    return secondsToMilliseconds(time)
+    return time
   }
 
   time = time || '0'
