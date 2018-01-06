@@ -2,7 +2,7 @@
   <div class="entry" :class="{
     chapter: entry.type === 'chapter',
     transcript: entry.type === 'transcript',
-    speaker: entry.speaker.avatar || entry.speaker.name
+    speaker: entry.speaker
   }">
     <span class="chapter"
       v-if="entry.type === 'chapter'"
@@ -10,10 +10,10 @@
       @dblclick="onDoubleClick(entry)"
       @click="onClick(entry)">{{ $t('TRANSCRIPTS.CHAPTER', entry) }}</span>
     <span class="transcript" v-else>
-      <span class="speaker" v-if="entry.speaker.avatar || entry.speaker.name">
+      <span class="speaker" v-if="entry.speaker">
         <span class="speaker-background" :style="speakerBackgroundStyle"></span>
-        <img class="speaker-avatar" :src="entry.speaker.avatar" v-if="entry.speaker.avatar" />
-        <span class="speaker-name" :style="speakerTextStyle">{{ entry.speaker.name }}:</span>
+        <img class="speaker-avatar" v-if="entry.speaker.avatar" :src="entry.speaker.avatar" />
+        <span class="speaker-name" v-if="entry.speaker.name" :style="speakerTextStyle">{{ entry.speaker.name }}:</span>
       </span>
       <span class="text"
         v-for="(transcript, tindex) in entry.texts"

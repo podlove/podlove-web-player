@@ -45,7 +45,7 @@ playtimeTypes.forEach(type => {
 
     activeEffect(store, {
       type: 'SET_PLAYTIME',
-      payload: 350
+      payload: 350000
     })
 
     t.deepEqual(store.dispatch.getCall(1).args[0], {
@@ -62,7 +62,7 @@ playtimeTypes.forEach(type => {
 
     activeEffect(store, {
       type: 'SET_PLAYTIME',
-      payload: 700
+      payload: 700000
     })
 
     t.is(store.dispatch.getCalls().length, 1)
@@ -126,12 +126,12 @@ test.cb(`transcripts - active: calls interval search debounced with payload on S
 
   activeEffect(store, {
     type: 'SIMULATE_PLAYTIME',
-    payload: 350
+    payload: 350000
   })
 
   activeEffect(store, {
     type: 'SIMULATE_PLAYTIME',
-    payload: 350
+    payload: 350000
   })
 })
 

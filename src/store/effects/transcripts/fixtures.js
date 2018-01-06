@@ -71,64 +71,67 @@ export const timeline = [
   {
     type: 'transcript',
     start: 0,
-    end: 200,
+    end: 200000,
     speaker: {
+      id: 'speaker-1',
       name: 'Speaker One',
       avatar: 'http://avatar/speaker/one'
     },
     texts: [
       {
         start: 0,
-        end: 100,
+        end: 100000,
         text: 'fooo'
       },
       {
-        start: 100,
-        end: 200,
+        start: 100000,
+        end: 200000,
         text: 'blaa'
       }
     ]
   },
   {
     title: 'Chapter Two',
-    start: 200,
+    start: 200000,
     type: 'chapter',
     index: 2
   },
   {
     type: 'transcript',
-    start: 200,
-    end: 300,
+    start: 200000,
+    end: 300000,
     speaker: {
+      id: 'speaker-2',
       name: 'Speaker Two',
       avatar: 'http://avatar/speaker/two'
     },
     texts: [
       {
-        start: 200,
-        end: 300,
+        start: 200000,
+        end: 300000,
         text: 'bar'
       }
     ]
   },
   {
     title: 'Chapter Three',
-    start: 250,
+    start: 250000,
     type: 'chapter',
     index: 3
   },
   {
     type: 'transcript',
-    start: 300,
-    end: 400,
+    start: 300000,
+    end: 400000,
     speaker: {
+      id: 'speaker-3',
       name: 'Speaker Three',
       avatar: 'http://avatar/speaker/three'
     },
     texts: [
       {
-        start: 300,
-        end: 400,
+        start: 300000,
+        end: 400000,
         text: 'baz'
       }
     ]
