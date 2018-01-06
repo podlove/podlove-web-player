@@ -79,7 +79,7 @@ const themeColors = (colors = {}) => {
           text: color(grey)
         },
         active: {
-          background: color(main).fade(0.8),
+          background: color(main).fade(0.6),
           text: negative ? main : color(grey)
         },
         ghost: {

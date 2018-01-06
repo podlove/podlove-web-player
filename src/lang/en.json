@@ -79,7 +79,7 @@
     "ON_AIR": "On Air"
   },
   "TRANSCRIPTS": {
-    "TITLE": "Transcripts",
+    "TITLE": "Transcript",
     "CHAPTER": "Chapter {index}: {title}",
     "FOLLOW": "follow",
     "SEARCH": "Search",

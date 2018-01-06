@@ -84,7 +84,7 @@
     "DURATION": "{minutes} Minuten"
   },
   "TRANSCRIPTS": {
-    "TITLE": "Transcripts",
+    "TITLE": "Transcript",
     "CHAPTER": "Kapitel {index}: {title}",
     "FOLLOW": "folgen",
     "SEARCH": "Suche",

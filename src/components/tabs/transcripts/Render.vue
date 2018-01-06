@@ -140,7 +140,7 @@
     },
     watch: {
       transcripts () {
-        this.selected === -1 && this.scrollWindow()
+        this.follow && this.selected === -1 && this.scrollWindow()
       },
       follow () {
         this.follow && this.scrollWindow()
