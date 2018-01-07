@@ -1,14 +1,14 @@
 import test from 'ava'
 import sinon from 'sinon'
 
-import { hasProperty, effect, prohibitiveDispatch } from './effects'
+import { hasProperty, conditionalEffect, prohibitiveDispatch } from './effects'
 
 test(`it exports a function called hasProperty`, t => {
   t.is(typeof hasProperty, 'function')
 })
 
-test(`it exports a function called effect`, t => {
-  t.is(typeof effect, 'function')
+test(`it exports a function called conditionalEffect`, t => {
+  t.is(typeof conditionalEffect, 'function')
 })
 
 test(`it exports a function called prohibitiveDispatch`, t => {
@@ -34,18 +34,18 @@ test(`hasProperty: returns false if a property doesn't exists`, t => {
   t.false(hasProperty('bar')(testData))
 })
 
-test(`effect: calls a function if a precondition is fulfilled`, t => {
+test(`conditionalEffect: calls a function if a precondition is fulfilled`, t => {
   const testStub = sinon.stub()
 
-  effect(testStub)(true)()
+  conditionalEffect(testStub)(true)()
 
   t.is(testStub.getCalls().length, 1)
 })
 
-test(`effect: dosen't call a function if a precondition is not fulfilled`, t => {
+test(`conditionalEffect: dosen't call a function if a precondition is not fulfilled`, t => {
   const testStub = sinon.stub()
 
-  effect(testStub)(false)()
+  conditionalEffect(testStub)(false)()
 
   t.is(testStub.getCalls().length, 0)
 })

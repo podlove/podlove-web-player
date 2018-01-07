@@ -139,3 +139,4 @@ export const fromPlayerTime = (time = 0) => {
 
 export const secondsToMilliseconds = compose(toInt, input => input * 1000, toFloat)
 export const millisecondsToSeconds = compose(toFloat, input => input / 1000, toInt)
+export const parseDate = (utcDate) => utcDate ? new Date(utcDate).getTime() : null
