@@ -17,25 +17,32 @@
         <DownloadIcon slot="icon"></DownloadIcon>
         <span slot="title">{{ $t('DOWNLOAD.TITLE') }}</span>
       </TabHeaderItemComponent>
+      <TabHeaderItemComponent v-if="isVisibleTab.transcripts" :active="tabs.transcripts" :click="toggleTab('transcripts')">
+        <TranscriptsIcon slot="icon"></TranscriptsIcon>
+        <span slot="title">{{ $t('TRANSCRIPTS.TITLE') }}</span>
+      </TabHeaderItemComponent>
       <TabHeaderItemComponent v-if="isVisibleTab.audio" :active="tabs.audio" :click="toggleTab('audio')">
         <AudioIcon slot="icon"></AudioIcon>
         <span slot="title">{{ $t('AUDIO.TITLE') }}</span>
       </TabHeaderItemComponent>
     </TabHeaderComponent>
 
-    <TabBodyComponent v-if="isVisibleTab.info" :active="tabs.info">
+    <TabBodyComponent v-if="isVisibleTab.info && tabs.info" :active="tabs.info">
       <InfoTab></InfoTab>
     </TabBodyComponent>
-    <TabBodyComponent v-if="isVisibleTab.chapters" :active="tabs.chapters">
+    <TabBodyComponent v-if="isVisibleTab.chapters && tabs.chapters" :active="tabs.chapters">
       <ChaptersTab></ChaptersTab>
     </TabBodyComponent>
-    <TabBodyComponent v-if="isVisibleTab.share" :active="tabs.share">
+    <TabBodyComponent v-if="isVisibleTab.share && tabs.share" :active="tabs.share">
       <ShareTab></ShareTab>
     </TabBodyComponent>
-    <TabBodyComponent v-if="isVisibleTab.download" :active="tabs.download">
+    <TabBodyComponent v-if="isVisibleTab.transcripts && tabs.transcripts" :active="tabs.transcripts" class="fixed">
+      <TranscriptsTab></TranscriptsTab>
+    </TabBodyComponent>
+    <TabBodyComponent v-if="isVisibleTab.download && tabs.download" :active="tabs.download">
       <DownloadTab></DownloadTab>
     </TabBodyComponent>
-    <TabBodyComponent v-if="isVisibleTab.audio" :active="tabs.audio">
+    <TabBodyComponent v-if="isVisibleTab.audio && tabs.audio" :active="tabs.audio">
       <AudioTab></AudioTab>
     </TabBodyComponent>
   </div>
@@ -53,12 +60,14 @@ import ShareIcon from 'icons/ShareIcon.vue'
 import DownloadIcon from 'icons/DownloadIcon.vue'
 import InfoIcon from 'icons/InfoIcon.vue'
 import AudioIcon from 'icons/AudioIcon.vue'
+import TranscriptsIcon from 'icons/TranscriptsIcon.vue'
 
 import ChaptersTab from './chapters/Chapters.vue'
 import ShareTab from './share/Share.vue'
 import AudioTab from './audio/Audio.vue'
 import InfoTab from './info/Info.vue'
 import DownloadTab from './download/Download.vue'
+import TranscriptsTab from './transcripts/Transcripts.vue'
 
 export default {
   data () {
@@ -83,6 +92,7 @@ export default {
         chapters: this.components.tabs.chapters && this.visibleComponents.tabChapters,
         share: this.components.tabs.share && this.visibleComponents.tabShare,
         download: this.components.tabs.download && this.visibleComponents.tabDownload,
+        transcripts: this.components.tabs.transcripts && this.visibleComponents.tabTranscripts,
         audio: this.components.tabs.audio && this.visibleComponents.tabAudio
       }
     },
@@ -114,12 +124,14 @@ export default {
     DownloadIcon,
     InfoIcon,
     AudioIcon,
+    TranscriptsIcon,
 
     ShareTab,
     ChaptersTab,
     AudioTab,
     InfoTab,
-    DownloadTab
+    DownloadTab,
+    TranscriptsTab
   }
 }
 </script>

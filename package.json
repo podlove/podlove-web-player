@@ -2,7 +2,7 @@
   "name": "@podlove/podlove-web-player",
   "title": "Podlove Web Player",
   "description": "a Podcast-optimized, HTML5-based video and audio player with Flash fallback. It can be used as a WordPress plugin or within a static HTML/JavaScript context.",
-  "version": "4.0.0-beta.6",
+  "version": "4.0.1",
   "homepage": "https://github.com/podlove/podlove-web-player",
   "contributors": [],
   "repository": "https://github.com/podlove/podlove-web-player.git",
@@ -51,25 +51,31 @@
     "dist/"
   ],
   "dependencies": {
+    "@podlove/html5-audio-driver": "0.6.3",
     "babel-polyfill": "6.26.0",
+    "binary-search": "^1.3.2",
     "bluebird": "3.5.0",
     "clipboard": "1.6.0",
     "color": "1.0.3",
     "detect-browser": "1.6.2",
     "foundation-sites": "6.3.1",
     "hashcode": "1.0.3",
-    "@podlove/html5-audio-driver": "0.6.3",
     "iframe-resizer": "3.5.7",
+    "immutable": "^3.8.2",
+    "interval-tree2": "^1.1.0",
     "keyboardjs": "2.3.3",
     "lodash": "4.17.4",
+    "lunr": "^2.1.5",
     "mobile-detect": "1.3.6",
     "normalize.css": "6.0.0",
     "query-string": "4.3.1",
-    "raven-for-redux": "1.0.0",
-    "raven-js": "3.16.0",
     "redux": "3.5.2",
+    "redux-actions": "^2.2.1",
     "revue": "3.0.0",
+    "scroll-into-view": "^1.9.1",
+    "scroll-into-view-if-needed": "^1.2.8",
     "superagent": "3.4.1",
+    "superagent-nock": "^0.3.1",
     "vue": "2.4.2",
     "vue-i18n": "7.0.5"
   },
@@ -123,7 +129,6 @@
   "engines": {
     "node": ">=5.0.0"
   },
-  "sentry": "https://03bb03b146f34e8e96194a92572c0329@sentry.io/182383",
   "ava": {
     "files": [
       "src/**/*.test.js"

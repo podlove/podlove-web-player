@@ -1,15 +1,15 @@
 <template>
   <div class="timer-progress" :class="playstate" :style="timerStyle">
-    <span class="current">{{ secondsToTime(ghost.active ? ghost.time : playtime) }}</span>
+    <span class="current">{{ fromPlayerTime(ghost.active ? ghost.time : playtime) }}</span>
     <CurrentChapter class="chapter" />
-    <span class="time">-{{ secondsToTime(duration - (ghost.active ? ghost.time : playtime)) }}</span>
+    <span class="time">-{{ fromPlayerTime(duration - (ghost.active ? ghost.time : playtime)) }}</span>
   </div>
 </template>
 
 <script>
 import color from 'color'
 
-import { secondsToTime } from 'utils/time'
+import { fromPlayerTime } from 'utils/time'
 import CurrentChapter from './CurrentChapter.vue'
 
 export default {
@@ -31,7 +31,7 @@ export default {
     }
   },
   methods: {
-    secondsToTime
+    fromPlayerTime
   },
   components: {
     CurrentChapter

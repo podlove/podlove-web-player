@@ -1,0 +1,71 @@
+{
+  "title": "Common Sense 309 - A Bodyguard of Lies",
+  "subtitle": "Secrecy, hacking, information leaks, whistle-blowers, foreign-operative propaganda pushers, disinformation, election tampering and the search for any truth in cyberspace occupy Dan's thoughts in this show.",
+  "summary": "An automatic speech recognition transcript example from the first 10 minutes of Common Sense 309 by Dan Carlin (without the commercial at the beginning).\r\nClick the link above to listen to the original audio file.\r\n\r\nThe Google Cloud Speech API was used as speech recognition engine without any keywords or further manual editing.",
+  "link": "http://www.dancarlin.com/product/common-sense-309-a-bodyguard-of-lies/",
+  "poster": "https://auphonic.com/media/audio-examples/speechrec/CommonSense309_10min.jpg",
+  "show": {
+    "title": "Common Sense",
+    "subtitle": "Dangerously thoughtful.",
+    "summary": "Common Sense with Dan Carlin isn’t a show for everyone, and that’s what makes it so great. It’s a smart, deep, passionate, engaging, inquisitive and of course, politically Martian view of news and current events. There’s nothing else like it.",
+    "poster": "http://www.dancarlin.com/wp-content/uploads/2013/06/cs-home-imag.jpg",
+    "link": "http://www.dancarlin.com/common-sense-home-landing-page/"
+  },
+  "publicationDate": "2016-02-11T03:13:55+00:00",
+  "duration": "00:10:25",
+  "chapters": [
+    {
+      "start": "00:00:00",
+      "title": "Sponsors"
+    },
+    {
+      "start": "00:00:14",
+      "title": "Hillary Clinton"
+    },
+    {
+      "start": "00:02:21.200",
+      "title": "The other guy"
+    },
+    {
+      "start": "00:04:31.200",
+      "title": "The death of objective truth"
+    },
+    {
+      "start": "00:07:45.200",
+      "title": "We don't know the same things"
+    },
+    {
+      "start": "00:08:30.200",
+      "title": "Nonsense Discussions"
+    },
+    {
+      "start": "00:09:48.200",
+      "title": "Free Society"
+    }
+  ],
+  "audio": [
+    {
+      "url": "https://auphonic.com/media/audio-examples/speechrec/CommonSense309_10min.opus",
+      "mimeType": "audio/opus",
+      "size": 6037832,
+      "title": "Audio Opus"
+    },
+    {
+      "url": "https://auphonic.com/media/audio-examples/speechrec/CommonSense309_10min.m4a",
+      "mimeType": "audio/mp4",
+      "size": 8183015,
+      "title": "Audio MP4"
+    },
+    {
+      "url": "https://auphonic.com/media/audio-examples/speechrec/CommonSense309_10min.mp3",
+      "mimeType": "audio/mp3",
+      "size": 8936519,
+      "title": "Audio MP3"
+    }
+  ],
+  "reference": {
+    "config": "//podlove-player.surge.sh/fixtures/cs309.json",
+    "share": "//podlove-player.surge.sh/share"
+  },
+  "transcripts": "http://podlove-player.surge.sh/fixtures/transcripts/cs309.json"
+}

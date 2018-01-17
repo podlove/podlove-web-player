@@ -1,3 +1,43 @@
+<a name="4.0.1"></a>
+## [4.0.1](https://github.com/podlove/podlove-web-player/compare/v4.0.0-beta.5...v4.0.1) (2018-01-17)
+
+
+### Bug Fixes
+
+* **current-chapter:** Enable current chapter preview ([9c9b91c](https://github.com/podlove/podlove-web-player/commit/9c9b91c))
+* **error-reporting:** Removes NETWORK_IDLE from error codes ([42a0e3e](https://github.com/podlove/podlove-web-player/commit/42a0e3e))
+* **iframe-resizer:** Load original file ([c84cfbf](https://github.com/podlove/podlove-web-player/commit/c84cfbf)), closes [#469](https://github.com/podlove/podlove-web-player/issues/469)
+* **info-tab:** Transform duration milliseconds to minutes and hours ([c5c7b8c](https://github.com/podlove/podlove-web-player/commit/c5c7b8c))
+* **mock-data:** Adds absolute urls to fixtures ([1ccb4a2](https://github.com/podlove/podlove-web-player/commit/1ccb4a2))
+* **storage:** Restores rate and volume from localstorage ([e076681](https://github.com/podlove/podlove-web-player/commit/e076681)), closes [#467](https://github.com/podlove/podlove-web-player/issues/467)
+* **tests:** Adapts tests for transcripts ([215bb53](https://github.com/podlove/podlove-web-player/commit/215bb53))
+* **transcripts:** Fixes name and avatar assignment ([193e93a](https://github.com/podlove/podlove-web-player/commit/193e93a))
+* **transcripts:** Fixes scroll bug ([381fa99](https://github.com/podlove/podlove-web-player/commit/381fa99))
+* **transcripts-time:** Adapt parser to transform seconds to milliseconds ([7bdc324](https://github.com/podlove/podlove-web-player/commit/7bdc324))
+* **vendor-block:** Remove error monitoring to prevent blocking of vendor bundle from iOS and Safari ([1c427c4](https://github.com/podlove/podlove-web-player/commit/1c427c4))
+* **viewport-width:** Fixes iframe width to anchor width ([531d816](https://github.com/podlove/podlove-web-player/commit/531d816)), closes [#461](https://github.com/podlove/podlove-web-player/issues/461)
+
+
+### Features
+
+* **autoplay:** Add autoplay as url parameter ([7352579](https://github.com/podlove/podlove-web-player/commit/7352579))
+* **info:** Adds ability to use line breaks in description ([164439b](https://github.com/podlove/podlove-web-player/commit/164439b)), closes [#459](https://github.com/podlove/podlove-web-player/issues/459)
+* **time-tracking:** Use milliseconds instead of seconds ([e4a682b](https://github.com/podlove/podlove-web-player/commit/e4a682b))
+* **transcripts:** Adds transcripts to episode ([a861b2b](https://github.com/podlove/podlove-web-player/commit/a861b2b))
+* **transcripts:** Improve transcripts handling ([f25cd7b](https://github.com/podlove/podlove-web-player/commit/f25cd7b))
+
+
+
+<a name="4.0.0"></a>
+# [4.0.0](https://github.com/podlove/podlove-web-player/compare/v4.0.0-beta.5...v4.0.0) (2017-10-29)
+
+
+### Bug Fixes
+
+* **current-chapter:** Enable current chapter preview ([9c9b91c](https://github.com/podlove/podlove-web-player/commit/9c9b91c))
+
+
+
 <a name="4.0.0-beta.4"></a>
 # [4.0.0-beta.4](https://github.com/podlove/podlove-web-player/compare/v4.0.0-alpha.6...v4.0.0-beta.4) (2017-10-20)
 

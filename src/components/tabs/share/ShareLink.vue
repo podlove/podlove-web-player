@@ -13,7 +13,7 @@
   import InputTextComponent from 'shared/InputText.vue'
 
   import { addQueryParameter } from 'utils/url'
-  import { secondsToTime } from 'utils/time'
+  import { fromPlayerTime } from 'utils/time'
   import { currentChapter } from 'utils/chapters'
 
   export default {
@@ -41,11 +41,11 @@
 
         if (this.type === 'chapter') {
           const chapter = currentChapter(this.chapters)
-          time = `${secondsToTime(chapter.start)},${secondsToTime(chapter.end)}`
+          time = `${fromPlayerTime(chapter.start)},${fromPlayerTime(chapter.end)}`
         }
 
         if (this.type === 'time') {
-          time = secondsToTime(this.playtime)
+          time = fromPlayerTime(this.playtime)
         }
 
         return addQueryParameter(this.episode.link, { t: time })

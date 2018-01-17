@@ -41,7 +41,7 @@ const config = {
   resolve: {
     alias: {
       'vue$': 'vue/dist/vue.common.js',
-      store: path.resolve(__dirname, './store/index.js'),
+      store: path.resolve(__dirname, './store'),
       utils: path.resolve(__dirname, 'utils'),
       shared: path.resolve(__dirname, 'components', 'shared'),
       icons: path.resolve(__dirname, 'components', 'icons'),
