@@ -28,7 +28,7 @@ Thanks to Howler.js for providing the foundation.
 ## Used Technologies
 
 - Package Manager: [Yarn](https://github.com/yarnpkg/yarn)
-- Media Library: [Howler](https://github.com/goldfire/howler.js/)
+- Media Library: [Podlove Pure HTML5 Audio Driver](https://github.com/podlove/html5-audio-driver/)
 - View Renderer: [VueJS](https://github.com/vuejs/vue)
 - Bundler: [Webpack](https://github.com/webpack/webpack)
 - State Management: [Redux](https://github.com/reactjs/redux)
