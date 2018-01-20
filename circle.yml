@@ -53,5 +53,6 @@ deployment:
     commands:
       - yarn dist:clean
       - yarn build
-      - npm publish --access public
+      - yarn deploy:npm
       - yarn deploy:cdn
+

@@ -80,6 +80,9 @@ Have a look on the Trello board to watch the status and progress of your issues:
 For contributing to Podlove Web Player documentation, see:<br>
 [github.com/podlove/podlove.github.com](https://github.com/podlove/podlove.github.com)
 
+## Support
+[![KeyCDN](https://logos.keycdn.com/keycdn-logo-black.svg)](keycdn.com)
+
 
 ## License
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fpodlove%2Fpodlove-web-player.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fpodlove%2Fpodlove-web-player?ref=badge_large)
