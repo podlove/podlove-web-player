@@ -23,7 +23,9 @@ dependencies:
 
 compile:
   override:
+    - yarn docs:dev
     - yarn build
+    - yarn deploy:preview
 
 test:
   override:
