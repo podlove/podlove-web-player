@@ -73,12 +73,8 @@ If you encounter a specific problem using the Podlove Web Player that you think 
 
 Also, if you have ideas for new features for player, please submit them as a [Github issue](https://github.com/podlove/podlove-web-player/issues).
 
-Have a look on the Trello board to watch the status and progress of your issues:<br>
-[trello.com/b/mFPdgi1P/podlove-web-player](https://trello.com/b/mFPdgi1P/podlove-web-player)
-
-### Update the documentation
-For contributing to Podlove Web Player documentation, see:<br>
-[github.com/podlove/podlove.github.com](https://github.com/podlove/podlove.github.com)
+Have a look on the Github project to watch the status and progress of your issues:<br>
+[github.com/podlove/podlove-web-player/projects](https://github.com/podlove/podlove-web-player/projects)
 
 ## Support
 <a href="https://keycdn.com"><img src="https://logos.keycdn.com/keycdn-logo-black.svg" alt="KeyCDN" width="200px"></a>

@@ -29,8 +29,8 @@
     "docs:install": "cd docs && bundle install",
     "docs:dev": "npm run docs:install && jekyll build --source docs --destination dist && cp -R docs/fixtures/* dist/fixtures",
     "docs:prod": "npm run docs:install && jekyll build --source docs --destination dist --config docs/_config_prd.yml && cp -R docs/fixtures/* dist/fixtures",
-    "webpack:dev": "webpack-dashboard -- webpack-dev-server --config src/webpack.config.js",
-    "webpack:build": "NODE_ENV='production' webpack --config src/webpack.config.js",
+    "webpack:dev": "webpack-dev-server --config build/webpack.config.dev.js",
+    "webpack:build": "webpack --config build/webpack.config.prod.js",
     "build": "npm run webpack:build",
     "dev": "npm run dist:clean && npm run docs:dev && npm run webpack:dev",
     "test": "NODE_ENV=AVA nyc ava && nyc report --reporter=lcov",
@@ -54,7 +54,7 @@
   "dependencies": {
     "@podlove/html5-audio-driver": "0.6.3",
     "babel-polyfill": "6.26.0",
-    "binary-search": "^1.3.2",
+    "binary-search": "1.3.2",
     "bluebird": "3.5.0",
     "clipboard": "1.6.0",
     "color": "1.0.3",
@@ -62,29 +62,26 @@
     "foundation-sites": "6.3.1",
     "hashcode": "1.0.3",
     "iframe-resizer": "3.5.7",
-    "immutable": "^3.8.2",
-    "interval-tree2": "^1.1.0",
+    "interval-tree2": "1.1.0",
     "keyboardjs": "2.3.3",
     "lodash": "4.17.4",
-    "lunr": "^2.1.5",
+    "lunr": "2.1.5",
     "mobile-detect": "1.3.6",
     "normalize.css": "6.0.0",
     "query-string": "4.3.1",
     "redux": "3.5.2",
-    "redux-actions": "^2.2.1",
+    "redux-actions": "2.2.1",
     "revue": "3.0.0",
-    "scroll-into-view": "^1.9.1",
-    "scroll-into-view-if-needed": "^1.2.8",
     "superagent": "3.4.1",
-    "superagent-nock": "^0.3.1",
-    "vue": "2.4.2",
-    "vue-i18n": "7.0.5"
+    "vue": "2.5.13",
+    "vue-i18n": "7.4.1"
   },
   "devDependencies": {
     "autoprefixer-loader": "3.2.0",
     "ava": "0.18.2",
     "babel-core": "6.22.0",
     "babel-loader": "7.1.1",
+    "superagent-nock": "0.3.1",
     "babel-plugin-add-module-exports": "0.2.1",
     "babel-plugin-lodash": "3.2.11",
     "babel-plugin-transform-object-rest-spread": "6.23.0",
@@ -100,7 +97,7 @@
     "compression-webpack-plugin": "0.4.0",
     "conventional-changelog-lint": "1.1.9",
     "cross-env": "3.0.0",
-    "css-loader": "0.25.0",
+    "css-loader": "0.28.9",
     "cz-conventional-changelog": "2.0.0",
     "eslint-plugin-html": "3.0.0",
     "extract-text-webpack-plugin": "3.0.0",
@@ -120,12 +117,13 @@
     "standard-changelog": "1.0.1",
     "surge": "0.18.0",
     "transform-runtime": "0.0.0",
-    "vue-loader": "12.2.2",
-    "vue-template-compiler": "2.4.2",
-    "webpack": "3.4.1",
+    "vue-loader": "13.7.0",
+    "vue-template-compiler": "2.5.13",
+    "webpack": "3.10.0",
+    "webpack-blocks": "1.0.0-rc.2",
+    "webpack-blocks-vue": "1.1.0",
     "webpack-bundle-analyzer": "2.4.0",
-    "webpack-dashboard": "0.3.0",
-    "webpack-dev-server": "2.6.1"
+    "webpack-jarvis": "0.2.2"
   },
   "engines": {
     "node": ">=5.0.0"
@@ -151,7 +149,6 @@
   },
   "nyc": {
     "exclude": [
-      "src/webpack.config.js",
       "**/*.test.js",
       "build"
     ]
