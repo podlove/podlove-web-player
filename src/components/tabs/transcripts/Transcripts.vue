@@ -29,6 +29,9 @@ export default {
   methods: {
     loadPrerender (prerender) {
       this.prerender = prerender
+    },
+    render () {
+      this.prerender = []
     }
   },
   computed: {
@@ -40,15 +43,14 @@ export default {
     },
     selectedSearch () {
       return this.transcripts.search.selected
-    }
+    },
   },
   mounted () {
-    const rerender = debounce(() => {
-      // Trigger rerendering
-      this.prerender = []
-    }, 1000)
-
-    window.addEventListener('resize', rerender)
+    this.render()
+    window.addEventListener('resize', this.render.bind(this))
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.render.bind(this))
   },
   components: {
     PrerenderContainer,
