@@ -84,7 +84,7 @@ export default {
   }
 
   .transcripts-container {
-    padding: relative;
+    position: relative;
     max-height: $tabs-body-max-height - $transcripts-height;
     overflow-y: auto;
     padding: 0;

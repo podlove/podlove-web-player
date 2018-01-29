@@ -30,6 +30,8 @@
 </template>
 
 <script>
+import { delay } from 'lodash'
+
 export default {
   data () {
     return {
@@ -79,9 +81,11 @@ export default {
     onClick (entry) {
       this.$emit('onClick', entry)
     },
+
     onMouseLeave (transcript) {
       this.$emit('onMouseLeave', transcript)
     },
+
     onMouseOver (transcript) {
       this.$emit('onMouseOver', transcript)
     },
@@ -131,14 +135,16 @@ export default {
       if (this.activePlaytime(transcript)) {
         return {
           background: this.theme.tabs.transcripts.active.background,
-          color: this.theme.tabs.transcripts.active.color
+          color: this.theme.tabs.transcripts.active.color,
+          border: `1px solid ${this.theme.tabs.transcripts.active.background}`
         }
       }
 
       if (this.activeGhost(transcript)) {
         return {
           background: this.theme.tabs.transcripts.ghost.background,
-          color: this.theme.tabs.transcripts.ghost.color
+          color: this.theme.tabs.transcripts.ghost.color,
+          border: `1px solid ${this.theme.tabs.transcripts.ghost.background}`
         }
       }
 
@@ -156,7 +162,7 @@ export default {
     padding: 0.25em 1.25em;
 
     &.speaker {
-      padding: 0.25em 1em 0.25em 3em;
+      padding: 0.25em 1.5em 0.25em 3.5em;
     }
 
     &.chapter {
@@ -211,8 +217,10 @@ export default {
 
     .text {
       border-radius: 4px;
-      padding: 0 0.1em;
-      margin-right: 0.1em;
+      padding: 0.1em;
+      margin: 0 0.1em 0 0;
+      line-height: 0;
+      border-width: 1px solid transparent;
 
       &.inactive {
         opacity: 0.75;
