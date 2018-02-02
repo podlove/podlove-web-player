@@ -1,5 +1,7 @@
 # Podlove Web Player
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/podlove/podlove-web-player.svg)](https://greenkeeper.io/)
+
 [![Latest Version](https://img.shields.io/github/release/podlove/podlove-web-player.svg)](https://github.com/podlove/podlove-web-player/releases)
 [![Code Climate](https://codeclimate.com/github/podlove/podlove-web-player/badges/gpa.svg)](https://codeclimate.com/github/podlove/podlove-web-player)
 [![Build Status](https://img.shields.io/circleci/project/github/podlove/podlove-web-player/development.svg)](https://circleci.com/gh/podlove/podlove-web-player)
