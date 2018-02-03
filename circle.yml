@@ -12,12 +12,14 @@ machine:
     version: 2.3.1
 
 dependencies:
+  pre:
+    - echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+    - yarn global add greenkeeper-lockfile@1
+    - greenkeeper-lockfile-update
   override:
     - yarn
     - npm rebuild node-sass
     - gem install bundler
-  pre:
-    - echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
   cache_directories:
     - ~/.cache/yarn
 
@@ -31,6 +33,7 @@ test:
     - yarn test
   post:
     - bash <(curl -s https://codecov.io/bash)
+    - greenkeeper-lockfile-upload
 
 deployment:
   staging:
