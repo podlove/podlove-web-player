@@ -1,8 +1,8 @@
 <template>
-  <div class="transcripts">
+  <div class="transcripts" :class="{ 'has-search-results': hasSearchResults }">
     <div class="transcripts-header">
       <search></search>
-      <follow></follow>
+      <follow class="follow-button"></follow>
     </div>
     <!-- Render -->
     <render-container class="transcripts-container" :prerender="prerender" v-if="prerender.length > 0"></render-container>
@@ -12,8 +12,6 @@
 </template>
 
 <script>
-import { debounce } from 'lodash'
-
 import PrerenderContainer from './Prerender.vue'
 import RenderContainer from './Render.vue'
 import Search from './Search.vue'
@@ -44,12 +42,15 @@ export default {
     selectedSearch () {
       return this.transcripts.search.selected
     },
+    hasSearchResults () {
+      return this.transcripts.search.query.length > 2
+    }
   },
   mounted () {
     this.render()
     window.addEventListener('resize', this.render.bind(this))
   },
-  beforeDestroy() {
+  beforeDestroy () {
     window.removeEventListener('resize', this.render.bind(this))
   },
   components: {
@@ -88,5 +89,16 @@ export default {
     max-height: $tabs-body-max-height - $transcripts-height;
     overflow-y: auto;
     padding: 0;
+  }
+
+  @media screen and (max-width: $width-m) {
+    .transcripts.has-search-results .follow-button {
+      display: none;
+    }
+
+    .transcripts.has-search-results .search-navigation {
+      justify-content: flex-end;
+      margin-right: 0;
+    }
   }
 </style>

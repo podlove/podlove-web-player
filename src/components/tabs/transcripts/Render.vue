@@ -3,7 +3,7 @@
       <div :style="{ height: heightByIndex(0, start) + 'px' }"></div>
       <div :style="{ height: heightByIndex(start, end) + 'px' }">
         <TranscriptEntry v-for="(entry, index) in slice(start, end)"
-          :key="index" :entry="entry" :playtime="playtime" :ghost="ghost" :query="query"
+          :key="index" :entry="entry" :playtime="playtime" :ghost="ghost" :query="transcripts.search.query"
           @onClick="onClick"
           @onMouseOver="onMouseOver"
           @onMouseLeave="onMouseLeave"
@@ -165,7 +165,3 @@
     }
   }
 </script>
-
-<style>
-
-</style>

@@ -30,8 +30,6 @@
 </template>
 
 <script>
-import { delay } from 'lodash'
-
 export default {
   data () {
     return {
