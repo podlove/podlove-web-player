@@ -13,7 +13,7 @@
       <span class="speaker" v-if="entry.speaker">
         <span class="speaker-background" :style="speakerBackgroundStyle"></span>
         <img class="speaker-avatar" v-if="entry.speaker.avatar" :src="entry.speaker.avatar" />
-        <span class="speaker-name" v-if="entry.speaker.name" :style="speakerTextStyle">{{ entry.speaker.name }}:</span>
+        <span class="speaker-name" v-if="entry.speaker.name" :style="speakerTextStyle">{{ entry.speaker.name }}</span>
       </span>
       <span class="text"
         v-for="(transcript, tindex) in entry.texts"
@@ -79,9 +79,11 @@ export default {
     onClick (entry) {
       this.$emit('onClick', entry)
     },
+
     onMouseLeave (transcript) {
       this.$emit('onMouseLeave', transcript)
     },
+
     onMouseOver (transcript) {
       this.$emit('onMouseOver', transcript)
     },
@@ -131,14 +133,16 @@ export default {
       if (this.activePlaytime(transcript)) {
         return {
           background: this.theme.tabs.transcripts.active.background,
-          color: this.theme.tabs.transcripts.active.color
+          color: this.theme.tabs.transcripts.active.color,
+          border: `1px solid ${this.theme.tabs.transcripts.active.background}`
         }
       }
 
       if (this.activeGhost(transcript)) {
         return {
           background: this.theme.tabs.transcripts.ghost.background,
-          color: this.theme.tabs.transcripts.ghost.color
+          color: this.theme.tabs.transcripts.ghost.color,
+          border: `1px solid ${this.theme.tabs.transcripts.ghost.background}`
         }
       }
 
@@ -156,7 +160,7 @@ export default {
     padding: 0.25em 1.25em;
 
     &.speaker {
-      padding: 0.25em 1em 0.25em 3em;
+      padding: 0.25em 1.5em 0.25em 3.5em;
     }
 
     &.chapter {
@@ -184,7 +188,7 @@ export default {
       display: inline-block;
       position: relative;
       margin-left: -2.25em;
-      margin-right: 0.25em;
+      margin-right: 0.4em;
 
       .speaker-background {
         position: absolute;
@@ -211,8 +215,10 @@ export default {
 
     .text {
       border-radius: 4px;
-      padding: 0 0.1em;
-      margin-right: 0.1em;
+      padding: 0.1em;
+      margin: 0 0.1em 0 0;
+      line-height: 0;
+      border: 1px solid transparent;
 
       &.inactive {
         opacity: 0.75;

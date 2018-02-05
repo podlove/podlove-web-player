@@ -17,8 +17,8 @@
       @input="onInput"
     >
     <span class="progress-range" :style="rangeStyle"></span>
-    <span class="progress-buffer" v-for="(buffering, index) in buffer" :style="bufferStyle(buffering)" :key="index"></span>
-    <span v-for="(quantile, index) in quantiles" class="progress-track" :style="trackStyle(quantile)" :key="index"></span>
+    <span class="progress-buffer" v-for="(buffering, index) in buffer" :style="bufferStyle(buffering)" :key="`buffer-${index}`"></span>
+    <span v-for="(quantile, index) in quantiles" class="progress-track" :style="trackStyle(quantile)" :key="`track-${index}`"></span>
     <ChaptersIndicator></ChaptersIndicator>
     <span class="ghost-thumb" :style="thumbStyle(ghostPosition, ghost.active)"></span>
     <span class="progress-thumb" :class="{ active: thumbActive }" :style="thumbStyle(thumbPosition, true)"></span>
