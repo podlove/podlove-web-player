@@ -10,9 +10,9 @@
         <a :href="show.link" target="_blank" class="truncate" v-if="display === 'embed' && show.link">{{ show.title }}</a>
         <span class="truncate" v-else>{{ show.title }}</span>
       </h2>
-      <h1 class="title" :style="titleStyle" v-if="hasEpisodeTitle">
-        <a :href="episode.link" target="_blank" class="truncate" v-if="display === 'embed' && episode.link">{{ episode.title }}</a>
-        <span class="truncate" v-else>{{ episode.title }}</span>
+      <h1 class="title" v-marquee :style="titleStyle" v-if="hasEpisodeTitle">
+        <a :href="episode.link" target="_blank" v-if="display === 'embed' && episode.link">{{ episode.title }}</a>
+        <span v-else>{{ episode.title }}</span>
       </h1>
       <div class="subtitle" :style="subtitleStyle" v-if="hasDescription">{{ episode.subtitle }}</div>
     </div>
