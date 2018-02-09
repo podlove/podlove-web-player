@@ -1,11 +1,11 @@
 <template>
-  <ul class="tab-header" :class="{ overflows }">
+  <ul class="tab-header" :class="{ overflows }" v-resize="resizeHandler">
     <span class="header-shadow" :style="headerShadowStyle"></span>
     <slot></slot>
   </ul>
 </template>
+
 <script>
-  /* global MutationObserver */
   import color from 'color'
 
   export default {
@@ -22,18 +22,16 @@
         }
       }
     },
-    mounted () {
-      const resizeHandler = () => {
+    methods: {
+      resizeHandler () {
         this.$nextTick(() => {
           this.overflows = this.$el.scrollWidth > this.$el.clientWidth
         })
       }
+    },
 
-      const tabsObserver = new MutationObserver(resizeHandler)
-
-      tabsObserver.observe(this.$el, { childList: true })
-      window.addEventListener('resize', resizeHandler)
-      resizeHandler()
+    mounted () {
+      this.resizeHandler()
     }
   }
 </script>
