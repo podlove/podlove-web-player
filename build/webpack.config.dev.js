@@ -1,3 +1,4 @@
+const webpack = require('webpack')
 const {
   createConfig,
   devServer,
@@ -39,9 +40,14 @@ module.exports = createConfig([
 
   addPlugins([
     new Jarvis({ port: 1337 }),
+
     new BundleAnalyzerPlugin({
       analyzerMode: 'static',
       openAnalyzer: false
+    }),
+
+    new webpack.DefinePlugin({
+      BASE: JSON.stringify('.')
     })
   ])
 ])

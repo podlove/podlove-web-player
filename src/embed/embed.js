@@ -1,3 +1,5 @@
+/* globals BASE */
+
 import 'babel-polyfill'
 import { get, head, isString } from 'lodash'
 import Bluebird from 'bluebird'
@@ -104,9 +106,9 @@ const dispatchUrlParameters = store => {
 const configNode = (config = {}) => tag('script', `window.PODLOVE = ${JSON.stringify(config)}`)
 
 // Player Logic
-const styleBundle = config => tag('link', '', {rel: 'stylesheet', href: `${get(config.reference, 'base', '.')}/style.css`})
-const vendorBundle = config => tag('script', '', {type: 'text/javascript', src: `${get(config.reference, 'base', '.')}/vendor.js`})
-const appBundle = config => tag('script', '', {type: 'text/javascript', src: `${get(config.reference, 'base', '.')}/window.js`})
+const styleBundle = config => tag('link', '', {rel: 'stylesheet', href: `${get(config.reference, 'base', BASE)}/style.css`})
+const vendorBundle = config => tag('script', '', {type: 'text/javascript', src: `${get(config.reference, 'base', BASE)}/vendor.js`})
+const appBundle = config => tag('script', '', {type: 'text/javascript', src: `${get(config.reference, 'base', BASE)}/window.js`})
 
 // Dynamic resizer
 const dynamicResizer = tag('script', iframeResizerContentWindow)

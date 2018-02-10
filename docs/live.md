@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Live
-navigation: 6
+navigation: 8
 ---
 
 # Live Mode

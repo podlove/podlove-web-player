@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Transcripts
-navigation: 7
+navigation: 10
 ---
 <script src="{{ 'embed.js' | relative_url }}"></script>
 
