@@ -1,3 +1,5 @@
+const { get } = require('lodash')
+
 const webpack = require('webpack')
 const {
   createConfig,
@@ -36,11 +38,16 @@ module.exports = createConfig([
 
   addPlugins([
     new ExtractTextPlugin('style.css'),
+
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       filename: 'vendor.js',
       chunks: ['share', 'window'],
       minChunks: Infinity
+    }),
+
+    new webpack.DefinePlugin({
+      BASE: JSON.stringify(get(process.env, 'BASE', '.'))
     })
   ])
 ])
