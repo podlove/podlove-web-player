@@ -1,8 +1,12 @@
-import { curry, compose, uniq, concat, join, filter } from 'lodash/fp'
+import { curry, compose, uniq, concat, join, filter, head } from 'lodash/fp'
 
-export const findNode = selector => document.querySelectorAll(selector)
+export const findNode = selector => typeof selector === 'string' ? head(document.querySelectorAll(selector)) : selector
 export const createNode = tag => document.createElement(tag)
-export const appendNode = curry((node, child) => node.appendChild(child))
+export const appendNode = curry((node, child) => {
+  node.appendChild(child)
+
+  return child
+})
 
 export const tag = curry((tag, value = '', attributes = {}) => {
   let attr = Object.keys(attributes).map(attribute => ` ${attribute}="${attributes[attribute]}"`)
@@ -15,6 +19,8 @@ export const setStyles = (attrs = {}) => el => {
   Object.keys(attrs).forEach(property => {
     el.style[property] = attrs[property]
   })
+
+  return el
 }
 
 export const getClasses = el => el.className.split(' ')
@@ -29,6 +35,14 @@ export const addClasses = (...classes) => el => {
 
 export const removeClasses = (...classes) => el => {
   el.className = compose(join(' '), filter(className => !~classes.indexOf(className)), getClasses)(el)
+
+  return el
+}
+
+export const setAttributes = (attrs = {}) => el => {
+  Object.keys(attrs).forEach(property => {
+    el.setAttribute(property, attrs[property])
+  })
 
   return el
 }
