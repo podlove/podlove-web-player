@@ -112,7 +112,7 @@
     "sinon": "4.3.0",
     "snazzy": "7.0.0",
     "standard": "10.0.3",
-    "standard-changelog": "1.0.8",
+    "standard-changelog": "1.0.11",
     "superagent-nock": "0.3.1",
     "surge": "0.19.0",
     "transform-runtime": "0.0.0",
