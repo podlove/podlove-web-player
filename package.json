@@ -40,8 +40,6 @@
     "lint": "npm run lint:standard",
     "commit": "git-cz",
     "deploy:gh-pages": "scripts/deploy-ghpages.sh dist",
-    "deploy:version": "scripts/deploy-version.sh",
-    "deploy:latest": "scripts/deploy-version.sh latest",
     "deploy:cdn": "rsync -rvt --chmod=D2755,F644 dist/ podlove@rsync.keycdn.com:applications/web-player/",
     "deploy:npm": "npm publish --access public",
     "deploy:release": "scripts/deploy-release.sh",
