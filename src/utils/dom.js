@@ -1,8 +1,12 @@
-import { curry, compose, uniq, concat, join, filter } from 'lodash/fp'
+import { curry, compose, uniq, concat, join, filter, head, identity } from 'lodash/fp'
 
-export const findNode = selector => document.querySelectorAll(selector)
+export const findNode = selector => typeof selector === 'string' ? head(document.querySelectorAll(selector)) : selector
 export const createNode = tag => document.createElement(tag)
-export const appendNode = curry((node, child) => node.appendChild(child))
+export const appendNode = curry((node, child) => {
+  node.appendChild(child)
+
+  return child
+})
 
 export const tag = curry((tag, value = '', attributes = {}) => {
   let attr = Object.keys(attributes).map(attribute => ` ${attribute}="${attributes[attribute]}"`)
@@ -11,24 +15,34 @@ export const tag = curry((tag, value = '', attributes = {}) => {
   return `<${tag}${attr}>${value}</${tag}>`
 })
 
-export const setStyles = (attrs = {}) => el => {
+export const setStyles = curry((attrs = {}, el) => {
   Object.keys(attrs).forEach(property => {
     el.style[property] = attrs[property]
   })
-}
 
-export const getClasses = el => el.className.split(' ')
+  return el
+})
+
+export const getClasses = compose(filter(identity), el => el.className.split(' '))
 
 export const hasOverflow = el => el.scrollWidth > el.clientWidth
 
-export const addClasses = (...classes) => el => {
+export const addClasses = curry((classes, el) => {
   el.className = compose(join(' '), uniq, concat(classes), getClasses)(el)
 
   return el
-}
+})
 
-export const removeClasses = (...classes) => el => {
+export const removeClasses = curry((classes, el) => {
   el.className = compose(join(' '), filter(className => !~classes.indexOf(className)), getClasses)(el)
 
   return el
-}
+})
+
+export const setAttributes = curry((attrs = {}, el) => {
+  Object.keys(attrs).forEach(property => {
+    el.setAttribute(property, attrs[property])
+  })
+
+  return el
+})

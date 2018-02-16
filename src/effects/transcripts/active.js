@@ -28,11 +28,15 @@ const buildIndex = (duration = 0, data = []) => {
   })
 
   return time => {
-    if (time) {
-      return timeIndex.search(time)
+    let result
+
+    try {
+      result = timeIndex.search(time)
+    } catch (e) {
+      result = []
     }
 
-    return []
+    return result
   }
 }
 
