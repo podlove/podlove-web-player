@@ -15,23 +15,23 @@ export const tag = curry((tag, value = '', attributes = {}) => {
   return `<${tag}${attr}>${value}</${tag}>`
 })
 
-export const setStyles = curry((attrs = {}, el) => {
+export const setStyles = (attrs = {}) => el => {
   Object.keys(attrs).forEach(property => {
     el.style[property] = attrs[property]
   })
 
   return el
-})
+}
 
 export const getClasses = compose(filter(identity), el => el.className.split(' '))
 
 export const hasOverflow = el => el.scrollWidth > el.clientWidth
 
-export const addClasses = curry((classes, el) => {
+export const addClasses = (classes = []) => el => {
   el.className = compose(join(' '), uniq, concat(classes), getClasses)(el)
 
   return el
-})
+}
 
 export const removeClasses = curry((classes, el) => {
   el.className = compose(join(' '), filter(className => !~classes.indexOf(className)), getClasses)(el)
@@ -39,10 +39,10 @@ export const removeClasses = curry((classes, el) => {
   return el
 })
 
-export const setAttributes = curry((attrs = {}, el) => {
+export const setAttributes = (attrs = {}) => el => {
   Object.keys(attrs).forEach(property => {
     el.setAttribute(property, attrs[property])
   })
 
   return el
-})
+}

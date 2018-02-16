@@ -73,7 +73,7 @@ test('tag should create a html tag', t => {
 test('setStyles adds styles to a dom node', t => {
   const testNode = createNode('div')
 
-  setStyles({ color: 'red', width: '200px' }, testNode)
+  setStyles({ color: 'red', width: '200px' })(testNode)
 
   t.is(testNode.style.color, 'red')
   t.is(testNode.style.width, '200px')
@@ -82,14 +82,14 @@ test('setStyles adds styles to a dom node', t => {
 test(`getClasses should return the class names`, t => {
   const testNode = createNode('div')
 
-  addClasses(['foo', 'bar'], testNode)
+  addClasses(['foo', 'bar'])(testNode)
 
   t.deepEqual(getClasses(testNode), ['foo', 'bar'])
 })
 
 test(`addClasses should add classes to dom elements`, t => {
   const testNode = createNode('div')
-  addClasses(['foo', 'bar'], testNode)
+  addClasses(['foo', 'bar'])(testNode)
 
   t.is(testNode.className, 'foo bar')
 })
