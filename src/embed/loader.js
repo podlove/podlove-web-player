@@ -28,7 +28,9 @@ const script = tag('script', `
   window.addEventListener('load', function() {
     loader.className += ' done'
 
-    setTimeout(loader.remove, 300)
+    setTimeout(function () {
+      loader.parentNode.removeChild(loader)
+    }, 300)
   })
 `)
 

@@ -1,7 +1,7 @@
 import test from 'ava'
 import sinon from 'sinon'
 import browserEnv from 'browser-env'
-import { findNode, createNode, appendNode, tag, setStyles, addClasses, getClasses } from './dom'
+import { findNode, createNode, appendNode, tag, setStyles, addClasses, getClasses, removeClasses } from './dom'
 
 browserEnv()
 
@@ -36,6 +36,10 @@ test('exports a method called getClasses', t => {
 
 test('exports a method called addClasses', t => {
   t.truthy(typeof addClasses === 'function')
+})
+
+test('exports a method called removeClasses', t => {
+  t.truthy(typeof removeClasses === 'function')
 })
 
 test('findNode should call the document api', t => {
@@ -92,4 +96,12 @@ test(`addClasses should add classes to dom elements`, t => {
   addClasses(['foo', 'bar'])(testNode)
 
   t.is(testNode.className, 'foo bar')
+})
+
+test(`removeClasses should remove classes to dom elements`, t => {
+  const testNode = createNode('div')
+  testNode.className = 'foo bar baz'
+  removeClasses(['foo', 'bar'])(testNode)
+
+  t.is(testNode.className, 'baz')
 })

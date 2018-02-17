@@ -33,11 +33,11 @@ export const addClasses = (classes = []) => el => {
   return el
 }
 
-export const removeClasses = curry((classes, el) => {
+export const removeClasses = (classes = []) => el => {
   el.className = compose(join(' '), filter(className => !~classes.indexOf(className)), getClasses)(el)
 
   return el
-})
+}
 
 export const setAttributes = (attrs = {}) => el => {
   Object.keys(attrs).forEach(property => {
