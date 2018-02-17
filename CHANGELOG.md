@@ -1,3 +1,44 @@
+<a name="4.0.2"></a>
+## [4.0.2](https://github.com/podlove/podlove-web-player/compare/v4.0.0-beta.5...v4.0.2) (2018-02-17)
+
+
+### Bug Fixes
+
+* **current-chapter:** Enable current chapter preview ([9c9b91c](https://github.com/podlove/podlove-web-player/commit/9c9b91c))
+* **dom-helper:** Restores curried functions ([8caf337](https://github.com/podlove/podlove-web-player/commit/8caf337))
+* **error-reporting:** Removes NETWORK_IDLE from error codes ([42a0e3e](https://github.com/podlove/podlove-web-player/commit/42a0e3e))
+* **iframe-resizer:** Load original file ([c84cfbf](https://github.com/podlove/podlove-web-player/commit/c84cfbf)), closes [#469](https://github.com/podlove/podlove-web-player/issues/469)
+* **info-tab:** Transform duration milliseconds to minutes and hours ([c5c7b8c](https://github.com/podlove/podlove-web-player/commit/c5c7b8c))
+* **loader:** Uses IE compatible APIs ([14deeb1](https://github.com/podlove/podlove-web-player/commit/14deeb1))
+* **mock-data:** Adds absolute urls to fixtures ([1ccb4a2](https://github.com/podlove/podlove-web-player/commit/1ccb4a2))
+* **storage:** Restores rate and volume from localstorage ([e076681](https://github.com/podlove/podlove-web-player/commit/e076681)), closes [#467](https://github.com/podlove/podlove-web-player/issues/467)
+* **tests:** Adapts tests for transcripts ([215bb53](https://github.com/podlove/podlove-web-player/commit/215bb53))
+* **time:** Surpress index search errors ([2ac5361](https://github.com/podlove/podlove-web-player/commit/2ac5361))
+* **title:** Uses correct directive hook ([529aa36](https://github.com/podlove/podlove-web-player/commit/529aa36))
+* **transcripts:** Fixes initial render on tab switch ([2552808](https://github.com/podlove/podlove-web-player/commit/2552808))
+* **transcripts:** Fixes name and avatar assignment ([193e93a](https://github.com/podlove/podlove-web-player/commit/193e93a))
+* **transcripts:** Fixes scroll bug ([381fa99](https://github.com/podlove/podlove-web-player/commit/381fa99))
+* **transcripts-header:** Fix follow button height in Safari ([9341fdc](https://github.com/podlove/podlove-web-player/commit/9341fdc))
+* **transcripts-time:** Adapt parser to transform seconds to milliseconds ([7bdc324](https://github.com/podlove/podlove-web-player/commit/7bdc324))
+* **vendor-block:** Remove error monitoring to prevent blocking of vendor bundle from iOS and Safari ([1c427c4](https://github.com/podlove/podlove-web-player/commit/1c427c4))
+* **viewport-width:** Fixes iframe width to anchor width ([531d816](https://github.com/podlove/podlove-web-player/commit/531d816)), closes [#461](https://github.com/podlove/podlove-web-player/issues/461)
+
+
+### Features
+
+* **autoplay:** Add autoplay as url parameter ([7352579](https://github.com/podlove/podlove-web-player/commit/7352579))
+* **cdn:** Adds ability for dynamic base path ([93c6989](https://github.com/podlove/podlove-web-player/commit/93c6989))
+* **cdn:** Deploys assets to KeyCDN ([ec60009](https://github.com/podlove/podlove-web-player/commit/ec60009))
+* **cdn-deployment:** Publishes web player artefacts to CDN ([b939863](https://github.com/podlove/podlove-web-player/commit/b939863))
+* **info:** Adds ability to use line breaks in description ([164439b](https://github.com/podlove/podlove-web-player/commit/164439b)), closes [#459](https://github.com/podlove/podlove-web-player/issues/459)
+* **loader:** Adds loading indicator ([f117dc6](https://github.com/podlove/podlove-web-player/commit/f117dc6))
+* **marquee:** Adds marquee effect to title if needed ([0e982a8](https://github.com/podlove/podlove-web-player/commit/0e982a8)), closes [#460](https://github.com/podlove/podlove-web-player/issues/460)
+* **time-tracking:** Use milliseconds instead of seconds ([e4a682b](https://github.com/podlove/podlove-web-player/commit/e4a682b))
+* **transcripts:** Adds transcripts to episode ([a861b2b](https://github.com/podlove/podlove-web-player/commit/a861b2b))
+* **transcripts:** Improve transcripts handling ([f25cd7b](https://github.com/podlove/podlove-web-player/commit/f25cd7b))
+
+
+
 <a name="4.0.1"></a>
 ## [4.0.1](https://github.com/podlove/podlove-web-player/compare/v4.0.0-beta.5...v4.0.1) (2018-01-17)
 
