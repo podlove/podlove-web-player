@@ -56,7 +56,7 @@ deployment:
     commands:
       - yarn dist:clean
       - yarn build
-      - yarn deploy:npm
+      - npm publish
       - yarn dist:clean
       - BASE="//cdn.podlove.org/web-player/" yarn build
       - yarn deploy:cdn
