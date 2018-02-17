@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Advanced Usage
-navigation: 6
+navigation: 7
 ---
 
 # Advanced Usage

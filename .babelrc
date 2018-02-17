@@ -7,7 +7,7 @@
         "transform-runtime",
         [
           "babel-plugin-webpack-alias",
-          { "config": "src/webpack.config.js" }
+          { "config": "build/webpack.config.prod.js" }
         ]
       ]
     }

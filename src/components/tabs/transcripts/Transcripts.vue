@@ -1,8 +1,8 @@
 <template>
-  <div class="transcripts">
+  <div class="transcripts" :class="{ 'has-search-results': hasSearchResults }">
     <div class="transcripts-header">
       <search></search>
-      <follow></follow>
+      <follow class="follow-button"></follow>
     </div>
     <!-- Render -->
     <render-container class="transcripts-container" :prerender="prerender" v-if="prerender.length > 0"></render-container>
@@ -12,8 +12,6 @@
 </template>
 
 <script>
-import { debounce } from 'lodash'
-
 import PrerenderContainer from './Prerender.vue'
 import RenderContainer from './Render.vue'
 import Search from './Search.vue'
@@ -29,6 +27,9 @@ export default {
   methods: {
     loadPrerender (prerender) {
       this.prerender = prerender
+    },
+    render () {
+      this.prerender = []
     }
   },
   computed: {
@@ -40,15 +41,17 @@ export default {
     },
     selectedSearch () {
       return this.transcripts.search.selected
+    },
+    hasSearchResults () {
+      return this.transcripts.search.query.length > 2
     }
   },
   mounted () {
-    const rerender = debounce(() => {
-      // Trigger rerendering
-      this.prerender = []
-    }, 1000)
-
-    window.addEventListener('resize', rerender)
+    this.render()
+    window.addEventListener('resize', this.render.bind(this))
+  },
+  beforeDestroy () {
+    window.removeEventListener('resize', this.render.bind(this))
   },
   components: {
     PrerenderContainer,
@@ -82,9 +85,20 @@ export default {
   }
 
   .transcripts-container {
-    padding: relative;
+    position: relative;
     max-height: $tabs-body-max-height - $transcripts-height;
     overflow-y: auto;
     padding: 0;
+  }
+
+  @media screen and (max-width: $width-m) {
+    .transcripts.has-search-results .follow-button {
+      display: none;
+    }
+
+    .transcripts.has-search-results .search-navigation {
+      justify-content: flex-end;
+      margin-right: 0;
+    }
   }
 </style>

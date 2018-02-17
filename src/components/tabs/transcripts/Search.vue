@@ -8,11 +8,11 @@
           @input="search"
           :value="transcripts.search.query"
           :placeholder="$t('TRANSCRIPTS.SEARCH')">
-          <button class="delete-icon" v-if="transcripts.search.query.length > 0" @click="reset()">
+          <button class="delete-icon" v-if="transcripts.search.query.length > 2" @click="reset()">
             <search-delete-icon :text-color="theme.button.color" :background-color="theme.button.background"></search-delete-icon>
           </button>
       </div>
-      <div class="search-navigation" v-if="transcripts.search.query.length > 0">
+      <div class="search-navigation" v-if="transcripts.search.query.length > 2">
         <div class="search-stepper">
           <button class="stepper" @click="previousSearchResult()" v-if="transcripts.search.results.length > 0">
             <previous-search-icon :textColor="theme.button.color" :backgroundColor="theme.button.background"></previous-search-icon>
@@ -90,10 +90,6 @@ export default {
       margin-right: 0.5em;
       width: 100%;
 
-      @media screen and (max-width: $width-l) {
-        width: 75%;
-      }
-
       .input {
         padding: 0.2em 24px 0.2em 1em;
         font-size: 1em;
@@ -121,7 +117,7 @@ export default {
       width: 100%;
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       margin-right: 0.5em;
 
       @media screen and (max-width: $width-l) {

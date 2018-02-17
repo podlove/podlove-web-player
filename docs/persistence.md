@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Player Persistence
-navigation: 5
+navigation: 6
 ---
 
 # Persistence

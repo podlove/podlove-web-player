@@ -1,12 +1,12 @@
 # Podlove Web Player
 
-[![Latest Version](https://img.shields.io/github/release/podlove/podlove-web-player.svg)](https://github.com/podlove/podlove-web-player/releases)
-[![Code Climate](https://codeclimate.com/github/podlove/podlove-web-player/badges/gpa.svg)](https://codeclimate.com/github/podlove/podlove-web-player)
-[![Build Status](https://img.shields.io/circleci/project/github/podlove/podlove-web-player/development.svg)](https://circleci.com/gh/podlove/podlove-web-player)
-[![Coverage](https://img.shields.io/codecov/c/github/podlove/podlove-web-player/feature/coverage.svg)](https://codecov.io/gh/podlove/podlove-web-player/branch/development)
-[![Coverage](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://github.com/feross/standard)
-[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fpodlove%2Fpodlove-web-player.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fpodlove%2Fpodlove-web-player?ref=badge_shield)
+[![npm version](https://badge.fury.io/js/%40podlove%2Fpodlove-web-player.svg?style=flat-square)](https://badge.fury.io/js/%40podlove%2Fpodlove-web-player)
+[![Greenkeeper badge](https://badges.greenkeeper.io/podlove/podlove-web-player.svg?style=flat-square)](https://greenkeeper.io/)
+[![Build Status](https://img.shields.io/circleci/project/github/podlove/podlove-web-player/development.svg?style=flat-square)](https://circleci.com/gh/podlove/podlove-web-player)
+[![Coverage](https://img.shields.io/codecov/c/github/podlove/podlove-web-player/feature/coverage.svg?style=flat-square)](https://codecov.io/gh/podlove/podlove-web-player/branch/development)
+[![Coverage](https://img.shields.io/badge/code_style-standard-brightgreen.svg?style=flat-square)](https://github.com/feross/standard)
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=flat-square)](http://commitizen.github.io/cz-cli/)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fpodlove%2Fpodlove-web-player.svg?type=shield&style=flat-square)](https://app.fossa.io/projects/git%2Bgithub.com%2Fpodlove%2Fpodlove-web-player?ref=badge_shield)
 
 ![Preview](screenshot.jpg)
 
@@ -28,7 +28,7 @@ Thanks to Howler.js for providing the foundation.
 ## Used Technologies
 
 - Package Manager: [Yarn](https://github.com/yarnpkg/yarn)
-- Media Library: [Howler](https://github.com/goldfire/howler.js/)
+- Media Library: [Podlove Pure HTML5 Audio Driver](https://github.com/podlove/html5-audio-driver/)
 - View Renderer: [VueJS](https://github.com/vuejs/vue)
 - Bundler: [Webpack](https://github.com/webpack/webpack)
 - State Management: [Redux](https://github.com/reactjs/redux)
@@ -73,13 +73,11 @@ If you encounter a specific problem using the Podlove Web Player that you think 
 
 Also, if you have ideas for new features for player, please submit them as a [Github issue](https://github.com/podlove/podlove-web-player/issues).
 
-Have a look on the Trello board to watch the status and progress of your issues:<br>
-[trello.com/b/mFPdgi1P/podlove-web-player](https://trello.com/b/mFPdgi1P/podlove-web-player)
+Have a look on the Github project to watch the status and progress of your issues:<br>
+[github.com/podlove/podlove-web-player/projects](https://github.com/podlove/podlove-web-player/projects)
 
-### Update the documentation
-For contributing to Podlove Web Player documentation, see:<br>
-[github.com/podlove/podlove.github.com](https://github.com/podlove/podlove.github.com)
-
+## Support
+<a href="https://keycdn.com"><img src="https://logos.keycdn.com/keycdn-logo-black.svg" alt="KeyCDN" width="200px"></a>
 
 ## License
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fpodlove%2Fpodlove-web-player.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fpodlove%2Fpodlove-web-player?ref=badge_large)

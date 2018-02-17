@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Config
-navigation: 4
+navigation: 5
 ---
 
 # Configuration

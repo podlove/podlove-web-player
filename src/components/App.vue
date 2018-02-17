@@ -58,6 +58,7 @@
 
   @import '~styles/transitions';
   @import '~styles/animations';
+  @import '~styles/marquee';
 
   .podlove {
     display: block;
