@@ -5,8 +5,8 @@ import { handleActions } from 'utils/effects'
 
 export default handleActions({
   [SET_URL_PARAMS]: ({ dispatch }, { payload }) => {
-    if (payload.playtime) {
-      dispatch(actions.setPlaytime(payload.playtime))
+    if (payload.starttime) {
+      dispatch(actions.setPlaytime(payload.starttime))
       dispatch(actions.idle())
     }
 

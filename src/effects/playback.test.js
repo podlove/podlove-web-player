@@ -1,7 +1,7 @@
 import test from 'ava'
 import sinon from 'sinon'
 
-import urlEffects from './url'
+import urlEffects from './playback'
 
 let store
 
@@ -12,7 +12,7 @@ test.beforeEach(t => {
   }
 })
 
-test(`urlEffects: it dispatches autoplay on SET_URL_PARAMS`, t => {
+test(`playbackEffects: it dispatches autoplay on SET_URL_PARAMS`, t => {
   urlEffects(store, {
     type: 'SET_URL_PARAMS',
     payload: {
@@ -25,11 +25,11 @@ test(`urlEffects: it dispatches autoplay on SET_URL_PARAMS`, t => {
   })
 })
 
-test(`urlEffects: it dispatches playtime on SET_URL_PARAMS`, t => {
+test(`playbackEffects: it dispatches starttime on SET_URL_PARAMS`, t => {
   urlEffects(store, {
     type: 'SET_URL_PARAMS',
     payload: {
-      playtime: 10
+      starttime: 10
     }
   })
 

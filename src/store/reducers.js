@@ -26,6 +26,7 @@ import { reducer as theme } from './theme'
 import { reducer as transcripts } from './transcripts'
 import { reducer as visibleComponents } from './visible-components'
 import { reducer as volume } from './volume'
+import { reducer as playback } from './playback'
 
 export default combineReducers({
   buffer,
@@ -53,5 +54,6 @@ export default combineReducers({
   theme,
   transcripts,
   visibleComponents,
-  volume
+  volume,
+  playback
 })

@@ -6,7 +6,9 @@ import iframeResizerContentWindow from 'raw-loader!iframe-resizer/js/iframeResiz
 
 import { findNode, tag } from 'utils/dom'
 import requestConfig from 'utils/request'
+import { urlParameters } from 'utils/url'
 import { sandbox, sandboxWindow } from 'utils/sandbox'
+import { SET_URL_PARAMS } from 'store/types'
 
 import loader from './loader'
 
@@ -40,14 +42,24 @@ const resizer = sandbox => {
 
 const sandboxFromSelector = compose(sandbox, findNode)
 
+const dispatchUrlParameters = store => {
+  store.dispatch({
+    type: SET_URL_PARAMS,
+    payload: urlParameters
+  })
+
+  return store
+}
+
 window.podlovePlayer = (selector, episode) =>
   requestConfig(episode)
     .then(player)
     .then(sandboxFromSelector(selector))
     .then(resizer)
     .then(sandboxWindow(['PODLOVE_STORE', 'store']))
+    .then(dispatchUrlParameters)
     .catch(() => {
-      console.group(`Can't load player with config`)
+      console.group(`Can't load Podlove Webplayer`)
       console.error('selector', selector)
       console.error('config', episode)
       console.groupEnd()

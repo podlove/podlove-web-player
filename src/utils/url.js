@@ -1,4 +1,6 @@
 import queryString from 'query-string'
+import { head, isString } from 'lodash'
+
 import { toPlayerTime } from 'utils/time'
 
 export const locationParams = queryString.parse(window.location.search)
@@ -7,7 +9,9 @@ const parseParameters = parameters => {
   const parsed = {}
 
   if (parameters.t) {
-    parsed.playtime = toPlayerTime(parameters.t.split(','))
+    const [start, stop] = parameters.t.split(',')
+    parsed.starttime = isString(start) ? toPlayerTime(start) : undefined
+    parsed.stoptime = isString(stop) ? toPlayerTime(stop) : undefined
   }
 
   if (parameters.episode) {
