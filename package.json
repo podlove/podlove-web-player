@@ -97,7 +97,7 @@
     "eslint": "4.18.0",
     "eslint-plugin-html": "4.0.2",
     "extract-text-webpack-plugin": "3.0.2",
-    "file-loader": "1.1.7",
+    "file-loader": "1.1.8",
     "generate-changelog": "1.7.0",
     "html-webpack-plugin": "2.30.1",
     "inject-loader": "3.0.1",
