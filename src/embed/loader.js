@@ -2,6 +2,7 @@ import color from 'color'
 import { get } from 'lodash'
 
 import { tag } from 'utils/dom'
+// eslint-disable-next-line
 import css from 'css-loader!autoprefixer-loader!sass-loader!../styles/_loader.scss'
 
 const style = tag('style', css.toString())
