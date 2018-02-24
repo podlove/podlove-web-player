@@ -2,13 +2,13 @@
    <div :style="heightByIndex(0, prerender.length - 1)" v-on:scroll="renderWindow()" v-on:mousewheel="disableFollow()">
       <div :style="{ height: heightByIndex(0, start) + 'px' }"></div>
       <div :style="{ height: heightByIndex(start, end) + 'px' }">
-        <TranscriptEntry v-for="(entry, index) in slice(start, end)"
+        <transcript-entry v-for="(entry, index) in slice(start, end)"
           :key="index" :entry="entry" :playtime="playtime" :ghost="ghost" :query="transcripts.search.query"
           @onClick="onClick"
           @onMouseOver="onMouseOver"
           @onMouseLeave="onMouseLeave"
         >
-        </TranscriptEntry>
+        </transcript-entry>
       </div>
       <div :style="{ height: heightByIndex(end, prerender.length - 1) + 'px' }"></div>
     </div>
@@ -18,7 +18,7 @@
   import { reduce, head } from 'lodash'
   import store from 'store'
 
-  import TranscriptEntry from './Entry.vue'
+  import TranscriptEntry from './Entry'
 
   const RENDER_BUFFER = 10
 

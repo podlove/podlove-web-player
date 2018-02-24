@@ -4,19 +4,19 @@
       <div class="episode">
         <h3 class="title" v-if="episode.title">{{ episode.title }}</h3>
         <p class="meta">
-          <span class="tag" v-if="episode.publicationDate"><CalendarIcon class="icon"></CalendarIcon>{{ publicationDate }}, {{ publicationTime }}</span>
-          <span class="tag" v-if="duration && episodeDuration.hours > 0"><ClockIcon class="icon"></ClockIcon>{{ $t('DOWNLOAD.DURATION_WITH_HOURS', episodeDuration) }}</span>
-          <span class="tag" v-if="duration && episodeDuration.hours === 0"><ClockIcon class="icon"></ClockIcon>{{ $t('DOWNLOAD.DURATION', episodeDuration) }}</span>
+          <span class="tag" v-if="episode.publicationDate"><calendar-icon class="icon"></calendar-icon>{{ publicationDate }}, {{ publicationTime }}</span>
+          <span class="tag" v-if="duration && episodeDuration.hours > 0"><clock-icon class="icon"></clock-icon>{{ $t('DOWNLOAD.DURATION_WITH_HOURS', episodeDuration) }}</span>
+          <span class="tag" v-if="duration && episodeDuration.hours === 0"><clock-icon class="icon"></clock-icon>{{ $t('DOWNLOAD.DURATION', episodeDuration) }}</span>
         </p>
         <p class="subtitle" v-if="episode.subtitle">{{ episode.subtitle }}</p>
         <p class="summary" v-if="episode.summary">{{ episode.summary }}</p>
-        <p class="link" v-if="episode.link"><LinkIcon class="icon"></LinkIcon><a class="info-link truncate" :href="episode.link" target="_blank">{{ episode.link }}</a></p>
+        <p class="link" v-if="episode.link"><link-icon class="icon"></link-icon><a class="info-link truncate" :href="episode.link" target="_blank">{{ episode.link }}</a></p>
       </div>
       <div class="show">
         <h3 class="title" v-if="show.title">{{ show.title }}</h3>
         <img v-if="show.poster" :src="show.poster" class="show-poster shadowed"/>
         <p class="summary" v-if="show.summary">{{ show.summary }}</p>
-        <p class="link" v-if="show.link"><LinkIcon class="icon"></LinkIcon><a class="info-link truncate" :href="show.link" target="_blank">{{ show.link }}</a></p>
+        <p class="link" v-if="show.link"><link-icon class="icon"></link-icon><a class="info-link truncate" :href="show.link" target="_blank">{{ show.link }}</a></p>
       </div>
     </div>
 
@@ -35,9 +35,9 @@
 <script>
   import { calcHours, calcMinutes, localeDate, localeTime, millisecondsToSeconds } from 'utils/time'
 
-  import CalendarIcon from 'icons/CalendarIcon.vue'
-  import ClockIcon from 'icons/ClockIcon.vue'
-  import LinkIcon from 'icons/LinkIcon.vue'
+  import CalendarIcon from 'icons/CalendarIcon'
+  import ClockIcon from 'icons/ClockIcon'
+  import LinkIcon from 'icons/LinkIcon'
 
   export default {
     data () {

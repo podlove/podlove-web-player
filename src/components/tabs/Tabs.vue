@@ -1,73 +1,73 @@
 <template>
   <div class="tabs" :style="containerStyle" v-if="hasTabs">
-    <TabHeaderComponent>
-      <TabHeaderItemComponent v-if="isVisibleTab.info" :active="tabs.info" :click="toggleTab('info')">
-        <InfoIcon slot="icon"></InfoIcon>
+    <tab-header-component>
+      <tab-header-item-component v-if="isVisibleTab.info" :active="tabs.info" :click="toggleTab('info')">
+        <info-icon slot="icon"></info-icon>
         <span slot="title">{{ $t('INFO.TITLE') }}</span>
-      </TabHeaderItemComponent>
-      <TabHeaderItemComponent v-if="isVisibleTab.chapters" :active="tabs.chapters" :click="toggleTab('chapters')">
-        <ChaptersIcon slot="icon"></ChaptersIcon>
+      </tab-header-item-component>
+      <tab-header-item-component v-if="isVisibleTab.chapters" :active="tabs.chapters" :click="toggleTab('chapters')">
+        <chapters-icon slot="icon"></chapters-icon>
         <span slot="title">{{ $t('CHAPTERS.TITLE') }}</span>
-      </TabHeaderItemComponent>
-      <TabHeaderItemComponent v-if="isVisibleTab.share" :active="tabs.share" :click="toggleTab('share')">
-        <ShareIcon slot="icon"></ShareIcon>
+      </tab-header-item-component>
+      <tab-header-item-component v-if="isVisibleTab.share" :active="tabs.share" :click="toggleTab('share')">
+        <share-icon slot="icon"></share-icon>
         <span slot="title">{{ $t('SHARE.TITLE') }}</span>
-      </TabHeaderItemComponent>
-      <TabHeaderItemComponent v-if="isVisibleTab.download" :active="tabs.download" :click="toggleTab('download')">
-        <DownloadIcon slot="icon"></DownloadIcon>
+      </tab-header-item-component>
+      <tab-header-item-component v-if="isVisibleTab.download" :active="tabs.download" :click="toggleTab('download')">
+        <download-icon slot="icon"></download-icon>
         <span slot="title">{{ $t('DOWNLOAD.TITLE') }}</span>
-      </TabHeaderItemComponent>
-      <TabHeaderItemComponent v-if="isVisibleTab.transcripts" :active="tabs.transcripts" :click="toggleTab('transcripts')">
-        <TranscriptsIcon slot="icon"></TranscriptsIcon>
+      </tab-header-item-component>
+      <tab-header-item-component v-if="isVisibleTab.transcripts" :active="tabs.transcripts" :click="toggleTab('transcripts')">
+        <transcripts-icon slot="icon"></transcripts-icon>
         <span slot="title">{{ $t('TRANSCRIPTS.TITLE') }}</span>
-      </TabHeaderItemComponent>
-      <TabHeaderItemComponent v-if="isVisibleTab.audio" :active="tabs.audio" :click="toggleTab('audio')">
-        <AudioIcon slot="icon"></AudioIcon>
+      </tab-header-item-component>
+      <tab-header-item-component v-if="isVisibleTab.audio" :active="tabs.audio" :click="toggleTab('audio')">
+        <audio-icon slot="icon"></audio-icon>
         <span slot="title">{{ $t('AUDIO.TITLE') }}</span>
-      </TabHeaderItemComponent>
-    </TabHeaderComponent>
+      </tab-header-item-component>
+    </tab-header-component>
 
-    <TabBodyComponent v-if="isVisibleTab.info && tabs.info" :active="tabs.info">
-      <InfoTab></InfoTab>
-    </TabBodyComponent>
-    <TabBodyComponent v-if="isVisibleTab.chapters && tabs.chapters" :active="tabs.chapters">
-      <ChaptersTab></ChaptersTab>
-    </TabBodyComponent>
-    <TabBodyComponent v-if="isVisibleTab.share && tabs.share" :active="tabs.share">
-      <ShareTab></ShareTab>
-    </TabBodyComponent>
-    <TabBodyComponent v-if="isVisibleTab.transcripts && tabs.transcripts" :active="tabs.transcripts" class="fixed">
-      <TranscriptsTab></TranscriptsTab>
-    </TabBodyComponent>
-    <TabBodyComponent v-if="isVisibleTab.download && tabs.download" :active="tabs.download">
-      <DownloadTab></DownloadTab>
-    </TabBodyComponent>
-    <TabBodyComponent v-if="isVisibleTab.audio && tabs.audio" :active="tabs.audio">
-      <AudioTab></AudioTab>
-    </TabBodyComponent>
+    <tab-body-component v-if="isVisibleTab.info && tabs.info" :active="tabs.info">
+      <info-tab></info-tab>
+    </tab-body-component>
+    <tab-body-component v-if="isVisibleTab.chapters && tabs.chapters" :active="tabs.chapters">
+      <chapters-tab></chapters-tab>
+    </tab-body-component>
+    <tab-body-component v-if="isVisibleTab.share && tabs.share" :active="tabs.share">
+      <share-tab></share-tab>
+    </tab-body-component>
+    <tab-body-component v-if="isVisibleTab.transcripts && tabs.transcripts" :active="tabs.transcripts" class="fixed">
+      <transcripts-tab></transcripts-tab>
+    </tab-body-component>
+    <tab-body-component v-if="isVisibleTab.download && tabs.download" :active="tabs.download">
+      <download-tab></download-tab>
+    </tab-body-component>
+    <tab-body-component v-if="isVisibleTab.audio && tabs.audio" :active="tabs.audio">
+      <audio-tab></audio-tab>
+    </tab-body-component>
   </div>
 </template>
 
 <script>
 import store from 'store'
 
-import TabHeaderComponent from 'shared/TabHeader.vue'
-import TabHeaderItemComponent from 'shared/TabHeaderItem.vue'
-import TabBodyComponent from 'shared/TabBody.vue'
+import TabHeaderComponent from 'shared/TabHeader'
+import TabHeaderItemComponent from 'shared/TabHeaderItem'
+import TabBodyComponent from 'shared/TabBody'
 
-import ChaptersIcon from 'icons/ChaptersIcon.vue'
-import ShareIcon from 'icons/ShareIcon.vue'
-import DownloadIcon from 'icons/DownloadIcon.vue'
-import InfoIcon from 'icons/InfoIcon.vue'
-import AudioIcon from 'icons/AudioIcon.vue'
-import TranscriptsIcon from 'icons/TranscriptsIcon.vue'
+import ChaptersIcon from 'icons/ChaptersIcon'
+import ShareIcon from 'icons/ShareIcon'
+import DownloadIcon from 'icons/DownloadIcon'
+import InfoIcon from 'icons/InfoIcon'
+import AudioIcon from 'icons/AudioIcon'
+import TranscriptsIcon from 'icons/TranscriptsIcon'
 
-import ChaptersTab from './chapters/Chapters.vue'
-import ShareTab from './share/Share.vue'
-import AudioTab from './audio/Audio.vue'
-import InfoTab from './info/Info.vue'
-import DownloadTab from './download/Download.vue'
-import TranscriptsTab from './transcripts/Transcripts.vue'
+import ChaptersTab from './chapters/Chapters'
+import ShareTab from './share/Share'
+import AudioTab from './audio/Audio'
+import InfoTab from './info/Info'
+import DownloadTab from './download/Download'
+import TranscriptsTab from './transcripts/Transcripts'
 
 export default {
   data () {

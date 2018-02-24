@@ -11,7 +11,7 @@
 <script>
 import store from 'store'
 
-import FollowIcon from 'icons/FollowIcon.vue'
+import FollowIcon from 'icons/FollowIcon'
 
 export default {
   data () {

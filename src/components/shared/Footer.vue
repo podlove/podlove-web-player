@@ -1,13 +1,13 @@
 <template>
   <div class="footer">
     <a class="version" title="Podlove" href="//podlove.org" target="_blank">
-      <PodlovePlayerIcon class="icon" size="20"></PodlovePlayerIcon><span class="link-text">Podlove Web Player v{{version}}</span>
+      <podlove-player-icon class="icon" size="20"></podlove-player-icon><span class="link-text">Podlove Web Player v{{version}}</span>
     </a>
   </div>
 </template>
 
 <script>
-import PodlovePlayerIcon from 'icons/PodlovePlayerIcon.vue'
+import PodlovePlayerIcon from 'icons/PodlovePlayerIcon'
 
 export default {
   data () {

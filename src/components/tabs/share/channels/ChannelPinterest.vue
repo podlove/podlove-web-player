@@ -1,11 +1,11 @@
 <template>
   <a :href="pinterestLink" class="channel-link" target="_blank">
-    <span class="channel-icon pinterest"><PinterestIcon color="#fff"></PinterestIcon></span>
+    <span class="channel-icon pinterest"><pinterest-icon color="#fff"></pinterest-icon></span>
   </a>
 </template>
 
 <script>
-  import PinterestIcon from 'icons/PinterestIcon.vue'
+  import PinterestIcon from 'icons/PinterestIcon'
   import { addQueryParameter } from 'utils/url'
 
   const LINK = 'https://pinterest.com/pin/create/bookmarklet/'

@@ -1,7 +1,7 @@
 <template>
   <div class="timer-progress" :class="playstate" :style="timerStyle">
     <span class="current">{{ fromPlayerTime(ghost.active ? ghost.time : playtime) }}</span>
-    <CurrentChapter class="chapter" />
+    <current-chapter class="chapter"></current-chapter>
     <span class="time">-{{ fromPlayerTime(duration - (ghost.active ? ghost.time : playtime)) }}</span>
   </div>
 </template>
@@ -10,7 +10,7 @@
 import color from 'color'
 
 import { fromPlayerTime } from 'utils/time'
-import CurrentChapter from './CurrentChapter.vue'
+import CurrentChapter from './CurrentChapter'
 
 export default {
   data () {

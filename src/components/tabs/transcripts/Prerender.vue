@@ -7,7 +7,7 @@
 <script>
   import { map } from 'lodash'
 
-  import TranscriptEntry from './Entry.vue'
+  import TranscriptEntry from './Entry'
 
   export default {
     props: ['transcripts'],

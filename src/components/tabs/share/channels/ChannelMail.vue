@@ -1,11 +1,11 @@
 <template>
   <a :href="mailLink" class="channel-link">
-    <span class="channel-icon mail"><MailIcon color="#fff"></MailIcon></span>
+    <span class="channel-icon mail"><mail-icon color="#fff"></mail-icon></span>
   </a>
 </template>
 
 <script>
-  import MailIcon from 'icons/MailIcon.vue'
+  import MailIcon from 'icons/MailIcon'
   import { addQueryParameter } from 'utils/url'
 
   const LINK = 'mailto:'

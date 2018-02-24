@@ -1,11 +1,11 @@
 <template>
   <a :href="twitterLink" class="channel-link" target="_blank">
-    <span class="channel-icon twitter"><TwitterIcon color="#fff"></TwitterIcon></span>
+    <span class="channel-icon twitter"><twitter-icon color="#fff"></twitter-icon></span>
   </a>
 </template>
 
 <script>
-  import TwitterIcon from 'icons/TwitterIcon.vue'
+  import TwitterIcon from 'icons/TwitterIcon'
   import { addQueryParameter } from 'utils/url'
 
   const LINK = 'https://twitter.com/intent/tweet'

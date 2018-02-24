@@ -8,7 +8,7 @@
 
 <script>
   import store from 'store'
-  import StepBackIcon from 'icons/StepBackIcon.vue'
+  import StepBackIcon from 'icons/StepBackIcon'
 
   export default {
     components: {

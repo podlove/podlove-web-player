@@ -12,10 +12,10 @@
 </template>
 
 <script>
-import PrerenderContainer from './Prerender.vue'
-import RenderContainer from './Render.vue'
-import Search from './Search.vue'
-import Follow from './Follow.vue'
+import PrerenderContainer from './Prerender'
+import RenderContainer from './Render'
+import Search from './Search'
+import Follow from './Follow'
 
 export default {
   data () {
