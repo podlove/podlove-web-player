@@ -1,6 +1,6 @@
 <template>
   <a class="channel-link" @click="showEmbedOverlay()">
-    <span class="channel-icon" :style="iconStyle"><EmbedIcon color="#fff"></EmbedIcon></span>
+    <span class="channel-icon" :style="iconStyle"><embed-icon color="#fff"></embed-icon></span>
   </a>
 </template>
 
@@ -8,8 +8,7 @@
   import store from 'store'
   import { compose } from 'lodash/fp'
 
-  import ButtonComponent from 'shared/Button.vue'
-  import EmbedIcon from 'icons/EmbedIcon.vue'
+  import EmbedIcon from 'icons/EmbedIcon'
 
   export default {
     props: ['text', 'subject', 'color'],
@@ -24,7 +23,6 @@
       showEmbedOverlay: compose(store.dispatch.bind(store), store.actions.showShareEmbed)
     },
     components: {
-      ButtonComponent,
       EmbedIcon
     }
   }

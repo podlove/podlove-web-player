@@ -1,27 +1,27 @@
 <template>
   <div class="share-tab">
     <div class="content-select">
-      <ShareContentComponent></ShareContentComponent>
+      <share-content-component></share-content-component>
     </div>
 
     <div class="channel-select" :style="sectionStyle">
       <span class="label">{{ $t('SHARE.SHARE_CHANNEL') }}</span>
-      <ShareChannelsComponent :type="share.content"></ShareChannelsComponent>
+      <share-channels-component :type="share.content"></share-channels-component>
 
       <span class="label" v-if="hasLink">{{ $t('SHARE.SHARE_LINK') }}</span>
-      <ShareLinkComponent :type="share.content" v-if="hasLink"></ShareLinkComponent>
+      <share-link-component :type="share.content" v-if="hasLink"></share-link-component>
     </div>
 
-    <ShareEmbedComponent :type="share.content"></ShareEmbedComponent>
+    <share-embed-component :type="share.content"></share-embed-component>
   </div>
 </template>
 
 <script>
-  import ShareChannelsComponent from './ShareChannels.vue'
-  import ShareContentComponent from './ShareContent.vue'
-  import ShareLinkComponent from './ShareLink.vue'
+  import ShareChannelsComponent from './ShareChannels'
+  import ShareContentComponent from './ShareContent'
+  import ShareLinkComponent from './ShareLink'
 
-  import ShareEmbedComponent from './ShareEmbed.vue'
+  import ShareEmbedComponent from './ShareEmbed'
 
   export default {
     data () {

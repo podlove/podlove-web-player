@@ -1,15 +1,15 @@
 <template>
   <div class="header" :style="backgroundStyle"
     v-if="components.header.error || components.header.info">
-    <ErrorComponent v-if="components.header.error"></ErrorComponent>
-    <InfoComponent v-if="components.header.info"></InfoComponent>
+    <error-component v-if="components.header.error"></error-component>
+    <info-component v-if="components.header.info"></info-component>
   </div>
 
 </template>
 
 <script>
-  import InfoComponent from './Info.vue'
-  import ErrorComponent from './Error.vue'
+  import InfoComponent from './Info'
+  import ErrorComponent from './Error'
 
   export default {
     data () {

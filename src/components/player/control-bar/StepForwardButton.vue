@@ -1,14 +1,12 @@
 <template>
   <button class="control-button" :class="playstate" @click="onButtonClick()" :disabled="isDisabled(playtime, duration)">
-    <StepForwardIcon
-      :color="theme.player.actions.background"
-    ></StepForwardIcon>
+    <step-forward-icon :color="theme.player.actions.background"></step-forward-icon>
   </button>
 </template>
 
 <script>
   import store from 'store'
-  import StepForwardIcon from 'icons/StepForwardIcon.vue'
+  import StepForwardIcon from 'icons/StepForwardIcon'
 
   export default {
     components: {

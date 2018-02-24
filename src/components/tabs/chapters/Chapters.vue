@@ -1,16 +1,16 @@
 <template>
   <div class="chapters-tab">
-    <ChapterEntryComponent
+    <chapter-entry-component
       v-for="(chapter, index) in chapters"
       :chapter="chapter"
       :index="index"
       :key="index">
-    </ChapterEntryComponent>
+    </chapter-entry-component>
   </div>
 </template>
 
 <script>
-  import ChapterEntryComponent from './ChapterEntry.vue'
+  import ChapterEntryComponent from './ChapterEntry'
 
   export default {
     data () {

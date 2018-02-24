@@ -1,15 +1,15 @@
 <template>
   <div class="podlove" :class="{[display]: display, [runtime.platform]: runtime.platform}" :style="appStyle">
-    <HeaderComponent></HeaderComponent>
-    <PlayerComponent></PlayerComponent>
-    <TabsComponent></TabsComponent>
+    <header-component></header-component>
+    <player-component></player-component>
+    <tabs-component></tabs-component>
   </div>
 </template>
 
 <script>
-  import HeaderComponent from './header/Header.vue'
-  import PlayerComponent from './player/Player.vue'
-  import TabsComponent from './tabs/Tabs.vue'
+  import HeaderComponent from './header/Header'
+  import PlayerComponent from './player/Player'
+  import TabsComponent from './tabs/Tabs'
 
   export default {
     name: 'app',

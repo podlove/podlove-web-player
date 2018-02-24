@@ -1,6 +1,6 @@
 <template>
   <button class="control-button" @click="onButtonClick()" :disabled="playtime === 0">
-    <ChapterBackIcon :color="theme.player.actions.background"></ChapterBackIcon>
+    <chapter-back-icon :color="theme.player.actions.background"></chapter-back-icon>
   </button>
 </template>
 
@@ -8,7 +8,7 @@
   import { currentChapter, currentChapterIndex } from 'utils/chapters'
 
   import store from 'store'
-  import ChapterBackIcon from 'icons/ChapterBackIcon.vue'
+  import ChapterBackIcon from 'icons/ChapterBackIcon'
 
   export default {
     components: {

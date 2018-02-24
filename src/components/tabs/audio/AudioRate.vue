@@ -5,15 +5,15 @@
       <span class="input-label">{{ toPercent(rate) }}%</span>
     </label>
     <div class="rate-slider centered">
-      <ButtonComponent class="slider-button" :click="changeRate(-5, rate)">
-        <MinusIcon :color="theme.button.color"></MinusIcon>
-      </ButtonComponent>
-      <ButtonComponent class="slider-button" :click="changeRate(5, rate)">
-        <PlusIcon :color="theme.button.color"></PlusIcon>
-      </ButtonComponent>
-      <InputSliderComponent
+      <button-component class="slider-button" :click="changeRate(-5, rate)">
+        <minus-icon :color="theme.button.color"></minus-icon>
+      </button-component>
+      <button-component class="slider-button" :click="changeRate(5, rate)">
+        <plus-icon :color="theme.button.color"></plus-icon>
+      </button-component>
+      <input-slider-component
         min="0" max="1" step="0.001"
-        :value="sliderRate" :onInput="toStateRate"></InputSliderComponent>
+        :value="sliderRate" :onInput="toStateRate"></input-slider-component>
     </div>
   </div>
 </template>
@@ -24,11 +24,11 @@
   import { compose } from 'lodash/fp'
   import { toPercent, roundUp, round } from 'utils/math'
 
-  import InputSliderComponent from 'shared/InputSlider.vue'
-  import ButtonComponent from 'shared/Button.vue'
+  import InputSliderComponent from 'shared/InputSlider'
+  import ButtonComponent from 'shared/Button'
 
-  import PlusIcon from 'icons/PlusIcon.vue'
-  import MinusIcon from 'icons/MinusIcon.vue'
+  import PlusIcon from 'icons/PlusIcon'
+  import MinusIcon from 'icons/MinusIcon'
 
   // Speed Modifiers
   const normalizeSliderValue = (value = 0) => {
