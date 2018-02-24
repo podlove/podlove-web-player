@@ -4,10 +4,10 @@ import { head, findIndex } from 'lodash'
 import { LOAD_QUANTILES, SET_QUANTILE } from '../types'
 
 const findQuantile = (quantiles = [], start) =>
-    findIndex(quantiles, quantile => head(quantile) === start)
+  findIndex(quantiles, quantile => head(quantile) === start)
 
 const newQuantile = (quantiles = [], quantile) =>
-    [...quantiles, quantile]
+  [...quantiles, quantile]
 
 const updateQuantile = (quantiles = [], index, quantile) => [
   ...quantiles.slice(0, index),
