@@ -1,11 +1,11 @@
 import test from 'ava'
 import {
-    fromPlayerTime,
-    toPlayerTime,
-    localeDate,
-    secondsToMilliseconds,
-    millisecondsToSeconds
-  } from './time'
+  fromPlayerTime,
+  toPlayerTime,
+  localeDate,
+  secondsToMilliseconds,
+  millisecondsToSeconds
+} from './time'
 
 test('exports a method called fromPlayerTime', t => {
   t.truthy(typeof fromPlayerTime === 'function')

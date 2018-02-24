@@ -8,7 +8,7 @@ import { findNode, tag } from 'utils/dom'
 import requestConfig from 'utils/request'
 import { urlParameters } from 'utils/url'
 import { sandbox, sandboxWindow } from 'utils/sandbox'
-import { SET_URL_PARAMS } from 'store/types'
+import { SET_PLAYBACK_PARAMS } from 'store/types'
 
 import loader from './loader'
 
@@ -44,7 +44,7 @@ const sandboxFromSelector = compose(sandbox, findNode)
 
 const dispatchUrlParameters = store => {
   store.dispatch({
-    type: SET_URL_PARAMS,
+    type: SET_PLAYBACK_PARAMS,
     payload: urlParameters
   })
 

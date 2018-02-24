@@ -1,6 +1,6 @@
 import { handleActions } from 'redux-actions'
 
-import { SET_URL_PARAMS } from '../types'
+import { SET_PLAYBACK_PARAMS } from '../types'
 
 export const INITIAL_STATE = {
   starttime: null,
@@ -9,5 +9,5 @@ export const INITIAL_STATE = {
 }
 
 export const reducer = handleActions({
-  [SET_URL_PARAMS]: (state, { payload }) => payload
+  [SET_PLAYBACK_PARAMS]: (state, { payload }) => payload
 }, INITIAL_STATE)

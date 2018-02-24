@@ -1,5 +1,5 @@
 import queryString from 'query-string'
-import { head, isString } from 'lodash'
+import { isString } from 'lodash'
 
 import { toPlayerTime } from 'utils/time'
 
