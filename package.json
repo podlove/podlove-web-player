@@ -107,7 +107,7 @@
     "raw-loader": "0.5.1",
     "sass-loader": "6.0.6",
     "semver": "5.5.0",
-    "sinon": "4.4.0",
+    "sinon": "4.4.2",
     "snazzy": "7.0.0",
     "standard": "11.0.0",
     "standard-changelog": "1.0.13",
