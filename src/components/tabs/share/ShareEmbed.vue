@@ -1,18 +1,18 @@
 <template>
-    <OverlayComponent :visible="share.embed.visible" :onClose="closeEmbedOverlay" class="embed-overlay">
+    <overlay-component :visible="share.embed.visible" :onClose="closeEmbedOverlay" class="embed-overlay">
       <h3 name="header" class="title text-center">{{ $t('SHARE.EMBED.TITLE') }}</h3>
       <div class="input-element">
         <label class="input-label">{{ $t('SHARE.EMBED.LABEL.SIZE') }}</label>
-        <InputSelectComponent :model="share.embed.size" :options="share.embed.available" :change="setEmbedSize"></InputSelectComponent>
+        <input-select-component :model="share.embed.size" :options="share.embed.available" :change="setEmbedSize"></input-select-component>
       </div>
       <div class="input-element">
         <label class="input-label">{{ $t('SHARE.EMBED.LABEL.CODE') }}</label>
-        <InputTextComponent class="block" disabled="true" :value="embedCode"></InputTextComponent>
+        <input-text-component class="block" disabled="true" :value="embedCode"></input-text-component>
       </div>
       <div class="input-element">
-        <ButtonComponent class="block action" :data-clipboard-text="embedCode" v-clipboard>{{ $t('SHARE.EMBED.ACTIONS.COPY') }}</ButtonComponent>
+        <button-component class="block action" :data-clipboard-text="embedCode" v-clipboard>{{ $t('SHARE.EMBED.ACTIONS.COPY') }}</button-component>
       </div>
-    </OverlayComponent>
+    </overlay-component>
 </template>
 
 <script>
@@ -23,10 +23,10 @@
 
   import store from 'store'
 
-  import OverlayComponent from 'shared/Overlay.vue'
-  import ButtonComponent from 'shared/Button.vue'
-  import InputSelectComponent from 'shared/InputSelect.vue'
-  import InputTextComponent from 'shared/InputText.vue'
+  import OverlayComponent from 'shared/Overlay'
+  import ButtonComponent from 'shared/Button'
+  import InputSelectComponent from 'shared/InputSelect'
+  import InputTextComponent from 'shared/InputText'
 
   export default {
     props: ['type'],

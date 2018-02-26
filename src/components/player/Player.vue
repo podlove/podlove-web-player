@@ -1,15 +1,15 @@
 <template>
   <div class="player" :style="backgroundStyle">
-    <ControlBar></ControlBar>
+    <control-bar></control-bar>
     <transition name="progressbar">
-      <ProgressBar v-if="components.progressbar && visibleComponents.progressbar" />
+      <progress-bar v-if="components.progressbar && visibleComponents.progressbar"></progress-bar>
     </transition>
   </div>
 </template>
 
 <script>
-  import ControlBar from './control-bar/ControlBar.vue'
-  import ProgressBar from './progress-bar/ProgressBar.vue'
+  import ControlBar from './control-bar/ControlBar'
+  import ProgressBar from './progress-bar/ProgressBar'
 
   export default {
     data () {

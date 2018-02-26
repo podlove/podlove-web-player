@@ -5,10 +5,10 @@
       <span class="input-label">{{ toPercent(visualVolume) }}%</span>
     </label>
     <div class="volume-slider centered">
-      <ButtonComponent class="slider-button mute-control" :click="toggleMute">
-        <SpeakerIcon :color="theme.button.text" :volume="visualVolume * 100" :muted="muted"></SpeakerIcon>
-      </ButtonComponent>
-      <InputSliderComponent min="0" max="1" :value="visualVolume" step="0.001" :onInput="setVolume"></InputSliderComponent>
+      <button-component class="slider-button mute-control" :click="toggleMute">
+        <speaker-icon :color="theme.button.text" :volume="visualVolume * 100" :muted="muted"></speaker-icon>
+      </button-component>
+      <input-slider-component min="0" max="1" :value="visualVolume" step="0.001" :onInput="setVolume"></input-slider-component>
     </div>
   </div>
 </template>
@@ -20,9 +20,9 @@
   import { compose } from 'lodash/fp'
   import { toPercent } from 'utils/math'
 
-  import InputSliderComponent from 'shared/InputSlider.vue'
-  import ButtonComponent from 'shared/Button.vue'
-  import SpeakerIcon from 'icons/SpeakerIcon.vue'
+  import InputSliderComponent from 'shared/InputSlider'
+  import ButtonComponent from 'shared/Button'
+  import SpeakerIcon from 'icons/SpeakerIcon'
 
   // State Changers
   const setVolume = compose(store.dispatch.bind(store), store.actions.setVolume)

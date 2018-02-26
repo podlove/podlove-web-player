@@ -30,9 +30,9 @@
 <script>
 import store from 'store'
 
-import NextSearchIcon from 'icons/NextSearchIcon.vue'
-import PreviousSearchIcon from 'icons/PreviousSearchIcon.vue'
-import SearchDeleteIcon from 'icons/SearchDeleteIcon.vue'
+import NextSearchIcon from 'icons/NextSearchIcon'
+import PreviousSearchIcon from 'icons/PreviousSearchIcon'
+import SearchDeleteIcon from 'icons/SearchDeleteIcon'
 
 export default {
   data () {

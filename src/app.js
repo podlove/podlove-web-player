@@ -5,7 +5,7 @@ import { createApp } from 'core'
 import store from 'store'
 
 // UI Components
-import App from './components/App.vue'
+import App from './components/App'
 
 // Import share static page
 // eslint-disable-next-line

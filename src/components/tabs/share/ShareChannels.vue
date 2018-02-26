@@ -1,13 +1,13 @@
 <template>
   <ul class="channel-list">
-    <li><ChannelTwitterComponent :text="shareText"></ChannelTwitterComponent></li>
-    <li><ChannelFacebookComponent :link="shareLink"></ChannelFacebookComponent></li>
-    <li><ChannelPinterestComponent :text="shareText" :link="shareLink" :poster="sharePoster"></ChannelPinterestComponent></li>
-    <li><ChannelRedditComponent :text="shareText" :link="shareLink"></ChannelRedditComponent></li>
-    <li><ChannelGooglePlusComponent :link="shareLink"></ChannelGooglePlusComponent></li>
-    <li><ChannelMailComponent :text="shareText" :subject="shareSubject"></ChannelMailComponent></li>
+    <li><channel-twitter-component :text="shareText"></channel-twitter-component></li>
+    <li><channel-facebook-component :link="shareLink"></channel-facebook-component></li>
+    <li><channel-pinterest-component :text="shareText" :link="shareLink" :poster="sharePoster"></channel-pinterest-component></li>
+    <li><channel-reddit-component :text="shareText" :link="shareLink"></channel-reddit-component></li>
+    <li><channel-google-plus-component :link="shareLink"></channel-google-plus-component></li>
+    <li><channel-mail-component :text="shareText" :subject="shareSubject"></channel-mail-component></li>
     <li v-if="type !== 'show' && ((reference.config && reference.share) || reference.origin)">
-      <ChannelEmbedComponent :color="theme.tabs.share.platform.button"></ChannelEmbedComponent>
+      <channel-embed-component :color="theme.tabs.share.platform.button"></channel-embed-component>
     </li>
   </ul>
 </template>
@@ -17,13 +17,13 @@
   import { fromPlayerTime } from 'utils/time'
   import { addQueryParameter } from 'utils/url'
 
-  import ChannelTwitterComponent from './channels/ChannelTwitter.vue'
-  import ChannelFacebookComponent from './channels/ChannelFacebook.vue'
-  import ChannelGooglePlusComponent from './channels/ChannelGooglePlus.vue'
-  import ChannelMailComponent from './channels/ChannelMail.vue'
-  import ChannelEmbedComponent from './channels/ChannelEmbed.vue'
-  import ChannelPinterestComponent from './channels/ChannelPinterest.vue'
-  import ChannelRedditComponent from './channels/ChannelReddit.vue'
+  import ChannelTwitterComponent from './channels/ChannelTwitter'
+  import ChannelFacebookComponent from './channels/ChannelFacebook'
+  import ChannelGooglePlusComponent from './channels/ChannelGooglePlus'
+  import ChannelMailComponent from './channels/ChannelMail'
+  import ChannelEmbedComponent from './channels/ChannelEmbed'
+  import ChannelPinterestComponent from './channels/ChannelPinterest'
+  import ChannelRedditComponent from './channels/ChannelReddit'
 
   export default {
     props: ['type'],

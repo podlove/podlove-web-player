@@ -1,13 +1,13 @@
 <template>
   <div class="progress-bar">
-    <ProgressComponent></ProgressComponent>
-    <TimerComponent></TimerComponent>
+    <progress-component></progress-component>
+    <timer-component></timer-component>
   </div>
 </template>
 
 <script>
-  import ProgressComponent from './Progress.vue'
-  import TimerComponent from './Timer.vue'
+  import ProgressComponent from './Progress'
+  import TimerComponent from './Timer'
 
   export default {
     components: {

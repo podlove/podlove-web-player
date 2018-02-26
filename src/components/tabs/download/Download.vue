@@ -3,19 +3,19 @@
     <div class="show-info centered column" v-if="episode.poster || show.poster">
       <img class="episode-poster shadowed" v-if="episode.poster || show.poster" :src="episode.poster || show.poster">
       <ul class="episode-meta centered">
-        <li class="meta centered" v-if="episode.publicationDate"><CalendarIcon class="icon"></CalendarIcon>{{ publicationDate }}</li>
-        <li class="meta centered" v-if="episodeDuration.hours > 0"><ClockIcon class="icon" size="15"></ClockIcon>{{ $t('DOWNLOAD.DURATION_WITH_HOURS', episodeDuration) }}</li>
-        <li class="meta centered" v-if="episodeDuration.hours === 0"><ClockIcon class="icon" size="15"></ClockIcon>{{ $t('DOWNLOAD.DURATION', episodeDuration) }}</li>
+        <li class="meta centered" v-if="episode.publicationDate"><calendar-icon class="icon"></calendar-icon>{{ publicationDate }}</li>
+        <li class="meta centered" v-if="episodeDuration.hours > 0"><clock-icon class="icon" size="15"></clock-icon>{{ $t('DOWNLOAD.DURATION_WITH_HOURS', episodeDuration) }}</li>
+        <li class="meta centered" v-if="episodeDuration.hours === 0"><clock-icon class="icon" size="15"></clock-icon>{{ $t('DOWNLOAD.DURATION', episodeDuration) }}</li>
       </ul>
     </div>
     <div class="file-selection centered column" :style="sectionStyle">
-      <ButtonComponent class="action download-button" :href="download.selected" type="link">{{ $t('DOWNLOAD.ACTIONS.DOWNLOAD') }}</ButtonComponent>
-      <ButtonComponent class="action copy-button" :data-clipboard-text="download.selected" v-clipboard>{{ $t('DOWNLOAD.ACTIONS.COPY') }}</ButtonComponent>
-      <InputSelectComponent class="download-select" :change="setDownloadFile">
+      <button-component class="action download-button" :href="download.selected" type="link">{{ $t('DOWNLOAD.ACTIONS.DOWNLOAD') }}</button-component>
+      <button-component class="action copy-button" :data-clipboard-text="download.selected" v-clipboard>{{ $t('DOWNLOAD.ACTIONS.COPY') }}</button-component>
+      <input-select-component class="download-select" :change="setDownloadFile">
         <option v-for="(option, index) in download.files" v-bind:key="index" v-bind:value="option.url" :selected="download.selected === option.url">
           {{ option.title }} • {{ toMegabyte(option.size) }} MB
         </option>
-      </InputSelectComponent>
+      </input-select-component>
     </div>
   </div>
 </template>
@@ -25,11 +25,11 @@
   import store from 'store'
   import { calcHours, calcMinutes, localeDate } from 'utils/time'
 
-  import ButtonComponent from 'shared/Button.vue'
-  import InputSelectComponent from 'shared/InputSelect.vue'
+  import ButtonComponent from 'shared/Button'
+  import InputSelectComponent from 'shared/InputSelect'
 
-  import ClockIcon from 'icons/ClockIcon.vue'
-  import CalendarIcon from 'icons/CalendarIcon.vue'
+  import ClockIcon from 'icons/ClockIcon'
+  import CalendarIcon from 'icons/CalendarIcon'
 
   export default {
     data () {

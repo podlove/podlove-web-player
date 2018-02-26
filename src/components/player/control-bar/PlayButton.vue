@@ -8,30 +8,30 @@
             components.controls.button.retry
     }">
       <span class="inner" v-if="components.controls.button.loading">
-        <LoadingIndicator></LoadingIndicator>
+        <loading-indicator></loading-indicator>
       </span>
 
-      <PauseIcon :color="theme.player.actions.icon" v-if="components.controls.button.playing"></PauseIcon>
+      <pause-icon :color="theme.player.actions.icon" v-if="components.controls.button.playing"></pause-icon>
 
-      <PlayIcon size="21" :color="theme.player.actions.icon" class="reset" v-if="components.controls.button.pause"></PlayIcon>
+      <play-icon size="21" :color="theme.player.actions.icon" class="reset" v-if="components.controls.button.pause"></play-icon>
 
       <span class="inner" v-if="components.controls.button.remaining">
-        <PlayIcon size="21" :color="theme.player.actions.icon"></PlayIcon>
+        <play-icon size="21" :color="theme.player.actions.icon"></play-icon>
         <span class="label" :style="textStyle">{{ fromPlayerTime(playtime) }}</span>
       </span>
 
       <span class="inner" v-if="components.controls.button.duration">
-        <PlayIcon size="21" :color="theme.player.actions.icon"></PlayIcon>
+        <play-icon size="21" :color="theme.player.actions.icon"></play-icon>
         <span class="label" :style="textStyle">{{ fromPlayerTime(duration) }}</span>
       </span>
 
       <span class="inner" v-if="components.controls.button.replay">
-        <PlayIcon size="21" :color="theme.player.actions.icon"></PlayIcon>
+        <play-icon size="21" :color="theme.player.actions.icon"></play-icon>
         <span class="label truncate" :style="textStyle">{{ $t('PLAYER.REPLAY') }}</span>
       </span>
 
       <span class="inner" v-if="components.controls.button.retry">
-        <ReloadIcon :color="theme.player.actions.icon"></ReloadIcon>
+        <reload-icon :color="theme.player.actions.icon"></reload-icon>
         <span class="label truncate" :style="textStyle">{{ $t('PLAYER.RETRY') }}</span>
       </span>
     </span>
@@ -42,12 +42,12 @@
   import store from 'store'
   import { fromPlayerTime } from 'utils/time'
 
-  import PlayIcon from 'icons/PlayIcon.vue'
-  import PauseIcon from 'icons/PauseIcon.vue'
-  import ErrorIcon from 'icons/ErrorIcon.vue'
-  import ReloadIcon from 'icons/ReloadIcon.vue'
+  import PlayIcon from 'icons/PlayIcon'
+  import PauseIcon from 'icons/PauseIcon'
+  import ErrorIcon from 'icons/ErrorIcon'
+  import ReloadIcon from 'icons/ReloadIcon'
 
-  import LoadingIndicator from './LoadingIndicator.vue'
+  import LoadingIndicator from './LoadingIndicator'
 
   export default {
     components: {

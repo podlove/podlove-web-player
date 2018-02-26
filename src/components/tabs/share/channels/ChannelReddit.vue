@@ -1,11 +1,11 @@
 <template>
   <a :href="redditLink" class="channel-link" target="_blank">
-    <span class="channel-icon reddit"><RedditIcon color="#fff"></RedditIcon></span>
+    <span class="channel-icon reddit"><reddit-icon color="#fff"></reddit-icon></span>
   </a>
 </template>
 
 <script>
-  import RedditIcon from 'icons/RedditIcon.vue'
+  import RedditIcon from 'icons/RedditIcon'
   import { addQueryParameter } from 'utils/url'
 
   const LINK = 'http://reddit.com/submit'
