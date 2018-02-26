@@ -1,3 +1,19 @@
+<a name="4.0.5"></a>
+## [4.0.5](https://github.com/podlove/podlove-web-player/compare/v4.0.3...v4.0.5) (2018-02-26)
+
+
+### Bug Fixes
+
+* **locale:** Adds default locale if not defined ([3be3970](https://github.com/podlove/podlove-web-player/commit/3be3970))
+* **package:** update detect-browser to version 2.1.0 ([478db3c](https://github.com/podlove/podlove-web-player/commit/478db3c))
+
+
+### Features
+
+* **share:** Adds icons to share tab ([f0e83f1](https://github.com/podlove/podlove-web-player/commit/f0e83f1)), closes [#486](https://github.com/podlove/podlove-web-player/issues/486)
+
+
+
 <a name="4.0.2"></a>
 ## [4.0.2](https://github.com/podlove/podlove-web-player/compare/v4.0.0-beta.5...v4.0.2) (2018-02-17)
 
