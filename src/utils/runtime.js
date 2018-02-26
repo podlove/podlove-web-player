@@ -6,7 +6,7 @@ import { version } from '../../package.json'
 
 const platform = new MobileDetect(window.navigator.userAgent)
 
-const locale = navigator.language || navigator.userLanguage
+const locale = navigator.language || navigator.userLanguage || 'en-us'
 
 const currentLanguage = (() => {
   return head(locale.split('-'))
