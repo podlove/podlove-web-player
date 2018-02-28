@@ -21,7 +21,7 @@ test.beforeEach(t => {
     getState: sinon.stub().returns({
       volume: 0.8,
       rate: 0.8,
-      playtime: 100,
+      playtime: 0,
       quantiles: [
         [0, 20]
       ],
