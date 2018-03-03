@@ -16,14 +16,15 @@ const marquee = el => {
 
   setStyles({
     height: `${scroller.offsetHeight}px`,
-    width: `${scroller.scrollWidth}px`
+    width: 'auto'
   })(scroller)
 
   if (scroller.scrollWidth > el.offsetWidth) {
     addClasses('marquee-container')(el)
     addClasses('marquee')(scroller)
     setStyles({
-      'animation-duration': `${animationDuration > 10 ? animationDuration : 10}s` // min 10s
+      'animation-duration': `${animationDuration > 10 ? animationDuration : 10}s`, // min 10s
+      width: `${scroller.scrollWidth}px`
     })(scroller)
   } else {
     removeClasses('marquee-container')(el)
