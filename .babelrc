@@ -1,13 +1,28 @@
 {
-  "presets": ["es2015"],
-  "plugins": ["lodash", "transform-object-rest-spread"],
+  "presets": [[
+    "env",
+    {
+      "targets": {
+        "browsers": [
+          "last 2 versions",
+          "safari >= 7"
+        ]
+      }
+    }
+  ]],
+  "plugins": [
+    "lodash",
+    "transform-object-rest-spread"
+  ],
   "env": {
     "AVA": {
       "plugins": [
         "transform-runtime",
         [
           "babel-plugin-webpack-alias",
-          { "config": "build/webpack.config.prod.js" }
+          {
+            "config": "build/webpack.config.prod.js"
+          }
         ]
       ]
     }
