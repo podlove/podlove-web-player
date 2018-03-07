@@ -9410,9 +9410,9 @@ vue-i18n@7.4.2:
   version "7.4.2"
   resolved "https://registry.yarnpkg.com/vue-i18n/-/vue-i18n-7.4.2.tgz#ef954f80898bb3609f132f77d51a7053379e03b2"
 
-vue-loader@14.1.1:
-  version "14.1.1"
-  resolved "https://registry.yarnpkg.com/vue-loader/-/vue-loader-14.1.1.tgz#331f197fcea790d6b8662c29b850806e7eb29342"
+vue-loader@14.2.0:
+  version "14.2.0"
+  resolved "https://registry.yarnpkg.com/vue-loader/-/vue-loader-14.2.0.tgz#ebd36080967352435552492d2e8fe1c35223e309"
   dependencies:
     consolidate "^0.14.0"
     hash-sum "^1.0.2"
