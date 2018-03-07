@@ -9,7 +9,7 @@
       </ul>
     </div>
     <div class="file-selection centered column" :style="sectionStyle">
-      <button-component class="action download-button" :href="download.selected" type="link">{{ $t('DOWNLOAD.ACTIONS.DOWNLOAD') }}</button-component>
+      <button-component class="action download-button" :href="download.selected" type="link" download>{{ $t('DOWNLOAD.ACTIONS.DOWNLOAD') }}</button-component>
       <button-component class="action copy-button" :data-clipboard-text="download.selected" v-clipboard>{{ $t('DOWNLOAD.ACTIONS.COPY') }}</button-component>
       <input-select-component class="download-select" :change="setDownloadFile">
         <option v-for="(option, index) in download.files" v-bind:key="index" v-bind:value="option.url" :selected="download.selected === option.url">

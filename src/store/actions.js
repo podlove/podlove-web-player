@@ -17,6 +17,7 @@ import * as tabs from './tabs/actions'
 import * as theme from './theme/actions'
 import * as transcripts from './transcripts/actions'
 import * as volume from './volume/actions'
+import * as playback from './playback/actions'
 
 export default {
   ...buffer,
@@ -37,5 +38,6 @@ export default {
   ...tabs,
   ...theme,
   ...transcripts,
-  ...volume
+  ...volume,
+  ...playback
 }

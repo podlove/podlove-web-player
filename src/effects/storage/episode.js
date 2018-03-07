@@ -28,8 +28,9 @@ export default storageFactory => handleActions({
     const storedVolume = storage.get('volume')
     const storedRate = storage.get('rate')
     const storedQuantiles = storage.get('quantiles')
+    const playtime = get(state, 'playtime', 0)
 
-    if (storedPlaytime) {
+    if (playtime === 0 && storedPlaytime) {
       dispatch(actions.setPlaytime(storedPlaytime))
       dispatch(actions.idle())
     }

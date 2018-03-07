@@ -1,7 +1,9 @@
-import { setStyles, hasOverflow, addClasses, removeClasses } from 'utils/dom'
+import { setStyles, addClasses, removeClasses } from 'utils/dom'
 
 const marquee = el => {
   const scroller = el.firstChild
+
+  const animationDuration = scroller.scrollWidth / 50
 
   setStyles({
     'overflow-x': 'auto',
@@ -13,12 +15,17 @@ const marquee = el => {
   })(el)
 
   setStyles({
-    height: `${scroller.offsetHeight}px`
+    height: `${scroller.offsetHeight}px`,
+    width: 'auto'
   })(scroller)
 
-  if (hasOverflow(scroller)) {
+  if (scroller.scrollWidth > el.offsetWidth) {
     addClasses('marquee-container')(el)
     addClasses('marquee')(scroller)
+    setStyles({
+      'animation-duration': `${animationDuration > 10 ? animationDuration : 10}s`, // min 10s
+      width: `${scroller.scrollWidth}px`
+    })(scroller)
   } else {
     removeClasses('marquee-container')(el)
     removeClasses('marquee')(scroller)

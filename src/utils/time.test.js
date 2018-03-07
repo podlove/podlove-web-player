@@ -3,10 +3,6 @@ import {
   fromPlayerTime,
   toPlayerTime,
   localeDate,
-  parseHours,
-  parseMinutes,
-  parseSeconds,
-  parseMilliseconds,
   secondsToMilliseconds,
   millisecondsToSeconds
 } from './time'
@@ -31,7 +27,7 @@ test('fromPlayerTime transforms given milliseconds to a time string', t => {
   t.is(fromPlayerTime(3600000), '1:00:00')
 })
 
-test('toPlayerTime tolarets invalid inputs', t => {
+test('toPlayerTime tolerates invalid inputs', t => {
   t.is(toPlayerTime(), 0)
   t.is(toPlayerTime(undefined), 0)
   t.is(toPlayerTime(null), 0)
@@ -43,101 +39,20 @@ test('localeDate transforms a date to a locale string', t => {
 })
 
 // Time Parsers
-test(`exports a method called parseHours`, t => {
-  t.is(typeof parseHours, 'function')
+test(`toPlayerTime: parses hours from hh:mm:ss.f`, t => {
+  t.is(toPlayerTime('04:8:06.5'), 14886005)
+  t.is(toPlayerTime('4:8:06.5'), 14886005)
 })
 
-test(`exports a method called parseMinutes`, t => {
-  t.is(typeof parseMinutes, 'function')
+test(`toPlayerTime: parses minutes from mm:ss.fff`, t => {
+  t.is(toPlayerTime('8:06.500'), 486500)
+  t.is(toPlayerTime('8:06.500'), 486500)
 })
 
-test(`exports a method called parseSeconds`, t => {
-  t.is(typeof parseSeconds, 'function')
-})
-
-test(`exports a method called parseMilliseconds`, t => {
-  t.is(typeof parseMilliseconds, 'function')
-})
-
-test(`parseHours: parses hours from hh:mm:ss.f`, t => {
-  t.is(parseHours('04:8:06.5'), 4)
-  t.is(parseHours('4:8:06.5'), 4)
-})
-
-test(`parseHours: parses hours from mm:ss.fff`, t => {
-  t.is(parseHours('8:06.500'), 0)
-  t.is(parseHours('8:06.500'), 0)
-})
-
-test(`parseHours: parses hours from ss.fff`, t => {
-  t.is(parseHours('06.500'), 0)
-})
-
-test(`parseHours: has a fallback in place`, t => {
-  t.is(parseHours('foo'), 0)
-  t.is(parseHours(), 0)
-})
-
-test(`parseMinutes: parses minutes from hh:mm:ss.f`, t => {
-  t.is(parseMinutes('04:08:06.5'), 8)
-  t.is(parseMinutes('4:08:06.5'), 8)
-})
-
-test(`parseMinutes: parses minutes from mm:ss.fff`, t => {
-  t.is(parseMinutes('08:06.500'), 8)
-  t.is(parseMinutes('8:06.500'), 8)
-})
-
-test(`parseMinutes: parses minutes from ss.fff`, t => {
-  t.is(parseMinutes('06.500'), 0)
-})
-
-test(`parseMinutes: has a fallback in place`, t => {
-  t.is(parseMinutes('foo'), 0)
-  t.is(parseMinutes(), 0)
-})
-
-test(`parseSeconds: parses seconds from hh:mm:ss.f`, t => {
-  t.is(parseSeconds('04:08:06.5'), 6)
-  t.is(parseSeconds('4:08:06.5'), 6)
-})
-
-test(`parseSeconds: parses seconds from mm:ss.fff`, t => {
-  t.is(parseSeconds('08:06.500'), 6)
-  t.is(parseSeconds('8:06.500'), 6)
-})
-
-test(`parseSeconds: parses seconds from ss.fff`, t => {
-  t.is(parseSeconds('06.500'), 6)
-  t.is(parseSeconds('6.500'), 6)
-})
-
-test(`parseSeconds: has a fallback in place`, t => {
-  t.is(parseSeconds('foo'), 0)
-  t.is(parseSeconds(), 0)
-})
-
-test(`parseMilliseconds: parses milliseconds from hh:mm:ss.f`, t => {
-  t.is(parseMilliseconds('04:08:06.5'), 5)
-  t.is(parseMilliseconds('4:08:06.5'), 5)
-  t.is(parseMilliseconds('4:08:06'), 0)
-})
-
-test(`parseMilliseconds: parses milliseconds from mm:ss.fff`, t => {
-  t.is(parseMilliseconds('08:06.500'), 500)
-  t.is(parseMilliseconds('8:06.500'), 500)
-  t.is(parseMilliseconds('8:06'), 0)
-})
-
-test(`parseMilliseconds: parses milliseconds from ss.fff`, t => {
-  t.is(parseMilliseconds('06.500'), 500)
-  t.is(parseMilliseconds('6.500'), 500)
-  t.is(parseMilliseconds('6'), 0)
-})
-
-test(`parseMilliseconds: has a fallback in place`, t => {
-  t.is(parseMilliseconds('foo'), 0)
-  t.is(parseMilliseconds(), 0)
+test(`toPlayerTime: parses seconds from ss.fff`, t => {
+  t.is(toPlayerTime('06.500'), 6500)
+  t.is(toPlayerTime('6.500'), 6500)
+  t.is(toPlayerTime('6'), 6000)
 })
 
 // Time Conversion

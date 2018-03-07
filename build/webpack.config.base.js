@@ -26,10 +26,6 @@ const baseConfig = [
     publicPath: ''
   }),
 
-  babel({
-    presets: ['es2015']
-  }),
-
   resolve({
     extensions: ['*', '.js', '.vue', '.json'],
     alias: {
@@ -43,6 +39,10 @@ const baseConfig = [
       styles: path.resolve(sourceDir, 'styles')
     }
   }),
+
+  match('*.js', { exclude: /no-real-folder/ }, [
+    babel()
+  ]),
 
   match(['*.gif', '*.jpg', '*.jpeg', '*.png', '*.svg'], [
     file({

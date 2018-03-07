@@ -14,7 +14,7 @@
   },
   "ERROR": {
     "LOADING": {
-      "TITLE": "Fehler beim laden der Audiodatei",
+      "TITLE": "Fehler beim Laden der Audiodatei",
       "MESSAGE": "Die Audiodatei konnte nicht geladen werden, der Server ist nicht erreichbar. Bitte versuch es später nochmal."
     },
     "MISSING_FILES": {
