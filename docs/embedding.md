@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Embedding
-navigation: 2
+navigation: 3
 ---
 
 # Embedding

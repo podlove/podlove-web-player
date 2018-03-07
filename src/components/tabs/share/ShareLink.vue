@@ -1,19 +1,19 @@
 <template>
   <div class="share-link">
-    <InputGroupComponent>
-      <ButtonComponent slot="button" class="truncate" :data-clipboard-text="shareLink" v-clipboard>{{ $t('SHARE.ACTIONS.COPY') }}</ButtonComponent>
-      <InputTextComponent slot="input" disabled="true" :value="shareLink"></InputTextComponent>
-    </InputGroupComponent>
+    <input-group-component>
+      <button-component slot="button" class="truncate" :data-clipboard-text="shareLink" v-clipboard>{{ $t('SHARE.ACTIONS.COPY') }}</button-component>
+      <input-text-component slot="input" disabled="true" :value="shareLink"></input-text-component>
+    </input-group-component>
   </div>
 </template>
 
 <script>
-  import ButtonComponent from 'shared/Button.vue'
-  import InputGroupComponent from 'shared/InputGroup.vue'
-  import InputTextComponent from 'shared/InputText.vue'
+  import ButtonComponent from 'shared/Button'
+  import InputGroupComponent from 'shared/InputGroup'
+  import InputTextComponent from 'shared/InputText'
 
   import { addQueryParameter } from 'utils/url'
-  import { secondsToTime } from 'utils/time'
+  import { fromPlayerTime } from 'utils/time'
   import { currentChapter } from 'utils/chapters'
 
   export default {
@@ -41,11 +41,11 @@
 
         if (this.type === 'chapter') {
           const chapter = currentChapter(this.chapters)
-          time = `${secondsToTime(chapter.start)},${secondsToTime(chapter.end)}`
+          time = `${fromPlayerTime(chapter.start)},${fromPlayerTime(chapter.end)}`
         }
 
         if (this.type === 'time') {
-          time = secondsToTime(this.playtime)
+          time = fromPlayerTime(this.playtime)
         }
 
         return addQueryParameter(this.episode.link, { t: time })

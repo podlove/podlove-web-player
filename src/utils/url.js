@@ -1,23 +1,31 @@
 import queryString from 'query-string'
-import { timeToSeconds } from 'utils/time'
+import { isString } from 'lodash'
 
-const locationParams = queryString.parse(window.location.search)
+import { toPlayerTime } from 'utils/time'
+
+export const locationParams = queryString.parse(window.location.search)
 
 const parseParameters = parameters => {
   const parsed = {}
 
   if (parameters.t) {
-    parsed.playtime = timeToSeconds(parameters.t.split(','))
+    const [start, stop] = parameters.t.split(',')
+    parsed.starttime = isString(start) ? toPlayerTime(start) : undefined
+    parsed.stoptime = isString(stop) ? toPlayerTime(stop) : undefined
   }
 
   if (parameters.episode) {
     parsed.episode = parameters.episode
   }
 
+  if (parameters.autoplay) {
+    parsed.autoplay = true
+  }
+
   return parsed
 }
 
-export const params = Object.assign({}, parseParameters(locationParams))
+export const urlParameters = {...parseParameters(locationParams)}
 
 export const addQueryParameter = (url, additionalParameters = {}) => {
   const parser = document.createElement('a')

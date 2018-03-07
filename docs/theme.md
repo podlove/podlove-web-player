@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Theming
-navigation: 3
+navigation: 4
 ---
 
 # Theming

@@ -4,28 +4,28 @@
       <div class="episode">
         <h3 class="title" v-if="episode.title">{{ episode.title }}</h3>
         <p class="meta">
-          <span class="tag" v-if="episode.publicationDate"><CalendarIcon class="icon"></CalendarIcon>{{ publicationDate }}, {{ publicationTime }}</span>
-          <span class="tag" v-if="duration && episodeDuration.hours > 0"><ClockIcon class="icon"></ClockIcon>{{ $t('DOWNLOAD.DURATION_WITH_HOURS', episodeDuration) }}</span>
-          <span class="tag" v-if="duration && episodeDuration.hours === 0"><ClockIcon class="icon"></ClockIcon>{{ $t('DOWNLOAD.DURATION', episodeDuration) }}</span>
+          <span class="tag" v-if="episode.publicationDate"><calendar-icon class="icon"></calendar-icon>{{ publicationDate }}, {{ publicationTime }}</span>
+          <span class="tag" v-if="duration && episodeDuration.hours > 0"><clock-icon class="icon"></clock-icon>{{ $t('DOWNLOAD.DURATION_WITH_HOURS', episodeDuration) }}</span>
+          <span class="tag" v-if="duration && episodeDuration.hours === 0"><clock-icon class="icon"></clock-icon>{{ $t('DOWNLOAD.DURATION', episodeDuration) }}</span>
         </p>
         <p class="subtitle" v-if="episode.subtitle">{{ episode.subtitle }}</p>
         <p class="summary" v-if="episode.summary">{{ episode.summary }}</p>
-        <p class="link" v-if="episode.link"><LinkIcon class="icon"></LinkIcon><a class="info-link truncate" :href="episode.link" target="_blank">{{ episode.link }}</a></p>
+        <p class="link" v-if="episode.link"><link-icon class="icon"></link-icon><a class="info-link truncate" :href="episode.link" target="_blank">{{ episode.link }}</a></p>
       </div>
       <div class="show">
         <h3 class="title" v-if="show.title">{{ show.title }}</h3>
         <img v-if="show.poster" :src="show.poster" class="show-poster shadowed"/>
         <p class="summary" v-if="show.summary">{{ show.summary }}</p>
-        <p class="link" v-if="show.link"><LinkIcon class="icon"></LinkIcon><a class="info-link truncate" :href="show.link" target="_blank">{{ show.link }}</a></p>
+        <p class="link" v-if="show.link"><link-icon class="icon"></link-icon><a class="info-link truncate" :href="show.link" target="_blank">{{ show.link }}</a></p>
       </div>
     </div>
 
-    <div class="contributors" v-if="contributors.length > 0">
+    <div class="speakers" v-if="speakers.length > 0">
       <h3 class="title">{{ $t('INFO.ON_AIR') }}</h3>
       <ul class="list">
-        <li class="contributor" v-for="(contributor, index) in contributors" v-bind:key="index">
-          <img :src="contributor.avatar" class="shadowed avatar" :title="contributor.name" />
-          <span class="name">{{ contributor.name }}</span>
+        <li class="speaker" v-for="(speaker, index) in speakers" v-bind:key="index">
+          <img :src="speaker.avatar" class="shadowed avatar" :title="speaker.name" />
+          <span class="name">{{ speaker.name }}</span>
         </li>
       </ul>
     </div>
@@ -33,11 +33,11 @@
 </template>
 
 <script>
-  import { calcHours, calcMinutes, localeDate, localeTime } from 'utils/time'
+  import { calcHours, calcMinutes, localeDate, localeTime, millisecondsToSeconds } from 'utils/time'
 
-  import CalendarIcon from 'icons/CalendarIcon.vue'
-  import ClockIcon from 'icons/ClockIcon.vue'
-  import LinkIcon from 'icons/LinkIcon.vue'
+  import CalendarIcon from 'icons/CalendarIcon'
+  import ClockIcon from 'icons/ClockIcon'
+  import LinkIcon from 'icons/LinkIcon'
 
   export default {
     data () {
@@ -45,7 +45,7 @@
         theme: this.$select('theme'),
         show: this.$select('show'),
         episode: this.$select('episode'),
-        contributors: this.$select('contributors'),
+        speakers: this.$select('speakers'),
         runtime: this.$select('runtime'),
         duration: this.$select('duration')
       }
@@ -53,8 +53,8 @@
     computed: {
       episodeDuration () {
         return {
-          hours: calcHours(this.duration),
-          minutes: calcMinutes(this.duration)
+          hours: calcHours(millisecondsToSeconds(this.duration)),
+          minutes: calcMinutes(millisecondsToSeconds(this.duration))
         }
       },
       sectionStyle () {
@@ -111,6 +111,10 @@
         }
       }
 
+      .summary {
+        white-space: pre-line;
+      }
+
       .subtitle {
         font-weight: 500;
       }
@@ -128,13 +132,13 @@
       }
     }
 
-    .contributors {
+    .speakers {
       .list {
         display: flex;
         flex-wrap: wrap;
       }
 
-      .contributor {
+      .speaker {
         display: flex;
         width: 33%;
         padding: ($padding / 2);
@@ -144,7 +148,7 @@
 
       .avatar {
         border-radius: 4px;
-        width: $info-contributor-avatar-size;
+        width: $info-speaker-avatar-size;
         height: auto;
         margin: $margin / 4;
       }
@@ -175,16 +179,16 @@
         }
       }
 
-      .contributors {
-        .contributor {
+      .speakers {
+        .speaker {
           width: 100%;
         }
       }
     }
 
     @media screen and (min-width: $width-m) and (max-width: $width-l) {
-      .contributors {
-        .contributor {
+      .speakers {
+        .speaker {
           width: 50%;
         }
       }

@@ -1,16 +1,16 @@
 <template>
   <div class="audio-tab">
-    <AudioVolumeComponent class="seperator" v-if="components.audio.volumeControl"></AudioVolumeComponent>
-    <AudioRateComponent class="seperator" v-if="components.audio.rateControl"></AudioRateComponent>
-    <FooterComponent></FooterComponent>
+    <audio-volume-component class="seperator" v-if="components.audio.volumeControl"></audio-volume-component>
+    <audio-rate-component class="seperator" v-if="components.audio.rateControl"></audio-rate-component>
+    <footer-component></footer-component>
   </div>
 </template>
 
 <script>
-  import AudioRateComponent from './AudioRate.vue'
-  import AudioVolumeComponent from './AudioVolume.vue'
+  import AudioRateComponent from './AudioRate'
+  import AudioVolumeComponent from './AudioVolume'
 
-  import FooterComponent from 'shared/Footer.vue'
+  import FooterComponent from 'shared/Footer'
 
   export default {
     data () {

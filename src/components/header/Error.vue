@@ -8,8 +8,6 @@
 <script>
   import color from 'color'
 
-  import ErrorIcon from 'icons/ErrorIcon.vue'
-
   export default {
     data () {
       return {
@@ -32,9 +30,6 @@
           color: color(this.theme.player.text).fade(0.25)
         }
       }
-    },
-    components: {
-      ErrorIcon
     }
   }
 </script>

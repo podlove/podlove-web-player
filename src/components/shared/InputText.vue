@@ -1,5 +1,5 @@
 <template>
-  <input class="input-text" :disabled="disabled" :value="value" :style="style"></input>
+  <input class="input-text" :disabled="disabled" :value="value" :style="style"/>
 </template>
 
 <script>

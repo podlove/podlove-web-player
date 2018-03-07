@@ -1,33 +1,73 @@
 import test from 'ava'
-import { secondsToTime, timeToSeconds, localeDate } from './time'
+import {
+  fromPlayerTime,
+  toPlayerTime,
+  localeDate,
+  secondsToMilliseconds,
+  millisecondsToSeconds
+} from './time'
 
-test('exports a method called secondsToTime', t => {
-  t.truthy(typeof secondsToTime === 'function')
+test('exports a method called fromPlayerTime', t => {
+  t.truthy(typeof fromPlayerTime === 'function')
 })
 
-test('exports a method called timeToSeconds', t => {
-  t.truthy(typeof timeToSeconds === 'function')
+test('exports a method called toPlayerTime', t => {
+  t.truthy(typeof toPlayerTime === 'function')
 })
 
-test('secondsToTime tolerates invalid inputs', t => {
-  t.is(secondsToTime(), '00:00')
-  t.is(secondsToTime(undefined), '00:00')
-  t.is(secondsToTime(null), '00:00')
-  t.is(secondsToTime('foooo'), '00:00')
+test('fromPlayerTime tolerates invalid inputs', t => {
+  t.is(fromPlayerTime(), '00:00')
+  t.is(fromPlayerTime(undefined), '00:00')
+  t.is(fromPlayerTime(null), '00:00')
+  t.is(fromPlayerTime('foooo'), '00:00')
 })
 
-test('secondsToTime transforms given seconds to a time string', t => {
-  t.is(secondsToTime(60), '01:00')
-  t.is(secondsToTime(3600), '1:00:00')
+test('fromPlayerTime transforms given milliseconds to a time string', t => {
+  t.is(fromPlayerTime(60000), '01:00')
+  t.is(fromPlayerTime(3600000), '1:00:00')
 })
 
-test('timeToSeconds tolarets invalid inputs', t => {
-  t.is(timeToSeconds(), 0)
-  t.is(timeToSeconds(undefined), 0)
-  t.is(timeToSeconds(null), 0)
-  t.is(timeToSeconds('foo:oo'), 0)
+test('toPlayerTime tolerates invalid inputs', t => {
+  t.is(toPlayerTime(), 0)
+  t.is(toPlayerTime(undefined), 0)
+  t.is(toPlayerTime(null), 0)
+  t.is(toPlayerTime('foo:oo'), 0)
 })
 
 test('localeDate transforms a date to a locale string', t => {
   t.is(localeDate(0, 'en-US'), '1/1/1970')
+})
+
+// Time Parsers
+test(`toPlayerTime: parses hours from hh:mm:ss.f`, t => {
+  t.is(toPlayerTime('04:8:06.5'), 14886005)
+  t.is(toPlayerTime('4:8:06.5'), 14886005)
+})
+
+test(`toPlayerTime: parses minutes from mm:ss.fff`, t => {
+  t.is(toPlayerTime('8:06.500'), 486500)
+  t.is(toPlayerTime('8:06.500'), 486500)
+})
+
+test(`toPlayerTime: parses seconds from ss.fff`, t => {
+  t.is(toPlayerTime('06.500'), 6500)
+  t.is(toPlayerTime('6.500'), 6500)
+  t.is(toPlayerTime('6'), 6000)
+})
+
+// Time Conversion
+test(`exports a method called secondsToMilliseconds`, t => {
+  t.is(typeof secondsToMilliseconds, 'function')
+})
+
+test(`exports a method called millisecondsToSeconds`, t => {
+  t.is(typeof millisecondsToSeconds, 'function')
+})
+
+test(`secondsToMilliseconds: transforms seconds to milliseconds`, t => {
+  t.is(secondsToMilliseconds(1.2), 1200)
+})
+
+test(`millisecondsToSeconds: transforms milliseconds to seconds`, t => {
+  t.is(millisecondsToSeconds(1200), 1.2)
 })

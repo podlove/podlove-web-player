@@ -33,7 +33,10 @@ test('exports a method called currentChapterIndex', t => {
 })
 
 test('currentChapter should return undefined if no matches', t => {
-  t.is(currentChapter([]), undefined)
+  t.deepEqual(currentChapter([]), {
+    start: null,
+    end: null
+  })
 })
 
 test('currentChapter should find the active chapter in a list', t => {

@@ -1,11 +1,11 @@
 <template>
   <a :href="facebookLink" class="channel-link" target="_blank">
-    <span class="channel-icon facebook"><FacebookIcon color="#fff"></FacebookIcon></span>
+    <span class="channel-icon facebook"><facebook-icon color="#fff"></facebook-icon></span>
   </a>
 </template>
 
 <script>
-  import FacebookIcon from 'icons/FacebookIcon.vue'
+  import FacebookIcon from 'icons/FacebookIcon'
   import { addQueryParameter } from 'utils/url'
 
   const LINK = 'https://www.facebook.com/sharer/sharer.php'

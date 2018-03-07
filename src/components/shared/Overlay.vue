@@ -4,7 +4,7 @@
       <div class="overlay-inner">
         <div class="overlay-header">
           <slot name="header"></slot>
-          <button class="overlay-close" @click="onClose()"><CloseIcon /></button>
+          <button class="overlay-close" @click="onClose()"><close-icon></close-icon></button>
         </div>
         <div class="overlay-body">
           <slot></slot>
@@ -15,8 +15,8 @@
 </template>
 
 <script>
-  import ButtonComponent from './Button.vue'
-  import CloseIcon from 'icons/CloseIcon.vue'
+  import ButtonComponent from './Button'
+  import CloseIcon from 'icons/CloseIcon'
 
   export default {
     props: ['visible', 'onClose'],

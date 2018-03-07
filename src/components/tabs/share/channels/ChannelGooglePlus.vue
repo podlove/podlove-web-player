@@ -1,11 +1,11 @@
 <template>
   <a :href="googlePlusLink" class="channel-link" target="_blank">
-    <span class="channel-icon google-plus"><GooglePlusIcon color="#fff"></GooglePlusIcon></span>
+    <span class="channel-icon google-plus"><google-plus-icon color="#fff"></google-plus-icon></span>
   </a>
 </template>
 
 <script>
-  import GooglePlusIcon from 'icons/GooglePlusIcon.vue'
+  import GooglePlusIcon from 'icons/GooglePlusIcon'
   import { addQueryParameter } from 'utils/url'
 
   const LINK = 'https://plus.google.com/share'

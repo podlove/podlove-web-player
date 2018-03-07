@@ -8,7 +8,7 @@
 
 <script>
   import store from 'store'
-  import StepBackIcon from 'icons/StepBackIcon.vue'
+  import StepBackIcon from 'icons/StepBackIcon'
 
   export default {
     components: {
@@ -23,7 +23,7 @@
     },
     methods: {
       onButtonClick () {
-        store.dispatch(store.actions.updatePlaytime(this.$select('playtime') - 15))
+        store.dispatch(store.actions.updatePlaytime(this.$select('playtime') - 15000))
       },
       isDisabled (playtime) {
         return (Math.round(playtime, 1) - 15) < 0

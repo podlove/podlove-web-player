@@ -14,7 +14,7 @@
   },
   "ERROR": {
     "LOADING": {
-      "TITLE": "Fehler beim laden der Audiodatei",
+      "TITLE": "Fehler beim Laden der Audiodatei",
       "MESSAGE": "Die Audiodatei konnte nicht geladen werden, der Server ist nicht erreichbar. Bitte versuch es später nochmal."
     },
     "MISSING_FILES": {
@@ -82,5 +82,12 @@
     "ON_AIR": "On Air",
     "DURATION_WITH_HOURS": "{hours} Stunden {minutes} Minuten",
     "DURATION": "{minutes} Minuten"
+  },
+  "TRANSCRIPTS": {
+    "TITLE": "Transcript",
+    "CHAPTER": "Kapitel {index}: {title}",
+    "FOLLOW": "folgen",
+    "SEARCH": "Suche",
+    "NO_SEARCH_RESULTS": "Keine Ergebnisse"
   }
 }

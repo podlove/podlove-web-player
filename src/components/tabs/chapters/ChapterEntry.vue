@@ -5,7 +5,7 @@
     @mouseover="onMouseOver"
     @mouseleave="onMouseLeave">
     <span class="index" v-if="hover" @click="onChapterPlayClick">
-      <PlayIcon size="12" :color="theme.tabs.body.icon"></PlayIcon>
+      <play-icon size="12" :color="theme.tabs.body.icon"></play-icon>
     </span>
     <span class="index" v-else>{{index + 1}}</span>
     <div class="chapter--progress" v-if="runtime.platform === 'desktop'"
@@ -32,9 +32,9 @@
   import store from 'store'
   import runtime from 'utils/runtime'
 
-  import { secondsToTime } from 'utils/time'
+  import { fromPlayerTime } from 'utils/time'
 
-  import PlayIcon from 'icons/PlayIcon.vue'
+  import PlayIcon from 'icons/PlayIcon'
 
   export default {
     data () {
@@ -49,14 +49,14 @@
     computed: {
       remainingTime () {
         if (this.chapter.active) {
-          return `-${secondsToTime(this.chapter.end - this.playtime)}`
+          return `-${fromPlayerTime(this.chapter.end - this.playtime)}`
         }
 
         if (this.ghost.active && this.ghost.time > this.chapter.start && this.ghost.time < this.chapter.end) {
-          return `-${secondsToTime(this.chapter.end - this.ghost.time)}`
+          return `-${fromPlayerTime(this.chapter.end - this.ghost.time)}`
         }
 
-        return secondsToTime(this.chapter.end - this.chapter.start)
+        return fromPlayerTime(this.chapter.end - this.chapter.start)
       },
 
       activeChapter () {

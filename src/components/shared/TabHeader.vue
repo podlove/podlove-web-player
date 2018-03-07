@@ -1,9 +1,10 @@
 <template>
-  <ul class="tab-header" :class="{ overflows }">
+  <ul class="tab-header" :class="{ overflows }" v-resize="resizeHandler">
     <span class="header-shadow" :style="headerShadowStyle"></span>
     <slot></slot>
   </ul>
 </template>
+
 <script>
   import color from 'color'
 
@@ -21,17 +22,16 @@
         }
       }
     },
-    mounted (el) {
-      const resizeHandler = () => {
-        if (this.$el.scrollWidth > this.$el.clientWidth) {
-          this.overflows = true
-        } else {
-          this.overflows = false
-        }
+    methods: {
+      resizeHandler () {
+        this.$nextTick(() => {
+          this.overflows = this.$el.scrollWidth > this.$el.clientWidth
+        })
       }
+    },
 
-      window.addEventListener('resize', resizeHandler)
-      resizeHandler()
+    mounted () {
+      this.resizeHandler()
     }
   }
 </script>

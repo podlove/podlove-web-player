@@ -1,10 +1,15 @@
-import { find, findIndex } from 'lodash/fp'
+import { fallbackTo } from 'utils/helper'
+import { find, findIndex, compose } from 'lodash/fp'
 
-const currentChapterIndex = findIndex({active: true})
+const emptyChapter = {
+  start: null,
+  end: null
+}
 
-const currentChapter = find({active: true})
+export const currentChapterIndex = compose(fallbackTo(-1), findIndex({active: true}))
+export const currentChapter = compose(fallbackTo(emptyChapter), find({active: true}))
 
-const currentChapterByPlaytime = chapters => playtime => find(chapter => {
+export const currentChapterByPlaytime = chapters => playtime => find(chapter => {
   if (playtime < chapter.start) {
     return false
   }
@@ -15,9 +20,3 @@ const currentChapterByPlaytime = chapters => playtime => find(chapter => {
 
   return true
 })(chapters)
-
-export {
-  currentChapter,
-  currentChapterIndex,
-  currentChapterByPlaytime
-}

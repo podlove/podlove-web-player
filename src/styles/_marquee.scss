@@ -1,0 +1,37 @@
+.marquee-container {
+  overflow: hidden;
+  position: relative;
+
+  .marquee {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    text-align: left;
+
+    /* Starting position */
+    transform: translateX(0%);
+
+    /* Apply animation to this element */
+    animation: scroll 10s linear infinite;
+  }
+
+  /* Move it (define the animation) */
+  @keyframes scroll {
+    0% {
+      opacity: 1;
+      transform: translateX(0%);
+    }
+    20% {
+      opacity: 1;
+      transform: translateX(0%);
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+  }
+ }

@@ -3,13 +3,13 @@
     <a href="javascript:void(0);" @click.prevent="click()" class="caption">
       <span class="icon" :style="{fill: iconColor(active)}"><slot name="icon"></slot></span>
       <span class="title"><slot name="title"></slot></span>
-      <CloseIcon class="close" :color="iconColor(true)" v-if="active"></CloseIcon>
+      <close-icon class="close" :color="iconColor(true)" v-if="active"></close-icon>
     </a>
   </li>
 </template>
 
 <script>
-  import CloseIcon from 'icons/CloseIcon.vue'
+  import CloseIcon from 'icons/CloseIcon'
 
   export default {
     props: ['click', 'active'],
