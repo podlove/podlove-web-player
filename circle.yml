@@ -25,7 +25,9 @@ dependencies:
 
 compile:
   override:
+    - yarn docs:dev
     - yarn build
+    - if [[ ! -z $CI_PULL_REQUEST ]] ; then yarn deploy:pr ; fi
 
 test:
   override:
