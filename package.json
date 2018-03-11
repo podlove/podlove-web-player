@@ -70,7 +70,7 @@
     "revue": "3.0.0",
     "superagent": "3.8.2",
     "vue": "2.5.13",
-    "vue-i18n": "7.4.2"
+    "vue-i18n": "7.5.0"
   },
   "devDependencies": {
     "autoprefixer-loader": "3.2.0",
