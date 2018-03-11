@@ -117,7 +117,7 @@
     "webpack": "3.10.0",
     "webpack-blocks": "1.0.0-rc.2",
     "webpack-blocks-vue": "1.1.0",
-    "webpack-bundle-analyzer": "2.10.1",
+    "webpack-bundle-analyzer": "2.11.0",
     "webpack-jarvis": "0.3.0"
   },
   "engines": {

@@ -9405,9 +9405,9 @@ webpack-blocks@1.0.0-rc.2:
     "@webpack-blocks/uglify" "^1.1.0"
     "@webpack-blocks/webpack" "^1.0.0-rc"
 
-webpack-bundle-analyzer@2.10.1:
-  version "2.10.1"
-  resolved "https://registry.yarnpkg.com/webpack-bundle-analyzer/-/webpack-bundle-analyzer-2.10.1.tgz#544db56754b6737451f69d5fca7c0be5fe30987f"
+webpack-bundle-analyzer@2.11.0:
+  version "2.11.0"
+  resolved "https://registry.yarnpkg.com/webpack-bundle-analyzer/-/webpack-bundle-analyzer-2.11.0.tgz#ed6f6ab59f5b341ffb60849ca707a7fe841c4f86"
   dependencies:
     acorn "^5.3.0"
     bfj-node4 "^5.2.0"
