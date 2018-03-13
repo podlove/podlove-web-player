@@ -111,7 +111,7 @@
     "snazzy": "7.0.0",
     "standard": "11.0.1",
     "standard-changelog": "1.0.14",
-    "superagent-nock": "0.3.1",
+    "superagent-nock": "0.4.0",
     "surge": "0.20.0",
     "transform-runtime": "0.0.0",
     "vue-loader": "14.1.1",
