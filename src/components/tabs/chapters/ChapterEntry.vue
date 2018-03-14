@@ -11,7 +11,8 @@
     <div class="chapter--progress" v-if="runtime.platform === 'desktop'"
       @mouseout="onMouseOut"
       @mousemove="onMouseMove"
-      @click="onChapterClick">
+      @click="onChapterPlayClick"
+      @click.alt="onChapterClick">
       <span class="title truncate">{{chapter.title}}</span>
       <span class="timer">{{remainingTime}}</span>
       <span class="progress" :style="progressStyle"></span>
