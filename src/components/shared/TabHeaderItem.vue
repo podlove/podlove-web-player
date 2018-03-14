@@ -71,6 +71,15 @@
     margin: 0;
     height: $tabs-header-height;
     transition: all $animation-duration;
+    opacity: 1;
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    &.active:hover {
+      opacity: 1;
+    }
 
     .caption {
       display: flex;

@@ -101,12 +101,12 @@ const themeColors = (colors = {}) => {
     input: {
       background: color(main).lighten(0.3),
       color: negative ? light : dark,
-      border: negative ? color(main).lighten(0.1) : dark
+      border: negative ? color(main).lighten(0.1) : grey
     },
     button: {
       background: main,
       color: negative ? light : dark,
-      border: negative ? color(main).lighten(0.1) : dark
+      border: negative ? color(main).lighten(0.1) : grey
     }
   }
 }
