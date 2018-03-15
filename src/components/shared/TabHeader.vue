@@ -7,6 +7,7 @@
 
 <script>
   import color from 'color'
+  import { setStyles } from 'utils/dom'
 
   export default {
     data () {
@@ -24,8 +25,12 @@
     },
     methods: {
       resizeHandler () {
+        this.overflows = false
+
         this.$nextTick(() => {
+          setStyles({ 'overflow-x': 'auto' })(this.$el)
           this.overflows = this.$el.scrollWidth > this.$el.clientWidth
+          setStyles({ 'overflow-x': 'hidden' })(this.$el)
         })
       }
     },
@@ -41,8 +46,7 @@
   .tab-header {
     position: relative;
     width: 100%;
-    overflow-x: auto;
-    overflow-y: hidden;
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
