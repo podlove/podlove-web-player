@@ -40,7 +40,7 @@ const baseConfig = [
     }
   }),
 
-  match('*.js', { exclude: /no-real-folder/ }, [
+  match('*.js', { exclude: [] }, [
     babel()
   ]),
 
