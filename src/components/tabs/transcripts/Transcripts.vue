@@ -5,7 +5,7 @@
       <follow class="follow-button"></follow>
     </div>
     <!-- Render -->
-    <render-container class="transcripts-container" :prerender="prerender" v-if="prerender.length > 0"></render-container>
+    <render-container class="transcripts-container" :prerender="prerender" v-if="prerender && prerender.length > 0"></render-container>
     <!-- Prerender -->
     <prerender-container class="transcripts-container" :transcripts="transcripts.timeline" @load="loadPrerender" v-else></prerender-container>
   </div>
@@ -21,7 +21,7 @@ export default {
   data () {
     return {
       transcripts: this.$select('transcripts'),
-      prerender: []
+      prerender: null
     }
   },
   methods: {
