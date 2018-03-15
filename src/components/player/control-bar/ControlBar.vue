@@ -51,6 +51,11 @@
 
     .control-button {
       margin: 0 $margin;
+      opacity: 1;
+
+      &:hover {
+        opacity: 0.8;
+      }
     }
 
     @media screen and (max-width: $width-s) {

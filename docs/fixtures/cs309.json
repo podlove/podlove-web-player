@@ -67,5 +67,5 @@
     "config": "//podlove-player.surge.sh/fixtures/cs309.json",
     "share": "//podlove-player.surge.sh/share"
   },
-  "transcripts": "http://podlove-player.surge.sh/fixtures/transcripts/cs309.json"
+  "transcripts": "https://podlove-player.surge.sh/fixtures/transcripts/cs309.json"
 }

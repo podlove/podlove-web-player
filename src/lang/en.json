@@ -84,5 +84,8 @@
     "FOLLOW": "follow",
     "SEARCH": "Search",
     "NO_SEARCH_RESULTS": "No results"
+  },
+  "MESSAGES": {
+    "COPIED": "Copied!"
   }
 }

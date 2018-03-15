@@ -20,6 +20,7 @@ const themeColors = (colors = {}) => {
   const fallbackColor = (first, second) => first || second
 
   return {
+    negative,
     background: light,
     player: {
       background: main,
@@ -100,12 +101,12 @@ const themeColors = (colors = {}) => {
     input: {
       background: color(main).lighten(0.3),
       color: negative ? light : dark,
-      border: color(main).lighten(0.1)
+      border: negative ? color(main).lighten(0.1) : grey
     },
     button: {
       background: main,
       color: negative ? light : dark,
-      border: negative ? main : dark
+      border: negative ? color(main).lighten(0.1) : grey
     }
   }
 }

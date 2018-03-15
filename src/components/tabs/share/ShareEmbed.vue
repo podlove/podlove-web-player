@@ -10,7 +10,9 @@
         <input-text-component class="block" disabled="true" :value="embedCode"></input-text-component>
       </div>
       <div class="input-element">
-        <button-component class="block action" :data-clipboard-text="embedCode" v-clipboard>{{ $t('SHARE.EMBED.ACTIONS.COPY') }}</button-component>
+        <copy-tooltip-component :content="embedCode">
+          <button-component class="block action">{{ $t('SHARE.EMBED.ACTIONS.COPY') }}</button-component>
+        </copy-tooltip-component>
       </div>
     </overlay-component>
 </template>
@@ -27,6 +29,7 @@
   import ButtonComponent from 'shared/Button'
   import InputSelectComponent from 'shared/InputSelect'
   import InputTextComponent from 'shared/InputText'
+  import CopyTooltipComponent from 'shared/CopyTooltip'
 
   export default {
     props: ['type'],
@@ -90,7 +93,8 @@
       OverlayComponent,
       ButtonComponent,
       InputSelectComponent,
-      InputTextComponent
+      InputTextComponent,
+      CopyTooltipComponent
     }
   }
 </script>
