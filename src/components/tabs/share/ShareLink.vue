@@ -10,8 +10,6 @@
 </template>
 
 <script>
-  import Vue from 'vue'
-
   import ButtonComponent from 'shared/Button'
   import InputGroupComponent from 'shared/InputGroup'
   import InputTextComponent from 'shared/InputText'

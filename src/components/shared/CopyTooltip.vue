@@ -18,8 +18,7 @@ export default {
   props: ['content'],
   data () {
     return {
-      theme: this.$select('theme'),
-      open: false
+      theme: this.$select('theme')
     }
   },
 
@@ -34,11 +33,11 @@ export default {
       setTimeout(() => this.hide(), 6000)
     },
 
-    show() {
+    show () {
       this.$refs.popover.show()
     },
 
-    hide() {
+    hide () {
       this.$refs.popover.hide()
     },
 
