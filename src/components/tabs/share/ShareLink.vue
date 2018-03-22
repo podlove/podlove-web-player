@@ -1,7 +1,9 @@
 <template>
   <div class="share-link">
     <input-group-component>
-      <button-component slot="button" class="truncate" :data-clipboard-text="shareLink" v-clipboard>{{ $t('SHARE.ACTIONS.COPY') }}</button-component>
+      <copy-tooltip-component slot="button" :content="shareLink">
+        <button-component class="truncate">{{ $t('SHARE.ACTIONS.COPY') }}</button-component>
+      </copy-tooltip-component>
       <input-text-component slot="input" disabled="true" :value="shareLink"></input-text-component>
     </input-group-component>
   </div>
@@ -11,6 +13,7 @@
   import ButtonComponent from 'shared/Button'
   import InputGroupComponent from 'shared/InputGroup'
   import InputTextComponent from 'shared/InputText'
+  import CopyTooltipComponent from 'shared/CopyTooltip'
 
   import { addQueryParameter } from 'utils/url'
   import { fromPlayerTime } from 'utils/time'
@@ -54,7 +57,8 @@
     components: {
       InputGroupComponent,
       ButtonComponent,
-      InputTextComponent
+      InputTextComponent,
+      CopyTooltipComponent
     }
   }
 </script>

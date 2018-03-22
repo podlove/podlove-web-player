@@ -20,12 +20,15 @@ dependencies:
     - yarn
     - npm rebuild node-sass
     - gem install bundler
+    - yarn global add surge-preview
   cache_directories:
     - ~/.cache/yarn
 
 compile:
   override:
+    - yarn docs:dev
     - yarn build
+    - yarn deploy:pr
 
 test:
   override:
@@ -41,7 +44,7 @@ deployment:
     commands:
       - yarn docs:dev
       - yarn build
-      - yarn deploy:surge
+      - surge-preview
 
   production:
     branch: master
