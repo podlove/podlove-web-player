@@ -1,3 +1,27 @@
+<a name="4.0.6"></a>
+## [4.0.6](https://github.com/podlove/podlove-web-player/compare/v4.0.3...v4.0.6) (2018-03-22)
+
+
+### Bug Fixes
+
+* **build:** Uses babel-env as preset ([3775ed1](https://github.com/podlove/podlove-web-player/commit/3775ed1))
+* **locale:** Adds default locale if not defined ([3be3970](https://github.com/podlove/podlove-web-player/commit/3be3970))
+* **localization:** Fixes typo in german translation ([65160cd](https://github.com/podlove/podlove-web-player/commit/65160cd))
+* **marquee:** Fixes marquee width calculation ([5851dd8](https://github.com/podlove/podlove-web-player/commit/5851dd8))
+* **package:** update detect-browser to version 2.1.0 ([478db3c](https://github.com/podlove/podlove-web-player/commit/478db3c))
+* **package:** update redux-actions to version 2.3.0 ([4410856](https://github.com/podlove/podlove-web-player/commit/4410856))
+* **title:** Fixes scrolling issue in title when overflowing ([052ceca](https://github.com/podlove/podlove-web-player/commit/052ceca))
+
+
+### Features
+
+* **ci:** Adds preview hook for pull requests ([2e8a385](https://github.com/podlove/podlove-web-player/commit/2e8a385))
+* **share:** Adds icons to share tab ([f0e83f1](https://github.com/podlove/podlove-web-player/commit/f0e83f1)), closes [#486](https://github.com/podlove/podlove-web-player/issues/486)
+* **stoptime:** Adds ability to stop time at position ([471b7b6](https://github.com/podlove/podlove-web-player/commit/471b7b6))
+* **tooltip:** Adds copied tooltip ([f3c9374](https://github.com/podlove/podlove-web-player/commit/f3c9374))
+
+
+
 <a name="4.0.5"></a>
 ## [4.0.5](https://github.com/podlove/podlove-web-player/compare/v4.0.3...v4.0.5) (2018-02-26)
 
