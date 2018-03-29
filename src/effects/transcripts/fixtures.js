@@ -32,17 +32,34 @@ export const contributors = [
   {
     id: 'speaker-1',
     name: 'Speaker One',
-    avatar: 'http://avatar/speaker/one'
+    avatar: 'http://avatar/speaker/one',
+    group: {
+      slug: 'onair'
+    }
   },
   {
     id: 'speaker-2',
     name: 'Speaker Two',
-    avatar: 'http://avatar/speaker/two'
+    avatar: 'http://avatar/speaker/two',
+    group: {
+      slug: 'onair'
+    }
   },
   {
     id: 'speaker-3',
     name: 'Speaker Three',
-    avatar: 'http://avatar/speaker/three'
+    avatar: 'http://avatar/speaker/three',
+    group: {
+      slug: 'onair'
+    }
+  },
+  {
+    id: 'contributor-4',
+    name: 'Contributor 5',
+    avatar: 'http://avatar/contributor/three',
+    group: {
+      slug: 'contributor'
+    }
   }
 ]
 
@@ -75,7 +92,10 @@ export const timeline = [
     speaker: {
       id: 'speaker-1',
       name: 'Speaker One',
-      avatar: 'http://avatar/speaker/one'
+      avatar: 'http://avatar/speaker/one',
+      group: {
+        slug: 'onair'
+      }
     },
     texts: [
       {
@@ -103,7 +123,10 @@ export const timeline = [
     speaker: {
       id: 'speaker-2',
       name: 'Speaker Two',
-      avatar: 'http://avatar/speaker/two'
+      avatar: 'http://avatar/speaker/two',
+      group: {
+        slug: 'onair'
+      }
     },
     texts: [
       {
@@ -126,7 +149,10 @@ export const timeline = [
     speaker: {
       id: 'speaker-3',
       name: 'Speaker Three',
-      avatar: 'http://avatar/speaker/three'
+      avatar: 'http://avatar/speaker/three',
+      group: {
+        slug: 'onair'
+      }
     },
     texts: [
       {

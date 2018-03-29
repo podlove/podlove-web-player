@@ -64,3 +64,25 @@ test.cb(`transcripts - fetch: falls back to empty list on INIT and dispatches SE
     payload
   })
 })
+
+test.cb(`transcripts - fetch: dispatches an empty list without chapters, when transcripts resolves an empty list`, t => {
+  t.plan(2)
+
+  nock('http://localhost')
+    .get('/foo')
+    .reply(200, [])
+
+  const tester = ({ type, payload }) => {
+    t.is(type, 'SET_TRANSCRIPTS')
+    t.deepEqual(payload, [])
+    t.end()
+  }
+
+  fetchEffects({
+    getState: () => ({}),
+    dispatch: tester
+  }, {
+    type: 'INIT',
+    payload
+  })
+})

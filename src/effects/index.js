@@ -25,7 +25,7 @@ const playerEffects = playerEffectsFactory(mediaPlayer)
 
 const dispatcherEffects = [keyboardEffects]
 
-let actionEffects = [
+const condEffects = [
   conditionalEffect(playbackEffects),
   compose(conditionalEffect(chapterEffects), hasProperty('chapters')),
   conditionalEffect(playerEffects),
@@ -36,6 +36,8 @@ let actionEffects = [
   compose(conditionalEffect(transcriptEffects), hasProperty('transcripts'))
 ]
 
+let actionEffects = []
+
 export default store => {
   dispatcherEffects.map(callWith(store))
 
@@ -44,7 +46,7 @@ export default store => {
 
     // Conditional effects need the initial payload to create
     if (action.type === INIT) {
-      actionEffects = actionEffects.map(callWith(action.payload))
+      actionEffects = condEffects.map(callWith(action.payload))
     }
 
     actionEffects.map(callWith(store, action))

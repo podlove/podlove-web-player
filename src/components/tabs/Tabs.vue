@@ -9,6 +9,10 @@
         <chapters-icon slot="icon"></chapters-icon>
         <span slot="title">{{ $t('CHAPTERS.TITLE') }}</span>
       </tab-header-item-component>
+      <tab-header-item-component v-if="isVisibleTab.transcripts" :active="tabs.transcripts" :click="toggleTab('transcripts')">
+        <transcripts-icon slot="icon"></transcripts-icon>
+        <span slot="title">{{ $t('TRANSCRIPTS.TITLE') }}</span>
+      </tab-header-item-component>
       <tab-header-item-component v-if="isVisibleTab.share" :active="tabs.share" :click="toggleTab('share')">
         <share-icon slot="icon"></share-icon>
         <span slot="title">{{ $t('SHARE.TITLE') }}</span>
@@ -16,10 +20,6 @@
       <tab-header-item-component v-if="isVisibleTab.download" :active="tabs.download" :click="toggleTab('download')">
         <download-icon slot="icon"></download-icon>
         <span slot="title">{{ $t('DOWNLOAD.TITLE') }}</span>
-      </tab-header-item-component>
-      <tab-header-item-component v-if="isVisibleTab.transcripts" :active="tabs.transcripts" :click="toggleTab('transcripts')">
-        <transcripts-icon slot="icon"></transcripts-icon>
-        <span slot="title">{{ $t('TRANSCRIPTS.TITLE') }}</span>
       </tab-header-item-component>
       <tab-header-item-component v-if="isVisibleTab.audio" :active="tabs.audio" :click="toggleTab('audio')">
         <audio-icon slot="icon"></audio-icon>

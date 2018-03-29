@@ -10,28 +10,47 @@ import { INIT } from 'store/types'
 
 const transformTime = time => isNumber(time) ? secondsToMilliseconds(time) : toPlayerTime(time)
 
+const isNewChunk = (current, last) => {
+  if (last === undefined) {
+    return true
+  }
+
+  const differentSpeaker = current.speaker !== last.speaker
+  const text = last.texts.reduce((result, item) => result + ' ' + item.text, '')
+  const endOfSentence = new RegExp(/.*(\.|!|\?)$/).test(text) === false
+
+  return differentSpeaker || (text.length > 500 && endOfSentence)
+}
+
 const transformTranscript = reduce((transcripts, chunk) => {
   const lastChunk = last(transcripts)
-  if (lastChunk && lastChunk.speaker && lastChunk.speaker === chunk.speaker) {
-    transcripts[transcripts.length - 1].end = transformTime(chunk.end)
 
-    transcripts[transcripts.length - 1].texts.push({
-      start: transformTime(chunk.start),
-      end: transformTime(chunk.end),
-      text: chunk.text
-    })
-
-    return transcripts
+  if (isNewChunk(chunk, lastChunk)) {
+    return [
+      ...transcripts,
+      {
+        type: 'transcript',
+        start: transformTime(chunk.start),
+        end: transformTime(chunk.end),
+        speaker: chunk.speaker,
+        texts: [
+          {
+            start: transformTime(chunk.start),
+            end: transformTime(chunk.end),
+            text: chunk.text
+          }
+        ]
+      }
+    ]
   }
 
   return [
-    ...transcripts,
+    ...transcripts.slice(0, -1),
     {
-      type: 'transcript',
-      start: transformTime(chunk.start),
+      ...lastChunk,
       end: transformTime(chunk.end),
-      speaker: chunk.speaker,
       texts: [
+        ...lastChunk.texts,
         {
           start: transformTime(chunk.start),
           end: transformTime(chunk.end),
@@ -66,14 +85,17 @@ const mapSpeakers = speakers =>
 export default handleActions({
   [INIT]: ({ dispatch }, { type, payload }) => {
     const transcriptsUrl = get(payload, 'transcripts')
-    const chapters = get(payload, 'chapters').map(transformChapters)
-    const assignSpeakers = mapSpeakers(get(payload, 'contributors'))
+    const chapters = get(payload, 'chapters', []).map(transformChapters)
+    const speakers = get(payload, 'contributors', []).filter(contributor => get(contributor, 'group.slug') === 'onair')
+    const assignSpeakers = mapSpeakers(speakers)
 
     request(transcriptsUrl)
       .then(transformTranscript)
       .then(assignSpeakers)
       .then(concat(chapters))
       .then(orderBy('start', 'asc'))
+      // Prevent a list of chapters only
+      .then(transcripts => transcripts.length === chapters.length ? [] : transcripts)
       .catch(() => [])
       .then(compose(dispatch, actions.setTranscripts))
   }
