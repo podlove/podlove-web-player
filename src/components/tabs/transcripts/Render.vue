@@ -78,7 +78,8 @@
         return reduce(this.prerender.slice(start, end), (result, element) => result + element, 0)
       },
       slice (start = 0, end = 0) {
-        return this.transcripts.timeline.slice(start, end)
+        // slice not includes the last end element, therefore + 1
+        return this.transcripts.timeline.slice(start, end + 1)
       },
       renderWindow (startIndex = -1) {
         window.requestAnimationFrame(() => {

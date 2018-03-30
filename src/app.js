@@ -13,7 +13,10 @@ require('file-loader?name=share.html!./statics/share.html')
 
 export default config => {
   // Enhance config with app debug information
-  config = Object.assign({}, { runtime }, config)
+  config = {
+    runtime,
+    ...config
+  }
 
   // Initialize meta for store
   store.dispatch(store.actions.init(config))
