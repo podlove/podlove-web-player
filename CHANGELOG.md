@@ -1,3 +1,8 @@
+<a name="4.0.7"></a>
+## [4.0.7](https://github.com/podlove/podlove-web-player/compare/v4.0.8...v4.0.7) (2018-03-30)
+
+
+
 <a name="4.0.6"></a>
 ## [4.0.6](https://github.com/podlove/podlove-web-player/compare/v4.0.3...v4.0.6) (2018-03-22)
 
