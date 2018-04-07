@@ -25,7 +25,7 @@
 <script>
   import { compose } from 'lodash'
   import store from 'store'
-  import { calcHours, calcMinutes, localeDate } from 'utils/time'
+  import { calcHours, calcMinutes, localeDate, fromPlayerTime } from 'utils/time'
 
   import ButtonComponent from 'shared/Button'
   import InputSelectComponent from 'shared/InputSelect'
