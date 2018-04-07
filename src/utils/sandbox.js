@@ -29,6 +29,9 @@ const resize = curry((anchor, frame) => {
 
   setFrameSize()
 
+  // Reset the width on window load
+  window.addEventListener('load', setFrameSize)
+
   // Reset the width on viewport resize
   window.addEventListener('resize', setFrameSize)
 
