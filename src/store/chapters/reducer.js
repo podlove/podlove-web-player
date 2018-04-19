@@ -1,10 +1,18 @@
 import { handleActions } from 'redux-actions'
-import { get } from 'lodash'
 
-import { INIT, UPDATE_CHAPTER, NEXT_CHAPTER, PREVIOUS_CHAPTER, SET_CHAPTER, INIT_CHAPTERS } from '../types'
+import {
+  UPDATE_CHAPTER,
+  NEXT_CHAPTER,
+  PREVIOUS_CHAPTER,
+  SET_CHAPTER,
+  INIT_CHAPTERS
+} from '../types'
 
-import { toPlayerTime } from 'utils/time'
-import { currentChapterIndex, setActiveByPlaytime, inactiveChapter, activeChapter, setActiveByChapter, setActiveByIndex } from 'utils/chapters'
+import {
+  currentChapterIndex,
+  setActiveByPlaytime,
+  setActiveByIndex
+} from 'utils/chapters'
 
 const nextChapter = chapters => {
   let next = currentChapterIndex(chapters) + 1
@@ -28,18 +36,21 @@ const previousChapter = chapters => {
 
 export const INITIAL_STATE = []
 
-export const reducer = handleActions({
-  [INIT_CHAPTERS]: (state, { payload }) => payload,
+export const reducer = handleActions(
+  {
+    [INIT_CHAPTERS]: (state, { payload }) => payload,
 
-  [UPDATE_CHAPTER]: (state, { payload }) => {
-    const nextChapters = state.map(setActiveByPlaytime(payload))
+    [UPDATE_CHAPTER]: (state, { payload }) => {
+      const nextChapters = state.map(setActiveByPlaytime(payload))
 
-    return currentChapterIndex(nextChapters) === -1 ? state : nextChapters
+      return currentChapterIndex(nextChapters) === -1 ? state : nextChapters
+    },
+
+    [NEXT_CHAPTER]: state => nextChapter(state),
+
+    [PREVIOUS_CHAPTER]: state => previousChapter(state),
+
+    [SET_CHAPTER]: (state, { payload }) => state.map(setActiveByIndex(payload))
   },
-
-  [NEXT_CHAPTER]: (state) => nextChapter(state),
-
-  [PREVIOUS_CHAPTER]: (state) => previousChapter(state),
-
-  [SET_CHAPTER]: (state, { payload }) => state.map(setActiveByIndex(payload))
-}, INITIAL_STATE)
+  INITIAL_STATE
+)

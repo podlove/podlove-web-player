@@ -3,7 +3,7 @@ import request from 'superagent'
 import nocker from 'superagent-nock'
 
 import fetchEffects from './fetch'
-import { transcripts, chapters, contributors, timeline, parsedTranscripts, parsedTranscriptsWithSpeakers, parsedChapters } from './fixtures'
+import { transcripts, chapters, contributors, parsedTranscripts, parsedTranscriptsWithSpeakers, parsedChapters } from './fixtures'
 
 let nock, payload
 

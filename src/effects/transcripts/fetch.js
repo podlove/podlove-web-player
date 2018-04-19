@@ -64,7 +64,7 @@ const transformTranscript = reduce((transcripts, chunk) => {
 const transformChapters = chapters => chapters.map((chapter, index) => ({
   ...chapter,
   type: 'chapter',
-  index: index + 1,
+  index: index + 1
 }))
 
 const mapSpeakers = speakers =>

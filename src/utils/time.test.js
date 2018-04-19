@@ -2,7 +2,6 @@ import test from 'ava'
 import {
   fromPlayerTime,
   toPlayerTime,
-  localeDate,
   secondsToMilliseconds,
   millisecondsToSeconds
 } from './time'

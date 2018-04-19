@@ -1,6 +1,6 @@
 import IntervalTree from 'interval-tree2'
 
-import { noop, debounce, get as pluck } from 'lodash'
+import { noop, debounce } from 'lodash'
 import { compose, head, get } from 'lodash/fp'
 
 import { prohibitiveDispatch, handleActions } from 'utils/effects'

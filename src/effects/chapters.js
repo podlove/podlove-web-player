@@ -1,5 +1,5 @@
 import { get, findIndex, isString } from 'lodash'
-import { getOr, compose, map } from 'lodash/fp'
+import { getOr, compose } from 'lodash/fp'
 
 import { currentChapter, currentChapterIndex, setActiveByPlaytime, setActiveByIndex } from 'utils/chapters'
 import { handleActions } from 'utils/effects'

@@ -1,13 +1,30 @@
-import { get, noop, isArray } from 'lodash'
+import { get, isArray } from 'lodash'
 
 import actions from 'store/actions'
-import { INIT, LOADING, LOADED, PLAY, PAUSE, IDLE, SET_TRANSCRIPTS, END, NETWORK_EMPTY, NETWORK_NO_SOURCE, ERROR_MISSING_AUDIO_FILES, INIT_CHAPTERS, SET_TRANSCRIPTS_TIMELINE } from 'store/types'
+import {
+  INIT,
+  LOADING,
+  LOADED,
+  PLAY,
+  PAUSE,
+  IDLE,
+  END,
+  NETWORK_EMPTY,
+  NETWORK_NO_SOURCE,
+  ERROR_MISSING_AUDIO_FILES,
+  INIT_CHAPTERS,
+  SET_TRANSCRIPTS_TIMELINE
+} from 'store/types'
 
 import { handleActions } from 'utils/effects'
-import { INIT_TRANSCRIPTS } from '../../store/types';
 
 const hasChapters = chapters => isArray(chapters) && chapters.length > 0
-const hasMeta = (show, episode) => episode.poster || show.poster || show.title || episode.title || episode.subtitle
+const hasMeta = (show, episode) =>
+  episode.poster ||
+  show.poster ||
+  show.title ||
+  episode.title ||
+  episode.subtitle
 const hasFiles = files => files.length > 0
 const hasAudioFiles = files => files.length > 0
 
@@ -62,7 +79,10 @@ export default handleActions({
 
   [LOADING]: ({ dispatch }) => dispatch(actions.showLoadingButton()),
 
-  [LOADED]: ({ dispatch }, { payload }) => payload.paused ? dispatch(actions.showPauseButton()) : dispatch(actions.showPlayingButton()),
+  [LOADED]: ({ dispatch }, { payload }) =>
+    (payload.paused
+      ? dispatch(actions.showPauseButton())
+      : dispatch(actions.showPlayingButton())),
 
   [PLAY]: ({ dispatch }) => {
     // Default behaviour
@@ -86,7 +106,9 @@ export default handleActions({
   },
 
   [SET_TRANSCRIPTS_TIMELINE]: ({ dispatch }, { payload }, state) => {
-    payload.length > 0 ? dispatch(actions.toggleComponentTab('transcripts', true)) : noop
+    if (payload.length > 0) {
+      dispatch(actions.toggleComponentTab('transcripts', true))
+    }
   },
 
   [END]: ({ dispatch }) => dispatch(actions.showReplayButton()),

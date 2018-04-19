@@ -68,7 +68,7 @@ export default {
       }
     },
     searchQuery () {
-      if (!this.query || this.transcripts.search.results.length === 0 ) {
+      if (!this.query || this.transcripts.search.results.length === 0) {
         return null
       }
 
