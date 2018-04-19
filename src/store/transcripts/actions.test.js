@@ -1,6 +1,7 @@
 import test from 'ava'
 import {
-  setTranscripts,
+  setTranscriptsTimeline,
+  setTranscriptsChapters,
   updateTranscripts,
   followTranscripts,
   searchTranscripts,
@@ -10,9 +11,16 @@ import {
   resetSearchTranscription
 } from './actions'
 
-test(`setTranscripts: creates the SET_TRANSCRIPTS action`, t => {
-  t.deepEqual(setTranscripts('foo'), {
-    type: 'SET_TRANSCRIPTS',
+test(`setTranscriptsTimeline: creates the SET_TRANSCRIPTS_TIMELINE action`, t => {
+  t.deepEqual(setTranscriptsTimeline('foo'), {
+    type: 'SET_TRANSCRIPTS_TIMELINE',
+    payload: 'foo'
+  })
+})
+
+test(`setTranscriptsChapters: creates the SET_TRANSCRIPTS_CHAPTERS action`, t => {
+  t.deepEqual(setTranscriptsChapters('foo'), {
+    type: 'SET_TRANSCRIPTS_CHAPTERS',
     payload: 'foo'
   })
 })

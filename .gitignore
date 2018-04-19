@@ -22,3 +22,6 @@ _site
 dist
 coverage
 docs/media
+
+# logs
+yarn-error.log

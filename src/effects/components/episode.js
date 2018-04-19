@@ -1,13 +1,15 @@
-import { get, noop } from 'lodash'
+import { get, noop, isArray } from 'lodash'
 
 import actions from 'store/actions'
-import { INIT, LOADING, LOADED, PLAY, PAUSE, IDLE, SET_TRANSCRIPTS, END, NETWORK_EMPTY, NETWORK_NO_SOURCE, ERROR_MISSING_AUDIO_FILES } from 'store/types'
+import { INIT, LOADING, LOADED, PLAY, PAUSE, IDLE, SET_TRANSCRIPTS, END, NETWORK_EMPTY, NETWORK_NO_SOURCE, ERROR_MISSING_AUDIO_FILES, INIT_CHAPTERS, SET_TRANSCRIPTS_TIMELINE } from 'store/types'
 
 import { handleActions } from 'utils/effects'
+import { INIT_TRANSCRIPTS } from '../../store/types';
 
-const hasChapters = chapters => chapters.length > 0
+const hasChapters = chapters => isArray(chapters) && chapters.length > 0
 const hasMeta = (show, episode) => episode.poster || show.poster || show.title || episode.title || episode.subtitle
 const hasFiles = files => files.length > 0
+const hasAudioFiles = files => files.length > 0
 
 const networkError = ({ dispatch }) => {
   dispatch(actions.toggleInfo(false))
@@ -19,17 +21,12 @@ const networkError = ({ dispatch }) => {
 }
 
 export default handleActions({
-  [INIT]: ({ dispatch }, action, state) => {
-    const chapters = get(state, 'chapters', [])
+  [INIT]: ({ dispatch }, { payload }, state) => {
     const downloadFiles = get(state, 'download.files', [])
+    const audioFiles = get(payload, 'audio', [])
     const episode = get(state, 'episode', {})
     const show = get(state, 'show', {})
     const runtime = get(state, 'runtime', {})
-
-    // Tabs
-    if (hasChapters(chapters)) {
-      dispatch(actions.toggleComponentTab('chapters', true))
-    }
 
     if (hasFiles(downloadFiles)) {
       dispatch(actions.toggleComponentTab('download', true))
@@ -51,6 +48,16 @@ export default handleActions({
     dispatch(actions.toggleComponentTab('audio', true))
     dispatch(actions.toggleRateSlider(true))
     dispatch(actions.toggleInfoPoster(true))
+
+    if (!hasAudioFiles(audioFiles)) {
+      dispatch(actions.errorMissingAudioFiles())
+    }
+  },
+
+  [INIT_CHAPTERS]: ({ dispatch }, { payload }) => {
+    if (hasChapters(payload)) {
+      dispatch(actions.toggleComponentTab('chapters', true))
+    }
   },
 
   [LOADING]: ({ dispatch }) => dispatch(actions.showLoadingButton()),
@@ -78,7 +85,9 @@ export default handleActions({
     dispatch(actions.toggleProgressBar(true))
   },
 
-  [SET_TRANSCRIPTS]: ({ dispatch }, { payload }) => payload.length > 0 ? dispatch(actions.toggleComponentTab('transcripts', true)) : noop,
+  [SET_TRANSCRIPTS_TIMELINE]: ({ dispatch }, { payload }, state) => {
+    payload.length > 0 ? dispatch(actions.toggleComponentTab('transcripts', true)) : noop
+  },
 
   [END]: ({ dispatch }) => dispatch(actions.showReplayButton()),
 
@@ -89,6 +98,7 @@ export default handleActions({
     dispatch(actions.toggleInfo(false))
     dispatch(actions.toggleError(true))
     dispatch(actions.toggleButtonControl(false))
+    dispatch(actions.showDurationButton())
     dispatch(actions.toggleProgressBar(false))
     dispatch(actions.toggleChapterControls(false))
     dispatch(actions.toggleSteppersControls(false))

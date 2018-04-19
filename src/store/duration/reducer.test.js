@@ -32,6 +32,14 @@ test(`duration: parses duration on SET_DURATION`, t => {
   t.is(result, 60)
 })
 
+test(`duration: sets state if duration is undefined on SET_DURATION`, t => {
+  let result = duration(30, {
+    type: 'SET_DURATION'
+  })
+
+  t.is(result, 30)
+})
+
 test(`duration: it does nothing if a unknown action is dispatched`, t => {
   const result = duration(10, {
     type: 'NOT_A_REAL_TYPE'

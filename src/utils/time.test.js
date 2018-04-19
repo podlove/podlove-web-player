@@ -34,10 +34,6 @@ test('toPlayerTime tolerates invalid inputs', t => {
   t.is(toPlayerTime('foo:oo'), 0)
 })
 
-test('localeDate transforms a date to a locale string', t => {
-  t.is(localeDate(0, 'en-US'), '1/1/1970')
-})
-
 // Time Parsers
 test(`toPlayerTime: parses hours from hh:mm:ss.f`, t => {
   t.is(toPlayerTime('04:8:06.5'), 14886005)

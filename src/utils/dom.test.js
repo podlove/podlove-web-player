@@ -1,7 +1,7 @@
 import test from 'ava'
 import sinon from 'sinon'
 import browserEnv from 'browser-env'
-import { findNode, createNode, appendNode, tag, setStyles, addClasses, getClasses, removeClasses } from './dom'
+import { findNode, createNode, appendNode, tag, setStyles, addClasses, getClasses, removeClasses, setAttributes, hasOverflow } from './dom'
 
 browserEnv()
 
@@ -40,6 +40,14 @@ test('exports a method called addClasses', t => {
 
 test('exports a method called removeClasses', t => {
   t.truthy(typeof removeClasses === 'function')
+})
+
+test('exports a method called setAttributes', t => {
+  t.truthy(typeof setAttributes === 'function')
+})
+
+test('exports a method called hasOverflow', t => {
+  t.truthy(typeof hasOverflow === 'function')
 })
 
 test('findNode should call the document api', t => {
@@ -104,4 +112,30 @@ test(`removeClasses should remove classes to dom elements`, t => {
   removeClasses(['foo', 'bar'])(testNode)
 
   t.is(testNode.className, 'baz')
+})
+
+test(`setAttributes should add attributes to an dom element`, t => {
+  const testNode = createNode('div')
+  setAttributes()(testNode)
+  setAttributes({ title: 'foobar' })(testNode)
+
+  t.is(testNode.getAttribute('title'), 'foobar')
+})
+
+test(`hasOverflow should return true if clientWidth is smaller than scrollWidth`, t => {
+  const testNode = {
+    clientWidth: 500,
+    scrollWidth: 700
+  }
+
+  t.is(hasOverflow(testNode), true)
+})
+
+test(`hasOverflow should return false if clientWidth is large than scrollWidth`, t => {
+  const testNode = {
+    clientWidth: 500,
+    scrollWidth: 400
+  }
+
+  t.is(hasOverflow(testNode), false)
 })

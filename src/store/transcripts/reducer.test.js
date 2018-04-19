@@ -5,9 +5,22 @@ test(`transcripts: it is a reducer function`, t => {
   t.is(typeof transcripts, 'function')
 })
 
-test(`transcripts: it sets the transcripts on SET_TRANSCRIPTS`, t => {
+test(`transcripts: it sets the transcripts on SET_TRANSCRIPTS_TIMELINE`, t => {
   const result = transcripts(INITIAL_STATE, {
-    type: 'SET_TRANSCRIPTS',
+    type: 'SET_TRANSCRIPTS_TIMELINE',
+    payload: ['foo']
+  })
+
+  t.deepEqual(result, {
+    ...INITIAL_STATE,
+    hasTranscripts: true,
+    timeline: ['foo']
+  })
+})
+
+test(`transcripts: it sets the transcripts on SET_TRANSCRIPTS_CHAPTERS`, t => {
+  const result = transcripts(INITIAL_STATE, {
+    type: 'SET_TRANSCRIPTS_CHAPTERS',
     payload: ['foo']
   })
 

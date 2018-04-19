@@ -1,13 +1,13 @@
 import IntervalTree from 'interval-tree2'
 
-import { noop, debounce } from 'lodash'
+import { noop, debounce, get as pluck } from 'lodash'
 import { compose, head, get } from 'lodash/fp'
 
 import { prohibitiveDispatch, handleActions } from 'utils/effects'
 import { inAnimationFrame } from 'utils/helper'
 
 import actions from 'store/actions'
-import { SET_TRANSCRIPTS, SET_PLAYTIME, UPDATE_PLAYTIME, DISABLE_GHOST_MODE, SIMULATE_PLAYTIME } from 'store/types'
+import { SET_TRANSCRIPTS_TIMELINE, SET_TRANSCRIPTS_CHAPTERS, SET_PLAYTIME, UPDATE_PLAYTIME, DISABLE_GHOST_MODE, SIMULATE_PLAYTIME } from 'store/types'
 
 let update = noop
 let debouncedUpdate = noop
@@ -40,21 +40,24 @@ const buildIndex = (duration = 0, data = []) => {
   }
 }
 
+const createIndex = ({ dispatch }, { payload }, { duration, playtime }) => {
+  // Build index
+  const indexSearch = compose(
+    prohibitiveDispatch(dispatch, actions.updateTranscripts),
+    get('id'),
+    head,
+    buildIndex(duration, payload)
+  )
+
+  update = inAnimationFrame(indexSearch)
+  debouncedUpdate = debounce(indexSearch, 200)
+
+  update(playtime)
+}
+
 export default handleActions({
-  [SET_TRANSCRIPTS]: ({ dispatch }, { payload }, { duration, playtime }) => {
-    // Build index
-    const indexSearch = compose(
-      prohibitiveDispatch(dispatch, actions.updateTranscripts),
-      get('id'),
-      head,
-      buildIndex(duration, payload)
-    )
-
-    update = inAnimationFrame(indexSearch)
-    debouncedUpdate = debounce(indexSearch, 200)
-
-    update(playtime)
-  },
+  [SET_TRANSCRIPTS_TIMELINE]: createIndex,
+  [SET_TRANSCRIPTS_CHAPTERS]: createIndex,
 
   [SET_PLAYTIME]: (store, { payload }) => update(payload),
   [UPDATE_PLAYTIME]: (store, { payload }) => update(payload),

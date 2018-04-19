@@ -6,7 +6,7 @@ import { toPlayerTime, secondsToMilliseconds } from 'utils/time'
 import { handleActions } from 'utils/effects'
 
 import actions from 'store/actions'
-import { INIT } from 'store/types'
+import { INIT, INIT_CHAPTERS, INIT_TRANSCRIPTS } from 'store/types'
 
 const transformTime = time => isNumber(time) ? secondsToMilliseconds(time) : toPlayerTime(time)
 
@@ -61,12 +61,11 @@ const transformTranscript = reduce((transcripts, chunk) => {
   ]
 }, [])
 
-const transformChapters = (chapter, index) => ({
+const transformChapters = chapters => chapters.map((chapter, index) => ({
   ...chapter,
   type: 'chapter',
   index: index + 1,
-  start: transformTime(chapter.start)
-})
+}))
 
 const mapSpeakers = speakers =>
   map(transcript => {
@@ -83,20 +82,38 @@ const mapSpeakers = speakers =>
   })
 
 export default handleActions({
-  [INIT]: ({ dispatch }, { type, payload }) => {
+  [INIT]: ({ dispatch }, { type, payload }, state) => {
     const transcriptsUrl = get(payload, 'transcripts')
-    const chapters = get(payload, 'chapters', []).map(transformChapters)
-    const speakers = get(payload, 'contributors', []).filter(contributor => get(contributor, 'group.slug') === 'onair')
-    const assignSpeakers = mapSpeakers(speakers)
 
     request(transcriptsUrl)
       .then(transformTranscript)
-      .then(assignSpeakers)
-      .then(concat(chapters))
-      .then(orderBy('start', 'asc'))
-      // Prevent a list of chapters only
-      .then(transcripts => transcripts.length === chapters.length ? [] : transcripts)
       .catch(() => [])
-      .then(compose(dispatch, actions.setTranscripts))
+      .then(compose(dispatch, actions.initTranscripts))
+  },
+
+  [INIT_TRANSCRIPTS]: ({ dispatch }, { type, payload }, state) => {
+    const speakers = get(state, 'speakers', [])
+    const existingTranscripts = get(state, 'transcripts.timeline', [])
+    const assignSpeakers = mapSpeakers(speakers)
+
+    compose(
+      dispatch,
+      actions.setTranscriptsTimeline,
+      orderBy('start', 'asc'),
+      assignSpeakers,
+      concat(existingTranscripts)
+    )(payload)
+  },
+
+  [INIT_CHAPTERS]: ({ dispatch }, { type, payload }, state) => {
+    const existingTranscripts = get(state, 'transcripts.timeline', [])
+
+    compose(
+      dispatch,
+      actions.setTranscriptsChapters,
+      orderBy('start', 'asc'),
+      concat(existingTranscripts),
+      transformChapters
+    )(payload)
   }
 })
