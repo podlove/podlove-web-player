@@ -33,7 +33,7 @@
 </template>
 
 <script>
-  import { calcHours, calcMinutes, localeDate, localeTime, millisecondsToSeconds } from 'utils/time'
+  import { calcHours, calcMinutes, localeDate, localeTime } from 'utils/time'
 
   import CalendarIcon from 'icons/CalendarIcon'
   import ClockIcon from 'icons/ClockIcon'
@@ -53,8 +53,8 @@
     computed: {
       episodeDuration () {
         return {
-          hours: calcHours(millisecondsToSeconds(this.duration)),
-          minutes: calcMinutes(millisecondsToSeconds(this.duration))
+          hours: calcHours(this.duration),
+          minutes: calcMinutes(this.duration)
         }
       },
       sectionStyle () {

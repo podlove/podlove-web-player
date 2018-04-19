@@ -25,7 +25,6 @@ export default mediaPlayer => handleActions({
     const audioFiles = get(payload, 'audio', [])
 
     if (audioFiles.length === 0) {
-      dispatch(actions.errorMissingAudioFiles())
       return
     }
 

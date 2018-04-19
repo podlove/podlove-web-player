@@ -1,5 +1,5 @@
 <template>
-   <div :style="heightByIndex(0, prerender.length - 1)" v-on:scroll="renderWindow()" v-on:mousewheel="disableFollow()">
+   <div :style="heightByIndex(0, prerender.length - 1)" @scroll="renderWindow()" @mousewheel="disableFollow()" @DOMMouseScroll="disableFollow()">
       <div :style="{ height: heightByIndex(0, start) + 'px' }"></div>
       <div :style="{ height: heightByIndex(start, end) + 'px' }">
         <transcript-entry v-for="(entry, index) in slice(start, end)"

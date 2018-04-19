@@ -7,7 +7,7 @@ import { prohibitiveDispatch, handleActions } from 'utils/effects'
 import { inAnimationFrame } from 'utils/helper'
 
 import actions from 'store/actions'
-import { SET_TRANSCRIPTS, SEARCH_TRANSCRIPTS } from 'store/types'
+import { SET_TRANSCRIPTS_TIMELINE, SEARCH_TRANSCRIPTS } from 'store/types'
 
 let updateTranscript = noop
 
@@ -37,7 +37,7 @@ const buildIndex = (data = []) => {
 }
 
 export default handleActions({
-  [SET_TRANSCRIPTS]: ({ dispatch }, { payload }) => {
+  [SET_TRANSCRIPTS_TIMELINE]: ({ dispatch }, { payload }) => {
     updateTranscript = inAnimationFrame(
       compose(
         prohibitiveDispatch(dispatch, actions.setTranscriptsSearchResults),

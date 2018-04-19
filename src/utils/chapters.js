@@ -20,3 +20,28 @@ export const currentChapterByPlaytime = chapters => playtime => find(chapter => 
 
   return true
 })(chapters)
+
+export const inactiveChapter = chapter => ({
+  ...chapter,
+  active: false
+})
+
+export const activeChapter = chapter => ({
+  ...chapter,
+  active: true
+})
+
+export const setActiveByPlaytime = playtime => chapter => {
+  if (playtime < chapter.start) {
+    return inactiveChapter(chapter)
+  }
+
+  if (playtime >= chapter.end) {
+    return inactiveChapter(chapter)
+  }
+
+  return activeChapter(chapter)
+}
+
+export const setActiveByIndex = chapterIndex => (chapter, index) =>
+  chapterIndex === index ? activeChapter(chapter) : inactiveChapter(chapter)

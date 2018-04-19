@@ -33,7 +33,8 @@
 export default {
   data () {
     return {
-      theme: this.$select('theme')
+      theme: this.$select('theme'),
+      transcripts: this.$select('transcripts')
     }
   },
   props: ['entry', 'playtime', 'ghost', 'prerender', 'query'],
@@ -67,7 +68,7 @@ export default {
       }
     },
     searchQuery () {
-      if (!this.query && this.query.length < 2) {
+      if (!this.query || this.transcripts.search.results.length === 0) {
         return null
       }
 

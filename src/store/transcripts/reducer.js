@@ -1,7 +1,8 @@
 import { handleActions } from 'redux-actions'
 
 import {
-  SET_TRANSCRIPTS,
+  SET_TRANSCRIPTS_TIMELINE,
+  SET_TRANSCRIPTS_CHAPTERS,
   UPDATE_TRANSCRIPTS,
   TOGGLE_FOLLOW_TRANSCRIPTS,
   SEARCH_TRANSCRIPTS,
@@ -15,6 +16,7 @@ export const INITIAL_STATE = {
   timeline: [],
   active: null,
   follow: true,
+  hasTranscripts: false,
   search: {
     query: '',
     selected: -1,
@@ -23,7 +25,13 @@ export const INITIAL_STATE = {
 }
 
 export const reducer = handleActions({
-  [SET_TRANSCRIPTS]: (state, { payload }) => ({
+  [SET_TRANSCRIPTS_TIMELINE]: (state, { payload }) => ({
+    ...state,
+    hasTranscripts: payload.length > 0,
+    timeline: payload
+  }),
+
+  [SET_TRANSCRIPTS_CHAPTERS]: (state, { payload }) => ({
     ...state,
     timeline: payload
   }),

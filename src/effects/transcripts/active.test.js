@@ -22,9 +22,9 @@ test(`transcripts - active: exports a function`, t => {
   t.is(typeof activeEffect, 'function')
 })
 
-test(`transcripts - active: creates an search index on SET_TRANSCRIPTS`, t => {
+test(`transcripts - active: creates an search index on SET_TRANSCRIPTS_TIMELINE`, t => {
   activeEffect(store, {
-    type: 'SET_TRANSCRIPTS',
+    type: 'SET_TRANSCRIPTS_TIMELINE',
     payload: timeline
   })
 
@@ -39,7 +39,7 @@ const playtimeTypes = ['SET_PLAYTIME', 'UPDATE_PLAYTIME']
 playtimeTypes.forEach(type => {
   test(`transcripts - active: triggers search on ${type}`, t => {
     activeEffect(store, {
-      type: 'SET_TRANSCRIPTS',
+      type: 'SET_TRANSCRIPTS_TIMELINE',
       payload: timeline
     })
 
@@ -56,7 +56,7 @@ playtimeTypes.forEach(type => {
 
   test(`transcripts - active: doesn't get called if playtime is out of range in ${type}`, t => {
     activeEffect(store, {
-      type: 'SET_TRANSCRIPTS',
+      type: 'SET_TRANSCRIPTS_TIMELINE',
       payload: timeline
     })
 
@@ -88,7 +88,7 @@ test.cb(`transcripts - active: calls interval search debounced with playtime on 
   }
 
   activeEffect(store, {
-    type: 'SET_TRANSCRIPTS',
+    type: 'SET_TRANSCRIPTS_TIMELINE',
     payload: timeline
   })
 
@@ -120,7 +120,7 @@ test.cb(`transcripts - active: calls interval search debounced with payload on S
   }
 
   activeEffect(store, {
-    type: 'SET_TRANSCRIPTS',
+    type: 'SET_TRANSCRIPTS_TIMELINE',
     payload: timeline
   })
 
@@ -137,7 +137,7 @@ test.cb(`transcripts - active: calls interval search debounced with payload on S
 
 test(`transcripts - active: falls back to empty array if no payload available`, t => {
   activeEffect(store, {
-    type: 'SET_TRANSCRIPTS'
+    type: 'SET_TRANSCRIPTS_TIMELINE'
   })
 
   t.is(store.dispatch.getCalls().length, 0)
@@ -145,7 +145,7 @@ test(`transcripts - active: falls back to empty array if no payload available`, 
 
 test(`transcripts - active: it ignores start and end is equal`, t => {
   activeEffect(store, {
-    type: 'SET_TRANSCRIPTS',
+    type: 'SET_TRANSCRIPTS_TIMELINE',
     payload: [{
       start: 0,
       end: 0

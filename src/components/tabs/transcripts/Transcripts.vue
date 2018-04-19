@@ -2,7 +2,7 @@
   <div class="transcripts" :class="{ 'has-search-results': hasSearchResults }">
     <div class="transcripts-header">
       <search></search>
-      <follow class="follow-button"></follow>
+      <follow class="transcripts-follow-button"></follow>
     </div>
     <!-- Render -->
     <render-container class="transcripts-container" :prerender="prerender" v-if="prerender && prerender.length > 0"></render-container>
@@ -92,7 +92,7 @@ export default {
   }
 
   @media screen and (max-width: $width-m) {
-    .transcripts.has-search-results .follow-button {
+    .transcripts.has-search-results .transcripts-follow-button {
       display: none;
     }
 

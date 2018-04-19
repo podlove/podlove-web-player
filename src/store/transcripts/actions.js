@@ -1,7 +1,9 @@
 import { createAction } from 'redux-actions'
 
 import {
-  SET_TRANSCRIPTS,
+  INIT_TRANSCRIPTS,
+  SET_TRANSCRIPTS_TIMELINE,
+  SET_TRANSCRIPTS_CHAPTERS,
   UPDATE_TRANSCRIPTS,
   TOGGLE_FOLLOW_TRANSCRIPTS,
   SEARCH_TRANSCRIPTS,
@@ -11,7 +13,9 @@ import {
   PREVIOUS_SEARCH_RESULT
 } from '../types'
 
-export const setTranscripts = createAction(SET_TRANSCRIPTS, (transcripts = []) => transcripts)
+export const initTranscripts = createAction(INIT_TRANSCRIPTS)
+export const setTranscriptsChapters = createAction(SET_TRANSCRIPTS_CHAPTERS, (chapters = []) => chapters)
+export const setTranscriptsTimeline = createAction(SET_TRANSCRIPTS_TIMELINE, (transcripts = []) => transcripts)
 export const updateTranscripts = createAction(UPDATE_TRANSCRIPTS, (playtime = 0) => playtime)
 export const followTranscripts = createAction(TOGGLE_FOLLOW_TRANSCRIPTS, (follow = true) => follow)
 export const searchTranscripts = createAction(SEARCH_TRANSCRIPTS)

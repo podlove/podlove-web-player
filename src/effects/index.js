@@ -27,12 +27,12 @@ const dispatcherEffects = [keyboardEffects]
 
 const condEffects = [
   conditionalEffect(playbackEffects),
-  compose(conditionalEffect(chapterEffects), hasProperty('chapters')),
   conditionalEffect(playerEffects),
   conditionalEffect(storageEffects),
   conditionalEffect(quantileEffects),
   conditionalEffect(volumeEffects),
   conditionalEffect(componentsEffects),
+  compose(conditionalEffect(chapterEffects)),
   compose(conditionalEffect(transcriptEffects), hasProperty('transcripts'))
 ]
 

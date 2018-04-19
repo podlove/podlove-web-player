@@ -63,6 +63,86 @@ export const contributors = [
   }
 ]
 
+export const parsedTranscripts = [
+  {
+    start: 0,
+    end: 200000,
+    speaker: 'speaker-1',
+    type: 'transcript',
+    texts: [{
+      start: 0,
+      end: 100000,
+      text: 'fooo'
+    }, {
+      start: 100000,
+      end: 200000,
+      text: 'blaa'
+    }]
+  },
+  {
+    start: 200000,
+    end: 300000,
+    speaker: 'speaker-2',
+    type: 'transcript',
+    texts: [{
+      start: 200000,
+      end: 300000,
+      text: 'bar'
+    }]
+  },
+  {
+    start: 300000,
+    end: 400000,
+    speaker: 'speaker-3',
+    type: 'transcript',
+    texts: [{
+      start: 300000,
+      end: 400000,
+      text: 'baz'
+    }]
+  }
+]
+
+export const parsedTranscriptsWithSpeakers = [
+  {
+    start: 0,
+    end: 200000,
+    speaker: contributors[0],
+    type: 'transcript',
+    texts: [{
+      start: 0,
+      end: 100000,
+      text: 'fooo'
+    }, {
+      start: 100000,
+      end: 200000,
+      text: 'blaa'
+    }]
+  },
+  {
+    start: 200000,
+    end: 300000,
+    speaker: contributors[1],
+    type: 'transcript',
+    texts: [{
+      start: 200000,
+      end: 300000,
+      text: 'bar'
+    }]
+  },
+  {
+    start: 300000,
+    end: 400000,
+    speaker: contributors[2],
+    type: 'transcript',
+    texts: [{
+      start: 300000,
+      end: 400000,
+      text: 'baz'
+    }]
+  }
+]
+
 export const chapters = [
   {
     title: 'Chapter One',
@@ -70,11 +150,32 @@ export const chapters = [
   },
   {
     title: 'Chapter Two',
-    start: 200
+    start: 200000
   },
   {
     title: 'Chapter Three',
-    start: 250
+    start: 250000
+  }
+]
+
+export const parsedChapters = [
+  {
+    title: 'Chapter One',
+    start: 0,
+    type: 'chapter',
+    index: 1
+  },
+  {
+    title: 'Chapter Two',
+    start: 200000,
+    type: 'chapter',
+    index: 2
+  },
+  {
+    title: 'Chapter Three',
+    start: 250000,
+    type: 'chapter',
+    index: 3
   }
 ]
 
