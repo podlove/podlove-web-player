@@ -103,7 +103,7 @@
     "inject-loader": "4.0.0",
     "lolex": "2.3.2",
     "node-sass": "4.8.3",
-    "nyc": "11.4.1",
+    "nyc": "11.7.1",
     "raw-loader": "0.5.1",
     "sass-loader": "6.0.6",
     "semver": "5.5.0",
