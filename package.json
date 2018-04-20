@@ -2,7 +2,7 @@
   "name": "@podlove/podlove-web-player",
   "title": "Podlove Web Player",
   "description": "a Podcast-optimized, HTML5-based video and audio player with Flash fallback. It can be used as a WordPress plugin or within a static HTML/JavaScript context.",
-  "version": "4.0.8",
+  "version": "4.0.9",
   "homepage": "https://github.com/podlove/podlove-web-player",
   "contributors": [],
   "repository": "https://github.com/podlove/podlove-web-player.git",
