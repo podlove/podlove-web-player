@@ -7,11 +7,11 @@
     </div>
     <div class="description">
       <h2 class="show-title" :style="titleStyle" v-if="hasShowTitle">
-        <a :href="show.link" target="_blank" class="truncate" v-if="display === 'embed' && show.link">{{ show.title }}</a>
+        <a :href="show.link" target="_blank" class="truncate" v-if="show.link">{{ show.title }}</a>
         <span class="truncate" v-else>{{ show.title }}</span>
       </h2>
       <h1 class="title" v-marquee :style="titleStyle" v-if="hasEpisodeTitle">
-        <a :href="episode.link" target="_blank" v-if="display === 'embed' && episode.link">{{ episode.title }}</a>
+        <a :href="episode.link" target="_blank" v-if="episode.link">{{ episode.title }}</a>
         <span v-else>{{ episode.title }}</span>
       </h1>
       <div class="subtitle" :style="subtitleStyle" v-if="hasDescription">{{ episode.subtitle }}</div>
