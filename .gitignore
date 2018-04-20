@@ -21,3 +21,7 @@ atlassian-ide-plugin.xml
 _site
 dist
 coverage
+docs/media
+
+# logs
+yarn-error.log

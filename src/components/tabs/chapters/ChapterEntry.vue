@@ -10,7 +10,7 @@
     <span class="index" v-else>{{index + 1}}</span>
     <div class="chapter--progress" v-if="runtime.platform === 'desktop'"
       @mouseout="onMouseOut"
-      @mousemove="onMouseMove"
+      @mousemove.alt="onMouseMove"
       @click="onChapterPlayClick"
       @click.alt="onChapterClick">
       <span class="title truncate">{{chapter.title}}</span>

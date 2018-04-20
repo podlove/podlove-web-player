@@ -2,7 +2,6 @@ import test from 'ava'
 import {
   fromPlayerTime,
   toPlayerTime,
-  localeDate,
   secondsToMilliseconds,
   millisecondsToSeconds
 } from './time'
@@ -32,10 +31,6 @@ test('toPlayerTime tolerates invalid inputs', t => {
   t.is(toPlayerTime(undefined), 0)
   t.is(toPlayerTime(null), 0)
   t.is(toPlayerTime('foo:oo'), 0)
-})
-
-test('localeDate transforms a date to a locale string', t => {
-  t.is(localeDate(0, 'en-US'), '1/1/1970')
 })
 
 // Time Parsers

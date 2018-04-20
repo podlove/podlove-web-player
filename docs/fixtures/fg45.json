@@ -87,5 +87,5 @@
       "comment": null
     }
   ],
-  "transcripts": "https://podlove-player.surge.sh/fixtures/transcripts/fg45.json"
+  "transcripts": "./fixtures/transcripts/fg45.json"
 }

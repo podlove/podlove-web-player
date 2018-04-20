@@ -156,65 +156,56 @@ test(`componentsEffect: it shows correct ui components for INIT action`, t => {
   t.deepEqual(store.dispatch.getCall(0).args[0], {
     type: 'TOGGLE_COMPONENT_TAB',
     payload: {
-      tab: 'chapters',
-      visibility: true
-    }
-  })
-  t.deepEqual(store.dispatch.getCall(1).args[0], {
-    type: 'TOGGLE_COMPONENT_TAB',
-    payload: {
       tab: 'download',
       visibility: true
     }
   })
-  t.deepEqual(store.dispatch.getCall(2).args[0], {
+  t.deepEqual(store.dispatch.getCall(1).args[0], {
     type: 'TOGGLE_COMPONENT_INFO',
     payload: true
   })
-  t.deepEqual(store.dispatch.getCall(3).args[0], {
+  t.deepEqual(store.dispatch.getCall(2).args[0], {
     type: 'TOGGLE_COMPONENT_VOLUME_SLIDER',
     payload: true
   })
-  t.deepEqual(store.dispatch.getCall(4).args[0], {
+  t.deepEqual(store.dispatch.getCall(3).args[0], {
     type: 'TOGGLE_COMPONENT_TAB',
     payload: {
       tab: 'share',
       visibility: true
     }
   })
-  t.deepEqual(store.dispatch.getCall(5).args[0], {
+  t.deepEqual(store.dispatch.getCall(4).args[0], {
     type: 'TOGGLE_COMPONENT_TAB',
     payload: {
       tab: 'info',
       visibility: true
     }
   })
-  t.deepEqual(store.dispatch.getCall(6).args[0], {
+  t.deepEqual(store.dispatch.getCall(5).args[0], {
     type: 'TOGGLE_COMPONENT_TAB',
     payload: {
       tab: 'audio',
       visibility: true
     }
   })
-  t.deepEqual(store.dispatch.getCall(7).args[0], {
+  t.deepEqual(store.dispatch.getCall(6).args[0], {
     type: 'TOGGLE_COMPONENT_RATE_SLIDER',
     payload: true
   })
 })
 
-test(`componentsEffect: it shows the chapters tab only when chapters are available on INIT`, t => {
+test(`componentsEffect: it shows the chapters tab only when chapters are available on INIT_CHAPTERS`, t => {
   const testAction = {
-    type: 'INIT'
+    type: 'INIT_CHAPTERS',
+    payload: ['foo', 'bar']
   }
-
-  state.chapters = []
-  store.getState = sinon.stub().returns(state)
 
   components(store, testAction)
   t.deepEqual(store.dispatch.getCall(0).args[0], {
     type: 'TOGGLE_COMPONENT_TAB',
     payload: {
-      tab: 'download',
+      tab: 'chapters',
       visibility: true
     }
   })
@@ -229,7 +220,7 @@ test(`componentsEffect: it shows the download tab only when audio files are avai
   store.getState = sinon.stub().returns(state)
 
   components(store, testAction)
-  t.deepEqual(store.dispatch.getCall(1).args[0], {
+  t.deepEqual(store.dispatch.getCall(0).args[0], {
     type: 'TOGGLE_COMPONENT_INFO',
     payload: true
   })
@@ -245,7 +236,7 @@ test(`componentsEffect: it shows the info section only when meta available on IN
   store.getState = sinon.stub().returns(state)
 
   components(store, testAction)
-  t.deepEqual(store.dispatch.getCall(2).args[0], {
+  t.deepEqual(store.dispatch.getCall(1).args[0], {
     type: 'TOGGLE_COMPONENT_VOLUME_SLIDER',
     payload: true
   })
@@ -322,24 +313,27 @@ test(`componentsEffect: it shows correct ui components for ERROR_MISSING_AUDIO_F
   })
 
   t.deepEqual(store.dispatch.getCall(3).args[0], {
+    type: 'SHOW_COMPONENT_CONTROLS_BUTTON_DURATION'
+  })
+  t.deepEqual(store.dispatch.getCall(4).args[0], {
     type: 'TOGGLE_COMPONENT_PROGRESSBAR',
     payload: false
   })
 
-  t.deepEqual(store.dispatch.getCall(4).args[0], {
+  t.deepEqual(store.dispatch.getCall(5).args[0], {
     type: 'TOGGLE_COMPONENT_CONTROLS_CHAPTERS',
     payload: false
   })
 
-  t.deepEqual(store.dispatch.getCall(5).args[0], {
+  t.deepEqual(store.dispatch.getCall(6).args[0], {
     type: 'TOGGLE_COMPONENT_CONTROLS_STEPPERS',
     payload: false
   })
 })
 
-test(`componentsEffect: it enables transcript tab if SET_TRANSCRIPTS is dispatched with payload`, t => {
+test(`componentsEffect: it enables transcript tab if SET_TRANSCRIPTS_TIMELINE is dispatched with payload`, t => {
   const testAction = {
-    type: 'SET_TRANSCRIPTS',
+    type: 'SET_TRANSCRIPTS_TIMELINE',
     payload: []
   }
 

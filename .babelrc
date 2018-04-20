@@ -12,7 +12,8 @@
   ]],
   "plugins": [
     "lodash",
-    "transform-object-rest-spread"
+    "transform-object-rest-spread",
+    "es6-promise"
   ],
   "env": {
     "AVA": {

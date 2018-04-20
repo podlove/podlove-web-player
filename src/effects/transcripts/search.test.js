@@ -22,9 +22,9 @@ test(`transcripts - search: exports a function`, t => {
   t.is(typeof searchEffect, 'function')
 })
 
-test(`transcripts - search: creates an search index on SET_TRANSCRIPTS`, t => {
+test(`transcripts - search: creates an search index on SET_TRANSCRIPTS_TIMELINE`, t => {
   searchEffect(store, {
-    type: 'SET_TRANSCRIPTS',
+    type: 'SET_TRANSCRIPTS_TIMELINE',
     payload: timeline
   })
 
@@ -40,7 +40,7 @@ test(`transcripts - search: creates an search index on SET_TRANSCRIPTS`, t => {
 
 test(`transcripts - doesn't dispatch if no results are found`, t => {
   searchEffect(store, {
-    type: 'SET_TRANSCRIPTS',
+    type: 'SET_TRANSCRIPTS_TIMELINE',
     payload: timeline
   })
 

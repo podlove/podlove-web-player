@@ -1,3 +1,34 @@
+<a name="4.0.9"></a>
+## [4.0.9](https://github.com/podlove/podlove-web-player/compare/v4.0.3...v4.0.9) (2018-04-20)
+
+
+### Bug Fixes
+
+* **build:** Uses babel-env as preset ([3775ed1](https://github.com/podlove/podlove-web-player/commit/3775ed1))
+* **download-tab:** Displays correct duration ([9096834](https://github.com/podlove/podlove-web-player/commit/9096834))
+* **ie11:** Polyfills Promise API ([b694a14](https://github.com/podlove/podlove-web-player/commit/b694a14))
+* **locale:** Adds default locale if not defined ([3be3970](https://github.com/podlove/podlove-web-player/commit/3be3970))
+* **localization:** Fixes typo in german translation ([65160cd](https://github.com/podlove/podlove-web-player/commit/65160cd))
+* **marquee:** Fixes marquee width calculation ([5851dd8](https://github.com/podlove/podlove-web-player/commit/5851dd8))
+* **package:** update detect-browser to version 2.1.0 ([478db3c](https://github.com/podlove/podlove-web-player/commit/478db3c))
+* **package:** update redux-actions to version 2.3.0 ([4410856](https://github.com/podlove/podlove-web-player/commit/4410856))
+* **title:** Fixes scrolling issue in title when overflowing ([052ceca](https://github.com/podlove/podlove-web-player/commit/052ceca))
+* **transcripts:** Adds custom event for mozilla ([5d05651](https://github.com/podlove/podlove-web-player/commit/5d05651))
+* **transcripts:** Single Speaker ([a853f35](https://github.com/podlove/podlove-web-player/commit/a853f35))
+* **transcripts-search:** Makes search highlighting more consistent ([4b284e6](https://github.com/podlove/podlove-web-player/commit/4b284e6))
+* **window-size:** Fire resize event on content load ([6ca2c9b](https://github.com/podlove/podlove-web-player/commit/6ca2c9b))
+
+
+### Features
+
+* **chapters:** Adds ability to retrieve chapters via url ([55e328d](https://github.com/podlove/podlove-web-player/commit/55e328d))
+* **ci:** Adds preview hook for pull requests ([2e8a385](https://github.com/podlove/podlove-web-player/commit/2e8a385))
+* **share:** Adds icons to share tab ([f0e83f1](https://github.com/podlove/podlove-web-player/commit/f0e83f1)), closes [#486](https://github.com/podlove/podlove-web-player/issues/486)
+* **stoptime:** Adds ability to stop time at position ([471b7b6](https://github.com/podlove/podlove-web-player/commit/471b7b6))
+* **tooltip:** Adds copied tooltip ([f3c9374](https://github.com/podlove/podlove-web-player/commit/f3c9374))
+
+
+
 <a name="4.0.7"></a>
 ## [4.0.7](https://github.com/podlove/podlove-web-player/compare/v4.0.8...v4.0.7) (2018-03-30)
 

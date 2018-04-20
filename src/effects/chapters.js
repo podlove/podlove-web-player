@@ -1,12 +1,31 @@
-import { get } from 'lodash'
+import { get, findIndex, isString } from 'lodash'
 import { getOr, compose } from 'lodash/fp'
 
-import { currentChapter, currentChapterIndex } from 'utils/chapters'
+import { currentChapter, currentChapterIndex, setActiveByPlaytime, setActiveByIndex } from 'utils/chapters'
 import { handleActions } from 'utils/effects'
+import { toPlayerTime } from 'utils/time'
+import request from 'utils/request'
 
 import actions from 'store/actions'
 
-import { PREVIOUS_CHAPTER, NEXT_CHAPTER, SET_CHAPTER, SET_PLAYTIME, UPDATE_PLAYTIME } from 'store/types'
+import { INIT, PREVIOUS_CHAPTER, NEXT_CHAPTER, SET_CHAPTER, SET_PLAYTIME, UPDATE_PLAYTIME } from 'store/types'
+
+const chapterMeta = (chapter, next) => ({
+  start: toPlayerTime(chapter.start),
+  end: toPlayerTime(next.start),
+  title: chapter.title
+})
+
+const parseChapters = duration => (result, chapter, index, chapters) => {
+  const end = get(chapters, index + 1, { start: duration })
+  return [...result, chapterMeta(chapter, end)]
+}
+
+const fallbackToLastChapter = (playtime = 0) => (chapters = []) => {
+  const index = findIndex(chapters, { active: true })
+
+  return (index > 0 || playtime === 0) ? chapters : chapters.map(setActiveByIndex(chapters.length - 1))
+}
 
 const chapterIndexFromState = compose(
   currentChapterIndex,
@@ -25,6 +44,22 @@ const chapterUpdate = ({ dispatch }, { payload }, state) => {
 }
 
 export default handleActions({
+  [INIT]: ({ dispatch }, { payload }, state) => {
+    const chapters = get(payload, 'chapters', [])
+    const playtime = get(state, 'playtime', 0)
+    const duration = get(state, 'duration', 0)
+
+    const requestChapters = isString(chapters) ? request(chapters) : Promise.resolve(chapters)
+
+    requestChapters
+      .catch(() => [])
+      .then(chapters => chapters.reduce(parseChapters(toPlayerTime(duration)), []))
+      .then(chapters => chapters.map(setActiveByPlaytime(playtime)))
+      .then(fallbackToLastChapter(playtime))
+      .then(actions.initChapters)
+      .then(dispatch)
+  },
+
   [PREVIOUS_CHAPTER]: ({ dispatch }, action, state) => {
     const index = chapterIndexFromState(state)
     const current = currentChapterFromState(state)
