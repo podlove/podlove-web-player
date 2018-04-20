@@ -58,9 +58,10 @@ window.podlovePlayer = (selector, episode) =>
     .then(resizer)
     .then(sandboxWindow(['PODLOVE_STORE', 'store']))
     .then(dispatchUrlParameters)
-    .catch(() => {
+    .catch(err => {
       console.group(`Can't load Podlove Webplayer`)
       console.error('selector', selector)
       console.error('config', episode)
+      console.error(err)
       console.groupEnd()
     })
