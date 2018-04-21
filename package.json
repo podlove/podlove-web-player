@@ -120,7 +120,7 @@
     "webpack-blocks": "1.0.0",
     "webpack-blocks-vue": "1.1.0",
     "webpack-bundle-analyzer": "2.11.0",
-    "webpack-jarvis": "0.3.0"
+    "webpack-jarvis": "0.3.1"
   },
   "engines": {
     "node": ">=8.0.0"
