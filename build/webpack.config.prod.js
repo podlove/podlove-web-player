@@ -34,7 +34,15 @@ module.exports = createConfig([
     }
   }),
 
-  uglify(),
+  uglify({
+    parallel: true,
+    cache: true,
+    uglifyOptions: {
+      compress: {
+        warnings: false
+      }
+    }
+  }),
 
   addPlugins([
     new ExtractTextPlugin('style.css'),
