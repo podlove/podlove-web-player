@@ -115,7 +115,7 @@
     "surge": "0.20.0",
     "transform-runtime": "0.0.0",
     "vue-loader": "14.1.1",
-    "vue-template-compiler": "2.5.13",
+    "vue-template-compiler": "2.5.16",
     "webpack": "3.10.0",
     "webpack-blocks": "1.0.0",
     "webpack-blocks-vue": "1.1.0",
