@@ -70,7 +70,7 @@
     "revue": "3.0.0",
     "superagent": "3.8.2",
     "v-tooltip": "2.0.0-rc.31",
-    "vue": "2.5.13",
+    "vue": "2.5.16",
     "vue-i18n": "7.6.0"
   },
   "devDependencies": {
@@ -115,7 +115,7 @@
     "surge": "0.20.0",
     "transform-runtime": "0.0.0",
     "vue-loader": "14.1.1",
-    "vue-template-compiler": "2.5.13",
+    "vue-template-compiler": "2.5.16",
     "webpack": "3.10.0",
     "webpack-blocks": "1.0.0",
     "webpack-blocks-vue": "1.1.0",
