@@ -798,15 +798,7 @@ babel-helpers@^6.24.1:
     babel-runtime "^6.22.0"
     babel-template "^6.24.1"
 
-babel-loader@7.1.2:
-  version "7.1.2"
-  resolved "https://registry.yarnpkg.com/babel-loader/-/babel-loader-7.1.2.tgz#f6cbe122710f1aa2af4d881c6d5b54358ca24126"
-  dependencies:
-    find-cache-dir "^1.0.0"
-    loader-utils "^1.0.2"
-    mkdirp "^0.5.1"
-
-babel-loader@^7.1.1:
+babel-loader@7.1.4, babel-loader@^7.1.1:
   version "7.1.4"
   resolved "https://registry.yarnpkg.com/babel-loader/-/babel-loader-7.1.4.tgz#e3463938bd4e6d55d1c174c5485d406a188ed015"
   dependencies:
@@ -5614,9 +5606,9 @@ lru-cache@^4.0.1, lru-cache@^4.1.1:
     pseudomap "^1.0.2"
     yallist "^2.1.2"
 
-lunr@2.1.5:
-  version "2.1.5"
-  resolved "https://registry.yarnpkg.com/lunr/-/lunr-2.1.5.tgz#826601ccaeac29148e224154b34760faf4d81b70"
+lunr@2.1.6:
+  version "2.1.6"
+  resolved "https://registry.yarnpkg.com/lunr/-/lunr-2.1.6.tgz#671d2321c4c5bc4c522914953d1c54d612f60aa7"
 
 macaddress@^0.2.8:
   version "0.2.8"
