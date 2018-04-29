@@ -1,32 +1,24 @@
-const {
-  babel,
-  entryPoint,
-  resolve,
-  match,
-  file,
-  setOutput
-} = require('webpack-blocks')
-
 const path = require('path')
+const { VueLoaderPlugin } = require('vue-loader')
 
 const sourceDir = path.resolve('.', 'src')
 const distDir = path.resolve('.', 'dist')
 
-const baseConfig = [
-  entryPoint({
+module.exports = {
+  entry: {
     embed: path.resolve(sourceDir, 'embed', 'embed.js'),
     window: path.resolve(sourceDir, 'embed', 'window.js'),
     share: path.resolve(sourceDir, 'embed', 'share.js'),
     vendor: path.resolve(sourceDir, 'vendor.js')
-  }),
+  },
 
-  setOutput({
+  output: {
     path: distDir,
     filename: '[name].js',
     publicPath: ''
-  }),
+  },
 
-  resolve({
+  resolve: {
     extensions: ['*', '.js', '.vue', '.json'],
     alias: {
       'vue$': 'vue/dist/vue.common.js',
@@ -38,31 +30,29 @@ const baseConfig = [
       core: path.resolve(sourceDir, 'core'),
       styles: path.resolve(sourceDir, 'styles')
     }
-  }),
+  },
 
-  match('*.js', { exclude: [] }, [
-    babel()
-  ]),
-
-  match(['*.gif', '*.jpg', '*.jpeg', '*.png', '*.svg'], [
-    file({
+  module: {
+    rules: [{
+      test: /\.vue$/,
+      use: 'vue-loader'
+    }, {
+      test: /\.js?$/,
+      loader: 'babel-loader'
+    }, {
+      test: /\.(png|jpg|gif|jpeg|svg)$/,
+      loader: 'file-loader',
       options: {
         name: '[name].[ext]?[hash]'
       }
-    })
-  ]),
-
-  match(['*.eot', '*.svg', '*.ttf', '*.woff', '*.woff2'], [
-    file({
+    }, {
+      test: /\.(eot|svg|ttf|woff|woff2)$/,
+      loader: 'file-loader',
       options: {
         name: 'fonts/[name].[ext]?[hash]'
       }
-    })
-  ])
-]
+    }]
+  },
 
-module.exports = {
-  baseConfig,
-  sourceDir,
-  distDir
+  plugins: [new VueLoaderPlugin()]
 }

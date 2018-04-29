@@ -1,61 +1,53 @@
 const { get } = require('lodash')
 
 const webpack = require('webpack')
-const {
-  createConfig,
-  setEnv,
-  addPlugins,
-  uglify
-} = require('webpack-blocks')
+const autoprefixer = require('autoprefixer')
+const cssClean = require('postcss-clean')
 
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const vue = require('webpack-blocks-vue')
 
-const { baseConfig } = require('./webpack.config.base')
+const baseConfig = require('./webpack.config.base')
 
-module.exports = createConfig([
-  ...baseConfig,
+module.exports = Object.assign({}, baseConfig, {
+  mode: 'production',
 
-  setEnv({
-    NODE_ENV: 'production'
-  }),
-
-  vue({
-    loaders: {
-      js: 'babel-loader',
-      scss: ExtractTextPlugin.extract({
-        fallback: 'vue-style-loader',
-        use: [{
-          loader: 'css-loader'
-        }, {
-          loader: 'sass-loader'
-        }]
-      })
-    }
-  }),
-
-  uglify({
-    parallel: true,
-    cache: true,
-    uglifyOptions: {
-      compress: {
-        warnings: false
+  module: {
+    rules: [
+      ...baseConfig.module.rules,
+      {
+        test: /\.scss$/,
+        use: ExtractTextPlugin.extract({
+          use: [
+            {
+              loader: 'css-loader'
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                plugins: () => [cssClean({
+                  inline: ['none']
+                }), autoprefixer()]
+              }
+            },
+            {
+              loader: 'sass-loader'
+            }
+          ]
+        })
       }
-    }
-  }),
+    ]
+  },
 
-  addPlugins([
+  plugins: [
+    ...baseConfig.plugins,
+
     new ExtractTextPlugin('style.css'),
-
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      filename: 'vendor.js',
-      chunks: ['share', 'window'],
-      minChunks: Infinity
-    }),
 
     new webpack.DefinePlugin({
       BASE: JSON.stringify(get(process.env, 'BASE', '.'))
-    })
-  ])
-])
+    }),
+
+    new UglifyJsPlugin()
+  ]
+})
