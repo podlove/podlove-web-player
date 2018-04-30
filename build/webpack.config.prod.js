@@ -4,7 +4,6 @@ const webpack = require('webpack')
 const autoprefixer = require('autoprefixer')
 const cssClean = require('postcss-clean')
 
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 const baseConfig = require('./webpack.config.base')
@@ -25,9 +24,12 @@ module.exports = Object.assign({}, baseConfig, {
             {
               loader: 'postcss-loader',
               options: {
-                plugins: () => [cssClean({
-                  inline: ['none']
-                }), autoprefixer()]
+                plugins: () => [
+                  cssClean({
+                    inline: ['none']
+                  }),
+                  autoprefixer()
+                ]
               }
             },
             {
@@ -46,8 +48,6 @@ module.exports = Object.assign({}, baseConfig, {
 
     new webpack.DefinePlugin({
       BASE: JSON.stringify(get(process.env, 'BASE', '.'))
-    }),
-
-    new UglifyJsPlugin()
+    })
   ]
 })
