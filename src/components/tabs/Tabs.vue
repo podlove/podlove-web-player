@@ -62,13 +62,6 @@ import InfoIcon from 'icons/InfoIcon'
 import AudioIcon from 'icons/AudioIcon'
 import TranscriptsIcon from 'icons/TranscriptsIcon'
 
-import ChaptersTab from './chapters/Chapters'
-import ShareTab from './share/Share'
-import AudioTab from './audio/Audio'
-import InfoTab from './info/Info'
-import DownloadTab from './download/Download'
-import TranscriptsTab from './transcripts/Transcripts'
-
 export default {
   data () {
     return {
@@ -126,12 +119,12 @@ export default {
     AudioIcon,
     TranscriptsIcon,
 
-    ShareTab,
-    ChaptersTab,
-    AudioTab,
-    InfoTab,
-    DownloadTab,
-    TranscriptsTab
+    ShareTab: () => import('./share/Share'),
+    ChaptersTab: () => import('./chapters/Chapters'),
+    AudioTab: () => import('./audio/Audio'),
+    InfoTab: () => import('./info/Info'),
+    DownloadTab: () => import('./download/Download'),
+    TranscriptsTab: () => import('./transcripts/Transcripts')
   }
 }
 </script>

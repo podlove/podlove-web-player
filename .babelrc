@@ -13,7 +13,8 @@
   "plugins": [
     "lodash",
     "transform-object-rest-spread",
-    "es6-promise"
+    "es6-promise",
+    "syntax-dynamic-import"
   ],
   "env": {
     "AVA": {

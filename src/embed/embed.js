@@ -24,7 +24,6 @@ const player = config => [
 
   // Bundles
   tag('link', '', {rel: 'stylesheet', href: `${get(config.reference, 'base', BASE)}/style.css`}),
-  tag('script', '', {type: 'text/javascript', src: `${get(config.reference, 'base', BASE)}/vendor.js`}),
   tag('script', '', {type: 'text/javascript', src: `${get(config.reference, 'base', BASE)}/window.js`}),
 
   // iFrameResizer

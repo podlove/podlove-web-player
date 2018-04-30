@@ -8,8 +8,7 @@ module.exports = {
   entry: {
     embed: path.resolve(sourceDir, 'embed', 'embed.js'),
     window: path.resolve(sourceDir, 'embed', 'window.js'),
-    share: path.resolve(sourceDir, 'embed', 'share.js'),
-    vendor: path.resolve(sourceDir, 'vendor.js')
+    share: path.resolve(sourceDir, 'embed', 'share.js')
   },
 
   output: {
@@ -21,7 +20,6 @@ module.exports = {
   resolve: {
     extensions: ['*', '.js', '.vue', '.json'],
     alias: {
-      'vue$': 'vue/dist/vue.common.js',
       store: path.resolve(sourceDir, 'store'),
       utils: path.resolve(sourceDir, 'utils'),
       shared: path.resolve(sourceDir, 'components', 'shared'),
