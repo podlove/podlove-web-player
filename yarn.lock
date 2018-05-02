@@ -6107,9 +6107,9 @@ lru-cache@^4.0.1, lru-cache@^4.1.1, lru-cache@^4.1.2:
     pseudomap "^1.0.2"
     yallist "^2.1.2"
 
-lunr@2.1.6:
-  version "2.1.6"
-  resolved "https://registry.yarnpkg.com/lunr/-/lunr-2.1.6.tgz#671d2321c4c5bc4c522914953d1c54d612f60aa7"
+lunr@2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/lunr/-/lunr-2.2.0.tgz#ab66b8853e8f420cd018d9b474a650537d78a86f"
 
 macaddress@^0.2.8:
   version "0.2.8"
@@ -8714,9 +8714,9 @@ simple-swizzle@^0.2.2:
   dependencies:
     is-arrayish "^0.3.1"
 
-sinon@5.0.2:
-  version "5.0.2"
-  resolved "https://registry.yarnpkg.com/sinon/-/sinon-5.0.2.tgz#1d54bd6fa3d736053333f02e6e11def4fe7a2a9c"
+sinon@5.0.3:
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/sinon/-/sinon-5.0.3.tgz#9950f1616187ff0cd7d75a60d66bc27fed569945"
   dependencies:
     "@sinonjs/formatio" "^2.0.0"
     diff "^3.1.0"
