@@ -93,7 +93,7 @@
     "commitizen": "2.9.6",
     "compression-webpack-plugin": "1.1.11",
     "conventional-changelog-lint": "2.1.1",
-    "cross-env": "5.1.4",
+    "cross-env": "5.1.5",
     "css-loader": "0.28.11",
     "cz-conventional-changelog": "2.1.0",
     "eslint": "4.19.1",
