@@ -1,5 +1,5 @@
 <template>
-  <button class="control-button" @click="onButtonClick()" :disabled="playtime === 0">
+  <button class="control-button" @click="onButtonClick()" :disabled="playtime === 0" id="control-bar--chapter-back-button">
     <chapter-back-icon :color="theme.player.actions.background"></chapter-back-icon>
   </button>
 </template>

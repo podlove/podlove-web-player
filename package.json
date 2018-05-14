@@ -44,7 +44,10 @@
     "deploy:release": "scripts/deploy-release.sh",
     "deploy:surge": "surge --project ./dist --domain podlove-player.surge.sh",
     "deploy:pr": "surge-preview",
-    "changelog": "standard-changelog"
+    "changelog": "standard-changelog",
+    "cypress:open": "cypress open",
+    "cypress:server": "http-server -p 8080 dist/ > http.log 2>&1 &",
+    "test:integration": "npm run docs:dev && npm run build && npm run cypress:server && npm run cypress:open"
   },
   "files": [
     "dist/"
@@ -95,6 +98,7 @@
     "conventional-changelog-lint": "2.1.1",
     "cross-env": "5.1.4",
     "css-loader": "0.28.11",
+    "cypress": "^2.1.0",
     "cz-conventional-changelog": "2.1.0",
     "eslint": "4.19.1",
     "eslint-plugin-html": "4.0.3",
@@ -102,6 +106,7 @@
     "file-loader": "^1.1.11",
     "generate-changelog": "1.7.1",
     "html-webpack-plugin": "3.2.0",
+    "http-server": "^0.11.1",
     "inject-loader": "4.0.0",
     "lolex": "2.3.2",
     "node-sass": "4.9.0",

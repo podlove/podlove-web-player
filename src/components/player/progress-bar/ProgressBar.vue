@@ -1,5 +1,5 @@
 <template>
-  <div class="progress-bar">
+  <div class="progress-bar" id="progress-bar">
     <progress-component></progress-component>
     <timer-component></timer-component>
   </div>

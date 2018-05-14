@@ -1,20 +1,20 @@
 <template>
-  <div class="info" v-if="hasPoster || hasShowTitle || hasEpisodeTitle || hasDescription">
-    <div class="poster" v-if="hasPoster">
+  <div class="info" id="header-info" v-if="hasPoster || hasShowTitle || hasEpisodeTitle || hasDescription">
+    <div class="poster" v-if="hasPoster" id="header-poster">
       <div class="poster-container" :style="posterStyle">
         <img class="poster-image" :src="episode.poster || show.poster" @error="onImageLoad">
       </div>
     </div>
     <div class="description">
-      <h2 class="show-title" :style="titleStyle" v-if="hasShowTitle">
+      <h2 class="show-title" :style="titleStyle" v-if="hasShowTitle" id="header-showtitle">
         <a :href="show.link" target="_blank" class="truncate" v-if="show.link">{{ show.title }}</a>
         <span class="truncate" v-else>{{ show.title }}</span>
       </h2>
-      <h1 class="title" v-marquee :style="titleStyle" v-if="hasEpisodeTitle">
+      <h1 class="title" v-marquee :style="titleStyle" v-if="hasEpisodeTitle" id="header-title">
         <a :href="episode.link" target="_blank" v-if="episode.link">{{ episode.title }}</a>
         <span v-else>{{ episode.title }}</span>
       </h1>
-      <div class="subtitle" :style="subtitleStyle" v-if="hasDescription">{{ episode.subtitle }}</div>
+      <div class="subtitle" :style="subtitleStyle" v-if="hasDescription" id="header-subtitle">{{ episode.subtitle }}</div>
     </div>
   </div>
 </template>

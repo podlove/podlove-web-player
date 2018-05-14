@@ -1,5 +1,5 @@
 <template>
-  <button class="control-button" :class="playstate" @click="onButtonClick()" :disabled="isDisabled(playtime)">
+  <button class="control-button" :class="playstate" @click="onButtonClick()" :disabled="isDisabled(playtime)" id="control-bar--step-back-button">
     <StepBackIcon
       :color="theme.player.actions.background"
     ></StepBackIcon>

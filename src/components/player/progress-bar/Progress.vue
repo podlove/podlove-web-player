@@ -1,5 +1,5 @@
 <template>
-  <div class="progress">
+  <div class="progress" id="progress-bar--progress">
     <input v-if="runtime.platform === 'desktop'"
       type="range"
       min="0" :max="interpolate(duration)"

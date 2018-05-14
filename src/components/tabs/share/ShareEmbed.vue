@@ -1,17 +1,17 @@
 <template>
-    <overlay-component :visible="share.embed.visible" :onClose="closeEmbedOverlay" class="embed-overlay">
+    <overlay-component :visible="share.embed.visible" :onClose="closeEmbedOverlay" class="embed-overlay" id="share-tab--share-overlay">
       <h3 name="header" class="title text-center">{{ $t('SHARE.EMBED.TITLE') }}</h3>
       <div class="input-element">
         <label class="input-label">{{ $t('SHARE.EMBED.LABEL.SIZE') }}</label>
-        <input-select-component :model="share.embed.size" :options="share.embed.available" :change="setEmbedSize"></input-select-component>
+        <input-select-component :model="share.embed.size" :options="share.embed.available" :change="setEmbedSize" id="share-tab--share-overlay--size"></input-select-component>
       </div>
       <div class="input-element">
         <label class="input-label">{{ $t('SHARE.EMBED.LABEL.CODE') }}</label>
-        <input-text-component class="block" disabled="true" :value="embedCode"></input-text-component>
+        <input-text-component class="block" disabled="true" :value="embedCode" id="share-tab--share-overlay--code"></input-text-component>
       </div>
       <div class="input-element">
         <copy-tooltip-component :content="embedCode">
-          <button-component class="block action">{{ $t('SHARE.EMBED.ACTIONS.COPY') }}</button-component>
+          <button-component class="block action" id="share-tab--share-overlay--copy-button">{{ $t('SHARE.EMBED.ACTIONS.COPY') }}</button-component>
         </copy-tooltip-component>
       </div>
     </overlay-component>
