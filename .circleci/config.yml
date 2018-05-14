@@ -1,0 +1,319 @@
+version: 2
+
+aliases:
+  - &setup-artifacts
+    name: Initial Setup
+    command: |
+      mkdir -p ~/podlove-web-player
+
+  # yarn helpers
+  - &yarn-restore-cache
+    name: Restore Yarn Artifact Cache
+    keys:
+      - v1-yarn-{{ arch }}-{{ checksum "package.json" }}
+      - v1-yarn-{{ arch }}-
+
+  - &yarn-save-cache
+    name: Save Yarn Artifact Cache
+    paths:
+      - node_modules
+      - ~/.cache/yarn
+    key: v1-yarn-{{ arch }}-{{ checksum "package.json" }}
+
+  - &yarn
+    |
+      yarn install --non-interactive --cache-folder ~/.cache/yarn
+
+  # bundler helpers
+  - &bundler-restore-cache
+    name: Restore Bundler Artifact Cache
+    keys:
+      - v3-bundler-{{ checksum "docs/Gemfile.lock" }}
+      - v3-bundler-
+
+  - &bundler-save-cache
+    name: Save Bundler Artifact Cache
+    paths:
+      - vendor/bundle
+    key: v3-bundler-{{ checksum "docs/Gemfile.lock" }}
+
+defaults: &defaults
+  working_directory: ~/podlove-web-player
+
+defaults-js: &defaults-js
+  <<: *defaults
+  docker:
+    - image: circleci/node:8
+  environment:
+    - PATH: "/opt/yarn/yarn-v1.5.1/bin:/home/circleci/.yarn/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+
+defaults-ruby: &defaults-ruby
+  <<: *defaults
+  docker:
+    - image: circleci/ruby:2
+
+jobs:
+  checkout:
+    <<: *defaults-js
+    steps:
+      - checkout
+      - run: *setup-artifacts
+      - persist_to_workspace:
+          root: .
+          paths: .
+
+  install:
+    <<: *defaults-js
+    steps:
+      - attach_workspace:
+          at: ~/podlove-web-player
+      - restore-cache: *yarn-restore-cache
+      - run: node --version
+      - run: npm --version
+      - run: yarn --version
+      - run: yarn global add greenkeeper-lockfile@1
+      - run: greenkeeper-lockfile-update
+      - run: *yarn
+      - save-cache: *yarn-save-cache
+      - persist_to_workspace:
+          root: .
+          paths: .
+
+  docs-dev:
+    <<: *defaults-ruby
+    steps:
+      - attach_workspace:
+          at: ~/podlove-web-player
+      - restore-cache: *bundler-restore-cache
+
+      - run: cd docs && bundle install
+      - run: bundle exec jekyll build --verbose --source docs --destination dist
+      - run: cp -R docs/fixtures/* dist/fixtures
+
+      - save-cache: *bundler-save-cache
+      - persist_to_workspace:
+          root: .
+          paths: .
+
+  docs-prod:
+    <<: *defaults-ruby
+    steps:
+      - attach_workspace:
+          at: ~/podlove-web-player
+      - restore-cache: *bundler-restore-cache
+      - run: cd docs && bundle install
+      - run: jekyll build --source docs --destination dist --config docs/_config_prd.yml
+      - run: cp -R docs/fixtures/* dist/fixtures
+      - save-cache: *bundler-save-cache
+      - persist_to_workspace:
+          root: .
+          paths: .
+
+  build-dev:
+    <<: *defaults-js
+    steps:
+      - attach_workspace:
+          at: ~/podlove-web-player
+      - run: yarn build
+      - persist_to_workspace:
+          root: .
+          paths: .
+
+  build-prod:
+    <<: *defaults-js
+    steps:
+      - attach_workspace:
+          at: ~/podlove-web-player
+      - run: yarn build
+      - persist_to_workspace:
+          root: .
+          paths: .
+
+  preview:
+    <<: *defaults-js
+    steps:
+      - attach_workspace:
+          at: ~/podlove-web-player
+      - run: yarn global add surge-preview
+      - run: surge-preview
+
+  test-lint:
+    <<: *defaults-js
+    steps:
+      - attach_workspace:
+          at: ~/podlove-web-player
+      - run: yarn lint
+
+  test-unit:
+    <<: *defaults-js
+    steps:
+      - attach_workspace:
+          at: ~/podlove-web-player
+      - run: yarn test
+      - run: bash <(curl -s https://codecov.io/bash)
+
+  greenkeeper:
+    <<: *defaults-js
+    steps:
+      - attach_workspace:
+          at: ~/podlove-web-player
+      - restore-cache: *yarn-restore-cache
+      - run: yarn global add greenkeeper-lockfile@1
+      - run: greenkeeper-lockfile-upload
+
+  deploy-preview:
+    <<: *defaults-js
+    steps:
+      - attach_workspace:
+          at: ~/podlove-web-player
+      - restore-cache: *yarn-restore-cache
+      - run: yarn global add surge-preview
+      - run: surge-preview
+
+  deploy-staging:
+    <<: *defaults-js
+    steps:
+      - attach_workspace:
+          at: ~/podlove-web-player
+      - restore-cache: *yarn-restore-cache
+      - run: yarn deploy:surge
+
+  deploy-production:
+    <<: *defaults-js
+    steps:
+      - attach_workspace:
+          at: ~/podlove-web-player
+      - restore-cache: *yarn-restore-cache
+      - run: yarn deploy:gh-pages
+
+  publish-npm:
+    <<: *defaults-js
+    steps:
+      - attach_workspace:
+          at: ~/podlove-web-player
+      - restore-cache: *yarn-restore-cache
+      - run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+      - run: yarn dist:clean
+      - run: yarn build
+      - run: npm publish
+
+  publish-cdn:
+    <<: *defaults-js
+    steps:
+      - attach_workspace:
+          at: ~/podlove-web-player
+      - restore-cache: *yarn-restore-cache
+      - run: yarn dist:clean
+      - run: BASE="//cdn.podlove.org/web-player/" yarn build
+      - run: yarn deploy:cdn
+
+workflows:
+  version: 2
+
+  testing:
+    jobs:
+      - checkout
+      - install:
+          requires:
+            - checkout
+
+      # Tests
+      - test-lint:
+          requires:
+            - install
+      - test-unit:
+          requires:
+            - install
+
+      # Preview/Staging/Production Documentation Deployment
+      - docs-dev:
+          requires:
+            - install
+            - test-lint
+            - test-unit
+          filters:
+            branches:
+              ignore:
+                - master
+      - docs-prod:
+          requires:
+            - test-lint
+            - test-unit
+          filters:
+            branches:
+              only:
+                - master
+      - build-dev:
+          requires:
+            - docs-dev
+          filters:
+            branches:
+              ignore:
+                - master
+      - build-prod:
+          requires:
+            - docs-prod
+          filters:
+            branches:
+              only:
+                - master
+      # Deploy to a commit hash prefixed surge env
+      - deploy-preview:
+          requires:
+            - build-dev
+          filters:
+            branches:
+              ignore:
+                - development
+                - master
+      # Deploy to podlove.surge.sh
+      - deploy-staging:
+          requires:
+            - build-dev
+          filters:
+            branches:
+              only:
+                - developent
+      # Deploy to podlove.org/podlove-web-player
+      - deploy-production:
+          requires:
+            - build-prod
+          filters:
+            branches:
+              only:
+                - master
+
+      # Greenkeeper
+      - greenkeeper:
+          requires:
+            - install
+            - test-lint
+            - test-unit
+          filters:
+            branches:
+              ignore:
+                - development
+                - master
+
+      # Publishing
+      - publish-npm:
+          requires:
+            - test-lint
+            - test-unit
+          filters:
+            branches:
+              only:
+                - master
+            tags:
+              only: /v.*/
+
+      - publish-cdn:
+          requires:
+            - test-lint
+            - test-unit
+          filters:
+            branches:
+              only:
+                - master
+            tags:
+              only: /v.*/
