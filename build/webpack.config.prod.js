@@ -44,7 +44,10 @@ module.exports = Object.assign({}, baseConfig, {
   plugins: [
     ...baseConfig.plugins,
 
-    new ExtractTextPlugin('style.css'),
+    new ExtractTextPlugin({
+      filename: 'style.css',
+      allChunks: true
+    }),
 
     new webpack.DefinePlugin({
       BASE: JSON.stringify(get(process.env, 'BASE', '.'))
