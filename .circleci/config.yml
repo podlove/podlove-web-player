@@ -47,11 +47,18 @@ defaults-js: &defaults-js
   environment:
     - PATH: "/opt/yarn/yarn-v1.5.1/bin:/home/circleci/.yarn/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
-
 defaults-ruby: &defaults-ruby
   <<: *defaults
   docker:
     - image: circleci/ruby:2
+
+defaults-cypress: &defaults-cypress
+  <<: *defaults
+  docker:
+    - image: cypress/base:8
+  environment:
+    - TERM: xterm
+    - PATH: "/opt/yarn/yarn-v1.5.1/bin:/home/circleci/.yarn/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
 jobs:
   checkout:
@@ -142,7 +149,11 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/podlove-web-player
-      - run: yarn lint
+      - run: yarn lint:ci
+      - store_test_results:
+          path: reports
+      - store_artifacts:
+          path: reports
 
   test-unit:
     <<: *defaults-js
@@ -152,6 +163,32 @@ jobs:
           at: ~/podlove-web-player
       - run: yarn test
       - run: bash <(curl -s https://codecov.io/bash)
+      - store_test_results:
+          path: reports
+      - store_artifacts:
+          path: coverage/lcov-report
+
+  test-build:
+    <<: *defaults-js
+    name: Unit Tests
+    steps:
+      - attach_workspace:
+          at: ~/podlove-web-player
+      - run: yarn build
+
+  test-integration:
+    <<: *defaults-cypress
+    name: Integration Tests
+    steps:
+      - attach_workspace:
+          at: ~/podlove-web-player
+      - run: yarn run test:integration
+      - store_test_results:
+          path: reports
+      - store_artifacts:
+          path: cypress/videos
+      - store_artifacts:
+          path: cypress/screenshots
 
   greenkeeper:
     <<: *defaults-js
@@ -231,6 +268,12 @@ workflows:
       - test-unit:
           requires:
             - install
+      - test-build:
+          requires:
+            - install
+      - test-integration:
+          requires:
+            - install
 
       # Preview/Staging/Production Documentation Deployment
       - docs-dev:
@@ -238,14 +281,20 @@ workflows:
             - install
             - test-lint
             - test-unit
+            - test-integration
+            - test-build
           filters:
             branches:
-              ignore:
-                - master
+              only:
+                - /^(?!pull\/).*$/
+                - development
+              ignore: master
       - docs-prod:
           requires:
             - test-lint
             - test-unit
+            - test-integration
+            - test-build
           filters:
             branches:
               only: master
@@ -293,6 +342,8 @@ workflows:
             - install
             - test-lint
             - test-unit
+            - test-integration
+            - test-build
           filters:
             branches:
               only: /^greenkeeper/.*$/
@@ -302,6 +353,8 @@ workflows:
           requires:
             - test-lint
             - test-unit
+            - test-integration
+            - test-build
           filters:
             branches:
               only:
@@ -313,6 +366,8 @@ workflows:
           requires:
             - test-lint
             - test-unit
+            - test-integration
+            - test-build
           filters:
             branches:
               only:

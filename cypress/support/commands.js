@@ -8,6 +8,7 @@ Cypress.Commands.add('bootstrap', () => {
   cy.fixture('chapters').as('chapters')
   cy.fixture('contributors').as('contributors')
   cy.fixture('reference').as('reference')
+  cy.fixture('runtime').as('runtime')
 })
 
 Cypress.Commands.add('play', () => {
