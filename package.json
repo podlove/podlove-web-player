@@ -39,7 +39,7 @@
     "lint:commit": "conventional-changelog-lint",
     "lint:standard": "standard --parser babel-eslint --verbose --plugin html 'src/**/*.{js,vue}'",
     "lint": "npm run lint:standard | snazzy --format junit",
-    "lint:ci": "npm run test:prepare && npm run lint:standard | standard-reporter --checkstyle > reports/lint.xml",
+    "lint:ci": "npm run test:prepare && npm run lint:standard | standard-reporter --checkstyle > reports/checkstyle.xml",
     "commit": "git-cz",
     "deploy:gh-pages": "scripts/deploy-ghpages.sh dist",
     "deploy:cdn": "rsync -rvt --chmod=D2755,F644 dist/ podlove@rsync.keycdn.com:applications/web-player/",
