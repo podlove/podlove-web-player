@@ -33,7 +33,7 @@ describe('Controls', () => {
       cy.window().then(setState(this.episode, this.audio, this.show))
       cy.play()
       selectors.controls.playButton.pause()
-      cy.play()
+      cy.pause()
       selectors.controls.playButton.play()
     })
 
@@ -109,50 +109,50 @@ describe('Controls', () => {
         cy.window().then(setState(this.episode, this.audio, this.show, this.chapters))
         cy.play()
         cy.pause()
-        selectors.currentChapter().contains(this.chapters.chapters[0].title)
+        selectors.chapter.current().contains(this.chapters.chapters[0].title)
 
         selectors.controls.chapters.next().click()
-        selectors.currentChapter().contains(this.chapters.chapters[1].title)
+        selectors.chapter.current().contains(this.chapters.chapters[1].title)
       })
 
       it('does nothing when the last chapter was reached', function () {
         cy.window().then(setState(this.episode, this.audio, this.show, this.chapters, { playtime: 11000 }))
         cy.play()
         cy.pause()
-        selectors.currentChapter().contains(this.chapters.chapters[2].title)
+        selectors.chapter.current().contains(this.chapters.chapters[2].title)
 
         selectors.controls.chapters.next().click()
-        selectors.currentChapter().contains(this.chapters.chapters[2].title)
+        selectors.chapter.current().contains(this.chapters.chapters[2].title)
         selectors.controls.chapters.next().should('have.attr', 'disabled')
       })
     })
 
-    describ('Back Button', () => {
+    describe('Back Button', () => {
       it('skips to the previous chapter on click', function () {
         cy.window().then(setState(this.episode, this.audio, this.show, this.chapters, { playtime: 8000 }))
         cy.play()
         cy.pause()
-        selectors.currentChapter().contains(this.chapters.chapters[1].title)
+        selectors.chapter.current().contains(this.chapters.chapters[1].title)
 
         selectors.controls.chapters.back().click()
-        selectors.currentChapter().contains(this.chapters.chapters[0].title)
+        selectors.chapter.current().contains(this.chapters.chapters[0].title)
       })
 
       it('goes to the beginning of the current chapter if it just played les than 2 seconds', function () {
         cy.window().then(setState(this.episode, this.audio, this.show, this.chapters, { playtime: 9000 }))
         cy.play()
         cy.pause()
-        selectors.currentChapter().contains(this.chapters.chapters[1].title)
+        selectors.chapter.current().contains(this.chapters.chapters[1].title)
 
         selectors.controls.chapters.back().click()
-        selectors.currentChapter().contains(this.chapters.chapters[1].title)
+        selectors.chapter.current().contains(this.chapters.chapters[1].title)
       })
 
       it('does nothing when the last chapter was reached', function () {
         cy.window().then(setState(this.episode, this.audio, this.show, this.chapters))
         cy.play()
         cy.pause()
-        selectors.currentChapter().contains(this.chapters.chapters[0].title)
+        selectors.chapter.current().contains(this.chapters.chapters[0].title)
         selectors.controls.chapters.back().should('have.attr', 'disabled')
       })
     })

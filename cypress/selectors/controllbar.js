@@ -1,6 +1,7 @@
 module.exports = cy => ({
   controls: {
     playButton: {
+      button: () => cy.get('#control-bar--play-button'),
       duration: () => cy.get('#control-bar--play-button--duration'),
       pause: () => cy.get('#control-bar--play-button--pause'),
       play: () => cy.get('#control-bar--play-button--play'),

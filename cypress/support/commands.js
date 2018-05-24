@@ -1,4 +1,5 @@
 /* global Cypress, cy */
+const domSelectors = require('../selectors')
 
 Cypress.Commands.add('bootstrap', () => {
   cy.visit('/test.html')
@@ -12,17 +13,24 @@ Cypress.Commands.add('bootstrap', () => {
 })
 
 Cypress.Commands.add('play', () => {
-  cy.get('#control-bar--play-button').click()
+  const selectors = domSelectors(cy)
+  selectors.controls.playButton.button().then(btn => {
+    btn.click()
+    selectors.controls.playButton.pause()
+  })
 })
 
 Cypress.Commands.add('pause', () => {
-  cy.get('#control-bar--play-button').then(button => {
-    if (button.find('#control-bar--play-button--pause')) {
-      button.click()
-    }
+  const selectors = domSelectors(cy)
+
+  selectors.controls.playButton.pause()
+  selectors.controls.playButton.button().then(btn => {
+    btn.click()
   })
 })
 
 Cypress.Commands.add('tab', tab => {
+  const selectors = domSelectors(cy)
   cy.get(`#tabs [rel="${tab}"]`).click()
+  selectors.tabs[tab].container()
 })

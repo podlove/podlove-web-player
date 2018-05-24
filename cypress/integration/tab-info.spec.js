@@ -1,23 +1,29 @@
 /* eslint-env mocha */
 /* globals cy */
 const { setState } = require('../helpers/state')
+const domSelectors = require('../selectors')
 
 describe('Info Tab', () => {
+  let selectors
+
   beforeEach(cy.bootstrap)
+  beforeEach(() => {
+    selectors = domSelectors(cy)
+  })
 
   describe('Episode', () => {
     describe('Title', () => {
       it('renders', function () {
         cy.window().then(setState(this.episode, this.audio, this.show, this.runtime))
         cy.tab('info')
-        cy.contains('#tabs--info--episode-title', this.episode.title)
+        selectors.tabs.info.episode.title().contains(this.episode.title)
       })
 
       it(`doesn't render if not set`, function () {
         delete this.episode.title
         cy.window().then(setState(this.episode, this.audio, this.show, this.runtime))
         cy.tab('info')
-        cy.get('#tabs--info--episode-title').should('not.exist')
+        selectors.tabs.info.episode.title().should('not.exist')
       })
     })
 
@@ -25,14 +31,14 @@ describe('Info Tab', () => {
       it('renders', function () {
         cy.window().then(setState(this.episode, this.audio, this.show, this.runtime))
         cy.tab('info')
-        cy.contains('#tabs--info--episode-meta', '11/2/2999')
+        selectors.tabs.info.episode.meta().contains('11/2/2999')
       })
 
       it(`doesn't render if not set`, function () {
         delete this.episode.publicationDate
         cy.window().then(setState(this.episode, this.audio, this.show, this.runtime))
         cy.tab('info')
-        cy.get('#tabs--info--episode-meta').should('not.contain', '11/2/2999')
+        selectors.tabs.info.episode.meta().should('not.contain', '11/2/2999')
       })
     })
 
@@ -40,7 +46,7 @@ describe('Info Tab', () => {
       it('renders', function () {
         cy.window().then(setState(this.episode, this.audio, this.show, this.runtime))
         cy.tab('info')
-        cy.contains('#tabs--info--episode-meta', '0')
+        selectors.tabs.info.episode.meta().contains('0')
       })
 
       it(`doesn't render if not set`, function () {
@@ -48,7 +54,7 @@ describe('Info Tab', () => {
         delete this.episode.publicationDate
         cy.window().then(setState(this.episode, this.audio, this.show, this.runtime))
         cy.tab('info')
-        cy.get('#tabs--info--episode-meta').should('not.contain', '0')
+        selectors.tabs.info.episode.meta().should('not.contain', '0')
       })
     })
 
@@ -56,7 +62,7 @@ describe('Info Tab', () => {
       it('renders', function () {
         cy.window().then(setState(this.episode, this.audio, this.show, this.runtime))
         cy.tab('info')
-        cy.contains('#tabs--info--episode-subtitle', this.episode.subtitle)
+        selectors.tabs.info.episode.subtitle().contains(this.episode.subtitle)
       })
 
       it(`doesn't render if not set`, function () {
@@ -64,7 +70,7 @@ describe('Info Tab', () => {
 
         cy.window().then(setState(this.episode, this.audio, this.show, this.runtime))
         cy.tab('info')
-        cy.get('#tabs--info--episode-subtitle').should('not.exist')
+        selectors.tabs.info.episode.subtitle().should('not.exist')
       })
     })
 
@@ -72,7 +78,7 @@ describe('Info Tab', () => {
       it('renders', function () {
         cy.window().then(setState(this.episode, this.audio, this.show, this.runtime))
         cy.tab('info')
-        cy.contains('#tabs--info--episode-summary', this.episode.summary)
+        selectors.tabs.info.episode.summary().contains(this.episode.summary)
       })
 
       it(`doesn't render if not set`, function () {
@@ -80,7 +86,7 @@ describe('Info Tab', () => {
 
         cy.window().then(setState(this.episode, this.audio, this.show, this.runtime))
         cy.tab('info')
-        cy.get('#tabs--info--episode-summary').should('not.exist')
+        selectors.tabs.info.episode.summary().should('not.exist')
       })
     })
 
@@ -88,7 +94,7 @@ describe('Info Tab', () => {
       it('renders', function () {
         cy.window().then(setState(this.episode, this.audio, this.show, this.runtime))
         cy.tab('info')
-        cy.get('#tabs--info--episode-link').should('have.attr', 'href', this.episode.link)
+        selectors.tabs.info.episode.link().should('have.attr', 'href', this.episode.link)
       })
 
       it(`doesn't render if not set`, function () {
@@ -96,7 +102,7 @@ describe('Info Tab', () => {
 
         cy.window().then(setState(this.episode, this.audio, this.show, this.runtime))
         cy.tab('info')
-        cy.get('#tabs--info--episode-link').should('not.exist')
+        selectors.tabs.info.episode.link().should('not.exist')
       })
     })
   })
@@ -106,14 +112,14 @@ describe('Info Tab', () => {
       it('renders', function () {
         cy.window().then(setState(this.episode, this.audio, this.show, this.runtime))
         cy.tab('info')
-        cy.contains('#tabs--info--show-title', this.show.show.title)
+        selectors.tabs.info.show.title().contains(this.show.show.title)
       })
 
       it(`doesn't render if not set`, function () {
         delete this.show.show.title
         cy.window().then(setState(this.show, this.audio, this.show))
         cy.tab('info')
-        cy.get('#tabs--info--show-title').should('not.exist')
+        selectors.tabs.info.show.title().should('not.exist')
       })
     })
 
@@ -121,14 +127,14 @@ describe('Info Tab', () => {
       it('renders', function () {
         cy.window().then(setState(this.episode, this.audio, this.show, this.runtime))
         cy.tab('info')
-        cy.get('#tabs--info--show-poster').should('have.attr', 'src', this.show.show.poster)
+        selectors.tabs.info.show.poster().should('have.attr', 'src', this.show.show.poster)
       })
 
       it(`doesn't render if not set`, function () {
         delete this.show.show.poster
         cy.window().then(setState(this.show, this.audio, this.show))
         cy.tab('info')
-        cy.get('#tabs--info--show-poster').should('not.exist')
+        selectors.tabs.info.show.poster().should('not.exist')
       })
     })
 
@@ -136,14 +142,14 @@ describe('Info Tab', () => {
       it('renders', function () {
         cy.window().then(setState(this.episode, this.audio, this.show, this.runtime))
         cy.tab('info')
-        cy.contains('#tabs--info--show-summary', this.show.show.summary)
+        selectors.tabs.info.show.summary().contains(this.show.show.summary)
       })
 
       it(`doesn't render if not set`, function () {
         delete this.show.show.summary
         cy.window().then(setState(this.show, this.audio, this.show))
         cy.tab('info')
-        cy.get('#tabs--info--show-summary').should('not.exist')
+        selectors.tabs.info.show.summary().should('not.exist')
       })
     })
 
@@ -151,7 +157,7 @@ describe('Info Tab', () => {
       it('renders', function () {
         cy.window().then(setState(this.episode, this.audio, this.show, this.runtime))
         cy.tab('info')
-        cy.get('#tabs--info--show-link').should('have.attr', 'href', this.show.show.link)
+        selectors.tabs.info.show.link().should('have.attr', 'href', this.show.show.link)
       })
 
       it(`doesn't render if not set`, function () {
@@ -159,7 +165,7 @@ describe('Info Tab', () => {
 
         cy.window().then(setState(this.show, this.audio, this.show))
         cy.tab('info')
-        cy.get('#tabs--info--show-link').should('not.exist')
+        selectors.tabs.info.show.link().should('not.exist')
       })
     })
   })
@@ -168,13 +174,13 @@ describe('Info Tab', () => {
     it('renders a list', function () {
       cy.window().then(setState(this.episode, this.audio, this.show, this.contributors))
       cy.tab('info')
-      cy.get('#tabs--info--speakers').find('li').should('have.length', this.contributors.contributors.length)
+      selectors.tabs.info.speakers().find('li').should('have.length', this.contributors.contributors.length)
     })
 
     it(`doesn't render if not set`, function () {
       cy.window().then(setState(this.episode, this.audio, this.show, this.runtime))
       cy.tab('info')
-      cy.get('#tabs--info--speakers').should('not.exist')
+      selectors.tabs.info.speakers().should('not.exist')
     })
   })
 })
