@@ -129,16 +129,17 @@ describe('Controls', () => {
 
     describe('Back Button', () => {
       it('skips to the previous chapter on click', function () {
-        cy.window().then(setState(this.episode, this.audio, this.show, this.chapters, { playtime: 8000 }))
+        cy.window().then(setState(this.episode, this.audio, this.show, this.chapters, { playtime: 9000 }))
         cy.play()
         cy.pause()
         selectors.chapter.current().contains(this.chapters.chapters[1].title)
 
         selectors.controls.chapters.back().click()
+        selectors.controls.chapters.back().click()
         selectors.chapter.current().contains(this.chapters.chapters[0].title)
       })
 
-      it('goes to the beginning of the current chapter if it just played les than 2 seconds', function () {
+      it('goes to the beginning of the current chapter if it just played less than 2 seconds', function () {
         cy.window().then(setState(this.episode, this.audio, this.show, this.chapters, { playtime: 9000 }))
         cy.play()
         cy.pause()
