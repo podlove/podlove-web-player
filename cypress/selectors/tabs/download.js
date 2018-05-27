@@ -1,4 +1,5 @@
 module.exports = cy => ({
+  header: () => cy.get(`#tabs [rel="download"]`),
   container: () => cy.get('#tab-download'),
   poster: {
     container: () => cy.get('#tab-download--poster'),

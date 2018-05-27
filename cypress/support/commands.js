@@ -44,6 +44,6 @@ Cypress.Commands.add('pause', () => {
 
 Cypress.Commands.add('tab', tab => {
   const selectors = domSelectors(cy)
-  cy.get(`#tabs [rel="${tab}"]`).click()
+  selectors.tabs[tab].header().click()
   selectors.tabs[tab].container()
 })

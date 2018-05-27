@@ -1,4 +1,5 @@
 module.exports = cy => ({
+  header: () => cy.get(`#tabs [rel="share"]`),
   container: () => cy.get('#tab-share'),
   content: {
     show: () => cy.get('#tab-share--content--show'),

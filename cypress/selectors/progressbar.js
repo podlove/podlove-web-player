@@ -1,4 +1,5 @@
 module.exports = cy => ({
+  progressbar: () => cy.get('#progress-bar'),
   timers: {
     left: () => cy.get('#progress-bar--timer-left'),
     current: () => cy.get('#progress-bar--timer-current')

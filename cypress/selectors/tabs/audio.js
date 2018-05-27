@@ -1,4 +1,5 @@
 module.exports = cy => ({
+  header: () => cy.get(`#tabs [rel="audio"]`),
   container: () => cy.get('#tab-audio'),
   volume: {
     current: () => cy.get('#tab-audio--volume--current'),

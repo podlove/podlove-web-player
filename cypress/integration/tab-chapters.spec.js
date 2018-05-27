@@ -11,6 +11,13 @@ describe('Chapters Tab', () => {
     selectors = domSelectors(cy)
   })
 
+  describe('Container', () => {
+    it(`doesn't render the tab if no chapters are available`, function () {
+      cy.window().then(setState(this.episode, this.audio, this.show))
+      cy.get(`#tabs [rel="chapters"]`).should('not', 'exist')
+    })
+  })
+
   describe('List', () => {
     it('renders a list of chapters', function () {
       cy.window().then(setState(this.episode, this.audio, this.show, this.chapters))
