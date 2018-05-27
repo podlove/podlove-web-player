@@ -1,5 +1,5 @@
 <template>
-  <div class="share-tab">
+  <div class="share-tab" id="tab-share">
     <div class="content-select">
       <share-content-component></share-content-component>
     </div>

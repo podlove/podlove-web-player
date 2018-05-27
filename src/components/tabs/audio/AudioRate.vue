@@ -2,16 +2,17 @@
   <div class="input-element">
     <label class="spaced">
       <span class="input-label">{{ $t('AUDIO.SPEED') }}</span>
-      <span class="input-label">{{ toPercent(rate) }}%</span>
+      <span class="input-label" id="tab-audio--rate--current">{{ toPercent(rate) }}%</span>
     </label>
     <div class="rate-slider centered">
-      <button-component class="slider-button" :click="changeRate(-5, rate)">
+      <button-component class="slider-button" :click="changeRate(-5, rate)" id="tab-audio--rate--decrease">
         <minus-icon :color="theme.button.color"></minus-icon>
       </button-component>
-      <button-component class="slider-button" :click="changeRate(5, rate)">
+      <button-component class="slider-button" :click="changeRate(5, rate)" id="tab-audio--rate--increase">
         <plus-icon :color="theme.button.color"></plus-icon>
       </button-component>
       <input-slider-component
+        id="tab-audio--rate--input"
         min="0" max="1" step="0.001"
         :value="sliderRate" :onInput="toStateRate"></input-slider-component>
     </div>

@@ -22,6 +22,7 @@ atlassian-ide-plugin.xml
 _site
 dist
 coverage
+reports
 docs/media
 gh-pages-branch
 

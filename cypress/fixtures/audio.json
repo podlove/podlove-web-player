@@ -1,0 +1,13 @@
+{
+  "audio": [{
+    "url": "assets/podlove.mp3",
+    "size": "486839",
+    "title": "MP3 Audio (mp3)",
+    "mimeType": "audio\/mpeg"
+  }, {
+    "url": "assets/podlove.m4a",
+    "size": "1931981",
+    "title": "MP4 Audio (m4a)",
+    "mimeType": "audio\/mp4"
+  }]
+}

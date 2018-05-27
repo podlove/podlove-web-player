@@ -1,5 +1,5 @@
 <template>
-  <div class="audio-tab">
+  <div class="audio-tab" id="tab-audio">
     <audio-volume-component class="seperator" v-if="components.audio.volumeControl"></audio-volume-component>
     <audio-rate-component class="seperator" v-if="components.audio.rateControl"></audio-rate-component>
     <footer-component></footer-component>

@@ -1,8 +1,8 @@
 <template>
   <div class="timer-progress" :class="playstate" :style="timerStyle">
-    <span class="current">{{ fromPlayerTime(ghost.active ? ghost.time : playtime) }}</span>
+    <span class="current" id="progress-bar--timer-current">{{ fromPlayerTime(ghost.active ? ghost.time : playtime) }}</span>
     <current-chapter class="chapter"></current-chapter>
-    <span class="time">-{{ fromPlayerTime(duration - (ghost.active ? ghost.time : playtime)) }}</span>
+    <span class="time" id="progress-bar--timer-left">-{{ fromPlayerTime(duration - (ghost.active ? ghost.time : playtime)) }}</span>
   </div>
 </template>
 

@@ -2,13 +2,13 @@
   <div class="input-element">
     <label class="spaced">
       <span class="input-label">{{ $t('AUDIO.VOLUME') }}</span>
-      <span class="input-label">{{ toPercent(visualVolume) }}%</span>
+      <span class="input-label" id="tab-audio--volume--current">{{ toPercent(visualVolume) }}%</span>
     </label>
     <div class="volume-slider centered">
-      <button-component class="slider-button mute-control" :click="toggleMute">
+      <button-component class="slider-button mute-control" :click="toggleMute" id="tab-audio--volume--mute">
         <speaker-icon :color="theme.button.text" :volume="visualVolume * 100" :muted="muted"></speaker-icon>
       </button-component>
-      <input-slider-component min="0" max="1" :value="visualVolume" step="0.001" :onInput="setVolume"></input-slider-component>
+      <input-slider-component id="tab-audio--volume--input" min="0" max="1" :value="visualVolume" step="0.001" :onInput="setVolume"></input-slider-component>
     </div>
   </div>
 </template>

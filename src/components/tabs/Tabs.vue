@@ -1,27 +1,27 @@
 <template>
-  <div class="tabs" :style="containerStyle" v-if="hasTabs">
+  <div class="tabs" :style="containerStyle" v-if="hasTabs" id="tabs">
     <tab-header-component>
-      <tab-header-item-component v-if="isVisibleTab.info" :active="tabs.info" :click="toggleTab('info')">
+      <tab-header-item-component v-if="isVisibleTab.info" rel="info" :active="tabs.info" :click="toggleTab('info')">
         <info-icon slot="icon"></info-icon>
         <span slot="title">{{ $t('INFO.TITLE') }}</span>
       </tab-header-item-component>
-      <tab-header-item-component v-if="isVisibleTab.chapters" :active="tabs.chapters" :click="toggleTab('chapters')">
+      <tab-header-item-component v-if="isVisibleTab.chapters" rel="chapters" :active="tabs.chapters" :click="toggleTab('chapters')">
         <chapters-icon slot="icon"></chapters-icon>
         <span slot="title">{{ $t('CHAPTERS.TITLE') }}</span>
       </tab-header-item-component>
-      <tab-header-item-component v-if="isVisibleTab.transcripts" :active="tabs.transcripts" :click="toggleTab('transcripts')">
+      <tab-header-item-component v-if="isVisibleTab.transcripts" rel="transcripts" :active="tabs.transcripts" :click="toggleTab('transcripts')">
         <transcripts-icon slot="icon"></transcripts-icon>
         <span slot="title">{{ $t('TRANSCRIPTS.TITLE') }}</span>
       </tab-header-item-component>
-      <tab-header-item-component v-if="isVisibleTab.share" :active="tabs.share" :click="toggleTab('share')">
+      <tab-header-item-component v-if="isVisibleTab.share" rel="share" :active="tabs.share" :click="toggleTab('share')">
         <share-icon slot="icon"></share-icon>
         <span slot="title">{{ $t('SHARE.TITLE') }}</span>
       </tab-header-item-component>
-      <tab-header-item-component v-if="isVisibleTab.download" :active="tabs.download" :click="toggleTab('download')">
+      <tab-header-item-component v-if="isVisibleTab.download" rel="download" :active="tabs.download" :click="toggleTab('download')">
         <download-icon slot="icon"></download-icon>
         <span slot="title">{{ $t('DOWNLOAD.TITLE') }}</span>
       </tab-header-item-component>
-      <tab-header-item-component v-if="isVisibleTab.audio" :active="tabs.audio" :click="toggleTab('audio')">
+      <tab-header-item-component v-if="isVisibleTab.audio" rel="audio" :active="tabs.audio" :click="toggleTab('audio')">
         <audio-icon slot="icon"></audio-icon>
         <span slot="title">{{ $t('AUDIO.TITLE') }}</span>
       </tab-header-item-component>

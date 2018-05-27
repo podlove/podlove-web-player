@@ -1,5 +1,5 @@
 <template>
-  <div class="timer-chapter truncate">
+  <div class="timer-chapter truncate" id="progress-bar--current-chapter">
     <span class="chapter-title"
       :style="chapterStyle"
       v-if="currentChapterIndex(chapters) > -1">

@@ -1,19 +1,19 @@
 <template>
-  <div class="download-tab">
-    <div class="show-info centered column" v-if="episode.poster || show.poster">
-      <img class="episode-poster shadowed" v-if="episode.poster || show.poster" :src="episode.poster || show.poster">
-      <ul class="episode-meta centered">
+  <div class="download-tab" id="tab-download">
+    <div class="show-info centered column" v-if="episode.poster || show.poster" id="tab-download--poster">
+      <img class="episode-poster shadowed" :src="episode.poster || show.poster">
+      <ul class="episode-meta centered" id="tab-download--meta">
         <li class="meta centered" v-if="episode.publicationDate"><calendar-icon class="icon"></calendar-icon>{{ publicationDate }}</li>
         <li class="meta centered" v-if="episodeDuration.hours > 0"><clock-icon class="icon" size="15"></clock-icon>{{ $t('DOWNLOAD.DURATION_WITH_HOURS', episodeDuration) }}</li>
         <li class="meta centered" v-if="episodeDuration.hours === 0"><clock-icon class="icon" size="15"></clock-icon>{{ $t('DOWNLOAD.DURATION', episodeDuration) }}</li>
       </ul>
     </div>
     <div class="file-selection centered column" :style="sectionStyle">
-      <button-component class="action download-button" :href="download.selected" type="link" download>{{ $t('DOWNLOAD.ACTIONS.DOWNLOAD') }}</button-component>
-      <copy-tooltip-component :content="download.selected">
+      <button-component id="tab-download--button" class="action download-button" :href="download.selected" type="link" download>{{ $t('DOWNLOAD.ACTIONS.DOWNLOAD') }}</button-component>
+      <copy-tooltip-component :content="download.selected" id="tab-download--copy">
         <button-component class="action copy-button">{{ $t('DOWNLOAD.ACTIONS.COPY') }}</button-component>
       </copy-tooltip-component>
-      <input-select-component class="download-select" :change="setDownloadFile">
+      <input-select-component class="download-select" :change="setDownloadFile" id="tab-download--select">
         <option v-for="(option, index) in download.files" v-bind:key="index" v-bind:value="option.url" :selected="download.selected === option.url">
           {{ option.title }} • {{ toMegabyte(option.size) }} MB
         </option>

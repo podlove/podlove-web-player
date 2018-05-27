@@ -1,0 +1,18 @@
+Starting up http-server, serving dist/
+Available on:
+  http://127.0.0.1:8080
+  http://192.168.178.42:8080
+  http://169.254.124.12:8080
+Hit CTRL-C to stop the server
+[Mon Apr 30 2018 20:21:26 GMT+0200 (CEST)] "GET /test" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36"
+[Mon Apr 30 2018 20:21:26 GMT+0200 (CEST)] "GET /style.css" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36"
+[Mon Apr 30 2018 20:21:26 GMT+0200 (CEST)] "GET /window.js" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36"
+[Mon Apr 30 2018 20:21:26 GMT+0200 (CEST)] "GET /fonts/FiraSans-Light.woff?620af15165ec011b7982f308eb48c34e" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36"
+[Mon Apr 30 2018 20:38:41 GMT+0200 (CEST)] "GET /test" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36"
+[Mon Apr 30 2018 20:41:29 GMT+0200 (CEST)] "GET /test" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36"
+[Mon Apr 30 2018 20:56:29 GMT+0200 (CEST)] "GET /test" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36"
+[Mon Apr 30 2018 21:03:30 GMT+0200 (CEST)] "GET /test" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36"
+[Mon Apr 30 2018 21:10:45 GMT+0200 (CEST)] "GET /test" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36"
+[Mon Apr 30 2018 21:15:34 GMT+0200 (CEST)] "GET /test" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36"
+[Mon Apr 30 2018 21:15:36 GMT+0200 (CEST)] "GET /test" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36"
+http-server stopped.
