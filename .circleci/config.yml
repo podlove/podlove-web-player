@@ -98,7 +98,7 @@ jobs:
       - restore-cache: *bundler-restore-cache
 
       - run: cd docs && bundle install
-      - run: bundle exec jekyll build --verbose --source docs --destination dist
+      - run: jekyll build --source docs --destination dist
       - run: cp -R docs/fixtures/* dist/fixtures
 
       - save-cache: *bundler-save-cache
