@@ -38,7 +38,7 @@ test.beforeEach(t => {
       onPlay: sinon.stub(),
       onPause: sinon.stub(),
       onLoading: sinon.stub(),
-      onLoaded: sinon.stub(),
+      onReady: sinon.stub(),
       onError: sinon.stub(),
       onBuffering: sinon.stub(),
       onEnd: sinon.stub()

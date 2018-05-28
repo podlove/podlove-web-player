@@ -38,7 +38,7 @@ export default mediaPlayer => handleActions({
     player.events.onBufferChange(compose(dispatch, actions.setBuffer, map(([start, stop]) => [secondsToMilliseconds(start), secondsToMilliseconds(stop)])))
     player.events.onPlay(compose(dispatch, actions.playEvent))
     player.events.onPause(compose(dispatch, actions.pauseEvent))
-    player.events.onLoaded(compose(dispatch, actions.loaded))
+    player.events.onReady(compose(dispatch, actions.loaded))
     player.events.onError(compose(dispatch, actions.errorLoad))
     player.events.onBuffering(compose(dispatch, actions.loading))
     player.events.onEnd(compose(dispatch, actions.endEvent))
