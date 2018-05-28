@@ -131,7 +131,7 @@
     "to-string-loader": "^1.1.5",
     "transform-runtime": "0.0.0",
     "uglifyjs-webpack-plugin": "^1.2.5",
-    "vue-loader": "15.2.1",
+    "vue-loader": "15.2.2",
     "vue-template-compiler": "2.5.16",
     "webpack": "4.6.0",
     "webpack-bundle-analyzer": "2.11.0",
