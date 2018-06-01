@@ -122,7 +122,7 @@
     "sinon": "5.0.3",
     "snazzy": "7.1.1",
     "standard": "11.0.1",
-    "standard-changelog": "1.0.14",
+    "standard-changelog": "2.0.0",
     "standard-reporter": "^1.0.5",
     "superagent-nock": "0.4.0",
     "surge": "0.20.0",
