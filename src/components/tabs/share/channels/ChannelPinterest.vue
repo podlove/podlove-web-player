@@ -1,6 +1,7 @@
 <template>
   <a :href="pinterestLink" class="channel-link" target="_blank">
-    <span class="channel-icon pinterest"><pinterest-icon color="#fff"></pinterest-icon></span>
+    <span class="channel-icon pinterest" aria-hidden="true"><pinterest-icon color="#fff"></pinterest-icon></span>
+    <span class="visually-hidden">{{ $t('A11Y.SHARE_CHANNEL', { channel: 'Pinterest' }) }}</span>
   </a>
 </template>
 

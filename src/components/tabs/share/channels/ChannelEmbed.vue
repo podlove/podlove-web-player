@@ -1,7 +1,8 @@
 <template>
-  <a class="channel-link" @click="showEmbedOverlay()">
-    <span class="channel-icon" :style="iconStyle"><embed-icon color="#fff"></embed-icon></span>
-  </a>
+  <button class="channel-link" @click="showEmbedOverlay()">
+    <span class="channel-icon" :style="iconStyle" aria-hidden="true"><embed-icon color="#fff"></embed-icon></span>
+    <span class="visually-hidden">{{ $t('A11Y.SHARE_EMBED') }}</span>
+  </button>
 </template>
 
 <script>

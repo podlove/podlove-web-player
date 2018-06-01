@@ -8,6 +8,7 @@
       @input="onInput"
       @mousemove="onMouseMove"
       @mouseout="onMouseOut"
+      :title="$t('A11Y.PROGRESSBAR_INPUT')"
     >
     <input v-else
       type="range"
@@ -15,6 +16,7 @@
       :value="interpolate(playtime)"
       @change="onChange"
       @input="onInput"
+      :title="$t('A11Y.PROGRESSBAR_INPUT')"
     >
     <span class="progress-range" :style="rangeStyle"></span>
     <span class="progress-buffer" v-for="(buffering, index) in buffer" :style="bufferStyle(buffering)" :key="`buffer-${index}`"></span>

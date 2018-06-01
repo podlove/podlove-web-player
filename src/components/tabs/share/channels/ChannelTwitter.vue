@@ -1,6 +1,7 @@
 <template>
   <a :href="twitterLink" class="channel-link" target="_blank">
-    <span class="channel-icon twitter"><twitter-icon color="#fff"></twitter-icon></span>
+    <span class="channel-icon twitter" aria-hidden="true"><twitter-icon color="#fff"></twitter-icon></span>
+    <span class="visually-hidden">{{ $t('A11Y.SHARE_CHANNEL', { channel: 'Twitter' }) }}</span>
   </a>
 </template>
 

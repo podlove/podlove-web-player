@@ -43,7 +43,7 @@ test(`chaptersEffects: it exports a effect function`, t => {
 })
 
 test.cb(
-  `chaptersEffects: it triggers INIT_CHAPTERS inf INIT is dispatched`,
+  `chaptersEffects: it triggers INIT_CHAPTERS if INIT is dispatched`,
   t => {
     t.plan(2)
 
@@ -74,19 +74,22 @@ test.cb(
           active: false,
           end: 43137,
           start: 0,
-          title: 'chapter 1'
+          title: 'chapter 1',
+          index: 1
         },
         {
           active: true,
           end: 75911,
           start: 43137,
-          title: 'chapter 2'
+          title: 'chapter 2',
+          index: 2
         },
         {
           active: false,
           end: 100000,
           start: 75911,
-          title: 'chapter 3'
+          title: 'chapter 3',
+          index: 3
         }
       ])
       t.end()
@@ -128,19 +131,22 @@ test.cb(
           active: false,
           end: 43137,
           start: 0,
-          title: 'chapter 1'
+          title: 'chapter 1',
+          index: 1
         },
         {
           active: true,
           end: 75911,
           start: 43137,
-          title: 'chapter 2'
+          title: 'chapter 2',
+          index: 2
         },
         {
           active: false,
           end: 100000,
           start: 75911,
-          title: 'chapter 3'
+          title: 'chapter 3',
+          index: 3
         }
       ])
       t.end()
@@ -184,19 +190,22 @@ test.cb(
           active: false,
           end: 43137,
           start: 0,
-          title: 'chapter 1'
+          title: 'chapter 1',
+          index: 1
         },
         {
           active: true,
           end: 75911,
           start: 43137,
-          title: 'chapter 2'
+          title: 'chapter 2',
+          index: 2
         },
         {
           active: false,
           end: 100000,
           start: 75911,
-          title: 'chapter 3'
+          title: 'chapter 3',
+          index: 3
         }
       ])
       t.end()

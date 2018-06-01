@@ -15,6 +15,7 @@ test.beforeEach(t => {
         url: 'http://foo.baz'
       }]
     },
+    playstate: 'playing',
     episode: {
       url: 'http://foo.bar/episode',
       poster: './img/src'
@@ -208,6 +209,29 @@ test(`componentsEffect: it shows the chapters tab only when chapters are availab
       tab: 'chapters',
       visibility: true
     }
+  })
+})
+
+test(`componentsEffect: it shows the chapter steppers only when chapters are available and playstate is on start on INIT_CHAPTERS`, t => {
+  const testAction = {
+    type: 'INIT_CHAPTERS',
+    payload: ['foo', 'bar']
+  }
+
+  store.playstate = 'start'
+
+  components(store, testAction)
+  t.deepEqual(store.dispatch.getCall(0).args[0], {
+    type: 'TOGGLE_COMPONENT_TAB',
+    payload: {
+      tab: 'chapters',
+      visibility: true
+    }
+  })
+
+  t.deepEqual(store.dispatch.getCall(1).args[0], {
+    type: 'TOGGLE_COMPONENT_CONTROLS_CHAPTERS',
+    payload: true
   })
 })
 

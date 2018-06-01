@@ -74,8 +74,16 @@ export default handleActions({
     }
   },
 
-  [INIT_CHAPTERS]: ({ dispatch }, { payload }) => {
-    hasChapters(payload) ? dispatch(actions.toggleComponentTab('chapters', true)) : noop()
+  [INIT_CHAPTERS]: ({ dispatch }, { payload }, state) => {
+    if (!hasChapters(payload)) {
+      return
+    }
+
+    dispatch(actions.toggleComponentTab('chapters', true))
+
+    if (state.playstate !== 'start') {
+      dispatch(actions.toggleChapterControls(true))
+    }
   },
 
   [LOADING]: ({ dispatch }) => dispatch(actions.showLoadingButton()),

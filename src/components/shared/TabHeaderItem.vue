@@ -1,10 +1,10 @@
 <template>
-  <li class="tab-header-item" :style="tabStyle" :class="{active}">
-    <a href="javascript:void(0);" @click.prevent="click()" class="caption">
-      <span class="icon" :style="{fill: iconColor(active)}"><slot name="icon"></slot></span>
+  <li class="tab-header-item" :style="tabStyle" :class="{active}" role="presentation" :rel="name">
+    <button @click="click()" class="caption" role="tab" :id="`trigger-${name}`" :aria-controls="name" :aria-selected="active" :tabindex="index">
+      <span class="icon" :style="{fill: iconColor(active)}" aria-hidden="true"><slot name="icon"></slot></span>
       <span class="title"><slot name="title"></slot></span>
-      <close-icon class="close" :color="iconColor(true)" v-if="active"></close-icon>
-    </a>
+      <close-icon class="close" :color="iconColor(true)" v-if="active" aria-hidden="true"></close-icon>
+    </button>
   </li>
 </template>
 
@@ -12,7 +12,7 @@
   import CloseIcon from 'icons/CloseIcon'
 
   export default {
-    props: ['click', 'active'],
+    props: ['click', 'active', 'name', 'index'],
     data () {
       return {
         theme: this.$select('theme'),

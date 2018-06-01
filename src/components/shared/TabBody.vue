@@ -1,11 +1,11 @@
 <template>
-  <div class="tab-body" :class="{active}" :style="display === 'native' ? bodyStyle : {}">
-    <slot></slot>
+  <div class="tab-body" :class="{active}" :style="display === 'native' ? bodyStyle : {}" role="tabpanel" :aria-labelledby="`trigger-${name}`" tabindex="0" :aria-hidden="!active">
+    <slot tabindex="0"></slot>
   </div>
 </template>
 <script>
   export default {
-    props: ['active'],
+    props: ['active', 'name', 'index'],
     data () {
       return {
         theme: this.$select('theme'),

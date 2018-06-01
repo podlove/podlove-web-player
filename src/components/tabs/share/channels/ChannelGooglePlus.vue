@@ -1,6 +1,7 @@
 <template>
   <a :href="googlePlusLink" class="channel-link" target="_blank">
-    <span class="channel-icon google-plus"><google-plus-icon color="#fff"></google-plus-icon></span>
+    <span class="channel-icon google-plus" aria-hidden="true"><google-plus-icon color="#fff"></google-plus-icon></span>
+    <span class="visually-hidden">{{ $t('A11Y.SHARE_CHANNEL', { channel: 'Google Plus' }) }}</span>
   </a>
 </template>
 

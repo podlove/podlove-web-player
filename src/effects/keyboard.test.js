@@ -159,23 +159,23 @@ test(`keyboardEffect: previous chapter dispatches SET_CHAPTER if playtime is nea
   t.is(action.type, 'SET_CHAPTER')
 })
 
-test(`keyboardEffect: lower volume dispatches SET_VOLUME with the current volume`, t => {
+test(`keyboardEffect: lower volume dispatches SET_VOLUME with the current volume minus the modifier`, t => {
   store.getState = () => ({
     volume: 1
   })
 
-  effect('down')(store)
+  effect('shift+down')(store)
   const action = store.dispatch.firstCall.args[0]
   t.is(action.type, 'SET_VOLUME')
   t.is(action.payload, 0.95)
 })
 
-test(`keyboardEffect: increase volume dispatches SET_VOLUME with the current volume`, t => {
+test(`keyboardEffect: increase volume dispatches SET_VOLUME with the current volume plus the modifier`, t => {
   store.getState = () => ({
     volume: 0.95
   })
 
-  effect('up')(store)
+  effect('shift+up')(store)
   const action = store.dispatch.firstCall.args[0]
   t.is(action.type, 'SET_VOLUME')
   t.is(action.payload, 1)
@@ -199,4 +199,26 @@ test(`keyboardEffect: mute toggles UNMUTE if its currently muted`, t => {
   effect('m')(store)
   const action = store.dispatch.firstCall.args[0]
   t.is(action.type, 'UNMUTE')
+})
+
+test(`keyboardEffect: lower rate dispatches SET_RATE with the current rate minus the modifier`, t => {
+  store.getState = () => ({
+    rate: 1
+  })
+
+  effect('alt+down')(store)
+  const action = store.dispatch.firstCall.args[0]
+  t.is(action.type, 'SET_RATE')
+  t.is(action.payload, 0.95)
+})
+
+test(`keyboardEffect: increase volume dispatches SET_RATE with the current rate plus the modifier`, t => {
+  store.getState = () => ({
+    rate: 0.95
+  })
+
+  effect('alt+up')(store)
+  const action = store.dispatch.firstCall.args[0]
+  t.is(action.type, 'SET_RATE')
+  t.is(action.payload, 1)
 })
