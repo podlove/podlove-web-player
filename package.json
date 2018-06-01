@@ -51,7 +51,7 @@
     "cypress:dev": "npm run cypress:assets && cypress open",
     "cypress:ci": "npm run test:prepare && cypress run --record --key 54ef8855-9428-4b03-92db-fe0d853c4c41 --reporter junit --reporter-options 'mochaFile=reports/junit.xml'",
     "cypress:server": "http-server -p 8080 dist/ > http.log 2>&1 &",
-    "test:integration": "npm run cypress:assets && npm run build && npm run cypress:server && npm run cypress:ci"
+    "test:integration": "cypress install && npm run cypress:assets && npm run build && npm run cypress:server && npm run cypress:ci"
   },
   "files": [
     "dist/"
@@ -102,7 +102,7 @@
     "conventional-changelog-lint": "2.1.1",
     "cross-env": "5.1.6",
     "css-loader": "0.28.11",
-    "cypress": "^2.1.0",
+    "cypress": "^3.0.1",
     "cz-conventional-changelog": "2.1.0",
     "eslint": "4.19.1",
     "eslint-plugin-html": "4.0.3",
