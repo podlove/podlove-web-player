@@ -132,7 +132,7 @@
     "uglifyjs-webpack-plugin": "^1.2.5",
     "vue-loader": "15.2.2",
     "vue-template-compiler": "2.5.16",
-    "webpack": "4.10.0",
+    "webpack": "4.10.2",
     "webpack-bundle-analyzer": "2.13.1",
     "webpack-cli": "^2.0.15",
     "webpack-dev-server": "^3.1.3",
