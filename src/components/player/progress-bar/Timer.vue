@@ -1,15 +1,15 @@
 <template>
   <div class="timer-progress" :class="playstate" :style="timerStyle">
-    <span class="current" id="progress-bar--timer-current">{{ fromPlayerTime(ghost.active ? ghost.time : playtime) }}</span>
+    <span class="current" id="progress-bar--timer-current" :aria-label="a11y.current" tabindex="0">{{ fromPlayerTime(ghost.active ? ghost.time : playtime) }}</span>
     <current-chapter class="chapter"></current-chapter>
-    <span class="time" id="progress-bar--timer-left">-{{ fromPlayerTime(duration - (ghost.active ? ghost.time : playtime)) }}</span>
+    <span class="time" id="progress-bar--timer-left" :aria-label="a11y.left" tabindex="0">-{{ fromPlayerTime(duration - (ghost.active ? ghost.time : playtime)) }}</span>
   </div>
 </template>
 
 <script>
 import color from 'color'
 
-import { fromPlayerTime } from 'utils/time'
+import { fromPlayerTime, calcHours, calcMinutes, calcSeconds } from 'utils/time'
 import CurrentChapter from './CurrentChapter'
 
 export default {
@@ -27,6 +27,12 @@ export default {
     timerStyle () {
       return {
         color: color(this.theme.player.timer.text).fade(0.5)
+      }
+    },
+    a11y () {
+      return {
+        current: this.$t('A11Y.TIMER_CURRENT', { hours: calcHours(this.playtime), minutes: calcMinutes(this.playtime), seconds: calcSeconds(this.playtime) }),
+        left: this.$t('A11Y.TIMER_LEFT', { hours: calcHours(this.duration - this.playtime), minutes: calcMinutes(this.duration - this.playtime), seconds: calcSeconds(this.duration - this.playtime) })
       }
     }
   },

@@ -1,6 +1,7 @@
 <template>
   <a :href="facebookLink" class="channel-link" target="_blank">
-    <span class="channel-icon facebook"><facebook-icon color="#fff"></facebook-icon></span>
+    <span class="channel-icon facebook" aria-hidden="true"><facebook-icon color="#fff"></facebook-icon></span>
+    <span class="visually-hidden">{{ $t('A11Y.SHARE_CHANNEL', { channel: 'Facebook' }) }}</span>
   </a>
 </template>
 

@@ -1,10 +1,13 @@
 <template>
   <div class="overlay-container" :class="{open: visible}">
     <div class="overlay" :style="backgroundStyle">
-      <div class="overlay-inner">
+      <div class="overlay-inner" tabindex="0" ref="overlay" :aria-label="title">
         <div class="overlay-header">
           <slot name="header"></slot>
-          <button class="overlay-close" @click="onClose()"><close-icon></close-icon></button>
+          <button class="overlay-close" @click="onClose()">
+            <close-icon aria-hidden="true"></close-icon>
+            <span class="visually-hidden">{{ $t('A11Y.OVERLAY_CLOSE') }}</span>
+          </button>
         </div>
         <div class="overlay-body">
           <slot></slot>
@@ -15,11 +18,11 @@
 </template>
 
 <script>
-  import ButtonComponent from './Button'
   import CloseIcon from 'icons/CloseIcon'
+  import ButtonComponent from './Button'
 
   export default {
-    props: ['visible', 'onClose'],
+    props: ['visible', 'onClose', 'title'],
     data () {
       return {
         theme: this.$select('theme')
@@ -30,6 +33,11 @@
         return {
           background: this.theme.overlay.background
         }
+      }
+    },
+    watch: {
+      visible () {
+        this.$refs.overlay && this.$refs.overlay.focus()
       }
     },
     components: {

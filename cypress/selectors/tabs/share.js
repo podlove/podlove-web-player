@@ -13,7 +13,7 @@ module.exports = cy => ({
     'google-plus': () => cy.get(`#tab-share--channels--google-plus a`),
     mail: () => cy.get(`#tab-share--channels--mail a`),
     pinterest: () => cy.get(`#tab-share--channels--pinterest a`),
-    embed: () => cy.get(`#tab-share--channels--embed a`)
+    embed: () => cy.get(`#tab-share--channels--embed button`)
   },
   overlay: {
     modal: () => cy.get('#share-tab--share-overlay'),

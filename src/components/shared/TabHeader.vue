@@ -1,5 +1,5 @@
 <template>
-  <ul class="tab-header" :class="{ overflows }" v-resize="resizeHandler">
+  <ul class="tab-header" :class="{ overflows }" v-resize="resizeHandler" role="tablist">
     <span class="header-shadow" :style="headerShadowStyle"></span>
     <slot></slot>
   </ul>

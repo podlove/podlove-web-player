@@ -1,17 +1,20 @@
 <template>
-    <overlay-component :visible="share.embed.visible" :onClose="closeEmbedOverlay" class="embed-overlay" id="share-tab--share-overlay">
+    <overlay-component :visible="share.embed.visible" :onClose="closeEmbedOverlay" :title="$t('A11Y.SHARE_OVERLAY')" class="embed-overlay" id="share-tab--share-overlay">
       <h3 name="header" class="title text-center">{{ $t('SHARE.EMBED.TITLE') }}</h3>
       <div class="input-element">
-        <label class="input-label">{{ $t('SHARE.EMBED.LABEL.SIZE') }}</label>
+        <label class="input-label" for="share-tab--share-overlay--size">{{ $t('SHARE.EMBED.LABEL.SIZE') }}</label>
         <input-select-component :model="share.embed.size" :options="share.embed.available" :change="setEmbedSize" id="share-tab--share-overlay--size"></input-select-component>
       </div>
       <div class="input-element">
-        <label class="input-label">{{ $t('SHARE.EMBED.LABEL.CODE') }}</label>
+        <label class="input-label" for="share-tab--share-overlay--code">{{ $t('SHARE.EMBED.LABEL.CODE') }}</label>
         <input-text-component class="block" disabled="true" :value="embedCode" id="share-tab--share-overlay--code"></input-text-component>
       </div>
       <div class="input-element">
         <copy-tooltip-component :content="embedCode">
-          <button-component class="block action" id="share-tab--share-overlay--copy-button">{{ $t('SHARE.EMBED.ACTIONS.COPY') }}</button-component>
+          <button-component class="block action" id="share-tab--share-overlay--copy-button">
+            <span aria-hidden="true">{{ $t('SHARE.EMBED.ACTIONS.COPY') }}</span>
+            <span class="visually-hidden">{{ $t('A11Y.COPY_EMBED_CODE') }}</span>
+          </button-component>
         </copy-tooltip-component>
       </div>
     </overlay-component>
@@ -84,6 +87,7 @@
         return `<iframe width="${width}" height="${height}" src="${addQueryParameter(this.reference.share, parameters)}" frameborder="0" scrolling="no"></iframe>`
       }
     },
+
     methods: {
       fromPlayerTime,
       setEmbedSize: compose(store.dispatch.bind(store), store.actions.setShareEmbedSize),

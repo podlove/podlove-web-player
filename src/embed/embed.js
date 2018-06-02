@@ -1,18 +1,34 @@
 /* globals BASE */
-import { get, compose } from 'lodash'
-import { iframeResizer } from 'iframe-resizer'
+import {
+  get,
+  compose
+} from 'lodash'
+import {
+  iframeResizer
+} from 'iframe-resizer'
 // eslint-disable-next-line
 import iframeResizerContentWindow from 'raw-loader!iframe-resizer/js/iframeResizer.contentWindow.js'
 
-import { findNode, tag } from 'utils/dom'
+import {
+  findNode,
+  tag,
+  setAttributes
+} from 'utils/dom'
 import requestConfig from 'utils/request'
-import { urlParameters } from 'utils/url'
-import { sandbox, sandboxWindow } from 'utils/sandbox'
-import { SET_PLAYBACK_PARAMS } from 'store/types'
+import {
+  urlParameters
+} from 'utils/url'
+import {
+  sandbox,
+  sandboxWindow
+} from 'utils/sandbox'
+import {
+  SET_PLAYBACK_PARAMS
+} from 'store/types'
 
 import loader from './loader'
 
-const player = config => [
+const createPlayerDom = config => [
   // Config
   tag('script', `window.PODLOVE = ${JSON.stringify(config)}`),
 
@@ -23,8 +39,14 @@ const player = config => [
   tag('PodlovePlayer'),
 
   // Bundles
-  tag('link', '', {rel: 'stylesheet', href: `${get(config.reference, 'base', BASE)}/style.css`}),
-  tag('script', '', {type: 'text/javascript', src: `${get(config.reference, 'base', BASE)}/window.js`}),
+  tag('link', '', {
+    rel: 'stylesheet',
+    href: `${get(config.reference, 'base', BASE)}/style.css`
+  }),
+  tag('script', '', {
+    type: 'text/javascript',
+    src: `${get(config.reference, 'base', BASE)}/window.js`
+  }),
 
   // iFrameResizer
   tag('script', iframeResizerContentWindow)
@@ -50,13 +72,28 @@ const dispatchUrlParameters = store => {
   return store
 }
 
+const setAccessibilityAttributes = config => {
+  const title = `Podlove Web Player${get(config, 'title') ? ': ' + get(config, 'title') : ''}`
+
+  return setAttributes({
+    title,
+    'aria-label': title,
+    tabindex: 0
+  })
+}
+
 window.podlovePlayer = (selector, episode) =>
   requestConfig(episode)
-    .then(player)
-    .then(sandboxFromSelector(selector))
-    .then(resizer)
-    .then(sandboxWindow(['PODLOVE_STORE', 'store']))
-    .then(dispatchUrlParameters)
+    .then(config =>
+      Promise.resolve(config)
+        .then(createPlayerDom)
+        .then(sandboxFromSelector(selector))
+        // Set Title for accessibility
+        .then(setAccessibilityAttributes(config))
+        .then(resizer)
+        .then(sandboxWindow(['PODLOVE_STORE', 'store']))
+        .then(dispatchUrlParameters)
+    )
     .catch(err => {
       console.group(`Can't load Podlove Webplayer`)
       console.error('selector', selector)

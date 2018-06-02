@@ -14,7 +14,7 @@
       </div>
       <div class="show">
         <h3 class="title" v-if="show.title" id="tab-info--show-title">{{ show.title }}</h3>
-        <img v-if="show.poster" :src="show.poster" id="tab-info--show-poster" class="show-poster shadowed"/>
+        <img v-if="show.poster" :src="show.poster" id="tab-info--show-poster" class="show-poster shadowed" :alt="$t('A11Y.ALT_SHOW_COVER')"/>
         <p class="summary" v-if="show.summary" id="tab-info--show-summary">{{ show.summary }}</p>
         <p class="link" v-if="show.link"><link-icon class="icon"></link-icon><a class="info-link truncate" :href="show.link" target="_blank" id="tab-info--show-link">{{ show.link }}</a></p>
       </div>
@@ -22,9 +22,9 @@
 
     <div class="speakers" v-if="speakers.length > 0">
       <h3 class="title">{{ $t('INFO.ON_AIR') }}</h3>
-      <ul class="list" id="tab-info--speakers">>
+      <ul class="list" id="tab-info--speakers">
         <li class="speaker" v-for="(speaker, index) in speakers" v-bind:key="index">
-          <img :src="speaker.avatar" class="shadowed avatar" :title="speaker.name" />
+          <img :src="speaker.avatar" class="shadowed avatar" :title="speaker.name" :alt="$t('A11Y.SPEAKER_COVER', { name: speaker.name })"/>
           <span class="name">{{ speaker.name }}</span>
         </li>
       </ul>

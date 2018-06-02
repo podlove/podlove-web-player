@@ -10,21 +10,21 @@ import actions from 'store/actions'
 
 import { INIT, PREVIOUS_CHAPTER, NEXT_CHAPTER, SET_CHAPTER, SET_PLAYTIME, UPDATE_PLAYTIME } from 'store/types'
 
-const chapterMeta = (chapter, next) => ({
-  start: toPlayerTime(chapter.start),
-  end: toPlayerTime(next.start),
-  title: chapter.title
-})
-
 const parseChapters = duration => (result, chapter, index, chapters) => {
   const end = get(chapters, index + 1, { start: duration })
-  return [...result, chapterMeta(chapter, end)]
+
+  return [...result, {
+    index: index + 1,
+    start: toPlayerTime(chapter.start),
+    end: toPlayerTime(end.start),
+    title: chapter.title
+  }]
 }
 
 const fallbackToLastChapter = (playtime = 0) => (chapters = []) => {
   const index = findIndex(chapters, { active: true })
 
-  return (index > 0 || playtime === 0) ? chapters : chapters.map(setActiveByIndex(chapters.length - 1))
+  return (index > -1 || playtime === 0) ? chapters : chapters.map(setActiveByIndex(chapters.length - 1))
 }
 
 const chapterIndexFromState = compose(
@@ -53,7 +53,7 @@ export default handleActions({
 
     requestChapters
       .catch(() => [])
-      .then(chapters => chapters.reduce(parseChapters(toPlayerTime(duration)), []))
+      .then(chapters => chapters.reduce(parseChapters(duration), []))
       .then(chapters => chapters.map(setActiveByPlaytime(playtime)))
       .then(fallbackToLastChapter(playtime))
       .then(actions.initChapters)

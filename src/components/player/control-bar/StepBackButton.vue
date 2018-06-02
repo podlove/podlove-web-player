@@ -1,8 +1,7 @@
 <template>
   <button class="control-button" :class="playstate" @click="onButtonClick()" :disabled="isDisabled(playtime)" id="control-bar--step-back-button">
-    <StepBackIcon
-      :color="theme.player.actions.background"
-    ></StepBackIcon>
+    <StepBackIcon :color="theme.player.actions.background" aria-hidden="true"></StepBackIcon>
+    <span class="visually-hidden">{{ $t('A11Y.PLAYER_STEPPER_BACK', { seconds: 15 }) }}</span>
   </button>
 </template>
 
