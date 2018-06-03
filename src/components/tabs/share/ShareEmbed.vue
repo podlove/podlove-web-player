@@ -38,6 +38,8 @@
     props: ['type'],
     data () {
       return {
+        show: this.$select('show'),
+        episode: this.$select('episode'),
         share: this.$select('share'),
         reference: this.$select('reference'),
         theme: this.$select('theme'),
@@ -71,6 +73,7 @@
       embedCode () {
         const [width, height] = this.share.embed.size.split('x')
 
+        const title = `Podlove Web Player:${this.show.title ? ' ' + this.show.title : ''}${this.episode.title ? ' - ' + this.episode.title : ''}`
         const parameters = {
           episode: this.reference.config
         }
@@ -84,7 +87,7 @@
           parameters.t = fromPlayerTime(this.playtime)
         }
 
-        return `<iframe width="${width}" height="${height}" src="${addQueryParameter(this.reference.share, parameters)}" frameborder="0" scrolling="no"></iframe>`
+        return `<iframe title="${title}" width="${width}" height="${height}" src="${addQueryParameter(this.reference.share, parameters)}" frameborder="0" scrolling="no" tabindex="0"></iframe>`
       }
     },
 

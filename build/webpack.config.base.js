@@ -1,4 +1,5 @@
 const path = require('path')
+const { get } = require('lodash')
 const { VueLoaderPlugin } = require('vue-loader')
 
 const sourceDir = path.resolve('.', 'src')
@@ -8,13 +9,14 @@ module.exports = {
   entry: {
     embed: path.resolve(sourceDir, 'embed', 'embed.js'),
     window: path.resolve(sourceDir, 'embed', 'window.js'),
-    share: path.resolve(sourceDir, 'embed', 'share.js')
+    share: path.resolve(sourceDir, 'embed', 'share.js'),
+    vendor: path.resolve(sourceDir, 'vendor.js')
   },
 
   output: {
     path: distDir,
     filename: '[name].js',
-    publicPath: ''
+    publicPath: get(process.env, 'BASE', '')
   },
 
   resolve: {
@@ -28,6 +30,29 @@ module.exports = {
       core: path.resolve(sourceDir, 'core'),
       styles: path.resolve(sourceDir, 'styles')
     }
+  },
+
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        default: false,
+        common: false,
+        vendor: {
+          chunks: chunk => ~['window', 'share'].indexOf(chunk.name),
+          name: 'vendor',
+          test: 'vendor',
+          enforce: true
+        },
+        styles: {
+          name: 'style',
+          test: module => module.nameForCondition && /\.(s?css|vue)$/.test(module.nameForCondition()) && !/^javascript/.test(module.type),
+          enforce: true,
+          chunks: chunk => ~['window', 'share', 'vendor'].indexOf(chunk.name),
+          minChunks: 1
+        }
+      }
+    },
+    runtimeChunk: false
   },
 
   module: {

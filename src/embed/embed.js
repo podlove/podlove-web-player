@@ -45,6 +45,10 @@ const createPlayerDom = config => [
   }),
   tag('script', '', {
     type: 'text/javascript',
+    src: `${get(config.reference, 'base', BASE)}/vendor.js`
+  }),
+  tag('script', '', {
+    type: 'text/javascript',
     src: `${get(config.reference, 'base', BASE)}/window.js`
   }),
 

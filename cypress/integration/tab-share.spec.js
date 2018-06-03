@@ -126,7 +126,7 @@ describe('Share Tab', () => {
   })
 
   describe('Share Overlay', () => {
-    const embedCode = (url, width = '320', height = '400') => `<iframe width="${width}" height="${height}" src="http://localhost:8080/share?${url}" frameborder="0" scrolling="no"></iframe>`
+    const embedCode = (url, width = '320', height = '400') => `<iframe title="Podlove Web Player: Belligerent and numerous. - And until then, I can never die?" width="${width}" height="${height}" src="http://localhost:8080/share?${url}" frameborder="0" scrolling="no" tabindex="0"></iframe>`
 
     it(`opens when the embed link is clicked`, function () {
       cy.window().then(setState(this.episode, this.audio, this.show, this.chapters, { playtime: 8000 }, this.reference))
