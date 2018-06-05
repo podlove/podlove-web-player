@@ -1,9 +1,11 @@
+---
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{ site.baseurl }}/style.css">
 </head>
 <body>
     <PodlovePlayer></PodlovePlayer>
@@ -17,8 +19,9 @@
               "link": "https:\/\/freakshow.fm"
             },
             "reference": {
-              "share": "//podlove-player.surge.sh/share",
-              "config": "//podlove-player.surge.sh/fixtures/fs207.json",
+              "base": "{{ site.url }}/{{ site.baseurl }}",
+              "share": "{{ site.url }}/{{ site.baseurl }}/test",
+              "config": "{{ site.url }}/{{ site.baseurl }}/fixtures/fs207.json",
               "origin": "https://freakshow.fm/fs207-berliner-leistungswasser"
             },
             "theme": {
@@ -279,6 +282,8 @@
           }
     </script>
 
-    <script src="window.js"></script>
+    <script src="{{ site.baseurl }}/vendor.js"></script>
+    <script src="{{ site.baseurl }}/window.js"></script>
+    <script src="{{ site.baseurl }}/style.js"></script>
 </body>
 </html>

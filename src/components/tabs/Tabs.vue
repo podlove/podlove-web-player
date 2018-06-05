@@ -62,14 +62,12 @@ import InfoIcon from 'icons/InfoIcon'
 import AudioIcon from 'icons/AudioIcon'
 import TranscriptsIcon from 'icons/TranscriptsIcon'
 
-const tabs = {
-  ShareTab: () => import('./share/Share'),
-  ChaptersTab: () => import('./chapters/Chapters'),
-  AudioTab: () => import('./audio/Audio'),
-  InfoTab: () => import('./info/Info'),
-  DownloadTab: () => import('./download/Download'),
-  TranscriptsTab: () => import('./transcripts/Transcripts')
-}
+import InfoTab from './info/Info'
+import ShareTab from './share/Share'
+import ChaptersTab from './chapters/Chapters'
+import TranscriptsTab from './transcripts/Transcripts'
+import DownloadTab from './download/Download'
+import AudioTab from './audio/Audio'
 
 export default {
   data () {
@@ -112,13 +110,9 @@ export default {
   methods: {
     toggleTab (tab) {
       return () => {
-        !this.tabs[tab] && this.$refs[tab].$el.focus()
         store.dispatch(store.actions.toggleTab(tab))
       }
     }
-  },
-  mounted () {
-    Object.keys(tabs).forEach(key => tabs[key]())
   },
   components: {
     TabHeaderComponent,
@@ -132,7 +126,12 @@ export default {
     AudioIcon,
     TranscriptsIcon,
 
-    ...tabs
+    InfoTab,
+    ShareTab,
+    ChaptersTab,
+    TranscriptsTab,
+    DownloadTab,
+    AudioTab
   }
 }
 </script>

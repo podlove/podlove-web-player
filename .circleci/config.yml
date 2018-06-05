@@ -182,7 +182,7 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/podlove-web-player
-      - run: yarn run test:integration
+      - run: yarn test:integration
       - store_test_results:
           path: reports
       - store_artifacts:
