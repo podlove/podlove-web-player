@@ -110,7 +110,6 @@ export default {
   methods: {
     toggleTab (tab) {
       return () => {
-        !this.tabs[tab] && this.$refs[tab].$el.focus()
         store.dispatch(store.actions.toggleTab(tab))
       }
     }

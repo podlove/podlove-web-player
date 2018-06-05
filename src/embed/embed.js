@@ -51,6 +51,10 @@ const createPlayerDom = config => [
     type: 'text/javascript',
     src: `${get(config.reference, 'base', BASE)}/window.js`
   }),
+  tag('script', '', {
+    type: 'text/javascript',
+    src: `${get(config.reference, 'base', BASE)}/style.js`
+  }),
 
   // iFrameResizer
   tag('script', iframeResizerContentWindow)

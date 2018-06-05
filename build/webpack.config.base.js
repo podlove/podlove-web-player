@@ -45,9 +45,9 @@ module.exports = {
         },
         styles: {
           name: 'style',
-          test: module => module.nameForCondition && /\.(s?css|vue)$/.test(module.nameForCondition()) && !/^javascript/.test(module.type),
+          test: /\.(s?css|vue)$/,
           enforce: true,
-          chunks: chunk => ~['window', 'share', 'vendor'].indexOf(chunk.name),
+          chunks: chunk => chunk.name !== 'embed',
           minChunks: 1
         }
       }
