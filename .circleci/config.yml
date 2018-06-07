@@ -226,6 +226,7 @@ jobs:
       - attach_workspace:
           at: ~/podlove-web-player
       - restore-cache: *yarn-restore-cache
+      - checkout
       - run: yarn deploy:gh-pages
 
   publish-npm:
@@ -247,6 +248,8 @@ jobs:
       - attach_workspace:
           at: ~/podlove-web-player
       - restore-cache: *yarn-restore-cache
+      - run: sudo apt install rsync
+      - run: rsync.keycdn.com >> ~/.ssh/known_hosts
       - run: yarn dist:clean
       - run: BASE="//cdn.podlove.org/web-player/" yarn build
       - run: yarn deploy:cdn
