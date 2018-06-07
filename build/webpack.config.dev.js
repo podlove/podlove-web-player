@@ -1,59 +1,33 @@
-const { resolve } = require('path')
-const webpack = require('webpack')
-const Jarvis = require('webpack-jarvis')
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const { entry, output, resolve, devServer, rules, plugins, optimization } = require('./blocks')
 
-const baseConfig = require('./webpack.config.base')
-
-module.exports = Object.assign({}, baseConfig, {
+module.exports = {
   mode: 'development',
 
-  devtool: 'inline-source-map',
+  entry: entry(),
+  output: output(),
+  resolve: resolve(),
 
-  devServer: {
-    historyApiFallback: true,
-    noInfo: true,
-    overlay: true,
-    inline: true,
-    hot: true,
-    disableHostCheck: true,
-    host: '0.0.0.0',
-    contentBase: resolve('.', 'dist')
-  },
+  optimization: optimization(),
+
+  devtool: 'inline-source-map',
+  devServer: devServer(),
 
   module: {
     rules: [
-      ...baseConfig.module.rules,
-      {
-        test: /\.scss$/,
-        use: [
-          {
-            loader: 'vue-style-loader'
-          },
-          {
-            loader: 'css-loader'
-          },
-          {
-            loader: 'sass-loader'
-          }
-        ]
-      }
+      rules.vue(),
+      rules.javascript(),
+      rules.images(),
+      rules.styles('dev'),
+      rules.fonts()
     ]
   },
 
   plugins: [
-    ...baseConfig.plugins,
-    new Jarvis({ port: 1337 }),
-
-    new BundleAnalyzerPlugin({
-      analyzerMode: 'static',
-      openAnalyzer: false
-    }),
-
-    new webpack.DefinePlugin({
-      BASE: JSON.stringify('.')
-    }),
-
-    new webpack.HotModuleReplacementPlugin()
+    plugins.vue(),
+    plugins.base('.'),
+    plugins.jarvis(1337),
+    plugins.bundleAnalyzer(),
+    plugins.hmr(),
+    plugins.html()
   ]
-})
+}

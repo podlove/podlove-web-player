@@ -251,7 +251,7 @@ jobs:
       - run: sudo apt install rsync
       - run: ssh-keyscan rsync.keycdn.com >> ~/.ssh/known_hosts
       - run: yarn dist:clean
-      - run: BASE="//cdn.podlove.org/web-player/" yarn build
+      - run: yarn build:cdn
       - run: yarn deploy:cdn
 
 workflows:
