@@ -7,10 +7,6 @@ import store from 'store'
 // UI Components
 import App from './components/App'
 
-// Import share static page
-// eslint-disable-next-line
-require('file-loader?name=share.html!./statics/share.html')
-
 export default config => {
   // Enhance config with app debug information
   config = {

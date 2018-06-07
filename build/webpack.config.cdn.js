@@ -1,11 +1,14 @@
+const { version } = require('../package')
+const BASE = `//cdn.podlove.org/web-player/`
+
 const { entry, output, resolve, optimization, rules, plugins } = require('./blocks')
 
 module.exports = {
   mode: 'production',
-  entry: entry(),
-  output: output(),
+  entry: entry(version),
+  output: output(BASE),
 
-  optimization: optimization(),
+  optimization: optimization(version),
 
   resolve: resolve(),
 
@@ -15,7 +18,7 @@ module.exports = {
       rules.javascript(),
       rules.images(),
       rules.styles('prod'),
-      rules.fonts()
+      rules.fonts(version)
     ]
   },
 
@@ -24,7 +27,7 @@ module.exports = {
     plugins.css(),
     plugins.minifyCss(),
     plugins.version(),
-    plugins.base('.'),
-    plugins.html()
+    plugins.base(`${BASE}${version}`),
+    plugins.html(version)
   ]
 }
