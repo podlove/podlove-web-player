@@ -1,3 +1,40 @@
+<a name="4.1.0"></a>
+# [4.1.0](https://github.com/podlove/podlove-web-player/compare/v4.0.3...v4.1.0) (2018-06-07)
+
+
+### Bug Fixes
+
+* **build:** Fixes CSS extraction ([a4e6a7f](https://github.com/podlove/podlove-web-player/commit/a4e6a7f))
+* **bundling:** Extracts vendor and styles ([c9dba2b](https://github.com/podlove/podlove-web-player/commit/c9dba2b))
+* **embedding:** Parses URL parameters also in embed mode ([b33297a](https://github.com/podlove/podlove-web-player/commit/b33297a))
+* **package:** update [@podlove](https://github.com/podlove)/html5-audio-driver to version 1.1.1 ([451d3b6](https://github.com/podlove/podlove-web-player/commit/451d3b6)), closes [#621](https://github.com/podlove/podlove-web-player/issues/621)
+* **package:** update [@podlove](https://github.com/podlove)/html5-audio-driver to version 1.2.0 ([eae8286](https://github.com/podlove/podlove-web-player/commit/eae8286))
+* **package:** update detect-browser to version 2.2.0 ([1d35069](https://github.com/podlove/podlove-web-player/commit/1d35069))
+* **package:** update detect-browser to version 2.5.0 ([72cbbec](https://github.com/podlove/podlove-web-player/commit/72cbbec))
+* **package:** update detect-browser to version 2.5.1 ([3b5a0ef](https://github.com/podlove/podlove-web-player/commit/3b5a0ef))
+* **package:** update iframe-resizer to version 3.6.0 ([71e7b4a](https://github.com/podlove/podlove-web-player/commit/71e7b4a))
+* **package:** update iframe-resizer to version 3.6.1 ([1c45ca0](https://github.com/podlove/podlove-web-player/commit/1c45ca0))
+* **package:** update lunr to version 2.1.6 ([b7fb3e0](https://github.com/podlove/podlove-web-player/commit/b7fb3e0))
+* **package:** update lunr to version 2.2.0 ([84746e9](https://github.com/podlove/podlove-web-player/commit/84746e9))
+* **package:** update lunr to version 2.2.1 ([f1aa229](https://github.com/podlove/podlove-web-player/commit/f1aa229))
+* **package:** update query-string to version 5.1.1 ([2d6a71e](https://github.com/podlove/podlove-web-player/commit/2d6a71e))
+* **package:** update redux-actions to version 2.4.0 ([6823189](https://github.com/podlove/podlove-web-player/commit/6823189)), closes [#607](https://github.com/podlove/podlove-web-player/issues/607)
+* **package:** update superagent to version 3.8.3 ([72d4931](https://github.com/podlove/podlove-web-player/commit/72d4931))
+* **package:** update v-tooltip to version 2.0.0-rc.32 ([5d400fa](https://github.com/podlove/podlove-web-player/commit/5d400fa))
+* **package:** update vue to version 2.5.16 ([3f40833](https://github.com/podlove/podlove-web-player/commit/3f40833)), closes [#550](https://github.com/podlove/podlove-web-player/issues/550)
+* **package:** update vue-i18n to version 7.6.0 ([d1fc578](https://github.com/podlove/podlove-web-player/commit/d1fc578)), closes [#554](https://github.com/podlove/podlove-web-player/issues/554)
+* **package:** update vue-i18n to version 7.7.0 ([a6d2335](https://github.com/podlove/podlove-web-player/commit/a6d2335))
+* **package:** update vue-i18n to version 7.8.0 ([82c3336](https://github.com/podlove/podlove-web-player/commit/82c3336))
+* **tests-integration:** fixes controllbar test ([89de52c](https://github.com/podlove/podlove-web-player/commit/89de52c))
+
+
+### Features
+
+* **accessibility:** Improves accessibility ([76b1cc9](https://github.com/podlove/podlove-web-player/commit/76b1cc9))
+* **chapters:** Adds ability to retrieve chapters via url ([55e328d](https://github.com/podlove/podlove-web-player/commit/55e328d))
+
+
+
 <a name="4.0.9"></a>
 ## [4.0.9](https://github.com/podlove/podlove-web-player/compare/v4.0.3...v4.0.9) (2018-04-20)
 
