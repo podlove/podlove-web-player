@@ -1,8 +1,3 @@
-const {
-  get
-} = require('lodash')
-
-const webpack = require('webpack')
 const autoprefixer = require('autoprefixer')
 const cssClean = require('postcss-clean')
 
@@ -49,10 +44,6 @@ module.exports = Object.assign({}, baseConfig, {
       filename: '[name].css'
     }),
 
-    new OptimizeCSSAssetsPlugin({}),
-
-    new webpack.DefinePlugin({
-      BASE: JSON.stringify(get(process.env, 'BASE', '.'))
-    })
+    new OptimizeCSSAssetsPlugin({})
   ]
 })
