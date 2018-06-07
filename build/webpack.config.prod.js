@@ -7,6 +7,7 @@ const autoprefixer = require('autoprefixer')
 const cssClean = require('postcss-clean')
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
 const baseConfig = require('./webpack.config.base')
 
@@ -44,10 +45,11 @@ module.exports = Object.assign({}, baseConfig, {
 
   plugins: [
     ...baseConfig.plugins,
-
     new MiniCssExtractPlugin({
       filename: '[name].css'
     }),
+
+    new OptimizeCSSAssetsPlugin({}),
 
     new webpack.DefinePlugin({
       BASE: JSON.stringify(get(process.env, 'BASE', '.'))
