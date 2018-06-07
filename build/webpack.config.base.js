@@ -1,6 +1,10 @@
 const path = require('path')
 const { get } = require('lodash')
+
+const webpack = require('webpack')
 const { VueLoaderPlugin } = require('vue-loader')
+
+const { version } = require('../package')
 
 const sourceDir = path.resolve('.', 'src')
 const distDir = path.resolve('.', 'dist')
@@ -77,5 +81,12 @@ module.exports = {
     }]
   },
 
-  plugins: [new VueLoaderPlugin()]
+  plugins: [
+    new VueLoaderPlugin(),
+
+    new webpack.DefinePlugin({
+      BASE: JSON.stringify(get(process.env, 'BASE', '.')),
+      VERSION: JSON.stringify(version)
+    })
+  ]
 }
