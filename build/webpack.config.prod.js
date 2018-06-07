@@ -1,13 +1,9 @@
-const {
-  get
-} = require('lodash')
-
-const webpack = require('webpack')
 const autoprefixer = require('autoprefixer')
 const cssClean = require('postcss-clean')
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const WebpackAutoInject = require('webpack-auto-inject-version')
 
 const baseConfig = require('./webpack.config.base')
 
@@ -51,8 +47,6 @@ module.exports = Object.assign({}, baseConfig, {
 
     new OptimizeCSSAssetsPlugin({}),
 
-    new webpack.DefinePlugin({
-      BASE: JSON.stringify(get(process.env, 'BASE', '.'))
-    })
+    new WebpackAutoInject()
   ]
 })

@@ -1,4 +1,4 @@
-/* globals BASE */
+/* globals BASE, VERSION */
 import {
   get,
   compose
@@ -41,19 +41,19 @@ const createPlayerDom = config => [
   // Bundles
   tag('link', '', {
     rel: 'stylesheet',
-    href: `${get(config.reference, 'base', BASE)}/style.css`
+    href: `${get(config.reference, 'base', BASE)}/style.css?ver=${VERSION}`
   }),
   tag('script', '', {
     type: 'text/javascript',
-    src: `${get(config.reference, 'base', BASE)}/vendor.js`
+    src: `${get(config.reference, 'base', BASE)}/vendor.js?ver=${VERSION}`
   }),
   tag('script', '', {
     type: 'text/javascript',
-    src: `${get(config.reference, 'base', BASE)}/window.js`
+    src: `${get(config.reference, 'base', BASE)}/style.js?ver=${VERSION}`
   }),
   tag('script', '', {
     type: 'text/javascript',
-    src: `${get(config.reference, 'base', BASE)}/style.js`
+    src: `${get(config.reference, 'base', BASE)}/window.js?ver=${VERSION}`
   }),
 
   // iFrameResizer
@@ -103,7 +103,7 @@ window.podlovePlayer = (selector, episode) =>
         .then(dispatchUrlParameters)
     )
     .catch(err => {
-      console.group(`Can't load Podlove Webplayer`)
+      console.group(`Can't load Podlove Webplayer Version ${VERSION}`)
       console.error('selector', selector)
       console.error('config', episode)
       console.error(err)
