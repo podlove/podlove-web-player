@@ -3,6 +3,7 @@ const cssClean = require('postcss-clean')
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const WebpackAutoInject = require('webpack-auto-inject-version')
 
 const baseConfig = require('./webpack.config.base')
 
@@ -44,6 +45,8 @@ module.exports = Object.assign({}, baseConfig, {
       filename: '[name].css'
     }),
 
-    new OptimizeCSSAssetsPlugin({})
+    new OptimizeCSSAssetsPlugin({}),
+
+    new WebpackAutoInject()
   ]
 })
