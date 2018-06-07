@@ -27,14 +27,15 @@ export const toPlayerTime = (time = '0') => {
 
 export const localeDate = (timestamp, locale) => new Date(timestamp).toLocaleDateString(locale)
 export const localeTime = (timestamp, locale) => new Date(timestamp).toLocaleTimeString(locale, {hour: '2-digit', minute: '2-digit'})
+export const fallbackToZero = (time = 0) => !isNumber(time) || time < 0 ? 0 : time
 
 const leadingZero = time => time > 9 ? `${time}` : `0${time}`
 
 // Transforms milliseconds to (hh:)mm:ss
 export const fromPlayerTime = (time = 0) => {
-  let hours = compose(calcHours, toInt)(time)
-  let minutes = compose(calcMinutes, toInt)(time)
-  let seconds = compose(calcSeconds, toInt)(time)
+  let hours = compose(calcHours, fallbackToZero, toInt)(time)
+  let minutes = compose(calcMinutes, fallbackToZero, toInt)(time)
+  let seconds = compose(calcSeconds, fallbackToZero, toInt)(time)
 
   let result = `${leadingZero(minutes)}:${leadingZero(seconds)}`
 

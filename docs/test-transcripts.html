@@ -1,9 +1,12 @@
+---
+---
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8" />
+    <link rel="stylesheet" href="{{ site.baseurl }}/style.css">
 </head>
 
 <body>
@@ -18,8 +21,8 @@
                "link":"https:\/\/forschergeist.de"
             },
             "reference":{
-               "share":"https:\/\/forschergeist.de\/wp-content\/plugins\/podlove-podcasting-plugin-for-wordpress\/lib\/modules\/podlove_web_player\/player_v4\/dist\/share.html",
-               "config":"https:\/\/forschergeist.de\/?podlove_player4=179"
+               "share": "{{ site.url }}/{{ site.baseurl }}",
+               "config": "{{ site.url }}/{{ site.baseurl }}/fixtures/fg55.json"
             },
             "theme":{
                "main":"#12584b"
@@ -112,8 +115,8 @@
          }
     </script>
 
-    <script src="vendor.js"></script>
-    <script src="window.js"></script>
+    <script src="{{ site.baseurl }}/vendor.js"></script>
+    <script src="{{ site.baseurl }}/window.js"></script>
 </body>
 
 </html>

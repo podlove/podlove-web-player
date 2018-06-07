@@ -1,12 +1,12 @@
 <template>
-  <div class="share-tab">
+  <div class="share-tab" id="tab-share">
     <div class="content-select">
-      <share-content-component></share-content-component>
+      <share-content-component @onSelect="onContentSelect()"></share-content-component>
     </div>
 
     <div class="channel-select" :style="sectionStyle">
       <span class="label">{{ $t('SHARE.SHARE_CHANNEL') }}</span>
-      <share-channels-component :type="share.content"></share-channels-component>
+      <share-channels-component :type="share.content" ref="channels"></share-channels-component>
 
       <span class="label" v-if="hasLink">{{ $t('SHARE.SHARE_LINK') }}</span>
       <share-link-component :type="share.content" v-if="hasLink"></share-link-component>
@@ -17,6 +17,8 @@
 </template>
 
 <script>
+  import { head } from 'lodash'
+
   import ShareChannelsComponent from './ShareChannels'
   import ShareContentComponent from './ShareContent'
   import ShareLinkComponent from './ShareLink'
@@ -42,6 +44,11 @@
         const hasShowLink = this.share.content === 'show' && this.show.link
         const hasShareLink = this.share.content !== 'show' && this.episode.link
         return hasShowLink || hasShareLink
+      }
+    },
+    methods: {
+      onContentSelect () {
+        head(this.$refs.channels.$el.querySelectorAll('a')).focus()
       }
     },
     components: {

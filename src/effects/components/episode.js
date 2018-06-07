@@ -1,4 +1,4 @@
-import { get, isArray } from 'lodash'
+import { get, isArray, noop } from 'lodash'
 
 import actions from 'store/actions'
 import {
@@ -66,14 +66,23 @@ export default handleActions({
     dispatch(actions.toggleRateSlider(true))
     dispatch(actions.toggleInfoPoster(true))
 
+    // Reset Errors
+    dispatch(actions.toggleError(false))
+
     if (!hasAudioFiles(audioFiles)) {
       dispatch(actions.errorMissingAudioFiles())
     }
   },
 
-  [INIT_CHAPTERS]: ({ dispatch }, { payload }) => {
-    if (hasChapters(payload)) {
-      dispatch(actions.toggleComponentTab('chapters', true))
+  [INIT_CHAPTERS]: ({ dispatch }, { payload }, state) => {
+    if (!hasChapters(payload)) {
+      return
+    }
+
+    dispatch(actions.toggleComponentTab('chapters', true))
+
+    if (state.playstate !== 'start') {
+      dispatch(actions.toggleChapterControls(true))
     }
   },
 
@@ -84,11 +93,11 @@ export default handleActions({
       ? dispatch(actions.showPauseButton())
       : dispatch(actions.showPlayingButton())),
 
-  [PLAY]: ({ dispatch }) => {
+  [PLAY]: ({ dispatch }, action, state) => {
     // Default behaviour
     dispatch(actions.showPlayingButton())
     dispatch(actions.toggleProgressBar(true))
-    dispatch(actions.toggleChapterControls(true))
+    hasChapters(state.chapters) ? dispatch(actions.toggleChapterControls(true)) : noop()
     dispatch(actions.toggleSteppersControls(true))
 
     // Error Fallbacks
@@ -98,9 +107,9 @@ export default handleActions({
 
   [PAUSE]: ({ dispatch }) => dispatch(actions.showPauseButton()),
 
-  [IDLE]: ({ dispatch }) => {
+  [IDLE]: ({ dispatch }, action, state) => {
     dispatch(actions.showPauseButton())
-    dispatch(actions.toggleChapterControls(true))
+    hasChapters(state.chapters) ? dispatch(actions.toggleChapterControls(true)) : noop()
     dispatch(actions.toggleSteppersControls(true))
     dispatch(actions.toggleProgressBar(true))
   },

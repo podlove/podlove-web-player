@@ -1,12 +1,12 @@
 <template>
-  <ul class="channel-list">
-    <li><channel-twitter-component :text="shareText"></channel-twitter-component></li>
-    <li><channel-facebook-component :link="shareLink"></channel-facebook-component></li>
-    <li><channel-pinterest-component :text="shareText" :link="shareLink" :poster="sharePoster"></channel-pinterest-component></li>
-    <li><channel-reddit-component :text="shareText" :link="shareLink"></channel-reddit-component></li>
-    <li><channel-google-plus-component :link="shareLink"></channel-google-plus-component></li>
-    <li><channel-mail-component :text="shareText" :subject="shareSubject"></channel-mail-component></li>
-    <li v-if="type !== 'show' && ((reference.config && reference.share) || reference.origin)">
+  <ul class="channel-list" id="tab-share--channels">
+    <li id="tab-share--channels--twitter"><channel-twitter-component :text="shareText"></channel-twitter-component></li>
+    <li id="tab-share--channels--facebook"><channel-facebook-component :link="shareLink"></channel-facebook-component></li>
+    <li id="tab-share--channels--pinterest"><channel-pinterest-component :text="shareText" :link="shareLink" :poster="sharePoster"></channel-pinterest-component></li>
+    <li id="tab-share--channels--reddit"><channel-reddit-component :text="shareText" :link="shareLink"></channel-reddit-component></li>
+    <li id="tab-share--channels--google-plus"><channel-google-plus-component :link="shareLink"></channel-google-plus-component></li>
+    <li id="tab-share--channels--mail"><channel-mail-component :text="shareText" :subject="shareSubject"></channel-mail-component></li>
+    <li id="tab-share--channels--embed" v-if="type !== 'show' && ((reference.config && reference.share) || reference.origin)">
       <channel-embed-component :color="theme.tabs.share.platform.button"></channel-embed-component>
     </li>
   </ul>

@@ -1,6 +1,6 @@
 <template>
-  <div class="timer-chapter truncate">
-    <span class="chapter-title"
+  <div class="timer-chapter truncate" id="progress-bar--current-chapter">
+    <span class="chapter-title" :aria-label="a11y" tabindex="0"
       :style="chapterStyle"
       v-if="currentChapterIndex(chapters) > -1">
         {{chapterTitle}}
@@ -37,6 +37,10 @@
         }
 
         return get(current, 'title', '')
+      },
+
+      a11y () {
+        return this.$t('A11Y.TIMER_CHAPTER', { ...currentChapter(this.chapters) })
       }
     },
     methods: {

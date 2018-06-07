@@ -70,6 +70,13 @@ const changeVolume = (store, modifier) => () => {
   store.dispatch(actions.setVolume(parseFloat(volume) + modifier))
 }
 
+const changeRate = (store, modifier) => () => {
+  const state = store.getState()
+  const rate = get(state, 'rate', 0)
+
+  store.dispatch(actions.setRate(parseFloat(rate) + modifier))
+}
+
 const mute = (store) => () => {
   const state = store.getState()
   const muted = get(state, 'muted', false)
@@ -87,7 +94,9 @@ export default keyhandler => store => {
   keyhandler('space', playPause(store))
   keyhandler('alt+right', nextChapter(store))
   keyhandler('alt+left', previousChapter(store))
-  keyhandler('up', changeVolume(store, 0.05))
-  keyhandler('down', changeVolume(store, -0.05))
+  keyhandler('shift+up', changeVolume(store, 0.05))
+  keyhandler('shift+down', changeVolume(store, -0.05))
+  keyhandler('alt+up', changeRate(store, 0.05))
+  keyhandler('alt+down', changeRate(store, -0.05))
   keyhandler('m', mute(store))
 }

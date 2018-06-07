@@ -1,30 +1,30 @@
 <template>
-  <div class="info-tab">
+  <div class="info-tab" id="tab-info">
     <div class="description">
       <div class="episode">
-        <h3 class="title" v-if="episode.title">{{ episode.title }}</h3>
-        <p class="meta">
+        <h3 class="title" v-if="episode.title" id="tab-info--episode-title">{{ episode.title }}</h3>
+        <p class="meta" id="tab-info--episode-meta">
           <span class="tag" v-if="episode.publicationDate"><calendar-icon class="icon"></calendar-icon>{{ publicationDate }}, {{ publicationTime }}</span>
           <span class="tag" v-if="duration && episodeDuration.hours > 0"><clock-icon class="icon"></clock-icon>{{ $t('DOWNLOAD.DURATION_WITH_HOURS', episodeDuration) }}</span>
           <span class="tag" v-if="duration && episodeDuration.hours === 0"><clock-icon class="icon"></clock-icon>{{ $t('DOWNLOAD.DURATION', episodeDuration) }}</span>
         </p>
-        <p class="subtitle" v-if="episode.subtitle">{{ episode.subtitle }}</p>
-        <p class="summary" v-if="episode.summary">{{ episode.summary }}</p>
-        <p class="link" v-if="episode.link"><link-icon class="icon"></link-icon><a class="info-link truncate" :href="episode.link" target="_blank">{{ episode.link }}</a></p>
+        <p class="subtitle" v-if="episode.subtitle" id="tab-info--episode-subtitle">{{ episode.subtitle }}</p>
+        <p class="summary" v-if="episode.summary" id="tab-info--episode-summary">{{ episode.summary }}</p>
+        <p class="link" v-if="episode.link"><link-icon class="icon"></link-icon><a class="info-link truncate" :href="episode.link" target="_blank" id="tab-info--episode-link">{{ episode.link }}</a></p>
       </div>
       <div class="show">
-        <h3 class="title" v-if="show.title">{{ show.title }}</h3>
-        <img v-if="show.poster" :src="show.poster" class="show-poster shadowed"/>
-        <p class="summary" v-if="show.summary">{{ show.summary }}</p>
-        <p class="link" v-if="show.link"><link-icon class="icon"></link-icon><a class="info-link truncate" :href="show.link" target="_blank">{{ show.link }}</a></p>
+        <h3 class="title" v-if="show.title" id="tab-info--show-title">{{ show.title }}</h3>
+        <img v-if="show.poster" :src="show.poster" id="tab-info--show-poster" class="show-poster shadowed" :alt="$t('A11Y.ALT_SHOW_COVER')"/>
+        <p class="summary" v-if="show.summary" id="tab-info--show-summary">{{ show.summary }}</p>
+        <p class="link" v-if="show.link"><link-icon class="icon"></link-icon><a class="info-link truncate" :href="show.link" target="_blank" id="tab-info--show-link">{{ show.link }}</a></p>
       </div>
     </div>
 
     <div class="speakers" v-if="speakers.length > 0">
       <h3 class="title">{{ $t('INFO.ON_AIR') }}</h3>
-      <ul class="list">
+      <ul class="list" id="tab-info--speakers">
         <li class="speaker" v-for="(speaker, index) in speakers" v-bind:key="index">
-          <img :src="speaker.avatar" class="shadowed avatar" :title="speaker.name" />
+          <img :src="speaker.avatar" class="shadowed avatar" :title="speaker.name" :alt="$t('A11Y.SPEAKER_COVER', { name: speaker.name })"/>
           <span class="name">{{ speaker.name }}</span>
         </li>
       </ul>

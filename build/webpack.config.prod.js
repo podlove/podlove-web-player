@@ -1,53 +1,58 @@
-const { get } = require('lodash')
+const {
+  get
+} = require('lodash')
 
 const webpack = require('webpack')
-const {
-  createConfig,
-  setEnv,
-  addPlugins,
-  uglify
-} = require('webpack-blocks')
+const autoprefixer = require('autoprefixer')
+const cssClean = require('postcss-clean')
 
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const vue = require('webpack-blocks-vue')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
-const { baseConfig } = require('./webpack.config.base')
+const baseConfig = require('./webpack.config.base')
 
-module.exports = createConfig([
-  ...baseConfig,
+module.exports = Object.assign({}, baseConfig, {
+  mode: 'production',
 
-  setEnv({
-    NODE_ENV: 'production'
-  }),
+  module: {
+    rules: [
+      ...baseConfig.module.rules,
+      {
+        test: /\.scss$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader'
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: () => [
+                cssClean({
+                  inline: ['none']
+                }),
+                autoprefixer()
+              ]
+            }
+          },
+          {
+            loader: 'sass-loader'
+          }
+        ]
+      }
+    ]
+  },
 
-  vue({
-    loaders: {
-      js: 'babel-loader',
-      scss: ExtractTextPlugin.extract({
-        fallback: 'vue-style-loader',
-        use: [{
-          loader: 'css-loader'
-        }, {
-          loader: 'sass-loader'
-        }]
-      })
-    }
-  }),
-
-  uglify(),
-
-  addPlugins([
-    new ExtractTextPlugin('style.css'),
-
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      filename: 'vendor.js',
-      chunks: ['share', 'window'],
-      minChunks: Infinity
+  plugins: [
+    ...baseConfig.plugins,
+    new MiniCssExtractPlugin({
+      filename: '[name].css'
     }),
+
+    new OptimizeCSSAssetsPlugin({}),
 
     new webpack.DefinePlugin({
       BASE: JSON.stringify(get(process.env, 'BASE', '.'))
     })
-  ])
-])
+  ]
+})

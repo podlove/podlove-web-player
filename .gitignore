@@ -6,6 +6,7 @@
 !.editorconfig
 !.travis.yml
 !.babelrc
+!.circleci
 
 coverage
 
@@ -21,7 +22,9 @@ atlassian-ide-plugin.xml
 _site
 dist
 coverage
+reports
 docs/media
+gh-pages-branch
 
 # logs
 yarn-error.log

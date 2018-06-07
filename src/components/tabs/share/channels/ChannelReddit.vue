@@ -1,6 +1,7 @@
 <template>
   <a :href="redditLink" class="channel-link" target="_blank">
-    <span class="channel-icon reddit"><reddit-icon color="#fff"></reddit-icon></span>
+    <span class="channel-icon reddit" aria-hidden="true"><reddit-icon color="#fff"></reddit-icon></span>
+    <span class="visually-hidden">{{ $t('A11Y.SHARE_CHANNEL', { channel: 'Reddit' }) }}</span>
   </a>
 </template>
 

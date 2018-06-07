@@ -1,29 +1,16 @@
+const { resolve } = require('path')
 const webpack = require('webpack')
-const {
-  createConfig,
-  devServer,
-  sourceMaps,
-  addPlugins,
-  setDevTool
-} = require('webpack-blocks')
-
 const Jarvis = require('webpack-jarvis')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
-const vue = require('webpack-blocks-vue')
 
-const { baseConfig, distDir } = require('./webpack.config.base')
+const baseConfig = require('./webpack.config.base')
 
-module.exports = createConfig([
-  ...baseConfig,
+module.exports = Object.assign({}, baseConfig, {
+  mode: 'development',
 
-  vue({
-    loaders: {
-      js: 'babel-loader',
-      scss: 'vue-style-loader!css-loader!autoprefixer-loader!sass-loader'
-    }
-  }),
+  devtool: 'inline-source-map',
 
-  devServer({
+  devServer: {
     historyApiFallback: true,
     noInfo: true,
     overlay: true,
@@ -31,14 +18,31 @@ module.exports = createConfig([
     hot: true,
     disableHostCheck: true,
     host: '0.0.0.0',
-    contentBase: distDir
-  }),
+    contentBase: resolve('.', 'dist')
+  },
 
-  sourceMaps(),
+  module: {
+    rules: [
+      ...baseConfig.module.rules,
+      {
+        test: /\.scss$/,
+        use: [
+          {
+            loader: 'vue-style-loader'
+          },
+          {
+            loader: 'css-loader'
+          },
+          {
+            loader: 'sass-loader'
+          }
+        ]
+      }
+    ]
+  },
 
-  setDevTool('#eval-source-map'),
-
-  addPlugins([
+  plugins: [
+    ...baseConfig.plugins,
     new Jarvis({ port: 1337 }),
 
     new BundleAnalyzerPlugin({
@@ -48,6 +52,8 @@ module.exports = createConfig([
 
     new webpack.DefinePlugin({
       BASE: JSON.stringify('.')
-    })
-  ])
-])
+    }),
+
+    new webpack.HotModuleReplacementPlugin()
+  ]
+})

@@ -1,5 +1,5 @@
 <template>
-  <div class="chapters-tab">
+  <div class="chapters-tab" id="tab-chapters">
     <chapter-entry-component
       v-for="(chapter, index) in chapters"
       :chapter="chapter"

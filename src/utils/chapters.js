@@ -1,13 +1,22 @@
 import { fallbackTo } from 'utils/helper'
-import { find, findIndex, compose } from 'lodash/fp'
+import { find, findIndex, add, compose } from 'lodash/fp'
+
+import { get } from 'lodash'
 
 const emptyChapter = {
   start: null,
-  end: null
+  end: null,
+  title: null,
+  index: -1
 }
+
+export const getChapterByIndex = chapters => index => get(chapters, index, emptyChapter)
 
 export const currentChapterIndex = compose(fallbackTo(-1), findIndex({active: true}))
 export const currentChapter = compose(fallbackTo(emptyChapter), find({active: true}))
+
+export const nextChapter = chapters => compose(getChapterByIndex(chapters), add(1), currentChapterIndex)(chapters)
+export const previousChapter = chapters => compose(getChapterByIndex(chapters), add(-1), currentChapterIndex)(chapters)
 
 export const currentChapterByPlaytime = chapters => playtime => find(chapter => {
   if (playtime < chapter.start) {

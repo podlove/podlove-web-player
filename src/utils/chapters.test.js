@@ -35,7 +35,9 @@ test('exports a method called currentChapterIndex', t => {
 test('currentChapter should return undefined if no matches', t => {
   t.deepEqual(currentChapter([]), {
     start: null,
-    end: null
+    end: null,
+    title: null,
+    index: -1
   })
 })
 

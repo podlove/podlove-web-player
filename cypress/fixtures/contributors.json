@@ -1,0 +1,49 @@
+{
+  "contributors": [
+    {
+      "avatar": "assets/fry.jpg",
+      "name": "Philip J. Fry",
+      "role": {
+        "id": "9",
+        "slug": "team",
+        "title": "Team"
+      },
+      "group": {
+        "id": "1",
+        "slug": "onair",
+        "title": "On Air"
+      },
+      "comment": null
+    },
+    {
+      "avatar": "assets/farnsworth.png",
+      "name": "Professor Farnsworth",
+      "role": {
+        "id": "9",
+        "slug": "team",
+        "title": "Team"
+      },
+      "group": {
+        "id": "1",
+        "slug": "onair",
+        "title": "On Air"
+      },
+      "comment": null
+    },
+    {
+      "avatar": "assets/leela.jpg",
+      "name": "Turanga Leela",
+      "role": {
+        "id": "9",
+        "slug": "team",
+        "title": "Team"
+      },
+      "group": {
+        "id": "1",
+        "slug": "onair",
+        "title": "On Air"
+      },
+      "comment": null
+    }
+  ]
+}

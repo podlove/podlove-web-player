@@ -4,28 +4,38 @@
     :style="chapterStyle"
     @mouseover="onMouseOver"
     @mouseleave="onMouseLeave">
-    <span class="index" v-if="hover" @click="onChapterPlayClick">
+    <span class="index" v-if="hover" @click="onChapterPlayClick" aria-hidden="true">
       <play-icon size="12" :color="theme.tabs.body.icon"></play-icon>
     </span>
-    <span class="index" v-else>{{index + 1}}</span>
-    <div class="chapter--progress" v-if="runtime.platform === 'desktop'"
+
+    <span class="index" aria-hidden="true" v-else>{{chapter.index}}</span>
+
+    <div class="chapter--progress"
+      v-if="runtime.platform === 'desktop'"
       @mouseout="onMouseOut"
       @mousemove.alt="onMouseMove"
       @click="onChapterPlayClick"
-      @click.alt="onChapterClick">
+      @click.alt="onChapterClick"
+       aria-hidden="true">
+      <span class="title truncate" aria-hidden="true">{{chapter.title}}</span>
+      <span class="timer" aria-hidden="true">{{remainingTime}}</span>
+      <span class="progress" :style="progressStyle" aria-hidden="true"></span>
+      <span class="progress" :style="progressGhostStyle"></span>
+    </div>
+
+    <div class="chapter--progress"
+      v-else
+      @click="onChapterPlayClick"
+       aria-hidden="true">
       <span class="title truncate">{{chapter.title}}</span>
       <span class="timer">{{remainingTime}}</span>
       <span class="progress" :style="progressStyle"></span>
       <span class="progress" :style="progressGhostStyle"></span>
     </div>
 
-    <div class="chapter--progress" v-else
-      @click="onChapterPlayClick">
-      <span class="title truncate">{{chapter.title}}</span>
-      <span class="timer">{{remainingTime}}</span>
-      <span class="progress" :style="progressStyle"></span>
-      <span class="progress" :style="progressGhostStyle"></span>
-    </div>
+    <button class="visually-hidden" @click="onChapterPlayClick">
+      {{ $t('A11Y.CHAPTER_ENTRY', a11y) }}
+    </button>
   </div>
 </template>
 
@@ -38,6 +48,8 @@
   import PlayIcon from 'icons/PlayIcon'
 
   export default {
+    props: ['chapter'],
+
     data () {
       return {
         theme: this.$select('theme'),
@@ -47,6 +59,7 @@
         runtime
       }
     },
+
     computed: {
       remainingTime () {
         if (this.chapter.active) {
@@ -99,8 +112,19 @@
           'width': progress + '%',
           'background-color': this.theme.tabs.chapters.ghost
         }
+      },
+
+      a11y () {
+        const remaining = this.chapter.active ? this.chapter.end - this.playtime : this.chapter.end - this.chapter.start
+
+        return {
+          ...this.chapter,
+          remaining: fromPlayerTime(remaining > 0 ? remaining : 0),
+          duration: fromPlayerTime(this.chapter.end - this.chapter.start)
+        }
       }
     },
+
     methods: {
       onMouseOut () {
         store.dispatch(store.actions.disableGhostMode())
@@ -120,7 +144,7 @@
       },
 
       onChapterClick (event) {
-        store.dispatch(store.actions.setChapter(this.index))
+        store.dispatch(store.actions.setChapter(this.chapter.index - 1))
         store.dispatch(store.actions.updatePlaytime(this.ghost.time))
         store.dispatch(store.actions.play())
         event.preventDefault()
@@ -128,7 +152,7 @@
       },
 
       onChapterPlayClick (event) {
-        store.dispatch(store.actions.setChapter(this.index))
+        store.dispatch(store.actions.setChapter(this.chapter.index - 1))
         store.dispatch(store.actions.play())
         event.preventDefault()
         return false
@@ -136,8 +160,7 @@
     },
     components: {
       PlayIcon
-    },
-    props: ['chapter', 'index']
+    }
   }
 </script>
 

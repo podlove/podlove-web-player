@@ -1,10 +1,13 @@
 <template>
-  <div class="share-link">
+  <div class="share-link" id="tab-share--share-link">
     <input-group-component>
       <copy-tooltip-component slot="button" :content="shareLink">
-        <button-component class="truncate">{{ $t('SHARE.ACTIONS.COPY') }}</button-component>
+        <button-component class="truncate">
+          <span aria-hidden="true">{{ $t('SHARE.ACTIONS.COPY') }}</span>
+          <span class="visually-hidden">{{ $t('A11Y.COPY_SHARE_LINK') }}</span>
+        </button-component>
       </copy-tooltip-component>
-      <input-text-component slot="input" disabled="true" :value="shareLink"></input-text-component>
+      <input-text-component slot="input" disabled="true" :value="shareLink" id="tab-share--share-link--input"></input-text-component>
     </input-group-component>
   </div>
 </template>

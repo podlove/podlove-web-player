@@ -1,6 +1,7 @@
 <template>
   <a :href="mailLink" class="channel-link">
-    <span class="channel-icon mail"><mail-icon color="#fff"></mail-icon></span>
+    <span class="channel-icon mail" aria-hidden="true"><mail-icon color="#fff"></mail-icon></span>
+    <span class="visually-hidden">{{ $t('A11Y.SHARE_CHANNEL', { channel: 'Mail' }) }}</span>
   </a>
 </template>
 
