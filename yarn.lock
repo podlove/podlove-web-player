@@ -236,9 +236,9 @@
     pretty-ms "^0.2.1"
     text-table "^0.2.0"
 
-"@podlove/html5-audio-driver@1.2.1":
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/@podlove/html5-audio-driver/-/html5-audio-driver-1.2.1.tgz#c66b8bfe98cf75ad538b4c496e9f05a440657422"
+"@podlove/html5-audio-driver@1.2.2":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@podlove/html5-audio-driver/-/html5-audio-driver-1.2.2.tgz#9509d356ac35927537d78133291f843b1c78965f"
   dependencies:
     hls.js "0.9.1"
     ramda "0.24.1"

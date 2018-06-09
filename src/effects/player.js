@@ -31,7 +31,7 @@ export default mediaPlayer => handleActions({
     const player = mediaPlayer(audioFiles)
 
     playerActions = player.actions
-    player.events.onError(console.log)
+
     // register events
     player.events.onPlaytimeUpdate(compose(dispatch, actions.setPlaytime, secondsToMilliseconds))
     player.events.onDurationChange(compose(dispatch, actions.setDuration, secondsToMilliseconds))
