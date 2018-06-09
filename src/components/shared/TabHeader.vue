@@ -54,7 +54,6 @@
     padding: 0;
     list-style: none;
     font-weight: 100;
-    text-transform: uppercase;
     height: $tabs-header-height;
 
     .header-shadow {
@@ -66,6 +65,10 @@
       right: 0;
       height: $padding;
       z-index: $tab-shadow;
+    }
+
+    .title {
+      text-transform: uppercase;
     }
 
     &.overflows .tab-header-item .title {
