@@ -59,7 +59,7 @@
     "dist/"
   ],
   "dependencies": {
-    "@podlove/html5-audio-driver": "1.2.1",
+    "@podlove/html5-audio-driver": "1.2.2",
     "babel-polyfill": "6.26.0",
     "binary-search": "1.3.3",
     "color": "3.0.0",
