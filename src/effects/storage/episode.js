@@ -31,7 +31,7 @@ export default storageFactory => handleActions({
     const playtime = get(state, 'playtime', 0)
 
     if (playtime === 0 && storedPlaytime) {
-      dispatch(actions.setPlaytime(storedPlaytime))
+      dispatch(actions.updatePlaytime(storedPlaytime))
       dispatch(actions.idle())
     }
 
