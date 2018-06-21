@@ -8,6 +8,8 @@
         :step="sliderSteps"
         @input="onSliderInput"
         @change="onSliderChange"
+        @dblclick="onSliderDoubleClick"
+
       />
     <span class="track"></span>
     <span class="thumb" :style="thumbStyle"></span>
@@ -24,7 +26,7 @@
   const relativeThumb = (current = 0) => current * -0.1
 
   export default {
-    props: ['min', 'max', 'step', 'value', 'onChange', 'onInput'],
+    props: ['min', 'max', 'step', 'value', 'onChange', 'onInput', 'onDblClick'],
     data () {
       return {
         theme: this.$select('theme')
@@ -57,6 +59,13 @@
       },
       onSliderChange (event) {
         this.onChange && this.onChange(event.target.value)
+      },
+      onSliderDoubleClick (event) {
+        if (this.onDblClick === 'rate') {
+          this.onDblClick && this.onInput && this.onInput(0.5)
+        } else if (this.onDblClick === 'volume') {
+          this.onDblClick && this.onInput && this.onInput(1)
+        }
       }
     }
   }

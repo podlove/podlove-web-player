@@ -9,7 +9,7 @@
         <speaker-icon :color="theme.button.text" :volume="visualVolume * 100" :muted="muted" aria-hidden="true"></speaker-icon>
         <span class="visually-hidden">{{ a11y }}</span>
       </button-component>
-      <input-slider-component id="tab-audio--volume--input" min="0" max="1" :value="visualVolume" step="0.001" :onInput="setVolume" :aria-label="$t('A11Y.SET_VOLUME_IN_PERCENT')"></input-slider-component>
+      <input-slider-component id="tab-audio--volume--input" min="0" max="1" :value="visualVolume" step="0.001" :onInput="setVolume"  :onDblClick="'volume'"  :aria-label="$t('A11Y.SET_VOLUME_IN_PERCENT')"></input-slider-component>
     </div>
   </div>
 </template>
