@@ -146,6 +146,7 @@
       line-height: 1.3em;
       font-size: 1.1em;
       font-weight: 100;
+      hyphens: auto;
     }
   }
 

@@ -113,10 +113,12 @@
 
       .summary {
         white-space: pre-line;
+        hyphens: auto;
       }
 
       .subtitle {
         font-weight: 500;
+        hyphens: auto;
       }
 
       .info-link {

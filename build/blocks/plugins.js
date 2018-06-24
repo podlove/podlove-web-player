@@ -19,7 +19,7 @@ const css = () => new MiniCssExtractPlugin({
 
 const minifyCss = () => new OptimizeCSSAssetsPlugin({})
 
-const version = () => new WebpackAutoInject()
+const version = () => new WebpackAutoInject({ SILENT: true })
 
 const base = base =>
   new webpack.DefinePlugin({
