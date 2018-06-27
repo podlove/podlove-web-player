@@ -8,6 +8,7 @@
 !.babelrc
 !.circleci
 !.vuepress
+!.prettierrc
 
 coverage
 
