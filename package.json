@@ -52,7 +52,7 @@
     "cypress:server": "http-server -p 8080 dist/ > http.log 2>&1 &",
     "test:integration": "cypress install && npm run cypress:assets && npm run build && npm run cypress:server && npm run cypress:ci",
     "subfont": "subfont --recursive --in-place dist",
-    "prettier": "prettier --write \"src/**/*.{js,vue}\""
+    "prettier": "prettier --write \"src/**/*.{js,vue}\" \"cypress/**/*.js\""
   },
   "files": [
     "dist/"
@@ -121,12 +121,8 @@
     "nyc": "12.0.2",
     "optimize-css-assets-webpack-plugin": "^5.0.0",
     "postcss-clean": "^1.1.0",
-<<<<<<< HEAD
     "postcss-loader": "^3.0.0",
-=======
-    "postcss-loader": "^2.1.4",
     "prettier": "1.13.6",
->>>>>>> Introduce prettier as tool to format the js/vue code
     "raw-loader": "0.5.1",
     "sass-loader": "7.1.0",
     "semver": "5.6.0",
