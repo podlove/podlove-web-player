@@ -49,7 +49,7 @@ test(`storageEffects: it sets the playtime on INIT if stored`, t => {
 
   t.truthy(storage.called)
   t.deepEqual(store.dispatch.getCall(0).args[0], {
-    type: 'SET_PLAYTIME',
+    type: 'UPDATE_PLAYTIME',
     payload: 42
   })
   t.deepEqual(store.dispatch.getCall(1).args[0], {

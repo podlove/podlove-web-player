@@ -11,7 +11,8 @@ const vue = () => ({
 
 const javascript = () => ({
   test: /\.js?$/,
-  loader: 'babel-loader'
+  loader: 'babel-loader',
+  exclude: [/node_modules/]
 })
 
 const images = prefix => ({

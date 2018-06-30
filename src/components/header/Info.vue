@@ -144,7 +144,9 @@
       margin: 0;
       height: 2.75em;
       line-height: 1.3em;
+      font-size: 1.1em;
       font-weight: 100;
+      hyphens: auto;
     }
   }
 
