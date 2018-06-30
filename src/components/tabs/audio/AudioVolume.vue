@@ -1,6 +1,6 @@
 <template>
   <div class="input-element" :aria-label="$t('A11Y.VOLUME')">
-    <label class="spaced" tabindex="0" :aria-label="$t('AUDIO_CURRENT', { volume: toPercent(visualVolume) })">
+    <label class="spaced" tabindex="0" :aria-label="$t('A11Y.VOLUME_CURRENT', { volume: toPercent(visualVolume) })">
       <span class="input-label">{{ $t('AUDIO.VOLUME') }}</span>
       <span class="input-label" id="tab-audio--volume--current">{{ toPercent(visualVolume) }}%</span>
     </label>

@@ -46,7 +46,7 @@ describe('Audio Tab', () => {
       selectors.tabs.audio.volume.current().contains('50%')
     })
 
-    it.only('sets the volume to 100% when the input slider is double Clicked', function () {
+    it('sets the volume to 100% when the input slider is double Clicked', function () {
       cy.window().then(setState(this.episode, this.audio, this.show, this.chapters))
       cy.tab('audio')
       selectors.tabs.audio.volume.current().contains('100%')
@@ -55,7 +55,6 @@ describe('Audio Tab', () => {
       selectors.tabs.audio.volume.input().dblclick()
       selectors.tabs.audio.volume.current().contains('100%')
     })
-
   })
 
   describe('Rate', () => {
@@ -121,9 +120,9 @@ describe('Audio Tab', () => {
       cy.window().then(setState(this.episode, this.audio, this.show, this.chapters))
       cy.tab('audio')
       selectors.tabs.audio.rate.current().contains('100%')
-      selectors.tabs.audio.rate.input().invoke('val', 0.5).trigger('input')
-      selectors.tabs.audio.rate.current().contains('50%')
-      selectors.tabs.audio.volume.input().dblclick()
+      selectors.tabs.audio.rate.input().invoke('val', 0.25).trigger('input')
+      selectors.tabs.audio.rate.current().contains('75%')
+      selectors.tabs.audio.rate.input().dblclick()
       selectors.tabs.audio.rate.current().contains('100%')
     })
 
