@@ -220,6 +220,7 @@ export default {
       margin: 0 0.1em 0 0;
       line-height: 0;
       border: 1px solid transparent;
+      hyphens: auto;
 
       &.inactive {
         opacity: 0.75;

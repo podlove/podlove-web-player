@@ -161,7 +161,7 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/podlove-web-player
-      - run: yarn test
+      - run: yarn test:ci
       - run: bash <(curl -s https://codecov.io/bash)
       - store_test_results:
           path: reports

@@ -35,7 +35,8 @@
     "build": "npm run webpack:build",
     "build:cdn": "npm run webpack:cdn",
     "dev": "npm run dist:clean && npm run docs:dev && npm run webpack:dev",
-    "test": "npm run test:prepare && NODE_ENV=AVA nyc ava --tap | tap-xunit > reports/ava.xml && nyc report --reporter=lcov",
+    "test": "npm run test:prepare && NODE_ENV=AVA nyc ava && nyc report",
+    "test:ci": "npm run test:prepare && NODE_ENV=AVA nyc ava --tap | tap-xunit > reports/ava.xml && nyc report --reporter=lcov",
     "test:dev": "NODE_ENV=AVA ava --watch --fail-fast",
     "test:prepare": "rm -rf reports coverage && mkdir -p reports coverage",
     "lint:commit": "conventional-changelog-lint",
@@ -59,7 +60,7 @@
     "dist/"
   ],
   "dependencies": {
-    "@podlove/html5-audio-driver": "1.2.2",
+    "@podlove/html5-audio-driver": "1.2.5",
     "babel-polyfill": "6.26.0",
     "binary-search": "1.3.3",
     "color": "3.0.0",
