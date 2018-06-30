@@ -1,6 +1,6 @@
 <template>
   <div class="input-element" :aria-label="$t('A11Y.VOLUME')">
-    <label class="spaced" tabindex="0" :aria-label="$t('AUDIO_CURRENT', { volume: toPercent(visualVolume) })">
+    <label class="spaced" tabindex="0" :aria-label="$t('A11Y.VOLUME_CURRENT', { volume: toPercent(visualVolume) })">
       <span class="input-label">{{ $t('AUDIO.VOLUME') }}</span>
       <span class="input-label" id="tab-audio--volume--current">{{ toPercent(visualVolume) }}%</span>
     </label>
@@ -9,7 +9,7 @@
         <speaker-icon :color="theme.button.text" :volume="visualVolume * 100" :muted="muted" aria-hidden="true"></speaker-icon>
         <span class="visually-hidden">{{ a11y }}</span>
       </button-component>
-      <input-slider-component id="tab-audio--volume--input" min="0" max="1" :value="visualVolume" step="0.001" :onInput="setVolume" :aria-label="$t('A11Y.SET_VOLUME_IN_PERCENT')"></input-slider-component>
+      <input-slider-component id="tab-audio--volume--input" min="0" max="1" :value="visualVolume" step="0.001" :onInput="setVolume"  :onDblClick="'volume'"  :aria-label="$t('A11Y.SET_VOLUME_IN_PERCENT')"></input-slider-component>
     </div>
   </div>
 </template>

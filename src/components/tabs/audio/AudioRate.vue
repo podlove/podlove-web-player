@@ -1,6 +1,6 @@
 <template>
   <div class="input-element" :aria-label="$t('A11Y.RATE')">
-    <label class="spaced" tabindex="0" :aria-label="$t('A11Y.CURRENT_RATE', { rate: toPercent(rate) })">
+    <label class="spaced" tabindex="0" :aria-label="$t('A11Y.RATE_CURRENT', { rate: toPercent(rate) })">
       <span class="input-label">{{ $t('AUDIO.SPEED') }}</span>
       <span class="input-label" id="tab-audio--rate--current">{{ toPercent(rate) }}%</span>
     </label>
@@ -16,6 +16,7 @@
       <input-slider-component
         :aria-label="$t('A11Y.SET_RATE_IN_PERCENT')"
         id="tab-audio--rate--input"
+        :onDblClick="'rate'"
         min="0" max="1" step="0.001"
         :value="sliderRate" :onInput="toStateRate"></input-slider-component>
     </div>
