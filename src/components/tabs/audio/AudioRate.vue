@@ -16,6 +16,7 @@
       <input-slider-component
         :aria-label="$t('A11Y.SET_RATE_IN_PERCENT')"
         id="tab-audio--rate--input"
+        :onDblClick="'rate'"
         min="0" max="1" step="0.001"
         :value="sliderRate" :onInput="toStateRate"></input-slider-component>
     </div>
