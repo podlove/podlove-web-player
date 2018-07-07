@@ -5,6 +5,9 @@ import { isUndefinedOrNull } from './predicates'
  */
 
 export const inAnimationFrame = func => (...args) => window.requestAnimationFrame(() => func.apply(null, args))
+export const asyncAnimation = func => (...args) => new Promise(resolve => {
+  window.requestAnimationFrame(resolve(func.apply(null, args)))
+})
 
 export const callWith = (...args) => func => func.apply(null, args)
 
