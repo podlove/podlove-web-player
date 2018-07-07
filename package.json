@@ -65,7 +65,7 @@
     "binary-search": "1.3.4",
     "color": "3.0.0",
     "copy-to-clipboard": "3.0.8",
-    "detect-browser": "2.5.1",
+    "detect-browser": "3.0.0",
     "hashcode": "1.0.3",
     "iframe-resizer": "3.6.1",
     "interval-tree2": "1.1.0",
