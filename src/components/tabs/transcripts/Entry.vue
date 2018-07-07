@@ -1,35 +1,52 @@
-<template>
-  <div class="entry" :class="{
-    chapter: entry.type === 'chapter',
-    transcript: entry.type === 'transcript',
-    speaker: entry.speaker
-  }">
-    <span class="chapter"
-      v-if="entry.type === 'chapter'"
-      :style="chapterStyle"
-      @dblclick="onDoubleClick(entry)"
-      @click="onClick(entry)">{{ $t('TRANSCRIPTS.CHAPTER', entry) }}</span>
-    <span class="transcript" v-else>
-      <span class="speaker" v-if="entry.speaker">
-        <span class="speaker-background" :style="speakerBackgroundStyle"></span>
-        <img class="speaker-avatar" v-if="entry.speaker.avatar" :src="entry.speaker.avatar" />
-        <span class="speaker-name" v-if="entry.speaker.name" :style="speakerTextStyle">{{ entry.speaker.name }}</span>
-      </span>
-      <span class="text"
-        v-for="(transcript, tindex) in entry.texts"
-        :key="tindex"
-        :style="activeStyle(transcript)"
-        :class="{ last: tindex === (entry.texts.length - 1), active: activePlaytime(transcript), inactive: playtime > transcript.end }"
-        @mouseover="onMouseOver(transcript)"
-        @mouseleave="onMouseLeave(transcript)"
-        @click="onClick(transcript)"
-        v-html="searchText(transcript.text)"
-        ></span>
-    </span>
-  </div>
-</template>
-
 <script>
+const container = (h, c) => (children = []) =>
+  h('div', {
+    class: {
+      entry: true,
+      chapter: c.entry.type === 'chapter',
+      transcript: c.entry.type === 'transcript',
+      speaker: c.entry.speaker
+    }
+  }, [...children])
+
+const chapter = (h, c) => (children = []) =>
+  h('span', {
+    class: { chapter: true },
+    style: c.prerender ? {} : c.chapterStyle,
+    on: c.prerender ? {} : {
+      click: () => c.onClick(c.entry)
+    }
+  }, [c.$t('TRANSCRIPTS.CHAPTER', c.entry), ...children])
+
+const speaker = (h, c) =>
+  h('span', { class: { speaker: true } }, [
+    h('span', { class: { 'speaker-background': true }, style: c.speakerBackgroundStyle }),
+    c.entry.speaker.avatar ? h('img', { class: { 'speaker-avatar': true }, domProps: { src: c.entry.speaker.avatar } }) : null,
+    c.entry.speaker.name ? h('span', { class: { 'speaker-name': true }, style: c.prerender ? {} : c.speakerTextStyle }, c.entry.speaker.name) : null
+  ])
+
+const transcript = (h, c) => (children = []) =>
+  h('span', { class: { 'transcript': true } }, [
+    c.entry.speaker ? speaker(h, c) : null,
+    ...children
+  ])
+
+const text = (h, c) => (transcript, index) =>
+  h('span', {
+    class: {
+      text: true,
+      last: index === (c.entry.texts.length - 1),
+      active: c.activePlaytime(transcript),
+      inactive: c.playtime > transcript.end
+    },
+    style: c.prerender ? {} : c.activeStyle(transcript),
+    on: c.prerender ? {} : {
+      click: () => c.onClick(transcript),
+      mouseover: () => c.onMouseOver(transcript),
+      mouseleave: () => c.onMouseLeave(transcript)
+    }
+  }, [c.searchText(transcript.text)])
+
 export default {
   data () {
     return {
@@ -38,31 +55,29 @@ export default {
     }
   },
   props: ['entry', 'playtime', 'ghost', 'prerender', 'query'],
+  render (h) {
+    const entryContainer = container(h, this)
+    const entryChapter = chapter(h, this)
+    const entryTranscript = transcript(h, this)
+    const entryTexts = text(h, this)
+
+    return entryContainer([
+      this.entry.type === 'chapter' ? entryChapter() : entryTranscript(this.entry.texts.map(entryTexts))
+    ])
+  },
   computed: {
     chapterStyle () {
-      if (this.prerender) {
-        return {}
-      }
-
       return {
         background: this.theme.tabs.transcripts.chapter.background,
         color: this.theme.tabs.transcripts.chapter.color
       }
     },
     speakerBackgroundStyle () {
-      if (this.prerender) {
-        return {}
-      }
-
       return {
         background: this.theme.tabs.transcripts.chapter.background
       }
     },
     speakerTextStyle () {
-      if (this.prerender) {
-        return {}
-      }
-
       return {
         color: this.theme.tabs.transcripts.chapter.color
       }
