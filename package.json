@@ -84,7 +84,7 @@
     "vue-i18n": "8.0.0"
   },
   "devDependencies": {
-    "autoprefixer": "^8.4.1",
+    "autoprefixer": "^9.0.0",
     "ava": "0.25.0",
     "babel-core": "6.26.0",
     "babel-eslint": "^8.2.3",
