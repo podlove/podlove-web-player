@@ -13,6 +13,8 @@
 </template>
 
 <script>
+  import { mapState } from 'redux-vuex'
+
   import { currentChapter } from 'utils/chapters'
   import { fromPlayerTime } from 'utils/time'
   import { addQueryParameter } from 'utils/url'
@@ -27,16 +29,7 @@
 
   export default {
     props: ['type'],
-    data () {
-      return {
-        show: this.$select('show'),
-        episode: this.$select('episode'),
-        playtime: this.$select('playtime'),
-        chapters: this.$select('chapters'),
-        theme: this.$select('theme'),
-        reference: this.$select('reference')
-      }
-    },
+    data: mapState('show', 'episode', 'playtime', 'chapters', 'theme', 'reference'),
     computed: {
       shareLink () {
         let time

@@ -46,7 +46,8 @@
 </template>
 
 <script>
-  import store from 'store'
+  import { mapState, mapActions } from 'redux-vuex'
+
   import { get } from 'lodash'
   import { currentChapter } from 'utils/chapters'
   import { fromPlayerTime } from 'utils/time'
@@ -57,16 +58,7 @@
   import SharePlaytimeIcon from 'icons/SharePlaytimeIcon'
 
   export default {
-    data () {
-      return {
-        share: this.$select('share'),
-        theme: this.$select('theme'),
-        episode: this.$select('episode'),
-        show: this.$select('show'),
-        chapters: this.$select('chapters'),
-        playtime: this.$select('playtime')
-      }
-    },
+    data: mapState('share', 'theme', 'episode', 'show', 'chapters', 'playtime'),
     computed: {
       activeContentStyle () {
         return {
@@ -86,10 +78,12 @@
       }
     },
     methods: {
-      setContent (type) {
-        store.dispatch(store.actions.setShareContent(type))
-        this.$emit('onSelect')
-      },
+      ...mapActions({
+        setContent: function ({ dispatch, actions }, type) {
+          dispatch(actions.setShareContent(type))
+          this.$emit('onSelect')
+        }
+      }),
 
       isActive (type) {
         if (this.share.content === type) {

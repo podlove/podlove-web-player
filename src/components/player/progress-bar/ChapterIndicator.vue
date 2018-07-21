@@ -9,14 +9,10 @@
 </template>
 
 <script>
+  import { mapState } from 'redux-vuex'
+
   export default {
-    data () {
-      return {
-        chapters: this.$select('chapters'),
-        theme: this.$select('theme'),
-        duration: this.$select('duration')
-      }
-    },
+    data: mapState('chapters', 'theme', 'duration'),
     methods: {
       isLast (index) {
         return this.chapters.length - 1 === index

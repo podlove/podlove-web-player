@@ -6,25 +6,21 @@
 </template>
 
 <script>
-  import store from 'store'
+  import { mapActions, mapState } from 'redux-vuex'
+
   import StepForwardIcon from 'icons/StepForwardIcon'
 
   export default {
     components: {
       StepForwardIcon
     },
-    data () {
-      return {
-        playtime: this.$select('playtime'),
-        duration: this.$select('duration'),
-        playstate: this.$select('playstate'),
-        theme: this.$select('theme')
-      }
-    },
+    data: mapState('playtime', 'duration', 'playstate', 'theme'),
     methods: {
-      onButtonClick () {
-        store.dispatch(store.actions.updatePlaytime(this.$select('playtime') + 30000))
-      },
+      ...mapActions({
+        onButtonClick: function ({ actions, dispatch }) {
+          dispatch(actions.updatePlaytime(this.playtime + 30000))
+        }
+      }),
       isDisabled (playtime, duration) {
         return (Math.round(playtime, 1) + 30) > Math.round(duration, 1)
       }

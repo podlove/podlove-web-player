@@ -9,41 +9,35 @@
 </template>
 
 <script>
-import store from 'store'
+  import { mapState, mapActions } from 'redux-vuex'
+  import FollowIcon from 'icons/FollowIcon'
 
-import FollowIcon from 'icons/FollowIcon'
+  export default {
+    data: mapState('transcripts', 'theme'),
+    components: {
+      FollowIcon
+    },
+    methods: mapActions({
+      toggleFollow: function ({ dispatch, actions }) {
+        dispatch(actions.followTranscripts(!this.transcripts.follow))
+      }
+    }),
+    computed: {
+      followButton () {
+        if (this.transcripts.follow) {
+          return {
+            background: this.theme.button.background,
+            color: this.theme.button.color,
+            'border-color': this.theme.button.border
+          }
+        }
 
-export default {
-  data () {
-    return {
-      transcripts: this.$select('transcripts'),
-      theme: this.$select('theme')
-    }
-  },
-  components: {
-    FollowIcon
-  },
-  methods: {
-    toggleFollow () {
-      store.dispatch(store.actions.followTranscripts(!this.transcripts.follow))
-    }
-  },
-  computed: {
-    followButton () {
-      if (this.transcripts.follow) {
         return {
-          background: this.theme.button.background,
+          background: 'transparent',
           color: this.theme.button.color,
           'border-color': this.theme.button.border
         }
       }
-
-      return {
-        background: 'transparent',
-        color: this.theme.button.color,
-        'border-color': this.theme.button.border
-      }
     }
   }
-}
 </script>

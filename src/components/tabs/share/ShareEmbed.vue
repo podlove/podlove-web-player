@@ -21,12 +21,12 @@
 </template>
 
 <script>
+  import { mapState, mapActions } from 'redux-vuex'
   import { compose } from 'lodash/fp'
+
   import { addQueryParameter } from 'utils/url'
   import { fromPlayerTime } from 'utils/time'
   import { currentChapter } from 'utils/chapters'
-
-  import store from 'store'
 
   import OverlayComponent from 'shared/Overlay'
   import ButtonComponent from 'shared/Button'
@@ -36,17 +36,7 @@
 
   export default {
     props: ['type'],
-    data () {
-      return {
-        show: this.$select('show'),
-        episode: this.$select('episode'),
-        share: this.$select('share'),
-        reference: this.$select('reference'),
-        theme: this.$select('theme'),
-        chapters: this.$select('chapters'),
-        playtime: this.$select('playtime')
-      }
-    },
+    data: mapState('show', 'episode', 'share', 'reference', 'theme', 'chapters', 'playtime'),
     computed: {
       buttonStyle () {
         return {
@@ -90,11 +80,12 @@
         return `<iframe title="${title}" width="${width}" height="${height}" src="${addQueryParameter(this.reference.share, parameters)}" frameborder="0" scrolling="no" tabindex="0"></iframe>`
       }
     },
-
     methods: {
       fromPlayerTime,
-      setEmbedSize: compose(store.dispatch.bind(store), store.actions.setShareEmbedSize),
-      closeEmbedOverlay: compose(store.dispatch.bind(store), store.actions.hideShareEmbed)
+      ...mapActions({
+        setEmbedSize: 'setShareEmbedSize',
+        closeEmbedOverlay: 'hideShareEmbed'
+      })
     },
     components: {
       OverlayComponent,

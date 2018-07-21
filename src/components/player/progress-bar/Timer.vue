@@ -8,21 +8,13 @@
 
 <script>
 import color from 'color'
+import { mapState } from 'redux-vuex'
 
 import { fromPlayerTime, calcHours, calcMinutes, calcSeconds } from 'utils/time'
 import CurrentChapter from './CurrentChapter'
 
 export default {
-  data () {
-    return {
-      playtime: this.$select('playtime'),
-      ghost: this.$select('ghost'),
-      duration: this.$select('duration'),
-      playstate: this.$select('playstate'),
-      theme: this.$select('theme'),
-      chapters: this.$select('chapters')
-    }
-  },
+  data: mapState('playtime', 'ghost', 'duration', 'playstate', 'theme', 'chapters'),
   computed: {
     timerStyle () {
       return {

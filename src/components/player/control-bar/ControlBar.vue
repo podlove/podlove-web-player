@@ -19,6 +19,8 @@
 </template>
 
 <script>
+  import { mapState } from 'redux-vuex'
+
   import PlayButton from './PlayButton'
   import StepBackButton from './StepBackButton'
   import StepForwardButton from './StepForwardButton'
@@ -26,13 +28,7 @@
   import ChapterBackButton from './ChapterBackButton'
 
   export default {
-    data () {
-      return {
-        chapters: this.$select('chapters'),
-        components: this.$select('components'),
-        visibleComponents: this.$select('visibleComponents')
-      }
-    },
+    data: mapState('chapters', 'components', 'visibleComponents'),
     components: {
       PlayButton,
       StepBackButton,

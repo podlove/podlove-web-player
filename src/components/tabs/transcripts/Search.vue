@@ -28,34 +28,23 @@
 </template>
 
 <script>
-import store from 'store'
+import { mapState, mapActions } from 'redux-vuex'
 
 import NextSearchIcon from 'icons/NextSearchIcon'
 import PreviousSearchIcon from 'icons/PreviousSearchIcon'
 import SearchDeleteIcon from 'icons/SearchDeleteIcon'
 
 export default {
-  data () {
-    return {
-      theme: this.$select('theme'),
-      transcripts: this.$select('transcripts')
-    }
-  },
-  methods: {
-    search (event) {
-      store.dispatch(store.actions.searchTranscripts(event.target.value))
-      store.dispatch(store.actions.followTranscripts(false))
+  data: mapState('theme', 'transcripts'),
+  methods: mapActions({
+    search: ({ dispatch, actions }, event) => {
+      dispatch(actions.searchTranscripts(event.target.value))
+      dispatch(actions.followTranscripts(false))
     },
-    reset () {
-      store.dispatch(store.actions.resetSearchTranscription())
-    },
-    previousSearchResult () {
-      store.dispatch(store.actions.previousTranscriptsSearchResult())
-    },
-    nextSearchResult () {
-      store.dispatch(store.actions.nextTranscriptsSearchResult())
-    }
-  },
+    reset: 'resetSearchTranscription',
+    previousSearchResult: 'previousTranscriptsSearchResult',
+    nextSearchResult: 'nextTranscriptsSearchResult'
+  }),
   computed: {
     searchInputStyle () {
       return {

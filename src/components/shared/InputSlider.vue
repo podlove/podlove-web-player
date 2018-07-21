@@ -19,6 +19,7 @@
 
 <script>
   import { isUndefined } from 'lodash'
+  import { mapState } from 'redux-vuex'
 
   const relativePosition = (current = 0, minimum = 0, maximum = 0) =>
     (((parseFloat(current, 1000) - parseFloat(minimum, 1000)) * 100) / (parseFloat(maximum, 1000) - parseFloat(minimum, 1000)))
@@ -27,11 +28,7 @@
 
   export default {
     props: ['min', 'max', 'step', 'value', 'onChange', 'onInput', 'onDblClick'],
-    data () {
-      return {
-        theme: this.$select('theme')
-      }
-    },
+    data: mapState('theme'),
     computed: {
       minValue () {
         return isUndefined(this.min) ? 0 : this.min

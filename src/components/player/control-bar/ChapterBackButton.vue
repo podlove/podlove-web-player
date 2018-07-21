@@ -6,22 +6,17 @@
 </template>
 
 <script>
+  import { mapState, mapActions } from 'redux-vuex'
+
   import { currentChapter, currentChapterIndex, previousChapter } from 'utils/chapters'
 
-  import store from 'store'
   import ChapterBackIcon from 'icons/ChapterBackIcon'
 
   export default {
     components: {
       ChapterBackIcon
     },
-    data () {
-      return {
-        chapters: this.$select('chapters'),
-        theme: this.$select('theme'),
-        playtime: this.$select('playtime')
-      }
-    },
+    data: mapState('chapters', 'theme', 'playtime'),
     computed: {
       a11y () {
         const chapter = currentChapter(this.chapters)
@@ -41,17 +36,17 @@
         return this.playtime === 0
       }
     },
-    methods: {
-      onButtonClick () {
+    methods: mapActions({
+      onButtonClick: function ({ actions, dispatch }) {
         const current = currentChapter(this.chapters)
         const currentIndex = currentChapterIndex(this.chapters)
 
         if (this.playtime - current.start <= 2) {
-          store.dispatch(store.actions.previousChapter())
+          dispatch(actions.previousChapter())
         } else {
-          store.dispatch(store.actions.setChapter(currentIndex))
+          dispatch(actions.setChapter(currentIndex))
         }
       }
-    }
+    })
   }
 </script>
