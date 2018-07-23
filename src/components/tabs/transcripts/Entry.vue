@@ -33,6 +33,19 @@
       ...children
     ])
 
+  const highlightText = (h, c, text) => {
+    if (!c.query) {
+      return text
+    }
+
+    return text
+      .replace(c.searchQuery, matched => `|||${matched}|||`)
+      .split('|||')
+      .map(text =>
+        text.match(c.searchQuery) ? h('span', {class: { highlight: true }}, text) : text)
+  }
+
+
   const text = (h, c) => (transcript, index) =>
     h('span', {
       class: {
@@ -47,7 +60,7 @@
         mouseover: () => c.onMouseOver(transcript),
         mouseleave: () => c.onMouseLeave(transcript)
       }
-    }, [c.searchText(transcript.text)])
+    }, [highlightText(h, c, transcript.text)])
 
   export default {
     data: mapState('theme', 'transcripts'),
