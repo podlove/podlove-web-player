@@ -2,7 +2,6 @@
 import 'vue'
 import 'lodash'
 import 'redux'
-import 'revue'
 
 /** Shared Components */
 import './components/tabs/info/Info'
