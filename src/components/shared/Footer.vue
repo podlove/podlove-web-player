@@ -7,18 +7,17 @@
 </template>
 
 <script>
-import PodlovePlayerIcon from 'icons/PodlovePlayerIcon'
+  import { mapState } from 'redux-vuex'
+  import PodlovePlayerIcon from 'icons/PodlovePlayerIcon'
 
-export default {
-  data () {
-    return {
-      version: this.$select('runtime.version')
+  export default {
+    data: mapState({
+      version: 'runtime.version'
+    }),
+    components: {
+      PodlovePlayerIcon
     }
-  },
-  components: {
-    PodlovePlayerIcon
   }
-}
 </script>
 
 <style lang="scss">

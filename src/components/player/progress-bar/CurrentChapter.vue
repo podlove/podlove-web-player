@@ -9,17 +9,13 @@
 </template>
 
 <script>
-  import get from 'lodash/get'
+  import { get } from 'lodash'
+  import { mapState } from 'redux-vuex'
+
   import { currentChapter, currentChapterIndex, currentChapterByPlaytime } from 'utils/chapters'
 
   export default {
-    data () {
-      return {
-        chapters: this.$select('chapters'),
-        ghost: this.$select('ghost'),
-        theme: this.$select('theme')
-      }
-    },
+    data: mapState('chapters', 'ghost', 'theme'),
     computed: {
       chapterStyle () {
         return {

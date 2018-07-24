@@ -7,22 +7,15 @@
 </template>
 
 <script>
+  import { mapState } from 'redux-vuex'
+
   import HeaderComponent from './header/Header'
   import PlayerComponent from './player/Player'
   import TabsComponent from './tabs/Tabs'
 
   export default {
     name: 'app',
-    data () {
-      // i18n integration
-      this.$i18n.locale = this.$select('runtime.language')
-
-      return {
-        display: this.$select('display'),
-        runtime: this.$select('runtime'),
-        theme: this.$select('theme')
-      }
-    },
+    data: mapState('display', 'runtime', 'theme'),
     watch: {
       runtime (runtime) {
         // i18n integration
@@ -35,6 +28,9 @@
           background: this.theme.background
         }
       }
+    },
+    mounted () {
+       this.$i18n.locale = this.runtime.language
     },
     components: {
       HeaderComponent,

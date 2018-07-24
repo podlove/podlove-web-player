@@ -20,7 +20,7 @@ import Follow from './Follow'
 export default {
   data () {
     return {
-      transcripts: this.$select('transcripts'),
+      ...this.mapState('transcripts'),
       prerender: null
     }
   },

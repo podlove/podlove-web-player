@@ -15,37 +15,15 @@
 </template>
 
 <script>
-  import store from 'store'
-
-  import { get } from 'lodash'
-  import { compose } from 'lodash/fp'
+  import { mapState, mapActions } from 'redux-vuex'
   import { toPercent } from 'utils/math'
 
   import InputSliderComponent from 'shared/InputSlider'
   import ButtonComponent from 'shared/Button'
   import SpeakerIcon from 'icons/SpeakerIcon'
 
-  // State Changers
-  const setVolume = compose(store.dispatch.bind(store), store.actions.setVolume)
-
-  const toggleMute = () => {
-    const muted = get(store.store.getState(), 'muted')
-
-    if (muted) {
-      store.dispatch(store.actions.unmute())
-    } else {
-      store.dispatch(store.actions.mute())
-    }
-  }
-
   export default {
-    data () {
-      return {
-        volume: this.$select('volume'),
-        theme: this.$select('theme'),
-        muted: this.$select('muted')
-      }
-    },
+    data: mapState('volume', 'theme', 'muted'),
     computed: {
       buttonStyle () {
         return {
@@ -68,9 +46,17 @@
       }
     },
     methods: {
-      setVolume,
-      toPercent,
-      toggleMute
+      ...mapActions('setVolume', 'unmute', 'mute'),
+      ...mapActions({
+        toggleMute: function () {
+          if (this.muted) {
+            this.unmute()
+          } else {
+            this.mute()
+          }
+        }
+      }),
+      toPercent
     },
     components: {
       InputSliderComponent,

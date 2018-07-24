@@ -10,15 +10,12 @@
 </template>
 
 <script>
+  import { mapState } from 'redux-vuex'
+
   import ChapterEntryComponent from './ChapterEntry'
 
   export default {
-    data () {
-      return {
-        theme: this.$select('theme'),
-        chapters: this.$select('chapters')
-      }
-    },
+    data: mapState('theme', 'chapters'),
     components: {
       ChapterEntryComponent
     }

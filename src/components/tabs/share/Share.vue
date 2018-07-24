@@ -17,6 +17,7 @@
 </template>
 
 <script>
+  import { mapState } from 'redux-vuex'
   import { head } from 'lodash'
 
   import ShareChannelsComponent from './ShareChannels'
@@ -26,14 +27,7 @@
   import ShareEmbedComponent from './ShareEmbed'
 
   export default {
-    data () {
-      return {
-        theme: this.$select('theme'),
-        share: this.$select('share'),
-        show: this.$select('show'),
-        episode: this.$select('episode')
-      }
-    },
+    data: mapState('theme', 'share', 'show', 'episode'),
     computed: {
       sectionStyle () {
         return {

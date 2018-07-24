@@ -18,16 +18,14 @@
 </template>
 
 <script>
+  import { mapState } from 'redux-vuex'
+
   import CloseIcon from 'icons/CloseIcon'
   import ButtonComponent from './Button'
 
   export default {
     props: ['visible', 'onClose', 'title'],
-    data () {
-      return {
-        theme: this.$select('theme')
-      }
-    },
+    data: mapState('theme'),
     computed: {
       backgroundStyle () {
         return {

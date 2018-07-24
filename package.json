@@ -77,7 +77,7 @@
     "query-string": "5.1.1",
     "redux": "3.7.2",
     "redux-actions": "2.4.0",
-    "revue": "3.0.0",
+    "redux-vuex": "^0.1.1",
     "superagent": "3.8.3",
     "v-tooltip": "2.0.0-rc.33",
     "vue": "2.5.16",

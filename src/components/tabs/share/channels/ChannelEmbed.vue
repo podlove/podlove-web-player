@@ -6,7 +6,7 @@
 </template>
 
 <script>
-  import store from 'store'
+  import { mapActions } from 'redux-vuex'
   import { compose } from 'lodash/fp'
 
   import EmbedIcon from 'icons/EmbedIcon'
@@ -20,9 +20,9 @@
         }
       }
     },
-    methods: {
-      showEmbedOverlay: compose(store.dispatch.bind(store), store.actions.showShareEmbed)
-    },
+    methods: mapActions({
+      showEmbedOverlay: 'showShareEmbed'
+    }),
     components: {
       EmbedIcon
     }

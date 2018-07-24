@@ -28,41 +28,16 @@
 </template>
 
 <script>
-  import store from 'store'
-  import runtime from 'utils/runtime'
+  import { mapState, mapActions } from 'redux-vuex'
   import { interpolate, relativePosition } from 'utils/math'
 
   import ChaptersIndicator from './ChapterIndicator'
 
   export default {
     data () {
-      let playtime = this.$select('playtime')
-      let duration = this.$select('duration')
-      let theme = this.$select('theme')
-      let ghost = this.$select('ghost')
-
       return {
-        playtime,
-        duration,
-        theme,
-        ghost,
-
-        buffer: this.$select('buffer'),
-        playstate: this.$select('playstate'),
-        thumbPosition: relativePosition(playtime, duration),
-        quantiles: this.$select('quantiles'),
-
-        ghostPosition: relativePosition(ghost.time, duration),
         thumbActive: false,
-        runtime
-      }
-    },
-    watch: {
-      playtime: function (time) {
-        this.thumbPosition = relativePosition(time, this.duration)
-      },
-      ghost: function (ghost) {
-        this.ghostPosition = relativePosition(ghost.time, this.duration)
+        ...this.mapState('playtime', 'duration', 'theme', 'ghost', 'buffer', 'playstate', 'quantiles', 'runtime')
       }
     },
     computed: {
@@ -70,43 +45,49 @@
         return {
           'background-color': this.theme.player.progress.range
         }
+      },
+      thumbPosition () {
+        return relativePosition(this.playtime, this.duration)
+      },
+      ghostPosition () {
+        return relativePosition(this.ghost.time, this.duration)
       }
     },
     methods: {
-      onChange (event) {
-        store.dispatch(store.actions.updatePlaytime(event.target.value))
-      },
+      ...mapActions({
+        onChange: ({ actions, dispatch }) => dispatch(actions.updatePlaytime(event.target.value)),
 
-      onInput (event) {
-        this.thumbAnimated = false
-        store.dispatch(store.actions.disableGhostMode())
-        this.thumbPosition = relativePosition(interpolate(event.target.value), this.duration)
-        store.dispatch(store.actions.updatePlaytime(event.target.value))
-      },
+        onInput: function ({ actions, dispatch }, event) {
+          this.thumbAnimated = false
+          dispatch(actions.disableGhostMode())
+          dispatch(actions.updatePlaytime(event.target.value))
+        },
 
-      onMouseMove (event) {
-        if ((event.offsetY < 13 && event.offsetY > 31) || event.offsetX < 0 || event.offsetX > event.target.clientWidth) {
+        onMouseMove: function ({ actions, dispatch }, event) {
+          if ((event.offsetY < 13 && event.offsetY > 31) || event.offsetX < 0 || event.offsetX > event.target.clientWidth) {
+            this.thumbActive = false
+            dispatch(actions.disableGhostMode())
+            return false
+          }
+
+          this.thumbAnimated = true
+          this.thumbActive = true
+
+          dispatch(actions.simulatePlaytime(this.duration * event.offsetX / event.target.clientWidth))
+          dispatch(actions.enableGhostMode())
+
+          return false
+        },
+
+        onMouseOut: function ({ actions, dispatch }, event) {
           this.thumbActive = false
-          store.dispatch(store.actions.disableGhostMode())
+
+          dispatch(actions.disableGhostMode())
+          dispatch(actions.simulatePlaytime(this.playtime))
+
           return false
         }
-
-        this.thumbAnimated = true
-        this.thumbActive = true
-
-        store.dispatch(store.actions.simulatePlaytime(this.duration * event.offsetX / event.target.clientWidth))
-        store.dispatch(store.actions.enableGhostMode())
-
-        return false
-      },
-
-      onMouseOut (event) {
-        this.thumbActive = false
-        store.dispatch(store.actions.disableGhostMode())
-        store.dispatch(store.actions.simulatePlaytime(this.playtime))
-
-        return false
-      },
+      }),
 
       thumbStyle (position, active) {
         return {

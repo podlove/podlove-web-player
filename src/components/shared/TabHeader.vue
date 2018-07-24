@@ -13,7 +13,7 @@
     data () {
       return {
         overflows: false,
-        theme: this.$select('theme')
+        ...this.mapState('theme')
       }
     },
     computed: {

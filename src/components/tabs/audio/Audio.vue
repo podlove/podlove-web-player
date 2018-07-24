@@ -7,17 +7,15 @@
 </template>
 
 <script>
+  import { mapState } from 'redux-vuex'
+
   import AudioRateComponent from './AudioRate'
   import AudioVolumeComponent from './AudioVolume'
 
   import FooterComponent from 'shared/Footer'
 
   export default {
-    data () {
-      return {
-        components: this.$select('components')
-      }
-    },
+    data: mapState('components'),
     components: {
       AudioRateComponent,
       AudioVolumeComponent,

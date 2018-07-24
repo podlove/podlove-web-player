@@ -20,20 +20,12 @@
 </template>
 
 <script>
-  import store from 'store'
+  import { mapState, mapActions } from 'redux-vuex'
+
   import color from 'color'
 
   export default {
-    data () {
-      return {
-        episode: this.$select('episode'),
-        show: this.$select('show'),
-        theme: this.$select('theme'),
-        display: this.$select('display'),
-        visibleComponents: this.$select('visibleComponents'),
-        components: this.$select('components')
-      }
-    },
+    data: mapState('episode', 'show', 'theme', 'display', 'visibleComponents', 'components'),
     computed: {
       titleStyle () {
         return {
@@ -73,11 +65,11 @@
         }
       }
     },
-    methods: {
-      onImageLoad () {
-        store.dispatch(store.actions.toggleInfoPoster(false))
+    methods: mapActions({
+      onImageLoad: ({ dispatch, actions }) => {
+        dispatch(actions.toggleInfoPoster(false))
       }
-    }
+    })
   }
 </script>
 

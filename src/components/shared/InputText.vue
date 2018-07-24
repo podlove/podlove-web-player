@@ -3,13 +3,11 @@
 </template>
 
 <script>
+  import { mapState } from 'redux-vuex'
+
   export default {
     props: ['disabled', 'options', 'value'],
-    data () {
-      return {
-        theme: this.$select('theme')
-      }
-    },
+    data: mapState('theme'),
     computed: {
       style () {
         return {

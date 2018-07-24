@@ -16,7 +16,7 @@
 
 <script>
   import { reduce, head } from 'lodash'
-  import store from 'store'
+  import { mapActions } from 'redux-vuex'
 
   import TranscriptEntry from './Entry'
 
@@ -28,26 +28,22 @@
       return {
         start: 0,
         end: 0,
-        playtime: this.$select('playtime'),
-        transcripts: this.$select('transcripts'),
-        ghost: this.$select('ghost')
+        ...this.mapState('playtime', 'transcripts', 'ghost')
       }
     },
     methods: {
-      onMouseOver ({ start }) {
-        store.dispatch(store.actions.simulatePlaytime(start))
-        store.dispatch(store.actions.enableGhostMode())
-      },
-      onMouseLeave () {
-        store.dispatch(store.actions.disableGhostMode())
-      },
-      onClick ({ start }) {
-        store.dispatch(store.actions.updatePlaytime(start))
-        store.dispatch(store.actions.play())
-      },
-      disableFollow (follow) {
-        store.dispatch(store.actions.followTranscripts(false))
-      },
+      ...mapActions({
+        onMouseOver: ({ dispatch, actions }, { start }) => {
+          dispatch(actions.simulatePlaytime(start))
+          dispatch(actions.enableGhostMode())
+        },
+        onMouseLeave: 'disableGhostMode',
+        onClick: ({ dispatch, actions }, { start }) => {
+          dispatch(actions.updatePlaytime(start))
+          dispatch(actions.play())
+        },
+        disableFollow: ({ dispatch, actions }) => dispatch(actions.followTranscripts(false))
+      }),
       inRange (index) {
         if (index < 0) {
           return 0

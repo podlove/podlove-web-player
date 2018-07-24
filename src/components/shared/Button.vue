@@ -12,15 +12,12 @@
 </template>
 
 <script>
+  import { mapState } from 'redux-vuex'
   import { noop } from 'lodash'
 
   export default {
     props: ['click', 'disabled', 'active', 'type', 'href'],
-    data () {
-      return {
-        theme: this.$select('theme')
-      }
-    },
+    data: mapState('theme'),
     computed: {
       style () {
         return {

@@ -6,7 +6,7 @@
 </template>
 
 <script>
-  import store from 'store'
+  import { mapState, mapActions } from 'redux-vuex'
   import ChapterNextIcon from 'icons/ChapterNextIcon'
 
   import { nextChapter, currentChapter } from 'utils/chapters'
@@ -15,14 +15,7 @@
     components: {
       ChapterNextIcon
     },
-    data () {
-      return {
-        chapters: this.$select('chapters'),
-        theme: this.$select('theme'),
-        playtime: this.$select('playtime'),
-        duration: this.$select('duration')
-      }
-    },
+    data: mapState('chapters', 'theme', 'playtime', 'duration'),
     computed: {
       a11y () {
         if (currentChapter(this.chapters).index === this.chapters.length) {
@@ -35,10 +28,8 @@
         return this.playtime === this.duration
       }
     },
-    methods: {
-      onButtonClick () {
-        store.dispatch(store.actions.nextChapter())
-      }
-    }
+    methods: mapActions({
+      onButtonClick: 'nextChapter'
+    })
   }
 </script>

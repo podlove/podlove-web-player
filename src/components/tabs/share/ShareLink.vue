@@ -13,6 +13,8 @@
 </template>
 
 <script>
+  import { mapState } from 'redux-vuex'
+
   import ButtonComponent from 'shared/Button'
   import InputGroupComponent from 'shared/InputGroup'
   import InputTextComponent from 'shared/InputText'
@@ -24,15 +26,7 @@
 
   export default {
     props: ['type'],
-    data () {
-      return {
-        share: this.$select('share'),
-        episode: this.$select('episode'),
-        show: this.$select('show'),
-        playtime: this.$select('playtime'),
-        chapters: this.$select('chapters')
-      }
-    },
+    data: mapState('share', 'episode', 'show', 'playtime', 'chapters'),
     computed: {
       shareLink () {
         let time

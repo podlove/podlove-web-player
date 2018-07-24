@@ -26,8 +26,8 @@
 </template>
 
 <script>
-  import { compose } from 'lodash'
-  import store from 'store'
+  import { mapState, mapActions } from 'redux-vuex'
+
   import { calcHours, calcMinutes, localeDate } from 'utils/time'
 
   import ButtonComponent from 'shared/Button'
@@ -38,17 +38,7 @@
   import CalendarIcon from 'icons/CalendarIcon'
 
   export default {
-    data () {
-      return {
-        theme: this.$select('theme'),
-        episode: this.$select('episode'),
-        show: this.$select('show'),
-        duration: this.$select('duration'),
-        download: this.$select('download'),
-        audio: this.$select('audio'),
-        runtime: this.$select('runtime')
-      }
-    },
+    data: mapState('theme', 'episode', 'show', 'duration', 'download', 'audio', 'runtime'),
     computed: {
       episodeDuration () {
         return {
@@ -76,7 +66,7 @@
       toMegabyte (size) {
         return parseInt(parseInt(size) / 1000000)
       },
-      setDownloadFile: compose(store.dispatch.bind(store), store.actions.setDownloadFile)
+      ...mapActions('setDownloadFile')
     },
     components: {
       ButtonComponent,
