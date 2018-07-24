@@ -7,8 +7,7 @@
 
 <script>
   import { mapState, mapActions } from 'redux-vuex'
-
-  import { currentChapter, currentChapterIndex, previousChapter } from 'utils/chapters'
+  import selectors from 'store/selectors'
 
   import ChapterBackIcon from 'icons/ChapterBackIcon'
 
@@ -16,20 +15,24 @@
     components: {
       ChapterBackIcon
     },
-    data: mapState('chapters', 'theme', 'playtime'),
+    data: mapState({
+      chapters: 'chapters',
+      previousChapter: selectors.selectPreviousChapter,
+      currentChapter: selectors.selectCurrentChapter,
+      theme: 'theme',
+      playtime: 'playtime'
+    }),
     computed: {
       a11y () {
-        const chapter = currentChapter(this.chapters)
-
-        if (chapter.index === 1) {
-          return this.$t('A11Y.PLAYER_CHAPTER_CURRENT', { ...chapter })
+        if (this.currentChapter.index === 1) {
+          return this.$t('A11Y.PLAYER_CHAPTER_CURRENT', this.currentChapter)
         }
 
-        if (this.playtime - chapter.start < 2000) {
-          return this.$t('A11Y.PLAYER_CHAPTER_PREVIOUS', { ...previousChapter(this.chapters) })
+        if (this.playtime - this.currentChapter.start < 2000) {
+          return this.$t('A11Y.PLAYER_CHAPTER_PREVIOUS', this.previousChapter)
         }
 
-        return this.$t('A11Y.PLAYER_CHAPTER_CURRENT', { ...chapter })
+        return this.$t('A11Y.PLAYER_CHAPTER_CURRENT', this.currentChapter)
       },
 
       isDisabled () {
@@ -37,16 +40,7 @@
       }
     },
     methods: mapActions({
-      onButtonClick: function ({ actions, dispatch }) {
-        const current = currentChapter(this.chapters)
-        const currentIndex = currentChapterIndex(this.chapters)
-
-        if (this.playtime - current.start <= 2) {
-          dispatch(actions.previousChapter())
-        } else {
-          dispatch(actions.setChapter(currentIndex))
-        }
-      }
+      onButtonClick: 'previousChapter'
     })
   }
 </script>

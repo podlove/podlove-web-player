@@ -1,9 +1,10 @@
 import { handleActions } from 'redux-actions'
+import { compose, get } from 'lodash/fp'
 
 import {
   UPDATE_CHAPTER,
-  NEXT_CHAPTER,
-  PREVIOUS_CHAPTER,
+  SET_NEXT_CHAPTER,
+  SET_PREVIOUS_CHAPTER,
   SET_CHAPTER,
   INIT_CHAPTERS
 } from '../types'
@@ -11,7 +12,10 @@ import {
 import {
   currentChapterIndex,
   setActiveByPlaytime,
-  setActiveByIndex
+  setActiveByIndex,
+  nextChapter as getNextChapter,
+  previousChapter as getPreviousChapter,
+  currentChapter as getCurrentChapter
 } from 'utils/chapters'
 
 const nextChapter = chapters => {
@@ -34,23 +38,42 @@ const previousChapter = chapters => {
   return chapters.map(setActiveByIndex(previous))
 }
 
-export const INITIAL_STATE = []
+const generateState = chapters => ({
+  list: chapters,
+  current: getCurrentChapter(chapters),
+  next: getNextChapter(chapters),
+  previous: getPreviousChapter(chapters)
+})
+
+export const INITIAL_STATE = {
+  list: [],
+  current: null,
+  next: null,
+  previous: null
+}
 
 export const reducer = handleActions(
   {
-    [INIT_CHAPTERS]: (state, { payload }) => payload,
+    [INIT_CHAPTERS]: (_, { payload }) => generateState(payload),
 
     [UPDATE_CHAPTER]: (state, { payload }) => {
-      const nextChapters = state.map(setActiveByPlaytime(payload))
+      const chapters = state.list.map(setActiveByPlaytime(payload))
 
-      return currentChapterIndex(nextChapters) === -1 ? state : nextChapters
+      if (currentChapterIndex(chapters) === -1) {
+        return state
+      }
+
+      return generateState(chapters)
     },
 
-    [NEXT_CHAPTER]: state => nextChapter(state),
+    [SET_NEXT_CHAPTER]: compose(generateState, nextChapter, get('list')),
 
-    [PREVIOUS_CHAPTER]: state => previousChapter(state),
+    [SET_PREVIOUS_CHAPTER]: compose(generateState, previousChapter, get('list')),
 
-    [SET_CHAPTER]: (state, { payload }) => state.map(setActiveByIndex(payload))
+    [SET_CHAPTER]: (state, { payload }) => {
+      const chapters = state.list.map(setActiveByIndex(payload))
+      return generateState(chapters)
+    }
   },
   INITIAL_STATE
 )

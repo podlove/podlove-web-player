@@ -2,8 +2,8 @@
   <div class="timer-chapter truncate" id="progress-bar--current-chapter">
     <span class="chapter-title" :aria-label="a11y" tabindex="0"
       :style="chapterStyle"
-      v-if="currentChapterIndex(chapters) > -1">
-        {{chapterTitle}}
+      v-if="title">
+        {{ title }}
     </span>
   </div>
 </template>
@@ -11,11 +11,17 @@
 <script>
   import { get } from 'lodash'
   import { mapState } from 'redux-vuex'
+  import selectors from 'store/selectors'
 
-  import { currentChapter, currentChapterIndex, currentChapterByPlaytime } from 'utils/chapters'
+  import { currentChapterByPlaytime } from 'utils/chapters'
 
   export default {
-    data: mapState('chapters', 'ghost', 'theme'),
+    data: mapState({
+      chapters: selectors.selectChapters,
+      currentChapter: selectors.selectCurrentChapter,
+      ghost: 'ghost',
+      theme: 'theme'
+    }),
     computed: {
       chapterStyle () {
         return {
@@ -23,24 +29,17 @@
         }
       },
 
-      chapterTitle () {
-        let current
-
+      title () {
         if (!this.ghost.active) {
-          current = currentChapter(this.chapters)
-        } else {
-          current = currentChapterByPlaytime(this.chapters)(this.ghost.time)
+          return get(this.currentChapter, 'title', '')
         }
 
-        return get(current, 'title', '')
+        return get(currentChapterByPlaytime(this.chapters)(this.ghost.time), 'title', '')
       },
 
       a11y () {
-        return this.$t('A11Y.TIMER_CHAPTER', { ...currentChapter(this.chapters) })
+        return this.$t('A11Y.TIMER_CHAPTER', this.chapter)
       }
-    },
-    methods: {
-      currentChapterIndex
     }
   }
 </script>

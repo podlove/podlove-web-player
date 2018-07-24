@@ -7,22 +7,29 @@
 
 <script>
   import { mapState, mapActions } from 'redux-vuex'
-  import ChapterNextIcon from 'icons/ChapterNextIcon'
+  import selectors from 'store/selectors'
 
-  import { nextChapter, currentChapter } from 'utils/chapters'
+  import ChapterNextIcon from 'icons/ChapterNextIcon'
 
   export default {
     components: {
       ChapterNextIcon
     },
-    data: mapState('chapters', 'theme', 'playtime', 'duration'),
+    data: mapState({
+      chapters: selectors.selectChapters,
+      currentChapter: selectors.selectCurrentChapter,
+      nextChapter: selectors.selectNextChapter,
+      theme: 'theme',
+      playtime: 'playtime',
+      duration: 'duration'
+    }),
     computed: {
       a11y () {
-        if (currentChapter(this.chapters).index === this.chapters.length) {
+        if (this.currentChapter.index === this.chapters.length) {
           return this.$t('A11Y.PLAYER_CHAPTER_END')
         }
 
-        return this.$t('A11Y.PLAYER_CHAPTER_NEXT', { ...nextChapter(this.chapters) })
+        return this.$t('A11Y.PLAYER_CHAPTER_NEXT', this.nextChapter)
       },
       isDisabled () {
         return this.playtime === this.duration

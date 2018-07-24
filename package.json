@@ -35,7 +35,7 @@
     "build": "npm run webpack:build",
     "build:cdn": "npm run webpack:cdn",
     "dev": "npm run dist:clean && npm run docs:dev && npm run webpack:dev",
-    "test": "npm run test:prepare && NODE_ENV=AVA nyc ava && nyc report",
+    "test": "npm run test:prepare && NODE_ENV=AVA nyc ava && nyc report --reporter=html",
     "test:ci": "npm run test:prepare && NODE_ENV=AVA nyc ava --tap | tap-xunit > reports/ava.xml && nyc report --reporter=lcov",
     "test:dev": "NODE_ENV=AVA ava --watch --fail-fast",
     "test:prepare": "rm -rf reports coverage && mkdir -p reports coverage",

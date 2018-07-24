@@ -7,7 +7,9 @@ let store, state
 
 test.beforeEach(t => {
   state = {
-    chapters: ['chapter 1', 'chapter 2'],
+    chapters: {
+      list: ['chapter 1', 'chapter 2']
+    },
     download: {
       files: [{
         url: 'http://foo.bar'

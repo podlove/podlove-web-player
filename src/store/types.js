@@ -3,7 +3,9 @@ export const INIT = 'INIT'
 
 // Chapters
 export const NEXT_CHAPTER = 'NEXT_CHAPTER'
+export const SET_NEXT_CHAPTER = 'SET_NEXT_CHAPTER'
 export const PREVIOUS_CHAPTER = 'PREVIOUS_CHAPTER'
+export const SET_PREVIOUS_CHAPTER = 'SET_PREVIOUS_CHAPTER'
 export const SET_CHAPTER = 'SET_CHAPTER'
 export const UPDATE_CHAPTER = 'UPDATE_CHAPTER'
 export const INIT_CHAPTERS = 'INIT_CHAPTERS'

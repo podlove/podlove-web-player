@@ -19,7 +19,6 @@
   "env": {
     "AVA": {
       "plugins": [
-        "transform-runtime",
         [
           "babel-plugin-webpack-alias",
           {

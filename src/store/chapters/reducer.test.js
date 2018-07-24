@@ -4,11 +4,45 @@ import { reducer as chapters } from './reducer'
 
 let chaptersTestData
 
+const generateTestData = (chapters, active) => {
+  const fallback = {
+    start: null,
+    end: null,
+    title: null,
+    index: -1
+  }
+
+  const activeIndex = active - 1
+  let list = chapters
+
+  if (activeIndex > -1) {
+    list = chapters.map(chapter => ({
+      ...chapter,
+      active: chapter.index === active
+    }))
+  }
+
+  let current = list[activeIndex] ? list[activeIndex] : fallback
+  let next = list[activeIndex + 1] ? list[activeIndex + 1] : fallback
+  let previous = list[activeIndex - 1] ? list[activeIndex - 1] : fallback
+
+  if (activeIndex < 0) {
+    next = list[0]
+  }
+
+  return {
+    list,
+    current,
+    next,
+    previous
+  }
+}
+
 test.beforeEach(t => {
   chaptersTestData = [
-    { start: 0, end: 3600000, title: 'First Chapter' },
-    { start: 3600000, end: 7200000, title: 'Second Chapter' },
-    { start: 7200000, end: 14400000, title: 'Third Chapter' }
+    { start: 0, end: 3600000, title: 'First Chapter', index: 1 },
+    { start: 3600000, end: 7200000, title: 'Second Chapter', index: 2 },
+    { start: 7200000, end: 14400000, title: 'Third Chapter', index: 3 }
   ]
 })
 
@@ -31,173 +65,68 @@ test(`INIT_CHAPTERS: it initializes the state without playtime`, t => {
     payload: chaptersTestData
   })
 
-  t.deepEqual(result, chaptersTestData)
+  t.deepEqual(result, generateTestData(chaptersTestData, -1))
 })
 
-test(`UPDATE_CHAPTER: it sets a chapter active depending on the current duration`, t => {
-  chaptersTestData[0].active = false
-  chaptersTestData[1].active = true
-
-  const result = chapters(chaptersTestData, {
+test(`UPDATE_CHAPTER: it sets a chapter active depending on the current playtime`, t => {
+  const result = chapters(generateTestData(chaptersTestData, 2), {
     type: 'UPDATE_CHAPTER',
     payload: 10
   })
 
-  const expected = cloneDeep(chaptersTestData)
-
-  expected[0].active = true
-  expected[1].active = false
-  expected[2].active = false
-
-  t.deepEqual(result, expected)
-})
-
-test(`UPDATE_CHAPTER: it sets a chapter active depending on the current duration`, t => {
-  chaptersTestData[0].active = false
-  chaptersTestData[1].active = true
-  chaptersTestData[2].active = false
-
-  const result = chapters(chaptersTestData, {
-    type: 'UPDATE_CHAPTER',
-    payload: 10
-  })
-
-  const expected = cloneDeep(chaptersTestData)
-
-  expected[0].active = true
-  expected[1].active = false
-  expected[2].active = false
-
-  t.deepEqual(result, expected)
+  t.deepEqual(result, generateTestData(chaptersTestData, 1))
 })
 
 test(`UPDATE_CHAPTER: returns the state if no active chapter was found`, t => {
-  chaptersTestData[0].active = false
-  chaptersTestData[1].active = false
-  chaptersTestData[2].active = false
-
-  const result = chapters(chaptersTestData, {
+  const result = chapters(generateTestData(chaptersTestData, 1), {
     type: 'UPDATE_CHAPTER',
     payload: 14400000
   })
 
-  const expected = cloneDeep(chaptersTestData)
-
-  t.deepEqual(result, expected)
+  t.deepEqual(result, generateTestData(chaptersTestData, 1))
 })
 
-test(`NEXT_CHAPTER: it sets the next chapter active`, t => {
-  chaptersTestData[0].active = true
-  chaptersTestData[1].active = false
-  chaptersTestData[2].active = false
-
-  let result = chapters(chaptersTestData, {
-    type: 'NEXT_CHAPTER'
+test(`SET_NEXT_CHAPTER: it sets the next chapter active`, t => {
+  let result = chapters(generateTestData(chaptersTestData, 1), {
+    type: 'SET_NEXT_CHAPTER'
   })
 
-  let expected = cloneDeep(chaptersTestData)
-  expected[0].active = false
-  expected[1].active = true
-  expected[2].active = false
+  t.deepEqual(result, generateTestData(chaptersTestData, 2))
 
-  t.deepEqual(result, expected)
-
-  chaptersTestData[0].active = false
-  chaptersTestData[1].active = true
-  chaptersTestData[2].active = false
-
-  result = chapters(chaptersTestData, {
-    type: 'NEXT_CHAPTER'
+  result = chapters(generateTestData(chaptersTestData, 3), {
+    type: 'SET_NEXT_CHAPTER'
   })
 
-  expected = cloneDeep(chaptersTestData)
-  expected[0].active = false
-  expected[1].active = false
-  expected[2].active = true
-
-  t.deepEqual(result, expected)
+  t.deepEqual(result, generateTestData(chaptersTestData, 3))
 })
 
 test(`PREVIOUS_CHAPTER: it sets the previous chapter active`, t => {
-  chaptersTestData[0].active = false
-  chaptersTestData[1].active = true
-  chaptersTestData[2].active = false
-
-  let result = chapters(chaptersTestData, {
-    type: 'PREVIOUS_CHAPTER'
+  let result = chapters(generateTestData(chaptersTestData, 2), {
+    type: 'SET_PREVIOUS_CHAPTER'
   })
 
-  let expected = cloneDeep(chaptersTestData)
-  expected[0].active = true
-  expected[1].active = false
-  expected[2].active = false
+  t.deepEqual(result, generateTestData(chaptersTestData, 1))
 
-  t.deepEqual(result, expected)
-
-  chaptersTestData[0].active = true
-  chaptersTestData[1].active = false
-  chaptersTestData[2].active = false
-
-  result = chapters(chaptersTestData, {
-    type: 'PREVIOUS_CHAPTER'
+  result = chapters(generateTestData(chaptersTestData, 1), {
+    type: 'SET_PREVIOUS_CHAPTER'
   })
 
-  expected = cloneDeep(chaptersTestData)
-  expected[0].active = true
-  expected[1].active = false
-  expected[2].active = false
-
-  t.deepEqual(result, expected)
+  t.deepEqual(result, generateTestData(chaptersTestData, 1))
 })
 
-test(`PREVIOUS_CHAPTER: falls back to 0 if no active chapter was found`, t => {
-  chaptersTestData[0].active = false
-  chaptersTestData[1].active = false
-  chaptersTestData[2].active = false
-
-  let result = chapters(chaptersTestData, {
-    type: 'PREVIOUS_CHAPTER'
+test(`SET_PREVIOUS_CHAPTER: falls back to first chapter if no active chapter was found`, t => {
+  let result = chapters(generateTestData(chaptersTestData, -1), {
+    type: 'SET_PREVIOUS_CHAPTER'
   })
 
-  let expected = cloneDeep(chaptersTestData)
-  expected[0].active = true
-  expected[1].active = false
-  expected[2].active = false
-
-  t.deepEqual(result, expected)
-})
-
-test(`NEXT_CHAPTER: falls back to chapters length if no active chapter was found`, t => {
-  chaptersTestData[0].active = false
-  chaptersTestData[1].active = false
-  chaptersTestData[2].active = true
-
-  let result = chapters(chaptersTestData, {
-    type: 'NEXT_CHAPTER'
-  })
-
-  let expected = cloneDeep(chaptersTestData)
-  expected[0].active = false
-  expected[1].active = false
-  expected[2].active = true
-
-  t.deepEqual(result, expected)
+  t.deepEqual(result, generateTestData(chaptersTestData, 1))
 })
 
 test(`SET_CHAPTER: it sets a chapter with a specific index active`, t => {
-  chaptersTestData[0].active = false
-  chaptersTestData[1].active = true
-  chaptersTestData[2].active = false
-
-  let result = chapters(chaptersTestData, {
+  let result = chapters(generateTestData(chaptersTestData, 3), {
     type: 'SET_CHAPTER',
     payload: 0
   })
 
-  let expected = cloneDeep(chaptersTestData)
-  expected[0].active = true
-  expected[1].active = false
-  expected[2].active = false
-
-  t.deepEqual(result, expected)
+  t.deepEqual(result, generateTestData(chaptersTestData, 1))
 })

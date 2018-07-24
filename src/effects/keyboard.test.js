@@ -142,23 +142,6 @@ test(`keyboardEffect: previous chapter dispatches PREVIOUS_CHAPTER`, t => {
   t.is(action.type, 'PREVIOUS_CHAPTER')
 })
 
-test(`keyboardEffect: previous chapter dispatches SET_CHAPTER if playtime is near chapters time`, t => {
-  store.getState = () => ({
-    playtime: 25,
-    duration: 2000,
-    chapters: [{
-      start: 0
-    }, {
-      active: true,
-      start: 20
-    }]
-  })
-
-  effect('alt+left')(store)
-  const action = store.dispatch.firstCall.args[0]
-  t.is(action.type, 'SET_CHAPTER')
-})
-
 test(`keyboardEffect: lower volume dispatches SET_VOLUME with the current volume minus the modifier`, t => {
   store.getState = () => ({
     volume: 1

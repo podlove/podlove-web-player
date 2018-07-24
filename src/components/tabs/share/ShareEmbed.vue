@@ -22,11 +22,11 @@
 
 <script>
   import { mapState, mapActions } from 'redux-vuex'
+  import selectors from 'store/selectors'
   import { compose } from 'lodash/fp'
 
   import { addQueryParameter } from 'utils/url'
   import { fromPlayerTime } from 'utils/time'
-  import { currentChapter } from 'utils/chapters'
 
   import OverlayComponent from 'shared/Overlay'
   import ButtonComponent from 'shared/Button'
@@ -36,7 +36,15 @@
 
   export default {
     props: ['type'],
-    data: mapState('show', 'episode', 'share', 'reference', 'theme', 'chapters', 'playtime'),
+    data: mapState({
+      show: 'show',
+      episode: 'episode',
+      share: 'share',
+      reference: 'reference',
+      theme: 'theme',
+      currentChapter: selectors.selectCurrentChapter,
+      playtime: 'playtime'
+    }),
     computed: {
       buttonStyle () {
         return {
@@ -69,8 +77,8 @@
         }
 
         if (this.type === 'chapter') {
-          const chapter = currentChapter(this.chapters)
-          parameters.t = `${fromPlayerTime(chapter.start)},${fromPlayerTime(chapter.end)}`
+          const { start, end } = this.currentChapter
+          parameters.t = `${fromPlayerTime(start)},${fromPlayerTime(end)}`
         }
 
         if (this.type === 'time') {
