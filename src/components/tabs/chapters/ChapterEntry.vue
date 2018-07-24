@@ -42,7 +42,6 @@
 <script>
   import { mapActions } from 'redux-vuex'
 
-  import runtime from 'utils/runtime'
   import { fromPlayerTime } from 'utils/time'
 
   import PlayIcon from 'icons/PlayIcon'
@@ -52,9 +51,8 @@
 
     data () {
       return {
-        ...this.mapState('theme', 'playtime', 'ghost'),
-        hover: false,
-        runtime
+        ...this.mapState('theme', 'playtime', 'ghost', 'runtime'),
+        hover: false
       }
     },
 

@@ -29,8 +29,6 @@
 
 <script>
   import { mapState, mapActions } from 'redux-vuex'
-
-  import runtime from 'utils/runtime'
   import { interpolate, relativePosition } from 'utils/math'
 
   import ChaptersIndicator from './ChapterIndicator'
@@ -39,9 +37,7 @@
     data () {
       return {
         thumbActive: false,
-        ...this.mapState('playtime', 'duration', 'theme', 'ghost', 'buffer', 'playstate', 'quantiles'),
-
-        runtime
+        ...this.mapState('playtime', 'duration', 'theme', 'ghost', 'buffer', 'playstate', 'quantiles', 'runtime')
       }
     },
     computed: {
