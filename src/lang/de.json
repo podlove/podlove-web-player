@@ -64,16 +64,16 @@
     "SHOW": {
       "TEXT": "\"{title}\" ({link})",
       "SUBJECT": "{title}"
-    }
-  },
-  "EMBED": {
-    "TITLE": "Embed Episode",
-    "LABEL": {
-      "SIZE": "Embed Size",
-      "CODE": "Embed Code"
     },
-    "ACTIONS": {
-      "COPY": "Code kopieren"
+    "EMBED": {
+      "TITLE": "Embed Episode",
+      "LABEL": {
+        "SIZE": "Embed Size",
+        "CODE": "Embed Code"
+      },
+      "ACTIONS": {
+        "COPY": "Code kopieren"
+      }
     }
   },
   "INFO": {
