@@ -9,12 +9,7 @@
   "bugs": {
     "url": "https://github.com/podlove/podlove-web-player/issues"
   },
-  "licenses": [
-    {
-      "type": "BSD 2-Clause License",
-      "url": "http://opensource.org/licenses/BSD-2-Clause"
-    }
-  ],
+  "license": "BSD-2-Clause",
   "keywords": [
     "podcasting",
     "podlove",
