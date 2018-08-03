@@ -11,21 +11,37 @@ test.beforeEach(t => {
   nock = nocker(request)
 
   state = {
-    chapters: [
-      {
+    chapters: {
+      list: [{
         start: 0,
-        end: 1000
+        end: 5000,
+        active: true,
+        index: 1
       },
       {
-        start: 1000,
-        end: 2000
+        start: 5000,
+        end: 10000,
+        index: 2
       },
       {
-        start: 2000,
-        end: 3000
-      }
-    ],
-    duration: 3000,
+        start: 10000,
+        end: 15000,
+        index: 3
+      }],
+      current: {
+        start: 0,
+        end: 5000,
+        active: true,
+        index: 1
+      },
+      next: {
+        start: 5000,
+        end: 10000,
+        index: 2
+      },
+      previous: null
+    },
+    duration: 15000,
     playtime: 2500,
     ghost: {
       active: false
@@ -50,7 +66,8 @@ test.cb(
     const dummyChapters = [
       {
         start: '00:00:00.000',
-        title: 'chapter 1'
+        title: 'chapter 1',
+        image: 'dummy'
       },
       {
         start: '00:00:43.137',
@@ -58,7 +75,8 @@ test.cb(
       },
       {
         start: '00:01:15.911',
-        title: 'chapter 3'
+        title: 'chapter 3',
+        image: 'dummy'
       }
     ]
 
@@ -75,21 +93,24 @@ test.cb(
           end: 43137,
           start: 0,
           title: 'chapter 1',
-          index: 1
+          index: 1,
+          image: 'dummy'
         },
         {
           active: true,
           end: 75911,
           start: 43137,
           title: 'chapter 2',
-          index: 2
+          index: 2,
+          image: undefined
         },
         {
           active: false,
           end: 100000,
           start: 75911,
           title: 'chapter 3',
-          index: 3
+          index: 3,
+          image: 'dummy'
         }
       ])
       t.end()
@@ -107,7 +128,8 @@ test.cb(
     const dummyChapters = [
       {
         start: '00:00:00.000',
-        title: 'chapter 1'
+        title: 'chapter 1',
+        image: 'dummy'
       },
       {
         start: '00:00:43.137',
@@ -115,7 +137,8 @@ test.cb(
       },
       {
         start: '00:01:15.911',
-        title: 'chapter 3'
+        title: 'chapter 3',
+        image: 'dummy'
       }
     ]
 
@@ -132,21 +155,24 @@ test.cb(
           end: 43137,
           start: 0,
           title: 'chapter 1',
-          index: 1
+          index: 1,
+          image: 'dummy'
         },
         {
           active: true,
           end: 75911,
           start: 43137,
           title: 'chapter 2',
-          index: 2
+          index: 2,
+          image: undefined
         },
         {
           active: false,
           end: 100000,
           start: 75911,
           title: 'chapter 3',
-          index: 3
+          index: 3,
+          image: 'dummy'
         }
       ])
       t.end()
@@ -169,7 +195,8 @@ test.cb(
     const dummyChapters = [
       {
         start: '00:00:00.000',
-        title: 'chapter 1'
+        title: 'chapter 1',
+        image: 'dummy'
       },
       {
         start: '00:00:43.137',
@@ -177,7 +204,8 @@ test.cb(
       },
       {
         start: '00:01:15.911',
-        title: 'chapter 3'
+        title: 'chapter 3',
+        image: 'dummy'
       }
     ]
 
@@ -191,21 +219,24 @@ test.cb(
           end: 43137,
           start: 0,
           title: 'chapter 1',
-          index: 1
+          index: 1,
+          image: 'dummy'
         },
         {
           active: true,
           end: 75911,
           start: 43137,
           title: 'chapter 2',
-          index: 2
+          index: 2,
+          image: undefined
         },
         {
           active: false,
           end: 100000,
           start: 75911,
           title: 'chapter 3',
-          index: 3
+          index: 3,
+          image: 'dummy'
         }
       ])
       t.end()
@@ -243,62 +274,94 @@ test.cb(
   }
 )
 
-test(`chaptersEffects: it triggers UPDATE_PLAYTIME if PREVIOUS_CHAPTER is dispatched`, t => {
-  state.chapters[0].active = true
+test(`chaptersEffects: it triggers SET_PREVIOUS_CHAPTER on PREVIOUS_CHAPTER if it just played less than 2 seconds`, t => {
+  state.chapters.list[1].active = true
+  state.chapters.current = state.chapters.list[1]
+  state.playtime = 5000
+
   chapters(store, { type: 'PREVIOUS_CHAPTER' })
 
-  state.chapters[0].active = false
-  state.chapters[2].active = true
+  t.deepEqual(store.dispatch.getCall(0).args[0], {
+    type: 'SET_PREVIOUS_CHAPTER'
+  })
+})
+
+test(`chaptersEffects: it triggers SET_CHAPTER on PREVIOUS_CHAPTER if it played more than 2 seconds`, t => {
+  state.chapters.list[1].active = true
+  state.chapters.current = state.chapters.list[1]
+  state.playtime = 7000
+
   chapters(store, { type: 'PREVIOUS_CHAPTER' })
 
+  t.deepEqual(store.dispatch.getCall(0).args[0], {
+    type: 'SET_CHAPTER',
+    payload: 1
+  })
+})
+
+test(`chaptersEffects: it triggers SET_NEXT_CHAPTER if NEXT_CHAPTER is dispatched`, t => {
+  chapters(store, { type: 'NEXT_CHAPTER', payload: 10 })
+
+  t.deepEqual(store.dispatch.getCall(0).args[0], {
+    type: 'SET_NEXT_CHAPTER',
+    payload: 10
+  })
+})
+
+test(`chaptersEffects: it triggers UPDATE_PLAYTIME with current chapter start time if not last chapter when SET_NEXT_CHAPTER was dispatched`, t => {
+  chapters(store, { type: 'SET_NEXT_CHAPTER' })
   t.deepEqual(store.dispatch.getCall(0).args[0], {
     type: 'UPDATE_PLAYTIME',
     payload: 0
   })
-
-  t.deepEqual(store.dispatch.getCall(1).args[0], {
-    type: 'UPDATE_PLAYTIME',
-    payload: 2000
-  })
 })
 
-test(`chaptersEffects: it triggers UPDATE_PLAYTIME if NEXT_CHAPTER is dispatched`, t => {
-  state.chapters[2].active = true
-  chapters(store, { type: 'NEXT_CHAPTER' })
-
-  state.chapters[2].active = false
-  state.chapters[1].active = true
-  chapters(store, { type: 'NEXT_CHAPTER' })
+test(`chaptersEffects: it triggers UPDATE_PLAYTIME with duration time if not last chapter when SET_NEXT_CHAPTER was dispatched`, t => {
+  state.chapters.current = state.chapters.list[2]
+  state.playtime = 11000
+  chapters(store, { type: 'SET_NEXT_CHAPTER' })
 
   t.deepEqual(store.dispatch.getCall(0).args[0], {
     type: 'UPDATE_PLAYTIME',
-    payload: 3000
+    payload: 15000
+  })
+})
+
+test(`chaptersEffects: it triggers UPDATE_PLAYTIME if SET_PREVIOUS_CHAPTER is dispatched`, t => {
+  state.chapters.list[2].active = true
+  state.chapters.current = state.chapters.list[2]
+  chapters(store, { type: 'SET_PREVIOUS_CHAPTER' })
+
+  state.chapters.list[2].active = false
+  state.chapters.list[1].active = true
+  state.chapters.current = state.chapters.list[1]
+  chapters(store, { type: 'SET_PREVIOUS_CHAPTER' })
+
+  t.deepEqual(store.dispatch.getCall(0).args[0], {
+    type: 'UPDATE_PLAYTIME',
+    payload: 10000
   })
 
   t.deepEqual(store.dispatch.getCall(1).args[0], {
     type: 'UPDATE_PLAYTIME',
-    payload: 1000
+    payload: 5000
   })
 })
 
 test(`chaptersEffects: it triggers UPDATE_PLAYTIME if SET_CHAPTER is dispatched`, t => {
-  state.chapters[1].active = true
+  state.chapters.list[1].active = true
+  state.chapters.current = state.chapters.list[1]
   chapters(store, { type: 'SET_CHAPTER' })
 
   t.deepEqual(store.dispatch.getCall(0).args[0], {
     type: 'UPDATE_PLAYTIME',
-    payload: 1000
+    payload: 5000
   })
 })
 
 test(`chaptersEffects: it triggers UPDATE_CHAPTER if SET_PLAYTIME is dispatched`, t => {
   chapters(store, { type: 'SET_PLAYTIME', payload: 1000 })
   chapters(store, { type: 'UPDATE_PLAYTIME', payload: 1000 })
-  state.ghost.active = true
-
-  chapters(store, { type: 'SET_PLAYTIME', payload: 1000 })
-  chapters(store, { type: 'UPDATE_PLAYTIME', payload: 1000 })
-  t.is(store.dispatch.getCalls().length, 2)
 
   t.deepEqual(store.dispatch.getCall(0).args[0], {
     type: 'UPDATE_CHAPTER',
@@ -308,5 +371,14 @@ test(`chaptersEffects: it triggers UPDATE_CHAPTER if SET_PLAYTIME is dispatched`
   t.deepEqual(store.dispatch.getCall(1).args[0], {
     type: 'UPDATE_CHAPTER',
     payload: 1000
+  })
+})
+
+test(`chapterEffects: it triggers UPDATE_CHAPTER if DISABLE_GHOST_MODE was dispatched`, t => {
+  chapters(store, { type: 'DISABLE_GHOST_MODE' })
+
+  t.deepEqual(store.dispatch.getCall(0).args[0], {
+    type: 'UPDATE_CHAPTER',
+    payload: 2500
   })
 })

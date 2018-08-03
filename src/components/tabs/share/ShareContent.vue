@@ -47,9 +47,9 @@
 
 <script>
   import { mapState, mapActions } from 'redux-vuex'
+  import selectors from 'store/selectors'
 
   import { get } from 'lodash'
-  import { currentChapter } from 'utils/chapters'
   import { fromPlayerTime } from 'utils/time'
 
   import ShareShowIcon from 'icons/ShareShowIcon'
@@ -58,7 +58,14 @@
   import SharePlaytimeIcon from 'icons/SharePlaytimeIcon'
 
   export default {
-    data: mapState('share', 'theme', 'episode', 'show', 'chapters', 'playtime'),
+    data: mapState({
+      share: 'share',
+      theme: 'theme',
+      episode: 'episode',
+      show: 'show',
+      currentChapter: selectors.selectCurrentChapterTitle,
+      playtime: 'playtime'
+    }),
     computed: {
       activeContentStyle () {
         return {
@@ -71,10 +78,6 @@
         return {
           'border-color': `${this.theme.tabs.share.content.active.background} transparent transparent transparent`
         }
-      },
-
-      currentChapter () {
-        return get(currentChapter(this.chapters), 'title', false)
       }
     },
     methods: {
@@ -86,11 +89,7 @@
       }),
 
       isActive (type) {
-        if (this.share.content === type) {
-          return true
-        }
-
-        return false
+        return this.share.content === type
       },
 
       fromPlayerTime

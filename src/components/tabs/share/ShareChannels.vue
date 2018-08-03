@@ -14,8 +14,8 @@
 
 <script>
   import { mapState } from 'redux-vuex'
+  import selectors from 'store/selectors'
 
-  import { currentChapter } from 'utils/chapters'
   import { fromPlayerTime } from 'utils/time'
   import { addQueryParameter } from 'utils/url'
 
@@ -29,7 +29,14 @@
 
   export default {
     props: ['type'],
-    data: mapState('show', 'episode', 'playtime', 'chapters', 'theme', 'reference'),
+    data: mapState({
+      show: 'show',
+      episode: 'episode',
+      playtime: 'playtime',
+      currentChapter: selectors.selectCurrentChapter,
+      theme: 'theme',
+      reference: 'reference'
+    }),
     computed: {
       shareLink () {
         let time
@@ -43,8 +50,8 @@
         }
 
         if (this.type === 'chapter') {
-          const chapter = currentChapter(this.chapters)
-          time = `${fromPlayerTime(chapter.start)},${fromPlayerTime(chapter.end)}`
+          const { start, end } = this.currentChapter
+          time = `${fromPlayerTime(start)},${fromPlayerTime(end)}`
         }
 
         if (this.type === 'time') {
@@ -66,7 +73,7 @@
           return this.$t('SHARE.EPISODE.TEXT.CHAPTER', {
             ...this.episode,
             link: this.shareLink,
-            chapter: currentChapter(this.chapters).title
+            chapter: this.currentChapter.title
           })
         }
 
@@ -96,7 +103,7 @@
           return this.$t('SHARE.EPISODE.SUBJECT.CHAPTER', {
             ...this.episode,
             link: this.shareLink,
-            chapter: currentChapter(this.chapters).title
+            chapter: this.currentChapter.title
           })
         }
 

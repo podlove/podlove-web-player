@@ -10,9 +10,14 @@
 
 <script>
   import { mapState } from 'redux-vuex'
+  import selectors from 'store/selectors'
 
   export default {
-    data: mapState('chapters', 'theme', 'duration'),
+    data: mapState({
+      chapters: selectors.selectChapters,
+      theme: 'theme',
+      duration: 'duration'
+    }),
     methods: {
       isLast (index) {
         return this.chapters.length - 1 === index

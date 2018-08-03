@@ -16,6 +16,8 @@ import {
   SET_TRANSCRIPTS_TIMELINE
 } from 'store/types'
 
+import selectors from 'store/selectors'
+
 import { handleActions } from 'utils/effects'
 
 const hasChapters = chapters => isArray(chapters) && chapters.length > 0
@@ -93,11 +95,11 @@ export default handleActions({
       ? dispatch(actions.showPauseButton())
       : dispatch(actions.showPlayingButton())),
 
-  [PLAY]: ({ dispatch }, action, state) => {
+  [PLAY]: ({ dispatch }, _, state) => {
     // Default behaviour
     dispatch(actions.showPlayingButton())
     dispatch(actions.toggleProgressBar(true))
-    hasChapters(state.chapters) ? dispatch(actions.toggleChapterControls(true)) : noop()
+    hasChapters(selectors.selectChapters(state)) ? dispatch(actions.toggleChapterControls(true)) : noop()
     dispatch(actions.toggleSteppersControls(true))
 
     // Error Fallbacks
@@ -107,14 +109,14 @@ export default handleActions({
 
   [PAUSE]: ({ dispatch }) => dispatch(actions.showPauseButton()),
 
-  [IDLE]: ({ dispatch }, action, state) => {
+  [IDLE]: ({ dispatch }, _, state) => {
     dispatch(actions.showPauseButton())
-    hasChapters(state.chapters) ? dispatch(actions.toggleChapterControls(true)) : noop()
+    hasChapters(selectors.selectChapters(state)) ? dispatch(actions.toggleChapterControls(true)) : noop()
     dispatch(actions.toggleSteppersControls(true))
     dispatch(actions.toggleProgressBar(true))
   },
 
-  [SET_TRANSCRIPTS_TIMELINE]: ({ dispatch }, { payload }, state) => {
+  [SET_TRANSCRIPTS_TIMELINE]: ({ dispatch }, { payload }) => {
     if (payload.length > 0) {
       dispatch(actions.toggleComponentTab('transcripts', true))
     }
