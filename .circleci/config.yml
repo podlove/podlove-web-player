@@ -24,19 +24,6 @@ aliases:
     |
       yarn install --non-interactive --cache-folder ~/.cache/yarn
 
-  # bundler helpers
-  - &bundler-restore-cache
-    name: Restore Bundler Artifact Cache
-    keys:
-      - v3-bundler-{{ checksum "docs/Gemfile.lock" }}
-      - v3-bundler-
-
-  - &bundler-save-cache
-    name: Save Bundler Artifact Cache
-    paths:
-      - vendor/bundle
-    key: v3-bundler-{{ checksum "docs/Gemfile.lock" }}
-
 defaults: &defaults
   working_directory: ~/podlove-web-player
 
@@ -46,11 +33,6 @@ defaults-js: &defaults-js
     - image: circleci/node:8
   environment:
     - PATH: "/opt/yarn/yarn-v1.5.1/bin:/home/circleci/.yarn/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-
-defaults-ruby: &defaults-ruby
-  <<: *defaults
-  docker:
-    - image: circleci/ruby:2
 
 defaults-cypress: &defaults-cypress
   <<: *defaults
@@ -90,33 +72,31 @@ jobs:
           paths: .
 
   docs-dev:
-    <<: *defaults-ruby
+    <<: *defaults-js
     name: Generating Documentation
     steps:
       - attach_workspace:
           at: ~/podlove-web-player
-      - restore-cache: *bundler-restore-cache
+      - restore-cache: *yarn-restore-cache
 
-      - run: cd docs && bundle install
-      - run: jekyll build --source docs --destination dist
-      - run: cp -R docs/fixtures/* dist/fixtures
+      - run: yarn docs:prod
 
-      - save-cache: *bundler-save-cache
+      - save-cache: *yarn-save-cache
       - persist_to_workspace:
           root: .
           paths: .
 
   docs-prod:
-    <<: *defaults-ruby
+    <<: *defaults-js
     name: Generating Documentation
     steps:
       - attach_workspace:
           at: ~/podlove-web-player
-      - restore-cache: *bundler-restore-cache
-      - run: cd docs && bundle install
-      - run: jekyll build --source docs --destination dist --config docs/_config_prd.yml
-      - run: cp -R docs/fixtures/* dist/fixtures
-      - save-cache: *bundler-save-cache
+      - restore-cache: *yarn-restore-cache
+
+      - run: BASE=podlove-web-player/ yarn docs:prod
+
+      - save-cache: *yarn-save-cache
       - persist_to_workspace:
           root: .
           paths: .
