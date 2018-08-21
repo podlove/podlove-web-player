@@ -20,9 +20,9 @@ const iframe = compose(
   createNode
 )
 
-const createFrame = anchor => new Promise((resolve) => resolve(iframe('iframe')))
+const createFrame = () => new Promise((resolve) => resolve(iframe('iframe')))
 
-export const sandboxWindow = selector => get(['contentWindow', ...selector])
+export const sandboxWindow = (selector = []) => get(['contentWindow', ...selector])
 
 const resize = curry((anchor, frame) => {
   const setFrameSize = () => setAttributes({ width: anchor.offsetWidth })(frame)
@@ -39,7 +39,13 @@ const resize = curry((anchor, frame) => {
 })
 
 const inject = curry((content, sandbox) => new Promise(resolve => {
+  const sdbxWindow = sandboxWindow()(sandbox)
   const doc = sandboxWindow(['document'])(sandbox)
+
+  // transfer global window functions to sandbox
+  if (window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) {
+    sdbxWindow.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+  }
 
   const onLoad = () => {
     if (doc.readyState === 'complete') {
@@ -60,7 +66,7 @@ const inject = curry((content, sandbox) => new Promise(resolve => {
 }))
 
 export const sandbox = curry((anchor, content) =>
-  createFrame(anchor)
+  createFrame()
     .then(appendNode(anchor))
     .then(resize(anchor))
     .then(inject(content))

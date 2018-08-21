@@ -3,14 +3,14 @@ const { entry, output, resolve, devServer, rules, plugins, optimization } = requ
 module.exports = {
   mode: 'development',
 
-  entry: entry(),
+  entry: entry.dev(),
   output: output(),
   resolve: resolve(),
 
   optimization: optimization(),
 
   devtool: 'inline-source-map',
-  devServer: devServer(),
+  devServer: devServer(9002),
 
   module: {
     rules: [
@@ -18,7 +18,8 @@ module.exports = {
       rules.javascript(),
       rules.images(),
       rules.styles('dev'),
-      rules.fonts()
+      rules.fonts(),
+      rules.examples()
     ]
   },
 
@@ -28,6 +29,8 @@ module.exports = {
     plugins.jarvis(1337),
     plugins.bundleAnalyzer(),
     plugins.hmr(),
-    plugins.html()
+    plugins.shareHtml(),
+    ...plugins.devHtml('standalone.html'),
+    plugins.env('development')
   ]
 }

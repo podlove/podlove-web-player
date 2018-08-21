@@ -1,8 +1,9 @@
+const { resolve } = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const autoprefixer = require('autoprefixer')
 const cssClean = require('postcss-clean')
 
-const { prepend } = require('./dir')
+const { prepend , sourceDir} = require('./dir')
 
 const vue = () => ({
   test: /\.vue$/,
@@ -57,6 +58,13 @@ const fonts = prefix => ({
   }
 })
 
+const examples = () => ({
+  test: /\.json$/,
+  include: [resolve(sourceDir, 'statics', 'example')],
+  type: 'javascript/auto',
+  loader: 'file-loader'
+})
+
 module.exports = {
-  vue, javascript, images, styles, fonts
+  vue, javascript, images, styles, fonts, examples
 }

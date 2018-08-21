@@ -1,7 +1,5 @@
 ---
-layout: page
-title: Extensions
-navigation: 8
+navigation: 7
 ---
 
 # Extensions
@@ -41,10 +39,4 @@ External event handling gives you the ability to control the player from other d
 <button class="button" rel="podlove-web-player" data-ref="example-player" data-tab="download">activate download tab</button>
 <button class="button" rel="podlove-web-player" data-ref="example-player" data-action="play" data-time="00:10:00" data-tab="download">all combined</button>
 
-<p id="example-player" class="section"></p>
-<script src="{{ 'embed.js' | relative_url }}"></script>
-<script src="{{ 'extensions/external-events.js' | relative_url }}"></script>
-<script>
-    podlovePlayer('#example-player', './fixtures/example.json').then(registerExternalEvents('example-player'));
-</script>
-
+<podlove-web-player :config="$withBase('fixtures/example.json')" id="example-player" />

@@ -5,7 +5,7 @@ const { entry, output, resolve, optimization, rules, plugins } = require('./bloc
 
 module.exports = {
   mode: 'production',
-  entry: entry(version),
+  entry: entry.prod(version),
   output: output(BASE),
 
   optimization: optimization(version),
@@ -28,6 +28,7 @@ module.exports = {
     plugins.minifyCss(),
     plugins.version(),
     plugins.base(`${BASE}${version}`),
-    plugins.html(version)
+    plugins.shareHtml(version),
+    plugins.env('production')
   ]
 }

@@ -1,0 +1,89 @@
+{
+  "show": {
+    "title": "Forschergeist",
+    "subtitle": "Horizonte f\u00fcr Bildung und Forschung",
+    "summary":
+      "Moderator Tim Pritlove spricht mit Wissenschaftlern und anderen Aktiven des Wissenschaftssystems \u00fcber aktuelle und zuk\u00fcnftige Trends und Praktiken f\u00fcr die Bildung, der Forschung und der Organisation und Kommunikation der Wissenschaft.\r\n\r\nDie ausf\u00fchrlichen Interviews wenden sich vor allem an junge und angehende Wissenschaftler, die nach M\u00f6glichkeiten suchen, ihre Forschung und Lehre den neuen Bed\u00fcrfnissen der Zeit anzupassen und weiter zu entwickeln.\r\n\r\nForschergeist ist ein Projekt des Stifterverbands f\u00fcr die Deutsche Wissenschaft und erscheint im Schnitt alle drei Wochen neu.",
+    "poster":
+      "https://forschergeist.de/wp-content/cache/podlove/56/919e28c4f31fedd72bcd78569f81bc/forschergeist_500x500.jpg",
+    "link": "https://forschergeist.de"
+  },
+  "reference": {
+    "config": "https:\/\/forschergeist.de\/?podlove_player4=154"
+  },
+  "theme": { "main": "#12584b" },
+  "title": "FG045 Martin Luther",
+  "subtitle": "\u00dcber den Menschen Martin Luther und die Erforschung des Mittelalters",
+  "summary":
+    "2017 ist das Luther-Jahr. Die evangelische Kirche feiert 500 Jahre Reformation. Am 31. Oktober 1517 hatte Martin Luther (1483-1546) seine 95 Thesen gegen die Missst\u00e4nde der Kirche seiner Zeit ver\u00f6ffentlicht. Der legend\u00e4re Thesenanschlag gilt als Ausgangspunkt der weltweiten Reformation, die die Spaltung in evangelische und katholische Kirche zur Folge hatte.<br />\r\n<br />\r\nIn dieser Folge sprechen wir mit der in Oxford lehrenden australisch-britischen Historikerin Lyndal Roper \u00fcber den Menschen Martin Luther, \u00fcber seine Widerspr\u00fcche und fr\u00fchen Pr\u00e4gungen. Wer war dieser Mensch, der, wie Lyndal Roper sagt, mit dem K\u00f6rper gedacht hat?<br />\r\n<br />\r\nLyndal Roper forscht zu Geschlechterrollen, Hexenverfolgung und K\u00f6rpergeschichte der fr\u00fchen Neuzeit. P\u00fcnktlich zum Luther-Jahr erschien ihre wegweisende Luther-Biografie \u201eDer Mensch Martin Luther\u201c, in dem sie ein sehr differenziertes Bild des Reformators zeichnet. \u201eLuther konnte\u201c, so Roper, \u201e ein wunderbarer Tr\u00f6ster sein, aber Menschen auch richtig niedermachen.\u201c",
+  "publicationDate": "2017-06-09T10:00:02+00:00",
+  "poster":
+    "https://forschergeist.de/wp-content/cache/podlove/f1/601fb0767fde9037119dc3607cb498/fg045-martin-luther_500x500.jpg",
+  "duration": "01:01:52.873",
+  "link": "https://forschergeist.de/podcast/fg045-martin-luther/",
+  "audio": [
+    {
+      "url": "https://forschergeist.de/podlove/file/1026/s/webplayer/c/episode/fg045-martin-luther.m4a",
+      "size": "51459312",
+      "title": "MPEG-4 AAC Audio (m4a)",
+      "mimeType": "audio/mp4"
+    },
+    {
+      "url": "https://forschergeist.de/podlove/file/1022/s/webplayer/c/episode/fg045-martin-luther.opus",
+      "size": "39849787",
+      "title": "Opus Audio (opus)",
+      "mimeType": "audio/opus"
+    },
+    {
+      "url": "https://forschergeist.de/podlove/file/1028/s/webplayer/c/episode/fg045-martin-luther.oga",
+      "size": "52096417",
+      "title": "Ogg Vorbis Audio (oga)",
+      "mimeType": "audio/ogg"
+    },
+    {
+      "url": "https://forschergeist.de/podlove/file/1027/s/webplayer/c/episode/fg045-martin-luther.mp3",
+      "size": "54200328",
+      "title": "MP3 Audio (mp3)",
+      "mimeType": "audio/mpeg"
+    }
+  ],
+  "chapters": [
+    { "start": "00:00:00.000", "title": "Intro", "href": "", "image": "" },
+    { "start": "00:00:42.645", "title": "Begr\u00fc\u00dfung", "href": "", "image": "" },
+    { "start": "00:01:17.725", "title": "Pers\u00f6nlicher Hintergrund", "href": "", "image": "" },
+    { "start": "00:06:28.942", "title": "Auswirkungen des Brexit", "href": "", "image": "" },
+    { "start": "00:11:12.223", "title": "Die Person Martin Luther", "href": "", "image": "" },
+    { "start": "00:14:50.873", "title": "Luthers Glaubensverst\u00e4ndnis", "href": "", "image": "" },
+    { "start": "00:24:32.358", "title": "Luthers Thesen", "href": "", "image": "" },
+    { "start": "00:29:38.309", "title": "Der Freie", "href": "", "image": "" },
+    { "start": "00:33:56.128", "title": "Luther und die Kirche", "href": "", "image": "" },
+    { "start": "00:36:31.141", "title": "Luthers Reisen", "href": "", "image": "" },
+    { "start": "00:38:04.652", "title": "Der Bruch mit der Kirche", "href": "", "image": "" },
+    { "start": "00:40:51.869", "title": "Lutherbibel", "href": "", "image": "" },
+    { "start": "00:43:12.919", "title": "Bedeutung Luthers", "href": "", "image": "" },
+    { "start": "00:48:37.417", "title": "Ordensaustritt und Heirat", "href": "", "image": "" },
+    { "start": "00:52:28.890", "title": "Unser Lutherbild", "href": "", "image": "" },
+    { "start": "00:59:51.886", "title": "Ausklang", "href": "", "image": "" }
+  ],
+  "contributors": [
+    {
+      "name": "Tim Pritlove",
+      "id": "timpritlove",
+      "avatar":
+        "https://forschergeist.de/wp-content/cache/podlove/47/08928e3c26dcb1141d67ad75869619/tim-pritlove_150x150.jpg",
+      "role": { "id": "1", "slug": "moderation", "title": "Moderation" },
+      "group": { "id": "1", "slug": "onair", "title": "On Air" },
+      "comment": null
+    },
+    {
+      "name": "Lyndal Roper",
+      "id": "lyndalroper",
+      "avatar":
+        "https:\/\/forschergeist.de\/podlove\/image\/68747470733a2f2f666f72736368657267656973742e64652f66696c65732f323031372f30352f6c796e64616c2d726f7065722e6a7067\/150\/150\/0\/lyndal-roper",
+      "role": { "id": "2", "slug": "guest", "title": "Gast" },
+      "group": { "id": "1", "slug": "onair", "title": "On Air" },
+      "comment": null
+    }
+  ],
+  "transcripts": "./fixtures/transcripts/fg45.json"
+}

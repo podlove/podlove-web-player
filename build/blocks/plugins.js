@@ -26,11 +26,21 @@ const base = base =>
     BASE: JSON.stringify(base)
   })
 
-const html = prefix => new HtmlWebpackPlugin({
+const shareHtml = prefix => new HtmlWebpackPlugin({
   filename: 'share.html',
   template: path.resolve(sourceDir, 'statics', 'share.html'),
   excludeChunks: [ 'embed', prepend('window', prefix) ]
 })
+
+const devHtml = (...files) => files.map(file =>
+  new HtmlWebpackPlugin({
+    filename: file,
+    template: path.resolve(sourceDir, 'statics', 'example', file),
+    chunksSortMode: 'none',
+    chunks: ['example', 'vendor', 'style', 'window'],
+    excludeChunks: ['embed', 'share']
+  })
+)
 
 const jarvis = (port = 1337) => new Jarvis({ port })
 
@@ -41,6 +51,10 @@ const bundleAnalyzer = () => new BundleAnalyzerPlugin({
 
 const hmr = () => new webpack.HotModuleReplacementPlugin()
 
+const env = mode => new webpack.DefinePlugin({
+  mode: JSON.stringify(mode)
+})
+
 module.exports = {
-  vue, css, minifyCss, version, base, html, jarvis, bundleAnalyzer, hmr
+  vue, css, minifyCss, version, base, shareHtml, devHtml, jarvis, bundleAnalyzer, hmr, env
 }
