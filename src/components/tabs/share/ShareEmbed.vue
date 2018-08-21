@@ -23,7 +23,6 @@
 <script>
   import { mapState, mapActions } from 'redux-vuex'
   import selectors from 'store/selectors'
-  import { compose } from 'lodash/fp'
 
   import { addQueryParameter } from 'utils/url'
   import { fromPlayerTime } from 'utils/time'

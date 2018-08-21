@@ -30,11 +30,11 @@ switch (type) {
     break
   case 'hls':
     createPlayer(episode({
-        audio: [{
-          "url": "https:\/\/media.metaebene.me\/hls\/freakshow\/fs218-der-kann-kein-blut-hoeren.m3u8",
-          "size": "195",
-          "title": "HLS Stream",
-          "mimeType": "application\/x-mpegURL"
+      audio: [{
+        url: 'https://media.metaebene.me/hls/freakshow/fs218-der-kann-kein-blut-hoeren.m3u8',
+        size: '195',
+        title: 'HLS Stream',
+        mimeType: 'application/x-mpegURL'
       }]
     }))
     break

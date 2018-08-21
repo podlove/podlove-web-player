@@ -49,7 +49,6 @@
   import { mapState, mapActions } from 'redux-vuex'
   import selectors from 'store/selectors'
 
-  import { get } from 'lodash'
   import { fromPlayerTime } from 'utils/time'
 
   import ShareShowIcon from 'icons/ShareShowIcon'

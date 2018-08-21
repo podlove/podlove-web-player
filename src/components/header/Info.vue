@@ -16,7 +16,7 @@
 </template>
 
 <script>
-  import { mapState, mapActions } from 'redux-vuex'
+  import { mapState } from 'redux-vuex'
   import selectors from 'store/selectors'
 
   import color from 'color'
@@ -55,7 +55,7 @@
       hasPoster () {
         return (this.episode.poster || this.show.poster || this.chapterPoster) &&
           this.visibleComponents.poster && this.components.header.poster
-      },
+      }
     },
     components: {
       PosterComponent

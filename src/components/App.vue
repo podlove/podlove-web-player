@@ -30,7 +30,7 @@
       }
     },
     mounted () {
-       this.$i18n.locale = this.runtime.language
+      this.$i18n.locale = this.runtime.language
     },
     components: {
       HeaderComponent,

@@ -45,7 +45,6 @@
         text.match(c.searchQuery) ? h('span', {class: { highlight: true }}, text) : text)
   }
 
-
   const text = (h, c) => (transcript, index) =>
     h('span', {
       class: {
