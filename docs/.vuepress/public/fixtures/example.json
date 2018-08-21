@@ -167,6 +167,20 @@
       "image": ""
     }
   ],
+  "visibleComponents": [
+    "tabInfo",
+    "tabChapters",
+    "tabDownload",
+    "tabAudio",
+    "tabShare",
+    "poster",
+    "showTitle",
+    "episodeTitle",
+    "subtitle",
+    "progressbar",
+    "controlSteppers",
+    "controlChapters"
+  ],
   "contributors": [
     {
       "name": "Tim Pritlove",

@@ -41,4 +41,4 @@ To integrate the player you first have to install tha package:
 npm install @podlove/podlove-web-player --save
 ```
 
-Afterwards move the player assets to a public folder of some webserver. By default the player will try to load further chunks from the webserver base. If the player files are located in a subpath you have to adapt the `reference.base` accordingly (see [config]({{ 'config.html' | relative_url }}))
+Afterwards move the player assets to a public folder of some webserver. By default the player will try to load further chunks from the webserver base. If the player files are located in a subpath you have to adapt the `reference.base` accordingly (see [config]({{ $withBase('config.html') }})

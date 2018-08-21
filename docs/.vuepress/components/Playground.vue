@@ -1,6 +1,8 @@
 <template>
   <div>
     <podlove-web-player :config="example" @ready="initPlayer" />
+
+    <h4>Config</h4>
     <json-editor :json="example" @update="updateConfig" height="500px" />
   </div>
 </template>

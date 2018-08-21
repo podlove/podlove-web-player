@@ -9,6 +9,8 @@
   import example from '../public/fixtures/example.json'
 
   export default {
+    name: 'store-subscribe',
+
     data () {
       return {
         example,

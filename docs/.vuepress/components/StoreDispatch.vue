@@ -118,6 +118,8 @@
   }]
 
   export default {
+    name: 'store-dispatch',
+
     data () {
       return {
         store: null,

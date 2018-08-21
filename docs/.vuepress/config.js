@@ -2,6 +2,7 @@ const base = process.env.BASE || ''
 
 module.exports = {
   title: 'VuePress Millidocs',
+  base,
   description: 'Simple documentation theme featuring Milligram CSS framework',
   theme: 'millidocs',
   head: [
@@ -14,14 +15,5 @@ module.exports = {
       permalink: false,
       permalinkBefore: false
     }
-  },
-  // configureWebpack: {
-  //   resolve: {
-  //     alias: {
-  //       '@assets': resolve('blog', 'assets'),
-  //       '@theme': resolve('blog', '.vuepress', 'theme'),
-  //       '@styles': resolve('blog', '.vuepress', 'theme', 'styles')
-  //     }
-  //   }
-  // },
+  }
 }

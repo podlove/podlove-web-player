@@ -200,16 +200,6 @@ jobs:
       - run: yarn global add greenkeeper-lockfile@1
       - run: greenkeeper-lockfile-upload
 
-  deploy-preview:
-    <<: *defaults-js
-    name: Deploying Surge.sh Preview
-    steps:
-      - attach_workspace:
-          at: ~/podlove-web-player
-      - restore-cache: *yarn-restore-cache
-      - run: yarn global add surge-preview
-      - run: surge-preview
-
   deploy-staging:
     <<: *defaults-js
     name: Deploying to podlove-player.surge.sh

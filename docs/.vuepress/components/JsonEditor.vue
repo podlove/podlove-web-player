@@ -3,8 +3,6 @@
 </template>
 
 <script>
-  import Editor from 'jsoneditor/dist/jsoneditor.min'
-
   export default {
     name: 'json-editor',
     props: ['json', 'height', 'mode'],
@@ -16,19 +14,21 @@
       }
     },
     mounted () {
-      this.editor = new Editor(this.$el, {
-        search: false,
-        onChangeText: this.onChange.bind(this),
-        sortObjectKeys: false,
-        mode: this.mode || 'code',
-        statusBar: false
-      })
+      import('jsoneditor/dist/jsoneditor.min').then(Editor => {
+        this.editor = new Editor.default(this.$el, {
+          search: false,
+          onChangeText: this.onChange.bind(this),
+          sortObjectKeys: false,
+          mode: this.mode || 'code',
+          statusBar: false
+        })
 
-      this.$emit('ready', this.editor)
-      this.editor.set(this.json)
+        this.$emit('ready', this.editor)
+        this.editor.set(this.json)
+      })
     },
     beforeDestroy() {
-      this.editor.destroy()
+      this.editor && this.editor.destroy()
       this.editor = null
     }
   }
@@ -45,5 +45,9 @@
 
   .jsoneditor-menu {
     display: none;
+  }
+
+  .ace_editor {
+    position: static;
   }
 </style>

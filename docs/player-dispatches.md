@@ -20,4 +20,4 @@ You can find a complete list of available types in the [types definition](https:
 
 ## Dispatching to the Player
 
-<store-dispatches />
+<store-dispatch />

@@ -1,17 +1,18 @@
 <template>
   <div class="container">
     <podlove-web-player :config="config" @ready="onReady"/>
-
-    <div class="row">
-      <div class="column">
-        <h4>Main</h4>
-        <picker v-model="main" />
+    <ClientOnly>
+      <div class="row">
+        <div class="column">
+          <h4>Main</h4>
+          <picker v-model="main" />
+        </div>
+        <div class="column">
+          <h4>Highlight</h4>
+          <picker v-model="highlight" />
+        </div>
       </div>
-      <div class="column">
-        <h4>Highlight</h4>
-        <picker v-model="highlight" />
-      </div>
-    </div>
+    </ClientOnly>
   </div>
 </template>
 
