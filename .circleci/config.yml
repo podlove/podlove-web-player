@@ -10,15 +10,15 @@ aliases:
   - &yarn-restore-cache
     name: Restore Yarn Artifact Cache
     keys:
-      - v1-yarn-{{ arch }}-{{ checksum "package.json" }}
-      - v1-yarn-{{ arch }}-
+      - v2-yarn-{{ arch }}-{{ checksum "package.json" }}
+      - v2-yarn-{{ arch }}-
 
   - &yarn-save-cache
     name: Save Yarn Artifact Cache
     paths:
       - node_modules
       - ~/.cache/yarn
-    key: v1-yarn-{{ arch }}-{{ checksum "package.json" }}
+    key: v2-yarn-{{ arch }}-{{ checksum "package.json" }}
 
   - &yarn
     |
@@ -37,10 +37,10 @@ defaults-js: &defaults-js
 defaults-cypress: &defaults-cypress
   <<: *defaults
   docker:
-    - image: cypress/base:8
+    - image: cypress/base:10
   environment:
     - TERM: xterm
-    - PATH: "/opt/yarn/yarn-v1.5.1/bin:/home/circleci/.yarn/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+    - PATH: "/opt/yarn/yarn-v1.9.2/bin:/home/circleci/.yarn/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
 jobs:
   checkout:
