@@ -10,32 +10,19 @@ aliases:
   - &yarn-restore-cache
     name: Restore Yarn Artifact Cache
     keys:
-      - v1-yarn-{{ arch }}-{{ checksum "package.json" }}
-      - v1-yarn-{{ arch }}-
+      - v2-yarn-{{ arch }}-{{ checksum "package.json" }}
+      - v2-yarn-{{ arch }}-
 
   - &yarn-save-cache
     name: Save Yarn Artifact Cache
     paths:
       - node_modules
       - ~/.cache/yarn
-    key: v1-yarn-{{ arch }}-{{ checksum "package.json" }}
+    key: v2-yarn-{{ arch }}-{{ checksum "package.json" }}
 
   - &yarn
     |
       yarn install --non-interactive --cache-folder ~/.cache/yarn
-
-  # bundler helpers
-  - &bundler-restore-cache
-    name: Restore Bundler Artifact Cache
-    keys:
-      - v3-bundler-{{ checksum "docs/Gemfile.lock" }}
-      - v3-bundler-
-
-  - &bundler-save-cache
-    name: Save Bundler Artifact Cache
-    paths:
-      - vendor/bundle
-    key: v3-bundler-{{ checksum "docs/Gemfile.lock" }}
 
 defaults: &defaults
   working_directory: ~/podlove-web-player
@@ -43,27 +30,21 @@ defaults: &defaults
 defaults-js: &defaults-js
   <<: *defaults
   docker:
-    - image: circleci/node:8
+    - image: circleci/node:10
   environment:
-    - PATH: "/opt/yarn/yarn-v1.5.1/bin:/home/circleci/.yarn/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-
-defaults-ruby: &defaults-ruby
-  <<: *defaults
-  docker:
-    - image: circleci/ruby:2
+    - PATH: "/opt/yarn/yarn-v1.9.2/bin:/home/circleci/.yarn/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
 defaults-cypress: &defaults-cypress
   <<: *defaults
   docker:
-    - image: cypress/base:8
+    - image: cypress/base:10
   environment:
     - TERM: xterm
-    - PATH: "/opt/yarn/yarn-v1.5.1/bin:/home/circleci/.yarn/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+    - PATH: "/opt/yarn/yarn-v1.9.2/bin:/home/circleci/.yarn/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
 jobs:
   checkout:
     <<: *defaults-js
-    name: Checkout Project
     steps:
       - checkout
       - run: *setup-artifacts
@@ -73,7 +54,6 @@ jobs:
 
   install:
     <<: *defaults-js
-    name: Install Project Dependencies
     steps:
       - attach_workspace:
           at: ~/podlove-web-player
@@ -90,40 +70,35 @@ jobs:
           paths: .
 
   docs-dev:
-    <<: *defaults-ruby
-    name: Generating Documentation
+    <<: *defaults-js
     steps:
       - attach_workspace:
           at: ~/podlove-web-player
-      - restore-cache: *bundler-restore-cache
+      - restore-cache: *yarn-restore-cache
 
-      - run: cd docs && bundle install
-      - run: jekyll build --source docs --destination dist
-      - run: cp -R docs/fixtures/* dist/fixtures
+      - run: yarn docs:prod
 
-      - save-cache: *bundler-save-cache
+      - save-cache: *yarn-save-cache
       - persist_to_workspace:
           root: .
           paths: .
 
   docs-prod:
-    <<: *defaults-ruby
-    name: Generating Documentation
+    <<: *defaults-js
     steps:
       - attach_workspace:
           at: ~/podlove-web-player
-      - restore-cache: *bundler-restore-cache
-      - run: cd docs && bundle install
-      - run: jekyll build --source docs --destination dist --config docs/_config_prd.yml
-      - run: cp -R docs/fixtures/* dist/fixtures
-      - save-cache: *bundler-save-cache
+      - restore-cache: *yarn-restore-cache
+
+      - run: BASE=podlove-web-player/ yarn docs:prod
+
+      - save-cache: *yarn-save-cache
       - persist_to_workspace:
           root: .
           paths: .
 
   build-dev:
     <<: *defaults-js
-    name: Building Project
     steps:
       - attach_workspace:
           at: ~/podlove-web-player
@@ -134,7 +109,6 @@ jobs:
 
   build-prod:
     <<: *defaults-js
-    name: Building Project
     steps:
       - attach_workspace:
           at: ~/podlove-web-player
@@ -145,7 +119,6 @@ jobs:
 
   test-lint:
     <<: *defaults-js
-    name: Linting Project
     steps:
       - attach_workspace:
           at: ~/podlove-web-player
@@ -157,7 +130,6 @@ jobs:
 
   test-unit:
     <<: *defaults-js
-    name: Unit Tests
     steps:
       - attach_workspace:
           at: ~/podlove-web-player
@@ -170,7 +142,6 @@ jobs:
 
   test-build:
     <<: *defaults-js
-    name: Unit Tests
     steps:
       - attach_workspace:
           at: ~/podlove-web-player
@@ -178,7 +149,6 @@ jobs:
 
   test-integration:
     <<: *defaults-cypress
-    name: Integration Tests
     steps:
       - attach_workspace:
           at: ~/podlove-web-player
@@ -192,7 +162,6 @@ jobs:
 
   greenkeeper:
     <<: *defaults-js
-    name: Updating Greenkeeper Lockfile
     steps:
       - attach_workspace:
           at: ~/podlove-web-player
@@ -200,19 +169,8 @@ jobs:
       - run: yarn global add greenkeeper-lockfile@1
       - run: greenkeeper-lockfile-upload
 
-  deploy-preview:
-    <<: *defaults-js
-    name: Deploying Surge.sh Preview
-    steps:
-      - attach_workspace:
-          at: ~/podlove-web-player
-      - restore-cache: *yarn-restore-cache
-      - run: yarn global add surge-preview
-      - run: surge-preview
-
   deploy-staging:
     <<: *defaults-js
-    name: Deploying to podlove-player.surge.sh
     steps:
       - attach_workspace:
           at: ~/podlove-web-player
@@ -221,7 +179,6 @@ jobs:
 
   deploy-production:
     <<: *defaults-js
-    name: Deploying to docs.podlove.org/podlove-web-player
     steps:
       - attach_workspace:
           at: ~/podlove-web-player
@@ -231,7 +188,6 @@ jobs:
 
   publish-npm:
     <<: *defaults-js
-    name: Publish npm package
     steps:
       - attach_workspace:
           at: ~/podlove-web-player
@@ -243,7 +199,6 @@ jobs:
 
   publish-cdn:
     <<: *defaults-js
-    name: Publish to cdn.podlove.org
     steps:
       - attach_workspace:
           at: ~/podlove-web-player
@@ -314,16 +269,6 @@ workflows:
           filters:
             branches:
               only: master
-      # Deploy to a commit hash prefixed surge env
-      - deploy-preview:
-          requires:
-            - build-dev
-          filters:
-            branches:
-              only: /^(?!pull\/).*$/
-              ignore:
-                - development
-                - master
       # Deploy to podlove.surge.sh
       - deploy-staging:
           requires:

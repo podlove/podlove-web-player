@@ -28,7 +28,7 @@
 </template>
 
 <script>
-  import { mapState, mapActions } from 'redux-vuex'
+  import { mapActions } from 'redux-vuex'
   import { interpolate, relativePosition } from 'utils/math'
 
   import ChaptersIndicator from './ChapterIndicator'
@@ -55,7 +55,7 @@
     },
     methods: {
       ...mapActions({
-        onChange: ({ actions, dispatch }) => dispatch(actions.updatePlaytime(event.target.value)),
+        onChange: ({ actions, dispatch }, event) => dispatch(actions.updatePlaytime(event.target.value)),
 
         onInput: function ({ actions, dispatch }, event) {
           this.thumbAnimated = false

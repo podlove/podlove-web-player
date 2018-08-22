@@ -47,7 +47,7 @@
       onImageLoad: ({ dispatch, actions }) => {
         dispatch(actions.toggleInfoPoster(false))
       }
-    }),
+    })
   }
 </script>
 

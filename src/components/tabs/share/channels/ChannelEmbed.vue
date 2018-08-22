@@ -7,7 +7,6 @@
 
 <script>
   import { mapActions } from 'redux-vuex'
-  import { compose } from 'lodash/fp'
 
   import EmbedIcon from 'icons/EmbedIcon'
 

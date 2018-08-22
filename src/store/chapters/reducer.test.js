@@ -1,5 +1,4 @@
 import test from 'ava'
-import cloneDeep from 'lodash/cloneDeep'
 import { reducer as chapters } from './reducer'
 
 let chaptersTestData

@@ -6,14 +6,11 @@ navigation: 3
 
 # Embedding
 
-<p id="example" class="section"></p>
-<script src="{{ 'embed.js' | relative_url }}"></script>
-<script>
-    podlovePlayer('#example', './fixtures/example.json');
-</script>
+<podlove-web-player :config="$withBase('fixtures/example.json')"/>
 
 ## Signature
 ```javascript
+/*
 *   Podlove Player Factory
 *   @param {string, dom node}   selector        - CSS selector or dom node
 *   @param {string, object}     configuration   - Path to JSON config or configuration object
