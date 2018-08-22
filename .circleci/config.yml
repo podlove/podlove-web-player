@@ -45,7 +45,6 @@ defaults-cypress: &defaults-cypress
 jobs:
   checkout:
     <<: *defaults-js
-    name: Checkout Project
     steps:
       - checkout
       - run: *setup-artifacts
@@ -55,7 +54,6 @@ jobs:
 
   install:
     <<: *defaults-js
-    name: Install Project Dependencies
     steps:
       - attach_workspace:
           at: ~/podlove-web-player
@@ -73,7 +71,6 @@ jobs:
 
   docs-dev:
     <<: *defaults-js
-    name: Generating Documentation
     steps:
       - attach_workspace:
           at: ~/podlove-web-player
@@ -88,7 +85,6 @@ jobs:
 
   docs-prod:
     <<: *defaults-js
-    name: Generating Documentation
     steps:
       - attach_workspace:
           at: ~/podlove-web-player
@@ -103,7 +99,6 @@ jobs:
 
   build-dev:
     <<: *defaults-js
-    name: Building Project
     steps:
       - attach_workspace:
           at: ~/podlove-web-player
@@ -114,7 +109,6 @@ jobs:
 
   build-prod:
     <<: *defaults-js
-    name: Building Project
     steps:
       - attach_workspace:
           at: ~/podlove-web-player
@@ -125,7 +119,6 @@ jobs:
 
   test-lint:
     <<: *defaults-js
-    name: Linting Project
     steps:
       - attach_workspace:
           at: ~/podlove-web-player
@@ -137,7 +130,6 @@ jobs:
 
   test-unit:
     <<: *defaults-js
-    name: Unit Tests
     steps:
       - attach_workspace:
           at: ~/podlove-web-player
@@ -150,7 +142,6 @@ jobs:
 
   test-build:
     <<: *defaults-js
-    name: Unit Tests
     steps:
       - attach_workspace:
           at: ~/podlove-web-player
@@ -158,7 +149,6 @@ jobs:
 
   test-integration:
     <<: *defaults-cypress
-    name: Integration Tests
     steps:
       - attach_workspace:
           at: ~/podlove-web-player
@@ -172,7 +162,6 @@ jobs:
 
   greenkeeper:
     <<: *defaults-js
-    name: Updating Greenkeeper Lockfile
     steps:
       - attach_workspace:
           at: ~/podlove-web-player
@@ -182,7 +171,6 @@ jobs:
 
   deploy-staging:
     <<: *defaults-js
-    name: Deploying to podlove-player.surge.sh
     steps:
       - attach_workspace:
           at: ~/podlove-web-player
@@ -191,7 +179,6 @@ jobs:
 
   deploy-production:
     <<: *defaults-js
-    name: Deploying to docs.podlove.org/podlove-web-player
     steps:
       - attach_workspace:
           at: ~/podlove-web-player
@@ -201,7 +188,6 @@ jobs:
 
   publish-npm:
     <<: *defaults-js
-    name: Publish npm package
     steps:
       - attach_workspace:
           at: ~/podlove-web-player
@@ -213,7 +199,6 @@ jobs:
 
   publish-cdn:
     <<: *defaults-js
-    name: Publish to cdn.podlove.org
     steps:
       - attach_workspace:
           at: ~/podlove-web-player
