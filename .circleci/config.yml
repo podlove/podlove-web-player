@@ -269,16 +269,6 @@ workflows:
           filters:
             branches:
               only: master
-      # Deploy to a commit hash prefixed surge env
-      - deploy-preview:
-          requires:
-            - build-dev
-          filters:
-            branches:
-              only: /^(?!pull\/).*$/
-              ignore:
-                - development
-                - master
       # Deploy to podlove.surge.sh
       - deploy-staging:
           requires:
