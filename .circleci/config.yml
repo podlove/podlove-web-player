@@ -30,9 +30,9 @@ defaults: &defaults
 defaults-js: &defaults-js
   <<: *defaults
   docker:
-    - image: circleci/node:8
+    - image: circleci/node:10
   environment:
-    - PATH: "/opt/yarn/yarn-v1.5.1/bin:/home/circleci/.yarn/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+    - PATH: "/opt/yarn/yarn-v1.9.2/bin:/home/circleci/.yarn/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
 defaults-cypress: &defaults-cypress
   <<: *defaults
