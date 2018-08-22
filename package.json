@@ -27,7 +27,7 @@
     "webpack:build": "webpack --config build/webpack.config.prod.js",
     "webpack:cdn": "webpack --config build/webpack.config.cdn.js",
     "build": "npm run webpack:build",
-    "now-build": "npm run docs:prod && npm run build",
+    "now-build": "npm run docs:prod",
     "now-start": "serve dist/",
     "build:cdn": "npm run webpack:cdn",
     "dev": "node scripts/dev.js",
