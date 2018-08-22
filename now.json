@@ -1,3 +1,13 @@
 {
-  "alias": "podlove-web-player"
+  "alias": "podlove-web-player",
+  "type": "npm",
+  "engines": {
+    "node": "10.0.0"
+  },
+  "files": [
+    "src",
+    "build",
+    "docs",
+    ".babelrc"
+  ]
 }

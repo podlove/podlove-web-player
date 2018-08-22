@@ -1,9 +1,9 @@
 const base = process.env.BASE || ''
 
 module.exports = {
-  title: 'VuePress Millidocs',
+  title: 'Podlove Web Player 4.0',
   base,
-  description: 'Simple documentation theme featuring Milligram CSS framework',
+  description: 'The fast, flexible and responsive podcast player powered by podlove meta data.',
   theme: 'millidocs',
   head: [
     ['link', { rel: 'icon', href: '/favicon.png' }],
