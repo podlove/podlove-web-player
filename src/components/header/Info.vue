@@ -3,11 +3,11 @@
     <poster-component v-if="hasPoster"></poster-component>
     <div class="description">
       <h2 class="show-title" :style="titleStyle" v-if="hasShowTitle" id="header-showtitle">
-        <a :href="show.link" target="_blank" class="truncate" v-if="show.link">{{ show.title }}</a>
+        <a :href="show.link" :target="target" class="truncate" v-if="show.link">{{ show.title }}</a>
         <span class="truncate" v-else>{{ show.title }}</span>
       </h2>
       <h1 class="title" v-marquee :style="titleStyle" v-if="hasEpisodeTitle" id="header-title">
-        <a :href="episode.link" target="_blank" v-if="episode.link">{{ episode.title }}</a>
+        <a :href="episode.link" :target="target" v-if="episode.link">{{ episode.title }}</a>
         <span v-else>{{ episode.title }}</span>
       </h1>
       <h3 class="subtitle" :style="subtitleStyle" v-if="hasDescription" id="header-subtitle">{{ episode.subtitle }}</h3>
@@ -55,6 +55,9 @@
       hasPoster () {
         return (this.episode.poster || this.show.poster || this.chapterPoster) &&
           this.visibleComponents.poster && this.components.header.poster
+      },
+      target () {
+        return this.display === 'native' ? '_parent' : '_blank'
       }
     },
     components: {
