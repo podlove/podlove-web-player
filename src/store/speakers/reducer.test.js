@@ -25,10 +25,7 @@ test(`speakers: it is a reducer function`, t => {
 test(`speakers: it sets the onair speakers on INIT`, t => {
   const result = speakers(undefined, testAction)
 
-  t.deepEqual(result, [{
-    name: 'foo',
-    group: { slug: 'onair' }
-  }])
+  t.deepEqual(result, testAction.payload.contributors)
 })
 
 test(`speakers: it does nothing if not a registered action is dispatched`, t => {
