@@ -6,7 +6,5 @@ import { INIT } from '../types'
 export const INITIAL_STATE = []
 
 export const reducer = handleActions({
-  [INIT]: (state, { payload }) =>
-    get(payload, 'contributors', [])
-      .filter(contributor => get(contributor, 'group.slug') === 'onair')
+  [INIT]: (state, { payload }) => get(payload, 'contributors', [])
 }, INITIAL_STATE)
