@@ -14,7 +14,7 @@ const createEmbedPlayer = (url) => {
 
   player.setAttribute('width', 768)
   player.setAttribute('height', 290)
-  player.setAttribute('src', `//localhost:8080/share.html?episode=${url}&t=01:30`)
+  player.setAttribute('src', `/share.html?episode=${url}&t=01:30`)
   player.setAttribute('frameborder', 0)
   player.setAttribute('scrolling', 'no')
 
