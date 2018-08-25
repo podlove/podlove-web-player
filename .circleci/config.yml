@@ -90,7 +90,7 @@ jobs:
           at: ~/podlove-web-player
       - restore-cache: *yarn-restore-cache
 
-      - run: BASE=podlove-web-player/ yarn docs:prod
+      - run: BASE=/podlove-web-player/ yarn docs:prod
 
       - save-cache: *yarn-save-cache
       - persist_to_workspace:
