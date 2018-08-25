@@ -1,0 +1,270 @@
+{
+  "show": {
+    "title": "Freak Show",
+    "subtitle": "Menschen! Technik! Sensationen!",
+    "summary": "Die muntere Talk Show um Leben mit Technik, das Netz und Technikkultur. Bisweilen Apple-lastig aber selten einseitig. Wir leben und lieben Technologie und reden dar\u00fcber. Mit Tim, hukl, roddi, Clemens und Denis. Freak Show hie\u00df irgendwann mal mobileMacs.",
+    "poster": "https:\/\/freakshow.fm\/wp-content\/cache\/podlove\/04\/662a9d4edcf77ea2abe3c74681f509\/freak-show_500x500.jpg",
+    "link": "https:\/\/freakshow.fm"
+  },
+  "reference": {
+    "share": "https:\/\/freakshow.fm\/wp-content\/plugins\/podlove-podcasting-plugin-for-wordpress\/lib\/modules\/podlove_web_player\/player_v4\/dist\/share.html",
+    "base": "https:\/\/freakshow.fm\/wp-content\/plugins\/podlove-podcasting-plugin-for-wordpress\/lib\/modules\/podlove_web_player\/player_v4\/dist",
+    "config": "https:\/\/freakshow.fm\/?podlove_player4=1510"
+  },
+  "theme": {
+    "main": "#CEB27F"
+  },
+  "title": "FS220 Mein Hotel brennt",
+  "subtitle": "Arbeiten bei Apple \u2014 Sommerpause der Metaebene \u2014 1001 Dauerauftr\u00e4ge \u2014 ZFS und APFS \u2014 Mobilfunk \u2014 iOS 12 \u2014 Swift \u2014 Oculus Go \u2014 HomePod \u2014 Camping",
+  "summary": "Die letzte Freak Show vor der gro\u00dfen Sommerpause der Metaebene begr\u00fc\u00dft einen Gast, der zuletzt vor f\u00fcnfeinhalb Jahren bei uns war: Dominik Wager (aka monkeydom) vormals bei den CodingMonkeys und in den letzten Jahren als Entwickler bei Apple besch\u00e4ftigt, erg\u00e4nzt die Runde und bringt das Thema Apple mal aus einer ganz anderen Perspektive auf den Tisch. Wir sprechen dar\u00fcber, wie es ist, bei Apple und in den USA zu arbeiten und blicken auch noch mal auf Doms Kritik an Swift, die j\u00fcngst eine Welle in der Entwicklergemeinde losgetreten hat.",
+  "publicationDate": "2018-07-06T01:13:01+00:00",
+  "poster": "https:\/\/freakshow.fm\/wp-content\/cache\/podlove\/04\/662a9d4edcf77ea2abe3c74681f509\/freak-show_500x500.jpg",
+  "duration": "04:37:24.310",
+  "link": "https:\/\/freakshow.fm\/fs220-mein-hotel-brennt",
+  "audio": [
+    {
+      "url": "https:\/\/freakshow.fm\/podlove\/file\/5406\/s\/webplayer\/c\/embed\/fs220-mein-hotel-brennt.m4a",
+      "size": "105688413",
+      "title": "MPEG-4 AAC Audio (m4a)",
+      "mimeType": "audio\/mp4"
+    },
+    {
+      "url": "https:\/\/freakshow.fm\/podlove\/file\/5409\/s\/webplayer\/c\/embed\/fs220-mein-hotel-brennt.opus",
+      "size": "101597134",
+      "title": "Opus Audio (opus)",
+      "mimeType": "audio\/opus"
+    },
+    {
+      "url": "https:\/\/freakshow.fm\/podlove\/file\/5407\/s\/webplayer\/c\/embed\/fs220-mein-hotel-brennt.oga",
+      "size": "102834863",
+      "title": "Ogg Vorbis Audio (oga)",
+      "mimeType": "audio\/ogg"
+    },
+    {
+      "url": "https:\/\/freakshow.fm\/podlove\/file\/5408\/s\/webplayer\/c\/embed\/fs220-mein-hotel-brennt.mp3",
+      "size": "166887266",
+      "title": "MP3 Audio (mp3)",
+      "mimeType": "audio\/mpeg"
+    }
+  ],
+  "chapters": [
+    {
+      "start": "00:00:00.000",
+      "title": "Intro",
+      "href": "",
+      "image": ""
+    },
+    {
+      "start": "00:01:47.587",
+      "title": "Begr\u00fc\u00dfung",
+      "href": "",
+      "image": ""
+    },
+    {
+      "start": "00:03:50.336",
+      "title": "Monkeydom",
+      "href": "",
+      "image": ""
+    },
+    {
+      "start": "00:17:11.875",
+      "title": "Arbeiten bei Apple",
+      "href": "",
+      "image": ""
+    },
+    {
+      "start": "00:27:53.759",
+      "title": "Apple Park und Meckerkultur",
+      "href": "",
+      "image": ""
+    },
+    {
+      "start": "00:34:37.667",
+      "title": "WWDC Talk halten",
+      "href": "",
+      "image": ""
+    },
+    {
+      "start": "00:58:29.301",
+      "title": "Arbeitskultur bei Apple",
+      "href": "",
+      "image": ""
+    },
+    {
+      "start": "01:13:16.503",
+      "title": "Radarbasierte Unternehmensf\u00fchrung",
+      "href": "",
+      "image": ""
+    },
+    {
+      "start": "01:20:34.358",
+      "title": "Commuting in der Bay Area",
+      "href": "",
+      "image": ""
+    },
+    {
+      "start": "01:30:40.149",
+      "title": "Sommerpause",
+      "href": "",
+      "image": ""
+    },
+    {
+      "start": "01:34:25.579",
+      "title": "H\u00f6rerzahlen und Podcast-Finanzierung",
+      "href": "",
+      "image": ""
+    },
+    {
+      "start": "02:03:01.799",
+      "title": "ZFS und APFS auf dem Mac",
+      "href": "",
+      "image": ""
+    },
+    {
+      "start": "02:12:01.354",
+      "title": "Mobilfunk und Datenverbrauch",
+      "href": "",
+      "image": ""
+    },
+    {
+      "start": "02:27:59.605",
+      "title": "iOS 12",
+      "href": "",
+      "image": ""
+    },
+    {
+      "start": "02:35:16.326",
+      "title": "Die Ablage und Internationalisierung",
+      "href": "",
+      "image": ""
+    },
+    {
+      "start": "02:46:16.101",
+      "title": "Swift und die Zukunft",
+      "href": "",
+      "image": ""
+    },
+    {
+      "start": "03:47:02.720",
+      "title": "Oculus Go",
+      "href": "",
+      "image": ""
+    },
+    {
+      "start": "03:56:10.474",
+      "title": "HomePod",
+      "href": "",
+      "image": ""
+    },
+    {
+      "start": "04:17:47.241",
+      "title": "Camping",
+      "href": "",
+      "image": ""
+    },
+    {
+      "start": "04:35:39.065",
+      "title": "Ausklang",
+      "href": "",
+      "image": ""
+    }
+  ],
+  "contributors": [
+    {
+      "name": "Tim Pritlove",
+      "avatar": "https:\/\/freakshow.fm\/wp-content\/cache\/podlove\/47\/08928e3c26dcb1141d67ad75869619\/tim-pritlove_150x150.jpg",
+      "role": {
+        "id": "9",
+        "slug": "team",
+        "title": "Team"
+      },
+      "group": {
+        "id": "1",
+        "slug": "onair",
+        "title": "On Air"
+      },
+      "comment": null,
+      "id": "tim-pritlove"
+    },
+    {
+      "name": "Denis Ahrens",
+      "avatar": "https:\/\/freakshow.fm\/wp-content\/cache\/podlove\/b2\/425e5c8f180ddf548c95be1c2d7bcf\/denis-ahrens_150x150.jpg",
+      "role": {
+        "id": "9",
+        "slug": "team",
+        "title": "Team"
+      },
+      "group": {
+        "id": "1",
+        "slug": "onair",
+        "title": "On Air"
+      },
+      "comment": null,
+      "id": "denis-ahrens"
+    },
+    {
+      "name": "roddi",
+      "avatar": "https:\/\/freakshow.fm\/wp-content\/cache\/podlove\/9a\/e990dd5df5a7252185e40a217cc858\/roddi_150x150.jpg",
+      "role": {
+        "id": "9",
+        "slug": "team",
+        "title": "Team"
+      },
+      "group": {
+        "id": "1",
+        "slug": "onair",
+        "title": "On Air"
+      },
+      "comment": null,
+      "id": "roddi"
+    },
+    {
+      "name": "Dominik Wagner",
+      "avatar": "https:\/\/freakshow.fm\/wp-content\/cache\/podlove\/56\/00660b1a179040102a8aec6991ae37\/dominik-wagner_150x150.jpg",
+      "role": {
+        "id": "6",
+        "slug": "guest",
+        "title": "Gast"
+      },
+      "group": {
+        "id": "1",
+        "slug": "onair",
+        "title": "On Air"
+      },
+      "comment": null,
+      "id": "dominik-wagner"
+    },
+    {
+      "name": "Rainer",
+      "avatar": "https:\/\/freakshow.fm\/wp-content\/cache\/podlove\/e3\/0e1625d65c32720b76624262bfdc59\/rainer_150x150.jpg",
+      "role": {
+        "id": "7",
+        "slug": "composition",
+        "title": "Komposition"
+      },
+      "group": {
+        "id": "3",
+        "slug": "support",
+        "title": "Support"
+      },
+      "comment": "Previously on Freak Show",
+      "id": null
+    },
+    {
+      "name": "Studio Link On Air",
+      "avatar": "https:\/\/freakshow.fm\/wp-content\/cache\/podlove\/e9\/21020bd25a7237733dc4bca4e868ab\/studio-link-on-air_150x150.jpg",
+      "role": {
+        "id": "10",
+        "slug": "streaming",
+        "title": "Streaming"
+      },
+      "group": {
+        "id": "3",
+        "slug": "support",
+        "title": "Support"
+      },
+      "comment": null,
+      "id": null
+    }
+  ]
+}

@@ -6,19 +6,11 @@
 </template>
 
 <script>
+  import { mapState } from 'redux-vuex'
   import color from 'color'
 
   export default {
-    data () {
-      return {
-        poster: this.$select('poster'),
-        title: this.$select('title'),
-        showTitle: this.$select('showTitle'),
-        subtitle: this.$select('subtitle'),
-        theme: this.$select('theme'),
-        error: this.$select('error')
-      }
-    },
+    data: mapState('poster', 'title', 'showTitle', 'subtitle', 'theme', 'error'),
     computed: {
       titleStyle () {
         return {

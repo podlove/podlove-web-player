@@ -10,46 +10,43 @@
 </template>
 
 <script>
-import copy from 'copy-to-clipboard'
+  import copy from 'copy-to-clipboard'
+  import { mapState } from 'redux-vuex'
 
-import { VPopover } from 'v-tooltip'
+  import { VPopover } from 'v-tooltip'
 
-export default {
-  props: ['content'],
-  data () {
-    return {
-      theme: this.$select('theme')
-    }
-  },
+  export default {
+    props: ['content'],
+    data: mapState('theme'),
 
-  methods: {
-    onClick () {
-      if (!this.content) {
-        return
+    methods: {
+      onClick () {
+        if (!this.content) {
+          return
+        }
+
+        copy(this.content)
+        this.show()
+        setTimeout(() => this.hide(), 6000)
+      },
+
+      show () {
+        this.$refs.popover.show()
+      },
+
+      hide () {
+        this.$refs.popover.hide()
+      },
+
+      onMouseLeave () {
+        this.hide()
       }
-
-      copy(this.content)
-      this.show()
-      setTimeout(() => this.hide(), 6000)
     },
 
-    show () {
-      this.$refs.popover.show()
-    },
-
-    hide () {
-      this.$refs.popover.hide()
-    },
-
-    onMouseLeave () {
-      this.hide()
+    components: {
+      VPopover
     }
-  },
-
-  components: {
-    VPopover
   }
-}
 </script>
 
 <style lang="scss">

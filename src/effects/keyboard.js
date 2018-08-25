@@ -1,6 +1,4 @@
 import { get } from 'lodash'
-import { currentChapter, currentChapterIndex } from 'utils/chapters'
-
 import actions from 'store/actions'
 
 let modifier = 0
@@ -45,23 +43,8 @@ const playPause = store => () => {
   }
 }
 
-const nextChapter = store => () => {
-  store.dispatch(actions.nextChapter())
-}
-
-const previousChapter = store => () => {
-  const state = store.getState()
-  const chapters = get(state, 'chapters')
-  const playtime = get(state, 'playtime')
-  const current = currentChapter(chapters)
-  const currentIndex = currentChapterIndex(chapters)
-
-  if (playtime - current.start <= 2) {
-    store.dispatch(actions.previousChapter())
-  } else {
-    store.dispatch(actions.setChapter(currentIndex))
-  }
-}
+const nextChapter = ({ dispatch }) => () => dispatch(actions.nextChapter())
+const previousChapter = ({ dispatch }) => () => dispatch(actions.previousChapter())
 
 const changeVolume = (store, modifier) => () => {
   const state = store.getState()

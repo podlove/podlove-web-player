@@ -6,27 +6,26 @@
 </template>
 
 <script>
-  import store from 'store'
+  import { mapActions, mapState } from 'redux-vuex'
   import StepBackIcon from 'icons/StepBackIcon'
 
   export default {
     components: {
       StepBackIcon
     },
-    data () {
-      return {
-        playtime: this.$select('playtime'),
-        playstate: this.$select('playstate'),
-        theme: this.$select('theme')
-      }
-    },
+    data: mapState('playtime', 'playstate', 'theme'),
     methods: {
-      onButtonClick () {
-        store.dispatch(store.actions.updatePlaytime(this.$select('playtime') - 15000))
+      onButtonClick ({ actions, dispatch }) {
+        dispatch(actions.updatePlaytime(this.playtime - 15000))
       },
       isDisabled (playtime) {
         return (Math.round(playtime, 1) - 15) < 0
-      }
+      },
+      ...mapActions({
+        onButtonClick: function ({ actions, dispatch }) {
+          dispatch(actions.updatePlaytime(this.playtime - 15000))
+        }
+      })
     }
   }
 </script>

@@ -8,19 +8,13 @@
 </template>
 
 <script>
+  import { mapState } from 'redux-vuex'
+
   import ControlBar from './control-bar/ControlBar'
   import ProgressBar from './progress-bar/ProgressBar'
 
   export default {
-    data () {
-      return {
-        playstate: this.$select('playstate'),
-        reference: this.$select('reference'),
-        theme: this.$select('theme'),
-        visibleComponents: this.$select('visibleComponents'),
-        components: this.$select('components')
-      }
-    },
+    data: mapState('playstate', 'reference', 'theme', 'visibleComponents', 'components'),
     computed: {
       backgroundStyle () {
         return {

@@ -6,6 +6,7 @@
 
 <script>
   import { map } from 'lodash'
+  import { asyncAnimation } from 'utils/helper'
 
   import TranscriptEntry from './Entry'
 
@@ -16,9 +17,11 @@
     },
     mounted () {
       this.$nextTick(() => {
-        const entries = map(this.$el.children, entry => entry.clientHeight)
+        const entries = map(this.$el.children, asyncAnimation(entry => entry.clientHeight))
 
-        this.$emit('load', entries)
+        Promise.all(entries).then(resolved => {
+          this.$emit('load', resolved)
+        })
       })
     }
   }

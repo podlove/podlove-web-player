@@ -7,20 +7,18 @@
 </template>
 
 <script>
-export default {
-  data () {
-    return {
-      theme: this.$select('theme')
-    }
-  },
-  computed: {
-    indicatorStyle () {
-      return {
-        background: this.theme.player.actions.icon
+  import { mapState } from 'redux-vuex'
+
+  export default {
+    data: mapState('theme'),
+    computed: {
+      indicatorStyle () {
+        return {
+          background: this.theme.player.actions.icon
+        }
       }
     }
   }
-}
 </script>
 
 <style lang="scss">

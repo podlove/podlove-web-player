@@ -33,6 +33,8 @@
 </template>
 
 <script>
+  import { mapState } from 'redux-vuex'
+
   import { calcHours, calcMinutes, localeDate, localeTime } from 'utils/time'
 
   import CalendarIcon from 'icons/CalendarIcon'
@@ -40,16 +42,7 @@
   import LinkIcon from 'icons/LinkIcon'
 
   export default {
-    data () {
-      return {
-        theme: this.$select('theme'),
-        show: this.$select('show'),
-        episode: this.$select('episode'),
-        speakers: this.$select('speakers'),
-        runtime: this.$select('runtime'),
-        duration: this.$select('duration')
-      }
-    },
+    data: mapState('theme', 'show', 'episode', 'speakers', 'runtime', 'duration'),
     computed: {
       episodeDuration () {
         return {

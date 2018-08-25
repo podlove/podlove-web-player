@@ -1,6 +1,4 @@
 ---
-layout: page
-title: Config
 navigation: 5
 ---
 
@@ -8,11 +6,14 @@ navigation: 5
 
 #### Show Information
 
-| show.title  | Show Title  |
-| show.subtitle  | Show Description  |
-| show.summary | Show Summary |
-| show.poster | Show Cover |
-| show.link | Url to show |
+
+| property        | description       |
+|-----------------|-------------------|
+| show.title      | Show Title        |
+| show.subtitle   | Show Description  |
+| show.summary    | Show Summary      |
+| show.poster     | Show Cover        |
+| show.link       | Url to show       |
 
 ```javascript
 {
@@ -28,6 +29,8 @@ navigation: 5
 
 #### Episode Information
 
+| property        | description               |
+|-----------------|---------------------------|
 | title           | Episode Title             |
 | subtitle        | Episode Description       |
 | summary         | Episode Summary           |
@@ -50,8 +53,10 @@ navigation: 5
 
 #### Episode Chapters
 
-| start | Chapter Start Time in Format hh:mm:ss |
-| title | Chapter Title |
+| property  | description                           |
+|-----------|---------------------------------------|
+| start     | Chapter Start Time in Format hh:mm:ss |
+| title     | Chapter Title                         |
 
 _Not providing chapters will disable all chapter related functions._
 
@@ -115,9 +120,11 @@ _Not providing chapters will disable all chapter related functions._
 
 #### References
 
-| reference.base | Reference to webplayer base, if not provided it falls back to the current url |
-| reference.config | Reference to the current configuration |
-| reference.share | Reference sharing embed endpoint |
+| property         | description                                                                   |
+|------------------|-------------------------------------------------------------------------------|
+| reference.base   | Reference to webplayer base, if not provided it falls back to the current url |
+| reference.config | Reference to the current configuration                                        |
+| reference.share  | Reference sharing embed endpoint                                              |
 
 ```javascript
 {
@@ -131,8 +138,10 @@ _Not providing chapters will disable all chapter related functions._
 
 #### Theming
 
-| theme.main | main theme color (default: #2B8AC6) |
-| theme.highlight | highlight theme color |
+| property        | description                         |
+|-----------------|-------------------------------------|
+| theme.main      | main theme color (default: #2B8AC6) |
+| theme.highlight | highlight theme color               |
 
 ```javascript
 {
@@ -145,8 +154,10 @@ _Not providing chapters will disable all chapter related functions._
 
 #### Runtime
 
+| property         | description                                          |
+|------------------|------------------------------------------------------|
 | runtime.platform | Platform (desktop,mobile), is detected by the player |
-| runtime.language | Language (en,de,...), defaults to browser language |
+| runtime.language | Language (en,de,...), defaults to browser language   |
 
 ```javascript
 {
@@ -159,6 +170,8 @@ _Not providing chapters will disable all chapter related functions._
 
 #### Contributors
 
+| property           | description                          |
+|--------------------|--------------------------------------|
 | contributor.name   | Name of contributor (e.g. speaker)   |
 | contributor.avatar | Absolute Url to contributor's avatar |
 
@@ -186,6 +199,8 @@ _Not providing chapters will disable all chapter related functions._
 
 To enable transcripts provide a URI to the transcriptions file.
 
+| property    | description                      |
+|-------------|----------------------------------|
 | transcripts | `http://url.to/transcripts.json` |
 
 The transcriptions file contains transcripts in the following format:
@@ -201,6 +216,8 @@ The transcriptions file contains transcripts in the following format:
 
 #### Tabs
 
+| property      | description             |
+|---------------|-------------------------|
 | tabs.info     | toggle the info tab     |
 | tabs.share    | toggle the share tab    |
 | tabs.chapters | toggle the chapters tab |
@@ -217,6 +234,8 @@ The transcriptions file contains transcripts in the following format:
 
 List of components that are visible in the player. if nothing is provided all components are visible.
 
+| property          | description           |
+|-------------------|-----------------------|
 | showTitle         | Header show title     |
 | episodeTitle      | Header episode title  |
 | subtitle          | Header subtitle       |
@@ -249,6 +268,8 @@ List of components that are visible in the player. if nothing is provided all co
 
 #### Simple Time Definitions
 
+| example       | description                             |
+|---------------|-----------------------------------------|
 | `01:35:52`    | 1 hour 35 minutes 52 seconds            |
 | `7:48`        | 7 minutes, 48 seconds                   |
 | `35:12.250`   | 35 minutes, 12 seconds, 250 ms          |

@@ -99,7 +99,7 @@ window.podlovePlayer = (selector, episode) =>
         // Set Title for accessibility
         .then(setAccessibilityAttributes(config))
         .then(resizer)
-        .then(sandboxWindow(['PODLOVE_STORE', 'store']))
+        .then(sandboxWindow(['PODLOVE_STORE']))
         .then(dispatchUrlParameters)
     )
     .catch(err => {

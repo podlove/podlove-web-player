@@ -21,12 +21,11 @@
 </template>
 
 <script>
-  import { compose } from 'lodash/fp'
+  import { mapState, mapActions } from 'redux-vuex'
+  import selectors from 'store/selectors'
+
   import { addQueryParameter } from 'utils/url'
   import { fromPlayerTime } from 'utils/time'
-  import { currentChapter } from 'utils/chapters'
-
-  import store from 'store'
 
   import OverlayComponent from 'shared/Overlay'
   import ButtonComponent from 'shared/Button'
@@ -36,17 +35,15 @@
 
   export default {
     props: ['type'],
-    data () {
-      return {
-        show: this.$select('show'),
-        episode: this.$select('episode'),
-        share: this.$select('share'),
-        reference: this.$select('reference'),
-        theme: this.$select('theme'),
-        chapters: this.$select('chapters'),
-        playtime: this.$select('playtime')
-      }
-    },
+    data: mapState({
+      show: 'show',
+      episode: 'episode',
+      share: 'share',
+      reference: 'reference',
+      theme: 'theme',
+      currentChapter: selectors.selectCurrentChapter,
+      playtime: 'playtime'
+    }),
     computed: {
       buttonStyle () {
         return {
@@ -79,8 +76,8 @@
         }
 
         if (this.type === 'chapter') {
-          const chapter = currentChapter(this.chapters)
-          parameters.t = `${fromPlayerTime(chapter.start)},${fromPlayerTime(chapter.end)}`
+          const { start, end } = this.currentChapter
+          parameters.t = `${fromPlayerTime(start)},${fromPlayerTime(end)}`
         }
 
         if (this.type === 'time') {
@@ -90,11 +87,12 @@
         return `<iframe title="${title}" width="${width}" height="${height}" src="${addQueryParameter(this.reference.share, parameters)}" frameborder="0" scrolling="no" tabindex="0"></iframe>`
       }
     },
-
     methods: {
       fromPlayerTime,
-      setEmbedSize: compose(store.dispatch.bind(store), store.actions.setShareEmbedSize),
-      closeEmbedOverlay: compose(store.dispatch.bind(store), store.actions.hideShareEmbed)
+      ...mapActions({
+        setEmbedSize: 'setShareEmbedSize',
+        closeEmbedOverlay: 'hideShareEmbed'
+      })
     },
     components: {
       OverlayComponent,

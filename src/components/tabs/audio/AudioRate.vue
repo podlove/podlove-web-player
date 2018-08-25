@@ -24,9 +24,9 @@
 </template>
 
 <script>
-  import store from 'store'
-
+  import { mapState, mapActions } from 'redux-vuex'
   import { compose } from 'lodash/fp'
+
   import { toPercent, roundUp, round } from 'utils/math'
 
   import InputSliderComponent from 'shared/InputSlider'
@@ -84,30 +84,27 @@
     return value
   }
 
-  // State Changers
-  const setRate = compose(store.dispatch.bind(store), store.actions.setRate)
-  const toStateRate = compose(setRate, round, speedSliderToState, normalizeSliderValue)
-  const toSliderRate = compose(round, stateToSpeedSlider, normalizeRateValue)
-
-  const changeRate = (offset, rate) => () => compose(setRate, roundUp(offset))(rate)
-
   export default {
-    data () {
-      return {
-        rate: this.$select('rate'),
-        theme: this.$select('theme')
-      }
-    },
+    data: mapState('rate', 'theme'),
     computed: {
       sliderRate: function () {
-        return toSliderRate(this.rate)
+        return this.toSliderRate(this.rate)
       }
     },
     methods: {
-      setRate,
-      toStateRate,
-      toSliderRate,
-      changeRate,
+      ...mapActions('setRate'),
+      toStateRate: function (value) {
+        compose(
+          this.setRate.bind(this),
+          round,
+          speedSliderToState,
+          normalizeSliderValue
+        )(value)
+      },
+      changeRate: function (offset, rate) {
+        return () => compose(this.setRate.bind(this), roundUp(offset))(rate)
+      },
+      toSliderRate: compose(round, stateToSpeedSlider, normalizeRateValue),
       toPercent
     },
     components: {

@@ -1,6 +1,6 @@
 const { distDir } = require('./dir')
 
-module.exports = () => ({
+module.exports = (port = 8080) => ({
   historyApiFallback: true,
   noInfo: true,
   overlay: true,
@@ -8,5 +8,6 @@ module.exports = () => ({
   hot: true,
   disableHostCheck: true,
   host: '0.0.0.0',
-  contentBase: distDir
+  contentBase: distDir,
+  port
 })

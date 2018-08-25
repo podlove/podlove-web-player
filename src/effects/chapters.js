@@ -1,47 +1,51 @@
 import { get, findIndex, isString } from 'lodash'
-import { getOr, compose } from 'lodash/fp'
 
-import { currentChapter, currentChapterIndex, setActiveByPlaytime, setActiveByIndex } from 'utils/chapters'
+import { setActiveByPlaytime, setActiveByIndex } from 'utils/chapters'
 import { handleActions } from 'utils/effects'
 import { toPlayerTime } from 'utils/time'
 import request from 'utils/request'
 
 import actions from 'store/actions'
 
-import { INIT, PREVIOUS_CHAPTER, NEXT_CHAPTER, SET_CHAPTER, SET_PLAYTIME, UPDATE_PLAYTIME } from 'store/types'
+import {
+  INIT,
+  PREVIOUS_CHAPTER,
+  SET_PREVIOUS_CHAPTER,
+  NEXT_CHAPTER,
+  SET_NEXT_CHAPTER,
+  SET_CHAPTER,
+  SET_PLAYTIME,
+  UPDATE_PLAYTIME,
+  DISABLE_GHOST_MODE
+} from 'store/types'
+
+import selectors from 'store/selectors'
 
 const parseChapters = duration => (result, chapter, index, chapters) => {
   const end = get(chapters, index + 1, { start: duration })
 
-  return [...result, {
-    index: index + 1,
-    start: toPlayerTime(chapter.start),
-    end: toPlayerTime(end.start),
-    title: chapter.title
-  }]
+  return [
+    ...result,
+    {
+      index: index + 1,
+      start: toPlayerTime(chapter.start),
+      end: toPlayerTime(end.start),
+      title: get(chapter, 'title'),
+      image: get(chapter, 'image')
+    }
+  ]
 }
 
 const fallbackToLastChapter = (playtime = 0) => (chapters = []) => {
   const index = findIndex(chapters, { active: true })
 
-  return (index > -1 || playtime === 0) ? chapters : chapters.map(setActiveByIndex(chapters.length - 1))
+  return index > -1 || playtime === 0
+    ? chapters
+    : chapters.map(setActiveByIndex(chapters.length - 1))
 }
 
-const chapterIndexFromState = compose(
-  currentChapterIndex,
-  getOr([], 'chapters')
-)
-
-const currentChapterFromState = compose(
-  currentChapter,
-  getOr([], 'chapters')
-)
-
-const chapterUpdate = ({ dispatch }, { payload }, state) => {
-  const ghost = get(state, 'ghost', {})
-
-  !ghost.active && dispatch(actions.updateChapter(payload))
-}
+const chapterUpdate = ({ dispatch }, { payload }) =>
+  dispatch(actions.updateChapter(payload))
 
 export default handleActions({
   [INIT]: ({ dispatch }, { payload }, state) => {
@@ -49,7 +53,9 @@ export default handleActions({
     const playtime = get(state, 'playtime', 0)
     const duration = get(state, 'duration', 0)
 
-    const requestChapters = isString(chapters) ? request(chapters) : Promise.resolve(chapters)
+    const requestChapters = isString(chapters)
+      ? request(chapters)
+      : Promise.resolve(chapters)
 
     requestChapters
       .catch(() => [])
@@ -60,30 +66,52 @@ export default handleActions({
       .then(dispatch)
   },
 
-  [PREVIOUS_CHAPTER]: ({ dispatch }, action, state) => {
-    const index = chapterIndexFromState(state)
-    const current = currentChapterFromState(state)
+  [PREVIOUS_CHAPTER]: ({ dispatch }, _, state) => {
+    const playtime = get(state, 'playtime', 0)
+    const { start, index } = selectors.selectCurrentChapter(state)
 
-    dispatch(actions.updatePlaytime(index === 0 ? 0 : current.start))
+    if (playtime - start <= 2) {
+      dispatch(actions.setPreviousChapter())
+    } else {
+      dispatch(actions.setChapter(index - 1))
+    }
   },
 
-  [NEXT_CHAPTER]: ({ dispatch }, action, state) => {
-    const index = chapterIndexFromState(state)
+  [SET_PREVIOUS_CHAPTER]: ({ dispatch }, _, state) => {
+    const { start, index } = selectors.selectCurrentChapter(state)
+
+    dispatch(actions.updatePlaytime((index - 1) <= 0 ? 0 : start))
+  },
+
+  [NEXT_CHAPTER]: ({ dispatch }, { payload }) => {
+    dispatch(actions.setNextChapter(payload))
+  },
+
+  [SET_NEXT_CHAPTER]: ({ dispatch }, _, state) => {
     const duration = get(state, 'duration', 0)
     const playtime = get(state, 'playtime', 0)
-    const chapters = get(state, 'chapters', [])
-    const current = currentChapterFromState(state)
+    const chapters = selectors.selectChapters(state)
+    const { start, index } = selectors.selectCurrentChapter(state)
 
-    const chapterStart = (index === chapters.length - 1 && playtime >= current.start) ? duration : current.start
+    const chapterStart = index === chapters.length &&
+      playtime >= start
+      ? duration
+      : start
 
     dispatch(actions.updatePlaytime(chapterStart))
   },
 
-  [SET_CHAPTER]: ({ dispatch }, action, state) => {
-    const current = currentChapterFromState(state)
+  [SET_CHAPTER]: ({ dispatch }, _, state) => {
+    const current = selectors.selectCurrentChapter(state)
     dispatch(actions.updatePlaytime(current.start))
   },
 
   [SET_PLAYTIME]: chapterUpdate,
-  [UPDATE_PLAYTIME]: chapterUpdate
+  [UPDATE_PLAYTIME]: chapterUpdate,
+
+  // Reset chapters if ghost mode was disabled
+  [DISABLE_GHOST_MODE]: ({ dispatch }, _, state) => {
+    const playtime = get(state, 'playtime', 0)
+    dispatch(actions.updateChapter(playtime))
+  }
 })

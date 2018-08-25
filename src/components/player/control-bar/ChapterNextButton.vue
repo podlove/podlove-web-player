@@ -6,39 +6,37 @@
 </template>
 
 <script>
-  import store from 'store'
-  import ChapterNextIcon from 'icons/ChapterNextIcon'
+  import { mapState, mapActions } from 'redux-vuex'
+  import selectors from 'store/selectors'
 
-  import { nextChapter, currentChapter } from 'utils/chapters'
+  import ChapterNextIcon from 'icons/ChapterNextIcon'
 
   export default {
     components: {
       ChapterNextIcon
     },
-    data () {
-      return {
-        chapters: this.$select('chapters'),
-        theme: this.$select('theme'),
-        playtime: this.$select('playtime'),
-        duration: this.$select('duration')
-      }
-    },
+    data: mapState({
+      chapters: selectors.selectChapters,
+      currentChapter: selectors.selectCurrentChapter,
+      nextChapter: selectors.selectNextChapter,
+      theme: 'theme',
+      playtime: 'playtime',
+      duration: 'duration'
+    }),
     computed: {
       a11y () {
-        if (currentChapter(this.chapters).index === this.chapters.length) {
+        if (this.currentChapter.index === this.chapters.length) {
           return this.$t('A11Y.PLAYER_CHAPTER_END')
         }
 
-        return this.$t('A11Y.PLAYER_CHAPTER_NEXT', { ...nextChapter(this.chapters) })
+        return this.$t('A11Y.PLAYER_CHAPTER_NEXT', this.nextChapter)
       },
       isDisabled () {
         return this.playtime === this.duration
       }
     },
-    methods: {
-      onButtonClick () {
-        store.dispatch(store.actions.nextChapter())
-      }
-    }
+    methods: mapActions({
+      onButtonClick: 'nextChapter'
+    })
   }
 </script>

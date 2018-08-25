@@ -3,15 +3,13 @@
     <slot tabindex="0"></slot>
   </div>
 </template>
+
 <script>
+  import { mapState } from 'redux-vuex'
+
   export default {
     props: ['active', 'name', 'index'],
-    data () {
-      return {
-        theme: this.$select('theme'),
-        display: this.$select('display')
-      }
-    },
+    data: mapState('theme', 'display'),
     computed: {
       bodyStyle () {
         return {
@@ -21,6 +19,7 @@
     }
   }
 </script>
+
 <style lang="scss">
   @import '~styles/variables';
 

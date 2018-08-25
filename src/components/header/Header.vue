@@ -4,20 +4,16 @@
     <error-component v-if="components.header.error"></error-component>
     <info-component v-if="components.header.info"></info-component>
   </div>
-
 </template>
 
 <script>
+  import { mapState } from 'redux-vuex'
+
   import InfoComponent from './Info'
   import ErrorComponent from './Error'
 
   export default {
-    data () {
-      return {
-        theme: this.$select('theme'),
-        components: this.$select('components')
-      }
-    },
+    data: mapState('theme', 'components'),
     computed: {
       backgroundStyle () {
         return {

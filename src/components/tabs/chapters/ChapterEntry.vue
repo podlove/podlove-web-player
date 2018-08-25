@@ -40,8 +40,7 @@
 </template>
 
 <script>
-  import store from 'store'
-  import runtime from 'utils/runtime'
+  import { mapActions } from 'redux-vuex'
 
   import { fromPlayerTime } from 'utils/time'
 
@@ -52,11 +51,8 @@
 
     data () {
       return {
-        theme: this.$select('theme'),
-        playtime: this.$select('playtime'),
-        ghost: this.$select('ghost'),
-        hover: false,
-        runtime
+        ...this.mapState('theme', 'playtime', 'ghost', 'runtime'),
+        hover: false
       }
     },
 
@@ -126,15 +122,6 @@
     },
 
     methods: {
-      onMouseOut () {
-        store.dispatch(store.actions.disableGhostMode())
-      },
-
-      onMouseMove (event) {
-        store.dispatch(store.actions.enableGhostMode())
-        store.dispatch(store.actions.simulatePlaytime(this.chapter.start + (this.chapter.end - this.chapter.start) * event.offsetX / event.target.clientWidth))
-      },
-
       onMouseOver () {
         this.hover = true
       },
@@ -143,20 +130,29 @@
         this.hover = false
       },
 
-      onChapterClick (event) {
-        store.dispatch(store.actions.setChapter(this.chapter.index - 1))
-        store.dispatch(store.actions.updatePlaytime(this.ghost.time))
-        store.dispatch(store.actions.play())
-        event.preventDefault()
-        return false
-      },
+      ...mapActions({
+        onMouseOut: 'disableGhostMode',
 
-      onChapterPlayClick (event) {
-        store.dispatch(store.actions.setChapter(this.chapter.index - 1))
-        store.dispatch(store.actions.play())
-        event.preventDefault()
-        return false
-      }
+        onMouseMove: function ({ dispatch, actions }, event) {
+          dispatch(actions.enableGhostMode())
+          dispatch(actions.simulatePlaytime(this.chapter.start + (this.chapter.end - this.chapter.start) * event.offsetX / event.target.clientWidth))
+        },
+
+        onChapterClick: function ({ dispatch, actions }, event) {
+          dispatch(actions.setChapter(this.chapter.index - 1))
+          dispatch(actions.updatePlaytime(this.ghost.time))
+          dispatch(actions.play())
+          event.preventDefault()
+          return false
+        },
+
+        onChapterPlayClick: function ({ dispatch, actions }, event) {
+          dispatch(actions.setChapter(this.chapter.index - 1))
+          dispatch(actions.play())
+          event.preventDefault()
+          return false
+        }
+      })
     },
     components: {
       PlayIcon

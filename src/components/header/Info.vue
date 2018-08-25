@@ -1,17 +1,13 @@
 <template>
   <div class="info" id="header-info" v-if="hasPoster || hasShowTitle || hasEpisodeTitle || hasDescription">
-    <div class="poster" v-if="hasPoster" id="header-poster">
-      <div class="poster-container" :style="posterStyle">
-        <img class="poster-image" :src="episode.poster || show.poster" :alt="alternativeText" @error="onImageLoad">
-      </div>
-    </div>
+    <poster-component v-if="hasPoster"></poster-component>
     <div class="description">
       <h2 class="show-title" :style="titleStyle" v-if="hasShowTitle" id="header-showtitle">
-        <a :href="show.link" target="_blank" class="truncate" v-if="show.link">{{ show.title }}</a>
+        <a :href="show.link" :target="target" class="truncate" v-if="show.link">{{ show.title }}</a>
         <span class="truncate" v-else>{{ show.title }}</span>
       </h2>
       <h1 class="title" v-marquee :style="titleStyle" v-if="hasEpisodeTitle" id="header-title">
-        <a :href="episode.link" target="_blank" v-if="episode.link">{{ episode.title }}</a>
+        <a :href="episode.link" :target="target" v-if="episode.link">{{ episode.title }}</a>
         <span v-else>{{ episode.title }}</span>
       </h1>
       <h3 class="subtitle" :style="subtitleStyle" v-if="hasDescription" id="header-subtitle">{{ episode.subtitle }}</h3>
@@ -20,39 +16,32 @@
 </template>
 
 <script>
-  import store from 'store'
+  import { mapState } from 'redux-vuex'
+  import selectors from 'store/selectors'
+
   import color from 'color'
+  import PosterComponent from './Poster'
 
   export default {
-    data () {
-      return {
-        episode: this.$select('episode'),
-        show: this.$select('show'),
-        theme: this.$select('theme'),
-        display: this.$select('display'),
-        visibleComponents: this.$select('visibleComponents'),
-        components: this.$select('components')
-      }
-    },
+    data: mapState({
+      episode: 'episode',
+      show: 'show',
+      theme: 'theme',
+      display: 'display',
+      visibleComponents: 'visibleComponents',
+      components: 'components',
+      chapterPoster: selectors.selectCurrentChapterImage
+    }),
     computed: {
       titleStyle () {
         return {
           color: this.theme.player.title
         }
       },
-      posterStyle () {
-        return {
-          'border-color': this.theme.player.poster
-        }
-      },
       subtitleStyle () {
         return {
           color: color(this.theme.player.text).fade(0.25)
         }
-      },
-      hasPoster () {
-        return (this.episode.poster || this.show.poster) &&
-          this.visibleComponents.poster && this.components.header.poster
       },
       hasShowTitle () {
         return this.show.title && this.visibleComponents.showTitle
@@ -63,20 +52,16 @@
       hasDescription () {
         return this.episode.subtitle && this.visibleComponents.subtitle
       },
-      alternativeText () {
-        if (this.episode.poster) {
-          return this.$t('A11Y.ALT_EPISODE_COVER')
-        }
-
-        if (this.show.poster) {
-          return this.$t('A11Y.ALT_SHOW_COVER')
-        }
+      hasPoster () {
+        return (this.episode.poster || this.show.poster || this.chapterPoster) &&
+          this.visibleComponents.poster && this.components.header.poster
+      },
+      target () {
+        return this.display === 'native' ? '_parent' : '_blank'
       }
     },
-    methods: {
-      onImageLoad () {
-        store.dispatch(store.actions.toggleInfoPoster(false))
-      }
+    components: {
+      PosterComponent
     }
   }
 </script>
@@ -84,31 +69,11 @@
 <style lang="scss">
   @import '~styles/variables';
 
-  $poster-size: 100px;
-  $description-height: 100px;
-
   .info {
     width: 100%;
     display: flex;
     flex-direction: row;
     padding-top: $padding;
-
-    .poster {
-      margin: 0 $margin 0 0;
-    }
-
-    .poster-container {
-      height: $poster-size;
-      line-height: 0;
-      border-width: 2px;
-      border-style: solid;
-
-      .poster-image {
-        max-height: 100%;
-        max-width: none;
-        width: auto;
-      }
-    }
 
     .title {
       margin-top: 0;

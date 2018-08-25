@@ -9,16 +9,12 @@
 </template>
 
 <script>
+  import { mapState } from 'redux-vuex'
   import CloseIcon from 'icons/CloseIcon'
 
   export default {
     props: ['click', 'active', 'name', 'index'],
-    data () {
-      return {
-        theme: this.$select('theme'),
-        display: this.$select('display')
-      }
-    },
+    data: mapState('theme', 'display'),
     computed: {
       tabStyle () {
         const style = {

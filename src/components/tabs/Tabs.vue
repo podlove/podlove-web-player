@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import store from 'store'
+import { mapState, mapActions } from 'redux-vuex'
 
 import TabHeaderComponent from 'shared/TabHeader'
 import TabHeaderItemComponent from 'shared/TabHeaderItem'
@@ -70,16 +70,7 @@ import DownloadTab from './download/Download'
 import AudioTab from './audio/Audio'
 
 export default {
-  data () {
-    return {
-      theme: this.$select('theme'),
-      tabs: this.$select('tabs'),
-      chapters: this.$select('chapters'),
-      reference: this.$select('reference'),
-      visibleComponents: this.$select('visibleComponents'),
-      components: this.$select('components')
-    }
-  },
+  data: mapState('theme', 'tabs', 'chapters', 'reference', 'visibleComponents', 'components'),
   computed: {
     containerStyle () {
       return {
@@ -107,13 +98,9 @@ export default {
         }, false)
     }
   },
-  methods: {
-    toggleTab (tab) {
-      return () => {
-        store.dispatch(store.actions.toggleTab(tab))
-      }
-    }
-  },
+  methods: mapActions({
+    toggleTab: ({ dispatch, actions }, tab) => () => dispatch(actions.toggleTab(tab))
+  }),
   components: {
     TabHeaderComponent,
     TabHeaderItemComponent,

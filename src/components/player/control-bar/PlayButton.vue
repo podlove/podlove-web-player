@@ -42,7 +42,8 @@
 </template>
 
 <script>
-  import store from 'store'
+  import { mapState, mapActions } from 'redux-vuex'
+
   import { fromPlayerTime, calcSeconds, calcMinutes, calcHours } from 'utils/time'
 
   import PlayIcon from 'icons/PlayIcon'
@@ -60,15 +61,7 @@
       ErrorIcon,
       ReloadIcon
     },
-    data () {
-      return {
-        duration: this.$select('duration'),
-        playtime: this.$select('playtime'),
-        theme: this.$select('theme'),
-        components: this.$select('components'),
-        playstate: this.$select('playstate')
-      }
-    },
+    data: mapState('duration', 'playtime', 'theme', 'components', 'playstate'),
     computed: {
       wrapperStyle () {
         return {
@@ -104,25 +97,26 @@
     },
     methods: {
       fromPlayerTime,
-
-      onButtonClick () {
-        switch (this.playstate) {
-          case 'start':
-          case 'idle':
-          case 'pause':
-            store.dispatch(store.actions.play())
-            break
-          case 'end':
-            store.dispatch(store.actions.restart())
-            break
-          case 'error':
-            store.dispatch(store.actions.load())
-            break
-          default:
-            store.dispatch(store.actions.pause())
-            break
+      ...mapActions({
+        onButtonClick: function ({ dispatch, actions }) {
+          switch (this.playstate) {
+            case 'start':
+            case 'idle':
+            case 'pause':
+              dispatch(actions.play())
+              break
+            case 'end':
+              dispatch(actions.restart())
+              break
+            case 'error':
+              dispatch(actions.load())
+              break
+            default:
+              dispatch(actions.pause())
+              break
+          }
         }
-      }
+      })
     }
   }
 </script>
