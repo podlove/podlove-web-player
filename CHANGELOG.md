@@ -1,3 +1,13 @@
+<a name="4.1.5"></a>
+## [4.1.5](https://github.com/podlove/podlove-web-player/compare/v4.1.4...v4.1.5) (2018-08-25)
+
+
+### Bug Fixes
+
+* **docs:** Updates base for scripts ([d8b08dd](https://github.com/podlove/podlove-web-player/commit/d8b08dd))
+
+
+
 <a name="4.1.4"></a>
 ## [4.1.4](https://github.com/podlove/podlove-web-player/compare/v4.1.3...v4.1.4) (2018-08-25)
 
