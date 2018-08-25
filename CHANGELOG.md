@@ -1,3 +1,58 @@
+<a name="4.1.4"></a>
+## [4.1.4](https://github.com/podlove/podlove-web-player/compare/v4.1.3...v4.1.4) (2018-08-25)
+
+
+### Bug Fixes
+
+* **documentation:** Refactor docs ([423d811](https://github.com/podlove/podlove-web-player/commit/423d811))
+* **package:** update detect-browser to version 3.0.0 ([7ce43dd](https://github.com/podlove/podlove-web-player/commit/7ce43dd))
+* **package:** update lunr to version 2.3.1 ([e43d0f9](https://github.com/podlove/podlove-web-player/commit/e43d0f9))
+* **package:** update lunr to version 2.3.2 ([5679c5b](https://github.com/podlove/podlove-web-player/commit/5679c5b))
+* **package:** update redux-actions to version 2.6.1 ([64bb41a](https://github.com/podlove/podlove-web-player/commit/64bb41a)), closes [#719](https://github.com/podlove/podlove-web-player/issues/719)
+* **package:** update vue to version 2.5.17 ([03f4c7c](https://github.com/podlove/podlove-web-player/commit/03f4c7c))
+* **store:** Fixes store export ([542d16d](https://github.com/podlove/podlove-web-player/commit/542d16d))
+* **transcripts:** Fixes text highlighting ([6d98ef8](https://github.com/podlove/podlove-web-player/commit/6d98ef8))
+* **translations:** Fixes german embed translations ([638b3b1](https://github.com/podlove/podlove-web-player/commit/638b3b1))
+
+
+### Features
+
+* **chapters:** Adds support for chapter images ([f4af652](https://github.com/podlove/podlove-web-player/commit/f4af652))
+* **docs:** Updates documentation system ([cfa9784](https://github.com/podlove/podlove-web-player/commit/cfa9784))
+* **redux-vuex:** Replace deprecated redux library ([f876ba5](https://github.com/podlove/podlove-web-player/commit/f876ba5))
+* **transcripts:** Improve transcripts rendering performance ([822f1d0](https://github.com/podlove/podlove-web-player/commit/822f1d0))
+
+
+
+<a name="4.1.3"></a>
+## [4.1.3](https://github.com/podlove/podlove-web-player/compare/v4.0.3...v4.1.3) (2018-06-30)
+
+
+### Bug Fixes
+
+* **build:** Uses babel-env as preset ([3775ed1](https://github.com/podlove/podlove-web-player/commit/3775ed1))
+* **bundling:** Extracts vendor and styles ([c9dba2b](https://github.com/podlove/podlove-web-player/commit/c9dba2b))
+* **ci:** Fixes cdn publish and deploy-staging step ([fda4b65](https://github.com/podlove/podlove-web-player/commit/fda4b65))
+* **ci:** Fixes cdn publish step ([73d0213](https://github.com/podlove/podlove-web-player/commit/73d0213))
+* **hls:** Fixes hls integration ([6ae1bcb](https://github.com/podlove/podlove-web-player/commit/6ae1bcb))
+* **hls:** Fixes hls support ([9f2e7c3](https://github.com/podlove/podlove-web-player/commit/9f2e7c3))
+* **locale:** Adds default locale if not defined ([3be3970](https://github.com/podlove/podlove-web-player/commit/3be3970))
+* **localization:** Fixes typo in german translation ([65160cd](https://github.com/podlove/podlove-web-player/commit/65160cd))
+* **marquee:** Fixes marquee width calculation ([5851dd8](https://github.com/podlove/podlove-web-player/commit/5851dd8))
+* **package:** update [@podlove](https://github.com/podlove)/html5-audio-driver to version 1.1.1 ([451d3b6](https://github.com/podlove/podlove-web-player/commit/451d3b6)), closes [#621](https://github.com/podlove/podlove-web-player/issues/621)
+* **package:** update [@podlove](https://github.com/podlove)/html5-audio-driver to version 1.2.0 ([eae8286](https://github.com/podlove/podlove-web-player/commit/eae8286))
+* **package:** update binary-search to version 1.3.4 ([3a495f6](https://github.com/podlove/podlove-web-player/commit/3a495f6))
+* **package:** update lunr to version 2.3.0 ([b087c67](https://github.com/podlove/podlove-web-player/commit/b087c67))
+* **package:** update v-tooltip to version 2.0.0-rc.33 ([88058ac](https://github.com/podlove/podlove-web-player/commit/88058ac))
+* **package:** update vue-i18n to version 8.0.0 ([5fcfa00](https://github.com/podlove/podlove-web-player/commit/5fcfa00)), closes [#682](https://github.com/podlove/podlove-web-player/issues/682)
+* **tab-header:** Brings back tab uppercase ([c7a71ce](https://github.com/podlove/podlove-web-player/commit/c7a71ce))
+
+
+### Features
+
+* **extensions:** Adds extensions ([dba0ccf](https://github.com/podlove/podlove-web-player/commit/dba0ccf))
+* **hyphens:** Uses hyphens in longer text areas ([e1f345f](https://github.com/podlove/podlove-web-player/commit/e1f345f))
+
 <a name="4.1.0"></a>
 # [4.1.0](https://github.com/podlove/podlove-web-player/compare/v4.0.3...v4.1.0) (2018-06-07)
 
