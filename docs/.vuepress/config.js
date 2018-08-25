@@ -7,8 +7,8 @@ module.exports = {
   theme: 'millidocs',
   head: [
     ['link', { rel: 'icon', href: '/favicon.png' }],
-    ['script', { type: 'text/javascript', src: `${base}/embed.js` }],
-    ['script', { type: 'text/javascript', src: `${base}/extensions/external-events.js` }]
+    ['script', { type: 'text/javascript', src: `embed.js` }],
+    ['script', { type: 'text/javascript', src: `extensions/external-events.js` }]
   ],
   markdown: {
     anchor: {
