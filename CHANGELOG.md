@@ -1,3 +1,29 @@
+<a name="4.1.4"></a>
+## [4.1.4](https://github.com/podlove/podlove-web-player/compare/v4.1.3...v4.1.4) (2018-08-25)
+
+
+### Bug Fixes
+
+* **documentation:** Refactor docs ([423d811](https://github.com/podlove/podlove-web-player/commit/423d811))
+* **package:** update detect-browser to version 3.0.0 ([7ce43dd](https://github.com/podlove/podlove-web-player/commit/7ce43dd))
+* **package:** update lunr to version 2.3.1 ([e43d0f9](https://github.com/podlove/podlove-web-player/commit/e43d0f9))
+* **package:** update lunr to version 2.3.2 ([5679c5b](https://github.com/podlove/podlove-web-player/commit/5679c5b))
+* **package:** update redux-actions to version 2.6.1 ([64bb41a](https://github.com/podlove/podlove-web-player/commit/64bb41a)), closes [#719](https://github.com/podlove/podlove-web-player/issues/719)
+* **package:** update vue to version 2.5.17 ([03f4c7c](https://github.com/podlove/podlove-web-player/commit/03f4c7c))
+* **store:** Fixes store export ([542d16d](https://github.com/podlove/podlove-web-player/commit/542d16d))
+* **transcripts:** Fixes text highlighting ([6d98ef8](https://github.com/podlove/podlove-web-player/commit/6d98ef8))
+* **translations:** Fixes german embed translations ([638b3b1](https://github.com/podlove/podlove-web-player/commit/638b3b1))
+
+
+### Features
+
+* **chapters:** Adds support for chapter images ([f4af652](https://github.com/podlove/podlove-web-player/commit/f4af652))
+* **docs:** Updates documentation system ([cfa9784](https://github.com/podlove/podlove-web-player/commit/cfa9784))
+* **redux-vuex:** Replace deprecated redux library ([f876ba5](https://github.com/podlove/podlove-web-player/commit/f876ba5))
+* **transcripts:** Improve transcripts rendering performance ([822f1d0](https://github.com/podlove/podlove-web-player/commit/822f1d0))
+
+
+
 <a name="4.1.3"></a>
 ## [4.1.3](https://github.com/podlove/podlove-web-player/compare/v4.0.3...v4.1.3) (2018-06-30)
 
