@@ -22,14 +22,14 @@
   "scripts": {
     "dist:clean": "mkdir -p dist && rm -rf dist/*",
     "docs:dev": "vuepress dev docs",
-    "docs:prod": "vuepress build docs --dest dist/ && npm run webpack:build",
+    "docs:prod": "vuepress build docs --dest dist/ && npm run build",
     "webpack:dev": "webpack-dev-server --progress --config build/webpack.config.dev.js",
     "webpack:build": "webpack --config build/webpack.config.prod.js",
     "webpack:cdn": "webpack --config build/webpack.config.cdn.js",
-    "build": "npm run webpack:build",
-    "now-build": "npm run docs:prod",
+    "build": "npm run webpack:build && npm run subfont",
+    "now-build": "npm run docs:prod && npm run subfont",
     "now-start": "serve dist/",
-    "build:cdn": "npm run webpack:cdn",
+    "build:cdn": "npm run webpack:cdn && npm run subfont",
     "dev": "node scripts/dev.js",
     "test": "npm run test:prepare && NODE_ENV=AVA nyc ava && nyc report --reporter=html",
     "test:ci": "npm run test:prepare && NODE_ENV=AVA nyc ava --tap | tap-xunit > reports/ava.xml && nyc report --reporter=lcov",
@@ -49,7 +49,8 @@
     "cypress:dev": "npm run cypress:assets && cypress open",
     "cypress:ci": "npm run test:prepare && cypress run --record --key 54ef8855-9428-4b03-92db-fe0d853c4c41 --reporter junit --reporter-options 'mochaFile=reports/junit.xml'",
     "cypress:server": "http-server -p 8080 dist/ > http.log 2>&1 &",
-    "test:integration": "cypress install && npm run cypress:assets && npm run build && npm run cypress:server && npm run cypress:ci"
+    "test:integration": "cypress install && npm run cypress:assets && npm run build && npm run cypress:server && npm run cypress:ci",
+    "subfont": "subfont --recursive --in-place dist"
   },
   "files": [
     "dist/"
@@ -130,6 +131,7 @@
     "standard": "^11.0.1",
     "standard-changelog": "2.0.0",
     "standard-reporter": "^1.0.5",
+    "subfont": "^3.6.1",
     "superagent-nock": "0.4.0",
     "surge": "0.20.0",
     "tap-xunit": "^2.3.0",
