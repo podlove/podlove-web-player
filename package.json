@@ -129,7 +129,7 @@
     "semver": "5.5.1",
     "sinon": "6.0.1",
     "snazzy": "^8.0.0",
-    "standard": "^11.0.1",
+    "standard": "^12.0.1",
     "standard-changelog": "2.0.0",
     "standard-reporter": "^1.0.5",
     "subfont": "^3.6.1",
