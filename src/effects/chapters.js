@@ -31,7 +31,9 @@ const parseChapters = duration => (result, chapter, index, chapters) => {
       start: toPlayerTime(chapter.start),
       end: toPlayerTime(end.start),
       title: get(chapter, 'title'),
-      image: get(chapter, 'image')
+      image: get(chapter, 'image'),
+      href: get(chapter, 'href'),
+      link_title: get(chapter, 'href') ? new URL(get(chapter, 'href')).hostname.replace(/^(www\.)/,"") : null
     }
   ]
 }

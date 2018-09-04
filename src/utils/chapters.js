@@ -7,6 +7,7 @@ const emptyChapter = {
   start: null,
   end: null,
   title: null,
+  href: null,
   index: -1
 }
 
