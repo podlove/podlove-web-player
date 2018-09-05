@@ -108,7 +108,7 @@ test.cb(
           image: undefined,
           href: null,
           link_title: null
-       },
+        },
         {
           active: false,
           end: 100000,

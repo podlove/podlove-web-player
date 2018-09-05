@@ -162,14 +162,14 @@
 
         onChapterPlayClick: function ({ dispatch, actions }, event) {
           if (event.target.classList.contains('info-link')) {
-              return false
+            return false
           }
           dispatch(actions.setChapter(this.chapter.index - 1))
           dispatch(actions.play())
           event.preventDefault()
           return false
         }
-        
+
       })
     },
     components: {
