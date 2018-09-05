@@ -228,10 +228,10 @@
       .link {
         display: flex;
         max-width: calc(40%);
-	  }
+      }
 
       .timer {
-	    min-width: 4.4em;
+        min-width: 4.4em;
         display: block;
         text-align: right;
         @include font-monospace();
