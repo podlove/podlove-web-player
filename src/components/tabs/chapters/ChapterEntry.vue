@@ -5,7 +5,7 @@
     @mouseover="onMouseOver"
     @mouseleave="onMouseLeave">
     <span class="index" v-if="hover" @click="onChapterPlayClick" aria-hidden="true">
-      <link-icon size="20" :color="theme.tabs.body.icon" v-if="linkhover"></link-icon>
+      <link-icon size="20" :color="theme.tabs.body.icon" v-if="linkHover"></link-icon>
       <play-icon size="12" :color="theme.tabs.body.icon" v-else></play-icon>
     </span>
 
@@ -55,7 +55,8 @@
     data () {
       return {
         ...this.mapState('theme', 'playtime', 'ghost', 'runtime'),
-        hover: false
+        hover: false,
+        linkHover: false
       }
     },
 
@@ -134,11 +135,11 @@
       },
 
       onMouseOverLink () {
-        this.linkhover = true
+        this.linkHover = true
       },
 
       onMouseLeaveLink () {
-        this.linkhover = false
+        this.linkHover = false
       },
 
       ...mapActions({
@@ -150,9 +151,6 @@
         },
 
         onChapterClick: function ({ dispatch, actions }, event) {
-          if (event.target.classList.contains('info-link')) {
-            return false
-          }
           dispatch(actions.setChapter(this.chapter.index - 1))
           dispatch(actions.updatePlaytime(this.ghost.time))
           dispatch(actions.play())
@@ -161,7 +159,7 @@
         },
 
         onChapterPlayClick: function ({ dispatch, actions }, event) {
-          if (event.target.classList.contains('info-link')) {
+          if (this.linkHover) {
             return false
           }
           dispatch(actions.setChapter(this.chapter.index - 1))
