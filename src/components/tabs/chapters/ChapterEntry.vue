@@ -19,7 +19,7 @@
       @click.alt="onChapterClick"
        aria-hidden="true">
       <span class="title truncate" aria-hidden="true">{{chapter.title}}</span>
-      <span class="link" v-if="chapter.href"><link-icon class="icon"></link-icon><a class="info-link truncate" :href="chapter.href" target="_blank" @mouseover="onMouseOverLink" @mouseleave="onMouseLeaveLink">{{chapter.link_title}}</a></span>
+      <span class="link" v-if="chapter.href"><link-icon class="icon"></link-icon><a class="info-link truncate" :href="chapter.href" target="_blank" @mouseover="onMouseOverLink" @mouseleave="onMouseLeaveLink">{{chapter.linkTitle}}</a></span>
       <span class="timer" aria-hidden="true">{{remainingTime}}</span>
       <span class="progress" :style="progressStyle" aria-hidden="true"></span>
       <span class="progress" :style="progressGhostStyle"></span>
@@ -221,8 +221,8 @@
       }
           
       .info-link {
-        font-weight: 700;
-        text-align:right;
+        font-weight: bolder;
+        text-align: right;
       }
       
       .link {

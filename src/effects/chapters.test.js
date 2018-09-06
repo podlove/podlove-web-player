@@ -97,7 +97,7 @@ test.cb(
           index: 1,
           image: 'dummy',
           href: null,
-          link_title: null
+          linkTitle: null
         },
         {
           active: true,
@@ -107,7 +107,7 @@ test.cb(
           index: 2,
           image: undefined,
           href: null,
-          link_title: null
+          linkTitle: null
         },
         {
           active: false,
@@ -117,7 +117,7 @@ test.cb(
           index: 3,
           image: 'dummy',
           href: 'https://github.com/podlove/podlove-web-player/blob/development/CONTRIBUTING.md#-git-commit-guidelines',
-          link_title: 'github.com'
+          linkTitle: 'github.com'
         }
       ])
       t.end()
@@ -165,7 +165,7 @@ test.cb(
           index: 1,
           image: 'dummy',
           href: null,
-          link_title: null
+          linkTitle: null
         },
         {
           active: true,
@@ -175,7 +175,7 @@ test.cb(
           index: 2,
           image: undefined,
           href: null,
-          link_title: null
+          linkTitle: null
         },
         {
           active: false,
@@ -185,7 +185,7 @@ test.cb(
           index: 3,
           image: 'dummy',
           href: null,
-          link_title: null
+          linkTitle: null
         }
       ])
       t.end()
@@ -235,7 +235,7 @@ test.cb(
           index: 1,
           image: 'dummy',
           href: null,
-          link_title: null
+          linkTitle: null
         },
         {
           active: true,
@@ -245,7 +245,7 @@ test.cb(
           index: 2,
           image: undefined,
           href: null,
-          link_title: null
+          linkTitle: null
         },
         {
           active: false,
@@ -255,7 +255,7 @@ test.cb(
           index: 3,
           image: 'dummy',
           href: null,
-          link_title: null
+          linkTitle: null
         }
       ])
       t.end()
