@@ -196,6 +196,12 @@
 
     &.active {
       font-weight: 500;
+      
+      .chapter--progress {
+        .info-link {
+          font-weight: bold;
+        }
+      }
     }
 
     .index {
@@ -223,7 +229,7 @@
       }
           
       .info-link {
-        font-weight: bolder;
+        font-weight: 500;
         text-align: right;
       }
       
