@@ -17,6 +17,7 @@
       @mousemove.alt="onMouseMove"
       @click="onChapterPlayClick"
       @click.alt="onChapterClick"
+      ref="progressContainer"
        aria-hidden="true">
       <span class="title truncate" aria-hidden="true">{{chapter.title}}</span>
       <span class="link" v-if="chapter.href"><link-icon class="icon"></link-icon><a class="info-link truncate" :href="chapter.href" target="_blank" @mouseover="onMouseOverLink" @mouseleave="onMouseLeaveLink">{{chapter.linkTitle}}</a></span>
@@ -28,6 +29,7 @@
     <div class="chapter--progress"
       v-else
       @click="onChapterPlayClick"
+      ref="progressContainer"
        aria-hidden="true">
       <span class="title truncate">{{chapter.title}}</span>
       <span class="timer">{{remainingTime}}</span>
@@ -147,7 +149,9 @@
 
         onMouseMove: function ({ dispatch, actions }, event) {
           dispatch(actions.enableGhostMode())
-          dispatch(actions.simulatePlaytime(this.chapter.start + (this.chapter.end - this.chapter.start) * event.offsetX / event.target.clientWidth))
+          const clientRect = this.$refs.progressContainer.getBoundingClientRect()
+          const hoverPlaytime = this.chapter.start + (this.chapter.end - this.chapter.start) * (event.clientX - clientRect.left) / clientRect.width
+          dispatch(actions.simulatePlaytime(hoverPlaytime))
         },
 
         onChapterClick: function ({ dispatch, actions }, event) {
