@@ -5,7 +5,8 @@
     @mouseover="onMouseOver"
     @mouseleave="onMouseLeave">
     <span class="index" v-if="hover" @click="onChapterPlayClick" aria-hidden="true">
-      <play-icon size="12" :color="theme.tabs.body.icon"></play-icon>
+      <link-icon size="20" :color="theme.tabs.body.icon" v-if="linkHover"></link-icon>
+      <play-icon size="12" :color="theme.tabs.body.icon" v-else></play-icon>
     </span>
 
     <span class="index" aria-hidden="true" v-else>{{chapter.index}}</span>
@@ -16,8 +17,10 @@
       @mousemove.alt="onMouseMove"
       @click="onChapterPlayClick"
       @click.alt="onChapterClick"
+      ref="progressContainer"
        aria-hidden="true">
       <span class="title truncate" aria-hidden="true">{{chapter.title}}</span>
+      <span class="link" v-if="chapter.href"><link-icon class="icon"></link-icon><a class="info-link truncate" :href="chapter.href" target="_blank" @mouseover="onMouseOverLink" @mouseleave="onMouseLeaveLink">{{chapter.linkTitle}}</a></span>
       <span class="timer" aria-hidden="true">{{remainingTime}}</span>
       <span class="progress" :style="progressStyle" aria-hidden="true"></span>
       <span class="progress" :style="progressGhostStyle"></span>
@@ -26,6 +29,7 @@
     <div class="chapter--progress"
       v-else
       @click="onChapterPlayClick"
+      ref="progressContainer"
        aria-hidden="true">
       <span class="title truncate">{{chapter.title}}</span>
       <span class="timer">{{remainingTime}}</span>
@@ -45,6 +49,7 @@
   import { fromPlayerTime } from 'utils/time'
 
   import PlayIcon from 'icons/PlayIcon'
+  import LinkIcon from 'icons/LinkIcon'
 
   export default {
     props: ['chapter'],
@@ -52,7 +57,8 @@
     data () {
       return {
         ...this.mapState('theme', 'playtime', 'ghost', 'runtime'),
-        hover: false
+        hover: false,
+        linkHover: false
       }
     },
 
@@ -130,12 +136,22 @@
         this.hover = false
       },
 
+      onMouseOverLink () {
+        this.linkHover = true
+      },
+
+      onMouseLeaveLink () {
+        this.linkHover = false
+      },
+
       ...mapActions({
         onMouseOut: 'disableGhostMode',
 
         onMouseMove: function ({ dispatch, actions }, event) {
           dispatch(actions.enableGhostMode())
-          dispatch(actions.simulatePlaytime(this.chapter.start + (this.chapter.end - this.chapter.start) * event.offsetX / event.target.clientWidth))
+          const clientRect = this.$refs.progressContainer.getBoundingClientRect()
+          const hoverPlaytime = this.chapter.start + (this.chapter.end - this.chapter.start) * (event.clientX - clientRect.left) / clientRect.width
+          dispatch(actions.simulatePlaytime(hoverPlaytime))
         },
 
         onChapterClick: function ({ dispatch, actions }, event) {
@@ -147,15 +163,20 @@
         },
 
         onChapterPlayClick: function ({ dispatch, actions }, event) {
+          if (this.linkHover) {
+            return false
+          }
           dispatch(actions.setChapter(this.chapter.index - 1))
           dispatch(actions.play())
           event.preventDefault()
           return false
         }
+
       })
     },
     components: {
-      PlayIcon
+      PlayIcon,
+      LinkIcon
     }
   }
 </script>
@@ -175,6 +196,12 @@
 
     &.active {
       font-weight: 500;
+      
+      .chapter--progress {
+        .info-link {
+          font-weight: bold;
+        }
+      }
     }
 
     .index {
@@ -193,11 +220,26 @@
       width: calc(100% - #{$index-width});
 
       .title {
-        width: calc(100% - #{$index-width});
+        width: calc(100% - 4.4em);
         pointer-events: none;
       }
 
+      .icon {
+        flex-shrink: 0;    
+      }
+          
+      .info-link {
+        font-weight: 500;
+        text-align: right;
+      }
+      
+      .link {
+        display: flex;
+        max-width: calc(40%);
+      }
+
       .timer {
+        min-width: 4.4em;
         display: block;
         text-align: right;
         @include font-monospace();
@@ -212,6 +254,7 @@
         height: 3px;
         pointer-events: none;
       }
+      
     }
   }
 </style>

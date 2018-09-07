@@ -76,7 +76,8 @@ test.cb(
       {
         start: '00:01:15.911',
         title: 'chapter 3',
-        image: 'dummy'
+        image: 'dummy',
+        href: 'https://github.com/podlove/podlove-web-player/blob/development/CONTRIBUTING.md#-git-commit-guidelines'
       }
     ]
 
@@ -94,7 +95,9 @@ test.cb(
           start: 0,
           title: 'chapter 1',
           index: 1,
-          image: 'dummy'
+          image: 'dummy',
+          href: null,
+          linkTitle: null
         },
         {
           active: true,
@@ -102,7 +105,9 @@ test.cb(
           start: 43137,
           title: 'chapter 2',
           index: 2,
-          image: undefined
+          image: undefined,
+          href: null,
+          linkTitle: null
         },
         {
           active: false,
@@ -110,7 +115,9 @@ test.cb(
           start: 75911,
           title: 'chapter 3',
           index: 3,
-          image: 'dummy'
+          image: 'dummy',
+          href: 'https://github.com/podlove/podlove-web-player/blob/development/CONTRIBUTING.md#-git-commit-guidelines',
+          linkTitle: 'github.com'
         }
       ])
       t.end()
@@ -156,7 +163,9 @@ test.cb(
           start: 0,
           title: 'chapter 1',
           index: 1,
-          image: 'dummy'
+          image: 'dummy',
+          href: null,
+          linkTitle: null
         },
         {
           active: true,
@@ -164,7 +173,9 @@ test.cb(
           start: 43137,
           title: 'chapter 2',
           index: 2,
-          image: undefined
+          image: undefined,
+          href: null,
+          linkTitle: null
         },
         {
           active: false,
@@ -172,7 +183,9 @@ test.cb(
           start: 75911,
           title: 'chapter 3',
           index: 3,
-          image: 'dummy'
+          image: 'dummy',
+          href: null,
+          linkTitle: null
         }
       ])
       t.end()
@@ -220,7 +233,9 @@ test.cb(
           start: 0,
           title: 'chapter 1',
           index: 1,
-          image: 'dummy'
+          image: 'dummy',
+          href: null,
+          linkTitle: null
         },
         {
           active: true,
@@ -228,7 +243,9 @@ test.cb(
           start: 43137,
           title: 'chapter 2',
           index: 2,
-          image: undefined
+          image: undefined,
+          href: null,
+          linkTitle: null
         },
         {
           active: false,
@@ -236,7 +253,9 @@ test.cb(
           start: 75911,
           title: 'chapter 3',
           index: 3,
-          image: 'dummy'
+          image: 'dummy',
+          href: null,
+          linkTitle: null
         }
       ])
       t.end()

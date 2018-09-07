@@ -15,6 +15,14 @@
 }
 
 @font-face {
+  font-family: Fira Sans;
+  src: url('~styles/fonts/FiraSans-Bold.eot') format('eot'),
+       url('~styles/fonts/FiraSans-Bold.woff') format('woff'),
+       url('~styles/fonts/FiraSans-Bold.woff2') format('woff2');
+  font-weight: 700;
+}
+
+@font-face {
   font-family: Fira Mono;
   src: url('~styles/fonts/FiraMono-Regular.eot') format('eot'),
        url('~styles/fonts/FiraMono-Regular.woff') format('woff'),
