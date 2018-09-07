@@ -1,4 +1,5 @@
 import { curry, compose, uniq, concat, join, filter, head, identity } from 'lodash/fp'
+import sanitizeHtml from 'sanitize-html'
 
 export const findNode = selector => typeof selector === 'string' ? head(document.querySelectorAll(selector)) : selector
 export const createNode = tag => document.createElement(tag)
@@ -38,6 +39,13 @@ export const removeClasses = (classes = []) => el => {
 
   return el
 }
+
+export const sanitize = input => input ? sanitizeHtml(input, {
+  allowedTags: [ 'b', 'i', 'em', 'strong', 'a', 'br', 'p', 'ul', 'li', 'ol' ],
+  allowedAttributes: {
+    'a': [ 'href' ]
+  }
+}) : input
 
 export const setAttributes = (attrs = {}) => el => {
   Object.keys(attrs).forEach(property => {

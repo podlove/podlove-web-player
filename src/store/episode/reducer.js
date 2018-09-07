@@ -2,6 +2,7 @@ import { get } from 'lodash'
 import { handleActions } from 'redux-actions'
 
 import { parseDate } from 'utils/time'
+import { sanitize } from 'utils/dom'
 
 import { INIT } from '../types'
 
@@ -19,7 +20,7 @@ export const reducer = handleActions({
     ...state,
     title: get(payload, ['title'], null),
     subtitle: get(payload, ['subtitle'], null),
-    summary: get(payload, ['summary'], null),
+    summary: sanitize(get(payload, ['summary'], null)),
     link: get(payload, ['link'], null),
     poster: get(payload, ['poster'], null),
     publicationDate: parseDate(get(payload, ['publicationDate'], null))
