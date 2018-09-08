@@ -1,7 +1,7 @@
 import test from 'ava'
 import sinon from 'sinon'
 import browserEnv from 'browser-env'
-import { findNode, createNode, appendNode, tag, setStyles, addClasses, getClasses, removeClasses, setAttributes, hasOverflow, sanitize } from './dom'
+import { findNode, createNode, appendNode, tag, setStyles, addClasses, getClasses, removeClasses, setAttributes, hasOverflow } from './dom'
 
 browserEnv()
 
@@ -48,10 +48,6 @@ test('exports a method called setAttributes', t => {
 
 test('exports a method called hasOverflow', t => {
   t.truthy(typeof hasOverflow === 'function')
-})
-
-test('exports a method called sanitize', t => {
-  t.truthy(typeof sanitize === 'function')
 })
 
 test('findNode should call the document api', t => {
@@ -142,32 +138,4 @@ test(`hasOverflow should return false if clientWidth is large than scrollWidth`,
   }
 
   t.is(hasOverflow(testNode), false)
-})
-
-const sanitizeTags = ['b', 'i', 'em', 'strong', 'a', 'p', 'ul', 'li', 'ol']
-
-sanitizeTags.forEach(tag => {
-  test(`sanitize should allow <${tag}> tags`, t => {
-    const test = `<${tag}>foo</${tag}>`
-
-    t.is(sanitize(test), test)
-  })
-})
-
-test(`sanitize should allow <br> tags`, t => {
-  const test = `<br />foo<br />`
-
-  t.is(sanitize(test), test)
-})
-
-test(`sanitize should allow href attributes tags`, t => {
-  const test = `<a href="foobar" title="baz">foo</a>`
-
-  t.is(sanitize(test), '<a href="foobar">foo</a>')
-})
-
-test(`sanitize ignores not registered tags`, t => {
-  const test = `<script>foo</script> <iframe>bar</iframe>`
-
-  t.is(sanitize(test), ' bar')
 })
