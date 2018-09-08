@@ -128,7 +128,7 @@
     "sass-loader": "7.1.0",
     "semver": "5.5.1",
     "sinon": "6.0.1",
-    "snazzy": "^7.1.1",
+    "snazzy": "^8.0.0",
     "standard": "^11.0.1",
     "standard-changelog": "2.0.0",
     "standard-reporter": "^1.0.5",
