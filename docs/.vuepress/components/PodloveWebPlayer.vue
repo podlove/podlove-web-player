@@ -5,9 +5,9 @@
 <script>
   export default {
     name: 'PodloveWebPlayer',
-    props: ['config', 'mode', 'id'],
+    props: ['config', 'mode', 'id', 'extend'],
     mounted: function () {
-      window.podlovePlayer(this.$el, this.config).then(store => {
+      window.podlovePlayer(this.$el, this.config, this.extend).then(store => {
         this.$emit('ready', store)
         return store
       }).then(window.registerExternalEvents(this.id))
