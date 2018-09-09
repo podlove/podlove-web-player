@@ -122,6 +122,10 @@
         li {
           margin-left: 0.25em;
         }
+
+        a {
+          font-weight: 500;
+        }
       }
 
       .subtitle {
