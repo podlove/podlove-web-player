@@ -17,7 +17,10 @@ const allowedMarkup = [
   '<li>An ordered list item</li>',
   '<li>Another ordered list item</li>',
   '</ol>',
-  '<a href="/path/to/somewhere">A link</a>`'
+  {
+    test: '<a href="/path/to/somewhere">A link</a>',
+    expected: '<a target="_blank" href="/path/to/somewhere">A link</a>'
+  }
 ]
 
 const prohibitedMarkup = [
@@ -112,14 +115,27 @@ describe('Info Tab', () => {
       })
 
       it(`allows custom markup`, function () {
-        this.episode.summary = allowedMarkup.join('')
+        this.episode.summary = allowedMarkup.map(input => {
+          if (typeof input === 'string') {
+            return input
+          }
+
+          return input.test
+        }).join('')
 
         cy.window().then(setState(this.episode, this.audio, this.show, this.runtime))
         cy.tab('info')
         selectors.tabs.info.episode.summary().then($el => {
           const summaryHtml = $el.html()
           allowedMarkup.forEach(markup => {
-            expect(summaryHtml).to.contain(markup)
+            let expected
+            if (typeof markup === 'string') {
+              expected = markup
+            } else {
+              expected = markup.expected
+            }
+
+            expect(summaryHtml).to.contain(expected)
           })
         })
       })
@@ -202,14 +218,27 @@ describe('Info Tab', () => {
       })
 
       it(`allows custom markup`, function () {
-        this.show.show.summary = allowedMarkup.join('')
+        this.show.show.summary = allowedMarkup.map(input => {
+          if (typeof input === 'string') {
+            return input
+          }
+
+          return input.test
+        }).join('')
 
         cy.window().then(setState(this.episode, this.audio, this.show, this.runtime))
         cy.tab('info')
         selectors.tabs.info.show.summary().then($el => {
           const summaryHtml = $el.html()
           allowedMarkup.forEach(markup => {
-            expect(summaryHtml).to.contain(markup)
+            let expected
+            if (typeof markup === 'string') {
+              expected = markup
+            } else {
+              expected = markup.expected
+            }
+
+            expect(summaryHtml).to.contain(expected)
           })
         })
       })

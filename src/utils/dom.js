@@ -45,9 +45,20 @@ export const sanitize = input => {
     return input
   }
 
-  return DOMPurify(window).sanitize(input, {
+  const purify = DOMPurify(window)
+
+  // Adds target="_blank" to parsed links
+  purify.addHook('afterSanitizeElements', node => {
+    if (node.tagName === 'A') {
+      node.setAttribute('target', '_blank')
+    }
+
+    return node
+  })
+
+  return purify.sanitize(input, {
     ALLOWED_TAGS: ['b', 'i', 'em', 'strong', 'a', 'br', 'p', 'ul', 'li', 'ol', 'br'],
-    ALLOWED_ATTR: ['href']
+    ALLOWED_ATTR: ['href', 'target']
   })
 }
 
