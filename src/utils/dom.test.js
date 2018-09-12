@@ -79,7 +79,7 @@ test('appendNode should call the document api', t => {
 
 test('tag should create a html tag', t => {
   t.is(tag('p', 'foo'), '<p>foo</p>')
-  t.is(tag('div', 'foo', {bar: 'baz', bla: 'blub'}), '<div bar="baz" bla="blub">foo</div>')
+  t.is(tag('div', 'foo', { bar: 'baz', bla: 'blub' }), '<div bar="baz" bla="blub">foo</div>')
 })
 
 test('setStyles adds styles to a dom node', t => {

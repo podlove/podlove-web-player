@@ -15,7 +15,7 @@ let debouncedUpdate = noop
 const buildIndex = (duration = 0, data = []) => {
   const timeIndex = new IntervalTree(duration / 2)
 
-  data.map(({type, start, end}, index) => {
+  data.map(({ type, start, end }, index) => {
     if (type !== 'transcript') {
       return
     }

@@ -15,7 +15,7 @@
     props: ['text', 'color'],
     computed: {
       twitterLink () {
-        return addQueryParameter(LINK, {text: this.text})
+        return addQueryParameter(LINK, { text: this.text })
       }
     },
     components: {

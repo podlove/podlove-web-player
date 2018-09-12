@@ -27,14 +27,14 @@ const setItem = hash => (...args) => {
   let data
 
   if (args.length > 1) {
-    data = {[args[0]]: args[1]}
+    data = { [args[0]]: args[1] }
   } else {
     data = args[0]
   }
 
   try {
     const currentStore = getItem(null, null)
-    const toStore = JSON.stringify(merge(currentStore, {[hash]: data}))
+    const toStore = JSON.stringify(merge(currentStore, { [hash]: data }))
 
     return window.localStorage.setItem(PODLOVE_WEB_PLAYER_TOKEN, toStore)
   } catch (err) {

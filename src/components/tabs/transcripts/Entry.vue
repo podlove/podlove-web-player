@@ -42,7 +42,7 @@
       .replace(c.searchQuery, matched => `|||${matched}|||`)
       .split('|||')
       .map(text =>
-        text.match(c.searchQuery) ? h('span', {class: { highlight: true }}, text) : text)
+        text.match(c.searchQuery) ? h('span', { class: { highlight: true } }, text) : text)
   }
 
   const text = (h, c) => (transcript, index) =>
