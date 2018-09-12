@@ -15,7 +15,7 @@
     props: ['link', 'color'],
     computed: {
       facebookLink () {
-        return addQueryParameter(LINK, {u: this.link})
+        return addQueryParameter(LINK, { u: this.link })
       }
     },
     components: {

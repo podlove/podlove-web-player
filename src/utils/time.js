@@ -26,7 +26,7 @@ export const toPlayerTime = (time = '0') => {
 }
 
 export const localeDate = (timestamp, locale) => new Date(timestamp).toLocaleDateString(locale)
-export const localeTime = (timestamp, locale) => new Date(timestamp).toLocaleTimeString(locale, {hour: '2-digit', minute: '2-digit'})
+export const localeTime = (timestamp, locale) => new Date(timestamp).toLocaleTimeString(locale, { hour: '2-digit', minute: '2-digit' })
 export const fallbackToZero = (time = 0) => !isNumber(time) || time < 0 ? 0 : time
 
 const leadingZero = time => time > 9 ? `${time}` : `0${time}`

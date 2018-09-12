@@ -15,7 +15,7 @@
     props: ['link', 'color', 'text', 'poster'],
     computed: {
       pinterestLink () {
-        return addQueryParameter(LINK, {url: this.link, media: this.poster, is_video: false, description: this.text})
+        return addQueryParameter(LINK, { url: this.link, media: this.poster, is_video: false, description: this.text })
       }
     },
     components: {

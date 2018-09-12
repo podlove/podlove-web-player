@@ -15,7 +15,7 @@
     props: ['link', 'text'],
     computed: {
       redditLink () {
-        return addQueryParameter(LINK, {url: this.link, title: this.text})
+        return addQueryParameter(LINK, { url: this.link, title: this.text })
       }
     },
     components: {

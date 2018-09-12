@@ -32,15 +32,15 @@ test(`set: returns undefined if storage wasn't initialized`, t => {
 })
 
 test(`set: it calls the setItem`, t => {
-  t.context.testStorage.set({foo: 'bar'})
+  t.context.testStorage.set({ foo: 'bar' })
   t.is(window.localStorage.setItem.getCall(0).args[0], 'pwp')
-  t.is(window.localStorage.setItem.getCall(0).args[1], JSON.stringify({test: {foo: 'bar'}}))
+  t.is(window.localStorage.setItem.getCall(0).args[1], JSON.stringify({ test: { foo: 'bar' } }))
 })
 
 test(`set: it calls the setItem with multiple arguments`, t => {
   t.context.testStorage.set('foo', 'bar')
   t.is(window.localStorage.setItem.getCall(0).args[0], 'pwp')
-  t.is(window.localStorage.setItem.getCall(0).args[1], JSON.stringify({test: {foo: 'bar'}}))
+  t.is(window.localStorage.setItem.getCall(0).args[1], JSON.stringify({ test: { foo: 'bar' } }))
 })
 
 test(`get: it calls the getItem`, t => {
@@ -50,7 +50,7 @@ test(`get: it calls the getItem`, t => {
 
 test(`get: it returns the full store if no key provided`, t => {
   window.localStorage.getItem.returns('{"test": {"foo": "bar"}}')
-  t.deepEqual(t.context.testStorage.get(null), {foo: 'bar'})
+  t.deepEqual(t.context.testStorage.get(null), { foo: 'bar' })
 })
 
 test(`get: it returns the value if key provided`, t => {
