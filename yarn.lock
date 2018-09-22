@@ -6814,9 +6814,9 @@ iferr@^0.1.5:
   version "0.1.5"
   resolved "https://registry.yarnpkg.com/iferr/-/iferr-0.1.5.tgz#c60eed69e6d8fdb6b3104a1fcbca1c192dc5b501"
 
-iframe-resizer@3.6.1:
-  version "3.6.1"
-  resolved "https://registry.yarnpkg.com/iframe-resizer/-/iframe-resizer-3.6.1.tgz#d0bc24009df6c94411382aafb040db36852d67d9"
+iframe-resizer@3.6.2:
+  version "3.6.2"
+  resolved "https://registry.yarnpkg.com/iframe-resizer/-/iframe-resizer-3.6.2.tgz#114bc574b2849bf938c5028e2a6b6ca6603c8523"
 
 ignore-by-default@^1.0.0:
   version "1.0.1"
