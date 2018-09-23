@@ -61,6 +61,12 @@ const createPlayerDom = config => [
   tag('script', iframeResizerContentWindow)
 ].join('')
 
+const setPublicPath = config => {
+  window.__webpack_public_path__ = get(config.reference, 'base', BASE)
+
+  return config
+}
+
 const resizer = sandbox => {
   iframeResizer({
     checkOrigin: false,
@@ -95,6 +101,7 @@ window.podlovePlayer = (selector, episode, additional = {}) =>
   requestConfig(episode)
     .then(config =>
       Promise.resolve(merge(config, additional))
+        .then(setPublicPath)
         .then(createPlayerDom)
         .then(sandboxFromSelector(selector))
         // Set Title for accessibility
