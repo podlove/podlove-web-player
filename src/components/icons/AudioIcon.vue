@@ -1,10 +1,12 @@
 <template>
-<svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 20 20">
-  <ellipse cx="6.11" cy="3.55" fill="none" :stroke="color || 'currentColor'" rx="2.11" ry="2.15"/>
-  <ellipse cx="13.15" cy="15.55" fill="none" :stroke="color || 'currentColor'" rx="2.1" ry="2.15"/>
-  <circle cx="13.15" cy="9.55" r="2.15" fill="none" :stroke="color || 'currentColor'"/>
-  <path :fill="color || 'currentColor'" d="M1 3h3v1H1zm9 0h8v1h-8zM1 9h8v1H1zm14 0h3v1h-3zM1 15h8v1H1zm14 0h3v1h-3z"/>
-</svg>
+  <svg width="25" height="25" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-miterlimit="1.5">
+      <g fill="none" :stroke="color || 'currentColor'" stroke-width="2">
+          <path d="M6 9h7m13 0h16m0 14h-5m-13 0H6m36 14h-5m-13 0H6"/>
+          <circle cx="17.5" cy="9" r="4.5" stroke-linejoin="round" stroke-miterlimit="1.414"/>
+          <circle cx="33" cy="23" r="4.5" stroke-linejoin="round" stroke-miterlimit="1.414"/>
+          <circle cx="33" cy="37" r="4.5" stroke-linejoin="round" stroke-miterlimit="1.414"/>
+      </g>
+  </svg>
 </template>
 
 <script>
