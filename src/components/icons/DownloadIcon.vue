@@ -1,8 +1,7 @@
 <template>
-  <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 20 20">
-    <path fill="none" :stroke="color || 'currentColor'" stroke-width="1.1" d="M6.5,14.61 L3.75,14.61 C1.96,14.61 0.5,13.17 0.5,11.39 C0.5,9.76 1.72,8.41 3.3,8.2 C3.38,5.31 5.75,3 8.68,3 C11.19,3 13.31,4.71 13.89,7.02 C14.39,6.8 14.93,6.68 15.5,6.68 C17.71,6.68 19.5,8.45 19.5,10.64 C19.5,12.83 17.71,14.6 15.5,14.6 L12.5,14.6"></path>
-    <polyline fill="none" :stroke="color || 'currentColor'" points="11.75 16 9.5 18.25 7.25 16"></polyline>
-    <path fill="none" :stroke="color || 'currentColor'" d="M9.5,18 L9.5,9.5"></path>
+  <svg width="25" height="25" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414">
+      <path d="M16 35h-5.525C6.358 35 3 31.688 3 27.594c0-3.749 2.806-6.854 6.44-7.337.184-6.647 5.635-11.96 12.374-11.96 5.773 0 10.649 3.933 11.983 9.246a9.135 9.135 0 0 1 3.703-.782c5.083 0 9.2 4.071 9.2 9.108 0 5.037-4.117 9.108-9.2 9.108L30 35" fill="none" :stroke="color || 'currentColor'" stroke-width="2"/>
+      <path d="M24.02 42.48l3.537-3.576L29 40.362s-4.221 4.395-5.221 5.335A1.232 1.232 0 0 1 23 46c-.25 0-.531-.123-.721-.302-1-.94-5.279-5.336-5.279-5.336l1.443-1.458 3.537 3.576L22 26h2.04l-.02 16.48" :fill="color || 'currentColor'" fill-rule="nonzero"/>
   </svg>
 </template>
 
