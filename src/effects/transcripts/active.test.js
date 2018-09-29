@@ -53,20 +53,6 @@ playtimeTypes.forEach(type => {
       payload: 5
     })
   })
-
-  test(`transcripts - active: doesn't get called if playtime is out of range in ${type}`, t => {
-    activeEffect(store, {
-      type: 'SET_TRANSCRIPTS_TIMELINE',
-      payload: timeline
-    })
-
-    activeEffect(store, {
-      type: 'SET_PLAYTIME',
-      payload: 700000
-    })
-
-    t.is(store.dispatch.getCalls().length, 1)
-  })
 })
 
 test.cb(`transcripts - active: calls interval search debounced with playtime on DISABLE_GHOST_MODE`, t => {
@@ -133,24 +119,4 @@ test.cb(`transcripts - active: calls interval search debounced with payload on S
     type: 'SIMULATE_PLAYTIME',
     payload: 350000
   })
-})
-
-test(`transcripts - active: falls back to empty array if no payload available`, t => {
-  activeEffect(store, {
-    type: 'SET_TRANSCRIPTS_TIMELINE'
-  })
-
-  t.is(store.dispatch.getCalls().length, 0)
-})
-
-test(`transcripts - active: it ignores start and end is equal`, t => {
-  activeEffect(store, {
-    type: 'SET_TRANSCRIPTS_TIMELINE',
-    payload: [{
-      start: 0,
-      end: 0
-    }]
-  })
-
-  t.is(store.dispatch.getCalls().length, 0)
 })
