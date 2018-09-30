@@ -3,7 +3,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const autoprefixer = require('autoprefixer')
 const cssClean = require('postcss-clean')
 
-const { prepend , sourceDir} = require('./dir')
+const {prepend, sourceDir} = require('./dir')
 
 const vue = () => ({
   test: /\.vue$/,

@@ -1,7 +1,7 @@
-import TextSearch from 'lunr'
+import { textSearch } from 'utils/text-search'
 
-import { noop, sortBy } from 'lodash'
-import { compose, map } from 'lodash/fp'
+import { noop } from 'lodash'
+import { compose } from 'lodash/fp'
 
 import { prohibitiveDispatch, handleActions } from 'utils/effects'
 import { inAnimationFrame } from 'utils/helper'
@@ -9,44 +9,20 @@ import { inAnimationFrame } from 'utils/helper'
 import actions from 'store/actions'
 import { SET_TRANSCRIPTS_TIMELINE, SEARCH_TRANSCRIPTS } from 'store/types'
 
-let updateTranscript = noop
-
-const buildIndex = (data = []) => {
-  const textIndex = TextSearch(function () {
-    this.field('text')
-    data.map(({ texts = [], type }, index) => {
-      if (type !== 'transcript') {
-        return
-      }
-
-      this.add({ id: index, text: texts.reduce((result, item) => result + ' ' + item.text, '') })
-    })
-  })
-
-  return (input = '') => {
-    let result
-
-    try {
-      result = textIndex.search(`text:${input}`)
-    } catch (e) {
-      result = []
-    }
-
-    return result
-  }
-}
+let search = noop
 
 export default handleActions({
-  [SET_TRANSCRIPTS_TIMELINE]: ({ dispatch }, { payload }) => {
-    updateTranscript = inAnimationFrame(
+  [SET_TRANSCRIPTS_TIMELINE]: ({ dispatch }, { payload = [] }) => {
+    const searchIndex = payload
+      .map(({ texts = [] }) => texts.map(({ text }) => text).join(' '))
+
+    search = inAnimationFrame(
       compose(
         prohibitiveDispatch(dispatch, actions.setTranscriptsSearchResults),
-        sortBy,
-        map(result => parseInt(result.ref)),
-        buildIndex(payload)
+        textSearch(searchIndex)
       )
     )
   },
 
-  [SEARCH_TRANSCRIPTS]: (store, { payload }) => updateTranscript(payload)
+  [SEARCH_TRANSCRIPTS]: (store, { payload }) => search(payload)
 })

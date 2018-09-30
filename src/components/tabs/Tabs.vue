@@ -27,23 +27,23 @@
       </tab-header-item-component>
     </tab-header-component>
 
-    <tab-body-component :active="tabs.info" name="info" :aria-selected="tabs.info" ref="info">
-      <info-tab v-if="isVisibleTab.info && tabs.info"></info-tab>
+    <tab-body-component :active="tabs.info" name="info" :aria-selected="tabs.info" ref="info" v-if="isVisibleTab.info && tabs.info">
+      <info-tab></info-tab>
     </tab-body-component>
-    <tab-body-component :active="tabs.chapters" name="chapters" :aria-selected="tabs.chapters" ref="chapters">
-      <chapters-tab v-if="isVisibleTab.chapters && tabs.chapters"></chapters-tab>
+    <tab-body-component :active="tabs.chapters" name="chapters" :aria-selected="tabs.chapters" ref="chapters" v-if="isVisibleTab.chapters && tabs.chapters">
+      <chapters-tab></chapters-tab>
     </tab-body-component>
-    <tab-body-component :active="tabs.transcripts" class="fixed" name="transcripts" :aria-selected="tabs.transcripts" ref="transcripts">
-      <transcripts-tab v-if="isVisibleTab.transcripts && tabs.transcripts"></transcripts-tab>
+    <tab-body-component :active="tabs.transcripts" class="fixed" name="transcripts" :aria-selected="tabs.transcripts" ref="transcripts" v-if="isVisibleTab.transcripts && tabs.transcripts">
+      <transcripts-tab></transcripts-tab>
     </tab-body-component>
-    <tab-body-component :active="tabs.share" name="share" :aria-selected="tabs.share" ref="share">
-      <share-tab v-if="isVisibleTab.share && tabs.share"></share-tab>
+    <tab-body-component :active="tabs.share" name="share" :aria-selected="tabs.share" ref="share" v-if="isVisibleTab.share && tabs.share">
+      <share-tab></share-tab>
     </tab-body-component>
-    <tab-body-component :active="tabs.download" name="download" :aria-selected="tabs.download" ref="download">
-      <download-tab v-if="isVisibleTab.download && tabs.download"></download-tab>
+    <tab-body-component :active="tabs.download" name="download" :aria-selected="tabs.download" ref="download" v-if="isVisibleTab.download && tabs.download">
+      <download-tab></download-tab>
     </tab-body-component>
-    <tab-body-component :active="tabs.audio" name="audio" :aria-selected="tabs.audio" ref="audio">
-      <audio-tab v-if="isVisibleTab.audio && tabs.audio"></audio-tab>
+    <tab-body-component :active="tabs.audio" name="audio" :aria-selected="tabs.audio" ref="audio" v-if="isVisibleTab.audio && tabs.audio">
+      <audio-tab></audio-tab>
     </tab-body-component>
   </div>
 </template>
@@ -62,12 +62,14 @@ import InfoIcon from 'icons/InfoIcon'
 import AudioIcon from 'icons/AudioIcon'
 import TranscriptsIcon from 'icons/TranscriptsIcon'
 
-import InfoTab from './info/Info'
-import ShareTab from './share/Share'
-import ChaptersTab from './chapters/Chapters'
-import TranscriptsTab from './transcripts/Transcripts'
-import DownloadTab from './download/Download'
-import AudioTab from './audio/Audio'
+const tabs = {
+  InfoTab: () => import(/* webpackMode: "eager" */'./info/Info'),
+  ShareTab: () => import(/* webpackMode: "eager" */'./share/Share'),
+  ChaptersTab: () => import(/* webpackMode: "eager" */'./chapters/Chapters'),
+  TranscriptsTab: () => import(/* webpackMode: "eager" */'./transcripts/Transcripts'),
+  DownloadTab: () => import(/* webpackMode: "eager" */'./download/Download'),
+  AudioTab: () => import(/* webpackMode: "eager" */'./audio/Audio')
+}
 
 export default {
   data: mapState('theme', 'tabs', 'chapters', 'reference', 'visibleComponents', 'components'),
@@ -113,12 +115,7 @@ export default {
     AudioIcon,
     TranscriptsIcon,
 
-    InfoTab,
-    ShareTab,
-    ChaptersTab,
-    TranscriptsTab,
-    DownloadTab,
-    AudioTab
+    ...tabs
   }
 }
 </script>

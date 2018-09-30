@@ -1,26 +1,23 @@
 const { prepend } = require('./dir')
+const ignoredChunks = ['embed', 'extensions/external-events']
 
-const ignoredAssets = ['embed', 'extensions/external-events']
-
-module.exports = prefix => ({
+module.exports = (prefix = '') => ({
   splitChunks: {
     cacheGroups: {
       default: false,
-      common: false,
+      vendors: false,
       vendor: {
+        name: 'vendor',
         chunks: chunk => ~[prepend('window', prefix), prepend('share', prefix)].indexOf(chunk.name),
-        name: prepend('vendor', prefix),
-        test: prepend('vendor', prefix),
-        enforce: true
+        test: /node_modules/
       },
       styles: {
-        name: prepend('style', prefix),
+        name: 'style',
         test: /\.(s?css|vue)$/,
         enforce: true,
-        chunks: chunk => !~ignoredAssets.indexOf(chunk.name),
+        chunks: chunk => chunk.name && !~ignoredChunks.indexOf(chunk.name),
         minChunks: 1
       }
     }
-  },
-  runtimeChunk: false
+  }
 })

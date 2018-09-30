@@ -29,3 +29,6 @@ img {
   max-width: 100%;
   width: auto;
 }
+
+// Removes outline only for mouse users
+:focus:not(:focus-visible) { outline: none }

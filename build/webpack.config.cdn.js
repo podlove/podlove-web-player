@@ -6,7 +6,7 @@ const { entry, output, resolve, optimization, rules, plugins } = require('./bloc
 module.exports = {
   mode: 'production',
   entry: entry.prod(version),
-  output: output(BASE),
+  output: output(BASE, version),
 
   optimization: optimization(version),
 
@@ -24,7 +24,7 @@ module.exports = {
 
   plugins: [
     plugins.vue(),
-    plugins.css(),
+    plugins.css(version),
     plugins.minifyCss(),
     plugins.version(),
     plugins.base(`${BASE}${version}`),
