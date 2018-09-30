@@ -63,12 +63,12 @@ import AudioIcon from 'icons/AudioIcon'
 import TranscriptsIcon from 'icons/TranscriptsIcon'
 
 const tabs = {
-  InfoTab: () => import('./info/Info'),
-  ShareTab: () => import('./share/Share'),
-  ChaptersTab: () => import('./chapters/Chapters'),
-  TranscriptsTab: () => import('./transcripts/Transcripts'),
-  DownloadTab: () => import('./download/Download'),
-  AudioTab: () => import('./audio/Audio')
+  InfoTab: () => import(/* webpackMode: "eager" */'./info/Info'),
+  ShareTab: () => import(/* webpackMode: "eager" */'./share/Share'),
+  ChaptersTab: () => import(/* webpackMode: "eager" */'./chapters/Chapters'),
+  TranscriptsTab: () => import(/* webpackMode: "eager" */'./transcripts/Transcripts'),
+  DownloadTab: () => import(/* webpackMode: "eager" */'./download/Download'),
+  AudioTab: () => import(/* webpackMode: "eager" */'./audio/Audio')
 }
 
 export default {
