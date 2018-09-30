@@ -1,3 +1,27 @@
+<a name="4.1.6"></a>
+## [4.1.6](https://github.com/podlove/podlove-web-player/compare/v4.1.5...v4.1.6) (2018-09-30)
+
+
+### Bug Fixes
+
+* add FiraSans-Bold (fira sans v8 600) webfont to improve rendering of bold in safari, change scss for chapter links to explicitly use bold when active ([fe856a8](https://github.com/podlove/podlove-web-player/commit/fe856a8))
+* **chapters:** fix alt click interaction over the link part by making it based on the progressContainer vs. the event target ([f52e723](https://github.com/podlove/podlove-web-player/commit/f52e723))
+* **chapters:** remove wrong click guard on onChapterClick, change to use linkHover state to guard to be in line with what is displayed ([8e3a3e0](https://github.com/podlove/podlove-web-player/commit/8e3a3e0))
+* **package:** update detect-browser to version 3.0.1 ([e035721](https://github.com/podlove/podlove-web-player/commit/e035721))
+* **package:** update iframe-resizer to version 3.6.2 ([2fb175e](https://github.com/podlove/podlove-web-player/commit/2fb175e))
+* **package:** update lodash to version 4.17.11 ([df4cded](https://github.com/podlove/podlove-web-player/commit/df4cded))
+* **package:** update lunr to version 2.3.3 ([ba4042e](https://github.com/podlove/podlove-web-player/commit/ba4042e))
+* **package:** update mobile-detect to version 1.4.3 ([d1e74ba](https://github.com/podlove/podlove-web-player/commit/d1e74ba))
+* **package:** update vue-i18n to version 8.1.0 ([4a13ecb](https://github.com/podlove/podlove-web-player/commit/4a13ecb))
+* **tabs:** remove false 0.5 opacity of transcript icon, unify tab icon stroke widths and positions ([acc4fde](https://github.com/podlove/podlove-web-player/commit/acc4fde))
+
+
+### Features
+
+* **chapters:** add support for the "href" property in chapters by showing it in the chapters tab ([f7240f2](https://github.com/podlove/podlove-web-player/commit/f7240f2))
+
+
+
 <a name="4.1.5"></a>
 ## [4.1.5](https://github.com/podlove/podlove-web-player/compare/v4.1.4...v4.1.5) (2018-08-25)
 
