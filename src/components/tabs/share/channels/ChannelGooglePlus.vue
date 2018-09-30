@@ -15,7 +15,7 @@
     props: ['link', 'color'],
     computed: {
       googlePlusLink () {
-        return addQueryParameter(LINK, {url: this.link})
+        return addQueryParameter(LINK, { url: this.link })
       }
     },
     components: {

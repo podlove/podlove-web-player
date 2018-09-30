@@ -1,7 +1,8 @@
 /* globals BASE */
 import {
   get,
-  compose
+  compose,
+  merge
 } from 'lodash'
 import {
   iframeResizer
@@ -60,6 +61,12 @@ const createPlayerDom = config => [
   tag('script', iframeResizerContentWindow)
 ].join('')
 
+const setPublicPath = config => {
+  window.__webpack_public_path__ = get(config.reference, 'base', BASE)
+
+  return config
+}
+
 const resizer = sandbox => {
   iframeResizer({
     checkOrigin: false,
@@ -90,10 +97,11 @@ const setAccessibilityAttributes = config => {
   })
 }
 
-window.podlovePlayer = (selector, episode) =>
+window.podlovePlayer = (selector, episode, additional = {}) =>
   requestConfig(episode)
     .then(config =>
-      Promise.resolve(config)
+      Promise.resolve(merge(config, additional))
+        .then(setPublicPath)
         .then(createPlayerDom)
         .then(sandboxFromSelector(selector))
         // Set Title for accessibility

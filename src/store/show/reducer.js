@@ -1,5 +1,6 @@
 import { get } from 'lodash'
 import { handleActions } from 'redux-actions'
+import { sanitize } from 'utils/dom'
 
 import { INIT } from '../types'
 
@@ -16,7 +17,7 @@ export const reducer = handleActions({
     ...state,
     title: get(payload, ['show', 'title'], null),
     subtitle: get(payload, ['show', 'subtitle'], null),
-    summary: get(payload, ['show', 'summary'], null),
+    summary: sanitize(get(payload, ['show', 'summary'], null)),
     link: get(payload, ['show', 'link'], null),
     poster: get(payload, ['show', 'poster'], null)
   })

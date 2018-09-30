@@ -13,8 +13,8 @@ const { sourceDir, prepend } = require('./dir')
 
 const vue = () => new VueLoaderPlugin()
 
-const css = () => new MiniCssExtractPlugin({
-  filename: `[name].css`
+const css = (prefix = '') => new MiniCssExtractPlugin({
+  filename: prepend('[name].css', prefix)
 })
 
 const minifyCss = () => new OptimizeCSSAssetsPlugin({})

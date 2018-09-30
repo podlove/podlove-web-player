@@ -82,7 +82,7 @@ const mapSpeakers = speakers =>
   })
 
 export default handleActions({
-  [INIT]: ({ dispatch }, { type, payload }, state) => {
+  [INIT]: ({ dispatch }, { type, payload }) => {
     const transcriptsUrl = get(payload, 'transcripts')
 
     request(transcriptsUrl)

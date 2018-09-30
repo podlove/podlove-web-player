@@ -9,13 +9,13 @@
           <span class="tag" v-if="duration && episodeDuration.hours === 0"><clock-icon class="icon"></clock-icon>{{ $t('DOWNLOAD.DURATION', episodeDuration) }}</span>
         </p>
         <p class="subtitle" v-if="episode.subtitle" id="tab-info--episode-subtitle">{{ episode.subtitle }}</p>
-        <p class="summary" v-if="episode.summary" id="tab-info--episode-summary">{{ episode.summary }}</p>
+        <p class="summary" v-if="episode.summary" id="tab-info--episode-summary" v-html="episode.summary"></p>
         <p class="link" v-if="episode.link"><link-icon class="icon"></link-icon><a class="info-link truncate" :href="episode.link" target="_blank" id="tab-info--episode-link">{{ episode.link }}</a></p>
       </div>
       <div class="show">
         <h3 class="title" v-if="show.title" id="tab-info--show-title">{{ show.title }}</h3>
         <img v-if="show.poster" :src="show.poster" id="tab-info--show-poster" class="show-poster shadowed" :alt="$t('A11Y.ALT_SHOW_COVER')"/>
-        <p class="summary" v-if="show.summary" id="tab-info--show-summary">{{ show.summary }}</p>
+        <p class="summary" v-if="show.summary" id="tab-info--show-summary" v-html="show.summary"></p>
         <p class="link" v-if="show.link"><link-icon class="icon"></link-icon><a class="info-link truncate" :href="show.link" target="_blank" id="tab-info--show-link">{{ show.link }}</a></p>
       </div>
     </div>
@@ -105,8 +105,27 @@
       }
 
       .summary {
-        white-space: pre-line;
         hyphens: auto;
+
+        ul, ol {
+          margin-left: 1em;
+        }
+
+        ul {
+          list-style: disc;
+        }
+
+        ol {
+          list-style: decimal;
+        }
+
+        li {
+          margin-left: 0.25em;
+        }
+
+        a {
+          font-weight: 500;
+        }
       }
 
       .subtitle {

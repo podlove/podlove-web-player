@@ -57,6 +57,8 @@ navigation: 5
 |-----------|---------------------------------------|
 | start     | Chapter Start Time in Format hh:mm:ss |
 | title     | Chapter Title                         |
+| href      | Chapter Link URL (optional)           |
+| image     | Chapter Image URL (optional)          |
 
 _Not providing chapters will disable all chapter related functions._
 
@@ -67,8 +69,8 @@ _Not providing chapters will disable all chapter related functions._
       { start:"00:01:39", title: 'Begrüßung'},
       { start:"00:04:58", title: 'IETF Meeting Netzwerk'},
       { start:"00:18:37", title: 'Kalender'},
-      { start:"00:33:40", title: 'Freak Show Bingo'},
-      { start:"00:35:37", title: 'Wikipedia'},
+      { start:"00:33:40", title: 'Freak Show Bingo', image: 'https://picsum.photos/400/400/?random&image=6'},
+      { start:"00:35:37", title: 'Wikipedia', href: 'https://wikipedia.de'},
       { start:"01:17:26", title: 'iPhone Akkukalibration'},
       { start:"01:24:55", title: 'Alte iPads und iPod touches'},
       { start:"01:31:02", title: 'Find My Friends'},

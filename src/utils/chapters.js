@@ -7,13 +7,14 @@ const emptyChapter = {
   start: null,
   end: null,
   title: null,
+  href: null,
   index: -1
 }
 
 export const getChapterByIndex = chapters => index => get(chapters, index, emptyChapter)
 
-export const currentChapterIndex = compose(fallbackTo(-1), findIndex({active: true}))
-export const currentChapter = compose(fallbackTo(emptyChapter), find({active: true}))
+export const currentChapterIndex = compose(fallbackTo(-1), findIndex({ active: true }))
+export const currentChapter = compose(fallbackTo(emptyChapter), find({ active: true }))
 
 export const nextChapter = chapters => compose(getChapterByIndex(chapters), add(1), currentChapterIndex)(chapters)
 export const previousChapter = chapters => compose(getChapterByIndex(chapters), add(-1), currentChapterIndex)(chapters)

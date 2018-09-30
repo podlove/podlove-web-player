@@ -7,6 +7,7 @@ const generateTestData = (chapters, active) => {
   const fallback = {
     start: null,
     end: null,
+    href: null,
     title: null,
     index: -1
   }

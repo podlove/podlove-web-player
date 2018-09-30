@@ -1,7 +1,7 @@
-import IntervalTree from 'interval-tree2'
+import { binarySearch } from 'utils/binary-search'
 
 import { noop, debounce } from 'lodash'
-import { compose, head, get } from 'lodash/fp'
+import { compose } from 'lodash/fp'
 
 import { prohibitiveDispatch, handleActions } from 'utils/effects'
 import { inAnimationFrame } from 'utils/helper'
@@ -12,46 +12,17 @@ import { SET_TRANSCRIPTS_TIMELINE, SET_TRANSCRIPTS_CHAPTERS, SET_PLAYTIME, UPDAT
 let update = noop
 let debouncedUpdate = noop
 
-const buildIndex = (duration = 0, data = []) => {
-  const timeIndex = new IntervalTree(duration / 2)
+const createIndex = ({ dispatch }, { payload = [] }, { playtime }) => {
+  const searchIndex = payload.map(({ start }) => start)
 
-  data.map(({type, start, end}, index) => {
-    if (type !== 'transcript') {
-      return
-    }
-
-    if (start >= end) {
-      return
-    }
-
-    timeIndex.add(start, end, index)
-  })
-
-  return time => {
-    let result
-
-    try {
-      result = timeIndex.search(time)
-    } catch (e) {
-      result = []
-    }
-
-    return result
-  }
-}
-
-const createIndex = ({ dispatch }, { payload }, { duration, playtime }) => {
-  // Build index
-  const indexSearch = compose(
-    prohibitiveDispatch(dispatch, actions.updateTranscripts),
-    get('id'),
-    head,
-    buildIndex(duration, payload)
+  update = inAnimationFrame(
+    compose(
+      prohibitiveDispatch(dispatch, actions.updateTranscripts),
+      binarySearch(searchIndex)
+    )
   )
 
-  update = inAnimationFrame(indexSearch)
-  debouncedUpdate = debounce(indexSearch, 200)
-
+  debouncedUpdate = debounce(update, 200)
   update(playtime)
 }
 
@@ -59,9 +30,9 @@ export default handleActions({
   [SET_TRANSCRIPTS_TIMELINE]: createIndex,
   [SET_TRANSCRIPTS_CHAPTERS]: createIndex,
 
-  [SET_PLAYTIME]: (store, { payload }) => update(payload),
-  [UPDATE_PLAYTIME]: (store, { payload }) => update(payload),
+  [SET_PLAYTIME]: (_, { payload }) => update(payload),
+  [UPDATE_PLAYTIME]: (_, { payload }) => update(payload),
 
-  [DISABLE_GHOST_MODE]: (store, action, { playtime }) => debouncedUpdate(playtime),
-  [SIMULATE_PLAYTIME]: (store, { payload }) => debouncedUpdate(payload)
+  [DISABLE_GHOST_MODE]: (_, action, { playtime }) => debouncedUpdate(playtime),
+  [SIMULATE_PLAYTIME]: (_, { payload }) => debouncedUpdate(payload)
 })

@@ -15,7 +15,7 @@
     props: ['text', 'subject', 'color'],
     computed: {
       mailLink () {
-        return addQueryParameter(LINK, {body: this.text, subject: this.subject})
+        return addQueryParameter(LINK, { body: this.text, subject: this.subject })
       }
     },
     components: {

@@ -63,7 +63,7 @@ test(`playerEffect: it creates the media element on INIT`, t => {
   playerEffect(store, {
     type: 'INIT',
     payload: {
-      audio: [{url: 'foo'}]
+      audio: [{ url: 'foo' }]
     }
   })
 
@@ -83,7 +83,7 @@ test(`playerEffect: it calls setPlaytime and play on UI_PLAY`, t => {
   playerEffect(store, {
     type: 'INIT',
     payload: {
-      audio: [{url: 'foo'}]
+      audio: [{ url: 'foo' }]
     }
   })
 
@@ -99,7 +99,7 @@ test(`playerEffect: it calls pause on UI_PAUSE`, t => {
   playerEffect(store, {
     type: 'INIT',
     payload: {
-      audio: [{url: 'foo'}]
+      audio: [{ url: 'foo' }]
     }
   })
 
@@ -114,7 +114,7 @@ test(`playerEffect: it calls setPlaytime and play on UI_RESTART`, t => {
   playerEffect(store, {
     type: 'INIT',
     payload: {
-      audio: [{url: 'foo'}]
+      audio: [{ url: 'foo' }]
     }
   })
 
@@ -130,7 +130,7 @@ test(`playerEffect: it calls setPlaytime on UPDATE_PLAYTIME`, t => {
   playerEffect(store, {
     type: 'INIT',
     payload: {
-      audio: [{url: 'foo'}]
+      audio: [{ url: 'foo' }]
     }
   })
 
@@ -165,7 +165,7 @@ test(`playerEffect: it calls volume on SET_VOLUME`, t => {
   playerEffect(store, {
     type: 'INIT',
     payload: {
-      audio: [{url: 'foo'}]
+      audio: [{ url: 'foo' }]
     }
   })
 
@@ -181,7 +181,7 @@ test(`playerEffect: it calls rate on SET_RATE`, t => {
   playerEffect(store, {
     type: 'INIT',
     payload: {
-      audio: [{url: 'foo'}]
+      audio: [{ url: 'foo' }]
     }
   })
 
@@ -197,7 +197,7 @@ test(`playerEffect: it calls mute on MUTE`, t => {
   playerEffect(store, {
     type: 'INIT',
     payload: {
-      audio: [{url: 'foo'}]
+      audio: [{ url: 'foo' }]
     }
   })
 
@@ -212,7 +212,7 @@ test(`playerEffect: it calls unmute on UNMUTE`, t => {
   playerEffect(store, {
     type: 'INIT',
     payload: {
-      audio: [{url: 'foo'}]
+      audio: [{ url: 'foo' }]
     }
   })
 
@@ -227,7 +227,7 @@ test(`playerEffect: it calls unmute on LOAD`, t => {
   playerEffect(store, {
     type: 'INIT',
     payload: {
-      audio: [{url: 'foo'}]
+      audio: [{ url: 'foo' }]
     }
   })
 

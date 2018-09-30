@@ -25,14 +25,14 @@ const parseParameters = parameters => {
   return parsed
 }
 
-export const urlParameters = {...parseParameters(locationParams)}
+export const urlParameters = { ...parseParameters(locationParams) }
 
 export const addQueryParameter = (url, additionalParameters = {}) => {
   const parser = document.createElement('a')
   parser.href = url
 
   const existingParameters = queryString.parse(parser.search)
-  parser.search = queryString.stringify(Object.assign({}, existingParameters, additionalParameters), {encode: false})
+  parser.search = queryString.stringify(Object.assign({}, existingParameters, additionalParameters), { encode: false })
 
   return parser.href
 }

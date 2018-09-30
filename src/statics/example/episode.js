@@ -16,7 +16,7 @@ export default (extension = {}) => ({
   },
   title: 'FS207 Berliner Leistungswasser',
   subtitle: 'Design \u2014 Textverarbeitung \u2014 Layout \u2014 SUBSCRIBE 9 \u2014 Selbst\u00e4ndigkeit \u2014 Kalender \u2014 Hackintosh \u2014 IPv6 \u2014 iPhone X \u2014 Digitale Verst\u00e4rker \u2014 Musikdistribution \u2014 Kinos \u2014 Blade Runner \u2014 Breitband',
-  summary: 'In der heutigen Folge begr\u00fc\u00dfen wir den Musiker, Gestalter und Podcaster Malik Aziz in unserer Runde und reden viel \u00fcber den Stand der Dinge bei Design/Layout-Software, Textverarbeitung und Musik-Technik und Distribution. Wir blicken au\u00dferdem auf die SUBSCRIBE 9 Konferenz, die letzte Woche in M\u00fcnchen stattfand. Hackintoshes stehen au\u00dferdem im zur Diskussion und wir versuchen, \u00fcber Blade Runner zu reden ohne zu spoilern. Das ist uns wohl auch gelungen, also keine Angst.',
+  summary: 'In der heutigen Folge begr\u00fc\u00dfen wir den Musiker, Gestalter und <a href="http://google.com">Podcaster Malik Aziz</a> in unserer Runde und reden viel \u00fcber den Stand der Dinge bei Design/Layout-Software, Textverarbeitung und Musik-Technik und Distribution. Wir blicken au\u00dferdem auf die SUBSCRIBE 9 Konferenz, die letzte Woche in M\u00fcnchen stattfand. Hackintoshes stehen au\u00dferdem im zur Diskussion und wir versuchen, \u00fcber Blade Runner zu reden ohne zu spoilern. Das ist uns wohl auch gelungen, also keine Angst.',
   publicationDate: '2017-11-02T20:31:30+00:00',
   poster: 'https://freakshow.fm/wp-content/cache/podlove/04/662a9d4edcf77ea2abe3c74681f509/freak-show_500x500.jpg',
   duration: '04:29:56.685',

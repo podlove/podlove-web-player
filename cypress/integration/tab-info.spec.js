@@ -1,7 +1,32 @@
 /* eslint-env mocha */
-/* globals cy */
+/* globals cy, expect */
 const { setState } = require('../helpers/state')
 const domSelectors = require('../selectors')
+
+const allowedMarkup = [
+  '<strong>bold text</strong>',
+  '<em>italic text</em>',
+  '<i>also italic text</i>',
+  '<br>',
+  '<p>A paragraph</p>',
+  '<ul>',
+  '<li>A unordered list item</li>',
+  '<li>Another unordered list item</li>',
+  '</ul>',
+  '<ol>',
+  '<li>An ordered list item</li>',
+  '<li>Another ordered list item</li>',
+  '</ol>',
+  {
+    test: '<a href="/path/to/somewhere">A link</a>',
+    expected: '<a target="_blank" href="/path/to/somewhere">A link</a>'
+  }
+]
+
+const prohibitedMarkup = [
+  '<script>foo</script>',
+  '<iframe />'
+]
 
 describe('Info Tab', () => {
   let selectors
@@ -88,6 +113,46 @@ describe('Info Tab', () => {
         cy.tab('info')
         selectors.tabs.info.episode.summary().should('not.exist')
       })
+
+      it(`allows custom markup`, function () {
+        this.episode.summary = allowedMarkup.map(input => {
+          if (typeof input === 'string') {
+            return input
+          }
+
+          return input.test
+        }).join('')
+
+        cy.window().then(setState(this.episode, this.audio, this.show, this.runtime))
+        cy.tab('info')
+        selectors.tabs.info.episode.summary().then($el => {
+          const summaryHtml = $el.html()
+          allowedMarkup.forEach(markup => {
+            let expected
+            if (typeof markup === 'string') {
+              expected = markup
+            } else {
+              expected = markup.expected
+            }
+
+            expect(summaryHtml).to.contain(expected)
+          })
+        })
+      })
+
+      it(`doesn't allow malicious markup`, function () {
+        this.episode.summary = ['foo', ...prohibitedMarkup].join('')
+
+        cy.window().then(setState(this.episode, this.audio, this.show, this.runtime))
+        cy.tab('info')
+        selectors.tabs.info.episode.summary().then($el => {
+          const summaryHtml = $el.html()
+
+          prohibitedMarkup.forEach(markup => {
+            expect(summaryHtml).not.to.contain(markup)
+          })
+        })
+      })
     })
 
     describe('Link', () => {
@@ -150,6 +215,46 @@ describe('Info Tab', () => {
         cy.window().then(setState(this.show, this.audio, this.show))
         cy.tab('info')
         selectors.tabs.info.show.summary().should('not.exist')
+      })
+
+      it(`allows custom markup`, function () {
+        this.show.show.summary = allowedMarkup.map(input => {
+          if (typeof input === 'string') {
+            return input
+          }
+
+          return input.test
+        }).join('')
+
+        cy.window().then(setState(this.episode, this.audio, this.show, this.runtime))
+        cy.tab('info')
+        selectors.tabs.info.show.summary().then($el => {
+          const summaryHtml = $el.html()
+          allowedMarkup.forEach(markup => {
+            let expected
+            if (typeof markup === 'string') {
+              expected = markup
+            } else {
+              expected = markup.expected
+            }
+
+            expect(summaryHtml).to.contain(expected)
+          })
+        })
+      })
+
+      it(`doesn't allow malicious markup`, function () {
+        this.show.show.summary = ['foo', ...prohibitedMarkup].join('')
+
+        cy.window().then(setState(this.episode, this.audio, this.show, this.runtime))
+        cy.tab('info')
+        selectors.tabs.info.show.summary().then($el => {
+          const summaryHtml = $el.html()
+
+          prohibitedMarkup.forEach(markup => {
+            expect(summaryHtml).not.to.contain(markup)
+          })
+        })
       })
     })
 

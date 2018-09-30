@@ -8,6 +8,7 @@ module.exports = () => ({
     utils: path.resolve(sourceDir, 'utils'),
     shared: path.resolve(sourceDir, 'components', 'shared'),
     icons: path.resolve(sourceDir, 'components', 'icons'),
+    components: path.resolve(sourceDir, 'components'),
     lang: path.resolve(sourceDir, 'lang'),
     core: path.resolve(sourceDir, 'core'),
     styles: path.resolve(sourceDir, 'styles')

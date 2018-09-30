@@ -36,6 +36,7 @@ test('currentChapter should return undefined if no matches', t => {
   t.deepEqual(currentChapter([]), {
     start: null,
     end: null,
+    href: null,
     title: null,
     index: -1
   })
