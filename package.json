@@ -68,7 +68,7 @@
     "lodash": "4.17.11",
     "mobile-detect": "1.4.3",
     "normalize.css": "7.0.0",
-    "query-string": "5.1.1",
+    "query-string": "6.2.0",
     "redux": "3.7.2",
     "redux-actions": "2.6.1",
     "redux-vuex": "^0.1.1",
