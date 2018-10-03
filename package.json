@@ -95,7 +95,7 @@
     "babel-preset-env": "1.6.1",
     "babel-register": "6.26.0",
     "browser-env": "3.2.4",
-    "commitizen": "2.10.1",
+    "commitizen": "3.0.2",
     "compression-webpack-plugin": "2.0.0",
     "concurrently": "^4.0.0",
     "conventional-changelog-lint": "2.1.1",
