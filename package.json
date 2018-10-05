@@ -107,7 +107,7 @@
     "eslint-plugin-html": "4.0.6",
     "express": "^4.16.3",
     "express-http-proxy": "^1.2.0",
-    "file-loader": "^1.1.11",
+    "file-loader": "^2.0.0",
     "generate-changelog": "1.7.1",
     "got": "^9.0.0",
     "html-webpack-plugin": "^3.2.0",
