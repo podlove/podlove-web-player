@@ -13,7 +13,8 @@ import iframeResizerContentWindow from 'raw-loader!iframe-resizer/js/iframeResiz
 import {
   findNode,
   tag,
-  setAttributes
+  setAttributes,
+  cleanDom
 } from 'utils/dom'
 import requestConfig from 'utils/request'
 import {
@@ -97,6 +98,15 @@ const setAccessibilityAttributes = config => {
   })
 }
 
+const cleanup = compose(
+  node => store => {
+    cleanDom('iframe', node)
+
+    return store
+  },
+  findNode
+)
+
 window.podlovePlayer = (selector, episode, additional = {}) =>
   requestConfig(episode)
     .then(config =>
@@ -109,6 +119,7 @@ window.podlovePlayer = (selector, episode, additional = {}) =>
         .then(resizer)
         .then(sandboxWindow(['PODLOVE_STORE']))
         .then(dispatchUrlParameters)
+        .then(cleanup(selector))
     )
     .catch(err => {
       console.group(`Can't load Podlove Webplayer`)
