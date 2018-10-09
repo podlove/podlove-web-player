@@ -1,3 +1,13 @@
+<a name="4.1.7"></a>
+## [4.1.7](https://github.com/podlove/podlove-web-player/compare/v4.1.6...v4.1.7) (2018-10-09)
+
+
+### Bug Fixes
+
+* **bundle:** Use bundled version of audio-driver ([0d022c9](https://github.com/podlove/podlove-web-player/commit/0d022c9))
+
+
+
 <a name="4.1.6"></a>
 ## [4.1.6](https://github.com/podlove/podlove-web-player/compare/v4.1.5...v4.1.6) (2018-09-30)
 
