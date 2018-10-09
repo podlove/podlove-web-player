@@ -69,3 +69,13 @@ export const setAttributes = (attrs = {}) => el => {
 
   return el
 }
+
+export const cleanDom = curry((keep = '', node) => {
+  [...node.children].forEach(child => {
+    if (child.tagName === keep.toUpperCase()) {
+      return
+    }
+
+    node.removeChild(child)
+  })
+})
