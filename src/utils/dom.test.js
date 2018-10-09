@@ -1,7 +1,7 @@
 import test from 'ava'
 import sinon from 'sinon'
 import browserEnv from 'browser-env'
-import { findNode, createNode, appendNode, tag, setStyles, addClasses, getClasses, removeClasses, setAttributes, hasOverflow } from './dom'
+import { findNode, createNode, appendNode, tag, setStyles, addClasses, getClasses, removeClasses, setAttributes, hasOverflow, cleanDom } from './dom'
 
 browserEnv()
 
@@ -48,6 +48,10 @@ test('exports a method called setAttributes', t => {
 
 test('exports a method called hasOverflow', t => {
   t.truthy(typeof hasOverflow === 'function')
+})
+
+test('exports a method called cleanDom', t => {
+  t.truthy(typeof cleanDom === 'function')
 })
 
 test('findNode should call the document api', t => {
@@ -138,4 +142,18 @@ test(`hasOverflow should return false if clientWidth is large than scrollWidth`,
   }
 
   t.is(hasOverflow(testNode), false)
+})
+
+test(`cleanDom should call removeChild on unmatched nodes`, t => {
+  const testNode = {
+    children: [{
+      tagName: 'H1'
+    }, {
+      tagName: 'IFRAME'
+    }],
+    removeChild: sinon.stub()
+  }
+
+  cleanDom('iframe', testNode)
+  t.deepEqual(testNode.removeChild.getCall(0).args[0], testNode.children[0])
 })
