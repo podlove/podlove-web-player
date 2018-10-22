@@ -70,7 +70,7 @@
     "normalize.css": "7.0.0",
     "query-string": "6.2.0",
     "redux": "3.7.2",
-    "redux-actions": "2.6.1",
+    "redux-actions": "2.6.3",
     "redux-vuex": "^0.1.1",
     "serve": "^10.0.0",
     "superagent": "3.8.3",
