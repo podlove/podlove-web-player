@@ -3528,9 +3528,9 @@ comment-regex@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/comment-regex/-/comment-regex-1.0.1.tgz#e070d2c4db33231955d0979d27c918fcb6f93565"
 
-commitizen@3.0.2:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/commitizen/-/commitizen-3.0.2.tgz#8af8d943c9b97a6a9523d824c654660a43138179"
+commitizen@3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/commitizen/-/commitizen-3.0.3.tgz#8a5f43f91313e328d42872582d7cb427281841cb"
   dependencies:
     cachedir "2.1.0"
     cz-conventional-changelog "2.1.0"
@@ -3544,6 +3544,7 @@ commitizen@3.0.2:
     lodash "4.17.11"
     minimist "1.2.0"
     shelljs "0.7.6"
+    strip-bom "3.0.0"
     strip-json-comments "2.0.1"
 
 common-path-prefix@^1.0.0:
@@ -11961,15 +11962,15 @@ strip-bom-string@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/strip-bom-string/-/strip-bom-string-1.0.0.tgz#e5211e9224369fbb81d633a2f00044dc8cedad92"
 
+strip-bom@3.0.0, strip-bom@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/strip-bom/-/strip-bom-3.0.0.tgz#2334c18e9c759f7bdd56fdef7e9ae3d588e68ed3"
+
 strip-bom@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/strip-bom/-/strip-bom-2.0.0.tgz#6219a85616520491f35788bdbf1447a99c7e6b0e"
   dependencies:
     is-utf8 "^0.2.0"
-
-strip-bom@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/strip-bom/-/strip-bom-3.0.0.tgz#2334c18e9c759f7bdd56fdef7e9ae3d588e68ed3"
 
 strip-eof@^1.0.0:
   version "1.0.0"
