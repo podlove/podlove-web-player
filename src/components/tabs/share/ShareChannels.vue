@@ -4,7 +4,6 @@
     <li id="tab-share--channels--facebook"><channel-facebook-component :link="shareLink"></channel-facebook-component></li>
     <li id="tab-share--channels--pinterest"><channel-pinterest-component :text="shareText" :link="shareLink" :poster="sharePoster"></channel-pinterest-component></li>
     <li id="tab-share--channels--reddit"><channel-reddit-component :text="shareText" :link="shareLink"></channel-reddit-component></li>
-    <li id="tab-share--channels--google-plus"><channel-google-plus-component :link="shareLink"></channel-google-plus-component></li>
     <li id="tab-share--channels--mail"><channel-mail-component :text="shareText" :subject="shareSubject"></channel-mail-component></li>
     <li id="tab-share--channels--embed" v-if="type !== 'show' && ((reference.config && reference.share) || reference.origin)">
       <channel-embed-component :color="theme.tabs.share.platform.button"></channel-embed-component>
@@ -21,7 +20,6 @@
 
   import ChannelTwitterComponent from './channels/ChannelTwitter'
   import ChannelFacebookComponent from './channels/ChannelFacebook'
-  import ChannelGooglePlusComponent from './channels/ChannelGooglePlus'
   import ChannelMailComponent from './channels/ChannelMail'
   import ChannelEmbedComponent from './channels/ChannelEmbed'
   import ChannelPinterestComponent from './channels/ChannelPinterest'
@@ -132,7 +130,6 @@
     components: {
       ChannelTwitterComponent,
       ChannelFacebookComponent,
-      ChannelGooglePlusComponent,
       ChannelMailComponent,
       ChannelEmbedComponent,
       ChannelPinterestComponent,
