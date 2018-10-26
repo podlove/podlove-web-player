@@ -11,13 +11,13 @@
 
 <script>
   import { mapState } from 'redux-vuex'
-  import selectors from 'store/selectors'
+  import { selectChapters } from 'store/selectors'
 
   import ChapterEntryComponent from './ChapterEntry'
 
   export default {
     data: mapState({
-      chapters: selectors.selectChapters
+      chapters: selectChapters
     }),
     components: {
       ChapterEntryComponent

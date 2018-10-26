@@ -47,7 +47,7 @@
 
 <script>
   import { mapState, mapActions } from 'redux-vuex'
-  import selectors from 'store/selectors'
+  import { selectCurrentChapterTitle } from 'store/selectors'
 
   import { fromPlayerTime } from 'utils/time'
 
@@ -62,7 +62,7 @@
       theme: 'theme',
       episode: 'episode',
       show: 'show',
-      currentChapter: selectors.selectCurrentChapterTitle,
+      currentChapter: selectCurrentChapterTitle,
       playtime: 'playtime'
     }),
     computed: {

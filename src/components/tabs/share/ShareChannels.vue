@@ -6,15 +6,12 @@
     <li id="tab-share--channels--reddit"><channel-reddit-component :text="shareText" :link="shareLink"></channel-reddit-component></li>
     <li id="tab-share--channels--mail"><channel-mail-component :text="shareText" :subject="shareSubject"></channel-mail-component></li>
     <li id="tab-share--channels--linkedin"><channel-linkedin-component :text="shareText" :link="shareLink"></channel-linkedin-component></li>
-    <li id="tab-share--channels--embed" v-if="type !== 'show' && ((reference.config && reference.share) || reference.origin)">
-      <channel-embed-component :color="theme.tabs.share.platform.button"></channel-embed-component>
-    </li>
   </ul>
 </template>
 
 <script>
   import { mapState } from 'redux-vuex'
-  import selectors from 'store/selectors'
+  import { selectCurrentChapter } from 'store/selectors'
 
   import { fromPlayerTime } from 'utils/time'
   import { addQueryParameter } from 'utils/url'
@@ -33,9 +30,8 @@
       show: 'show',
       episode: 'episode',
       playtime: 'playtime',
-      currentChapter: selectors.selectCurrentChapter,
-      theme: 'theme',
-      reference: 'reference'
+      currentChapter: selectCurrentChapter,
+      theme: 'theme'
     }),
     computed: {
       shareLink () {

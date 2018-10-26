@@ -16,7 +16,7 @@ import {
   SET_TRANSCRIPTS_TIMELINE
 } from 'store/types'
 
-import selectors from 'store/selectors'
+import { selectChapters } from 'store/selectors'
 
 import { handleActions } from 'utils/effects'
 
@@ -99,7 +99,7 @@ export default handleActions({
     // Default behaviour
     dispatch(actions.showPlayingButton())
     dispatch(actions.toggleProgressBar(true))
-    hasChapters(selectors.selectChapters(state)) ? dispatch(actions.toggleChapterControls(true)) : noop()
+    hasChapters(selectChapters(state)) ? dispatch(actions.toggleChapterControls(true)) : noop()
     dispatch(actions.toggleSteppersControls(true))
 
     // Error Fallbacks
@@ -111,7 +111,7 @@ export default handleActions({
 
   [IDLE]: ({ dispatch }, _, state) => {
     dispatch(actions.showPauseButton())
-    hasChapters(selectors.selectChapters(state)) ? dispatch(actions.toggleChapterControls(true)) : noop()
+    hasChapters(selectChapters(state)) ? dispatch(actions.toggleChapterControls(true)) : noop()
     dispatch(actions.toggleSteppersControls(true))
     dispatch(actions.toggleProgressBar(true))
   },

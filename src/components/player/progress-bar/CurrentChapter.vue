@@ -11,14 +11,14 @@
 <script>
   import { get } from 'lodash'
   import { mapState } from 'redux-vuex'
-  import selectors from 'store/selectors'
+  import { selectChapters, selectCurrentChapter } from 'store/selectors'
 
   import { currentChapterByPlaytime } from 'utils/chapters'
 
   export default {
     data: mapState({
-      chapters: selectors.selectChapters,
-      currentChapter: selectors.selectCurrentChapter,
+      chapters: selectChapters,
+      currentChapter: selectCurrentChapter,
       ghost: 'ghost',
       theme: 'theme'
     }),

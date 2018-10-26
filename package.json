@@ -46,7 +46,7 @@
     "deploy:surge": "surge --project ./dist --domain podlove-player.surge.sh",
     "changelog": "standard-changelog",
     "cypress:assets": "npm run dist:clean && cp -R cypress/testbed/* dist/",
-    "cypress:dev": "npm run cypress:assets && cypress open",
+    "cypress:dev": "npm run cypress:assets && cypress open --config baseUrl=http://localhost:9002",
     "cypress:ci": "npm run test:prepare && cypress run --record --key 54ef8855-9428-4b03-92db-fe0d853c4c41 --reporter junit --reporter-options 'mochaFile=reports/junit.xml'",
     "cypress:server": "http-server -p 8080 dist/ > http.log 2>&1 &",
     "test:integration": "cypress install && npm run cypress:assets && npm run build && npm run cypress:server && npm run cypress:ci",

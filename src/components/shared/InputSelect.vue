@@ -44,5 +44,7 @@
     border-radius: 0;
     padding: $padding / 4;
     height: $input-height;
+
+    -webkit-appearance: none;
   }
 </style>

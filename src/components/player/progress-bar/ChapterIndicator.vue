@@ -10,11 +10,11 @@
 
 <script>
   import { mapState } from 'redux-vuex'
-  import selectors from 'store/selectors'
+  import { selectChapters } from 'store/selectors'
 
   export default {
     data: mapState({
-      chapters: selectors.selectChapters,
+      chapters: selectChapters,
       theme: 'theme',
       duration: 'duration'
     }),

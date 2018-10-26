@@ -17,7 +17,7 @@
 
 <script>
   import { mapState } from 'redux-vuex'
-  import selectors from 'store/selectors'
+  import { selectCurrentChapterImage } from 'store/selectors'
 
   import color from 'color'
   import PosterComponent from './Poster'
@@ -30,7 +30,7 @@
       display: 'display',
       visibleComponents: 'visibleComponents',
       components: 'components',
-      chapterPoster: selectors.selectCurrentChapterImage
+      chapterPoster: selectCurrentChapterImage
     }),
     computed: {
       titleStyle () {
