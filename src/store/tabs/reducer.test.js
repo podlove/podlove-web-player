@@ -9,7 +9,7 @@ test.beforeEach(t => {
     audio: false,
     share: false,
     info: false,
-    download: false,
+    files: false,
     transcripts: false
   }
 })

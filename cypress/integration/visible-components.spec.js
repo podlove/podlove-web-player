@@ -8,7 +8,7 @@ const domSelectors = require('../selectors')
 const components = exclude => [
   'tabInfo',
   'tabChapters',
-  'tabDownload',
+  'tabFiles',
   'tabAudio',
   'tabShare',
   'poster',
@@ -44,8 +44,8 @@ describe('Visible Components', () => {
       selectors.tabs.audio.header()
     })
 
-    it('renders the download tab', function () {
-      selectors.tabs.download.header()
+    it('renders the files tab', function () {
+      selectors.tabs.files.header()
     })
 
     it('renders the share tab', function () {
@@ -89,8 +89,8 @@ describe('Visible Components', () => {
       tab: 'chapters',
       key: 'tabChapters'
     }, {
-      tab: 'download',
-      key: 'tabDownload'
+      tab: 'files',
+      key: 'tabFiles'
     }, {
       tab: 'audio',
       key: 'tabAudio'

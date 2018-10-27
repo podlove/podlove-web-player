@@ -1,7 +1,6 @@
 import * as buffer from './buffer/actions'
 import * as chapters from './chapters/actions'
 import * as components from './components/actions'
-import * as download from './download/actions'
 import * as duration from './duration/actions'
 import * as error from './error/actions'
 import * as ghost from './ghost/actions'
@@ -23,7 +22,6 @@ export default {
   ...buffer,
   ...chapters,
   ...components,
-  ...download,
   ...duration,
   ...error,
   ...ghost,

@@ -22,12 +22,15 @@
       "MESSAGE": "To play the podcast important references to audio files are missing."
     }
   },
-  "DOWNLOAD": {
-    "TITLE": "Download",
-    "DURATION_WITH_HOURS": "{hours} hours {minutes} minutes",
-    "DURATION": "{minutes} minutes",
+  "FILES": {
+    "TITLE": "Files",
+    "TYPES": {
+      "AUDIO": {
+        "HEADER": "Audio Files"
+      }
+    },
     "ACTIONS": {
-      "DOWNLOAD": "Download Episode",
+      "DOWNLOAD": "Download",
       "COPY": "Copy Url"
     }
   },
@@ -131,6 +134,8 @@
     "VOLUME_CURRENT": "Current: {volume}%",
     "VOLUME_MUTE": "Mute Audio",
     "VOLUME_UNMUTE": "Unmute Audio",
-    "SET_VOLUME_IN_PERCENT": "Set Volume in Percent"
+    "SET_VOLUME_IN_PERCENT": "Set Volume in Percent",
+    "DOWNLOAD_FILE": "Download File {url}",
+    "COPY_FILE": "Copy File {url}"
   }
 }

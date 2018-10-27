@@ -23,7 +23,7 @@ test(`visibleComponents: it loads all visibleComponents on default`, t => {
   t.deepEqual(result, {
     tabInfo: true,
     tabChapters: true,
-    tabDownload: true,
+    tabFiles: true,
     tabAudio: true,
     tabShare: true,
     tabTranscripts: true,
@@ -45,7 +45,7 @@ test(`visibleComponents: it loads all visibleComponents if not defined in payloa
   t.deepEqual(result, {
     tabInfo: true,
     tabChapters: true,
-    tabDownload: true,
+    tabFiles: true,
     tabAudio: true,
     tabShare: true,
     tabTranscripts: true,
