@@ -7,7 +7,7 @@
 
 <script>
   import { mapState, mapActions } from 'redux-vuex'
-  import selectors from 'store/selectors'
+  import { selectPreviousChapter, selectCurrentChapter } from 'store/selectors'
 
   import ChapterBackIcon from 'icons/ChapterBackIcon'
 
@@ -17,8 +17,8 @@
     },
     data: mapState({
       chapters: 'chapters',
-      previousChapter: selectors.selectPreviousChapter,
-      currentChapter: selectors.selectCurrentChapter,
+      previousChapter: selectPreviousChapter,
+      currentChapter: selectCurrentChapter,
       theme: 'theme',
       playtime: 'playtime'
     }),

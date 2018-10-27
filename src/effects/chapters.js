@@ -19,7 +19,7 @@ import {
   DISABLE_GHOST_MODE
 } from 'store/types'
 
-import selectors from 'store/selectors'
+import { selectCurrentChapter, selectChapters } from 'store/selectors'
 
 const parseChapters = duration => (result, chapter, index, chapters) => {
   const end = get(chapters, index + 1, { start: duration })
@@ -70,7 +70,7 @@ export default handleActions({
 
   [PREVIOUS_CHAPTER]: ({ dispatch }, _, state) => {
     const playtime = get(state, 'playtime', 0)
-    const { start, index } = selectors.selectCurrentChapter(state)
+    const { start, index } = selectCurrentChapter(state)
 
     if (playtime - start <= 2) {
       dispatch(actions.setPreviousChapter())
@@ -80,7 +80,7 @@ export default handleActions({
   },
 
   [SET_PREVIOUS_CHAPTER]: ({ dispatch }, _, state) => {
-    const { start, index } = selectors.selectCurrentChapter(state)
+    const { start, index } = selectCurrentChapter(state)
 
     dispatch(actions.updatePlaytime((index - 1) <= 0 ? 0 : start))
   },
@@ -92,8 +92,8 @@ export default handleActions({
   [SET_NEXT_CHAPTER]: ({ dispatch }, _, state) => {
     const duration = get(state, 'duration', 0)
     const playtime = get(state, 'playtime', 0)
-    const chapters = selectors.selectChapters(state)
-    const { start, index } = selectors.selectCurrentChapter(state)
+    const chapters = selectChapters(state)
+    const { start, index } = selectCurrentChapter(state)
 
     const chapterStart = index === chapters.length &&
       playtime >= start
@@ -104,7 +104,7 @@ export default handleActions({
   },
 
   [SET_CHAPTER]: ({ dispatch }, _, state) => {
-    const current = selectors.selectCurrentChapter(state)
+    const current = selectCurrentChapter(state)
     dispatch(actions.updatePlaytime(current.start))
   },
 

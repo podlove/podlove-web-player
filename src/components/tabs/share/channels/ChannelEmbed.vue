@@ -1,5 +1,5 @@
 <template>
-  <button class="channel-link" @click="showEmbedOverlay()">
+  <button class="channel-link" @click="toggleShareEmbed()">
     <span class="channel-icon" :style="iconStyle" aria-hidden="true"><embed-icon color="#fff"></embed-icon></span>
     <span class="visually-hidden">{{ $t('A11Y.SHARE_EMBED') }}</span>
   </button>
@@ -19,9 +19,7 @@
         }
       }
     },
-    methods: mapActions({
-      showEmbedOverlay: 'showShareEmbed'
-    }),
+    methods: mapActions('toggleShareEmbed'),
     components: {
       EmbedIcon
     }

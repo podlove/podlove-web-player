@@ -8,7 +8,7 @@
 
 <script>
   import { mapState, mapActions } from 'redux-vuex'
-  import selectors from 'store/selectors'
+  import { selectCurrentChapterImage } from 'store/selectors'
 
   export default {
     data: mapState({
@@ -17,7 +17,7 @@
       show: 'show',
       components: 'components',
       visibleComponents: 'visibleComponents',
-      chapterPoster: selectors.selectCurrentChapterImage,
+      chapterPoster: selectCurrentChapterImage,
       playtime: 'playtime'
     }),
     computed: {

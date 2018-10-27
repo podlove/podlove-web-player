@@ -1,28 +1,21 @@
 <template>
-    <overlay-component :visible="share.embed.visible" :onClose="closeEmbedOverlay" :title="$t('A11Y.SHARE_OVERLAY')" class="embed-overlay" id="share-tab--share-overlay">
-      <h3 name="header" class="title text-center">{{ $t('SHARE.EMBED.TITLE') }}</h3>
-      <div class="input-element">
-        <label class="input-label" for="share-tab--share-overlay--size">{{ $t('SHARE.EMBED.LABEL.SIZE') }}</label>
-        <input-select-component :model="share.embed.size" :options="share.embed.available" :change="setEmbedSize" id="share-tab--share-overlay--size"></input-select-component>
-      </div>
-      <div class="input-element">
-        <label class="input-label" for="share-tab--share-overlay--code">{{ $t('SHARE.EMBED.LABEL.CODE') }}</label>
-        <input-text-component class="block" disabled="true" :value="embedCode" id="share-tab--share-overlay--code"></input-text-component>
-      </div>
-      <div class="input-element">
-        <copy-tooltip-component :content="embedCode">
-          <button-component class="block action" id="share-tab--share-overlay--copy-button">
-            <span aria-hidden="true">{{ $t('SHARE.EMBED.ACTIONS.COPY') }}</span>
-            <span class="visually-hidden">{{ $t('A11Y.COPY_EMBED_CODE') }}</span>
+    <div class="share-embed" id="share-tab--share-embed">
+      <input-group-component>
+        <copy-tooltip-component slot="button" :content="embedCode">
+          <button-component class="truncate">
+            <span aria-hidden="true">{{ $t('SHARE.ACTIONS.COPY') }}</span>
+            <span class="visually-hidden">{{ $t('A11Y.COPY_SHARE_LINK') }}</span>
           </button-component>
         </copy-tooltip-component>
-      </div>
-    </overlay-component>
+        <input-select-component slot="input" :model="share.embed.size" :options="share.embed.available" :change="setEmbedSize" id="tab-share--share-embed--size"></input-select-component>
+        <input-text-component slot="input" disabled="true" :value="embedCode" id="tab-share--share-embed--input"></input-text-component>
+      </input-group-component>
+    </div>
 </template>
 
 <script>
   import { mapState, mapActions } from 'redux-vuex'
-  import selectors from 'store/selectors'
+  import { selectCurrentChapter } from 'store/selectors'
 
   import { addQueryParameter } from 'utils/url'
   import { fromPlayerTime } from 'utils/time'
@@ -31,6 +24,7 @@
   import ButtonComponent from 'shared/Button'
   import InputSelectComponent from 'shared/InputSelect'
   import InputTextComponent from 'shared/InputText'
+  import InputGroupComponent from 'shared/InputGroup'
   import CopyTooltipComponent from 'shared/CopyTooltip'
 
   export default {
@@ -41,7 +35,7 @@
       share: 'share',
       reference: 'reference',
       theme: 'theme',
-      currentChapter: selectors.selectCurrentChapter,
+      currentChapter: selectCurrentChapter,
       playtime: 'playtime'
     }),
     computed: {
@@ -99,6 +93,7 @@
       ButtonComponent,
       InputSelectComponent,
       InputTextComponent,
+      InputGroupComponent,
       CopyTooltipComponent
     }
   }

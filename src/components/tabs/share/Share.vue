@@ -6,19 +6,25 @@
 
     <div class="channel-select" :style="sectionStyle">
       <span class="label">{{ $t('SHARE.SHARE_CHANNEL') }}</span>
-      <share-channels-component :type="share.content" ref="channels"></share-channels-component>
+      <share-channels-component :type="content" ref="channels"></share-channels-component>
 
-      <span class="label" v-if="hasLink">{{ $t('SHARE.SHARE_LINK') }}</span>
-      <share-link-component :type="share.content" v-if="hasLink"></share-link-component>
+      <div class="channel-share" v-if="showLink" id="tab-share--link">
+        <span class="label" >{{ $t('SHARE.SHARE_LINK') }}</span>
+        <share-link-component :type="content"></share-link-component>
+      </div>
+
+      <div class="channel-share" v-if="showEmbed" id="tab-share--embed--link">
+        <span class="label" >{{ $t('SHARE.EMBED.TITLE') }}</span>
+        <share-embed-component :type="content"></share-embed-component>
+      </div>
     </div>
-
-    <share-embed-component :type="share.content"></share-embed-component>
   </div>
 </template>
 
 <script>
   import { mapState } from 'redux-vuex'
   import { head } from 'lodash'
+  import { selectShareContent } from 'store/selectors'
 
   import ShareChannelsComponent from './ShareChannels'
   import ShareContentComponent from './ShareContent'
@@ -27,17 +33,27 @@
   import ShareEmbedComponent from './ShareEmbed'
 
   export default {
-    data: mapState('theme', 'share', 'show', 'episode'),
+    data: mapState({
+      theme: 'theme',
+      share: 'share',
+      show: 'show',
+      episode: 'episode',
+      reference: 'reference',
+      content: selectShareContent
+    }),
     computed: {
       sectionStyle () {
         return {
           background: this.theme.tabs.body.section
         }
       },
-      hasLink () {
-        const hasShowLink = this.share.content === 'show' && this.show.link
-        const hasShareLink = this.share.content !== 'show' && this.episode.link
+      showLink () {
+        const hasShowLink = this.content === 'show' && this.show.link
+        const hasShareLink = this.content !== 'show' && this.episode.link
         return hasShowLink || hasShareLink
+      },
+      showEmbed () {
+        return this.content !== 'show' && ((this.reference.config && this.reference.share) || this.reference.origin)
       }
     },
     methods: {
@@ -78,5 +94,9 @@
       display: block;
       font-weight: 400;
     }
+  }
+
+  .channel-share {
+    padding: $padding 0
   }
 </style>

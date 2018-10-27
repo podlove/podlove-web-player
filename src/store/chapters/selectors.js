@@ -1,10 +1,8 @@
-import { get } from 'lodash/fp'
+import { get, compose } from 'lodash/fp'
 
-export const selectors = {
-  selectChapters: get('list'),
-  selectNextChapters: get('next'),
-  selectPreviousChapter: get('previous'),
-  selectCurrentChapter: get('current'),
-  selectCurrentChapterTitle: get('current.title'),
-  selectCurrentChapterImage: get('current.image')
-}
+export const selectChapters = get('list')
+export const selectNextChapters = get('next')
+export const selectPreviousChapter = get('previous')
+export const selectCurrentChapter = get('current')
+export const selectCurrentChapterTitle = compose(get('title'), selectCurrentChapter)
+export const selectCurrentChapterImage = compose(get('image'), selectCurrentChapter)
