@@ -103,7 +103,7 @@
     "PLAYER_PAUSE": "Episode pausieren",
     "PLAYER_LOADING": "Episode lädt",
     "PLAYER_CHAPTER_NEXT": "Zum nächsten Kapitel: {index} - {title}",
-    "PLAYER_CHAPTER_END": "Zume Ende des Kapitels springen",
+    "PLAYER_CHAPTER_END": "Zum Ende des Kapitels springen",
     "PLAYER_CHAPTER_PREVIOUS": "Zum vorhergehenden Kapitel: {index} - {title}",
     "PLAYER_CHAPTER_CURRENT": "Zum Anfang des aktiven Kapitels springen: {index} - {title}",
     "PLAYER_STEPPER_BACK": "{seconds} Sekunden zurückspringen",
