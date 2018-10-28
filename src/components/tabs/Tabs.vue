@@ -17,9 +17,9 @@
         <share-icon slot="icon"></share-icon>
         <span slot="title">{{ $t('SHARE.TITLE') }}</span>
       </tab-header-item-component>
-      <tab-header-item-component v-if="isVisibleTab.download" name="download" :active="tabs.download" :click="toggleTab('download')">
+      <tab-header-item-component v-if="isVisibleTab.files" name="files" :active="tabs.files" :click="toggleTab('files')">
         <download-icon slot="icon"></download-icon>
-        <span slot="title">{{ $t('DOWNLOAD.TITLE') }}</span>
+        <span slot="title">{{ $t('FILES.TITLE') }}</span>
       </tab-header-item-component>
       <tab-header-item-component v-if="isVisibleTab.audio" name="audio" :active="tabs.audio" :click="toggleTab('audio')">
         <audio-icon slot="icon"></audio-icon>
@@ -39,8 +39,8 @@
     <tab-body-component :active="tabs.share" name="share" :aria-selected="tabs.share" ref="share" v-if="isVisibleTab.share && tabs.share">
       <share-tab></share-tab>
     </tab-body-component>
-    <tab-body-component :active="tabs.download" name="download" :aria-selected="tabs.download" ref="download" v-if="isVisibleTab.download && tabs.download">
-      <download-tab></download-tab>
+    <tab-body-component :active="tabs.files" name="files" :aria-selected="tabs.files" ref="files" v-if="isVisibleTab.files && tabs.files">
+      <files-tab></files-tab>
     </tab-body-component>
     <tab-body-component :active="tabs.audio" name="audio" :aria-selected="tabs.audio" ref="audio" v-if="isVisibleTab.audio && tabs.audio">
       <audio-tab></audio-tab>
@@ -67,7 +67,7 @@ const tabs = {
   ShareTab: () => import(/* webpackMode: "eager" */'./share/Share'),
   ChaptersTab: () => import(/* webpackMode: "eager" */'./chapters/Chapters'),
   TranscriptsTab: () => import(/* webpackMode: "eager" */'./transcripts/Transcripts'),
-  DownloadTab: () => import(/* webpackMode: "eager" */'./download/Download'),
+  FilesTab: () => import(/* webpackMode: "eager" */'./files/Files'),
   AudioTab: () => import(/* webpackMode: "eager" */'./audio/Audio')
 }
 
@@ -84,7 +84,7 @@ export default {
         info: this.components.tabs.info && this.visibleComponents.tabInfo,
         chapters: this.components.tabs.chapters && this.visibleComponents.tabChapters,
         share: this.components.tabs.share && this.visibleComponents.tabShare,
-        download: this.components.tabs.download && this.visibleComponents.tabDownload,
+        files: this.components.tabs.files && this.visibleComponents.tabFiles,
         transcripts: this.components.tabs.transcripts && this.visibleComponents.tabTranscripts,
         audio: this.components.tabs.audio && this.visibleComponents.tabAudio
       }

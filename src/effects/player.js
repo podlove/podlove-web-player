@@ -44,7 +44,7 @@ export default mediaPlayer => handleActions({
     player.events.onEnd(compose(dispatch, actions.endEvent))
   },
 
-  [UI_PLAY]: (store, actions, { playtime }) => {
+  [UI_PLAY]: (_, actions, { playtime }) => {
     playerActions.setPlaytime(millisecondsToSeconds(playtime))
     playerActions.play()
   },
@@ -56,9 +56,9 @@ export default mediaPlayer => handleActions({
     playerActions.restart()
   },
 
-  [UPDATE_PLAYTIME]: (store, { payload }) => playerActions.setPlaytime(millisecondsToSeconds(payload)),
-  [SET_VOLUME]: (store, { payload }) => playerActions.setVolume(payload),
-  [SET_RATE]: (store, { payload }) => playerActions.setRate(payload),
+  [UPDATE_PLAYTIME]: (_, { payload }) => playerActions.setPlaytime(millisecondsToSeconds(payload)),
+  [SET_VOLUME]: (_, { payload }) => playerActions.setVolume(payload),
+  [SET_RATE]: (_, { payload }) => playerActions.setRate(payload),
   [MUTE]: () => playerActions.mute(),
   [UNMUTE]: () => playerActions.unmute(),
   [LOAD]: () => playerActions.load()

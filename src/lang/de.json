@@ -22,12 +22,15 @@
       "MESSAGE": "Zum abspielen des Podcasts fehlen die Referenzen zu den Audiodateien."
     }
   },
-  "DOWNLOAD": {
-    "TITLE": "Download",
-    "DURATION_WITH_HOURS": "{hours} Stunden {minutes} Minuten",
-    "DURATION": "{minutes} Minuten",
+  "FILES": {
+    "TITLE": "Dateien",
+    "TYPES": {
+      "AUDIO": {
+        "HEADER": "Audio Dateien"
+      }
+    },
     "ACTIONS": {
-      "DOWNLOAD": "Download Episode",
+      "DOWNLOAD": "Download",
       "COPY": "Url kopieren"
     }
   },
@@ -36,8 +39,8 @@
     "CONTENT": {
       "SHOW": "Show",
       "EPISODE": "Episode",
-      "CHAPTER": "Chapter",
-      "TIME": "Playtime"
+      "CHAPTER": "Kapitel",
+      "TIME": "Abspielzeit"
     },
     "REFERENCE": {
       "BEGINNING": "Beginn",
@@ -66,10 +69,10 @@
       "SUBJECT": "{title}"
     },
     "EMBED": {
-      "TITLE": "Embed Episode",
+      "TITLE": "Einbetten",
       "LABEL": {
-        "SIZE": "Embed Size",
-        "CODE": "Embed Code"
+        "SIZE": "Größe",
+        "CODE": "Code"
       },
       "ACTIONS": {
         "COPY": "Code kopieren"
@@ -84,7 +87,7 @@
     "DURATION": "{minutes} Minuten"
   },
   "TRANSCRIPTS": {
-    "TITLE": "Transcript",
+    "TITLE": "Transkript",
     "CHAPTER": "Kapitel {index}: {title}",
     "FOLLOW": "folgen",
     "SEARCH": "Suche",
@@ -136,6 +139,8 @@
     "VOLUME_CURRENT": "Gerade: {volume}%",
     "VOLUME_MUTE": "Audio stummschalten",
     "VOLUME_UNMUTE": "Audio aktivschalten",
-    "SET_VOLUME_IN_PERCENT": "Lautheit in Prozent anpassen"
+    "SET_VOLUME_IN_PERCENT": "Lautheit in Prozent anpassen",
+    "DOWNLOAD_FILE": "Datei herunterladen: {url}",
+    "COPY_FILE": "Url {url} in Zwischenablage legen"
   }
 }
