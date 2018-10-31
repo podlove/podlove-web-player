@@ -4,7 +4,7 @@
       <slot></slot>
     </span>
   </a>
-  <button v-else :style="style" class="input-button" :disabled="disabled" @click="click ? click() : noop()">
+  <button v-else :style="style" class="input-button" :disabled="disabled">
     <span class="inner centered">
       <slot></slot>
     </span>
@@ -13,10 +13,9 @@
 
 <script>
   import { mapState } from 'redux-vuex'
-  import { noop } from 'lodash'
 
   export default {
-    props: ['click', 'disabled', 'active', 'href', 'type'],
+    props: ['disabled', 'active', 'href', 'type'],
     data: mapState('theme'),
     computed: {
       style () {
@@ -49,7 +48,10 @@
       }
     },
     methods: {
-      noop
+      clickHandler (event) {
+        console.log('call', event)
+        this.$emit('click', event)
+      }
     }
   }
 </script>

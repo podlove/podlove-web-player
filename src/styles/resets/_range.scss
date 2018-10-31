@@ -52,7 +52,7 @@ input[type=range]::-ms-thumb {
   height: $range-input-height;
   width: $thumb-width-desktop;
 
-  cursor: pointer;
+  cursor: -ms-grab;
 
   border-radius: 0px;
   border: 0 none;
@@ -60,8 +60,13 @@ input[type=range]::-ms-thumb {
   background: transparent;
 
   z-index: 99;
+
   &:hover {
     width: $thumb-width-desktop-hover;
+  }
+
+  &:active {
+    cursor: -ms-grabbing;
   }
 }
 
@@ -74,10 +79,15 @@ input[type=range]::-moz-range-thumb {
 
   background: transparent;
 
-  cursor: pointer;
+  cursor: -moz-grab;
   z-index: 99;
+
   &:hover {
     width: $thumb-width-desktop-hover;
+  }
+
+  &:active {
+    cursor: -moz-grabbing;
   }
 }
 
@@ -91,11 +101,15 @@ input[type=range]::-webkit-slider-thumb {
   background: transparent;
   -webkit-appearance: none;
 
-  cursor: pointer;
+  cursor: -webkit-grab;
   z-index: 99;
 
   &:hover {
     width: $thumb-width-desktop-hover;
+  }
+
+  &:active {
+    cursor: -webkit-grabbing;
   }
 }
 

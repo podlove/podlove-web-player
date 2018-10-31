@@ -119,8 +119,8 @@ const themeColors = (colors = {}) => {
       border: negative ? color(main).lighten(0.1) : grey
     },
     icon: {
-      color: color(main),
-      background: color(main).lighten(0.4)
+      color: negative ? light : dark,
+      background: color(main).lighten(0.2)
     }
   }
 }
