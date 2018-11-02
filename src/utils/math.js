@@ -5,9 +5,7 @@ export const toPercent = (input = 0) => {
   return Math.round(input)
 }
 
-export const round = (input = 0) => {
-  return Math.ceil(input * 100) / 100
-}
+export const round = (input = 0) => Math.ceil(input * 100) / 100
 
 export const interpolate = (num = 0) => Math.round(num * 100) / 100
 
@@ -35,3 +33,5 @@ export const inRange = (lower = 0, upper = 0) => (value = 0) => {
 
   return value
 }
+
+export const toDecimal = (input = 0) => parseFloat(Math.round(input * 100) / 100).toFixed(2)

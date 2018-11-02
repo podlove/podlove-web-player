@@ -2,14 +2,42 @@
   <div class="input-element" :aria-label="$t('A11Y.VOLUME')">
     <label class="spaced" tabindex="0" :aria-label="$t('A11Y.VOLUME_CURRENT', { volume: toPercent(visualVolume) })">
       <span class="input-label">{{ $t('AUDIO.VOLUME') }}</span>
-      <span class="input-label" id="tab-audio--volume--current">{{ toPercent(visualVolume) }}%</span>
+      <span class="input-state" id="tab-audio--volume--current">
+        <input class="input-value" type="number" id="tab-audio--volume--value" :value="toPercent(visualVolume)" @input="setVolume($event.target.value / 100)"/>
+        <span class="input-suffix">%</span>
+      </span>
     </label>
     <div class="volume-slider centered">
-      <button-component class="slider-button mute-control" :click="toggleMute" id="tab-audio--volume--mute">
+      <button-component class="slider-button mute-control" @click.native="toggleMute()" id="tab-audio--volume--mute">
         <speaker-icon :color="theme.button.text" :volume="visualVolume * 100" :muted="muted" aria-hidden="true"></speaker-icon>
         <span class="visually-hidden">{{ a11y }}</span>
       </button-component>
-      <input-slider-component id="tab-audio--volume--input" min="0" max="1" :value="visualVolume" step="0.001" :onInput="setVolume"  :onDblClick="'volume'"  :aria-label="$t('A11Y.SET_VOLUME_IN_PERCENT')"></input-slider-component>
+      <input-slider-component
+        id="tab-audio--volume--input"
+        min="0"
+        max="1"
+        :pins="[{
+          value: 0,
+          label: '0%'
+        }, {
+          value: 0.25,
+          label: '25%'
+        }, {
+          value: 0.5,
+          label: '50%'
+        }, {
+          value: 0.75,
+          label: '75%'
+        }, {
+          value: 1,
+          label: '100%'
+        }]"
+        :value="visualVolume"
+        step="0.001"
+        @input="setVolume"
+        @dblclick="setVolume(1)"
+        :aria-label="$t('A11Y.SET_VOLUME_IN_PERCENT')">
+      </input-slider-component>
     </div>
   </div>
 </template>
@@ -47,15 +75,9 @@
     },
     methods: {
       ...mapActions('setVolume', 'unmute', 'mute'),
-      ...mapActions({
-        toggleMute: function () {
-          if (this.muted) {
-            this.unmute()
-          } else {
-            this.mute()
-          }
-        }
-      }),
+      toggleMute () {
+        this.muted ? this.unmute() : this.mute()
+      },
       toPercent
     },
     components: {

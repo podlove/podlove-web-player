@@ -1,5 +1,5 @@
 <template>
-  <svg xmlns="http://www.w3.org/2000/svg" width="24.8" height="21" viewBox="0 0 24.8 21">
+  <svg xmlns="http://www.w3.org/2000/svg" width="23" height="18" viewBox="0 0 24.8 21">
     <!-- Muted / 0% -->
     <g v-if="muted || volume <= 0" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
       <g :stroke="color || 'currentColor'">
