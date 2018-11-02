@@ -51,7 +51,8 @@
         const left = relativePosition(this.value, this.minValue, this.maxValue)
         return {
           left: `${left}%`,
-          'background-color': this.theme.button.background
+          'background-color': this.theme.button.background,
+          'border-color': this.theme.button.border
         }
       }
     },
@@ -119,7 +120,7 @@
       height: 24px;
       width: 24px;
       pointer-events: none;
-      border-width: 2px;
+      border-width: 1px;
       border-style: solid;
       border-radius: 12px;
       border-color: $subtile-color;

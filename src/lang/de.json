@@ -6,7 +6,10 @@
     "TITLE": "Audio",
     "VOLUME": "Lautstärke",
     "SPEED": "Geschwindigkeit",
-    "DEBUG_STATE": "Debug State exportieren"
+    "DEBUG_STATE": "Debug State exportieren",
+    "CHANNELS": "Abspielmodus",
+    "MONO": "Mono",
+    "STEREO": "Stereo"
   },
   "PLAYER": {
     "REPLAY": "Wiederholen",
@@ -69,7 +72,7 @@
       "SUBJECT": "{title}"
     },
     "EMBED": {
-      "TITLE": "Einbetten",
+      "TITLE": "Embed Code",
       "LABEL": {
         "SIZE": "Größe",
         "CODE": "Code"
@@ -141,6 +144,7 @@
     "VOLUME_UNMUTE": "Audio aktivschalten",
     "SET_VOLUME_IN_PERCENT": "Lautheit in Prozent anpassen",
     "DOWNLOAD_FILE": "Datei herunterladen: {url}",
-    "COPY_FILE": "Url {url} in Zwischenablage legen"
+    "COPY_FILE": "Url {url} in Zwischenablage legen",
+    "CHANNELS": "Abspielmodus setzen"
   }
 }

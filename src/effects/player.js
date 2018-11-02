@@ -6,7 +6,7 @@ import { secondsToMilliseconds, millisecondsToSeconds } from 'utils/time'
 
 import actions from 'store/actions'
 
-import { INIT, UI_PLAY, UI_PAUSE, UI_RESTART, UPDATE_PLAYTIME, SET_VOLUME, SET_RATE, MUTE, UNMUTE, LOAD } from 'store/types'
+import { INIT, UI_PLAY, UI_PAUSE, UI_RESTART, UPDATE_PLAYTIME, SET_VOLUME, SET_RATE, MUTE, UNMUTE, LOAD, SET_FILTER_STEREO, SET_FILTER_MONO } from 'store/types'
 
 let playerActions = {
   setPlaytime: noop,
@@ -17,7 +17,9 @@ let playerActions = {
   setRate: noop,
   mute: noop,
   unmute: noop,
-  load: noop
+  load: noop,
+  stereo: noop,
+  mono: noop
 }
 
 export default mediaPlayer => handleActions({
@@ -42,6 +44,7 @@ export default mediaPlayer => handleActions({
     player.events.onError(compose(dispatch, actions.errorLoad))
     player.events.onBuffering(compose(dispatch, actions.loading))
     player.events.onEnd(compose(dispatch, actions.endEvent))
+    player.events.onFilterUpdate(compose(dispatch, actions.updateFilter))
   },
 
   [UI_PLAY]: (_, actions, { playtime }) => {
@@ -61,5 +64,7 @@ export default mediaPlayer => handleActions({
   [SET_RATE]: (_, { payload }) => playerActions.setRate(payload),
   [MUTE]: () => playerActions.mute(),
   [UNMUTE]: () => playerActions.unmute(),
-  [LOAD]: () => playerActions.load()
+  [LOAD]: () => playerActions.load(),
+  [SET_FILTER_STEREO]: () => playerActions.stereo(),
+  [SET_FILTER_MONO]: () => playerActions.mono()
 })

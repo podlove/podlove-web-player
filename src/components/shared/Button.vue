@@ -15,7 +15,7 @@
   import { mapState } from 'redux-vuex'
 
   export default {
-    props: ['disabled', 'active', 'href', 'type'],
+    props: ['disabled', 'href', 'type'],
     data: mapState('theme'),
     computed: {
       style () {
@@ -26,12 +26,6 @@
         }
 
         switch (this.type) {
-          case 'active':
-            style.color = this.theme.button.background
-            style.background = this.theme.button.color
-            style['border-color'] = this.theme.button.background
-            break
-
           case 'light':
             style.color = this.theme.button.color
             style.background = this.theme.button.light
@@ -45,12 +39,6 @@
         }
 
         return style
-      }
-    },
-    methods: {
-      clickHandler (event) {
-        console.log('call', event)
-        this.$emit('click', event)
       }
     }
   }

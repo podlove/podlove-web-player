@@ -9,5 +9,9 @@ module.exports = cy => ({
   rate: {
     current: () => cy.get('#tab-audio--rate--value'),
     input: () => cy.get('#tab-audio--rate--input input')
+  },
+  channels: {
+    mono: () => cy.get('#tab-audio--channels-mono'),
+    stereo: () => cy.get('#tab-audio--channels-stereo')
   }
 })
