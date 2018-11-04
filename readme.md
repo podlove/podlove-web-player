@@ -41,7 +41,7 @@ Clone the repository and install all dependencies with `yarn`
 ### Local Development
 
 1. Run `yarn dev`
-2. Access `http://localhost:8080/standalone.html` for development
+2. Access `http://localhost:9002/standalone.html` for development
 
 ### Tests
 
@@ -52,6 +52,11 @@ Clone the repository and install all dependencies with `yarn`
 
 1. Run `yarn build`
 2. Locate build artefacts in `dist/`
+
+### Docs
+
+1. Run `yarn docs`
+2. Access `http://localhost:8080` for a preview 
 
 ### Join the conversation
 
