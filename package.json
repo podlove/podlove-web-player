@@ -101,7 +101,7 @@
     "concurrently": "^4.0.0",
     "conventional-changelog-lint": "2.1.1",
     "cross-env": "5.2.0",
-    "css-loader": "1.0.0",
+    "css-loader": "1.0.1",
     "cypress": "3.1.0",
     "cz-conventional-changelog": "2.1.0",
     "eslint": "5.0.1",
