@@ -3,10 +3,10 @@
     <files-audio-icon width="32" height="32" class="files-container--icon" aria-hidden="true"/>
     <div class="files-container--meta">
       <div class="files-container--type truncate">{{ file.title }}</div>
-      <div class="files-container--info">
+      <div class="files-container--info truncate">
         <span class="files-container--size" v-if="file.size">{{ toMegabyte(file.size) }} MB</span>
         <span v-if="file.size">⋅</span>
-        <span class="files-container--fileending" v-if="file.mimeType ">{{ file.mimeType }}</span>
+        <span class="files-container--fileending" v-if="file.mimeType">{{ file.mimeType }}</span>
       </div>
     </div>
     <div class="files-container--actions">
@@ -64,7 +64,6 @@
 
   .files-container--icon {
     display: block;
-    margin-right: 1em;
     width: $files-icon-width;
     height: $files-icon-width;
   }
@@ -81,8 +80,9 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: calc(100% - #{$files-icon-width} - #{$files-actions-width});
+    width: calc(100% - #{$files-icon-width} - #{$files-actions-width} - #{$margin});
     line-height: 1.2em;
+    margin-left: $margin;
   }
 
   .files-container--actions {
