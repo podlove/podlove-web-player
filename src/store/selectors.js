@@ -3,6 +3,7 @@ import { compose, get } from 'lodash/fp'
 import { selectors as chapters } from './chapters'
 import { selectors as share } from './share'
 import { selectors as files } from './files'
+import { selectors as filter } from './filter'
 
 // Chapters Tab
 const chaptersSlice = get('chapters')
@@ -20,3 +21,7 @@ export const selectShareContent = compose(share.selectShareContent, shareSlice)
 // Files Tab
 const filesSlice = get('files')
 export const selectAudioFiles = compose(files.selectAudio, filesSlice)
+
+// Filters
+const filterSlice = get('filter')
+export const selectActiveChannels = compose(filter.selectActiveChannels, filterSlice)

@@ -66,6 +66,7 @@ export default handleActions({
     dispatch(actions.toggleComponentTab('info', true))
     dispatch(actions.toggleComponentTab('audio', true))
     dispatch(actions.toggleRateSlider(true))
+    dispatch(actions.toggleChannelsSelection(true))
     dispatch(actions.toggleInfoPoster(true))
 
     // Reset Errors

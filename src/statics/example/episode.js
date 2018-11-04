@@ -1,15 +1,17 @@
+import episodePoster from './files/poster.jpg'
+
 export default (extension = {}) => ({
   show: {
     title: 'Freak Show',
     subtitle: 'Menschen! Technik! Sensationen!',
     summary: 'Die muntere Talk Show um Leben mit Technik, das Netz und Technikkultur. Bisweilen Apple-lastig aber selten einseitig. Wir leben und lieben Technologie und reden dar\u00fcber. Mit Tim, hukl, roddi, Clemens und Denis. Freak Show hie\u00df irgendwann mal mobileMacs.',
-    poster: 'https://freakshow.fm/wp-content/cache/podlove/04/662a9d4edcf77ea2abe3c74681f509/freak-show_500x500.jpg',
+    poster: episodePoster,
     link: 'https://freakshow.fm'
   },
   reference: {
-    share: '//localhost:8080/share',
-    config: '//localhost:8080/fixtures/fs207.json',
-    origin: '//localhost:8080'
+    share: '//localhost:9002/share',
+    config: '//localhost:9002/fixtures/fs207.json',
+    origin: '//localhost:9002'
   },
   theme: {
     main: '#CEB27F'
@@ -18,29 +20,24 @@ export default (extension = {}) => ({
   subtitle: 'Design \u2014 Textverarbeitung \u2014 Layout \u2014 SUBSCRIBE 9 \u2014 Selbst\u00e4ndigkeit \u2014 Kalender \u2014 Hackintosh \u2014 IPv6 \u2014 iPhone X \u2014 Digitale Verst\u00e4rker \u2014 Musikdistribution \u2014 Kinos \u2014 Blade Runner \u2014 Breitband',
   summary: 'In der heutigen Folge begr\u00fc\u00dfen wir den Musiker, Gestalter und <a href="http://google.com">Podcaster Malik Aziz</a> in unserer Runde und reden viel \u00fcber den Stand der Dinge bei Design/Layout-Software, Textverarbeitung und Musik-Technik und Distribution. Wir blicken au\u00dferdem auf die SUBSCRIBE 9 Konferenz, die letzte Woche in M\u00fcnchen stattfand. Hackintoshes stehen au\u00dferdem im zur Diskussion und wir versuchen, \u00fcber Blade Runner zu reden ohne zu spoilern. Das ist uns wohl auch gelungen, also keine Angst.',
   publicationDate: '2017-11-02T20:31:30+00:00',
-  poster: 'https://freakshow.fm/wp-content/cache/podlove/04/662a9d4edcf77ea2abe3c74681f509/freak-show_500x500.jpg',
+  poster: episodePoster,
   duration: '04:29:56.685',
   link: 'https://freakshow.fm/fs207-berliner-leistungswasser',
   audio: [{
-    url: 'http://localhost:8080/fs207-berliner-leistungswasser.m4a',
+    url: '//localhost:8080/example.m4a',
     size: '102956071',
     title: 'MPEG-4 AAC Audio (m4a)',
     mimeType: 'audio/mp4'
   }, {
-    url: 'https://freakshow.fm/podlove/file/5175/s/webplayer/c/home/fs207-berliner-leistungswasser.opus',
+    url: '//localhost:8080/example.opus',
     size: '102078914',
     title: 'Opus Audio (opus)',
     mimeType: 'audio/opus'
   }, {
-    url: 'https://freakshow.fm/podlove/file/5174/s/webplayer/c/home/fs207-berliner-leistungswasser.oga',
+    url: '//localhost:8080/example.ogg',
     size: '103595672',
     title: 'Ogg Vorbis Audio (oga)',
     mimeType: 'audio/ogg'
-  }, {
-    url: 'https://freakshow.fm/podlove/file/5176/s/webplayer/c/home/fs207-berliner-leistungswasser.mp3',
-    size: '162412833',
-    title: 'MP3 Audio (mp3)',
-    mimeType: 'audio/mpeg'
   }],
   chapters: [{
     start: '00:00:00.000',

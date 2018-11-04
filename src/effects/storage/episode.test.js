@@ -133,6 +133,38 @@ test(`storageEffects: it doesn't sets state on INIT if nothing is stored`, t => 
   t.falsy(store.dispatch.called)
 })
 
+test(`storageEffects: it sets the channel stereo on INIT if stored`, t => {
+  getStub.withArgs('channel').returns('stereo')
+
+  storageEffects(store, {
+    type: 'INIT',
+    payload: {
+      foo: 'bar'
+    }
+  })
+
+  t.truthy(storage.called)
+  t.deepEqual(store.dispatch.getCall(6).args[0], {
+    type: 'SET_FILTER_STEREO'
+  })
+})
+
+test(`storageEffects: it sets the channel mono on INIT if stored`, t => {
+  getStub.withArgs('channel').returns('mono')
+
+  storageEffects(store, {
+    type: 'INIT',
+    payload: {
+      foo: 'bar'
+    }
+  })
+
+  t.truthy(storage.called)
+  t.deepEqual(store.dispatch.getCall(6).args[0], {
+    type: 'SET_FILTER_MONO'
+  })
+})
+
 test(`storageEffects: it persists the playtime on SET_PLAYTIME`, t => {
   storageEffects(store, {
     type: 'INIT',
@@ -223,4 +255,36 @@ test(`storageEffects: it persists the quantiles on SET_QUANTILE`, t => {
   t.deepEqual(setStub.getCall(0).args[1], [
     [0, 20]
   ])
+})
+
+test(`storageEffects: it persists the channel on SET_FILTER_MONO`, t => {
+  storageEffects(store, {
+    type: 'INIT',
+    payload: {
+      foo: 'bar'
+    }
+  })
+
+  storageEffects(store, {
+    type: 'SET_FILTER_MONO'
+  })
+
+  t.is(setStub.getCall(0).args[0], 'channels')
+  t.is(setStub.getCall(0).args[1], 'mono')
+})
+
+test(`storageEffects: it persists the channel on SET_FILTER_STEREO`, t => {
+  storageEffects(store, {
+    type: 'INIT',
+    payload: {
+      foo: 'bar'
+    }
+  })
+
+  storageEffects(store, {
+    type: 'SET_FILTER_STEREO'
+  })
+
+  t.is(setStub.getCall(0).args[0], 'channel')
+  t.is(setStub.getCall(0).args[1], 'stereo')
 })

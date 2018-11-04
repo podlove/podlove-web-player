@@ -6,7 +6,10 @@
     "TITLE": "Audio",
     "VOLUME": "Volume",
     "SPEED": "Speed",
-    "DEBUG_STATE": "Export Debug State"
+    "DEBUG_STATE": "Export Debug State",
+    "CHANNELS": "Channels",
+    "MONO": "Mono",
+    "STEREO": "Stereo"
   },
   "PLAYER": {
     "REPLAY": "replay",
@@ -136,6 +139,7 @@
     "VOLUME_UNMUTE": "Unmute Audio",
     "SET_VOLUME_IN_PERCENT": "Set Volume in Percent",
     "DOWNLOAD_FILE": "Download File {url}",
-    "COPY_FILE": "Copy File {url}"
+    "COPY_FILE": "Copy File {url}",
+    "CHANNELS": "Set channel output"
   }
 }
