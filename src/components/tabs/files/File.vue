@@ -1,7 +1,7 @@
 <template>
   <div class="files-container--file">
     <files-audio-icon width="32" height="32" class="files-container--icon" aria-hidden="true"/>
-    <div class="files-container--meta">
+    <div class="files-container--meta truncate">
       <div class="files-container--type truncate">{{ file.title }}</div>
       <div class="files-container--info truncate">
         <span class="files-container--size" v-if="file.size">{{ toMegabyte(file.size) }} MB</span>
@@ -17,7 +17,8 @@
         </button-component>
       </copy-tooltip-component>
       <button-component class="action download-button" :href="file.url" type="link" download>
-        <span aria-hidden="true">{{ $t('FILES.ACTIONS.DOWNLOAD') }}</span>
+        <span aria-hidden="true" class="action-text">{{ $t('FILES.ACTIONS.DOWNLOAD') }}</span>
+        <span aria-hidden="true" class="action-icon"><download-icon /></span>
         <span class="visually-hidden">{{ $t('A11Y.DOWNLOAD_FILE', file) }}</span>
       </button-component>
     </div>
@@ -31,6 +32,7 @@
   import IconContainer from 'icons/icon-container'
   import FilesAudioIcon from 'icons/FilesAudioIcon'
   import LinkIcon from 'icons/LinkIcon'
+  import DownloadIcon from 'icons/DownloadIcon'
 
   export default {
     props: ['file'],
@@ -45,7 +47,8 @@
       ButtonComponent,
       CopyTooltipComponent,
       FilesAudioIcon: IconContainer(FilesAudioIcon),
-      LinkIcon
+      LinkIcon,
+      DownloadIcon
     }
   }
 </script>
@@ -89,6 +92,15 @@
     display: flex;
     justify-content: flex-end;
     width: $files-actions-width;
+    margin-left: $margin * 2;
+
+    .action-text {
+      display: block;
+    }
+
+    .action-icon {
+      display: none;
+    }
 
     .input-button {
       margin-left: 1em;
@@ -96,16 +108,23 @@
   }
 
     @media screen and (max-width: $width-m) {
-      .files-container--icon, .download-button {
+      .files-container--icon {
         display: none;
       }
 
       .files-container--meta {
-        width: calc(100% - #{$files-icon-width});
+        width: calc(100% - #{$files-icon-width * 2});
+        margin-left: 0;
       }
 
-        .files-container--actions {
-          width: $files-icon-width;
+      .files-container--actions {
+        .action-text {
+          display: none;
         }
+
+        .action-icon {
+          display: block;
+        }
+      }
     }
 </style>
