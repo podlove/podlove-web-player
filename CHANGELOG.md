@@ -1,3 +1,26 @@
+# [4.2.0](https://github.com/podlove/podlove-web-player/compare/v4.1.7...v4.2.0) (2018-11-08)
+
+
+### Bug Fixes
+
+* **package:** update color to version 3.1.0 ([1d2d304](https://github.com/podlove/podlove-web-player/commit/1d2d304))
+* **package:** update iframe-resizer to version 3.6.3 ([d838346](https://github.com/podlove/podlove-web-player/commit/d838346))
+* **package:** update query-string to version 6.2.0 ([454ce84](https://github.com/podlove/podlove-web-player/commit/454ce84))
+* **package:** update redux-actions to version 2.6.3 ([09257b9](https://github.com/podlove/podlove-web-player/commit/09257b9))
+* **package:** update redux-actions to version 2.6.4 ([8ea43de](https://github.com/podlove/podlove-web-player/commit/8ea43de))
+* **package:** update vue-i18n to version 8.2.1 ([d5552c0](https://github.com/podlove/podlove-web-player/commit/d5552c0)), closes [#795](https://github.com/podlove/podlove-web-player/issues/795)
+* **package:** update vue-i18n to version 8.3.0 ([0710364](https://github.com/podlove/podlove-web-player/commit/0710364))
+* **transcripts:** fixes searchbar button alignment in transcript header ([aac2fab](https://github.com/podlove/podlove-web-player/commit/aac2fab))
+
+
+### Features
+
+* **cleanup-embed:** Cleans embed on init and restores it in case of an error ([43e0c09](https://github.com/podlove/podlove-web-player/commit/43e0c09))
+* **files:** adds files tab ([95d92e7](https://github.com/podlove/podlove-web-player/commit/95d92e7))
+* **tabs/share, icon:** Add a linkedin share button ([f77fb4b](https://github.com/podlove/podlove-web-player/commit/f77fb4b))
+
+
+
 <a name="4.1.7"></a>
 ## [4.1.7](https://github.com/podlove/podlove-web-player/compare/v4.1.6...v4.1.7) (2018-10-09)
 
