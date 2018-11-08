@@ -25,3 +25,4 @@ export const selectAudioFiles = compose(files.selectAudio, filesSlice)
 // Filters
 const filterSlice = get('filter')
 export const selectActiveChannels = compose(filter.selectActiveChannels, filterSlice)
+export const selectBufferAvailable = compose(filter.selectBuffer, filterSlice)
