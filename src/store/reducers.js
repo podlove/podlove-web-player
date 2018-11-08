@@ -4,7 +4,7 @@ import { reducer as buffer } from './buffer'
 import { reducer as chapters } from './chapters'
 import { reducer as components } from './components'
 import { reducer as display } from './display'
-import { reducer as download } from './download'
+import { reducer as files } from './files'
 import { reducer as duration } from './duration'
 import { reducer as episode } from './episode'
 import { reducer as error } from './error'
@@ -27,13 +27,14 @@ import { reducer as transcripts } from './transcripts'
 import { reducer as visibleComponents } from './visible-components'
 import { reducer as volume } from './volume'
 import { reducer as playback } from './playback'
+import { reducer as filter } from './filter'
 
 export default combineReducers({
   buffer,
   chapters,
   components,
   display,
-  download,
+  files,
   duration,
   episode,
   error,
@@ -55,5 +56,6 @@ export default combineReducers({
   transcripts,
   visibleComponents,
   volume,
-  playback
+  playback,
+  filter
 })

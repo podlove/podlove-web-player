@@ -9,7 +9,22 @@ const createPlayer = (config) => {
   window.PODLOVE = config
 }
 
-const createEmbedPlayer = (url) => {
+const createEmbedPlayer = (config) => {
+  const script = document.createElement('script')
+  const container = document.createElement('div')
+
+  script.src = 'embed.js'
+
+  script.addEventListener('load', () => {
+    window.podlovePlayer(container, config)
+  })
+
+  document.body.appendChild(script)
+  document.head.insertBefore(script, document.head.firstChild)
+  document.body.appendChild(container)
+}
+
+const createSharePlayer = (url) => {
   const player = document.createElement('iframe')
 
   player.setAttribute('width', 768)
@@ -22,8 +37,11 @@ const createEmbedPlayer = (url) => {
 }
 
 switch (type) {
+  case 'share':
+    createSharePlayer(episodeUrl)
+    break
   case 'embed':
-    createEmbedPlayer(episodeUrl)
+    createEmbedPlayer(episode())
     break
   case 'transcripts':
     createPlayer(episode({ transcripts }))

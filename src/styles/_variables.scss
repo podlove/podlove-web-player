@@ -16,6 +16,7 @@ $width-xl: 768px;
 $accent-color: #000;
 $background-color: #fff;
 $overlay-color: #32424C;
+$subtile-color: rgba(0, 0, 0, 0.2);
 $search-highlight-color: #ff0;
 
 // Sizes
@@ -23,9 +24,7 @@ $tabs-header-height: 35px;
 $tabs-body-max-height: 575px;
 $player-height: 135px;
 $progress-bar-height: 50px;
-$input-height: 35px;
 $addon-button-width: 80px;
-$mute-control-width: calc(60px + #{$padding});
 $content-option-width: 175px;
 $button-width: 50px;
 $slider-height: 44px;
@@ -63,11 +62,19 @@ $overlay-level: 110;
 
 // Inputs
 $range-input-height: 44px;
-$thumb-width-desktop: 6px;
-$thumb-width-desktop-hover: 8px;
+$thumb-width-desktop: 25px;
+$thumb-width-desktop-hover: 25px;
 $thumb-width-mobile: 44px;
+$input-height: 35px;
+$mute-control-width: 60px;
+$input-state-width: 60px;
+$input-value-width: 30px;
 
 // Transcripts
 $transcripts-header-height: 50px;
 $transcripts-header-element-height: 25px;
 $transcripts-search-navigation-width: 120px;
+
+// Files
+$files-actions-width: 150px;
+$files-icon-width: 32px;

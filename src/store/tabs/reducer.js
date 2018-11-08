@@ -7,7 +7,7 @@ export const INITIAL_STATE = {
   chapters: false,
   audio: false,
   share: false,
-  download: false,
+  files: false,
   info: false,
   transcripts: false
 }

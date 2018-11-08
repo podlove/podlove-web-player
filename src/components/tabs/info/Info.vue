@@ -5,8 +5,8 @@
         <h3 class="title" v-if="episode.title" id="tab-info--episode-title">{{ episode.title }}</h3>
         <p class="meta" id="tab-info--episode-meta">
           <span class="tag" v-if="episode.publicationDate"><calendar-icon class="icon"></calendar-icon>{{ publicationDate }}, {{ publicationTime }}</span>
-          <span class="tag" v-if="duration && episodeDuration.hours > 0"><clock-icon class="icon"></clock-icon>{{ $t('DOWNLOAD.DURATION_WITH_HOURS', episodeDuration) }}</span>
-          <span class="tag" v-if="duration && episodeDuration.hours === 0"><clock-icon class="icon"></clock-icon>{{ $t('DOWNLOAD.DURATION', episodeDuration) }}</span>
+          <span class="tag" v-if="duration && episodeDuration.hours > 0"><clock-icon class="icon"></clock-icon>{{ $t('INFO.DURATION_WITH_HOURS', episodeDuration) }}</span>
+          <span class="tag" v-if="duration && episodeDuration.hours === 0"><clock-icon class="icon"></clock-icon>{{ $t('INFO.DURATION', episodeDuration) }}</span>
         </p>
         <p class="subtitle" v-if="episode.subtitle" id="tab-info--episode-subtitle">{{ episode.subtitle }}</p>
         <p class="summary" v-if="episode.summary" id="tab-info--episode-summary" v-html="episode.summary"></p>

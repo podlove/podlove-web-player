@@ -1,10 +1,10 @@
 <template>
-  <a v-if="type === 'link'" :href="href" class="input-button" :style="active ? activeStyle : style">
+  <a v-if="href" :href="href" class="input-button" :style="style">
     <span class="inner centered">
       <slot></slot>
     </span>
   </a>
-  <button v-else :style="active ? activeStyle : style" class="input-button" :disabled="disabled" @click="click ? click() : noop()">
+  <button v-else :style="style" class="input-button" :disabled="disabled">
     <span class="inner centered">
       <slot></slot>
     </span>
@@ -13,30 +13,33 @@
 
 <script>
   import { mapState } from 'redux-vuex'
-  import { noop } from 'lodash'
 
   export default {
-    props: ['click', 'disabled', 'active', 'type', 'href'],
+    props: ['disabled', 'href', 'type'],
     data: mapState('theme'),
     computed: {
       style () {
-        return {
-          color: this.theme.button.color,
-          background: this.theme.button.background,
-          'border-color': this.theme.button.border
+        const style = {
+          color: null,
+          background: null,
+          'border-color': null
         }
-      },
 
-      activeStyle () {
-        return {
-          color: this.theme.button.background,
-          background: this.theme.button.color,
-          'border-color': this.theme.button.background
+        switch (this.type) {
+          case 'light':
+            style.color = this.theme.button.color
+            style.background = this.theme.button.light
+            style['border-color'] = this.theme.button.border
+            break
+
+          default:
+            style.color = this.theme.button.color
+            style.background = this.theme.button.background
+            style['border-color'] = this.theme.button.border
         }
+
+        return style
       }
-    },
-    methods: {
-      noop
     }
   }
 </script>

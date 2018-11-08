@@ -6,7 +6,10 @@
     "TITLE": "Audio",
     "VOLUME": "Volume",
     "SPEED": "Speed",
-    "DEBUG_STATE": "Export Debug State"
+    "DEBUG_STATE": "Export Debug State",
+    "CHANNELS": "Channels",
+    "MONO": "Mono",
+    "STEREO": "Stereo"
   },
   "PLAYER": {
     "REPLAY": "replay",
@@ -22,12 +25,15 @@
       "MESSAGE": "To play the podcast important references to audio files are missing."
     }
   },
-  "DOWNLOAD": {
-    "TITLE": "Download",
-    "DURATION_WITH_HOURS": "{hours} hours {minutes} minutes",
-    "DURATION": "{minutes} minutes",
+  "FILES": {
+    "TITLE": "Files",
+    "TYPES": {
+      "AUDIO": {
+        "HEADER": "Audio Files"
+      }
+    },
     "ACTIONS": {
-      "DOWNLOAD": "Download Episode",
+      "DOWNLOAD": "Download",
       "COPY": "Copy Url"
     }
   },
@@ -89,7 +95,7 @@
     "COPIED": "Copied!"
   },
   "A11Y": {
-    "ALT_EPISODE_COVER": "Episoden Cover",
+    "ALT_EPISODE_COVER": "Episode Cover",
     "ALT_SHOW_COVER": "Show Cover",
     "PLAYER_PLAY": "Play Episode",
     "PLAYER_START": "Start Episode, duration {hours} hours {minutes} minutes {seconds} seconds",
@@ -131,6 +137,9 @@
     "VOLUME_CURRENT": "Current: {volume}%",
     "VOLUME_MUTE": "Mute Audio",
     "VOLUME_UNMUTE": "Unmute Audio",
-    "SET_VOLUME_IN_PERCENT": "Set Volume in Percent"
+    "SET_VOLUME_IN_PERCENT": "Set Volume in Percent",
+    "DOWNLOAD_FILE": "Download File {url}",
+    "COPY_FILE": "Copy File {url}",
+    "CHANNELS": "Set channel output"
   }
 }

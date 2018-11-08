@@ -2,14 +2,16 @@ module.exports = cy => ({
   header: () => cy.get(`#tabs [rel="audio"]`),
   container: () => cy.get('#tab-audio'),
   volume: {
-    current: () => cy.get('#tab-audio--volume--current'),
+    current: () => cy.get('#tab-audio--volume--value'),
     input: () => cy.get('#tab-audio--volume--input input'),
     mute: () => cy.get('#tab-audio--volume--mute')
   },
   rate: {
-    current: () => cy.get('#tab-audio--rate--current'),
-    input: () => cy.get('#tab-audio--rate--input input'),
-    increase: () => cy.get('#tab-audio--rate--increase'),
-    decrease: () => cy.get('#tab-audio--rate--decrease')
+    current: () => cy.get('#tab-audio--rate--value'),
+    input: () => cy.get('#tab-audio--rate--input input')
+  },
+  channels: {
+    mono: () => cy.get('#tab-audio--channels-mono'),
+    stereo: () => cy.get('#tab-audio--channels-stereo')
   }
 })

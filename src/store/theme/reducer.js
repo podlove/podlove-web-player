@@ -92,6 +92,15 @@ const themeColors = (colors = {}) => {
           background: color(grey).fade(0.8),
           text: color(grey)
         }
+      },
+      files: {
+        container: {
+          background: light
+        },
+        header: {
+          background: color(main).fade(0.2),
+          color: negative ? light : dark
+        }
       }
     },
     overlay: {
@@ -106,7 +115,12 @@ const themeColors = (colors = {}) => {
     button: {
       background: main,
       color: negative ? light : dark,
+      light: color(main).lighten(0.2),
       border: negative ? color(main).lighten(0.1) : grey
+    },
+    icon: {
+      color: negative ? light : dark,
+      background: color(main).lighten(0.2)
     }
   }
 }

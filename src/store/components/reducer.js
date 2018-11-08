@@ -17,6 +17,7 @@ import {
   TOGGLE_COMPONENT_TAB,
   TOGGLE_COMPONENT_VOLUME_SLIDER,
   TOGGLE_COMPONENT_RATE_SLIDER,
+  TOGGLE_COMPONENT_CHANNELS,
   TOGGLE_COMPONENT_PROGRESSBAR
 } from '../types'
 
@@ -38,7 +39,8 @@ const INITIAL_BUTTON = {
 
 const INITIAL_AUDIO_CONTROLS = {
   volumeControl: false,
-  rateControl: false
+  rateControl: false,
+  channelControl: false
 }
 
 const INITIAL_TABS = {
@@ -155,6 +157,14 @@ export const reducer = handleActions({
     audio: {
       ...state.audio,
       rateControl: payload
+    }
+  }),
+
+  [TOGGLE_COMPONENT_CHANNELS]: (state, { payload }) => ({
+    ...state,
+    audio: {
+      ...state.audio,
+      channelControl: payload
     }
   }),
 

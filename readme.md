@@ -8,7 +8,7 @@
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=flat-square)](http://commitizen.github.io/cz-cli/)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fpodlove%2Fpodlove-web-player.svg?type=shield&style=flat-square)](https://app.fossa.io/projects/git%2Bgithub.com%2Fpodlove%2Fpodlove-web-player?ref=badge_shield)
 
-![Preview](screenshot.jpg)
+![Preview](screenshot.png)
 
 ## About
 
@@ -17,8 +17,7 @@ HTML5 Goodness for Podcasting
 **Podlove** Web Player is a Podcast-optimized, HTML5-based video and audio player.
 It can be used as a WordPress plugin or within a static HTML/JavaScript context.
 
-The **Podlove** Web Player supports almost every modern browser and also does captions, chapters and much more.
-Thanks to Howler.js for providing the foundation.
+The **Podlove** Web Player supports almost every modern browser (Edge, Firefox, Chrome, Safari) and also does captions, chapters, transcripts and much more. 
 
 * [Web Player Documentation](http://docs.podlove.org/podlove-web-player/)
 * [Web Player Wiki](https://github.com/podlove/podlove-web-player/wiki)
@@ -31,7 +30,7 @@ Thanks to Howler.js for providing the foundation.
 - Media Library: [Podlove Pure HTML5 Audio Driver](https://github.com/podlove/html5-audio-driver/)
 - View Renderer: [VueJS](https://github.com/vuejs/vue)
 - Bundler: [Webpack](https://github.com/webpack/webpack)
-- State Management: [Redux](https://github.com/reactjs/redux)
+- State Management: [Redux](https://github.com/reactjs/redux) & [redux-vuex](https://github.com/alexander-heimbuch/redux-vuex#readme)
 
 ## Development
 
@@ -42,7 +41,7 @@ Clone the repository and install all dependencies with `yarn`
 ### Local Development
 
 1. Run `yarn dev`
-2. Access `http://localhost:8080/standalone.html` for development
+2. Access `http://localhost:9002/standalone.html` for development
 
 ### Tests
 
@@ -53,6 +52,11 @@ Clone the repository and install all dependencies with `yarn`
 
 1. Run `yarn build`
 2. Locate build artefacts in `dist/`
+
+### Docs
+
+1. Run `yarn docs`
+2. Access `http://localhost:8080` for a preview 
 
 ### Join the conversation
 
@@ -73,7 +77,7 @@ If you encounter a specific problem using the Podlove Web Player that you think 
 
 Also, if you have ideas for new features for player, please submit them as a [Github issue](https://github.com/podlove/podlove-web-player/issues).
 
-Have a look on the Github project to watch the status and progress of your issues:<br>
+Have a look on the Github project to watch the status and progress of your issues:  
 [github.com/podlove/podlove-web-player/projects](https://github.com/podlove/podlove-web-player/projects)
 
 ## Support

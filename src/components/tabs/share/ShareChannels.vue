@@ -4,28 +4,25 @@
     <li id="tab-share--channels--facebook"><channel-facebook-component :link="shareLink"></channel-facebook-component></li>
     <li id="tab-share--channels--pinterest"><channel-pinterest-component :text="shareText" :link="shareLink" :poster="sharePoster"></channel-pinterest-component></li>
     <li id="tab-share--channels--reddit"><channel-reddit-component :text="shareText" :link="shareLink"></channel-reddit-component></li>
-    <li id="tab-share--channels--google-plus"><channel-google-plus-component :link="shareLink"></channel-google-plus-component></li>
     <li id="tab-share--channels--mail"><channel-mail-component :text="shareText" :subject="shareSubject"></channel-mail-component></li>
-    <li id="tab-share--channels--embed" v-if="type !== 'show' && ((reference.config && reference.share) || reference.origin)">
-      <channel-embed-component :color="theme.tabs.share.platform.button"></channel-embed-component>
-    </li>
+    <li id="tab-share--channels--linkedin"><channel-linkedin-component :text="shareText" :link="shareLink"></channel-linkedin-component></li>
   </ul>
 </template>
 
 <script>
   import { mapState } from 'redux-vuex'
-  import selectors from 'store/selectors'
+  import { selectCurrentChapter } from 'store/selectors'
 
   import { fromPlayerTime } from 'utils/time'
   import { addQueryParameter } from 'utils/url'
 
   import ChannelTwitterComponent from './channels/ChannelTwitter'
   import ChannelFacebookComponent from './channels/ChannelFacebook'
-  import ChannelGooglePlusComponent from './channels/ChannelGooglePlus'
   import ChannelMailComponent from './channels/ChannelMail'
   import ChannelEmbedComponent from './channels/ChannelEmbed'
   import ChannelPinterestComponent from './channels/ChannelPinterest'
   import ChannelRedditComponent from './channels/ChannelReddit'
+  import ChannelLinkedinComponent from './channels/ChannelLinkedin'
 
   export default {
     props: ['type'],
@@ -33,9 +30,8 @@
       show: 'show',
       episode: 'episode',
       playtime: 'playtime',
-      currentChapter: selectors.selectCurrentChapter,
-      theme: 'theme',
-      reference: 'reference'
+      currentChapter: selectCurrentChapter,
+      theme: 'theme'
     }),
     computed: {
       shareLink () {
@@ -132,11 +128,11 @@
     components: {
       ChannelTwitterComponent,
       ChannelFacebookComponent,
-      ChannelGooglePlusComponent,
       ChannelMailComponent,
       ChannelEmbedComponent,
       ChannelPinterestComponent,
-      ChannelRedditComponent
+      ChannelRedditComponent,
+      ChannelLinkedinComponent
     }
   }
 </script>

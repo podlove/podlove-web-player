@@ -34,7 +34,8 @@ test.beforeEach(() => {
     },
     audio: {
       rateControl: false,
-      volumeControl: false
+      volumeControl: false,
+      channelControl: false
     }
   }
 
@@ -292,6 +293,17 @@ test(`rateSlider: it toggle the rate slider`, t => {
   })
 
   compareState.audio.rateControl = true
+
+  t.deepEqual(result, compareState)
+})
+
+test(`channelSelection: it toggles the channel selection`, t => {
+  const result = components(uiState, {
+    type: 'TOGGLE_COMPONENT_CHANNELS',
+    payload: true
+  })
+
+  compareState.audio.channelControl = true
 
   t.deepEqual(result, compareState)
 })

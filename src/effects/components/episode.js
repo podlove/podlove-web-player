@@ -16,7 +16,7 @@ import {
   SET_TRANSCRIPTS_TIMELINE
 } from 'store/types'
 
-import selectors from 'store/selectors'
+import { selectChapters, selectAudioFiles } from 'store/selectors'
 
 import { handleActions } from 'utils/effects'
 
@@ -27,8 +27,8 @@ const hasMeta = (show, episode) =>
   show.title ||
   episode.title ||
   episode.subtitle
-const hasFiles = files => files.length > 0
-const hasAudioFiles = files => files.length > 0
+const hasFiles = files => files && files.length > 0
+const hasAudioFiles = files => files && files.length > 0
 
 const networkError = ({ dispatch }) => {
   dispatch(actions.toggleInfo(false))
@@ -41,14 +41,14 @@ const networkError = ({ dispatch }) => {
 
 export default handleActions({
   [INIT]: ({ dispatch }, { payload }, state) => {
-    const downloadFiles = get(state, 'download.files', [])
-    const audioFiles = get(payload, 'audio', [])
+    const files = get(payload, 'audio', [])
+    const audioFiles = selectAudioFiles(state)
     const episode = get(state, 'episode', {})
     const show = get(state, 'show', {})
     const runtime = get(state, 'runtime', {})
 
-    if (hasFiles(downloadFiles)) {
-      dispatch(actions.toggleComponentTab('download', true))
+    if (hasFiles(files)) {
+      dispatch(actions.toggleComponentTab('files', true))
     }
 
     // Meta
@@ -66,6 +66,7 @@ export default handleActions({
     dispatch(actions.toggleComponentTab('info', true))
     dispatch(actions.toggleComponentTab('audio', true))
     dispatch(actions.toggleRateSlider(true))
+    dispatch(actions.toggleChannelsSelection(true))
     dispatch(actions.toggleInfoPoster(true))
 
     // Reset Errors
@@ -99,7 +100,7 @@ export default handleActions({
     // Default behaviour
     dispatch(actions.showPlayingButton())
     dispatch(actions.toggleProgressBar(true))
-    hasChapters(selectors.selectChapters(state)) ? dispatch(actions.toggleChapterControls(true)) : noop()
+    hasChapters(selectChapters(state)) ? dispatch(actions.toggleChapterControls(true)) : noop()
     dispatch(actions.toggleSteppersControls(true))
 
     // Error Fallbacks
@@ -111,7 +112,7 @@ export default handleActions({
 
   [IDLE]: ({ dispatch }, _, state) => {
     dispatch(actions.showPauseButton())
-    hasChapters(selectors.selectChapters(state)) ? dispatch(actions.toggleChapterControls(true)) : noop()
+    hasChapters(selectChapters(state)) ? dispatch(actions.toggleChapterControls(true)) : noop()
     dispatch(actions.toggleSteppersControls(true))
     dispatch(actions.toggleProgressBar(true))
   },

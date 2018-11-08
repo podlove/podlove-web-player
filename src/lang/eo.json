@@ -51,19 +51,19 @@
     },
     "EPISODE": {
       "TEXT": {
-        "BEGINNING": "Konigi tekston de epizodo \"{title}\" per ligilo {link} ekde komenco",
-        "CHAPTER": "Konigi tekston de epizodo \"{title}\" per ligilo {link}  por ĉapitro \"{chapter}\"",
-        "PLAYTIME": "Konigi tekston de epizodo \"{title}\" per ligilo {link} ekde {playtime}"
+        "BEGINNING": "\"{title}\" ({link}",
+        "CHAPTER": "\"{title}\" ({link}",
+        "PLAYTIME": "\"{title}\" ({link}"
       },
     "SUBJECT": {
-	"BEGINNING": "Konigi titolon de epizodo \"{title}\" per ligilo {link} ekde komenco",
-        "CHAPTER": "Konigi titolon de epizodo \"{title}\" per ligilo {link}  por ĉapitro \"{chapter}\"",
-        "PLAYTIME": "Konigi titolon de  epizodo \"{title}\" per ligilo {link} ekde {playtime}"
+      "BEGINNING": "\"{title}\" ({link}",
+      "CHAPTER": "\"{title}\" ({link}",
+      "PLAYTIME": "\"{title}\" ({link}"
       }
     },
     "SHOW": {
-      "TEXT": "Konigi tekston de serio \"{title}\" per ligilo {link}",
-      "SUBJECT": "Konigi tekston de serio \"{title}\" per ligilo {link}"
+      "TEXT": "\"{title}\" ({link}",
+      "SUBJECT": "\"{title}\" ({link}"
     }
   },
   "EMBED": {
@@ -80,7 +80,62 @@
     "TITLE": "Informoj",
     "PUBLICATION_DATE": "Publikigita: {day}.{month}.{year}",
     "ON_AIR": "Aŭdebla(j)",
-    "DURATION_WITH_HOURS": "{hours} hours {minutes} minutes",
-    "DURATION": "{minutes} minutes"
+    "DURATION_WITH_HOURS": "{hours} horoj {minutes} minutoj",
+    "DURATION": "{minutes} minutoj"
+  },
+  "TRANSCRIPTS": {
+    "TITLE": "Transskribaĵo",
+    "CHAPTER": "Ĉapitro {index}: {title}",
+    "FOLLOW": "Sekvi",
+    "SEARCH": "Serĉi",
+    "NO_SEARCH_RESULTS": "Nenia rezulto"
+  },
+  "MESSAGES": {
+    "COPIED": "Kopiite!"
+  },
+  "A11Y": {
+    "ALT_EPISODE_COVER": "Epizoda bildo",
+    "ALT_SHOW_COVER": "Seria bildo",
+    "PLAYER_PLAY": "Ludigi epizodon",
+    "PLAYER_START": "Lanĉi epizodon - Daŭro: {hours} horoj {minutes} minutoj {seconds} sekundoj",
+    "PLAYER_RESTART": "Rekomenci epizodon",
+    "PLAYER_ERROR": "Reprovi ludigon",
+    "PLAYER_PAUSE": "Paŭzi epizodon",
+    "PLAYER_LOADING": "Epizodo ŝargiĝas",
+    "PLAYER_CHAPTER_NEXT": "Sekva ĉapitro: {index} - {title}",
+    "PLAYER_CHAPTER_END": "Al la ĉapitra fino",
+    "PLAYER_CHAPTER_PREVIOUS": "Antaŭa ĉapitro: {index} - {title}",
+    "PLAYER_CHAPTER_CURRENT": "Al la komenco de la nuna ĉapitro: {index} - {title}",
+    "PLAYER_STEPPER_BACK": "{seconds} sekundojn malantaŭen",
+    "PLAYER_STEPPER_FORWARD": "{seconds} sekundojn antaŭen",
+    "PROGRESSBAR_INPUT": "Ŝanĝi daŭron je milisekundoj",
+    "TIMER_CURRENT": "Aktuala ludtempo: {hours} horoj {minutes} minutoj {seconds} sekundoj",
+    "TIMER_LEFT": "Restanta ludtempo: {hours} horoj {minutes} minutoj {seconds} sekundoj",
+    "TIMER_CHAPTER": "Nuna ĉapitro: {index} - {title}",
+    "SPEAKER_COVER": "Parolanto {name}",
+    "CHAPTER_ENTRY": "{index} - {title} (Daŭro: {duration}, Restanta: {remaining})",
+    "SHARE_CONTENT_SHOW": "Konigi serion {title}",
+    "SHARE_CONTENT_EPISODE": "Konigi epizodon {title}",
+    "SHARE_CONTENT_CHAPTER": "Konigi ĉapitron {title}",
+    "SHARE_CONTENT_PLAYTIME": "Konigi epizodon ĉe {playtime}",
+    "SHARE_CHANNEL": "Konigi al {channel}",
+    "SHARE_EMBED": "Krei enigan kodon",
+    "COPY_SHARE_LINK": "Kopii konigan ligilon",
+    "SHARE_OVERLAY": "Koniga dialogo",
+    "OVERLAY_CLOSE": "Fermi dialogon",
+    "COPY_EMBED_CODE": "Kopii enigan kodon",
+    "DOWNLOAD_EPISODE": "Elŝuti epizodon",
+    "SELECT_EPISODE_FILETYPE": "Elekti epizodan formaton",
+    "COPY_DOWNLOAD_URL": "Kopii elŝut-ligilon",
+    "RATE": "Ludrapideco",
+    "RATE_CURRENT": "Nune: {rate}%",
+    "RATE_INCREASE": "pli rapide",
+    "RATE_DECREASE": "malpli rapide",
+    "SET_RATE_IN_PERCENT": "Agordi rapidecon je elcentoj",
+    "VOLUME": "Laŭteco",
+    "VOLUME_CURRENT": "Nune: {volume}%",
+    "VOLUME_MUTE": "Mutigi",
+    "VOLUME_UNMUTE": "Malmutigi",
+    "SET_VOLUME_IN_PERCENT": "Agordi laŭtecon je elcentoj"
   }
 }

@@ -17,7 +17,8 @@ import {
   SHOW_COMPONENT_CONTROLS_BUTTON_PAUSE,
   TOGGLE_COMPONENT_TAB,
   TOGGLE_COMPONENT_VOLUME_SLIDER,
-  TOGGLE_COMPONENT_RATE_SLIDER
+  TOGGLE_COMPONENT_RATE_SLIDER,
+  TOGGLE_COMPONENT_CHANNELS
 } from '../types'
 
 export const toggleInfo = createAction(TOGGLE_COMPONENT_INFO)
@@ -37,3 +38,4 @@ export const showPauseButton = createAction(SHOW_COMPONENT_CONTROLS_BUTTON_PAUSE
 export const toggleComponentTab = createAction(TOGGLE_COMPONENT_TAB, (tab, visibility) => ({ tab, visibility }))
 export const toggleVolumeSlider = createAction(TOGGLE_COMPONENT_VOLUME_SLIDER)
 export const toggleRateSlider = createAction(TOGGLE_COMPONENT_RATE_SLIDER)
+export const toggleChannelsSelection = createAction(TOGGLE_COMPONENT_CHANNELS)

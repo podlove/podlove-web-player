@@ -6,7 +6,10 @@
     "TITLE": "Audio",
     "VOLUME": "Lautstärke",
     "SPEED": "Geschwindigkeit",
-    "DEBUG_STATE": "Debug State exportieren"
+    "DEBUG_STATE": "Debug State exportieren",
+    "CHANNELS": "Abspielmodus",
+    "MONO": "Mono",
+    "STEREO": "Stereo"
   },
   "PLAYER": {
     "REPLAY": "Wiederholen",
@@ -22,12 +25,15 @@
       "MESSAGE": "Zum abspielen des Podcasts fehlen die Referenzen zu den Audiodateien."
     }
   },
-  "DOWNLOAD": {
-    "TITLE": "Download",
-    "DURATION_WITH_HOURS": "{hours} Stunden {minutes} Minuten",
-    "DURATION": "{minutes} Minuten",
+  "FILES": {
+    "TITLE": "Dateien",
+    "TYPES": {
+      "AUDIO": {
+        "HEADER": "Audio Dateien"
+      }
+    },
     "ACTIONS": {
-      "DOWNLOAD": "Download Episode",
+      "DOWNLOAD": "Download",
       "COPY": "Url kopieren"
     }
   },
@@ -36,8 +42,8 @@
     "CONTENT": {
       "SHOW": "Show",
       "EPISODE": "Episode",
-      "CHAPTER": "Chapter",
-      "TIME": "Playtime"
+      "CHAPTER": "Kapitel",
+      "TIME": "Abspielzeit"
     },
     "REFERENCE": {
       "BEGINNING": "Beginn",
@@ -66,10 +72,10 @@
       "SUBJECT": "{title}"
     },
     "EMBED": {
-      "TITLE": "Embed Episode",
+      "TITLE": "Embed Code",
       "LABEL": {
-        "SIZE": "Embed Size",
-        "CODE": "Embed Code"
+        "SIZE": "Größe",
+        "CODE": "Code"
       },
       "ACTIONS": {
         "COPY": "Code kopieren"
@@ -84,7 +90,7 @@
     "DURATION": "{minutes} Minuten"
   },
   "TRANSCRIPTS": {
-    "TITLE": "Transcript",
+    "TITLE": "Transkript",
     "CHAPTER": "Kapitel {index}: {title}",
     "FOLLOW": "folgen",
     "SEARCH": "Suche",
@@ -103,7 +109,7 @@
     "PLAYER_PAUSE": "Episode pausieren",
     "PLAYER_LOADING": "Episode lädt",
     "PLAYER_CHAPTER_NEXT": "Zum nächsten Kapitel: {index} - {title}",
-    "PLAYER_CHAPTER_END": "Zume Ende des Kapitels springen",
+    "PLAYER_CHAPTER_END": "Zum Ende des Kapitels springen",
     "PLAYER_CHAPTER_PREVIOUS": "Zum vorhergehenden Kapitel: {index} - {title}",
     "PLAYER_CHAPTER_CURRENT": "Zum Anfang des aktiven Kapitels springen: {index} - {title}",
     "PLAYER_STEPPER_BACK": "{seconds} Sekunden zurückspringen",
@@ -136,6 +142,9 @@
     "VOLUME_CURRENT": "Gerade: {volume}%",
     "VOLUME_MUTE": "Audio stummschalten",
     "VOLUME_UNMUTE": "Audio aktivschalten",
-    "SET_VOLUME_IN_PERCENT": "Lautheit in Prozent anpassen"
+    "SET_VOLUME_IN_PERCENT": "Lautheit in Prozent anpassen",
+    "DOWNLOAD_FILE": "Datei herunterladen: {url}",
+    "COPY_FILE": "Url {url} in Zwischenablage legen",
+    "CHANNELS": "Abspielmodus setzen"
   }
 }

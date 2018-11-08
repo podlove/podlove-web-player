@@ -10,8 +10,8 @@ test.beforeEach(t => {
     chapters: {
       list: ['chapter 1', 'chapter 2']
     },
-    download: {
-      files: [{
+    files: {
+      audio: [{
         url: 'http://foo.bar'
       }, {
         url: 'http://foo.baz'
@@ -152,14 +152,19 @@ test(`componentsEffect: it shows correct ui components for IDLE action`, t => {
 
 test(`componentsEffect: it shows correct ui components for INIT action`, t => {
   const testAction = {
-    type: 'INIT'
+    type: 'INIT',
+    payload: {
+      audio: [{
+        url: 'http://foo.bar'
+      }]
+    }
   }
 
   components(store, testAction)
   t.deepEqual(store.dispatch.getCall(0).args[0], {
     type: 'TOGGLE_COMPONENT_TAB',
     payload: {
-      tab: 'download',
+      tab: 'files',
       visibility: true
     }
   })
@@ -194,6 +199,10 @@ test(`componentsEffect: it shows correct ui components for INIT action`, t => {
   })
   t.deepEqual(store.dispatch.getCall(6).args[0], {
     type: 'TOGGLE_COMPONENT_RATE_SLIDER',
+    payload: true
+  })
+  t.deepEqual(store.dispatch.getCall(7).args[0], {
+    type: 'TOGGLE_COMPONENT_CHANNELS',
     payload: true
   })
 })
@@ -262,7 +271,7 @@ test(`componentsEffect: it shows the info section only when meta available on IN
   store.getState = sinon.stub().returns(state)
 
   components(store, testAction)
-  t.deepEqual(store.dispatch.getCall(1).args[0], {
+  t.deepEqual(store.dispatch.getCall(0).args[0], {
     type: 'TOGGLE_COMPONENT_VOLUME_SLIDER',
     payload: true
   })

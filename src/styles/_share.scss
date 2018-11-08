@@ -16,6 +16,11 @@ $button-size: 60px;
     justify-content: center;
     align-items: center;
     border-radius: 4px;
+    border: 2px solid transparent;
+  }
+
+  &.active .channel-icon {
+    border-color: currentColor;
   }
 
   &:hover {

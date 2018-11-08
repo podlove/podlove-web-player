@@ -6,7 +6,7 @@ import { INIT } from '../types'
 export const INITIAL_STATE = [
   'tabInfo',
   'tabChapters',
-  'tabDownload',
+  'tabFiles',
   'tabAudio',
   'tabShare',
   'tabTranscripts',
@@ -26,5 +26,5 @@ const toVisibleComponentState = (components = []) =>
   }), {})
 
 export const reducer = handleActions({
-  [INIT]: (state, { payload }) => toVisibleComponentState(get(payload, 'visibleComponents', INITIAL_STATE))
+  [INIT]: (_, { payload }) => toVisibleComponentState(get(payload, 'visibleComponents', INITIAL_STATE))
 }, toVisibleComponentState(INITIAL_STATE))

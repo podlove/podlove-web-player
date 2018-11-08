@@ -97,8 +97,8 @@ export default {
 
       .delete-icon {
         position: absolute;
-        right: 2px;
-        top: 2px;
+        right: 1px;
+        top: 1px;
       }
     }
 
@@ -116,12 +116,13 @@ export default {
       .search-stepper {
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: space-between;
         height: 100%;
+        width: 4em;
+        margin: 0 0.5em;
 
         .stepper {
           display: inherit;
-          margin: 0 0.25em;
         }
       }
 

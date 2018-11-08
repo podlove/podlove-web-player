@@ -1,4 +1,6 @@
 /* globals BASE */
+import { version } from '../../package'
+
 import {
   get,
   compose,
@@ -13,8 +15,7 @@ import iframeResizerContentWindow from 'raw-loader!iframe-resizer/js/iframeResiz
 import {
   findNode,
   tag,
-  setAttributes,
-  cleanDom
+  setAttributes
 } from 'utils/dom'
 import requestConfig from 'utils/request'
 import {
@@ -98,33 +99,29 @@ const setAccessibilityAttributes = config => {
   })
 }
 
-const cleanup = compose(
-  node => store => {
-    cleanDom('iframe', node)
+window.podlovePlayer = (selector, episode, additional = {}) => {
+  const node = findNode(selector)
+  const nodeHtml = node.innerHTML
+  node.innerHTML = ''
 
-    return store
-  },
-  findNode
-)
-
-window.podlovePlayer = (selector, episode, additional = {}) =>
-  requestConfig(episode)
+  return requestConfig(episode)
     .then(config =>
       Promise.resolve(merge(config, additional))
         .then(setPublicPath)
         .then(createPlayerDom)
-        .then(sandboxFromSelector(selector))
+        .then(sandboxFromSelector(node))
         // Set Title for accessibility
         .then(setAccessibilityAttributes(config))
         .then(resizer)
         .then(sandboxWindow(['PODLOVE_STORE']))
         .then(dispatchUrlParameters)
-        .then(cleanup(selector))
     )
     .catch(err => {
-      console.group(`Can't load Podlove Webplayer`)
+      node.innerHTML = nodeHtml
+      console.group(`Can't load Podlove Webplayer ${version}`)
       console.error('selector', selector)
       console.error('config', episode)
       console.error(err)
       console.groupEnd()
     })
+}

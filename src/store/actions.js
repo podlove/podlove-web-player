@@ -1,7 +1,6 @@
 import * as buffer from './buffer/actions'
 import * as chapters from './chapters/actions'
 import * as components from './components/actions'
-import * as download from './download/actions'
 import * as duration from './duration/actions'
 import * as error from './error/actions'
 import * as ghost from './ghost/actions'
@@ -18,12 +17,12 @@ import * as theme from './theme/actions'
 import * as transcripts from './transcripts/actions'
 import * as volume from './volume/actions'
 import * as playback from './playback/actions'
+import * as filter from './filter/actions'
 
 export default {
   ...buffer,
   ...chapters,
   ...components,
-  ...download,
   ...duration,
   ...error,
   ...ghost,
@@ -39,5 +38,6 @@ export default {
   ...theme,
   ...transcripts,
   ...volume,
-  ...playback
+  ...playback,
+  ...filter
 }

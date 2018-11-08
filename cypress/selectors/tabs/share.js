@@ -10,16 +10,17 @@ module.exports = cy => ({
   channels: {
     twitter: () => cy.get(`#tab-share--channels--twitter a`),
     reddit: () => cy.get(`#tab-share--channels--reddit a`),
-    'google-plus': () => cy.get(`#tab-share--channels--google-plus a`),
     mail: () => cy.get(`#tab-share--channels--mail a`),
     pinterest: () => cy.get(`#tab-share--channels--pinterest a`),
-    embed: () => cy.get(`#tab-share--channels--embed button`)
+    linkedin: () => cy.get(`#tab-share--channels--linkedin a`)
   },
-  overlay: {
-    modal: () => cy.get('#share-tab--share-overlay'),
-    close: () => cy.get('#share-tab--share-overlay .overlay-close'),
-    code: () => cy.get('#share-tab--share-overlay--code'),
-    size: () => cy.get('#share-tab--share-overlay--size'),
+  embed: {
+    container: () => cy.get('#tab-share--embed--link'),
+    input: () => cy.get('#tab-share--share-embed--input'),
+    size: () => cy.get('#tab-share--share-embed--size')
+  },
+  link: {
+    container: () => cy.get('#tab-share--share-link'),
     input: () => cy.get('#tab-share--share-link--input')
   }
 })
