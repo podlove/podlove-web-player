@@ -897,9 +897,9 @@
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.0.tgz#50c1e2260ac0ed9439a181de3725a0168d59c48a"
 
-"@podlove/html5-audio-driver@1.3.2":
-  version "1.3.2"
-  resolved "https://registry.yarnpkg.com/@podlove/html5-audio-driver/-/html5-audio-driver-1.3.2.tgz#4328107eb82800fdc83a7405f1010c8123555577"
+"@podlove/html5-audio-driver@1.3.3":
+  version "1.3.3"
+  resolved "https://registry.yarnpkg.com/@podlove/html5-audio-driver/-/html5-audio-driver-1.3.3.tgz#9cc6d68e784818350207e96a13abeca28ff04413"
   dependencies:
     hls.js "0.9.1"
     ramda "0.24.1"
