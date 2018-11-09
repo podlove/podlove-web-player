@@ -2,7 +2,6 @@
   <div class="audio-tab" id="tab-audio">
     <audio-volume-component class="seperator" v-if="components.audio.volumeControl"></audio-volume-component>
     <audio-rate-component class="seperator" v-if="components.audio.rateControl"></audio-rate-component>
-    <audio-channels-component class="seperator" v-if="components.audio.channelControl"></audio-channels-component>
     <footer-component></footer-component>
   </div>
 </template>
@@ -13,7 +12,6 @@
 
   import AudioRateComponent from './AudioRate'
   import AudioVolumeComponent from './AudioVolume'
-  import AudioChannelsComponent from './AudioChannels'
 
   import FooterComponent from 'shared/Footer'
 
@@ -25,7 +23,6 @@
     components: {
       AudioRateComponent,
       AudioVolumeComponent,
-      AudioChannelsComponent,
       FooterComponent
     }
   }
