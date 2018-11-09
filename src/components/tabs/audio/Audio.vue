@@ -9,6 +9,7 @@
 
 <script>
   import { mapState } from 'redux-vuex'
+  import { selectBufferAvailable } from 'store/selectors'
 
   import AudioRateComponent from './AudioRate'
   import AudioVolumeComponent from './AudioVolume'
@@ -17,7 +18,10 @@
   import FooterComponent from 'shared/Footer'
 
   export default {
-    data: mapState('components'),
+    data: mapState({
+      components: 'components',
+      channelsAvailable: selectBufferAvailable
+    }),
     components: {
       AudioRateComponent,
       AudioVolumeComponent,
