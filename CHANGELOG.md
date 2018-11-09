@@ -1,3 +1,14 @@
+<a name="4.2.1"></a>
+## [4.2.1](https://github.com/podlove/podlove-web-player/compare/v4.2.0...v4.2.1) (2018-11-09)
+
+
+### Bug Fixes
+
+* **safari:** uses fallback to native audio element ([ba5d2e9](https://github.com/podlove/podlove-web-player/commit/ba5d2e9))
+* **styles:** resets number input in firefox and sets width of input-state ([e797522](https://github.com/podlove/podlove-web-player/commit/e797522))
+
+
+
 # [4.2.0](https://github.com/podlove/podlove-web-player/compare/v4.1.7...v4.2.0) (2018-11-08)
 
 
