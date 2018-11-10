@@ -90,32 +90,4 @@ describe('Audio Tab', () => {
       selectors.tabs.audio.rate.current().should('have.value', '1.00')
     })
   })
-
-  describe('Channels', () => {
-    it('sets stereo on default', function () {
-      cy.window().then(setState(this.episode, this.audio, this.show, this.chapters))
-      cy.tab('audio')
-      selectors.tabs.audio.channels.mono().should('not.have.attr', 'active')
-      selectors.tabs.audio.channels.stereo().should('have.attr', 'active')
-    })
-
-    it('sets the channel to mono', function () {
-      cy.window().then(setState(this.episode, this.audio, this.show, this.chapters))
-      cy.tab('audio')
-      selectors.tabs.audio.channels.mono().click()
-      selectors.tabs.audio.channels.mono().should('have.attr', 'active')
-      selectors.tabs.audio.channels.stereo().should('not.have.attr', 'active')
-    })
-
-    it('sets the channel to stereo', function () {
-      cy.window().then(setState(this.episode, this.audio, this.show, this.chapters))
-      cy.tab('audio')
-      selectors.tabs.audio.channels.mono().click()
-      selectors.tabs.audio.channels.mono().should('have.attr', 'active')
-      selectors.tabs.audio.channels.stereo().should('not.have.attr', 'active')
-      selectors.tabs.audio.channels.stereo().click()
-      selectors.tabs.audio.channels.mono().should('not.have.attr', 'active')
-      selectors.tabs.audio.channels.stereo().should('have.attr', 'active')
-    })
-  })
 })

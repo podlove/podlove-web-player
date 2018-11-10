@@ -6,7 +6,7 @@ import playerEffectsFactory from './player'
 let store
 let playerEffect
 let mediaPlayer
-let playStub, pauseStub, playtimeStub, volumeStub, rateStub, muteStub, unmuteStub, restartStub, loadStub, stereoStub, monoStub
+let playStub, pauseStub, playtimeStub, volumeStub, rateStub, muteStub, unmuteStub, restartStub, loadStub
 
 test.beforeEach(t => {
   playStub = sinon.stub()
@@ -18,8 +18,6 @@ test.beforeEach(t => {
   unmuteStub = sinon.stub()
   restartStub = sinon.stub()
   loadStub = sinon.stub()
-  stereoStub = sinon.stub()
-  monoStub = sinon.stub()
 
   mediaPlayer = sinon.stub().returns({
     actions: {
@@ -31,9 +29,7 @@ test.beforeEach(t => {
       mute: muteStub,
       unmute: unmuteStub,
       restart: restartStub,
-      load: loadStub,
-      stereo: stereoStub,
-      mono: monoStub
+      load: loadStub
     },
     events: {
       onPlaytimeUpdate: sinon.stub(),
@@ -45,8 +41,7 @@ test.beforeEach(t => {
       onReady: sinon.stub(),
       onError: sinon.stub(),
       onBuffering: sinon.stub(),
-      onEnd: sinon.stub(),
-      onFilterUpdate: sinon.stub()
+      onEnd: sinon.stub()
     }
   })
 
@@ -241,34 +236,4 @@ test(`playerEffect: it calls unmute on LOAD`, t => {
   })
 
   t.truthy(loadStub.called)
-})
-
-test(`playerEffect: it calls stereo filter on SET_FILTER_STEREO`, t => {
-  playerEffect(store, {
-    type: 'INIT',
-    payload: {
-      audio: [{ url: 'foo' }]
-    }
-  })
-
-  playerEffect(store, {
-    type: 'SET_FILTER_STEREO'
-  })
-
-  t.truthy(stereoStub.called)
-})
-
-test(`playerEffect: it calls mono filter on SET_FILTER_MONO`, t => {
-  playerEffect(store, {
-    type: 'INIT',
-    payload: {
-      audio: [{ url: 'foo' }]
-    }
-  })
-
-  playerEffect(store, {
-    type: 'SET_FILTER_MONO'
-  })
-
-  t.truthy(monoStub.called)
 })
