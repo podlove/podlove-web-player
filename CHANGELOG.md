@@ -1,3 +1,12 @@
+## [4.2.3](https://github.com/podlove/podlove-web-player/compare/v4.2.2...v4.2.3) (2018-11-10)
+
+
+### Bug Fixes
+
+* **marquee:** marquee effect now doesn't produce unwanted spacing ([2279476](https://github.com/podlove/podlove-web-player/commit/2279476))
+
+
+
 ## [4.2.2](https://github.com/podlove/podlove-web-player/compare/v4.2.1...v4.2.2) (2018-11-10)
 
 
