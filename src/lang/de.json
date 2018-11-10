@@ -6,10 +6,7 @@
     "TITLE": "Audio",
     "VOLUME": "Lautstärke",
     "SPEED": "Geschwindigkeit",
-    "DEBUG_STATE": "Debug State exportieren",
-    "CHANNELS": "Abspielmodus",
-    "MONO": "Mono",
-    "STEREO": "Stereo"
+    "DEBUG_STATE": "Debug State exportieren"
   },
   "PLAYER": {
     "REPLAY": "Wiederholen",
@@ -144,7 +141,6 @@
     "VOLUME_UNMUTE": "Audio aktivschalten",
     "SET_VOLUME_IN_PERCENT": "Lautheit in Prozent anpassen",
     "DOWNLOAD_FILE": "Datei herunterladen: {url}",
-    "COPY_FILE": "Url {url} in Zwischenablage legen",
-    "CHANNELS": "Abspielmodus setzen"
+    "COPY_FILE": "Url {url} in Zwischenablage legen"
   }
 }

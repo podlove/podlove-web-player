@@ -4,7 +4,7 @@ import { hashCode } from 'hashcode'
 import { handleActions } from 'utils/effects'
 
 import actions from 'store/actions'
-import { INIT, SET_PLAYTIME, UPDATE_PLAYTIME, TOGGLE_TAB, SET_QUANTILE, SET_VOLUME, SET_RATE, SET_FILTER_MONO, SET_FILTER_STEREO } from 'store/types'
+import { INIT, SET_PLAYTIME, UPDATE_PLAYTIME, TOGGLE_TAB, SET_QUANTILE, SET_VOLUME, SET_RATE } from 'store/types'
 
 let storage = {
   get: noop,
@@ -27,7 +27,6 @@ export default storageFactory => handleActions({
     const storedTabs = storage.get('tabs')
     const storedVolume = storage.get('volume')
     const storedRate = storage.get('rate')
-    const storedChannel = storage.get('channel')
     const storedQuantiles = storage.get('quantiles')
     const playtime = get(state, 'playtime', 0)
 
@@ -50,14 +49,6 @@ export default storageFactory => handleActions({
 
     if (storedQuantiles) {
       dispatch(actions.loadQuantiles(storedQuantiles))
-    }
-
-    if (storedChannel === 'mono') {
-      dispatch(actions.setMonoChannel())
-    }
-
-    if (storedChannel === 'stereo') {
-      dispatch(actions.setStereoChannel())
     }
   },
 
@@ -82,13 +73,5 @@ export default storageFactory => handleActions({
   [SET_RATE]: (store, action, state) => {
     const rate = get(state, 'rate', 1)
     storage.set('rate', rate)
-  },
-
-  [SET_FILTER_MONO]: () => {
-    storage.set('channels', 'mono')
-  },
-
-  [SET_FILTER_STEREO]: () => {
-    storage.set('channel', 'stereo')
   }
 })

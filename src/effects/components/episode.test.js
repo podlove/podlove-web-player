@@ -201,10 +201,6 @@ test(`componentsEffect: it shows correct ui components for INIT action`, t => {
     type: 'TOGGLE_COMPONENT_RATE_SLIDER',
     payload: true
   })
-  t.deepEqual(store.dispatch.getCall(7).args[0], {
-    type: 'TOGGLE_COMPONENT_CHANNELS',
-    payload: true
-  })
 })
 
 test(`componentsEffect: it shows the chapters tab only when chapters are available on INIT_CHAPTERS`, t => {
