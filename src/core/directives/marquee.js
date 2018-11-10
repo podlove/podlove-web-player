@@ -6,8 +6,8 @@ const marquee = el => {
   const animationDuration = scroller.scrollWidth / 50
 
   setStyles({
-    'overflow-x': 'auto',
-    'white-space': 'nowrap'
+    'white-space': 'nowrap',
+    'overflow-x': 'hidden'
   })(scroller)
 
   setStyles({
@@ -19,21 +19,23 @@ const marquee = el => {
     width: 'auto'
   })(scroller)
 
-  if (scroller.scrollWidth > el.offsetWidth) {
-    addClasses('marquee-container')(el)
-    addClasses('marquee')(scroller)
-    setStyles({
-      'animation-duration': `${animationDuration > 10 ? animationDuration : 10}s`, // min 10s
-      width: `${scroller.scrollWidth}px`
-    })(scroller)
-  } else {
-    removeClasses('marquee-container')(el)
-    removeClasses('marquee')(scroller)
-  }
-
   setStyles({
     'overflow-x': 'visible'
   })(scroller)
+
+  setTimeout(() => {
+    if (scroller.scrollWidth > el.offsetWidth) {
+      addClasses('marquee-container')(el)
+      addClasses('marquee')(scroller)
+      setStyles({
+        'animation-duration': `${animationDuration > 10 ? animationDuration : 10}s`, // min 10s
+        width: `${scroller.scrollWidth}px`
+      })(scroller)
+    } else {
+      removeClasses('marquee-container')(el)
+      removeClasses('marquee')(scroller)
+    }
+  }, 0)
 }
 
 export default {

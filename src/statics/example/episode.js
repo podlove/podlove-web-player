@@ -23,22 +23,32 @@ export default (extension = {}) => ({
   poster: episodePoster,
   duration: '04:29:56.685',
   link: 'https://freakshow.fm/fs207-berliner-leistungswasser',
-  audio: [{
-    url: '//localhost:8080/example.m4a',
-    size: '102956071',
-    title: 'MPEG-4 AAC Audio (m4a)',
-    mimeType: 'audio/mp4'
-  }, {
-    url: '//localhost:8080/example.opus',
-    size: '102078914',
-    title: 'Opus Audio (opus)',
-    mimeType: 'audio/opus'
-  }, {
-    url: '//localhost:8080/example.ogg',
-    size: '103595672',
-    title: 'Ogg Vorbis Audio (oga)',
-    mimeType: 'audio/ogg'
-  }],
+  audio: [
+    {
+      url: 'https://freakshow.fm/podlove/file/5172/s/webplayer/c/episode/fs207-berliner-leistungswasser.m4a',
+      size: '102956071',
+      title: 'MPEG-4 AAC Audio (m4a)',
+      mimeType: 'audio/mp4'
+    },
+    {
+      url: 'https://freakshow.fm/podlove/file/5175/s/webplayer/c/episode/fs207-berliner-leistungswasser.opus',
+      size: '102078914',
+      title: 'Opus Audio (opus)',
+      mimeType: 'audio/opus'
+    },
+    {
+      url: 'https://freakshow.fm/podlove/file/5174/s/webplayer/c/episode/fs207-berliner-leistungswasser.oga',
+      size: '103595672',
+      title: 'Ogg Vorbis Audio (oga)',
+      mimeType: 'audio/ogg'
+    },
+    {
+      url: 'https://freakshow.fm/podlove/file/5176/s/webplayer/c/episode/fs207-berliner-leistungswasser.mp3',
+      size: '162412833',
+      title: 'MP3 Audio (mp3)',
+      mimeType: 'audio/mpeg'
+    }
+  ],
   chapters: [{
     start: '00:00:00.000',
     title: 'Intro',
