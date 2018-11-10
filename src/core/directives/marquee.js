@@ -6,7 +6,6 @@ const marquee = el => {
   const animationDuration = scroller.scrollWidth / 50
 
   setStyles({
-    'overflow-x': 'auto',
     'white-space': 'nowrap'
   })(scroller)
 
@@ -17,6 +16,10 @@ const marquee = el => {
   setStyles({
     height: `${scroller.offsetHeight}px`,
     width: 'auto'
+  })(scroller)
+
+  setStyles({
+    'overflow': 'auto'
   })(scroller)
 
   if (scroller.scrollWidth > el.offsetWidth) {
