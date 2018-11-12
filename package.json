@@ -65,7 +65,7 @@
     "dompurify": "^1.0.7",
     "hashcode": "1.0.3",
     "iframe-resizer": "3.6.3",
-    "keyboardjs": "2.4.1",
+    "keyboardjs": "2.5.0",
     "lodash": "4.17.11",
     "mobile-detect": "1.4.3",
     "normalize.css": "7.0.0",
