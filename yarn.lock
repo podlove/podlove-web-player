@@ -932,6 +932,10 @@
   dependencies:
     samsam "1.3.0"
 
+"@sphinxxxx/color-conversion@^2.1.1":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@sphinxxxx/color-conversion/-/color-conversion-2.2.0.tgz#d973a85a068eb5c8e894aa540129d140289c63a7"
+
 "@types/blob-util@1.3.3":
   version "1.3.3"
   resolved "https://registry.yarnpkg.com/@types/blob-util/-/blob-util-1.3.3.tgz#adba644ae34f88e1dd9a5864c66ad651caaf628a"
@@ -2714,9 +2718,9 @@ brace-expansion@^1.0.0, brace-expansion@^1.1.7:
     balanced-match "^1.0.0"
     concat-map "0.0.1"
 
-brace@0.11.0:
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/brace/-/brace-0.11.0.tgz#155cd80607687dc8cb908f0df94e62a033c1d563"
+brace@0.11.1:
+  version "0.11.1"
+  resolved "http://registry.npmjs.org/brace/-/brace-0.11.1.tgz#4896fcc9d544eef45f4bb7660db320d3b379fe58"
 
 braces@^1.8.2:
   version "1.8.5"
@@ -4787,6 +4791,10 @@ dot-prop@^4.1.0, dot-prop@^4.1.1:
   resolved "https://registry.yarnpkg.com/dot-prop/-/dot-prop-4.2.0.tgz#1f19e0c2e1aa0e32797c49799f2837ac6af69c57"
   dependencies:
     is-obj "^1.0.0"
+
+drag-tracker@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/drag-tracker/-/drag-tracker-1.0.0.tgz#9bd33d380bc3056db69bd5b3cf6e062fec58bd64"
 
 du@0.1.0:
   version "0.1.0"
@@ -7566,7 +7574,7 @@ json-schema@0.2.3:
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/json-schema/-/json-schema-0.2.3.tgz#b480c892e59a2f05954ce727bd3f2a4e882f9e13"
 
-json-source-map@^0.4.0:
+json-source-map@0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/json-source-map/-/json-source-map-0.4.0.tgz#eea837fe3ce2f2bfd5b13687779406354423c355"
 
@@ -7586,17 +7594,18 @@ json5@^0.5.0, json5@^0.5.1:
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/json5/-/json5-0.5.1.tgz#1eade7acc012034ad84e2396767ead9fa5495821"
 
-jsoneditor@^5.23.1:
-  version "5.23.1"
-  resolved "https://registry.yarnpkg.com/jsoneditor/-/jsoneditor-5.23.1.tgz#9baaf0635404b33b8d4f6fdf8fb9d69d63646b33"
+jsoneditor@^5.26.2:
+  version "5.26.2"
+  resolved "https://registry.yarnpkg.com/jsoneditor/-/jsoneditor-5.26.2.tgz#7217ee8792bd2caa8519032a07ebaf6e081685b9"
   dependencies:
     ajv "5.5.2"
-    brace "0.11.0"
+    brace "0.11.1"
     javascript-natural-sort "0.7.1"
     jmespath "0.15.0"
-    json-source-map "^0.4.0"
-    mobius1-selectr "2.4.1"
+    json-source-map "0.4.0"
+    mobius1-selectr "2.4.2"
     picomodal "3.0.0"
+    vanilla-picker "2.4.2"
 
 jsonfile@^3.0.0:
   version "3.0.1"
@@ -8597,9 +8606,9 @@ mobile-detect@1.4.3:
   version "1.4.3"
   resolved "https://registry.yarnpkg.com/mobile-detect/-/mobile-detect-1.4.3.tgz#e436a3839f5807dd4d3cd4e081f7d3a51ffda2dd"
 
-mobius1-selectr@2.4.1:
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/mobius1-selectr/-/mobius1-selectr-2.4.1.tgz#95d547f60bc2c45a145fd858982dcc9f58c06efa"
+mobius1-selectr@2.4.2:
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/mobius1-selectr/-/mobius1-selectr-2.4.2.tgz#b8a619c8a0ed6234590e5e5a9e979e15d9b4b89a"
 
 modify-values@^1.0.0:
   version "1.0.1"
@@ -12982,6 +12991,13 @@ validate-npm-package-license@^3.0.1:
   dependencies:
     spdx-correct "^3.0.0"
     spdx-expression-parse "^3.0.0"
+
+vanilla-picker@2.4.2:
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/vanilla-picker/-/vanilla-picker-2.4.2.tgz#830f1d23934c5eb25fc7b1d667aa8c21260f041c"
+  dependencies:
+    "@sphinxxxx/color-conversion" "^2.1.1"
+    drag-tracker "^1.0.0"
 
 vary@^1.1.2, vary@~1.1.2:
   version "1.1.2"
