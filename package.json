@@ -114,7 +114,7 @@
     "html-webpack-plugin": "^3.2.0",
     "http-server": "^0.11.1",
     "inject-loader": "4.0.0",
-    "jsoneditor": "^5.23.1",
+    "jsoneditor": "^5.26.2",
     "mini-css-extract-plugin": "^0.4.0",
     "node-sass": "4.10.0",
     "nyc": "12.0.2",
