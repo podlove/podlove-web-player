@@ -1,4 +1,4 @@
-import { get, last, find, isNumber } from 'lodash'
+import { get, last, find, isNumber, endsWith } from 'lodash'
 import { compose, map, concat, orderBy, reduce } from 'lodash/fp'
 
 import request from 'utils/request'
@@ -17,7 +17,7 @@ const isNewChunk = (current, last) => {
 
   const differentSpeaker = current.speaker !== last.speaker
   const text = last.texts.reduce((result, item) => result + ' ' + item.text, '')
-  const endOfSentence = new RegExp(/.*(\.|!|\?)$/).test(text) === false
+  const endOfSentence = endsWith(text, '.') || endsWith(text, '!') || endsWith(text, '?')
 
   return differentSpeaker || (text.length > 500 && endOfSentence)
 }
@@ -87,6 +87,9 @@ export default handleActions({
 
     request(transcriptsUrl)
       .then(transformTranscript)
+      .then(data => {
+        return data
+      })
       .catch(() => [])
       .then(compose(dispatch, actions.initTranscripts))
   },
