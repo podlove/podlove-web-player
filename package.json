@@ -140,7 +140,7 @@
     "vue-loader": "15.4.2",
     "vue-template-compiler": "2.5.17",
     "vuepress": "^0.14.1",
-    "webpack": "4.25.1",
+    "webpack": "4.26.0",
     "webpack-auto-inject-version": "^1.1.0",
     "webpack-bundle-analyzer": "3.0.3",
     "webpack-cli": "^3.0.2",
