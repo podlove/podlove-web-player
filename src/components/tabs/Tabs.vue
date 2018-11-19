@@ -22,7 +22,7 @@
         <span slot="title">{{ $t('FILES.TITLE') }}</span>
       </tab-header-item-component>
       <tab-header-item-component v-if="isVisibleTab.audio" name="audio" :active="tabs.audio" :click="toggleTab('audio')">
-        <audio-icon slot="icon"></audio-icon>
+        <audio-icon slot="icon" :volume="volume" :muted="muted"></audio-icon>
         <span slot="title">{{ $t('AUDIO.TITLE') }}</span>
       </tab-header-item-component>
     </tab-header-component>
@@ -72,7 +72,7 @@ const tabs = {
 }
 
 export default {
-  data: mapState('theme', 'tabs', 'chapters', 'reference', 'visibleComponents', 'components'),
+  data: mapState('theme', 'tabs', 'chapters', 'reference', 'visibleComponents', 'components', 'volume', 'muted'),
   computed: {
     containerStyle () {
       return {
@@ -121,10 +121,10 @@ export default {
 </script>
 
 <style lang="scss">
-  @import '~styles/variables';
+@import "~styles/variables";
 
-  .tabs {
-    width: 100%;
-    background: $background-color;
-  }
+.tabs {
+  width: 100%;
+  background: $background-color;
+}
 </style>
