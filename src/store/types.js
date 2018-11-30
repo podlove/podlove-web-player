@@ -71,6 +71,7 @@ export const LOAD_QUANTILES = 'LOAD_QUANTILES'
 export const SET_QUANTILE = 'SET_QUANTILE'
 
 // Runtime
+export const SET_RUNTIME = 'SET_RUNTIME'
 export const SET_LANGUAGE = 'SET_LANGUAGE'
 
 // Share

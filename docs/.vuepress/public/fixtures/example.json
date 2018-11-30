@@ -167,6 +167,10 @@
       "image": ""
     }
   ],
+  "runtime": {
+    "locale": "de-De",
+    "language": "de"
+  },
   "visibleComponents": [
     "tabInfo",
     "tabChapters",
