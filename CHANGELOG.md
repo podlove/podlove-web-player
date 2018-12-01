@@ -1,3 +1,20 @@
+## [4.2.4](https://github.com/podlove/podlove-web-player/compare/v4.2.3...v4.2.4) (2018-12-01)
+
+
+### Bug Fixes
+
+* **runtime:** merges initial configuration with runtime ([f7d689f](https://github.com/podlove/podlove-web-player/commit/f7d689f))
+* **tabs:** changed the audio icon to the unified tab icon style ([bf2c64b](https://github.com/podlove/podlove-web-player/commit/bf2c64b))
+* **transcripts:** better transcript end detection ([cd4f7f9](https://github.com/podlove/podlove-web-player/commit/cd4f7f9))
+
+
+### Features
+
+* **tabs:** change audio-tab icon to speaker symbol ([cfc427c](https://github.com/podlove/podlove-web-player/commit/cfc427c))
+* **tabs:** dynamic audio icon based on volume ([107ffa7](https://github.com/podlove/podlove-web-player/commit/107ffa7))
+
+
+
 ## [4.2.3](https://github.com/podlove/podlove-web-player/compare/v4.2.2...v4.2.3) (2018-11-10)
 
 
