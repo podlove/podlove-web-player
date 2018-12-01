@@ -32,8 +32,8 @@ const condEffects = [
   conditionalEffect(storageEffects),
   conditionalEffect(quantileEffects),
   conditionalEffect(volumeEffects),
-  conditionalEffect(componentsEffects),
   conditionalEffect(runtimeEffects),
+  conditionalEffect(componentsEffects),
   compose(conditionalEffect(chapterEffects)),
   compose(conditionalEffect(transcriptEffects), hasProperty('transcripts'))
 ]
