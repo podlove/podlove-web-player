@@ -16,6 +16,7 @@ import chapterEffects from './chapters'
 import volumeEffects from './volume'
 import playbackEffects from './playback'
 import transcriptEffects from './transcripts'
+import runtimeEffects from './runtime'
 
 import mediaPlayer from '../media'
 
@@ -31,6 +32,7 @@ const condEffects = [
   conditionalEffect(storageEffects),
   conditionalEffect(quantileEffects),
   conditionalEffect(volumeEffects),
+  conditionalEffect(runtimeEffects),
   conditionalEffect(componentsEffects),
   compose(conditionalEffect(chapterEffects)),
   compose(conditionalEffect(transcriptEffects), hasProperty('transcripts'))

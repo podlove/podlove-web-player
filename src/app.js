@@ -1,4 +1,3 @@
-import runtime from 'utils/runtime'
 import { createApp } from 'core'
 
 // Store
@@ -9,12 +8,6 @@ import actions from 'store/actions'
 import App from './components/App'
 
 export default config => {
-  // Enhance config with app debug information
-  config = {
-    runtime,
-    ...config
-  }
-
   // Initialize meta for store
   store.dispatch(actions.init(config))
 

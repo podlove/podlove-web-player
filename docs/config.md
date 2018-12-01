@@ -246,7 +246,7 @@ List of components that are visible in the player. if nothing is provided all co
 | controlChapters   | Chapters controls     |
 | poster            | Poster in Head        |
 | tabChapters       | Chapters Tab          |
-| tabDownload       | Download Tab          |
+| tabFiles          | Files Tab             |
 | tabAudio          | Audio Tab             |
 | tabShare          | Share Tab             |
 
@@ -255,7 +255,7 @@ List of components that are visible in the player. if nothing is provided all co
   visibleComponents: [
     'tabInfo',
     'tabChapters',
-    'tabDownload',
+    'tabFiles',
     'tabAudio',
     'tabShare',
     'poster',

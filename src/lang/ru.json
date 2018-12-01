@@ -1,0 +1,141 @@
+{
+  "CHAPTERS": {
+    "TITLE": "Главы"
+  },
+  "AUDIO": {
+    "TITLE": "Аудио",
+    "VOLUME": "Звук",
+    "SPEED": "Скорость",
+    "DEBUG_STATE": "Экспортировать отладочное состояние"
+  },
+  "PLAYER": {
+    "REPLAY": "заново",
+    "RETRY": "Повторить"
+  },
+  "ERROR": {
+    "LOADING": {
+      "TITLE": "Ошибка загрузки аудио файлов",
+      "MESSAGE": "Невозможно загрузить аудио файлы с сервера. Пожалуйста, попробуйте позже."
+    },
+    "MISSING_FILES": {
+      "TITLE": "Отсутствует необходимая информация",
+      "MESSAGE": "Нет ссылок на аудио файлы, необходимые для проигрования подкаста."
+    }
+  },
+  "FILES": {
+    "TITLE": "Файлы",
+    "TYPES": {
+      "AUDIO": {
+        "HEADER": "Аудио Файлы"
+      }
+    },
+    "ACTIONS": {
+      "DOWNLOAD": "Скачать",
+      "COPY": "Скопировать Url"
+    }
+  },
+  "SHARE": {
+    "TITLE": "Поделиться",
+    "CONTENT": {
+      "SHOW": "Шоу",
+      "EPISODE": "Эпизод",
+      "CHAPTER": "Глава",
+      "TIME": "Старт подкаста с"
+    },
+    "SHARE_CHANNEL": "Поделиться в...",
+    "SHARE_LINK": "Ссылка",
+    "ACTIONS": {
+      "COPY": "копировать"
+    },
+    "EPISODE": {
+      "TEXT": {
+        "BEGINNING": "\"{title}\" ({link})",
+        "CHAPTER": "\"{chapter}\" \"{title}\" ({link})",
+        "PLAYTIME": "\"{title}\" ({link})"
+      },
+      "SUBJECT": {
+        "BEGINNING": "{title}",
+        "CHAPTER": "{title} - {chapter}",
+        "PLAYTIME": "{title}"
+      }
+    },
+    "SHOW": {
+      "TEXT": "\"{title}\" ({link})",
+      "SUBJECT": "{title}"
+    },
+    "EMBED": {
+      "TITLE": "Встроить Эпизод",
+      "LABEL": {
+        "SIZE": "Размер",
+        "CODE": "Код для встраивания"
+      },
+      "ACTIONS": {
+        "COPY": "Скопировать Код"
+      }
+    }
+  },
+  "INFO": {
+    "TITLE": "Инфо",
+    "PUBLICATION_DATE": "Опубликован: {day}.{month}.{year}",
+    "DURATION_WITH_HOURS": "{hours} час {minutes} минут",
+    "DURATION": "{minutes} минут",
+    "ON_AIR": "В эфире"
+  },
+  "TRANSCRIPTS": {
+    "TITLE": "Транскрипт",
+    "CHAPTER": "Глава {index}: {title}",
+    "FOLLOW": "выделять текущую фразу",
+    "SEARCH": "Поиск",
+    "NO_SEARCH_RESULTS": "Ничего не найдено"
+  },
+  "MESSAGES": {
+    "COPIED": "Скопировано!"
+  },
+  "A11Y": {
+    "ALT_EPISODE_COVER": "Обложка эпизода",
+    "ALT_SHOW_COVER": "Отобразить Обложку",
+    "PLAYER_PLAY": "Воспроизвести Эпизод",
+    "PLAYER_START": "Запустить эпизод, длительностью {hours} часов {minutes} минут {seconds} секунд",
+    "PLAYER_RESTART": "Перезапустить Эпизод",
+    "PLAYER_ERROR": "Попробовать проиграть еще раз",
+    "PLAYER_PAUSE": "Поставить на паузу",
+    "PLAYER_LOADING": "Буферризация Эпизода",
+    "PLAYER_CHAPTER_NEXT": "Перейти к следующей главе: {index} - {title}",
+    "PLAYER_CHAPTER_END": "Перейти в конец эпизода",
+    "PLAYER_CHAPTER_PREVIOUS": "Перейти к предыдущей главе: {index} - {title}",
+    "PLAYER_CHAPTER_CURRENT": "Перейти к Началу Текущей Главы: {index} - {title}",
+    "PLAYER_STEPPER_BACK": "Вернуться назад на {seconds} секунд",
+    "PLAYER_STEPPER_FORWARD": "Пропустить {seconds} секунд",
+    "PROGRESSBAR_INPUT": "Изменить время, с которого начать проигрывание",
+    "TIMER_CURRENT": "Текущая позиция: {hours} часов {minutes} минут {seconds} секунд",
+    "TIMER_LEFT": "Осталось времени: {hours} часов {minutes} минут {seconds} секунд",
+    "TIMER_CHAPTER": "Текущая глава: {index} - {title}",
+    "SPEAKER_COVER": "Спикер {name}",
+    "CHAPTER_ENTRY": "{index} - {title} (Длительность: {duration}, Осталось: {remaining})",
+    "SHARE_CONTENT_SHOW": "Поделиться Шоу {title}",
+    "SHARE_CONTENT_EPISODE": "Поделиться Эпизодом {title}",
+    "SHARE_CONTENT_CHAPTER": "Поделиться Главой Эпизода {title}",
+    "SHARE_CONTENT_PLAYTIME": "Поделиться Временной Меткой Эпизода {playtime}",
+    "SHARE_CHANNEL": "Поделиться в {channel}",
+    "SHARE_EMBED": "Поделиться встраиваемым кодом",
+    "COPY_SHARE_LINK": "Скопировать ссылку",
+    "SHARE_OVERLAY": "Поделиться Оверлеем",
+    "OVERLAY_CLOSE": "Закрыть Оверлей",
+    "COPY_EMBED_CODE": "Скопировать Встраиваемый Код",
+    "DOWNLOAD_EPISODE": "Скачать Эпизод",
+    "SELECT_EPISODE_FILETYPE": "Выбрать Тип Файла Эпизода",
+    "COPY_DOWNLOAD_URL": "Скопировать URL для скачивания",
+    "RATE": "Скорость воспроизведения",
+    "RATE_CURRENT": "Текущая скорость: {rate}%",
+    "RATE_INCREASE": "Увеличить Скорость Воспроизведения",
+    "RATE_DECREASE": "Уменьшить Скорость Воспроизведения",
+    "SET_RATE_IN_PERCENT": "Установить Скорость Воспроизведения В Процентах",
+    "VOLUME": "Громкость",
+    "VOLUME_CURRENT": "Текущая громкость: {volume}%",
+    "VOLUME_MUTE": "Отключить Звук",
+    "VOLUME_UNMUTE": "Включить Звук",
+    "SET_VOLUME_IN_PERCENT": "Установить Громкость В Процентах",
+    "DOWNLOAD_FILE": "Скачать Файл {url}",
+    "COPY_FILE": "Скопировать Файл {url}"
+  }
+}

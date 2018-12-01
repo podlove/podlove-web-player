@@ -1,13 +1,13 @@
 import { handleActions } from 'redux-actions'
 
-import { INIT, SET_LANGUAGE } from '../types'
+import { SET_RUNTIME, SET_LANGUAGE } from '../types'
 
 export const INITIAL_STATE = {}
 
 export const reducer = handleActions({
-  [INIT]: (state, { payload }) => ({
+  [SET_RUNTIME]: (state, { payload }) => ({
     ...state,
-    ...payload.runtime
+    ...payload
   }),
   [SET_LANGUAGE]: (state, { payload }) => ({
     ...state,
