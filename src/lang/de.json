@@ -111,7 +111,7 @@
     "PLAYER_CHAPTER_CURRENT": "Zum Anfang des aktiven Kapitels springen: {index} - {title}",
     "PLAYER_STEPPER_BACK": "{seconds} Sekunden zurückspringen",
     "PLAYER_STEPPER_FORWARD": "{seconds} Sekunden vorspringen",
-    "PROGRESSBAR_INPUT": "Spielzeit in Millisekunden ändern",
+    "PROGRESSBAR_INPUT": "Spielzeit in Sekunden ändern",
     "TIMER_CURRENT": "Aktuelle Spielzeit: {hours} Stunden {minutes} Minuten {seconds} Sekunden",
     "TIMER_LEFT": "Verbleibende Spielzeit: {hours} Stunden {minutes} Minuten {seconds} Sekunden",
     "TIMER_CHAPTER": "Aktuelles Kapitel: {index} - {title}",
