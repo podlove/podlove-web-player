@@ -106,7 +106,7 @@
     "PLAYER_CHAPTER_CURRENT": "Go to the Beginning of the Current Chapter: {index} - {title}",
     "PLAYER_STEPPER_BACK": "Rewind {seconds} Seconds",
     "PLAYER_STEPPER_FORWARD": "Fast Forward {seconds} Seconds",
-    "PROGRESSBAR_INPUT": "Change Playtime in Milliseconds",
+    "PROGRESSBAR_INPUT": "Change Playtime in Seconds",
     "TIMER_CURRENT": "Current Playtime: {hours} hours {minutes} minutes {seconds} seconds",
     "TIMER_LEFT": "Playtime Left: {hours} hours {minutes} minutes {seconds} seconds",
     "TIMER_CHAPTER": "Current Chapter: {index} - {title}",
