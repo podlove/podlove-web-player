@@ -76,7 +76,7 @@
     "serve": "^10.0.0",
     "superagent": "3.8.3",
     "v-tooltip": "2.0.0-rc.33",
-    "vue": "2.5.17",
+    "vue": "2.5.18",
     "vue-i18n": "8.3.0",
     "vuepress-theme-millidocs": "^0.5.1"
   },
