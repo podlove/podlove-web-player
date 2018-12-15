@@ -82,7 +82,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^9.1.0",
-    "ava": "0.25.0",
+    "ava": "1.0.1",
     "babel-core": "6.26.0",
     "babel-eslint": "^10.0.1",
     "babel-loader": "7.1.5",
