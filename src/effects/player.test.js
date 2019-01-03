@@ -122,7 +122,7 @@ test(`playerEffect: it calls setPlaytime and play on UI_RESTART`, t => {
     type: 'UI_RESTART'
   })
 
-  t.truthy(restartStub.called)
+  t.truthy(playtimeStub.called)
   t.truthy(playStub.called)
 })
 

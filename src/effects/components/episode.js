@@ -122,7 +122,10 @@ export default handleActions({
     }
   },
 
-  [END]: ({ dispatch }) => dispatch(actions.showReplayButton()),
+  [END]: ({ dispatch }, _, state) => {
+    dispatch(actions.stop());
+    dispatch(actions.showReplayButton())
+  },
 
   [NETWORK_EMPTY]: networkError,
   [NETWORK_NO_SOURCE]: networkError,

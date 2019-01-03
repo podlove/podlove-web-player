@@ -54,8 +54,8 @@ export default mediaPlayer => handleActions({
   [UI_PAUSE]: () => playerActions.pause(),
 
   [UI_RESTART]: () => {
+    playerActions.setPlaytime(millisecondsToSeconds(0))
     playerActions.play()
-    playerActions.restart()
   },
 
   [UPDATE_PLAYTIME]: (_, { payload }) => playerActions.setPlaytime(millisecondsToSeconds(payload)),
