@@ -125,6 +125,7 @@ export default handleActions({
   [END]: ({ dispatch }, _, state) => {
     dispatch(actions.stop())
     dispatch(actions.showReplayButton())
+    dispatch(actions.toggleProgressBar(true))
   },
 
   [NETWORK_EMPTY]: networkError,

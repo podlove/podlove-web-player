@@ -151,8 +151,6 @@ describe('Controls', () => {
 
       it('does nothing when the last chapter was reached', function () {
         cy.window().then(setState(this.episode, this.audio, this.show, this.chapters))
-        cy.play()
-        cy.pause()
         selectors.chapter.current().contains(this.chapters.chapters[0].title)
         selectors.controls.chapters.back().should('have.attr', 'disabled')
       })
