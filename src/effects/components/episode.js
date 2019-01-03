@@ -123,7 +123,7 @@ export default handleActions({
   },
 
   [END]: ({ dispatch }, _, state) => {
-    dispatch(actions.stop());
+    dispatch(actions.stop())
     dispatch(actions.showReplayButton())
   },
 
