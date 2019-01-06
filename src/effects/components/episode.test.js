@@ -277,10 +277,9 @@ test(`componentsEffect: it shows correct ui components for END action`, t => {
   const testAction = {
     type: 'END'
   }
-
   components(store, testAction)
   t.deepEqual(store.dispatch.getCall(0).args[0], {
-    type: 'SHOW_COMPONENT_CONTROLS_BUTTON_REPLAY'
+    type: 'STOP'
   })
 })
 
