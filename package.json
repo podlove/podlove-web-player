@@ -137,7 +137,7 @@
     "transform-runtime": "0.0.0",
     "uglifyjs-webpack-plugin": "^2.0.1",
     "vue-color": "^2.6.0",
-    "vue-loader": "15.4.2",
+    "vue-loader": "15.5.0",
     "vue-template-compiler": "2.5.17",
     "vuepress": "^0.14.1",
     "webpack": "4.25.1",
