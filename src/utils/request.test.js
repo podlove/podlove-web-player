@@ -1,14 +1,14 @@
 import test from 'ava'
-import superagent from 'superagent'
-import nocker from 'superagent-nock'
-
+import browserEnv from 'browser-env'
+import fetchMock from 'fetch-mock'
 import request from './request'
 
-let nock
+browserEnv(['window'])
+const nock = global.window.fetch = fetchMock.sandbox()
 
-test.beforeEach(t => {
-  nock = nocker(superagent)
-})
+test.after(nock.reset)
+
+test.beforeEach(nock.reset)
 
 test(`request: exports a function`, t => {
   t.is(typeof request, 'function')
@@ -17,9 +17,7 @@ test(`request: exports a function`, t => {
 test.cb(`request: should resolve an url`, t => {
   t.plan(1)
 
-  nock('http://localhost')
-    .get('/foo')
-    .reply(200, { foo: 'bar' })
+  nock.get('http://localhost/foo', { foo: 'bar' })
 
   request('http://localhost/foo')
     .then(result => {

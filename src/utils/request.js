@@ -1,10 +1,13 @@
-import request from 'superagent'
+const request = (url) => {
+  return window.fetch(url, {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json'
+    }
+  })
+}
 
 export default url =>
   (typeof url === 'string'
-    ? request
-      .get(url)
-      .query({ format: 'json' })
-      .set('Accept', 'application/json')
-      .then(res => res.body)
-    : new Promise(resolve => resolve(url)))
+    ? request(url).then(response => response.json())
+    : Promise.resolve(url))

@@ -1,14 +1,18 @@
 import test from 'ava'
 import sinon from 'sinon'
-import nocker from 'superagent-nock'
-import request from 'superagent'
-
+import browserEnv from 'browser-env'
+import fetchMock from 'fetch-mock'
 import chapters from './chapters'
 
-let store, state, nock
+browserEnv(['window'])
+const nock = global.window.fetch = fetchMock.sandbox()
 
-test.beforeEach(t => {
-  nock = nocker(request)
+let store, state
+
+test.after(nock.reset)
+
+test.beforeEach(() => {
+  nock.reset()
 
   state = {
     chapters: {
@@ -222,7 +226,7 @@ test.cb(
       }
     ]
 
-    nock('http://localhost').get('/foo').reply(200, dummyChapters)
+    nock.get('http://localhost/foo', dummyChapters)
 
     store.dispatch = ({ type, payload }) => {
       t.is(type, 'INIT_CHAPTERS')
@@ -278,7 +282,7 @@ test.cb(
       playtime: 45000
     }
 
-    nock('http://localhost').get('/foo').reply(400, [])
+    nock.get('http://localhost/foo', 400)
 
     store.dispatch = ({ type, payload }) => {
       t.is(type, 'INIT_CHAPTERS')

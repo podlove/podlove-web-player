@@ -1,14 +1,18 @@
 import test from 'ava'
-import request from 'superagent'
-import nocker from 'superagent-nock'
-
+import browserEnv from 'browser-env'
+import fetchMock from 'fetch-mock'
 import fetchEffects from './fetch'
 import { transcripts, chapters, contributors, parsedTranscripts, parsedTranscriptsWithSpeakers, parsedChapters } from './fixtures'
 
-let nock, payload
+browserEnv(['window'])
+const nock = global.window.fetch = fetchMock.sandbox()
 
-test.beforeEach(t => {
-  nock = nocker(request)
+let payload
+
+test.after(nock.reset)
+
+test.beforeEach(() => {
+  nock.reset()
 
   payload = {
     contributors,
@@ -24,9 +28,7 @@ test(`transcripts - fetch: exports a function`, t => {
 test.cb(`transcripts - fetch: parses transcripts on INIT and dispatches INIT_TRANSCRIPTS`, t => {
   t.plan(2)
 
-  nock('http://localhost')
-    .get('/foo')
-    .reply(200, transcripts)
+  nock.get('http://localhost/foo', transcripts)
 
   const tester = ({ type, payload }) => {
     t.is(type, 'INIT_TRANSCRIPTS')
@@ -46,9 +48,7 @@ test.cb(`transcripts - fetch: parses transcripts on INIT and dispatches INIT_TRA
 test.cb(`transcripts - fetch: falls back to empty list on INIT and dispatches INIT_TRANSCRIPTS`, t => {
   t.plan(2)
 
-  nock('http://localhost')
-    .get('/foo')
-    .reply(404)
+  nock.get('http://localhost/foo', 404)
 
   const tester = ({ type, payload }) => {
     t.is(type, 'INIT_TRANSCRIPTS')
