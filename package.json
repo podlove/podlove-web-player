@@ -95,7 +95,7 @@
     "babel-preset-bluebird": "1.0.1",
     "babel-preset-env": "1.6.1",
     "babel-register": "6.26.0",
-    "browser-env": "3.2.4",
+    "browser-env": "3.2.6",
     "commitizen": "3.0.3",
     "compression-webpack-plugin": "2.0.0",
     "concurrently": "^4.0.0",
