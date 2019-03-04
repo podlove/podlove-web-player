@@ -10629,9 +10629,10 @@ reduce@^1.0.1:
   dependencies:
     object-keys "~1.0.0"
 
-redux-actions@2.6.4:
-  version "2.6.4"
-  resolved "https://registry.yarnpkg.com/redux-actions/-/redux-actions-2.6.4.tgz#e1d9d7d987d274071b0134b707365d3e25ba3b26"
+redux-actions@2.6.5:
+  version "2.6.5"
+  resolved "https://registry.yarnpkg.com/redux-actions/-/redux-actions-2.6.5.tgz#bdca548768ee99832a63910c276def85e821a27e"
+  integrity sha512-pFhEcWFTYNk7DhQgxMGnbsB1H2glqhQJRQrtPb96kD3hWiZRzXHwwmFPswg6V2MjraXRXWNmuP9P84tvdLAJmw==
   dependencies:
     invariant "^2.2.4"
     just-curry-it "^3.1.0"
