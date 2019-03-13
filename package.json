@@ -131,7 +131,7 @@
     "standard-reporter": "^1.0.5",
     "subfont": "^3.6.1",
     "superagent-nock": "0.4.0",
-    "surge": "0.20.0",
+    "surge": "0.20.3",
     "tap-xunit": "^2.3.0",
     "to-string-loader": "^1.1.5",
     "transform-runtime": "0.0.0",
