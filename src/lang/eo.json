@@ -22,12 +22,15 @@
       "MESSAGE": "Por aŭdigi la podkaston mankas la referencoj al la sondosieroj."
     }
   },
-  "DOWNLOAD": {
-    "TITLE": "Elŝuti",
-    "DURATION_WITH_HOURS": "{hours} horoj {minutes} minutoj",
-    "DURATION": "{minutes} minutoj",
+  "FILES": {
+    "TITLE": "Dosieroj",
+    "TYPES": {
+      "AUDIO": {
+        "HEADER": "Sondosieroj"
+      }
+    },
     "ACTIONS": {
-      "DOWNLOAD": "Elŝuti epizodon",
+      "DOWNLOAD": "Elŝuti",
       "COPY": "Kopii URLn"
     }
   },
@@ -64,16 +67,16 @@
     "SHOW": {
       "TEXT": "\"{title}\" ({link}",
       "SUBJECT": "\"{title}\" ({link}"
-    }
-  },
-  "EMBED": {
-    "TITLE": "Enigi epizodon",
-    "LABEL": {
-      "SIZE": "Eniga grandeco",
-      "CODE": "Eniga kodo"
     },
-    "ACTIONS": {
-      "COPY": "Kopii kodon"
+    "EMBED": {
+      "TITLE": "Enigi epizodon",
+      "LABEL": {
+        "SIZE": "Eniga grandeco",
+        "CODE": "Eniga kodo"
+      },
+      "ACTIONS": {
+        "COPY": "Kopii kodon"
+      }
     }
   },
   "INFO": {
@@ -136,6 +139,8 @@
     "VOLUME_CURRENT": "Nune: {volume}%",
     "VOLUME_MUTE": "Mutigi",
     "VOLUME_UNMUTE": "Malmutigi",
-    "SET_VOLUME_IN_PERCENT": "Agordi laŭtecon je elcentoj"
+    "SET_VOLUME_IN_PERCENT": "Agordi laŭtecon je elcentoj",
+    "DOWNLOAD_FILE": "Elŝuti dosieron: {url}",
+    "COPY_FILE": "Kopii URLn {url}"
   }
 }
