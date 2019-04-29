@@ -103,7 +103,7 @@ _Not providing chapters will disable all chapter related functions._
     title: 'Audio MP4'
   }, {
     url: 'http://freakshow.fm/podlove/file/4467/s/download/c/select-show/fs171-invasion.mp3',
-    mimeType: 'audio/mp3',
+    mimeType: 'audio/mpeg',
     size: 14665000,
     title: 'Audio MP3'
   }, {
