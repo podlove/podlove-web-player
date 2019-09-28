@@ -1,5 +1,6 @@
 <template>
   <ul class="channel-list" id="tab-share--channels">
+    <li id="tab-share--channels--native" v-if="nativeShareIsSupported()" @click="shareNative">NATIVE SHARE</li>
     <li id="tab-share--channels--twitter"><channel-twitter-component :text="shareText"></channel-twitter-component></li>
     <li id="tab-share--channels--facebook"><channel-facebook-component :link="shareLink"></channel-facebook-component></li>
     <li id="tab-share--channels--pinterest"><channel-pinterest-component :text="shareText" :link="shareLink" :poster="sharePoster"></channel-pinterest-component></li>
@@ -133,6 +134,19 @@
       ChannelPinterestComponent,
       ChannelRedditComponent,
       ChannelLinkedinComponent
+    },
+    methods: {
+      shareNative () {
+        const data = {
+          title: this.shareSubject,
+          text: this.shareText,
+          url: this.episode.link,
+        }
+        window.navigator.share(data)
+      },
+      nativeShareIsSupported() {
+        return 'share' in navigator
+      }
     }
   }
 </script>
