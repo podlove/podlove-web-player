@@ -62,7 +62,7 @@
     "color": "3.1.0",
     "copy-to-clipboard": "3.0.8",
     "detect-browser": "3.0.1",
-    "dompurify": "^1.0.7",
+    "dompurify": "^2.0.17",
     "hashcode": "1.0.3",
     "iframe-resizer": "3.6.3",
     "keyboardjs": "2.4.1",
