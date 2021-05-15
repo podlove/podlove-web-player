@@ -1,5 +1,5 @@
 const { version } = require('../package')
-const BASE = `//cdn.podlove.org/web-player/`
+const BASE = `//cdn.podlove.org/web-player/4.x/`
 
 const { entry, output, resolve, optimization, rules, plugins } = require('./blocks')
 
